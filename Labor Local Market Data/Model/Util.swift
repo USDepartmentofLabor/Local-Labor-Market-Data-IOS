@@ -12,8 +12,6 @@ import UIKit
 struct Util {
     static var isVoiceOverRunning: Bool {
         get {
-            //todo
-            return true
             return UIAccessibilityIsVoiceOverRunning()
         }
     }
