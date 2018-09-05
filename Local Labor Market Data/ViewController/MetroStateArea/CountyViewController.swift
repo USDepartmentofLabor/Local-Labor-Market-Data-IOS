@@ -180,7 +180,6 @@ extension CountyViewController {
             switch apiResult {
             case .success(let areaReportsDict):
                 strongSelf.displayLocalReportResults(areaReportsDict: areaReportsDict)
-                strongSelf.loadNationalReports(localAreaReportsDict: areaReportsDict)
             case .failure(let error):
                 print(error.localizedDescription)
                 strongSelf.handleError(error: error)
@@ -208,7 +207,6 @@ extension CountyViewController {
                 switch apiResult {
                 case .success(let areaReportsDict):
                     strongSelf.displayLocalReportResults(areaReportsDict: areaReportsDict)
-                    strongSelf.loadNationalReports(localAreaReportsDict: areaReportsDict)
                 case .failure(let error):
                     print(error)
                 }
@@ -217,6 +215,9 @@ extension CountyViewController {
 
     func displayLocalReportResults(areaReportsDict: [ReportType: AreaReport]) {
         localAreaReportsDict = localAreaReportsDict + areaReportsDict
+        
+        loadNationalReport(areaReportsDict: areaReportsDict)
+        
         tableView.reloadData()
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, "Loaded Local Report")
     }
@@ -227,17 +228,49 @@ extension CountyViewController {
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, "Loaded National Report")
     }
     
-    func loadNationalReports(localAreaReportsDict: [ReportType: AreaReport]) {
+    func loadNationalReport(areaReportsDict: [ReportType: AreaReport]) {
+        
+        guard let nationalArea = nationalArea else {return}
+        var reportStartYear: Int = 9999
+        var reportEndYear: Int = -1
+        var nationalReportTypes = [ReportType]()
+        areaReportsDict.forEach { (reportType, areaReport) in
+            
+            // Check if report exist in Cache
+            if let nationalSeriesId = reportType.seriesId(forArea: nationalArea, adjustment: seasonalAdjustment),
+                let localLatestData = areaReport.seriesReport?.latestData(),
+                let report = CacheManager.shared().getReport(seriesId: nationalSeriesId, forPeriod: localLatestData.period, year: localLatestData.year) {
+                
+                var nationalReport = AreaReport(reportType: reportType, area: area)
+                nationalReport.seriesReport = report
+                nationalReport.seriesId = nationalSeriesId
+                nationalAreaReportsDict[reportType] = nationalReport
+            }
+            else if let localLatestData = areaReport.seriesReport?.latestData() {
+                if reportStartYear > Int(localLatestData.year)! {
+                    reportStartYear = Int(localLatestData.year)!
+                }
+                if reportEndYear < Int(localLatestData.year)! {
+                    reportEndYear = Int(localLatestData.year)!
+                }
+                nationalReportTypes.append(reportType)
+            }
+        }
+        
+        if nationalReportTypes.count > 0 {
+            loadNationalReports(reportTypes: nationalReportTypes, startYear: String(reportStartYear),
+                                endYear: String(reportEndYear))
+        }
+    }
+    
+    func loadNationalReports(reportTypes: [ReportType], startYear: String, endYear: String) {
         guard let nationalArea = nationalArea else {return}
         
-        let reportTypes = Array(localAreaReportsDict.keys)
-        let reportYear = localAreaReportsDict.first?.value.seriesReport?.latestDataYear()
-        let period = localAreaReportsDict.first?.value.seriesReport?.latestDataPeriod()
         ReportManager.getReports(forArea: nationalArea,
                                     reportTypes: reportTypes,
                                     seasonalAdjustment: seasonalAdjustment,
-                                    period: period,
-                                     year: reportYear) {[weak self] (apiResult) in
+                                    startYear: startYear,
+                                     endYear: endYear) {[weak self] (apiResult) in
             guard let strongSelf = self else {return}
             switch apiResult {
             case .success(let areaReportsDict):

@@ -27,7 +27,7 @@ struct SeriesReport : Decodable {
             else {
                 return $0.year > $1.year
             }
-        }.first
+            }.first
     }
 
     func data(forPeriod period: String, forYear year: String) -> SeriesData? {

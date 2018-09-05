@@ -21,15 +21,15 @@ enum ReportError: Error, CustomStringConvertible {
     var description: String {
         let desc: String
         switch self {
-        case .jsonParsingError(let parsingnError):
+        case .jsonParsingError( _):
             desc = NSLocalizedString("Error retrieving data.", comment: "Error retrieving data.")
         case .network(let reason):
             desc = reason
-        case .httpError(let statusCode):
+        case .httpError( _):
             desc = NSLocalizedString("Error retrieving data.", comment: "Error retrieving data.")
         case .noResponse:
             desc = NSLocalizedString("Error retrieving data.", comment: "Error retrieving data.")
-        case .requestError(let status, let messages):
+        case .requestError(_,  _):
             desc = NSLocalizedString("Error retrieving data.", comment: "Error retrieving data.")
         }
 
@@ -170,12 +170,6 @@ class ReportManager {
                             CacheManager.shared().saveReport(seriesReport: seriesReport)
                         }
                     })
-//                    for (key, areaReport) in areaReportsDict {
-//                        areaReportsDict[key]?.seriesReport = seriesReports.filter {
-//                            $0.seriesID == areaReport.seriesId
-//                        }.first
-//                    }
-                    
                     completion?(.success(areaReportsDict))
                 }
                 else {
