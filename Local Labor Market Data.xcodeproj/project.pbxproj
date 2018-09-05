@@ -60,8 +60,6 @@
 		0396A00120FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03969FFF20FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift */; };
 		0396A013210268FF00DBECBD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A012210268FF00DBECBD /* SearchViewController.swift */; };
 		0396A0162106090800DBECBD /* LAUS_Area+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A0142106090800DBECBD /* LAUS_Area+CoreDataClass.swift */; };
-		0396A05721061D1300DBECBD /* LAUS in Resources */ = {isa = PBXBuildFile; fileRef = 0396A05521061D1300DBECBD /* LAUS */; };
-		0396A05821061D1300DBECBD /* QCEW in Resources */ = {isa = PBXBuildFile; fileRef = 0396A05621061D1300DBECBD /* QCEW */; };
 		0396A05A21061F2900DBECBD /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A05921061F2900DBECBD /* Bundle+Extension.swift */; };
 		0396A05D21074E5400DBECBD /* SearchSectionTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A05C21074E5400DBECBD /* SearchSectionTableHeaderView.swift */; };
 		0396A05F2107581400DBECBD /* SearchSectionTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0396A05E2107581400DBECBD /* SearchSectionTableHeaderView.xib */; };
@@ -78,6 +76,7 @@
 		03E35085213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */; };
 		03E35086213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */; };
 		03E3508E213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3508D213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift */; };
+		03E35096213EFC1A00AC7383 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */; };
 		03F1F86120EA622D00662446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86020EA622D00662446 /* AppDelegate.swift */; };
 		03F1F86320EA622D00662446 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86220EA622D00662446 /* ViewController.swift */; };
 		03F1F86620EA622D00662446 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86420EA622D00662446 /* Main.storyboard */; };
@@ -85,8 +84,6 @@
 		03F1F86B20EA623000662446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86A20EA623000662446 /* Assets.xcassets */; };
 		03F1F86E20EA623000662446 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86C20EA623000662446 /* LaunchScreen.storyboard */; };
 		03F1F87920EA623000662446 /* Local_Labor_Market_DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F87820EA623000662446 /* Local_Labor_Market_DataTests.swift */; };
-		03F1F89420EAA6C300662446 /* ZIP_CBSA.csv in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F89220EAA6C200662446 /* ZIP_CBSA.csv */; };
-		03F1F89520EAA6C300662446 /* ZIP_COUNTY.csv in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F89320EAA6C200662446 /* ZIP_COUNTY.csv */; };
 		03F1F89820EAA93000662446 /* DataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F89720EAA93000662446 /* DataUtil.swift */; };
 		03F1F89F20EABF0200662446 /* CodeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F89E20EABF0200662446 /* CodeDataManager.swift */; };
 		03F1F8A220EAC99700662446 /* ZipCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F8A020EAC99700662446 /* ZipCountyMap+CoreDataClass.swift */; };
@@ -184,6 +181,7 @@
 		03E3508B213ED85900AC7383 /* Local Labor Market DataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Local Labor Market DataUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E3508D213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Local_Labor_Market_DataUITests.swift; sourceTree = "<group>"; };
 		03E3508F213ED85900AC7383 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		03F1F85D20EA622D00662446 /* Local Labor Market Data.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Local Labor Market Data.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03F1F86020EA622D00662446 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03F1F86220EA622D00662446 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -457,6 +455,7 @@
 				035D9724212C7DF9005F1CA9 /* UILabel+Extension.swift */,
 				032C16682139927F004C1B3F /* UICustomSwitch.swift */,
 				03E34FFC2139DD3B00AC7383 /* UITableView+Extension.swift */,
+				03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -575,21 +574,17 @@
 				03B708892123026E00C370D7 /* OwnershipTableViewCell.xib in Resources */,
 				03953C3321136F1900BED557 /* IndustryEmploymentTableViewCell.xib in Resources */,
 				03F1F86E20EA623000662446 /* LaunchScreen.storyboard in Resources */,
-				0396A05721061D1300DBECBD /* LAUS in Resources */,
 				03E35084213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite in Resources */,
 				03953C3B211393D900BED557 /* OccupationalEmploymentTableViewCell.xib in Resources */,
 				03953C2F2112360A00BED557 /* UnEmploymentRateTableViewCell.xib in Resources */,
-				03F1F89420EAA6C300662446 /* ZIP_CBSA.csv in Resources */,
 				03953C2B21122FDB00BED557 /* AreaSectionHeaderView.xib in Resources */,
 				03E35086213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm in Resources */,
 				0396A05F2107581400DBECBD /* SearchSectionTableHeaderView.xib in Resources */,
 				03F1F86B20EA623000662446 /* Assets.xcassets in Resources */,
 				03F1F86620EA622D00662446 /* Main.storyboard in Resources */,
-				03F1F89520EAA6C300662446 /* ZIP_COUNTY.csv in Resources */,
 				03E35085213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal in Resources */,
 				0348FD1A211DD64800155BE8 /* EmploymentWageTableViewCell.xib in Resources */,
 				0348FD1D211E0AB200155BE8 /* OwnershipDataTableViewCell.xib in Resources */,
-				0396A05821061D1300DBECBD /* QCEW in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03CB7D0B2130A1B1001C1570 /* CacheManager.swift in Sources */,
+				03E35096213EFC1A00AC7383 /* DateFormatter+Extension.swift in Sources */,
 				03953C1F2110AE0100BED557 /* OESReport.swift in Sources */,
 				03E34FFD2139DD3B00AC7383 /* UITableView+Extension.swift in Sources */,
 				03953C43211A2A1500BED557 /* UIView+Extension.swift in Sources */,
@@ -892,7 +888,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dol.bls.BLSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.bls.BLSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -912,7 +908,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dol.bls.BLSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.bls.BLSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

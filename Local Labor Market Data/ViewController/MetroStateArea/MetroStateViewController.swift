@@ -240,11 +240,11 @@ extension MetroStateViewController {
         
         for (_, areaReport) in localAreaReportsDict {
             let reportYear = areaReport.seriesReport?.latestDataYear()
-            let periodName = areaReport.seriesReport?.latestDataPeriodName()
+            let period = areaReport.seriesReport?.latestDataPeriod()
             ReportManager.getReports(forArea: nationalArea,
                                      reportTypes: [areaReport.reportType],
                                      seasonalAdjustment: seasonalAdjustment,
-                                     periodName: periodName,
+                                     period: period,
                                      year: reportYear) {[weak self] (apiResult) in
                 guard let strongSelf = self else {return}
                 switch apiResult {

@@ -48,13 +48,13 @@ class API {
         let reportRequest = APIReportRequest(seriesIds: seriesIds, registrationKey: Constants.REGISTRATION_KEY, startYear: startYear, endYear: endYear)
         let requestData = try? JSONEncoder().encode(reportRequest)
         
-        return NetworkAPI().post(requestData: requestData!, completion: { (result) in
+        return NetworkAPI.shared().post(requestData: requestData!, completion: { (result) in
             completion(result)
         })
     }
     
     func getReport(seriesId: String, completion: @escaping ((NetworkResult<ReportError>?) -> Void)) -> URLSessionDataTask {
-        return NetworkAPI().get(paramPath: seriesId, params: nil, completion: { (result) in
+        return NetworkAPI.shared().get(paramPath: seriesId, params: nil, completion: { (result) in
             
             completion(result)
         })

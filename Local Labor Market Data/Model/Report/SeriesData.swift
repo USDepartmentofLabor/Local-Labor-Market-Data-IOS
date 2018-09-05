@@ -53,6 +53,21 @@ extension SeriesData {
         footnotes = try container.decodeIfPresent([FootNote].self, forKey: .footnotes)
         calculations = try container.decodeIfPresent(Calculations.self, forKey: .calculations)
     }
+    
+    var quarterStr: String {
+        get {
+            var quarterStr = ""
+            if period.hasPrefix("M") {
+                if let quarter = DateFormatter.quarter(fromMonth: periodName) {
+                    quarterStr = "Q0\(quarter)"
+                }
+            }
+            else if period.hasPrefix("Q") {
+                quarterStr = period
+            }
+            return quarterStr
+        }
+    }
 }
 
 struct FootNote : Decodable {

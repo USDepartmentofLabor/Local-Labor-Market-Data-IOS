@@ -34,12 +34,12 @@ class CacheManager {
         return sharedCacheManager
     }
 
-    func getReport(seriesId: String, forPeriodName periodName: String, year: String) -> SeriesReport? {
+    func getReport(seriesId: String, forPeriod period: String, year: String) -> SeriesReport? {
         guard let seriesReport = (cache.object(forKey: seriesId as NSString))?.seriesReport
             else {return nil}
         
         
-        if let _ = seriesReport.data(forPeriodName: periodName, forYear: year) {
+        if let _ = seriesReport.data(forPeriod: period, forYear: year) {
             return seriesReport
         }
         

@@ -232,9 +232,11 @@ extension CountyViewController {
         
         let reportTypes = Array(localAreaReportsDict.keys)
         let reportYear = localAreaReportsDict.first?.value.seriesReport?.latestDataYear()
+        let period = localAreaReportsDict.first?.value.seriesReport?.latestDataPeriod()
         ReportManager.getReports(forArea: nationalArea,
                                     reportTypes: reportTypes,
                                     seasonalAdjustment: seasonalAdjustment,
+                                    period: period,
                                      year: reportYear) {[weak self] (apiResult) in
             guard let strongSelf = self else {return}
             switch apiResult {

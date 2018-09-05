@@ -27,7 +27,9 @@ extension UIViewController {
 extension UIViewController {
     func handleError(error: Error, title: String? = nil) {
         if let reportError = error as? ReportError {
-            let alertController = UIAlertController(title: title, message: reportError.description, preferredStyle: .alert)
+            
+            let titleStr = title ?? reportError.title
+            let alertController = UIAlertController(title: titleStr, message: reportError.description, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
             present(alertController, animated: false)
         }

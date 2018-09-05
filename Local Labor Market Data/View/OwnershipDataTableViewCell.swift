@@ -111,7 +111,12 @@ extension OwnershipDataTableViewCell {
             return
         }
         
-        qtrYearLabel.text = seriesData.year
+        if let quarter = DateFormatter.quarter(fromMonth: seriesData.periodName) {
+            qtrYearLabel.text = "Q\(quarter) \(seriesData.periodName) \(seriesData.year)"
+        }
+        else {
+            qtrYearLabel.text = "\(seriesData.periodName) \(seriesData.year)"
+        }
 
         if let doubleValue = Double(seriesData.value) {
             employmentValueLabel.text = NumberFormatter.localizedString(from: NSNumber(value: doubleValue), number: NumberFormatter.Style.decimal)

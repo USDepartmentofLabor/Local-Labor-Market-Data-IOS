@@ -140,6 +140,14 @@ extension EmploymentWageTableViewCell {
             return
         }
         
+        if let quarter = DateFormatter.quarter(fromMonth: seriesData.periodName) {
+            qtrYearLabel.text = "Q\(quarter) \(seriesData.periodName) \(seriesData.year)"
+        }
+        else {
+            qtrYearLabel.text = "\(seriesData.periodName) \(seriesData.year)"
+        }
+        
+
         if let doubleValue = Double(seriesData.value) {
             employmentValueLabel.text = NumberFormatter.localizedString(from: NSNumber(value: doubleValue), number: NumberFormatter.Style.decimal)
         }
@@ -224,8 +232,6 @@ extension EmploymentWageTableViewCell {
             wageRateChangeLabel.text = ""
             return
         }
-
-        qtrYearLabel.text = "\(seriesData.period) \(seriesData.year)"
 
         if let doubleValue = Double(seriesData.value) {
             wageValueLabel.text = NumberFormatter.localisedCurrencyStrWithoutFraction(from: NSNumber(value: doubleValue))

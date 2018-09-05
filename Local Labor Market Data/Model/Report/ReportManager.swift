@@ -32,10 +32,21 @@ enum ReportError: Error, CustomStringConvertible {
         case .requestError(let status, let messages):
             desc = NSLocalizedString("Error retrieving data.", comment: "Error retrieving data.")
         }
-        
-        
+
         return desc + " Please try again later."
     }
+    
+    var title: String {
+        let title: String
+        switch self {
+        case .network( _):
+            title = NSLocalizedString("Network Error", comment: "Network Error")
+        default:
+            title = ""
+        }
+        return title
+    }
+
 }
 
 struct AreaReport {
@@ -100,15 +111,15 @@ class ReportManager {
 
     class func getReports(forArea area: Area, reportTypes: [ReportType],
                           seasonalAdjustment: SeasonalAdjustment = .notAdjusted,
-                          periodName: String? = nil, year: String? = nil,
+                          period: String? = nil, year: String? = nil,
                           completion: ((APIResult<[ReportType: AreaReport], ReportError>) -> Void)?) {
         getReports(forArea: area, reportTypes: reportTypes, seasonalAdjustment: seasonalAdjustment,
-                   periodName: periodName, startYear: year, endYear: year, completion: completion)
+                   period: period, startYear: year, endYear: year, completion: completion)
     }
     
     class func getReports(forArea area: Area, reportTypes: [ReportType],
                           seasonalAdjustment: SeasonalAdjustment = .notAdjusted,
-                          periodName: String? = nil,
+                          period: String? = nil,
                           startYear: String?, endYear: String?,
                           completion: ((APIResult<[ReportType: AreaReport], ReportError>) -> Void)?) {
         
@@ -119,8 +130,8 @@ class ReportManager {
             if let seriesId = reportType.seriesId(forArea: area, adjustment: seasonalAdjustment) {
                 areaReport.seriesId = seriesId
                 // Check if seriesID exist in cache
-                if let year = endYear, let periodName = periodName,
-                    let report = CacheManager.shared().getReport(seriesId: seriesId, forPeriodName: periodName, year: year) {
+                if let year = endYear, let period = period,
+                    let report = CacheManager.shared().getReport(seriesId: seriesId, forPeriod: period, year: year) {
                     // If Yes, the no need to get it again from network
                     areaReport.seriesReport = report
                 }

@@ -24,6 +24,28 @@ class NetworkAPI {
         static let APIPath = "/publicAPI/v2/timeseries/data/"
     }
     
+    private static var sharedAPI: NetworkAPI = {
+        
+        let shared = NetworkAPI()
+        return shared
+    }()
+    
+    let session: URLSession
+    
+    // MARK: - Accessors
+    class func shared() -> NetworkAPI {
+        return sharedAPI
+    }
+    
+    private init() {
+        
+        let config = URLSessionConfiguration.default
+        config.urlCache = URLCache.shared
+        config.requestCachePolicy = .useProtocolCachePolicy
+        session = URLSession(configuration: config)
+    }
+
+    
     func urlFrom(paramPath: String?, params: [String: Any]? = nil) -> URL? {
         var components = URLComponents()
         components.scheme = APIConstants.APIScheme
@@ -58,7 +80,6 @@ class NetworkAPI {
         
         os_log("Request: %@", request.description)
         
-        let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request, completion: completion)
         task.resume()
         return task
@@ -75,7 +96,6 @@ class NetworkAPI {
         
         request.allHTTPHeaderFields = headers
         request.httpBody = requestData
-        let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request, completion: completion)
         task.resume()
         return task
@@ -114,13 +134,13 @@ extension URLSession {
             
         })
     }
+    
 }
 
 extension NetworkAPI {
     func getFile(forURL url: URL, completion: @escaping FileResult) -> URLSessionDownloadTask {
         let request = URLRequest(url: url)
         
-        let session = URLSession(configuration: .default)
         let task = session.downloadTask(with: request) { (fileURL, response, error) in
             guard let fileURL = fileURL else {
                 completion(NetworkResult.failure(ReportError.network(reason: error!.localizedDescription)))
