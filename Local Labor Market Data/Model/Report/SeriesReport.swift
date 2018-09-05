@@ -31,17 +31,7 @@ struct SeriesReport : Decodable {
     }
 
     func data(forPeriod period: String, forYear year: String) -> SeriesData? {
-        return data.filter {
-            if $0.year == year {
-                if period.hasPrefix("Q") {
-                    return period == $0.quarterStr
-                }
-                else if $0.period == period {
-                    return true
-                }
-            }
-            return false
-        }.first
+        return data.filter {$0.period == period && $0.year == year}.first
     }
 
     func data(forPeriodName periodName: String, forYear year: String) -> SeriesData? {
