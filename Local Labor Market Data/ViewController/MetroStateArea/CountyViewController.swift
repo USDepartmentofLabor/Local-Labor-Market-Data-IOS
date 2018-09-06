@@ -255,15 +255,20 @@ extension CountyViewController {
                 }
                 nationalReportTypes.append(reportType)
             }
+            else {
+               nationalReportTypes.append(reportType)
+            }
         }
         
         if nationalReportTypes.count > 0 {
-            loadNationalReports(reportTypes: nationalReportTypes, startYear: String(reportStartYear),
-                                endYear: String(reportEndYear))
+            let startYear = (reportStartYear != 9999) ? String(reportStartYear) : nil
+            let endYear = (reportEndYear != -1) ?  String(reportEndYear) : nil
+            loadNationalReports(reportTypes: nationalReportTypes, startYear: startYear,
+                                endYear: endYear)
         }
     }
     
-    func loadNationalReports(reportTypes: [ReportType], startYear: String, endYear: String) {
+    func loadNationalReports(reportTypes: [ReportType], startYear: String?, endYear: String?) {
         guard let nationalArea = nationalArea else {return}
         
         ReportManager.getReports(forArea: nationalArea,
