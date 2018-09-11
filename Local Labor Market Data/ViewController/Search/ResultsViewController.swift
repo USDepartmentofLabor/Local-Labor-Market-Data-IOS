@@ -1,6 +1,6 @@
 //
 //  ResultsViewController.swift
-//  Labor Local Data
+//  Local Labor Market Data
 //
 //  Created by Nidhi Chawla on 7/27/18.
 //  Copyright © 2018 Department of Labor. All rights reserved.

@@ -3,7 +3,7 @@
 //  Local Labor Market Data
 //
 //  Created by Nidhi Chawla on 9/4/18.
-//  Copyright © 2018 Nidhi Chawla. All rights reserved.
+//  Copyright © 2018 Department Of Labor. All rights reserved.
 //
 
 import Foundation

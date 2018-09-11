@@ -1,6 +1,6 @@
 //
 //  OwnershipTableViewCell.swift
-//  Labor Local Data
+//  Local Labor Market Data
 //
 //  Created by Nidhi Chawla on 8/14/18.
 //  Copyright © 2018 Department of Labor. All rights reserved.
@@ -60,9 +60,6 @@ class OwnershipTableViewCell: UITableViewCell {
     func setupAccessibility() {
         tableView.isAccessibilityElement = false
         isAccessibilityElement = false
-//        dataView.isAccessibilityElement = false
-//        contentView.isAccessibilityElement = false
-//        contentView.accessibilityElements = [dataView]
         accessibilityElements = [tableView]
     }
     

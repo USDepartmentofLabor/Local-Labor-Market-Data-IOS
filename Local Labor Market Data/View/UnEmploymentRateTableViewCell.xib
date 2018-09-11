@@ -87,8 +87,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPk-de-QT1" userLabel="ChangeView">
                                         <rect key="frame" x="5" y="110" width="297" height="73.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percent Point Change" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWb-Hh-o4U" userLabel="ChangeTitleLabel">
-                                                <rect key="frame" x="87" y="2" width="123" height="14.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Net Change" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWb-Hh-o4U" userLabel="ChangeTitleLabel">
+                                                <rect key="frame" x="115" y="2" width="67.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -101,8 +101,8 @@
                                                         <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="highlightedColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.5%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhU-SY-uxd" userLabel="ChangeType1ValueLabel">
-                                                        <rect key="frame" x="52.5" y="27.5" width="28" height="14.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhU-SY-uxd" userLabel="ChangeType1ValueLabel">
+                                                        <rect key="frame" x="57.5" y="27.5" width="18" height="15"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -134,8 +134,8 @@
                                                         <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="highlightedColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.3%" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBt-1r-juc" userLabel="ChangeType1ValueLabel">
-                                                        <rect key="frame" x="54" y="27.5" width="26.5" height="14.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=".3" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBt-1r-juc" userLabel="ChangeType2ValueLabel">
+                                                        <rect key="frame" x="62" y="27.5" width="11" height="14.5"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -220,12 +220,12 @@
                 <outlet property="monthYearLabel" destination="RYs-ug-fsN" id="aML-Py-xW2"/>
                 <outlet property="oneMonthChangeTitleLabel" destination="h5t-c0-M9j" id="kof-3n-JVA"/>
                 <outlet property="oneMonthChangeView" destination="njL-gR-vnr" id="0b6-0k-SYQ"/>
-                <outlet property="oneMonthRateChangeLabel" destination="dhU-SY-uxd" id="9Ls-oM-Uqf"/>
+                <outlet property="oneMonthNetChangeLabel" destination="dhU-SY-uxd" id="y54-5j-Nlq"/>
                 <outlet property="outlineView" destination="zoA-64-JC2" id="e7l-gd-Bo5"/>
                 <outlet property="percentPointTitle" destination="UWb-Hh-o4U" id="vKo-We-7MH"/>
                 <outlet property="twelveMonthChangeTitleLabel" destination="SkZ-O9-dEl" id="OCM-Pw-dfB"/>
                 <outlet property="twelveMonthChangeView" destination="1yS-Ra-Bhg" id="PNg-Se-9dr"/>
-                <outlet property="twelveMonthRateChangeLabel" destination="fBt-1r-juc" id="4XW-qR-82d"/>
+                <outlet property="twelveMonthNetChangeLabel" destination="fBt-1r-juc" id="Nsn-m4-vjI"/>
                 <outlet property="valueLabel" destination="da4-8Q-hHN" id="qHm-Z0-dGT"/>
                 <outlet property="valueView" destination="YaF-3u-7b9" id="U3P-e0-JSr"/>
             </connections>

@@ -71,7 +71,6 @@
 		03B7088B2123211700C370D7 /* ReportViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B7088A2123211700C370D7 /* ReportViewCell.swift */; };
 		03CB7D092130470C001C1570 /* NationalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB7D082130470C001C1570 /* NationalViewController.swift */; };
 		03CB7D0B2130A1B1001C1570 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB7D0A2130A1B1001C1570 /* CacheManager.swift */; };
-		03E34FFD2139DD3B00AC7383 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E34FFC2139DD3B00AC7383 /* UITableView+Extension.swift */; };
 		03E35084213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */; };
 		03E35085213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */; };
 		03E35086213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */; };
@@ -174,7 +173,6 @@
 		03B7088A2123211700C370D7 /* ReportViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewCell.swift; sourceTree = "<group>"; };
 		03CB7D082130470C001C1570 /* NationalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalViewController.swift; sourceTree = "<group>"; };
 		03CB7D0A2130A1B1001C1570 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
-		03E34FFC2139DD3B00AC7383 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Local_Labor_Market_Data.sqlite; sourceTree = "<group>"; };
 		03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Local_Labor_Market_Data.sqlite-wal"; sourceTree = "<group>"; };
 		03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Local_Labor_Market_Data.sqlite-shm"; sourceTree = "<group>"; };
@@ -454,7 +452,6 @@
 				035D971E21270782005F1CA9 /* NumberFormatter+Extension.swift */,
 				035D9724212C7DF9005F1CA9 /* UILabel+Extension.swift */,
 				032C16682139927F004C1B3F /* UICustomSwitch.swift */,
-				03E34FFC2139DD3B00AC7383 /* UITableView+Extension.swift */,
 				03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
@@ -524,7 +521,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "";
+				ORGANIZATIONNAME = "Department of Labor";
 				TargetAttributes = {
 					03E3508A213ED85900AC7383 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -613,7 +610,6 @@
 				03CB7D0B2130A1B1001C1570 /* CacheManager.swift in Sources */,
 				03E35096213EFC1A00AC7383 /* DateFormatter+Extension.swift in Sources */,
 				03953C1F2110AE0100BED557 /* OESReport.swift in Sources */,
-				03E34FFD2139DD3B00AC7383 /* UITableView+Extension.swift in Sources */,
 				03953C43211A2A1500BED557 /* UIView+Extension.swift in Sources */,
 				03953C412119C3D300BED557 /* UIColor+Extension.swift in Sources */,
 				0396A013210268FF00DBECBD /* SearchViewController.swift in Sources */,

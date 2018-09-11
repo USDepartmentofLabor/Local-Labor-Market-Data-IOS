@@ -1,6 +1,6 @@
 //
 //  UnEmploymentRateTableViewCell.swift
-//  Labor Local Data
+//  Local Labor Market Data
 //
 //  Created by Nidhi Chawla on 8/1/18.
 //  Copyright © 2018 Department of Labor. All rights reserved.
@@ -25,9 +25,9 @@ class UnEmploymentRateTableViewCell: UITableViewCell {
     @IBOutlet weak var percentPointTitle: UILabel!
     
     @IBOutlet weak var oneMonthChangeTitleLabel: UILabel!
-    @IBOutlet weak var oneMonthRateChangeLabel: UILabel!
+    @IBOutlet weak var oneMonthNetChangeLabel: UILabel!
     @IBOutlet weak var twelveMonthChangeTitleLabel: UILabel!
-    @IBOutlet weak var twelveMonthRateChangeLabel: UILabel!
+    @IBOutlet weak var twelveMonthNetChangeLabel: UILabel!
     
     @IBOutlet weak var areaView: UIView!
     @IBOutlet weak var valueView: UIView!
@@ -72,25 +72,14 @@ class UnEmploymentRateTableViewCell: UITableViewCell {
         oneMonthChangeTitleLabel.scaleFont(forDataType: .reportChangeTitle, for: traitCollection)
         twelveMonthChangeTitleLabel.scaleFont(forDataType: .reportChangeTitle, for: traitCollection)
         
-        oneMonthRateChangeLabel.scaleFont(forDataType: .reportChangeValue, for: traitCollection)
-        twelveMonthRateChangeLabel.scaleFont(forDataType: .reportChangeValue, for: traitCollection)
+        oneMonthNetChangeLabel.scaleFont(forDataType: .reportChangeValue, for: traitCollection)
+        twelveMonthNetChangeLabel.scaleFont(forDataType: .reportChangeValue, for: traitCollection)
   
-//        isAccessibilityElement = true
-//        accessibilityLabel = "Unnemployment"
         setupAccessibility()
     }
     
     func setupAccessibility() {
         isAccessibilityElement = false
-//        shouldGroupAccessibilityChildren = true
-//        areaView.isAccessibilityElement = true
-//        areaView.accessibilityTraits = UIAccessibilityTraitStaticText
-//        valueView.isAccessibilityElement = true
-//        valueView.accessibilityTraits = UIAccessibilityTraitStaticText
-//        oneMonthChangeView.isAccessibilityElement = true
-//        oneMonthChangeView.accessibilityTraits = UIAccessibilityTraitStaticText
-//        twelveMonthChangeView.isAccessibilityElement = true
-//        twelveMonthChangeView.accessibilityTraits = UIAccessibilityTraitStaticText
         accessibilityElements = [areaLabel, monthYearLabel, valueView, percentPointTitle, oneMonthChangeView, twelveMonthChangeView]
     }
 }
@@ -105,8 +94,8 @@ extension UnEmploymentRateTableViewCell: ReportTableViewCell {
         guard let seriesReport = seriesReport else {
             monthYearLabel.text = ""
             valueLabel.text = ""
-            oneMonthRateChangeLabel.text = ""
-            twelveMonthRateChangeLabel.text = ""
+            oneMonthNetChangeLabel.text = ""
+            twelveMonthNetChangeLabel.text = ""
             return
         }
         
@@ -122,10 +111,10 @@ extension UnEmploymentRateTableViewCell: ReportTableViewCell {
             monthYearLabel.text = ""
             valueLabel.text = ReportManager.dataNotAvailableStr
             valueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
-            oneMonthRateChangeLabel.text = ReportManager.dataNotAvailableStr
-            oneMonthRateChangeLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
-            twelveMonthRateChangeLabel.text = ReportManager.dataNotAvailableStr
-            twelveMonthRateChangeLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            oneMonthNetChangeLabel.text = ReportManager.dataNotAvailableStr
+            oneMonthNetChangeLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            twelveMonthNetChangeLabel.text = ReportManager.dataNotAvailableStr
+            twelveMonthNetChangeLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             monthYearLabel.accessibilityElementsHidden = true
             return
         }
@@ -134,9 +123,9 @@ extension UnEmploymentRateTableViewCell: ReportTableViewCell {
         monthYearLabel.text = "\(seriesData.periodName) \(seriesData.year)"
         valueLabel.text = "\(seriesData.value)%"
         
-        if let percentChange = seriesData.calculations?.percentChanges {
-            oneMonthRateChangeLabel.text = NumberFormatter.localisedPercentStr(from: percentChange.oneMonth) ?? ReportManager.dataNotAvailableStr
-            twelveMonthRateChangeLabel.text = NumberFormatter.localisedPercentStr(from: percentChange.twelveMonth) ?? ReportManager.dataNotAvailableStr
+        if let netChange = seriesData.calculations?.netChanges {
+            oneMonthNetChangeLabel.text = NumberFormatter.localisedDecimalStr(from: netChange.oneMonth) ?? ReportManager.dataNotAvailableStr
+            twelveMonthNetChangeLabel.text = NumberFormatter.localisedDecimalStr(from: netChange.twelveMonth) ?? ReportManager.dataNotAvailableStr
         }
     }
     
@@ -157,21 +146,21 @@ extension UnEmploymentRateTableViewCell: ReportTableViewCell {
         
         // One Month Change
         var oneMonthAccessibilityStr = "One Month Change,"
-        if oneMonthRateChangeLabel.text == ReportManager.dataNotAvailableStr {
+        if oneMonthNetChangeLabel.text == ReportManager.dataNotAvailableStr {
             oneMonthAccessibilityStr += ReportManager.dataNotAvailableAccessibilityStr
         }
         else {
-            oneMonthAccessibilityStr += oneMonthRateChangeLabel.text ?? ""
+            oneMonthAccessibilityStr += oneMonthNetChangeLabel.text ?? ""
         }
         oneMonthChangeView.accessibilityLabel = oneMonthAccessibilityStr
         
         // Twelve Month Change
         var twelveMonthAccessibilityStr = "Twelve Month Change,"
-        if twelveMonthRateChangeLabel.text == ReportManager.dataNotAvailableStr {
+        if twelveMonthNetChangeLabel.text == ReportManager.dataNotAvailableStr {
             twelveMonthAccessibilityStr += ReportManager.dataNotAvailableAccessibilityStr
         }
         else {
-            twelveMonthAccessibilityStr += twelveMonthRateChangeLabel.text ?? ""
+            twelveMonthAccessibilityStr += twelveMonthNetChangeLabel.text ?? ""
         }
         
         twelveMonthChangeView.accessibilityLabel = twelveMonthAccessibilityStr

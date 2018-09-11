@@ -1,6 +1,6 @@
 //
 //  IndustryEmploymentTableViewCell.swift
-//  Labor Local Data
+//  Local Labor Market Data
 //
 //  Created by Nidhi Chawla on 8/1/18.
 //  Copyright © 2018 Department of Labor. All rights reserved.
@@ -78,16 +78,6 @@ class IndustryEmploymentTableViewCell: UITableViewCell {
     
     func setupAccessibility() {
         isAccessibilityElement = false
-//        areaView.isAccessibilityElement = true
-//        areaView.accessibilityTraits = UIAccessibilityTraitStaticText
-//        valueView.isAccessibilityElement = true
-//        valueView.accessibilityTraits = UIAccessibilityTraitStaticText
-//        oneMonthChangeView.isAccessibilityElement = true
-//        oneMonthChangeView.accessibilityTraits = UIAccessibilityTraitStaticText
-//        twelveMonthChangeView.isAccessibilityElement = true
-//        twelveMonthChangeView.accessibilityTraits = UIAccessibilityTraitStaticText
-        
-        accessibilityElements = [areaLabel, monthYearLabel, valueView, oneMonthChangeView, twelveMonthChangeView]
         accessibilityElements = [areaLabel, monthYearLabel, dataTitleLabel, valueLabel, oneMonthChangeTitleLabel, oneMonthNetChangeLabel, oneMonthRateChangeLabel, twelveMonthChangeTitleLabel, twelveMonthNetChangeLabel, twelveMonthRateChangeLabel]
     }
 }
