@@ -90,10 +90,10 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
     
     func collapseSection(collapse: Bool) {
         if collapse {
-            expandCollapseImageView.image = UIImage(named: "rightChevron")
+            expandCollapseImageView.image = #imageLiteral(resourceName: "rightChevron")
         }
         else {
-            expandCollapseImageView.image = UIImage(named: "downChevron")
+            expandCollapseImageView.image = #imageLiteral(resourceName: "downChevron")
         }
     }
     

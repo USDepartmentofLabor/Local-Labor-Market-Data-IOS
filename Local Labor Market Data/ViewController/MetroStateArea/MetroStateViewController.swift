@@ -72,9 +72,13 @@ class MetroStateViewController: AreaViewController {
 
         areaTitleLabel.text = area?.title
         let leftSubAreaTitle = area is Metro ? "State": "Metro"
+        
         rightSubArea.titleLabel?.text = "County"
         leftSubArea.setTitle(leftSubAreaTitle, for: .normal)
-        
+        if area is State {
+            leftSubArea.setImage(#imageLiteral(resourceName: "leftDownArrow"), for: .normal)
+        }
+
         tableView.register(UINib(nibName: UnEmploymentRateTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: UnEmploymentRateTableViewCell.reuseIdentifier)
         tableView.register(UINib(nibName: IndustryEmploymentTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: IndustryEmploymentTableViewCell.reuseIdentifier)
         tableView.register(UINib(nibName: OccupationalEmploymentTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: OccupationalEmploymentTableViewCell.reuseIdentifier)
