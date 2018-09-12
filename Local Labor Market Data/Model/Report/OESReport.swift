@@ -51,7 +51,10 @@ class OESReport {
         }
         
         let industryCode = "000000"
-        let seriesId = "OE" + adjustment.rawValue  + areaType + areaCode + industryCode + occupationCode + dataTypeCode.rawValue
+        // OES data are annual and therefore do not need to be seasonally adjusted.  The same data should appear whether the seasonally adjusted toggle is turned on or off
+//        let seriesId = "OE" + adjustment.rawValue  + areaType + areaCode + industryCode + occupationCode + dataTypeCode.rawValue
+        
+        let seriesId = "OE" + SeasonalAdjustment.notAdjusted.rawValue  + areaType + areaCode + industryCode + occupationCode + dataTypeCode.rawValue
         return seriesId
     }
 }
