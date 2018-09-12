@@ -46,7 +46,7 @@ class API {
     
     fileprivate func postReport(seriesIds: [String], startYear: String?, endYear: String?, completion: @escaping ((NetworkResult<ReportError>?) -> Void)) -> URLSessionDataTask {
         let reportRequest = APIReportRequest(seriesIds: seriesIds, registrationKey: Constants.REGISTRATION_KEY, startYear: startYear, endYear: endYear)
-        print("Request: \(reportRequest.description)")
+//        print("Request: \(reportRequest.description)")
         let requestData = try? JSONEncoder().encode(reportRequest)
         
         return NetworkAPI.shared().post(requestData: requestData!, completion: { (result) in
