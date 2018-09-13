@@ -30,8 +30,12 @@ class AboutViewController: UIViewController {
     let about5Str = """
     National, state, and metro area employment and wages by occupation come from the Occupational Employment Statistics (OES) program.
     """
-    
+
     let about6Str = """
+    At this time, metropolitan areas in New England states (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, and Vermont) are not available in the Local Labor Market Data app.
+    """
+
+    let about7Str = """
     The Local Labor Market Data app presents both seasonally adjusted and not seasonally adjusted data where available. Note that seasonally adjusted data are not generally available for metro areas and counties.
     """
     
@@ -41,6 +45,7 @@ class AboutViewController: UIViewController {
     @IBOutlet weak var description4Label: UILabel!
     @IBOutlet weak var description5Label: UILabel!
     @IBOutlet weak var description6Label: UILabel!
+    @IBOutlet weak var description7Label: UILabel!
     
     @IBOutlet weak var versionValueLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
@@ -68,6 +73,7 @@ class AboutViewController: UIViewController {
         description4Label.text = about4Str
         description5Label.text = about5Str
         description6Label.text = about6Str
+        description7Label.text = about7Str
         
         versionValueLabel.text = Bundle.main.versionNumber  + "." + Bundle.main.buildNumber
         releaseDateLabel.text = releaseDate
