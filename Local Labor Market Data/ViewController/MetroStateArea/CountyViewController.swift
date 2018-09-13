@@ -11,7 +11,7 @@ import UIKit
 
 struct CountyReport {
     static let unemploymentRate = "Unemployment Rate"
-    static let employmentWageTotal = "Employment"
+    static let employmentWageTotal = "Employment & Wages"
     static let employmentWagePrivate = "Private"
     static let employmentWageFederal = "Federal Government"
     static let employmentWageState = "State Government"
