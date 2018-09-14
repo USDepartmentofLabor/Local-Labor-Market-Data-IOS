@@ -84,7 +84,6 @@ class CountyViewController: AreaViewController {
         super.setupView()
         title = "County"
 
-        areaTitleLabel.text = county.title
         rightSubArea.setTitle("Metro", for: .normal)
         leftSubArea.setTitle("State", for: .normal)
         

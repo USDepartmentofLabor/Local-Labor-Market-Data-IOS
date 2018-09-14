@@ -46,6 +46,9 @@ class AreaViewController: UIViewController {
         leftSubArea.titleLabel?.scaleFont(forDataType: .reportSubAreaTitle, for: traitCollection)
         rightSubArea.titleLabel?.scaleFont(forDataType: .reportSubAreaTitle, for: traitCollection)
         areaTitleLabel.scaleFont(forDataType: .reportAreaTitle, for:traitCollection)
+        
+        areaTitleLabel.text = area?.title
+        areaTitleLabel.accessibilityLabel = area.accessibilityStr
     }
 
     @objc func searchClicked(sender: Any) {

@@ -49,6 +49,22 @@ public class Area: NSManagedObject {
             return "National"
         }
     }
+    
+    var accessibilityStr: String? {
+        var accessibleStr = ""
+        let separators = CharacterSet(charactersIn: " ,-")
+        let components = title?.components(separatedBy: separators)
+        components?.forEach({ (str) in
+            if str.count == 2 {
+               accessibleStr += State.stateName(fromCode: str) ?? str
+            }
+            else {
+                accessibleStr += str
+            }
+            accessibleStr += ","
+        })
+        return accessibleStr
+    }
 }
 
 extension Area: Comparable {

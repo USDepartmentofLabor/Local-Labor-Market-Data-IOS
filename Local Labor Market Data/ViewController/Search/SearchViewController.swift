@@ -214,6 +214,7 @@ extension SearchViewController: UITableViewDataSource {
             cell.textLabel?.scaleFont(forDataType: .areaNameList, for: traitCollection)
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.text = area.title
+            cell.accessibilityLabel = area.accessibilityStr
         }
         return cell
     }
@@ -298,6 +299,10 @@ extension SearchViewController: UITableViewDelegate {
         sectionHeaderView.delegate = self
         return sectionHeaderView
     }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchController.searchBar.resignFirstResponder()
+    }
 }
 
 // MARK: SectionHeaderView Delegate
@@ -362,6 +367,11 @@ extension SearchViewController: UISearchBarDelegate {
         if searchController.searchBar.selectedScopeButtonIndex != scope.startIndex {
             searchController.searchBar.selectedScopeButtonIndex = scope.startIndex
         }
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        let announecemntnStr = "Found \(areas?.count ?? 0) results"
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, announecemntnStr)
     }
 }
 

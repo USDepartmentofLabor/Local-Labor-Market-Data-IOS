@@ -57,6 +57,11 @@ extension GlossaryViewController: UITableViewDataSource {
         cell.detailTextLabel?.text = section.desc
         cell.detailTextLabel?.numberOfLines = 0
         
+        cell.isAccessibilityElement = false
+        cell.textLabel?.isAccessibilityElement = true
+        cell.textLabel?.accessibilityTraits |= UIAccessibilityTraitHeader
+        cell.detailTextLabel?.isAccessibilityElement = true
+        
         return cell
     }
 }

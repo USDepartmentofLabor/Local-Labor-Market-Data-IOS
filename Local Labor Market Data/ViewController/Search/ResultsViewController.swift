@@ -51,7 +51,8 @@ class ResultsViewController: UIViewController {
     
     func setupView() {
         titleLabel.text = currentArea?.title
-        
+        titleLabel.accessibilityLabel = currentArea?.accessibilityStr
+        titleLabel.accessibilityTraits |= UIAccessibilityTraitHeader
         // Get the result types
         if let resultArea = resultAreas?[0] {
             title = resultArea.areaType + " Results"
@@ -89,6 +90,7 @@ extension ResultsViewController: UITableViewDataSource {
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
         cell.indentationLevel = 4
+        cell.accessibilityLabel = resultArea?.accessibilityStr
         return cell
     }
     

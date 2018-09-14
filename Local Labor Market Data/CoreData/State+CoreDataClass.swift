@@ -193,7 +193,8 @@ extension State {
                                               "WA":"washington",
                                               "WV":"west virginia",
                                               "WI":"wisconsin",
-                                              "WY":"wyoming"]
+                                              "WY":"wyoming",
+                                               "PR":"Puerto Rico"]
     
     static func stateName(fromCode stateCode: String) -> String? {
         return stateName[stateCode]

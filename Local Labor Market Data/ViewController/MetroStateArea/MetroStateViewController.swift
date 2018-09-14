@@ -70,7 +70,6 @@ class MetroStateViewController: AreaViewController {
         super.setupView()
         title = area is Metro ? "Metro Area": "State"
 
-        areaTitleLabel.text = area?.title
         let leftSubAreaTitle = area is Metro ? "State": "Metro"
         
         rightSubArea.titleLabel?.text = "County"
