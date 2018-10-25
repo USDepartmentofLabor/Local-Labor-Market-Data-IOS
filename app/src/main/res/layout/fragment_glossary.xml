@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.info.GlossaryFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title1"
+                style="@style/infoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossaryTitle1" />
+            <TextView
+                android:id="@+id/line1"
+                style="@style/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossary1" />
+
+            <TextView
+                android:id="@+id/title2"
+                style="@style/infoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossaryTitle2" />
+            <TextView
+                android:id="@+id/line2"
+                style="@style/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/glossary2" />
+
+            <TextView
+                android:id="@+id/title3"
+                style="@style/infoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossaryTitle3" />
+
+            <TextView
+                android:id="@+id/line3"
+                style="@style/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossary3" />
+
+            <TextView
+                android:id="@+id/title4"
+                style="@style/infoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossaryTitle4" />
+
+            <TextView
+                android:id="@+id/line4"
+                style="@style/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossary4" />
+
+            <TextView
+                android:id="@+id/title5"
+                style="@style/infoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossaryTitle5" />
+
+            <TextView
+                android:id="@+id/line5"
+                style="@style/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossary5" />
+
+            <TextView
+                android:id="@+id/title6"
+                style="@style/infoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossaryTitle6" />
+
+            <TextView
+                android:id="@+id/line6"
+                style="@style/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossary6" />
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

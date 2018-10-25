@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/report_item_back"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/areaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/reportAreaType"
+        android:text="Local Area"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/monthYearTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/reportMonthYear"
+        android:text="August 2018"
+        app:layout_constraintBottom_toBottomOf="@+id/areaTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/areaTextView" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/valueView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/areaTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/dataTitleTextView"
+            style="@style/reportDataTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mean_annual_wage"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/dataValueTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dataValueTextView"
+            style="@style/reportDataValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.5%"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/dataTitleTextView"
+            app:layout_constraintStart_toStartOf="@+id/dataTitleTextView"
+            app:layout_constraintTop_toBottomOf="@+id/dataTitleTextView" />
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>

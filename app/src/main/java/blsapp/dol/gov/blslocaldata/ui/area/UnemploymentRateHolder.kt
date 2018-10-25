@@ -1,0 +1,19 @@
+package blsapp.dol.gov.blslocaldata.ui.area
+
+import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.TextView
+import kotlinx.android.synthetic.main.unemployment_rate.view.*
+
+class UnemploymentRateHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
+    val mDataValueTextView: TextView = mView.dataValueTextView
+    val mAreaTitleTextView: TextView = mView.areaTextView
+    val mMonthYearTextView: TextView = mView.monthYearTextView
+    val mOneMonthChangeTextView: TextView = mView.oneMonthChangeValueTextView
+    val mTwelveMonthChangeTextView: TextView = mView.twelveMonthChangeValueTextView
+
+    override fun toString(): String {
+        return super.toString() + " '" + mDataValueTextView.text + "'"
+    }
+}
+

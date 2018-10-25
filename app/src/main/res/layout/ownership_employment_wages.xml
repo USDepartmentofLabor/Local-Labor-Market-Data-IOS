@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/report_item_back"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/areaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/reportAreaType"
+        android:text="Local Area"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/monthYearTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/reportMonthYear"
+        android:text="August 2018"
+        app:layout_constraintBottom_toBottomOf="@+id/areaTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/areaTextView" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/employmentView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/border"
+        app:layout_constraintEnd_toStartOf="@+id/wageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/areaTextView">
+
+        <TextView
+            android:id="@+id/dataTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/reportDataTitle"
+            android:text="@string/employment_level"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dataValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/reportDataValue"
+            android:text="2.5%"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dataTitleTextView" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/wageView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/employmentView"
+        app:layout_constraintTop_toBottomOf="@id/areaTextView"
+        android:background="@drawable/border">
+
+        <TextView
+            android:id="@+id/wageDataTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/reportDataTitle"
+            android:text="@string/average_weekly_wage"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/wageDataValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/reportDataValue"
+            android:text="2.5%"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wageDataTitleTextView" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>

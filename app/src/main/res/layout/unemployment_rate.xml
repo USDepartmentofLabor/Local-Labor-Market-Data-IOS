@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/report_item_back"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/areaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/reportAreaType"
+        android:text="Local Area"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/monthYearTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/reportMonthYear"
+        android:text="August 2018"
+        app:layout_constraintBottom_toBottomOf="@+id/areaTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/areaTextView" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/valueView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/areaTextView">
+
+        <TextView
+            android:id="@+id/dataTitleTextView"
+            style="@style/reportDataTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/unemployment_rate"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/dataValueTextView" />
+
+        <TextView
+            android:id="@+id/dataValueTextView"
+            style="@style/reportDataValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="2.5%"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dataTitleTextView" />
+    </android.support.constraint.ConstraintLayout>
+
+    <View
+        android:id="@+id/lineView"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/valueView" />
+
+    <LinearLayout
+        android:id="@+id/changeView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lineView">
+
+        <TextView
+            android:id="@+id/changeTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style = "@style/reportSubTitle"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/net_change" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/changeValueView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/view2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/oneMonthChangeTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/reportChangeTitle"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/one_month_change" />
+
+                <TextView
+                    android:id="@+id/oneMonthChangeValueTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/reportChangeValue"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:text="TextView" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="2dp"
+                android:layout_height="0dp"
+                android:background="@color/colorPrimaryDark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view2">
+
+                <TextView
+                    android:id="@+id/twelveMonthChangeTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/reportChangeTitle"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/twelve_month_change" />
+
+                <TextView
+                    android:id="@+id/twelveMonthChangeValueTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/reportChangeValue"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:text="TextView" />
+
+            </LinearLayout>
+
+
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

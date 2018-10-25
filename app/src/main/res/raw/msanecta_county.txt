@@ -1,0 +1,73 @@
+msa_code	area_fips	msa_title	county_title	st_fips	cnty_fips	county_code
+MT0971950000000	71950	Bridgeport-Stamford-Norwalk, CT Metropolitan NECTA	Fairfield County, CT	09	001	CN0900100000000
+MT0971950000000	71950	Bridgeport-Stamford-Norwalk, CT Metropolitan NECTA	New Haven County, CT	09	009	CN0900900000000
+MT0972850000000	72850	Danbury, CT Metropolitan NECTA	Fairfield County, CT	09	001	CN0900100000000
+MT0972850000000	72850	Danbury, CT Metropolitan NECTA	Litchfield County, CT	09	005	CN0900500000000
+MT0973450000000	73450	Hartford-West Hartford-East Hartford, CT Metropolitan NECTA	Hartford County, CT	09	003	CN0900300000000
+MT0973450000000	73450	Hartford-West Hartford-East Hartford, CT Metropolitan NECTA	Litchfield County, CT	09	005	CN0900500000000
+MT0973450000000	73450	Hartford-West Hartford-East Hartford, CT Metropolitan NECTA	Middlesex County, CT	09	007	CN0900700000000
+MT0973450000000	73450	Hartford-West Hartford-East Hartford, CT Metropolitan NECTA	New London County, CT	09	011	CN0901100000000
+MT0973450000000	73450	Hartford-West Hartford-East Hartford, CT Metropolitan NECTA	Tolland County, CT	09	013	CN0901300000000
+MT0973450000000	73450	Hartford-West Hartford-East Hartford, CT Metropolitan NECTA	Windham County, CT	09	015	CN0901500000000
+MT0975700000000	75700	New Haven, CT Metropolitan NECTA	Middlesex County, CT	09	007	CN0900700000000
+MT0975700000000	75700	New Haven, CT Metropolitan NECTA	New Haven County, CT	09	009	CN0900900000000
+MT0976450000000	76450	Norwich-New London-Westerly, CT-RI Metropolitan NECTA	New London County, CT	09	011	CN0901100000000
+MT0976450000000	76450	Norwich-New London-Westerly, CT-RI Metropolitan NECTA	Windham County, CT	09	015	CN0901500000000
+MT0976450000000	76450	Norwich-New London-Westerly, CT-RI Metropolitan NECTA	Washington County, RI	44	009	CN4400900000000
+MT0978700000000	78700	Waterbury, CT Metropolitan NECTA	Litchfield County, CT	09	005	CN0900500000000
+MT0978700000000	78700	Waterbury, CT Metropolitan NECTA	New Haven County, CT	09	009	CN0900900000000
+MT2370750000000	70750	Bangor, ME Metropolitan NECTA	Hancock County, ME	23	009	CN2300900000000
+MT2370750000000	70750	Bangor, ME Metropolitan NECTA	Penobscot County, ME	23	019	CN2301900000000
+MT2370750000000	70750	Bangor, ME Metropolitan NECTA	Piscataquis County, ME	23	021	CN2302100000000
+MT2370750000000	70750	Bangor, ME Metropolitan NECTA	Waldo County, ME	23	027	CN2302700000000
+MT2374650000000	74650	Lewiston-Auburn, ME Metropolitan NECTA	Androscoggin County, ME	23	001	CN2300100000000
+MT2374650000000	74650	Lewiston-Auburn, ME Metropolitan NECTA	Kennebec County, ME	23	011	CN2301100000000
+MT2374650000000	74650	Lewiston-Auburn, ME Metropolitan NECTA	Oxford County, ME	23	017	CN2301700000000
+MT2376750000000	76750	Portland-South Portland, ME Metropolitan NECTA	Androscoggin County, ME	23	001	CN2300100000000
+MT2376750000000	76750	Portland-South Portland, ME Metropolitan NECTA	Cumberland County, ME	23	005	CN2300500000000
+MT2376750000000	76750	Portland-South Portland, ME Metropolitan NECTA	York County, ME	23	031	CN2303100000000
+MT2570900000000	70900	Barnstable Town, MA Metropolitan NECTA	Barnstable County, MA	25	001	CN2500100000000
+MT2570900000000	70900	Barnstable Town, MA Metropolitan NECTA	Plymouth County, MA	25	023	CN2502300000000
+MT2571650000000	71650	Boston-Cambridge-Nashua, MA-NH Metropolitan NECTA	Bristol County, MA	25	005	CN2500500000000
+MT2571650000000	71650	Boston-Cambridge-Nashua, MA-NH Metropolitan NECTA	Essex County, MA	25	009	CN2500900000000
+MT2571650000000	71650	Boston-Cambridge-Nashua, MA-NH Metropolitan NECTA	Middlesex County, MA	25	017	CN2501700000000
+MT2571650000000	71650	Boston-Cambridge-Nashua, MA-NH Metropolitan NECTA	Norfolk County, MA	25	021	CN2502100000000
+MT2571650000000	71650	Boston-Cambridge-Nashua, MA-NH Metropolitan NECTA	Plymouth County, MA	25	023	CN2502300000000
+MT2571650000000	71650	Boston-Cambridge-Nashua, MA-NH Metropolitan NECTA	Suffolk County, MA	25	025	CN2502500000000
+MT2571650000000	71650	Boston-Cambridge-Nashua, MA-NH Metropolitan NECTA	Worcester County, MA	25	027	CN2502700000000
+MT2571650000000	71650	Boston-Cambridge-Nashua, MA-NH Metropolitan NECTA	Hillsborough County, NH	33	011	CN3301100000000
+MT2571650000000	71650	Boston-Cambridge-Nashua, MA-NH Metropolitan NECTA	Rockingham County, NH	33	015	CN3301500000000
+MT2574500000000	74500	Leominster-Gardner, MA Metropolitan NECTA	Worcester County, MA	25	027	CN2502700000000
+MT2575550000000	75550	New Bedford, MA Metropolitan NECTA	Bristol County, MA	25	005	CN2500500000000
+MT2575550000000	75550	New Bedford, MA Metropolitan NECTA	Plymouth County, MA	25	023	CN2502300000000
+MT2576600000000	76600	Pittsfield, MA Metropolitan NECTA	Berkshire County, MA	25	003	CN2500300000000
+MT2576600000000	76600	Pittsfield, MA Metropolitan NECTA	Hampshire County, MA	25	015	CN2501500000000
+MT2578100000000	78100	Springfield, MA-CT Metropolitan NECTA	Hartford County, CT	09	003	CN0900300000000
+MT2578100000000	78100	Springfield, MA-CT Metropolitan NECTA	Tolland County, CT	09	013	CN0901300000000
+MT2578100000000	78100	Springfield, MA-CT Metropolitan NECTA	Franklin County, MA	25	011	CN2501100000000
+MT2578100000000	78100	Springfield, MA-CT Metropolitan NECTA	Hampden County, MA	25	013	CN2501300000000
+MT2578100000000	78100	Springfield, MA-CT Metropolitan NECTA	Hampshire County, MA	25	015	CN2501500000000
+MT2579600000000	79600	Worcester, MA-CT Metropolitan NECTA	Windham County, CT	09	015	CN0901500000000
+MT2579600000000	79600	Worcester, MA-CT Metropolitan NECTA	Hampden County, MA	25	013	CN2501300000000
+MT2579600000000	79600	Worcester, MA-CT Metropolitan NECTA	Worcester County, MA	25	027	CN2502700000000
+MT3373050000000	73050	Dover-Durham, NH-ME Metropolitan NECTA	York County, ME	23	031	CN2303100000000
+MT3373050000000	73050	Dover-Durham, NH-ME Metropolitan NECTA	Strafford County, NH	33	017	CN3301700000000
+MT3374950000000	74950	Manchester, NH Metropolitan NECTA	Hillsborough County, NH	33	011	CN3301100000000
+MT3374950000000	74950	Manchester, NH Metropolitan NECTA	Merrimack County, NH	33	013	CN3301300000000
+MT3374950000000	74950	Manchester, NH Metropolitan NECTA	Rockingham County, NH	33	015	CN3301500000000
+MT3376900000000	76900	Portsmouth, NH-ME Metropolitan NECTA	York County, ME	23	031	CN2303100000000
+MT3376900000000	76900	Portsmouth, NH-ME Metropolitan NECTA	Rockingham County, NH	33	015	CN3301500000000
+MT4477200000000	77200	Providence-Warwick, RI-MA Metropolitan NECTA	Bristol County, MA	25	005	CN2500500000000
+MT4477200000000	77200	Providence-Warwick, RI-MA Metropolitan NECTA	Norfolk County, MA	25	021	CN2502100000000
+MT4477200000000	77200	Providence-Warwick, RI-MA Metropolitan NECTA	Worcester County, MA	25	027	CN2502700000000
+MT4477200000000	77200	Providence-Warwick, RI-MA Metropolitan NECTA	Bristol County, RI	44	001	CN4400100000000
+MT4477200000000	77200	Providence-Warwick, RI-MA Metropolitan NECTA	Kent County, RI	44	003	CN4400300000000
+MT4477200000000	77200	Providence-Warwick, RI-MA Metropolitan NECTA	Newport County, RI	44	005	CN4400500000000
+MT4477200000000	77200	Providence-Warwick, RI-MA Metropolitan NECTA	Providence County, RI	44	007	CN4400700000000
+MT4477200000000	77200	Providence-Warwick, RI-MA Metropolitan NECTA	Washington County, RI	44	009	CN4400900000000
+MT5072400000000	72400	Burlington-South Burlington, VT Metropolitan NECTA	Addison County, VT	50	001	CN5000100000000
+MT5072400000000	72400	Burlington-South Burlington, VT Metropolitan NECTA	Chittenden County, VT	50	007	CN5000700000000
+MT5072400000000	72400	Burlington-South Burlington, VT Metropolitan NECTA	Franklin County, VT	50	011	CN5001100000000
+MT5072400000000	72400	Burlington-South Burlington, VT Metropolitan NECTA	Grand Isle County, VT	50	013	CN5001300000000
+MT5072400000000	72400	Burlington-South Burlington, VT Metropolitan NECTA	Lamoille County, VT	50	015	CN5001500000000
+MT5072400000000	72400	Burlington-South Burlington, VT Metropolitan NECTA	Washington County, VT	50	023	CN5002300000000
