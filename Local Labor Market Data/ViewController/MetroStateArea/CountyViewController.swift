@@ -91,10 +91,10 @@ class CountyViewController: AreaViewController {
         tableView.register(UINib(nibName: EmploymentWageTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: EmploymentWageTableViewCell.reuseIdentifier)
         
         tableView.estimatedRowHeight = 230
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         tableView.register(UINib(nibName: AreaSectionHeaderView.nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: AreaSectionHeaderView.reuseIdentifier)
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+        tableView.sectionHeaderHeight = UITableView.automaticDimension;
         tableView.estimatedSectionHeaderHeight = 44
 
         tableView.register(UINib(nibName: OwnershipTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: OwnershipTableViewCell.reuseIdentifier)
@@ -218,13 +218,13 @@ extension CountyViewController {
         loadNationalReport(areaReportsDict: areaReportsDict)
         
         tableView.reloadData()
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, "Loaded Local Report")
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: "Loaded Local Report")
     }
     
     func displayNationsReportResults(areaReportsDict: [ReportType: AreaReport]) {
         nationalAreaReportsDict = nationalAreaReportsDict + areaReportsDict
         tableView.reloadData()
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, "Loaded National Report")
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: "Loaded National Report")
     }
     
     func loadNationalReport(areaReportsDict: [ReportType: AreaReport]) {

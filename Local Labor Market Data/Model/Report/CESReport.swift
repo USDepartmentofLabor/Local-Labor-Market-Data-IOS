@@ -45,7 +45,7 @@ class CESReport {
         return seriesId
     }
     
-    class func getLocalAreaSeriesId(forArea area: Area, industryCode: String = "00000000",
+    private class func getLocalAreaSeriesId(forArea area: Area, industryCode: String = "00000000",
                                    dataTypeCode: DataTypeCode,
                                    adjustment: SeasonalAdjustment) -> SeriesId? {
         

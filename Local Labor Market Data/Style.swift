@@ -29,7 +29,7 @@ struct Style {
         case reportOwnershipTitle
     }
     
-    fileprivate static let styleMap: [DataType: (String?, CGFloat, UIFont.Weight, UIFontTextStyle?, CGFloat?)] =
+    fileprivate static let styleMap: [DataType: (String?, CGFloat, UIFont.Weight, UIFont.TextStyle?, CGFloat?)] =
         [.areaTypeTitle: (nil, 14, .regular, .subheadline, nil),
         .areaNameList: (nil, 14, .light, .subheadline, nil),
         .reportAreaTitle: (nil, 28, .regular, .title1, nil),

@@ -12,7 +12,7 @@ import UIKit
 struct Util {
     static var isVoiceOverRunning: Bool {
         get {
-            return UIAccessibilityIsVoiceOverRunning()
+            return UIAccessibility.isVoiceOverRunning
         }
     }
 }

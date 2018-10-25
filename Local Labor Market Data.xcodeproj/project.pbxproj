@@ -525,13 +525,16 @@
 				TargetAttributes = {
 					03E3508A213ED85900AC7383 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = 03F1F85C20EA622D00662446;
 					};
 					03F1F85C20EA622D00662446 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 					03F1F87320EA623000662446 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = 03F1F85C20EA622D00662446;
 					};
 				};
@@ -730,7 +733,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dol.blsApp.Local-Labor-Market-DataUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Local Labor Market Data";
 			};
@@ -750,7 +753,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dol.blsApp.Local-Labor-Market-DataUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Local Labor Market Data";
 			};
@@ -887,7 +890,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.bls.BLSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -907,7 +910,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.bls.BLSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -926,7 +929,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dol.blsApp.Local-Labor-Market-DataTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Local Labor Market Data.app/Local Labor Market Data";
 			};
@@ -946,7 +949,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dol.blsApp.Local-Labor-Market-DataTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Local Labor Market Data.app/Local Labor Market Data";
 			};

@@ -39,8 +39,8 @@ class AreaViewController: UIViewController {
         let infoItem = UIBarButtonItem.infoButton(target: self, action: #selector(infoClicked(sender:)))
         navigationItem.rightBarButtonItems = [searchItem, infoItem]
         
-        seasonallyAdjustedSwitch.tintColor = UIColor(hex: 0x293683)
-        seasonallyAdjustedSwitch.onTintColor = UIColor(hex: 0x293683)
+        seasonallyAdjustedSwitch.tintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
+        seasonallyAdjustedSwitch.onTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
         
         seasonallyAdjustedTitle.scaleFont(forDataType: .seasonallyAdjustedSwitch, for: traitCollection)
         leftSubArea.titleLabel?.scaleFont(forDataType: .reportSubAreaTitle, for: traitCollection)
@@ -64,9 +64,10 @@ class AreaViewController: UIViewController {
         seasonallyAdjustedSwitch.accessibilityLabel = "Seasonally Adjusted"
         seasonallyAdjustedTitle.isAccessibilityElement = false
         tableView.isAccessibilityElement = false
-        areaTitleLabel.accessibilityTraits |= UIAccessibilityTraitHeader
+//        areaTitleLabel.accessibilityTraits |= UIAccessibilityTraits.header
+        areaTitleLabel.accessibilityTraits = UIAccessibilityTraits.header
         
-        NotificationCenter.default.addObserver(self, selector: #selector(voiceOverStatusChanged), name: NSNotification.Name.UIAccessibilityVoiceOverStatusDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(voiceOverStatusChanged), name: UIAccessibility.voiceOverStatusDidChangeNotification, object: nil)
     }
     
     deinit {

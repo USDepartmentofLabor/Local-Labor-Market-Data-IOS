@@ -26,7 +26,7 @@ class ActivityIndicatorView: UIView {
         layer.cornerRadius = 8
         
         let yPosition = frame.height/2 - 20
-        activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityView = UIActivityIndicatorView(style: .whiteLarge)
         activityView.frame = CGRect(x: 10, y: yPosition, width: 40, height: 40)
 //        activityView.color = Settings.ActivityColor
         

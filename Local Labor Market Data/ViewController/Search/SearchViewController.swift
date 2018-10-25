@@ -13,6 +13,7 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchContainerView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var areaSegment: UISegmentedControl!
     
     let currentLocationTitle = "Current Location"
     let nationalTitle = "National"
@@ -102,15 +103,15 @@ class SearchViewController: UIViewController {
         navigationItem.rightBarButtonItem = infoItem
         
         tableView.register(UINib(nibName: SearchSectionTableHeaderView.nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: SearchSectionTableHeaderView.reuseIdentifier)
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+        tableView.sectionHeaderHeight = UITableView.automaticDimension;
         tableView.estimatedSectionHeaderHeight = 50
-        tableView.sectionIndexColor = UIColor(hex: 0x293683)
+        tableView.sectionIndexColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
         
         checkCurrentLocation()
         areas = dataUtil.searchArea(forArea: .metro)
         
         searchController.searchBar.placeholder = "Zip, Metro Area, State, County"
-        searchController.searchBar.scopeButtonTitles = scope.map {$0.title}
+//        searchController.searchBar.scopeButtonTitles = scope.map {$0.title}
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
@@ -157,6 +158,18 @@ class SearchViewController: UIViewController {
 
 // MARK: Actions
 extension SearchViewController {
+    @IBAction func areaSegmentChanged(_ sender: Any) {
+        guard let segmentControl = sender as? UISegmentedControl else { return }
+        
+        let areaType = scope[segmentControl.selectedSegmentIndex].type
+        
+        var searchText = searchController.searchBar.text
+        if searchText == currentLocationTitle {
+            searchText = currentZip
+        }
+        updateFilteredContent(type: areaType, searchText: searchText, withUserAction: true)
+    }
+
     @objc fileprivate func infoClicked(sender: Any?) {
         performSegue(withIdentifier: "showInfo", sender: self)
         searchController.isActive = false
@@ -224,7 +237,8 @@ extension SearchViewController: UITableViewDataSource {
 
         let sectionTitle: String
         if section == areaSection {
-            let scopeIndex = searchController.searchBar.selectedScopeButtonIndex
+//            let scopeIndex = searchController.searchBar.selectedScopeButtonIndex
+            let scopeIndex = areaSegment.selectedSegmentIndex
             sectionTitle = scope[scopeIndex].title
         }
         else if section == nationalSection {
@@ -282,18 +296,19 @@ extension SearchViewController: UITableViewDelegate {
         if sectionTitle == currentLocationTitle {
             sectionHeaderView.imageView.image = #imageLiteral(resourceName: "place")
             sectionHeaderView.isAccessibilityElement = true
-            sectionHeaderView.accessibilityTraits = UIAccessibilityTraitButton
+            sectionHeaderView.accessibilityTraits = UIAccessibilityTraits.button
         }
         else if sectionTitle == nationalTitle {
             sectionHeaderView.imageView.image = #imageLiteral(resourceName: "flag")
             sectionHeaderView.isAccessibilityElement = true
-            sectionHeaderView.accessibilityTraits = UIAccessibilityTraitButton
+            sectionHeaderView.accessibilityTraits = UIAccessibilityTraits.button
         }
         else {
             sectionHeaderView.imageView.image = #imageLiteral(resourceName: "globe")
             sectionHeaderView.isAccessibilityElement = true
         }
-        sectionHeaderView.accessibilityTraits |= UIAccessibilityTraitHeader
+//        sectionHeaderView.accessibilityTraits |= UIAccessibilityTraits.header
+        sectionHeaderView.accessibilityTraits = UIAccessibilityTraits.header
         sectionHeaderView.accessibilityLabel = sectionTitle
         sectionHeaderView.section = section
         sectionHeaderView.delegate = self
@@ -316,7 +331,6 @@ extension SearchViewController: SearchSectionHeaderDelegate {
         }
         getCurrentLocation()
         searchController.searchBar.text = currentLocationTitle
-        searchController.searchBar.becomeFirstResponder()
     }
 }
 
@@ -329,7 +343,8 @@ extension SearchViewController: UISearchResultsUpdating {
             return
         }
         
-        let scopeButtonIndex = searchController.searchBar.selectedScopeButtonIndex
+//        let scopeButtonIndex = searchController.searchBar.selectedScopeButtonIndex
+        let scopeButtonIndex = areaSegment.selectedSegmentIndex
         updateFilteredContent(type:scope[scopeButtonIndex].type, searchText: searchText)
     }
     
@@ -343,7 +358,8 @@ extension SearchViewController: UISearchResultsUpdating {
             
             // if County return any results, then go to County
             if let counties = dataUtil.searchArea(forArea: .county, forText: searchText), counties.count > 0 {
-                searchController.searchBar.selectedScopeButtonIndex = scope.endIndex-1
+                areaSegment.selectedSegmentIndex = scope.endIndex-1
+//                searchController.searchBar.selectedScopeButtonIndex = scope.endIndex-1
                 updateFilteredContent(type:scope[scope.endIndex-1].type, searchText: searchText)
             }
         }
@@ -363,15 +379,17 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
-        if searchController.searchBar.selectedScopeButtonIndex != scope.startIndex {
-            searchController.searchBar.selectedScopeButtonIndex = scope.startIndex
+        if areaSegment.selectedSegmentIndex != scope.startIndex {
+            areaSegment.selectedSegmentIndex = scope.startIndex
         }
+//        if searchController.searchBar.selectedScopeButtonIndex != scope.startIndex {
+//            searchController.searchBar.selectedScopeButtonIndex = scope.startIndex
+//        }
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         let announecemntnStr = "Found \(areas?.count ?? 0) results"
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, announecemntnStr)
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: announecemntnStr)
     }
 }
 
@@ -426,7 +444,8 @@ extension SearchViewController: CLLocationManagerDelegate {
             
             if let zipCode = postalCode {
                 currentZip = zipCode
-                let scopeButtonIndex = searchController.searchBar.selectedScopeButtonIndex
+                let scopeButtonIndex = areaSegment.selectedSegmentIndex
+//                let scopeButtonIndex = searchController.searchBar.selectedScopeButtonIndex
                 updateFilteredContent(type:scope[scopeButtonIndex].type, searchText: zipCode)
             }
         }

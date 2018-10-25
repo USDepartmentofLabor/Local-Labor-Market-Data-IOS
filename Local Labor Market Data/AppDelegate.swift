@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
 #if false
         loadData()
@@ -50,11 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setupApprearance() {
-        UIApplication.shared.statusBarStyle = .lightContent
-        UINavigationBar.appearance().barTintColor = UIColor(hex: 0x293683)
+//        UIApplication.shared.statusBarStyle = .lightContent
+        UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
     }
     

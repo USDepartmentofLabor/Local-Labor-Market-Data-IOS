@@ -52,13 +52,14 @@ class ResultsViewController: UIViewController {
     func setupView() {
         titleLabel.text = currentArea?.title
         titleLabel.accessibilityLabel = currentArea?.accessibilityStr
-        titleLabel.accessibilityTraits |= UIAccessibilityTraitHeader
+//        titleLabel.accessibilityTraits |= UIAccessibilityTraits.header
+        titleLabel.accessibilityTraits = UIAccessibilityTraits.header
         // Get the result types
         if let resultArea = resultAreas?[0] {
             title = resultArea.areaType + " Results"
         }
         
-        tableView.sectionIndexColor = UIColor(hex: 0x293683)
+        tableView.sectionIndexColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)  
     }
     /*
     // MARK: - Navigation
@@ -84,7 +85,6 @@ extension ResultsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "ResultCell")
-        
         let resultArea = resultAreas?[indexPath.row]
         cell.textLabel?.text = resultArea?.title
         cell.textLabel?.numberOfLines = 0

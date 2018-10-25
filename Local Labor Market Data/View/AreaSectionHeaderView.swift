@@ -67,7 +67,7 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
     func applyAccessibility() {
         isAccessibilityElement = true
         accessibilityLabel = titleLabel.text
-        accessibilityTraits = UIAccessibilityTraitHeader
+        accessibilityTraits = UIAccessibilityTraits.header
         titleLabel.isAccessibilityElement = false
         expandCollapseImageView.isAccessibilityElement = false
         

@@ -59,7 +59,8 @@ extension GlossaryViewController: UITableViewDataSource {
         
         cell.isAccessibilityElement = false
         cell.textLabel?.isAccessibilityElement = true
-        cell.textLabel?.accessibilityTraits |= UIAccessibilityTraitHeader
+//        cell.textLabel?.accessibilityTraits |= UIAccessibilityTraits.header
+        cell.textLabel?.accessibilityTraits = UIAccessibilityTraits.header
         cell.detailTextLabel?.isAccessibilityElement = true
         
         return cell
@@ -68,6 +69,6 @@ extension GlossaryViewController: UITableViewDataSource {
 
 extension GlossaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 }

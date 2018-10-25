@@ -83,10 +83,10 @@ class MetroStateViewController: AreaViewController {
         tableView.register(UINib(nibName: OccupationalEmploymentTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: OccupationalEmploymentTableViewCell.reuseIdentifier)
         
         tableView.estimatedRowHeight = 215
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         tableView.register(UINib(nibName: AreaSectionHeaderView.nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: AreaSectionHeaderView.reuseIdentifier)
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+        tableView.sectionHeaderHeight = UITableView.automaticDimension;
         tableView.estimatedSectionHeaderHeight = 44
         seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
 
@@ -187,10 +187,10 @@ extension MetroStateViewController {
     
     func loadReports() {
         if seasonalAdjustment == .adjusted {
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Loading Seasonally Adjusted Reports")
+            UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: "Loading Seasonally Adjusted Reports")
         }
         else {
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Loading Not Seasonally Adjusted Reports")
+            UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: "Loading Not Seasonally Adjusted Reports")
         }
         
         // Empty Local/Nationa Area Reports
@@ -228,7 +228,7 @@ extension MetroStateViewController {
         else {
             announcementStr = "Loaded Local Report"
         }
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, announcementStr)
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: announcementStr)
 
         // If current Area is National, no need to load National Report
         if (area is National) == false {

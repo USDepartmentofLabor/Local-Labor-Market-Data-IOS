@@ -77,11 +77,11 @@ class OwnershipTableViewCell: UITableViewCell {
         
         tableView.register(UINib(nibName: AreaSectionHeaderView.nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: "OwnershipHeader")
 
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+        tableView.sectionHeaderHeight = UITableView.automaticDimension;
         tableView.estimatedSectionHeaderHeight = 44
         
         tableView.estimatedRowHeight = 140
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         tableView.tableFooterView?.backgroundColor = .red
     }
@@ -184,7 +184,7 @@ extension OwnershipTableViewCell: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {

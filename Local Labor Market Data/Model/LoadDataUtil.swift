@@ -99,7 +99,7 @@ class LoadDataUtil {
             // F - County and Equivalents
             let areaType = item[0]
             
-            // Save only State, Metroppolitan Area and County
+            // Save only State, Metropolitan Area and County
             if areaType == "A" || areaType == "B" || areaType == "F" {
                 
                 let type = item[0]
