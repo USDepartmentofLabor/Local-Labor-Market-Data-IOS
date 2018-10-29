@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="V2">
+    <entity name="Area" representedClassName="Area" isAbstract="YES" syncable="YES" codeGenerationType="category">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="ces" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CES_Area" inverseName="area" inverseEntity="CES_Area" syncable="YES"/>
+        <relationship name="laus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LAUS_Area" inverseName="area" inverseEntity="LAUS_Area" syncable="YES"/>
+    </entity>
+    <entity name="Cbsa_County" representedClassName="Cbsa_County" syncable="YES" codeGenerationType="class">
+        <attribute name="cbsaCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countyCode" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CES_Area" representedClassName="CES_Area" syncable="YES" codeGenerationType="class">
+        <relationship name="area" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Area" inverseName="ces" inverseEntity="Area" syncable="YES"/>
+    </entity>
+    <entity name="County" representedClassName="County" parentEntity="Area" syncable="YES" codeGenerationType="category">
+        <relationship name="zip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ZipCountyMap" inverseName="county" inverseEntity="ZipCountyMap" syncable="YES"/>
+    </entity>
+    <entity name="LAUS_Area" representedClassName="LAUS_Area" syncable="YES" codeGenerationType="category">
+        <attribute name="areaCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="areaType" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="area" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Area" inverseName="laus" inverseEntity="Area" syncable="YES"/>
+    </entity>
+    <entity name="Metro" representedClassName="Metro" parentEntity="Area" syncable="YES" codeGenerationType="category">
+        <attribute name="stateCode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="zip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ZipCBSAMap" inverseName="metro" inverseEntity="ZipCBSAMap" syncable="YES"/>
+    </entity>
+    <entity name="National" representedClassName="National" parentEntity="Area" syncable="YES" codeGenerationType="class"/>
+    <entity name="QCEW_AreaTitle" representedClassName="QCEW_AreaTitle" syncable="YES" codeGenerationType="class">
+        <attribute name="areaFips" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="areaTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="areaType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="State" representedClassName="State" parentEntity="Area" syncable="YES" codeGenerationType="category"/>
+    <entity name="ZipCBSAMap" representedClassName="ZipCBSAMap" syncable="YES" codeGenerationType="category">
+        <attribute name="cbsaCode" attributeType="String" syncable="YES"/>
+        <attribute name="zipCode" attributeType="String" minValueString="5" maxValueString="5" syncable="YES"/>
+        <relationship name="metro" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Metro" inverseName="zip" inverseEntity="Metro" syncable="YES"/>
+    </entity>
+    <entity name="ZipCountyMap" representedClassName="ZipCountyMap" syncable="YES" codeGenerationType="category">
+        <attribute name="countyCode" attributeType="String" minValueString="5" maxValueString="5" syncable="YES"/>
+        <attribute name="zipCode" attributeType="String" minValueString="5" maxValueString="5" syncable="YES"/>
+        <relationship name="county" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="County" inverseName="zip" inverseEntity="County" syncable="YES"/>
+    </entity>
+    <fetchRequest name="getAllCounty" entity="Area" predicateString="type == &quot;F&quot;"/>
+    <fetchRequest name="getAllMSA" entity="Area" predicateString="type == &quot;B&quot;"/>
+    <fetchRequest name="getAllStates" entity="Area" predicateString="type == &quot;A&quot;"/>
+    <elements>
+        <element name="Area" positionX="277" positionY="-100" width="128" height="105"/>
+        <element name="CES_Area" positionX="54" positionY="27" width="128" height="60"/>
+        <element name="County" positionX="63" positionY="-63" width="128" height="60"/>
+        <element name="LAUS_Area" positionX="45" positionY="18" width="128" height="90"/>
+        <element name="Metro" positionX="43" positionY="126" width="128" height="75"/>
+        <element name="National" positionX="63" positionY="45" width="128" height="45"/>
+        <element name="QCEW_AreaTitle" positionX="250" positionY="92" width="128" height="88"/>
+        <element name="State" positionX="63" positionY="-124" width="128" height="43"/>
+        <element name="ZipCBSAMap" positionX="-153" positionY="74" width="135" height="90"/>
+        <element name="ZipCountyMap" positionX="-162" positionY="-97" width="128" height="88"/>
+        <element name="Cbsa_County" positionX="45" positionY="27" width="128" height="75"/>
+    </elements>
+</model>
