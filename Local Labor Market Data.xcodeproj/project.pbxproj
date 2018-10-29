@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03287A7E2187665A0067686A /* MSA_COUNTY.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03287A7C2187665A0067686A /* MSA_COUNTY.txt */; };
+		03287A7F2187665A0067686A /* MSANECTA_COUNTY.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03287A7D2187665A0067686A /* MSANECTA_COUNTY.txt */; };
 		032C16652138241E004C1B3F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16642138241E004C1B3F /* Util.swift */; };
 		032C16672139918B004C1B3F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16662139918B004C1B3F /* Settings.swift */; };
 		032C16692139927F004C1B3F /* UICustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16682139927F004C1B3F /* UICustomSwitch.swift */; };
@@ -107,6 +109,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BLSApp 2.xcdatamodel"; sourceTree = "<group>"; };
+		03287A7C2187665A0067686A /* MSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MSA_COUNTY.txt; sourceTree = "<group>"; };
+		03287A7D2187665A0067686A /* MSANECTA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MSANECTA_COUNTY.txt; sourceTree = "<group>"; };
 		032C16642138241E004C1B3F /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		032C16662139918B004C1B3F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		032C16682139927F004C1B3F /* UICustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomSwitch.swift; sourceTree = "<group>"; };
@@ -399,6 +404,8 @@
 		03F1F89120EAA69800662446 /* LookupData */ = {
 			isa = PBXGroup;
 			children = (
+				03287A7C2187665A0067686A /* MSA_COUNTY.txt */,
+				03287A7D2187665A0067686A /* MSANECTA_COUNTY.txt */,
 				03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */,
 				03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */,
 				03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */,
@@ -571,6 +578,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03287A7E2187665A0067686A /* MSA_COUNTY.txt in Resources */,
 				03B708892123026E00C370D7 /* OwnershipTableViewCell.xib in Resources */,
 				03953C3321136F1900BED557 /* IndustryEmploymentTableViewCell.xib in Resources */,
 				03F1F86E20EA623000662446 /* LaunchScreen.storyboard in Resources */,
@@ -584,6 +592,7 @@
 				03F1F86620EA622D00662446 /* Main.storyboard in Resources */,
 				03E35085213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal in Resources */,
 				0348FD1A211DD64800155BE8 /* EmploymentWageTableViewCell.xib in Resources */,
+				03287A7F2187665A0067686A /* MSANECTA_COUNTY.txt in Resources */,
 				0348FD1D211E0AB200155BE8 /* OwnershipDataTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1000,9 +1009,10 @@
 		03F1F86720EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */,
 				03F1F86820EA622D00662446 /* BLSApp.xcdatamodel */,
 			);
-			currentVersion = 03F1F86820EA622D00662446 /* BLSApp.xcdatamodel */;
+			currentVersion = 03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */;
 			path = Local_Labor_Market_Data.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

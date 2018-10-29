@@ -12,6 +12,7 @@ import CoreData
 class LoadDataUtil {
     
     static let MSATitle = "Metropolitan Statistical Area"
+    static let NECTATitle = "Metropolitan NECTA"
     static let ZIP_COUNTY_MAP = "ZIP_COUNTY"
     static let ZIP_CBSA_MAP = "ZIP_CBSA"
     
@@ -104,7 +105,7 @@ class LoadDataUtil {
                 
                 let type = item[0]
                 let code =  item[1]
-                let title = item[2]
+                var title = item[2]
                 
                 let start = code.index(code.startIndex, offsetBy: 2)
                 let end = code.index(start, offsetBy: 2)
@@ -117,7 +118,9 @@ class LoadDataUtil {
                     state.title = title
                     area = state
                 }
-                else if type == "B", title.contains(LoadDataUtil.MSATitle) { // Set the Links to ZipCBSA Table
+                else if type == "B",
+                    (title.contains(LoadDataUtil.MSATitle) ||
+                        title.contains(LoadDataUtil.NECTATitle)) { // Set the Links to ZipCBSA Table
                     // Get the CBSA/Metropolitan Code
                     // Code is of Format MT + StateCode + CBSACode
                     let metro = Metro(context: managedObjectContext)
@@ -131,10 +134,9 @@ class LoadDataUtil {
                     metro.code = cbsaCode
                     metro.stateCode = stateCode
                     
+                    title = title.replacingOccurrences(of: LoadDataUtil.MSATitle, with: "")
+                    title = title.replacingOccurrences(of: LoadDataUtil.NECTATitle, with: "").trimmingCharacters(in: .whitespaces)
                     metro.title = title
-                    if title.contains(LoadDataUtil.MSATitle) {
-                        metro.title = title.replacingOccurrences(of: LoadDataUtil.MSATitle, with: "").trimmingCharacters(in: .whitespaces)
-                    }
                     area = metro
                 }
                 else if type == "F" {
