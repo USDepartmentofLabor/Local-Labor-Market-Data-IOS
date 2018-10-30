@@ -74,6 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dataUtil = LoadDataUtil(managedContext: CoreDataManager.shared().viewManagedContext)
         dataUtil.loadZipCountyMap()
         dataUtil.loadZipCBSAMap()
+        dataUtil.loadMSACountyMap()
         dataUtil.loadLAUSData()
     }
     

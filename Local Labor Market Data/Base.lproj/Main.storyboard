@@ -326,23 +326,23 @@
             <objects>
                 <viewController id="7qL-l2-ozW" customClass="AboutViewController" customModule="Local_Labor_Market_Data" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mAr-0Q-c5j">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="555"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHz-ZJ-h7J">
-                                <rect key="frame" x="10" y="74" width="355" height="533"/>
+                                <rect key="frame" x="10" y="30" width="315" height="465"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfc-vE-Lx9">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="533"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="465"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="061-Sy-DyM">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="533"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="315" height="465"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-a5-M57">
-                                                        <rect key="frame" x="0.0" y="5" width="355" height="198"/>
+                                                        <rect key="frame" x="0.0" y="5" width="315" height="168"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVi-wj-GTy" userLabel="Description1 Label">
-                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="18"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="315" height="18"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -351,7 +351,7 @@
                                                                 </variation>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aek-Jk-nIw" userLabel="Description2 Label">
-                                                                <rect key="frame" x="0.0" y="30" width="355" height="18"/>
+                                                                <rect key="frame" x="0.0" y="30" width="315" height="18"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -360,7 +360,7 @@
                                                                 </variation>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eII-ww-qrP" userLabel="Description3 Label">
-                                                                <rect key="frame" x="0.0" y="60" width="355" height="18"/>
+                                                                <rect key="frame" x="0.0" y="60" width="315" height="18"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -369,7 +369,7 @@
                                                                 </variation>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cz9-GL-AMX" userLabel="Description4 Label">
-                                                                <rect key="frame" x="0.0" y="90" width="355" height="18"/>
+                                                                <rect key="frame" x="0.0" y="90" width="315" height="18"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -378,7 +378,7 @@
                                                                 </variation>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBi-MF-Vfg" userLabel="Description5 Label">
-                                                                <rect key="frame" x="0.0" y="120" width="355" height="18"/>
+                                                                <rect key="frame" x="0.0" y="120" width="315" height="18"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -387,16 +387,7 @@
                                                                 </variation>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTP-3u-QlL" userLabel="Description6 Label">
-                                                                <rect key="frame" x="0.0" y="150" width="355" height="18"/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                                <variation key="heightClass=regular-widthClass=regular">
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                                </variation>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAy-BF-oiL" userLabel="Description7 Label">
-                                                                <rect key="frame" x="0.0" y="180" width="355" height="18"/>
+                                                                <rect key="frame" x="0.0" y="150" width="315" height="18"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -407,7 +398,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More information on all BLS programs, and additional data, can be found at www.bls.gov" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0U-2V-8RQ" userLabel="blsWebLabel">
-                                                        <rect key="frame" x="0.0" y="495" width="355" height="38"/>
+                                                        <rect key="frame" x="0.0" y="427" width="315" height="38"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -416,7 +407,7 @@
                                                         </variation>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R87-oB-9lM" userLabel="VersionView">
-                                                        <rect key="frame" x="0.0" y="451" width="355" height="34"/>
+                                                        <rect key="frame" x="0.0" y="383" width="315" height="34"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vsg-mM-a8G">
                                                                 <rect key="frame" x="5" y="0.0" width="94.5" height="34"/>
@@ -509,7 +500,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OCIO" translatesAutoresizingMaskIntoConstraints="NO" id="4WH-2Z-1Dj">
-                                <rect key="frame" x="10" y="617" width="355" height="50"/>
+                                <rect key="frame" x="10" y="505" width="315" height="50"/>
                                 <accessibility key="accessibilityConfiguration" label="Powered by OCIO">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -539,7 +530,6 @@
                         <outlet property="description4Label" destination="Cz9-GL-AMX" id="BSD-pl-lWX"/>
                         <outlet property="description5Label" destination="eBi-MF-Vfg" id="J2y-xw-edq"/>
                         <outlet property="description6Label" destination="cTP-3u-QlL" id="xyI-Sb-4BS"/>
-                        <outlet property="description7Label" destination="nAy-BF-oiL" id="zzw-Gq-eZH"/>
                         <outlet property="releaseDateLabel" destination="c6n-IT-2QJ" id="ie4-hS-Lwl"/>
                         <outlet property="versionValueLabel" destination="DvW-8f-5Ue" id="bGT-rg-W5J"/>
                     </connections>
@@ -814,7 +804,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="JVm-UH-LeO"/>
-        <segue reference="EEn-pf-Eig"/>
+        <segue reference="gNx-IP-W6z"/>
         <segue reference="xET-zh-0oi"/>
     </inferredMetricsTieBreakers>
 </document>

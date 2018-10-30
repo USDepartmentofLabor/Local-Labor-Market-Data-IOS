@@ -88,17 +88,17 @@ class DataUtil {
         return searchResults
     }
     
-    func searchMetroAreas(forZipCode zipCode: String) -> [Metro]? {
+    fileprivate func searchMetroAreas(forZipCode zipCode: String) -> [Metro]? {
         return Metro.search(context: managedObjectContext, forZipCode: zipCode)
     }
     
-    func searchState(forZipCode zipCode: String) -> [State]? {
+    fileprivate func searchState(forZipCode zipCode: String) -> [State]? {
         return State.search(context: managedObjectContext, forZipCode: zipCode)
     }
     
     
-    func searchCounties(forZipCode zipCode: String) -> [Area]? {
+    fileprivate func searchCounties(forZipCode zipCode: String) -> [Area]? {
         // if zipCode is null, return all Metropolitan Area
         return County.counties(context: managedObjectContext, forZipCode: zipCode)
-    }
+    }    
 }

@@ -82,31 +82,53 @@ class CoreDataManager {
     }
     
     class func preloadDBData() {
-        if !FileManager.default.fileExists(atPath: NSPersistentContainer.defaultDirectoryURL().relativePath + "/Local_Labor_Market_Data.sqlite") {
-
-            guard let sqlitePath = Bundle.main.path(forResource: "Local_Labor_Market_Data", ofType: "sqlite") else { return }
-            let sqlitePath_shm = Bundle.main.path(forResource: "Local_Labor_Market_Data", ofType: "sqlite-shm")
-            let sqlitePath_wal = Bundle.main.path(forResource: "Local_Labor_Market_Data", ofType: "sqlite-wal")
-            
-            let URL1 = URL(fileURLWithPath: sqlitePath)
-            let URL2 = URL(fileURLWithPath: sqlitePath_shm!)
-            let URL3 = URL(fileURLWithPath: sqlitePath_wal!)
-            let URL4 = URL(fileURLWithPath: NSPersistentContainer.defaultDirectoryURL().relativePath + "/Local_Labor_Market_Data.sqlite")
-            let URL5 = URL(fileURLWithPath: NSPersistentContainer.defaultDirectoryURL().relativePath + "/Local_Labor_Market_Data.sqlite-shm")
-            let URL6 = URL(fileURLWithPath: NSPersistentContainer.defaultDirectoryURL().relativePath + "/Local_Labor_Market_Data.sqlite-wal")
-            
-            // Copy 3 files
-            do {
-                try FileManager.default.copyItem(at: URL1, to: URL4)
-                try FileManager.default.copyItem(at: URL2, to: URL5)
-                try FileManager.default.copyItem(at: URL3, to: URL6)
-                
-            } catch {
-                print("=======================")
-                print("ERROR IN COPY OPERATION")
-                print("=======================")
-            }
+        // If SQL file version file has been updated, increase the seedVersionValue
+        let seedVersionKey = "SeedVersion"
+        let seedVersionValue = 2
+        let seedVersion = UserDefaults.standard.integer(forKey: seedVersionKey)
+        if seedVersion != seedVersionValue {
+            copySeedDB()
+            UserDefaults.standard.set(seedVersionValue, forKey: seedVersionKey)
         }
     }
+    
+    static var storeDirectory = NSPersistentContainer.defaultDirectoryURL().relativePath
 
+    static var storeName = "Local_Labor_Market_Data"
+
+    class func copySeedDB() {
+        let storeURL = "\(storeDirectory)/\(storeName).sqlite"
+        if FileManager.default.fileExists(atPath: storeURL) {
+            let enumerator = FileManager.default.enumerator(atPath: storeDirectory)
+            while let file = enumerator?.nextObject() as? String {
+                if !file.hasPrefix(storeName) { continue }
+                do {
+                    try FileManager.default.removeItem(atPath: "\(storeDirectory)/\(file)")
+                } catch  {
+                    NSLog("Error deleting file %s", file)
+                }
+            }
+        }
+            
+        guard let sqlitePath = Bundle.main.path(forResource: "Local_Labor_Market_Data", ofType: "sqlite") else { return }
+        let sqlitePath_shm = Bundle.main.path(forResource: "Local_Labor_Market_Data", ofType: "sqlite-shm")
+        let sqlitePath_wal = Bundle.main.path(forResource: "Local_Labor_Market_Data", ofType: "sqlite-wal")
+        
+        let URL1 = URL(fileURLWithPath: sqlitePath)
+        let URL2 = URL(fileURLWithPath: sqlitePath_shm!)
+        let URL3 = URL(fileURLWithPath: sqlitePath_wal!)
+        let URL4 = URL(fileURLWithPath: "\(storeDirectory)/\(storeName).sqlite")
+        let URL5 = URL(fileURLWithPath: "\(storeDirectory)/\(storeName).sqlite-shm")
+        let URL6 = URL(fileURLWithPath: "\(storeDirectory)/\(storeName).sqlite-wal")
+        
+        // Copy 3 files
+        do {
+            try FileManager.default.copyItem(at: URL1, to: URL4)
+            try FileManager.default.copyItem(at: URL2, to: URL5)
+            try FileManager.default.copyItem(at: URL3, to: URL6)
+            
+        } catch {
+            print("Error copying seed files")
+        }
+    }
 }

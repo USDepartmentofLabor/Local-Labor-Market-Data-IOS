@@ -32,11 +32,12 @@ public class Metro: Area {
         
         return results
     }
-    
+
     class func search(context: NSManagedObjectContext, forZipCode zipCode: String) -> [Metro]? {
         return ZipCBSAMap.metro(context: context, forZipCode: zipCode)
     }
     
+    /*
     
     // Get All ZipCodes that are part of this Metro Area
     func getZipCodes() -> [String]? {
@@ -52,17 +53,22 @@ public class Metro: Area {
         return zipCodes
     }
 
+    
     // To get County Codes from Metro Area
     func getCountyCodes() -> [String]? {
         guard let zipCodes = getZipCodes(), let context = managedObjectContext else { return nil }
         return ZipCountyMap.countyCodes(context: context, forZipCodes: zipCodes)
     }
+    */
+    
     
     // Get the States, This Metro area is spanned in
     func getStates() -> [State]? {
-        guard let countyCodes: [String] = getCountyCodes(), let context = managedObjectContext else { return nil}
         
-        // Extract CountyCode Code using ZipCode
+        guard let areaCode = code, let context = managedObjectContext,
+            let countyCodes = CbsaCountyMap.getCountyCodes(context: context, fromCbsaCode: areaCode)
+                else { return nil}
+        
         // From county Code, extract State Code - First 2 digits
         let stateCodes = countyCodes.compactMap{
             return String($0.prefix(2))
@@ -74,11 +80,12 @@ public class Metro: Area {
     // To get Counties that are part of this Metro Area
     func getCounties() -> [County]? {
         
-        // Get all ZipCode for that MSA
-        guard let zipCodes = getZipCodes(), let context = managedObjectContext else { return nil }
+        guard let areaCode = code, let context = managedObjectContext,
+            let countyCodes = CbsaCountyMap.getCountyCodes(context: context, fromCbsaCode: areaCode)
+                else { return nil}
         
-        // Get Counties belonging to those ZipCodes
-        return County.counties(context: context, forZipCodes: zipCodes)
+        return County.getAreas(context: context, forAreaCodes: countyCodes) as? [County]
     }
-    
 }
+
+

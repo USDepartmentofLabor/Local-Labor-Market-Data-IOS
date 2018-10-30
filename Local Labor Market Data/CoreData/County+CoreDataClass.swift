@@ -81,46 +81,15 @@ extension County {
 extension County {
     // A County can be in multiple Metro areas
     func getMetros() -> [Metro]? {
-        // Step 1 - Get Zip codes for this county
-        guard let zipCodes = getZipCodes(), let context = managedObjectContext else { return nil }
+        //Use CBSA-County mapping
+        guard let areaCode = code, let context = managedObjectContext else { return nil }
+        let cbsaCodes = CbsaCountyMap.getCbsaCodes(context: context, fromCountyCode: areaCode)
         
-        // Step2 - From ZipCodes, find the metro Areas these zip Codes are part of
-        return ZipCBSAMap.metros(context: context, forZipCodes: zipCodes)
-    }
-    
-    // Get All ZipCodes that are part of this County
-    func getZipCodes() -> [String]? {
-        guard let zipCountyMap = zip else { return nil }
-        
-        let zipCodes = zipCountyMap.compactMap({ (item) -> String? in
-            if let zipCountyMap = item as? ZipCountyMap {
-                return zipCountyMap.zipCode
-            }
-            return nil
-        })
-        
-        return zipCodes
-    }
-    
-    class func getZipCodes(context: NSManagedObjectContext, countyCodes: [String]) -> [String]? {
-        var results: [String]?
-        let propertyKey = "zipCode"
-        
-        let fetchRequest: NSFetchRequest<NSDictionary> = ZipCountyMap.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "countyCode IN %@", countyCodes)
-        fetchRequest.resultType = .dictionaryResultType;
-        fetchRequest.propertiesToFetch = [propertyKey]
-        fetchRequest.returnsDistinctResults = true
-        
-        do {
-            let fetchedResults = try context.fetch(fetchRequest)
-            
-            results = fetchedResults.map {$0.value(forKey: propertyKey)} as? [String]
-
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+        if let cbsaCodes = cbsaCodes {
+            return Metro.getAreas(context: context, forAreaCodes: cbsaCodes) as? [Metro]
         }
         
-        return results
+        return nil
     }
+    
 }

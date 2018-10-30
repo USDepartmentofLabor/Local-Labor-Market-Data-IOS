@@ -34,6 +34,23 @@ public class Area: NSManagedObject {
         return results
     }
     
+    class func getAreas(context: NSManagedObjectContext, forAreaCodes areaCodes: [String]) -> [Area]? {
+        let results: [Area]?
+        
+        let fetchRequest: NSFetchRequest<Area> = Area.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "code IN %@", areaCodes)
+        fetchRequest.returnsDistinctResults = true
+        
+        do {
+            results = try context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            results = nil
+        }
+        
+        return results?.sorted()
+    }
+
     var areaType: String {
         get {
             if self is Metro {

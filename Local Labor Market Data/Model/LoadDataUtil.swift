@@ -15,6 +15,8 @@ class LoadDataUtil {
     static let NECTATitle = "Metropolitan NECTA"
     static let ZIP_COUNTY_MAP = "ZIP_COUNTY"
     static let ZIP_CBSA_MAP = "ZIP_CBSA"
+    static let CBSA_COUNTY_MAP = "CBSA_COUNTY"
+    static let NECTA_CBSA_COUNTY_MAP = "NECTACBSA_COUNTY"
     
     var managedObjectContext: NSManagedObjectContext
     
@@ -70,6 +72,42 @@ class LoadDataUtil {
         catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
+    }
+    
+    // MARK: ZIP County Mapping
+    func loadMSACountyMap() {
+        guard let items = LoadDataUtil.loadDataResource(resourceName: LoadDataUtil.CBSA_COUNTY_MAP,
+                                                        withExtension: "txt")
+            else { return }
+
+        CbsaCountyMap.deleteAll(managedContext: managedObjectContext)
+        for (index, item) in items.enumerated() {
+            // Ignore header
+            if index < 1 || item.count < 5 {
+                continue
+            }
+            let cbsaCounty = CbsaCountyMap(context: managedObjectContext)
+            let countyCode = item[4]+item[5]
+            cbsaCounty.setValue(item[1], forKey: "cbsaCode")
+            cbsaCounty.setValue(countyCode, forKey: "countyCode")
+        }
+        
+        // necta
+        guard let nectaItems = LoadDataUtil.loadDataResource(resourceName: LoadDataUtil.NECTA_CBSA_COUNTY_MAP,
+                                                        withExtension: "txt")
+            else { return }
+        
+        for (index, item) in nectaItems.enumerated() {
+            // Ignore header
+            if index < 1 || item.count < 5 {
+                continue
+            }
+            let cbsaCounty = CbsaCountyMap(context: managedObjectContext)
+            let countyCode = item[4]+item[5]
+            cbsaCounty.setValue(item[1], forKey: "cbsaCode")
+            cbsaCounty.setValue(countyCode, forKey: "countyCode")
+        }
+        
     }
     
     // #MARK: QCEW
@@ -128,9 +166,6 @@ class LoadDataUtil {
                     let end = code.index(start, offsetBy: 5)
                     let cbsaCode = String(code[start..<end])
 
-                    if let results = ZipCBSAMap.fetchResults(context: managedObjectContext, forCBSACode: cbsaCode), results.count > 0 {
-                        metro.addToZip(NSSet(array: results))
-                    }
                     metro.code = cbsaCode
                     metro.stateCode = stateCode
                     
@@ -146,9 +181,6 @@ class LoadDataUtil {
                     let end = code.index(start, offsetBy: 5)
                     let countyCode = String(code[start..<end])
                     
-                    if let results = ZipCountyMap.fetchResults(context: managedObjectContext, forCountyCode: countyCode), results.count > 0 {
-                        county.addToZip(NSSet(array: results))
-                    }
                     county.code = countyCode
                     county.title = title
                     area = county

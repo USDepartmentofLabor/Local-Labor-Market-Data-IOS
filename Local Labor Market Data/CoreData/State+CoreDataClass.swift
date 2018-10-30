@@ -90,14 +90,6 @@ public class State: Area {
         return results?.sorted()
     }
     
-    // Get All ZipCodes that are part of this State
-    func getZipCodes() -> [String]? {
-        guard let counties = getCounties() else {return nil}
-
-        let zipCodes = counties.compactMap{ $0.getZipCodes() }.flatMap{$0}
-        return zipCodes.removingDuplicates()
-    }
-
     class func lausStateCode(stateCode: String) -> String {
         let code = "ST" + stateCode
         
@@ -118,27 +110,18 @@ extension State {
 
 // MARK: Metro
 extension State {
-//    func getMetros() -> [Metro]? {
-//
-//        guard let counties = getCounties()  else { return nil}
-//        let zipCodes1 = counties.compactMap { $0.getZipCodes()}
-//
-//        let zipCodes = zipCodes1.flatMap{$0}
-//        let metros1 = counties.compactMap{ $0.getMetros()}
-//
-//        let metros = metros1.flatMap{$0}
-//
-//        return metros.removingDuplicates().sorted()
-//
-//    }
-
     func getMetros() -> [Metro]? {
-        guard let context = managedObjectContext else { return nil }
-        guard let counties = getCounties()  else { return nil}
+        guard let context = managedObjectContext,
+            let counties = getCounties()  else { return nil}
         
-        let zipCodes = County.getZipCodes(context: context, countyCodes: counties.compactMap{$0.code})
-        return ZipCBSAMap.metros(context: context, forZipCodes: zipCodes!)
+        let countyCodes = counties.compactMap { $0.code }.removingDuplicates()
+        let cbsaCodes = CbsaCountyMap.getCbsaCodes(context: context, fromCountyCodes: countyCodes)
         
+        if let cbsaCodes = cbsaCodes {
+            return Metro.getAreas(context: context, forAreaCodes: cbsaCodes) as? [Metro]
+        }
+        
+        return nil
     }
 }
 

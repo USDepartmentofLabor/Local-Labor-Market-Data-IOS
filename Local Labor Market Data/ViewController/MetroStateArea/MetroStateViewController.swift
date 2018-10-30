@@ -116,6 +116,7 @@ class MetroStateViewController: AreaViewController {
     }
 
     func displayStates() {
+        
         guard let metroArea = area as? Metro, let states = metroArea.getStates() else { return }
         
         if states.count > 1 {
