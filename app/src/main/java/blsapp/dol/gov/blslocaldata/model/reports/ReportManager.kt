@@ -4,6 +4,8 @@ import android.util.Log
 import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.model.BLSReportResponse
+import blsapp.dol.gov.blslocaldata.model.ReportError
+import blsapp.dol.gov.blslocaldata.model.ReportStatus
 import blsapp.dol.gov.blslocaldata.model.SeriesReport
 import blsapp.dol.gov.blslocaldata.network.BlsAPI
 
@@ -24,7 +26,7 @@ class ReportManager {
                       endYear: String? = null,
                       adjustment: SeasonalAdjustment,
                       successHandler: (List<AreaReport>) -> Unit,
-                      failureHandler: (Throwable?) -> Unit) {
+                      failureHandler: (ReportError) -> Unit) {
 
             var seriesIds = emptyList<String>()
 
@@ -40,10 +42,10 @@ class ReportManager {
             BlsAPI(BLSApplication.applicationContext()).getReports(seriesIds,
                     startYear = startYear,
                     endYear = endYear,
-                    successHandler = {
-                        Log.w("Report", it.toString())
+                    successHandler = {reportResponse ->
+                        Log.w("Report", reportResponse.toString())
 
-                        val seriesReports = it.series
+                        val seriesReports = reportResponse.series
                         // Map the series from Response to requested Report
                         areaReports.forEach { areaReport ->
                             val seriesReport = seriesReports.filter { areaReport.seriesId == it.seriesId }.firstOrNull()

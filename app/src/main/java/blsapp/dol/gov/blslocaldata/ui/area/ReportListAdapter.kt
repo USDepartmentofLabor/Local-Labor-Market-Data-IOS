@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.model.DataUtil
@@ -17,7 +18,7 @@ import blsapp.dol.gov.blslocaldata.model.reports.AreaReport
 import blsapp.dol.gov.blslocaldata.model.reports.QCEWReport
 import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
-import kotlinx.android.synthetic.main.areaheader_item.view.*
+import kotlinx.android.synthetic.main.report_header.view.*
 import java.text.NumberFormat
 
 enum class ReportRowType {
@@ -31,7 +32,7 @@ enum class ReportRowType {
 }
 
 data class ReportRow(var type: ReportRowType, val areaType: String?, val areaReports: List<AreaReport>?,
-                     var month: String? = null, var year: String? = null, var header: String?,
+                     var month: String? = null, var year: String? = null, var header: String?, var headerCollapsed: Boolean = true,
                      var subReportRows: List<ReportRow>? = null)
 
 class ReportListAdapter(private val context: Context, private val mListener: ReportListAdapter.OnReportItemClickListener?)
@@ -91,7 +92,8 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         val reportRow = mReportRows[position]
         if (reportRow.type == ReportRowType.HEADER &&
                 holder is ReportHeaderViewHolder) {
-            holder.mheaderTextView.text = reportRow.header
+            holder.mHeaderTextView.text = reportRow.header
+            holder.collapse = reportRow.headerCollapsed
             with(holder.mView) {
                 tag = reportRow
                 setOnClickListener {
@@ -412,11 +414,23 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
     override fun getItemViewType(position: Int) = mReportRows[position].type.ordinal
 
     inner class ReportHeaderViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mheaderTextView: TextView = mView.header_text
+        val mHeaderTextView: TextView = mView.header_text
+        val mHeaderImageView: ImageView = mView.showImageView
 
         override fun toString(): String {
-            return super.toString() + " '" + mheaderTextView.text + "'"
+            return super.toString() + " '" + mHeaderTextView.text + "'"
         }
+
+        var collapse: Boolean = true
+        set(value) {
+            if (value)
+            {
+                mHeaderImageView.setImageResource(R.drawable.ic_expand_less_black_24dp)
+            } else {
+                mHeaderImageView.setImageResource(R.drawable.ic_expand_more_black_24dp)
+            }
+        }
+
     }
 
     interface OnReportItemClickListener {

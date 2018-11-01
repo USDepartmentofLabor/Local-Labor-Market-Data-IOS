@@ -32,7 +32,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".ui.area.MetroStateActivity"
+            android:name=".ui.area.AreaReportActivity"
             android:label="@string/metro" />
         <activity
             android:name=".ui.info.InfoActivity"

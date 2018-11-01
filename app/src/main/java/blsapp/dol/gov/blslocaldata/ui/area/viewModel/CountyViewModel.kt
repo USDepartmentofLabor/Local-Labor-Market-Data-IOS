@@ -8,6 +8,7 @@ import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.db.LocalRepository
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
+import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.ui.area.ReportRow
 import blsapp.dol.gov.blslocaldata.ui.area.ReportRowType
@@ -20,6 +21,7 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
     lateinit override var mArea: AreaEntity
     lateinit override var mAdjustment: SeasonalAdjustment
     override var isLoading = MutableLiveData<Boolean>()
+    override var reportError = MutableLiveData<ReportError>()
 
     var localAreaReports: MutableList<AreaReport>? = null
     var nationalAreaReports = mutableListOf<AreaReport>()
@@ -89,8 +91,10 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
 
         }
 
+        isLoading.value = true
         ReportManager.getReport(mArea, reportTypes, adjustment = mAdjustment,
                 successHandler = {
+                    isLoading.value = false
                     localAreaReports = it.toMutableList()
                     updateReportRows()
 
@@ -100,7 +104,8 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
                     }
                 },
                 failureHandler = {
-
+                    isLoading.value = false
+                    reportError.value = it
                 })
         updateReportRows()
     }
@@ -154,7 +159,7 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
 
         sections.forEach { reportSection ->
             reportSection.title?.let { title ->
-                rows.add(ReportRow(ReportRowType.HEADER, null, null, header = title))
+                rows.add(ReportRow(ReportRowType.HEADER, null, null, header = title, headerCollapsed = reportSection.collapsed))
             }
             if (!reportSection.collapsed) {
                 reportSection.reportTypes?.let { reportTypes ->

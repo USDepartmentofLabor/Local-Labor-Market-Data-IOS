@@ -8,6 +8,7 @@ import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.db.LocalRepository
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
+import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.ui.area.ReportRow
 import blsapp.dol.gov.blslocaldata.ui.area.ReportRowType
@@ -28,6 +29,8 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
     lateinit override var mAdjustment: SeasonalAdjustment
 
     override var isLoading = MutableLiveData<Boolean>()
+    override var reportError = MutableLiveData<ReportError>()
+
     var localAreaReports: MutableList<AreaReport>? = null
     var nationalAreaReports = mutableListOf<AreaReport>()
 
@@ -69,8 +72,10 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
 //            reportSection.reportTypes
 //        }
 
+        isLoading.value = true
         ReportManager.getReport(mArea, reportTypes, adjustment = mAdjustment,
                 successHandler = {
+                    isLoading.value = false
                     localAreaReports = it.toMutableList()
                     updateReportRows()
 
@@ -79,8 +84,9 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                         getNationalReports()
                     }
                 },
-                failureHandler = {
-
+                failureHandler = { it ->
+                    isLoading.value = false
+                    reportError.value = it
                 })
         updateReportRows()
 
@@ -120,7 +126,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
         val rows = ArrayList<ReportRow>()
 
         reportSections.forEach{ reportSection ->
-            rows.add(ReportRow(ReportRowType.HEADER, null, null,header = reportSection.title))
+            rows.add(ReportRow(ReportRowType.HEADER, null, null,header = reportSection.title, headerCollapsed = reportSection.collapsed))
             if (!reportSection.collapsed) {
                 val areaReports = localAreaReports?.filter { areaReport ->
                     reportSection.reportTypes?.let { reportTypes ->

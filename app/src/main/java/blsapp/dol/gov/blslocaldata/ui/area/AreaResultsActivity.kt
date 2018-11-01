@@ -3,17 +3,16 @@ package blsapp.dol.gov.blslocaldata.ui.area
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
-import android.view.View
-import android.widget.AdapterView
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.CountyEntity
 import blsapp.dol.gov.blslocaldata.db.entity.MetroEntity
 import blsapp.dol.gov.blslocaldata.db.entity.StateEntity
-import blsapp.dol.gov.blslocaldata.ui.area.MetroStateActivity
 import blsapp.dol.gov.blslocaldata.ui.search.AreaListAdapter
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.AreaRow
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.RowType
@@ -53,6 +52,13 @@ class AreaResultsActivity : AppCompatActivity(), AreaListAdapter.OnItemClickList
         subAreas?.let {
             adapter.setArea(getAreaRows(it))
         }
+
+        val decorator = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+
+        ContextCompat.getDrawable(this, R.drawable.thin_divider)?.let {
+            decorator.setDrawable(it)
+        }
+        recyclerView.addItemDecoration(decorator)
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
@@ -66,15 +72,10 @@ class AreaResultsActivity : AppCompatActivity(), AreaListAdapter.OnItemClickList
     }
 
     override fun onItemClick(item: AreaRow) {
-        when(item.area) {
-            is MetroEntity, is StateEntity -> {
-                val intent = Intent(applicationContext,
-                        MetroStateActivity::class.java)
-                intent.putExtra(MetroStateActivity.KEY_AREA, item.area)
-                startActivity(intent)
-            }
-            is CountyEntity -> {}
-        }
+        val intent = Intent(applicationContext, AreaReportActivity::class.java)
+        intent.putExtra(AreaReportActivity.KEY_AREA, item.area)
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
     }
 
     fun getAreaRows(areaList: List<AreaEntity>) : ArrayList<AreaRow> {

@@ -17,6 +17,8 @@ import android.provider.Settings
 import android.support.design.widget.Snackbar
 import android.support.design.widget.Snackbar.*
 import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -30,7 +32,7 @@ import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.services.Constants
 import blsapp.dol.gov.blslocaldata.services.FetchAddressIntentService
-import blsapp.dol.gov.blslocaldata.ui.area.MetroStateActivity
+import blsapp.dol.gov.blslocaldata.ui.area.AreaReportActivity
 import blsapp.dol.gov.blslocaldata.ui.info.AboutActivity
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.*
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -64,6 +66,12 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
         val adapter = AreaListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val decorator = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+
+        ContextCompat.getDrawable(this,R.drawable.thin_divider)?.let {
+            decorator.setDrawable(it) }
+        recyclerView.addItemDecoration(decorator)
 
         val repository = (application as BLSApplication).repository
         // Get a new or existing ViewModel from the ViewModelProvider.
@@ -147,8 +155,8 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
     private fun displayReport(area: AreaEntity) {
         val intent = Intent(applicationContext,
-                MetroStateActivity::class.java)
-        intent.putExtra(MetroStateActivity.KEY_AREA, area)
+                AreaReportActivity::class.java)
+        intent.putExtra(AreaReportActivity.KEY_AREA, area)
         startActivity(intent)
     }
 

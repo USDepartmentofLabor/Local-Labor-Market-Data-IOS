@@ -17,7 +17,7 @@ import org.json.JSONObject
 class BlsAPI constructor(val appContext: Context) {
 
     companion object {
-        private val REGISTRATION_KEY = ""
+        private val REGISTRATION_KEY = "a4533a531fde441cbab0ac31c16ec8b0"
         private val BLS_API_URL = "https://api.bls.gov/publicAPI/v2/timeseries/data/"
 
         @Volatile
@@ -31,7 +31,7 @@ class BlsAPI constructor(val appContext: Context) {
     }
 
     fun getReports(seriesIds: List<String>, startYear: String? = null, endYear: String? = null,
-                   successHandler: (BLSReportResponse) -> Unit, failureHandler: (Throwable?) -> Unit) {
+                   successHandler: (BLSReportResponse) -> Unit, failureHandler: (ReportError) -> Unit) {
 
         val requestQueue = BLSRequestQueue.getInstance(appContext)
         val reportRequest = BLSReportRequest(seriesIds = seriesIds, registrationKey = BlsAPI.REGISTRATION_KEY,
@@ -47,12 +47,19 @@ class BlsAPI constructor(val appContext: Context) {
                     Log.w("Nidhi", response.toString())
                     val reportReponse = response.toString().toObject<BLSReportResponse>()
                     Log.w("Nidhi", reportReponse.toString())
-                    successHandler(reportReponse)
+
+                    if (reportReponse.status == ReportStatus.REQUEST_SUCCEEDED) {
+                        successHandler(reportReponse)
+                    }
+                    else {
+                        failureHandler(ReportError(ReportError.ErrorCode.APIError, ""))
+                    }
+
                 },
                 Response.ErrorListener { error ->
                     print(error.toString())
                     Log.w("Nidhi", error.toString())
-                    failureHandler(error)
+                    failureHandler(ReportError(error))
                 })
         requestQueue.addToRequestQueue(jsonObjectRequest)
     }

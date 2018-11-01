@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -14,6 +16,7 @@ import android.view.View
 import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.*
+import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
 import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
@@ -25,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_area_header.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class MetroStateActivity : AppCompatActivity(), ReportListAdapter.OnReportItemClickListener {
+class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemClickListener {
     companion object {
         const val KEY_AREA = "Area"
     }
@@ -68,13 +71,14 @@ class MetroStateActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         adapter = ReportListAdapter(this, this)
         recyclerView.apply {
-            adapter = this@MetroStateActivity.adapter
-            layoutManager = LinearLayoutManager(this@MetroStateActivity)
+            adapter = this@AreaReportActivity.adapter
+            layoutManager = LinearLayoutManager(this@AreaReportActivity)
         }
         attachObserver()
 
         val decorator = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        decorator.setDrawable(resources.getDrawable(R.drawable.divider, null))
+        ContextCompat.getDrawable(this,R.drawable.divider)?.let {
+                decorator.setDrawable(it) }
         recyclerView.addItemDecoration(decorator)
 
 //        val headerDecoration = ReportHeaderItemDecoration(resources.getDrawable(R.drawable.divider))
@@ -131,6 +135,9 @@ class MetroStateActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         })
         viewModel.isLoading.observe(this, Observer<Boolean> {
             it?.let { showLoadingDialog(it) }
+        })
+        viewModel.reportError.observe(this, Observer<ReportError> {
+            it?.let { showError(it) }
         })
     }
 
@@ -203,13 +210,14 @@ class MetroStateActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
                 val intent: Intent
                 if (subArea is CountyEntity) {
 //                    intent = Intent(applicationContext, CountyActivity::class.java)
-                    intent = Intent(applicationContext, MetroStateActivity::class.java)
+                    intent = Intent(applicationContext, AreaReportActivity::class.java)
                 }
                 else {
-                    intent = Intent(applicationContext, MetroStateActivity::class.java)
+                    intent = Intent(applicationContext, AreaReportActivity::class.java)
                 }
 
                 intent.putExtra(KEY_AREA, subArea)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
             }
         }
@@ -217,5 +225,9 @@ class MetroStateActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
 
     private fun showLoadingDialog(show: Boolean) {
         if (show) progressBar.visibility = View.VISIBLE else progressBar.visibility = View.GONE
+    }
+
+    private fun showError(error: ReportError) {
+            Snackbar.make(recyclerView, error.displayMessage, Snackbar.LENGTH_LONG).show()
     }
 }

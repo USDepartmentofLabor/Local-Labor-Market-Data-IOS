@@ -13,7 +13,7 @@ class LoadDataUtil {
     companion object {
 
         private val MSA_TITLE = "Metropolitan Statistical Area"
-        private val NECTA_ATITLE = "Metropolitan NECTA"
+        private val NECTA_TITLE = "Metropolitan NECTA"
 
         fun readFile(context: Context, resId: Int, ext: String = "csv"): ArrayList<List<String>> {
             val stream = context.resources.openRawResource(resId)
@@ -129,12 +129,12 @@ class LoadDataUtil {
                             db.stateDAO().insert(state)
                         }
                         else if (areaType == "B" &&
-                                (title.contains(MSA_TITLE, ignoreCase = true) || title.contains(NECTA_ATITLE, ignoreCase = true))) {
+                                (title.contains(MSA_TITLE, ignoreCase = true) || title.contains(NECTA_TITLE, ignoreCase = true))) {
                             // Get the CBSA/Metropolitan Code
                             // Code is of Format MT + StateCode + CBSACode
                             val cbsaCode = code.substring(4, 9)
                             title = title.replaceFirst(MSA_TITLE, "", ignoreCase = true)
-                            title = title.replaceFirst(NECTA_ATITLE, "", ignoreCase = true)
+                            title = title.replaceFirst(NECTA_TITLE, "", ignoreCase = true)
                             val metro = MetroEntity(id = null, code = cbsaCode, title = title, stateCode = stateCode, lausCode = code )
 
                             db.metroDAO().insert(metro)

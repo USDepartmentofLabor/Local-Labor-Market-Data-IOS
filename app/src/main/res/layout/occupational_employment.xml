@@ -22,7 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         style="@style/reportMonthYear"
-        android:text="August 2018"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="@+id/areaTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/areaTextView" />
@@ -53,7 +53,7 @@
             style="@style/reportDataValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2.5%"
+            android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/dataTitleTextView"
             app:layout_constraintStart_toStartOf="@+id/dataTitleTextView"

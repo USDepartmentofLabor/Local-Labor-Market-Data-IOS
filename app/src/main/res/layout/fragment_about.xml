@@ -61,13 +61,6 @@
                 style="@style/info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/about6" />
-
-            <TextView
-                android:id="@+id/line7"
-                style="@style/info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="@string/about7" />
 
         </LinearLayout>
