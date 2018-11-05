@@ -1,6 +1,9 @@
 package blsapp.dol.gov.blslocaldata.model
 
+import java.text.DateFormat
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DataUtil {
     companion object {
@@ -30,5 +33,18 @@ class DataUtil {
             return null
         }
 
+        // Convert MonthName to Quarter
+        // January -> 1
+        // June -> 2
+        fun quarterNumber(monthNumber: String): Int {
+            val month = monthNumber.substring(1,3)
+            val quarter = (month.toInt() - 1)/3 + 1
+            return quarter
+        }
+        fun quarterPeriod(monthNumber: String): String {
+            val month = monthNumber.substring(1,3)
+            val quarter = (month.toInt() - 1)/3 + 1
+            return "Q" + quarter.toString().padStart(2, '0')
+        }
     }
 }

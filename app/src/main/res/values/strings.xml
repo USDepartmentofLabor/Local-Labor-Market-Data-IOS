@@ -24,6 +24,9 @@
     <string name="about5">National, state, and metro area employment and wages by occupation come from the Occupational Employment Statistics (OES) program.</string>
     <string name="about6">At this time, metropolitan areas in New England states (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, and Vermont) are not available in the Local Labor Market Data app.</string>
     <string name="about7">The Local Labor Market Data app presents both seasonally adjusted and not seasonally adjusted data where available. Note that seasonally adjusted data are not generally available for metro areas and counties.</string>
+    <string name="version_title">Version Number:</string>
+    <string name="release_date_title">Release Date:</string>
+    <string name="more_info">More information on all BLS programs, and additional data, can be found at www.bls.gov</string>
     <string name="title_activity_info">Info</string>
     <string name="action_settings">Settings</string>
 

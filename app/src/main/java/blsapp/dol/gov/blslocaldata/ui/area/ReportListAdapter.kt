@@ -32,7 +32,7 @@ enum class ReportRowType {
 }
 
 data class ReportRow(var type: ReportRowType, val areaType: String?, val areaReports: List<AreaReport>?,
-                     var month: String? = null, var year: String? = null, var header: String?, var headerCollapsed: Boolean = true,
+                     var period: String? = null, var year: String? = null, var header: String?, var headerCollapsed: Boolean = true,
                      var subReportRows: List<ReportRow>? = null)
 
 class ReportListAdapter(private val context: Context, private val mListener: ReportListAdapter.OnReportItemClickListener?)
@@ -140,9 +140,9 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
 
             val seriesData: SeriesData?
             val year = reportRow.year
-            val month = reportRow.month
-            if (year != null && month != null) {
-                seriesData = it.data(month, year)
+            val period = reportRow.period
+            if (year != null && period != null) {
+                seriesData = it.data(period, year)
             } else {
                 seriesData = it.latestData()
             }
@@ -170,9 +170,9 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
 
             val seriesData: SeriesData?
             val year = reportRow.year
-            val month = reportRow.month
-            if (year != null && month != null) {
-                seriesData = it.data(month, year)
+            val period = reportRow.period
+            if (year != null && period != null) {
+                seriesData = it.data(period, year)
             } else {
                 seriesData = it.latestData()
             }
@@ -214,9 +214,9 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
 
             val seriesData: SeriesData?
             val year = reportRow.year
-            val month = reportRow.month
-            if (year != null && month != null) {
-                seriesData = it.data(month, year)
+            val period = reportRow.period
+            if (year != null && period != null) {
+                seriesData = it.data(period, year)
             } else {
                 seriesData = it.latestData()
             }
@@ -239,16 +239,16 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
     fun displayEmploymentWages(holder: EmploymentWagesHolder, reportRow: ReportRow) {
         holder.mAreaTitleTextView.text = reportRow.areaType
         val year = reportRow.year
-        val month = reportRow.month
+        val period = reportRow.period
 
         reportRow.areaReports?.forEach { areaReport ->
             when (areaReport.reportType) {
                 is ReportType.QuarterlyEmploymentWages -> {
                     if (areaReport.reportType.dataTypeCode == QCEWReport.DataTypeCode.allEmployees) {
-                        displayQuaterlyEmployment(holder, areaReport.seriesReport, year, month)
+                        displayQuaterlyEmployment(holder, areaReport.seriesReport, year, period)
                     }
                     else if (areaReport.reportType.dataTypeCode == QCEWReport.DataTypeCode.avgWeeklyWage) {
-                        displayQuaterlyWages(holder, areaReport.seriesReport, year, month)
+                        displayQuaterlyWages(holder, areaReport.seriesReport, year, period)
                     }
                 }
             }
@@ -258,28 +258,28 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
     fun displayOwnershipEmploymentWages(holder: OwnershipEmploymentWagesHolder, reportRow: ReportRow) {
         holder.mAreaTitleTextView.text = reportRow.areaType
         val year = reportRow.year
-        val month = reportRow.month
+        val period = reportRow.period
 
         reportRow.areaReports?.forEach { areaReport ->
             when (areaReport.reportType) {
                 is ReportType.QuarterlyEmploymentWages -> {
                     if (areaReport.reportType.dataTypeCode == QCEWReport.DataTypeCode.allEmployees) {
-                        displayOwnershipQuaterlyEmployment(holder, areaReport.seriesReport, year, month)
+                        displayOwnershipQuaterlyEmployment(holder, areaReport.seriesReport, year, period)
                     }
                     else if (areaReport.reportType.dataTypeCode == QCEWReport.DataTypeCode.avgWeeklyWage) {
-                        displayOwnershipQuaterlyWages(holder, areaReport.seriesReport, year, month)
+                        displayOwnershipQuaterlyWages(holder, areaReport.seriesReport, year, period)
                     }
                 }
             }
         }
     }
 
-    fun displayQuaterlyEmployment(holder: EmploymentWagesHolder, seriesReport: SeriesReport?, year: String?, month: String?) {
+    fun displayQuaterlyEmployment(holder: EmploymentWagesHolder, seriesReport: SeriesReport?, year: String?, period: String?) {
         seriesReport?.let {
 
             val seriesData: SeriesData?
-            if (year != null && month != null) {
-                seriesData = it.data(month, year)
+            if (year != null && period != null) {
+                seriesData = it.data(period, year)
             } else {
                 seriesData = it.latestData()
             }
@@ -292,8 +292,9 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
                     dataValue = NumberFormat.getNumberInstance().format(value)
                 }
 
+                val quarterNumber = DataUtil.quarterNumber(it.period)
                 holder.mDataValueTextView.text = dataValue
-                holder.mMonthYearTextView.text = it.periodName + " " + it.year
+                holder.mMonthYearTextView.text = "Q" + quarterNumber + " " + it.periodName + " " + it.year
 
                 it.calculations?.netChanges?.let { netChanges ->
                     holder.mTwelveMonthChangeTextView.text = netChanges.twelveMonth
@@ -311,12 +312,15 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         }
     }
 
-    fun displayQuaterlyWages(holder: EmploymentWagesHolder, seriesReport: SeriesReport?, year: String?, month: String?) {
+    fun displayQuaterlyWages(holder: EmploymentWagesHolder, seriesReport: SeriesReport?, year: String?, period: String?) {
         seriesReport?.let {
 
             val seriesData: SeriesData?
-            if (year != null && month != null) {
-                seriesData = it.data(month, year)
+            if (year != null && period != null) {
+                // Period Name is of Format M01, M02 etc
+                // Convert it to Quarter format
+                val quarterPeriod = DataUtil.quarterPeriod(period)
+                seriesData = it.data(quarterPeriod, year)
             } else {
                 seriesData = it.latestData()
             }
@@ -347,12 +351,12 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
     }
 
 
-    fun displayOwnershipQuaterlyEmployment(holder: OwnershipEmploymentWagesHolder, seriesReport: SeriesReport?, year: String?, month: String?) {
+    fun displayOwnershipQuaterlyEmployment(holder: OwnershipEmploymentWagesHolder, seriesReport: SeriesReport?, year: String?, period: String?) {
         seriesReport?.let {
 
             val seriesData: SeriesData?
-            if (year != null && month != null) {
-                seriesData = it.data(month, year)
+            if (year != null && period != null) {
+                seriesData = it.data(period, year)
             } else {
                 seriesData = it.latestData()
             }
@@ -365,8 +369,9 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
                     dataValue = NumberFormat.getNumberInstance().format(value)
                 }
 
+                val quarter = DataUtil.quarterNumber(it.period)
                 holder.mDataValueTextView.text = dataValue
-                holder.mMonthYearTextView.text = it.periodName + " " + it.year
+                holder.mMonthYearTextView.text = "Q" + quarter + " " + it.periodName + " " + it.year
 
 
             } ?: run {
@@ -376,12 +381,13 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         }
     }
 
-    fun displayOwnershipQuaterlyWages(holder: OwnershipEmploymentWagesHolder, seriesReport: SeriesReport?, year: String?, month: String?) {
+    fun displayOwnershipQuaterlyWages(holder: OwnershipEmploymentWagesHolder, seriesReport: SeriesReport?, year: String?, period: String?) {
         seriesReport?.let {
 
             val seriesData: SeriesData?
-            if (year != null && month != null) {
-                seriesData = it.data(month, year)
+            if (year != null && period != null) {
+                val quarterPeriod = DataUtil.quarterPeriod(period)
+                seriesData = it.data(quarterPeriod, year)
             } else {
                 seriesData = it.latestData()
             }

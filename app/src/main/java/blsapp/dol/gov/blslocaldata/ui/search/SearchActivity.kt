@@ -70,7 +70,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
         val decorator = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
 
         ContextCompat.getDrawable(this,R.drawable.thin_divider)?.let {
-            decorator.setDrawable(it) }
+            decorator.setDrawable(it)   }
         recyclerView.addItemDecoration(decorator)
 
         val repository = (application as BLSApplication).repository

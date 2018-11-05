@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import blsapp.dol.gov.blslocaldata.BuildConfig
 
 import blsapp.dol.gov.blslocaldata.R
 import kotlinx.android.synthetic.main.fragment_about.*
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_about.*
  *
  */
 class AboutFragment : Fragment() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,19 +41,14 @@ class AboutFragment : Fragment() {
         line4.text = getString(R.string.about4)
         line5.text = getString(R.string.about5)
         line6.text = getString(R.string.about7)
+
+        versionValue.text = BuildConfig.VERSION_NAME
+        releaseDateValue.text = AboutFragment.releaseDate
+
+        moreInfo.text = getString(R.string.more_info)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @return A new instance of fragment AboutFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance() =
-                AboutFragment().apply {
-                }
+        val releaseDate = "November 5, 2018"
     }
 }

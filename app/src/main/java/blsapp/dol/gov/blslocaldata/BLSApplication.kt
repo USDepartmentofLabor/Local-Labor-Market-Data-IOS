@@ -6,6 +6,7 @@ import blsapp.dol.gov.blslocaldata.db.BLSDatabase
 import blsapp.dol.gov.blslocaldata.db.LoadDataUtil
 import blsapp.dol.gov.blslocaldata.db.LocalRepository
 import blsapp.dol.gov.blslocaldata.db.entity.ZipCountyEntity
+import blsapp.dol.gov.blslocaldata.model.DataUtil
 import java.security.Provider
 
 class BLSApplication : Application() {
@@ -30,6 +31,7 @@ class BLSApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
 
         ioThread {
             if (database.zipCountyDAO().getAll().isEmpty()) {

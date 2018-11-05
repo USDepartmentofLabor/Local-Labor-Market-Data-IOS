@@ -175,7 +175,7 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
                     val latestLocalData = areaReports?.firstOrNull()?.seriesReport?.latestData()
                     if (nationalAreaReports.filterNotNull().isNotEmpty()) {
                         rows.add(ReportRow(rowType, "National Area", nationalAreaReports,
-                                month = latestLocalData?.period,
+                                period = latestLocalData?.period,
                                 year = latestLocalData?.year,
                                 header = null))
                     }
