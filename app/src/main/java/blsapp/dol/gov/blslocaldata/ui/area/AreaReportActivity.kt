@@ -3,6 +3,7 @@ package blsapp.dol.gov.blslocaldata.ui.area
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -44,6 +45,8 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        var leftAreaImage: Drawable? = null
+        var rightAreaImage: Drawable? = null
         mArea = intent.getSerializableExtra(KEY_AREA) as AreaEntity
         when (mArea) {
             is NationalEntity -> {
@@ -54,16 +57,30 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
             is MetroEntity -> {
                 title = "Metro"
                 leftButton.text = "State"
+                leftAreaImage = ContextCompat.getDrawable(this,R.drawable.ic_left_arrow_up)
+                rightAreaImage = ContextCompat.getDrawable(this,R.drawable.ic_right_arrow_down)
             }
             is StateEntity -> {
                 title = "State"
                 leftButton.text = "Metro"
+                leftAreaImage = ContextCompat.getDrawable(this,R.drawable.ic_left_arrow_down)
+                rightAreaImage = ContextCompat.getDrawable(this,R.drawable.ic_right_arrow_down)
             }
             is CountyEntity -> {
                 title = "County"
                 leftButton.text = "State"
                 rightButton.text = "Metro"
+                leftAreaImage = ContextCompat.getDrawable(this,R.drawable.ic_left_arrow_up)
+                rightAreaImage = ContextCompat.getDrawable(this,R.drawable.ic_right_arrow_up)
             }
+        }
+
+
+        leftAreaImage?.let {
+            leftButton.setCompoundDrawablesWithIntrinsicBounds(it, null, null, null)
+        }
+        rightAreaImage?.let {
+            rightButton.setCompoundDrawablesWithIntrinsicBounds(null, null, it, null)
         }
 
         areaTitleTextView.text = mArea?.title
