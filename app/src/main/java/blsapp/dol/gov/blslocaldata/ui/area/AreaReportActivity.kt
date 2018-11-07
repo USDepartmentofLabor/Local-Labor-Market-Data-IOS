@@ -75,7 +75,6 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
             }
         }
 
-
         leftAreaImage?.let {
             leftButton.setCompoundDrawablesWithIntrinsicBounds(it, null, null, null)
         }

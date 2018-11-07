@@ -25,10 +25,46 @@ class DataUtil {
             return null
         }
 
-        fun numberValueByThousand(valueStr: String): String? {
-            val decimalValue = valueStr.toDoubleOrNull()
-            decimalValue?.let { value ->
-                return NumberFormat.getNumberInstance().format(value * 1000)
+        fun numberValueByThousand(valueStr: String?): String? {
+            valueStr?.let {
+                val decimalValue = valueStr.toDoubleOrNull()
+                decimalValue?.let { value ->
+                    return NumberFormat.getNumberInstance().format(value * 1000)
+                }
+            }
+            return null
+        }
+
+        fun changeValueByThousand(valueStr: String?): String? {
+            valueStr?.let {
+                val decimalValue = valueStr.toDoubleOrNull()
+                decimalValue?.let { value ->
+                    val prefix = if (value > 0) "+" else ""
+                    return prefix + NumberFormat.getNumberInstance().format(value * 1000)
+                }
+            }
+            return null
+        }
+
+
+        fun changeValueByPercent(valueStr: String?): String? {
+            valueStr?.let {
+                val decimalValue = valueStr.toDoubleOrNull()
+                decimalValue?.let { value ->
+                    val prefix = if (value > 0) "+" else ""
+                    return prefix + valueStr + "%"
+                }
+            }
+            return null
+        }
+
+        fun changeValueStr(valueStr: String?): String? {
+            valueStr?.let {
+                val decimalValue = valueStr.toDoubleOrNull()
+                decimalValue?.let { value ->
+                    val prefix = if (value > 0) "+" else ""
+                    return prefix + NumberFormat.getNumberInstance().format(value)
+                }
             }
             return null
         }
