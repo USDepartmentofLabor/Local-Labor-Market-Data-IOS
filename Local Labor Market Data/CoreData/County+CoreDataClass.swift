@@ -33,14 +33,39 @@ public class County: Area {
         
         return results
     }
-    
+
+    public class func getAreas(context: NSManagedObjectContext, forCodes codes: [String]? = nil) -> [County]? {
+        guard let codes = codes else { return nil }
+        
+        let results: [County]?
+        
+        let fetchRequest: NSFetchRequest<County> = County.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.predicate = NSPredicate(format: "code IN %@", codes)
+        fetchRequest.returnsDistinctResults = true
+        
+        do {
+            results = try context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            results = nil
+        }
+        
+        return results
+    }
+
     class func counties(context: NSManagedObjectContext, forZipCodes zipCodes: [String]) -> [County]? {
         // Get Counties belonging to those ZipCodes
-        return ZipCountyMap.counties(context: context, forZipCodes: zipCodes)
+        let zipCounties = ZipCountyMap.fetchResults(context: context, forZipCodes: zipCodes)
+        let countyCodes = zipCounties?.compactMap {$0.countyCode}.removingDuplicates()
+        return County.getAreas(context: context, forCodes: countyCodes)
     }
     
     class func counties(context: NSManagedObjectContext, forZipCode zipCode: String) -> [County]? {
-        return ZipCountyMap.counties(context: context, forZipCode: zipCode)
+        let zipCounties = ZipCountyMap.fetchResults(context: context, forZipCode: zipCode)
+        let countyCodes = zipCounties?.compactMap {$0.countyCode}.removingDuplicates()
+        return County.getAreas(context: context, forCodes: countyCodes)
     }
 }
 

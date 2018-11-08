@@ -33,8 +33,33 @@ public class Metro: Area {
         return results
     }
 
+    public class func getAreas(context: NSManagedObjectContext, forCodes codes: [String]? = nil) -> [Metro]? {
+        guard let codes = codes else { return nil }
+
+        let results: [Metro]?
+        
+        let fetchRequest: NSFetchRequest<Metro> = Metro.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.predicate = NSPredicate(format: "code IN %@", codes)
+        fetchRequest.returnsDistinctResults = true
+        
+        do {
+            results = try context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            results = nil
+        }
+        
+        return results
+    }
+
     class func search(context: NSManagedObjectContext, forZipCode zipCode: String) -> [Metro]? {
-        return ZipCBSAMap.metro(context: context, forZipCode: zipCode)
+        let zipCBSAs = ZipCBSAMap.fetchResults(context: context, forZipCode: zipCode)
+        
+        let cbsaCodes = zipCBSAs?.compactMap {$0.cbsaCode}.removingDuplicates()
+        
+        return Metro.getAreas(context: context, forCodes: cbsaCodes)
     }
     
     /*

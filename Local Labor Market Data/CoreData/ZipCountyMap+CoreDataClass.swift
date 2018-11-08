@@ -35,6 +35,24 @@ public class ZipCountyMap: NSManagedObject {
         
         let fetchRequest: NSFetchRequest<ZipCountyMap> = ZipCountyMap.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "countyCode == %@", code)
+        fetchRequest.returnsDistinctResults = true
+        
+        do {
+            fetchResults = try context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        return fetchResults
+    }
+
+    public class func fetchResults(context: NSManagedObjectContext,
+                                   forCountyCodes codes: [String]) -> [ZipCountyMap]? {
+        var fetchResults: [ZipCountyMap]?
+        
+        let fetchRequest: NSFetchRequest<ZipCountyMap> = ZipCountyMap.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "countyCode IN %@", codes)
+        fetchRequest.returnsDistinctResults = true
         
         do {
             fetchResults = try context.fetch(fetchRequest)
@@ -50,6 +68,7 @@ public class ZipCountyMap: NSManagedObject {
         
         let fetchRequest: NSFetchRequest<ZipCountyMap> = ZipCountyMap.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "zipCode == %@", code)
+        fetchRequest.returnsDistinctResults = true
         
         do {
             fetchResults = try context.fetch(fetchRequest)
@@ -60,8 +79,25 @@ public class ZipCountyMap: NSManagedObject {
         return fetchResults
     }
 
+    public class func fetchResults(context: NSManagedObjectContext, forZipCodes codes: [String]) -> [ZipCountyMap]? {
+        var fetchResults: [ZipCountyMap]?
+        
+        let fetchRequest: NSFetchRequest<ZipCountyMap> = ZipCountyMap.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "zipCode IN ", codes)
+        fetchRequest.returnsDistinctResults = true
+        
+        do {
+            fetchResults = try context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        return fetchResults
+    }
+
+/*
     public class func counties(context: NSManagedObjectContext, forZipCode code: String) -> [County]? {
-        var results: [County]?
+        var results: [County]?1
         
         let propertyToFetch = "county"
         let fetchRequest: NSFetchRequest<NSDictionary> = ZipCountyMap.fetchRequest()
@@ -165,5 +201,5 @@ public class ZipCountyMap: NSManagedObject {
     
         return results
     }
-
+*/
 }

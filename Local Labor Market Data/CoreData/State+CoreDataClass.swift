@@ -37,11 +37,14 @@ public class State: Area {
     
     // Get CountyCodes from ZipCountyMap, County Codes first 2 digits have state Code
     class func search(context: NSManagedObjectContext, forZipCode zipCode: String) -> [State]? {
-        let countyCodes = ZipCountyMap.countyCodes(context: context, forZipCode: zipCode)
+        let zipCountyMap = ZipCountyMap.fetchResults(context: context, forZipCode: zipCode)
         
-        let results = countyCodes?.compactMap{ (countyCode) -> State? in
-            let stateCode = String(countyCode.prefix(2))
-            return self.getState(context: context, forStateCode: stateCode)
+        let results = zipCountyMap?.compactMap{ (zipCountyMap) -> State? in
+            if let countyCode = zipCountyMap.countyCode {
+                let stateCode = String(countyCode.prefix(2))
+                return self.getState(context: context, forStateCode: stateCode)
+            }
+            return nil
         }
         
         if let results = results?.removingDuplicates() {
