@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import blsapp.dol.gov.blslocaldata.R
 
@@ -52,6 +53,9 @@ class AreaListAdapter(
         if (areaRow.type == RowType.HEADER &&
                 holder is AreaHeaderViewHolder) {
             holder.mheaderTextView.text = areaRow.header
+            areaRow.image?.let {
+                holder.mHeaderImageView.setImageResource(areaRow.image)
+            }
             with(holder.mView) {
                 tag = areaRow.area
                 setOnClickListener {
@@ -77,6 +81,7 @@ class AreaListAdapter(
 
     inner class AreaHeaderViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         val mheaderTextView: TextView = mView.header_text
+        val mHeaderImageView: ImageView = mView.header_image
 
         override fun toString(): String {
             return super.toString() + " '" + mheaderTextView.text + "'"

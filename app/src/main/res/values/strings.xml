@@ -15,6 +15,8 @@
     <string name="service_not_available">Sorry, the service is not available</string>
     <string name="permission_denied_explanation">Permission was denied</string>
     <string name="permission_rationale">Accessing your location will display current location labor data</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <string name="about">About</string>
     <string name="about1">The Bureau of Labor Statistics (BLS) Local Labor Market Data app presents data on unemployment rates and employment by industry and occupation for states, metro areas, and counties. The most recent figures are presented, although the latest available data will vary by data type and geography.</string>

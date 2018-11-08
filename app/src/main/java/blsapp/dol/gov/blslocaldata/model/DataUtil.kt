@@ -1,9 +1,6 @@
 package blsapp.dol.gov.blslocaldata.model
 
-import java.text.DateFormat
 import java.text.NumberFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class DataUtil {
     companion object {

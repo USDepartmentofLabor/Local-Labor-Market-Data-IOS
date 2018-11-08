@@ -170,7 +170,7 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
                         areaReport.reportType in reportTypes
                     }
 
-                    var rowType = getRowType(areaReports)
+                    var rowType = getRowType(reportSection)
                     rows.add(ReportRow(rowType, "Local Area", areaReports, header = null))
                     val latestLocalData = areaReports?.firstOrNull()?.seriesReport?.latestData()
                     if (nationalAreaReports.filterNotNull().isNotEmpty()) {
@@ -192,10 +192,9 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
     }
 
 
-
-    private fun getRowType(areaReports: List<AreaReport>?): ReportRowType {
+    private fun getRowType(reportSection: ReportSection): ReportRowType {
         var rowType: ReportRowType = ReportRowType.UNEMPLOYMENAT_RATE_ITEM
-        val reportType = areaReports?.firstOrNull()?.reportType
+        val reportType = reportSection.reportTypes?.first()
         when (reportType) {
             is ReportType.Unemployment -> {
                 rowType = ReportRowType.UNEMPLOYMENAT_RATE_ITEM

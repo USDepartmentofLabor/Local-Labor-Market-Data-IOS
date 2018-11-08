@@ -7,4 +7,4 @@ enum class RowType {
     ITEM
 }
 
-data class AreaRow(var type: RowType, var area: AreaEntity?, var header: String?)
+data class AreaRow(var type: RowType, var area: AreaEntity?, var header: String?, val image: Int?)

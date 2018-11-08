@@ -221,7 +221,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
                 intent.putExtra(AreaResultsActivity.KEY_CURRENT_AREA, mArea)
                 intent.putExtra(AreaResultsActivity.KEY_SUB_AREAS, subAreas)
                 startActivity(intent)
-            } else {
+            } else if (subAreas.count() == 1) {
                 val subArea = it.first()
                 val intent: Intent
                 if (subArea is CountyEntity) {

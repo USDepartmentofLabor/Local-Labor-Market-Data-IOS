@@ -35,8 +35,7 @@ import blsapp.dol.gov.blslocaldata.services.FetchAddressIntentService
 import blsapp.dol.gov.blslocaldata.ui.area.AreaReportActivity
 import blsapp.dol.gov.blslocaldata.ui.info.AboutActivity
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.*
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.google.android.gms.tasks.OnSuccessListener
 import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.doAsync
@@ -112,10 +111,6 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
     public override fun onStart() {
         super.onStart()
-
-        if (!checkPermissions()) {
-            requestPermissions()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -138,11 +133,11 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
         when (item.type) {
             RowType.HEADER -> {
-                doAsync {
-                    var nationalArea = areaViewModel.nationaArea
-                    uiThread {
-                        displayReport(nationalArea)
-                    }
+                if (item.header == NATIONAL_TEXT) {
+                    displayNationalReport()
+                }
+                else if (item.header == CURRENT_LOCATION_TEXT) {
+                    displayCurrentLocation()
                 }
             }
             RowType.ITEM -> {
@@ -150,6 +145,24 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
                     displayReport(it)
                 }
             }
+        }
+    }
+
+    fun displayNationalReport() {
+        doAsync {
+            var nationalArea = areaViewModel.nationaArea
+            uiThread {
+                displayReport(nationalArea)
+            }
+        }
+    }
+
+    fun displayCurrentLocation() {
+        if (!checkPermissions()) {
+            requestPermissions()
+        }
+        else {
+            getLastLocation()
         }
     }
 
@@ -163,8 +176,8 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
     fun getAreaRows(areaList: List<AreaEntity>) : ArrayList<AreaRow> {
         val areaRows = ArrayList<AreaRow>()
-        areaRows.add(AreaRow(RowType.HEADER, null, CURRENT_LOCATION_TEXT))
-        areaRows.add(AreaRow(RowType.HEADER, null, NATIONAL_TEXT))
+        areaRows.add(AreaRow(RowType.HEADER, null, CURRENT_LOCATION_TEXT, R.drawable.ic_currentlocation))
+        areaRows.add(AreaRow(RowType.HEADER, null, NATIONAL_TEXT, R.drawable.ic_flag))
 
         val areaTitle: String
         when(radioGroup.checkedRadioButtonId) {
@@ -173,15 +186,16 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
             else -> areaTitle = "Metro Area"
         }
 
-        areaRows.add(AreaRow(RowType.HEADER, null, areaTitle))
+        areaRows.add(AreaRow(RowType.HEADER, null, areaTitle, R.drawable.ic_globe))
 
-        val itemRows = areaList.map { AreaRow(RowType.ITEM, it, null) }
+        val itemRows = areaList.map { AreaRow(RowType.ITEM, it, null, null) }
         areaRows.addAll(itemRows)
         return areaRows
     }
 
     @SuppressLint("MissingPermission")
-    private fun getAddress() {
+    private fun getLastLocation() {
+
         fusedLocationClient?.lastLocation?.addOnSuccessListener(this, OnSuccessListener { location ->
             if (location == null) {
                 Log.w(TAG, "onSuccess:null")
@@ -192,17 +206,17 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
             // Determine whether a Geocoder is available.
             if (!Geocoder.isPresent()) {
-                make(findViewById<View>(android.R.id.content),
-                        R.string.no_geocoder_available, LENGTH_LONG).show()
+                Snackbar.make(findViewById<View>(android.R.id.content),
+                        R.string.no_geocoder_available, Snackbar.LENGTH_LONG).show()
                 return@OnSuccessListener
             }
 
             // If the user pressed the fetch address button before we had the location,
             // this will be set to true indicating that we should kick off the intent
             // service after fetching the location.
-//            if (addressRequested)
             startAddressService()
         })?.addOnFailureListener(this) { e -> Log.w(TAG, "getLastLocation:onFailure", e) }
+
     }
 
     fun startAddressService() {
@@ -213,7 +227,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
         startService(intent)
     }
 
-    fun fetchAddressButtonHander(view: View) {
+    fun fetchAddress() {
         if (lastLocation != null) {
             startAddressService()
             return
@@ -240,7 +254,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
     // Location Permissions
     private fun checkPermissions(): Boolean {
         val permissionState = ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
+                Manifest.permission.ACCESS_FINE_LOCATION)
         return permissionState == PackageManager.PERMISSION_GRANTED
     }
 
@@ -265,7 +279,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
     private fun requestPermissions() {
         val shouldProvideRationale = ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
+                Manifest.permission.ACCESS_FINE_LOCATION)
 
         // Provide an additional rationale to the user. This would happen if the user denied the
         // request previously, but didn't check the "Don't ask again" checkbox.
@@ -286,7 +300,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
             // sets the permission in a given state or the user denied the permission
             // previously and checked "Never ask again".
             ActivityCompat.requestPermissions(this@SearchActivity,
-                    arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                     REQUEST_PERMISSIONS_REQUEST_CODE)
         }
     }
@@ -308,7 +322,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
                 // receive empty arrays.
                 Log.i(TAG, "User interaction was cancelled.")
                 grantResults[0] == PackageManager.PERMISSION_GRANTED -> // Permission granted.
-                getAddress()
+                getLastLocation()
             else -> // Permission denied.
 
                 // Notify the user via a SnackBar that they have rejected a core permission for the
@@ -334,4 +348,6 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
         }
 
     }
+
 }
+

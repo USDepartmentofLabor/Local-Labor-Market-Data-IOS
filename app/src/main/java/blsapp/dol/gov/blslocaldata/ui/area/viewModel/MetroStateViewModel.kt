@@ -139,7 +139,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                     } ?: kotlin.run { false }
                 }
 
-                var rowType = getRowType(areaReports)
+                var rowType = getRowType(reportSection)
                 rows.add(ReportRow(rowType, "Local Area", areaReports, header = null))
                 val latestLocalData = areaReports?.firstOrNull()?.seriesReport?.latestData()
                 if (nationalAreaReports.count() > 0) {
@@ -155,9 +155,9 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
         reportRows.value = rows
     }
 
-    private fun getRowType(areaReports: List<AreaReport>?): ReportRowType {
+    private fun getRowType(reportSection: ReportSection): ReportRowType {
         var rowType: ReportRowType = ReportRowType.UNEMPLOYMENAT_RATE_ITEM
-        when (areaReports?.firstOrNull()?.reportType) {
+        when (reportSection.reportTypes?.first()) {
             is ReportType.Unemployment -> {
                 rowType = ReportRowType.UNEMPLOYMENAT_RATE_ITEM
             }

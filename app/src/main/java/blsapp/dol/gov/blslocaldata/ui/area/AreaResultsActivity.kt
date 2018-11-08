@@ -80,8 +80,8 @@ class AreaResultsActivity : AppCompatActivity(), AreaListAdapter.OnItemClickList
 
     fun getAreaRows(areaList: List<AreaEntity>) : ArrayList<AreaRow> {
         val areaRows = ArrayList<AreaRow>()
-        areaRows.add(AreaRow(RowType.HEADER, null, "Select"))
-        val itemRows = areaList.map { AreaRow(RowType.ITEM, it, null) }
+        areaRows.add(AreaRow(RowType.HEADER, null, "Select", null))
+        val itemRows = areaList.map { AreaRow(RowType.ITEM, it, null, null) }
         areaRows.addAll(itemRows)
         return areaRows
     }
