@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="V2">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G3025" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="V2">
     <entity name="Area" representedClassName="Area" isAbstract="YES" syncable="YES" codeGenerationType="category">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,6 +31,7 @@
     <entity name="State" representedClassName="State" parentEntity="Area" syncable="YES" codeGenerationType="category"/>
     <entity name="ZipCBSAMap" representedClassName="ZipCBSAMap" syncable="YES" codeGenerationType="category">
         <attribute name="cbsaCode" attributeType="String" syncable="YES"/>
+        <attribute name="isNecta" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="zipCode" attributeType="String" minValueString="5" maxValueString="5" syncable="YES"/>
     </entity>
     <entity name="ZipCountyMap" representedClassName="ZipCountyMap" syncable="YES" codeGenerationType="category">
@@ -50,7 +51,7 @@
         <element name="National" positionX="63" positionY="45" width="128" height="45"/>
         <element name="QCEW_AreaTitle" positionX="250" positionY="92" width="128" height="88"/>
         <element name="State" positionX="63" positionY="-124" width="128" height="43"/>
-        <element name="ZipCBSAMap" positionX="-153" positionY="74" width="135" height="75"/>
+        <element name="ZipCBSAMap" positionX="-153" positionY="74" width="135" height="90"/>
         <element name="ZipCountyMap" positionX="-162" positionY="-97" width="128" height="75"/>
     </elements>
 </model>

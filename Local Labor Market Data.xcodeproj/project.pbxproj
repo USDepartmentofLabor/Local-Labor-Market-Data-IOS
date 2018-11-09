@@ -89,6 +89,7 @@
 		03F1F8A220EAC99700662446 /* ZipCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F8A020EAC99700662446 /* ZipCountyMap+CoreDataClass.swift */; };
 		03F1F8A620EAD23C00662446 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F8A520EAD23C00662446 /* String+Extension.swift */; };
 		597EE8F32188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */; };
+		59E7A0492195FB100060B7FF /* ZIP_NECTA.csv in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,6 +204,7 @@
 		03F1F8A020EAC99700662446 /* ZipCountyMap+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZipCountyMap+CoreDataClass.swift"; sourceTree = "<group>"; };
 		03F1F8A520EAD23C00662446 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CbsaCountyMap+CoreDataClass.swift"; sourceTree = "<group>"; };
+		59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZIP_NECTA.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -405,6 +407,7 @@
 		03F1F89120EAA69800662446 /* LookupData */ = {
 			isa = PBXGroup;
 			children = (
+				59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */,
 				03287A7C2187665A0067686A /* CBSA_COUNTY.txt */,
 				03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */,
 				03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */,
@@ -584,6 +587,7 @@
 				03953C3321136F1900BED557 /* IndustryEmploymentTableViewCell.xib in Resources */,
 				03F1F86E20EA623000662446 /* LaunchScreen.storyboard in Resources */,
 				03E35084213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite in Resources */,
+				59E7A0492195FB100060B7FF /* ZIP_NECTA.csv in Resources */,
 				03953C3B211393D900BED557 /* OccupationalEmploymentTableViewCell.xib in Resources */,
 				03953C2F2112360A00BED557 /* UnEmploymentRateTableViewCell.xib in Resources */,
 				03953C2B21122FDB00BED557 /* AreaSectionHeaderView.xib in Resources */,

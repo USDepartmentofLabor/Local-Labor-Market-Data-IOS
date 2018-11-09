@@ -73,10 +73,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func loadData() {
         let dataUtil = LoadDataUtil(managedContext: CoreDataManager.shared().viewManagedContext)
         dataUtil.loadZipCountyMap()
+        dataUtil.loadZipNectaMap()
         dataUtil.loadZipCBSAMap()
         dataUtil.loadMSACountyMap()
         dataUtil.loadLAUSData()
     }
-    
 }
 

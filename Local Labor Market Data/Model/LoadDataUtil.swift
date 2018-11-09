@@ -14,6 +14,7 @@ class LoadDataUtil {
     static let MSATitle = "Metropolitan Statistical Area"
     static let NECTATitle = "Metropolitan NECTA"
     static let ZIP_COUNTY_MAP = "ZIP_COUNTY"
+    static let ZIP_NECTA_MAP = "ZIP_NECTA"
     static let ZIP_CBSA_MAP = "ZIP_CBSA"
     static let CBSA_COUNTY_MAP = "CBSA_COUNTY"
     static let NECTA_CBSA_COUNTY_MAP = "NECTACBSA_COUNTY"
@@ -50,11 +51,36 @@ class LoadDataUtil {
     }
     
     // MARK: Zip Metro Mapping
-    func loadZipCBSAMap() {
-//        guard let items = loadDataResource(resourceName: "zcta_cbsa_rel_10") else { return }
-        guard let items = LoadDataUtil.loadDataResource(resourceName: LoadDataUtil.ZIP_CBSA_MAP) else { return }
+    func loadZipNectaMap() {
+        guard let items = LoadDataUtil.loadDataResource(resourceName: LoadDataUtil.ZIP_NECTA_MAP)
+            else { return }
         
         ZipCBSAMap.deleteAll(managedContext: managedObjectContext)
+        for (index, item) in items.enumerated() {
+            // Ignore header
+            if index < 1 || item.count < 2 {
+                continue
+            }
+            let ziptoCBSA = ZipCBSAMap(context: managedObjectContext)
+            
+            ziptoCBSA.setValue(item[0], forKey: "zipCode")
+            ziptoCBSA.setValue(item[1], forKey: "cbsaCode")
+            ziptoCBSA.setValue(true, forKey: "isNecta")
+        }
+        
+        do {
+            try managedObjectContext.save()
+        }
+        catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+
+    // MARK: Zip Metro Mapping
+    func loadZipCBSAMap() {
+        guard let items = LoadDataUtil.loadDataResource(resourceName: LoadDataUtil.ZIP_CBSA_MAP)
+            else { return }
+        
         for (index, item) in items.enumerated() {
             // Ignore header
             if index < 1 || item.count < 2 {
