@@ -76,8 +76,16 @@ class LoadDataUtil {
         private fun loadZipCbsa(context: Context, db: BLSDatabase) {
             db.zipCbsaDAO().deleteAll()
 
-            val lines = readFile(context, R.raw.zip_cbsa)
+            val lines = readFile(context, R.raw.zip_necta)
             for (line in lines) {
+                if (line.count() > 1) {
+                    val zipCbsa = ZipCbsaEntity(id = null, zipCode = line[0], cbsaCode = line[1])
+                    db.zipCbsaDAO().insert(zipCbsa = zipCbsa)
+                }
+            }
+
+            val zipCBSAlines = readFile(context, R.raw.zip_cbsa)
+            for (line in zipCBSAlines) {
                 if (line.count() > 1) {
                     val zipCbsa = ZipCbsaEntity(id = null, zipCode = line[0], cbsaCode = line[1])
                     db.zipCbsaDAO().insert(zipCbsa = zipCbsa)
