@@ -30,7 +30,7 @@ sealed class ReportType {
             }
 
             is OccupationalEmployment -> {
-                seriesId = OESReport.getSeriesId(area, occupationalCode, dataType, adjustment)
+                seriesId = OESReport.getSeriesId(area, occupationalCode, dataType)
             }
 
             is QuarterlyEmploymentWages -> {

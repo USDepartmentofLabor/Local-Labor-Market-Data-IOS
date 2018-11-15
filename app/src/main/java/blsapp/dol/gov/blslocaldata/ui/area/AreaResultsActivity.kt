@@ -34,7 +34,8 @@ class AreaResultsActivity : AppCompatActivity(), AreaListAdapter.OnItemClickList
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mCurrentArea = intent.getSerializableExtra(KEY_CURRENT_AREA) as AreaEntity
-        subAreas = intent.getSerializableExtra(KEY_SUB_AREAS) as List<AreaEntity>
+        val subAreas = (intent.getSerializableExtra(KEY_SUB_AREAS) as? List<AreaEntity>)
+
 
         titleTextView.text = mCurrentArea?.title
 

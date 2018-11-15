@@ -65,7 +65,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
         var reportTypes = mutableListOf<ReportType>()
 
         reportSections.forEach {
-            it?.reportTypes?.let {  reportTypes.addAll(it)}
+            it.reportTypes?.let {  reportTypes.addAll(it)}
         }
 
 //        val reportTypes = reportSections.flatMap? {reportSection ->
@@ -133,7 +133,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                         areaReport.reportType in reportTypes
                     } ?: kotlin.run { false }
                 }
-                val nationalAreaReports = nationalAreaReports?.filter { areaReport ->
+                val nationalAreaReports = nationalAreaReports.filter { areaReport ->
                     reportSection.reportTypes?.let { reportTypes ->
                         areaReport.reportType in reportTypes
                     } ?: kotlin.run { false }

@@ -27,8 +27,7 @@ class OESReport {
 
     companion object {
         fun getSeriesId(area: AreaEntity, occupationCode: String = "000000",
-                        dataTypeCode: DataTypeCode,
-                        adjustment: SeasonalAdjustment): SeriesId {
+                        dataTypeCode: DataTypeCode): SeriesId {
 
             val code = area.code
             val areaType: String

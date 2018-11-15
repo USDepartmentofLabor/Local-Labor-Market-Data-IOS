@@ -82,7 +82,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
             rightButton.setCompoundDrawablesWithIntrinsicBounds(null, null, it, null)
         }
 
-        areaTitleTextView.text = mArea?.title
+        areaTitleTextView.text = mArea.title
         viewModel = createViewModel(mArea)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         adapter = ReportListAdapter(this, this)
@@ -108,7 +108,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         }
 
         viewModel.mAdjustment = ReportManager.adjustment
-        mArea?.let {
+        mArea.let {
             viewModel.mArea = it
         }
         seasonallyAdjustedSwitch.isChecked = if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED) true else false
@@ -174,17 +174,17 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
             when (mArea) {
                 // If current area is Metro, dislay States
                 is MetroEntity -> {
-                    subAreas = repository.getStateAreas(mArea) as ArrayList<AreaEntity>
+                    subAreas = repository.getStateAreas(mArea) as? ArrayList<AreaEntity>
                 }
 
                 // If current area is State, display Metros
                 is StateEntity -> {
-                    subAreas = repository.getMetroAreas(mArea) as ArrayList<AreaEntity>
+                    subAreas = repository.getMetroAreas(mArea) as? ArrayList<AreaEntity>
                 }
 
                 // If current area is County, display State
                 is CountyEntity -> {
-                    subAreas = repository.getStateAreas(mArea) as ArrayList<AreaEntity>
+                    subAreas = repository.getStateAreas(mArea) as? ArrayList<AreaEntity>
                 }
             }
             uiThread {
@@ -196,7 +196,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
     private fun displayRightSubareas() {
         doAsync {
             val repository = (application as BLSApplication).repository
-            var subAreas: ArrayList<AreaEntity>? = null
+            var subAreas: ArrayList<AreaEntity>?
 
             when (mArea) {
                 is CountyEntity -> {

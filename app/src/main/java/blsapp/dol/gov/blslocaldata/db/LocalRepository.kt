@@ -17,8 +17,7 @@ class LocalRepository private constructor(private val mDatabase: BLSDatabase) {
             return mDatabase.metroDAO().getAll()
         }
         search.toIntOrNull()?.let {
-            val zipCbsas = mDatabase.zipCbsaDAO().get(search)
-            val cbsaCodes = zipCbsas.map { it.cbsaCode }
+            val cbsaCodes = mDatabase.zipCbsaDAO().getCBSA(search)
             if (cbsaCodes.count() > 0) {
                 return mDatabase.metroDAO().findByCodes(cbsaCodes)
             }
@@ -32,8 +31,7 @@ class LocalRepository private constructor(private val mDatabase: BLSDatabase) {
         }
 
         search.toIntOrNull()?.let {
-            val zipCounties = mDatabase.zipCountyDAO().get(search)
-            val countyCodes = zipCounties.map { it.countyCode }
+            val countyCodes = mDatabase.zipCountyDAO().getCountyCode(search)
             if (countyCodes.count() > 0) {
                 return mDatabase.countyDAO().findByCodes(countyCodes)
             }
@@ -48,8 +46,7 @@ class LocalRepository private constructor(private val mDatabase: BLSDatabase) {
         }
 
         search.toIntOrNull()?.let {
-            val zipCounties = mDatabase.zipCountyDAO().get(search)
-            val countyCodes = zipCounties.map { it.countyCode }
+            val countyCodes = mDatabase.zipCountyDAO().getCountyCode(search)
             val stateCodes = countyCodes.map { it.substring(0,2) }.distinct()
             if (stateCodes.count() > 0) {
                 return mDatabase.stateDAO().findByCodes(stateCodes)

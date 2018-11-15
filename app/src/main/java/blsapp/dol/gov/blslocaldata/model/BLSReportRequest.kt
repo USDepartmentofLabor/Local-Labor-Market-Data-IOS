@@ -53,7 +53,7 @@ class BLSReportRequestAdapter: TypeAdapter<BLSReportRequest>() {
                 writer.name("registrationkey").value(request.registrationKey)
                 writer.name("seriesid")
                 writer.beginArray()
-                request.seriesIds?.forEach() {
+                request.seriesIds.forEach() {
                     writer.value(it)
                 }
                 writer.endArray()

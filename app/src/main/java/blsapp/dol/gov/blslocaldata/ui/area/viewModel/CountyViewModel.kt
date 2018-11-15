@@ -79,12 +79,12 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
         var reportTypes = ArrayList<ReportType>()
 
         reportSections.forEach { reportSection ->
-            reportSection?.reportTypes?.let {
+            reportSection.reportTypes?.let {
                 reportTypes.addAll(it)
             }
 
             reportSection.subSections?.forEach {  subSection ->
-                subSection?.reportTypes?.let {
+                subSection.reportTypes?.let {
                     reportTypes.addAll(it)
                 }
             }
@@ -121,8 +121,8 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
                 getNationalReports(reportTypes, startYear)
             }
 
-            reportSection.subSections?.let { reportSection ->
-                val subReportTypes = reportSection?.flatMap { it.reportTypes!! }
+            reportSection.subSections?.let { subSection ->
+                val subReportTypes = subSection.flatMap { it.reportTypes!! }
                 getNationalReports(reportTypes = subReportTypes, year = startYear)
             }
 
@@ -166,7 +166,7 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
                     val areaReports = localAreaReports?.filter { areaReport ->
                         areaReport.reportType in reportTypes
                     }
-                    val nationalAreaReports = nationalAreaReports?.filter { areaReport ->
+                    val nationalAreaReports = nationalAreaReports.filter { areaReport ->
                         areaReport.reportType in reportTypes
                     }
 

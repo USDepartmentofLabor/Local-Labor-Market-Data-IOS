@@ -12,8 +12,8 @@ interface ZipCbsaDao {
     @Query("SELECT * from ZIP_CBSA")
     fun getAll(): List<ZipCbsaEntity>
 
-    @Query("SELECT * from ZIP_CBSA where zipCode = :zipCode")
-    fun get(zipCode: String): List<ZipCbsaEntity>
+    @Query("SELECT DISTINCT cbsaCode from ZIP_CBSA where zipCode like '' || :zipCode || '%'")
+    fun getCBSA(zipCode: String): List<String>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(zipCbsa: ZipCbsaEntity)

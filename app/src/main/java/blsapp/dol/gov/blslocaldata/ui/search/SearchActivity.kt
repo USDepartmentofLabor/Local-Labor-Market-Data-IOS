@@ -72,7 +72,6 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
             decorator.setDrawable(it)   }
         recyclerView.addItemDecoration(decorator)
 
-        val repository = (application as BLSApplication).repository
         // Get a new or existing ViewModel from the ViewModelProvider.
         areaViewModel = ViewModelProviders.of(this).get(SearchAreaViewModel::class.java)
 
@@ -84,7 +83,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
             areas?.let { adapter.setArea(getAreaRows(it)) }
         })
 
-        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
             var areaType = AreaType.METRO
             when(checkedId) {
                 R.id.metroRadioButton -> { areaType = AreaType.METRO }

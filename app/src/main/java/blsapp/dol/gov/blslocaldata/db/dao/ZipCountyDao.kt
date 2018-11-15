@@ -11,8 +11,8 @@ interface ZipCountyDao {
     @Query("SELECT * from ZIP_COUNTY")
     fun getAll(): List<ZipCountyEntity>
 
-    @Query("SELECT * from ZIP_COUNTY where zipCode = :zipCode")
-    fun get(zipCode: String): List<ZipCountyEntity>
+    @Query("SELECT distinct countyCode from ZIP_COUNTY where zipCode like '' || :zipCode || '%'")
+    fun getCountyCode(zipCode: String): List<String>
 
     @Insert(onConflict = REPLACE)
     fun insert(zipCounty: ZipCountyEntity)
