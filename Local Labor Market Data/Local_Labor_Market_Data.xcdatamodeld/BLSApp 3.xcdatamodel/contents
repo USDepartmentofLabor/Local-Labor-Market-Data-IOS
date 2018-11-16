@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G3025" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="V3">
+    <entity name="Area" representedClassName="Area" isAbstract="YES" syncable="YES" codeGenerationType="category">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="laus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LAUS_Area" inverseName="area" inverseEntity="LAUS_Area" syncable="YES"/>
+    </entity>
+    <entity name="CbsaCountyMap" representedClassName="CbsaCountyMap" syncable="YES" codeGenerationType="category">
+        <attribute name="cbsaCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countyCode" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CE_Industry" representedClassName="CE_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="category"/>
+    <entity name="County" representedClassName="County" parentEntity="Area" syncable="YES" codeGenerationType="category"/>
+    <entity name="Industry" representedClassName="Industry" syncable="YES" codeGenerationType="class">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="supersector" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Industry" inverseName="subIndustry" inverseEntity="Industry" syncable="YES"/>
+        <relationship name="subIndustry" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Industry" inverseName="parent" inverseEntity="Industry" syncable="YES"/>
+    </entity>
+    <entity name="LAUS_Area" representedClassName="LAUS_Area" syncable="YES" codeGenerationType="category">
+        <attribute name="areaCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="areaType" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="area" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Area" inverseName="laus" inverseEntity="Area" syncable="YES"/>
+    </entity>
+    <entity name="Metro" representedClassName="Metro" parentEntity="Area" syncable="YES" codeGenerationType="category">
+        <attribute name="stateCode" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="National" representedClassName="National" parentEntity="Area" syncable="YES" codeGenerationType="class"/>
+    <entity name="State" representedClassName="State" parentEntity="Area" syncable="YES" codeGenerationType="category"/>
+    <entity name="ZipCBSAMap" representedClassName="ZipCBSAMap" syncable="YES" codeGenerationType="category">
+        <attribute name="cbsaCode" attributeType="String" syncable="YES"/>
+        <attribute name="isNecta" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="zipCode" attributeType="String" minValueString="5" maxValueString="5" syncable="YES"/>
+    </entity>
+    <entity name="ZipCountyMap" representedClassName="ZipCountyMap" syncable="YES" codeGenerationType="category">
+        <attribute name="countyCode" attributeType="String" minValueString="5" maxValueString="5" syncable="YES"/>
+        <attribute name="zipCode" attributeType="String" minValueString="5" maxValueString="5" syncable="YES"/>
+    </entity>
+    <fetchRequest name="getAllCounty" entity="Area" predicateString="type == &quot;F&quot;"/>
+    <fetchRequest name="getAllMSA" entity="Area" predicateString="type == &quot;B&quot;"/>
+    <fetchRequest name="getAllStates" entity="Area" predicateString="type == &quot;A&quot;"/>
+    <elements>
+        <element name="Area" positionX="277" positionY="-100" width="128" height="90"/>
+        <element name="CbsaCountyMap" positionX="45" positionY="27" width="128" height="75"/>
+        <element name="County" positionX="63" positionY="-63" width="128" height="45"/>
+        <element name="LAUS_Area" positionX="45" positionY="18" width="128" height="90"/>
+        <element name="Metro" positionX="43" positionY="126" width="128" height="60"/>
+        <element name="National" positionX="63" positionY="45" width="128" height="45"/>
+        <element name="State" positionX="63" positionY="-124" width="128" height="43"/>
+        <element name="ZipCBSAMap" positionX="-153" positionY="74" width="135" height="90"/>
+        <element name="ZipCountyMap" positionX="-162" positionY="-97" width="128" height="75"/>
+        <element name="CE_Industry" positionX="54" positionY="18" width="128" height="45"/>
+        <element name="Industry" positionX="63" positionY="27" width="128" height="120"/>
+    </elements>
+</model>

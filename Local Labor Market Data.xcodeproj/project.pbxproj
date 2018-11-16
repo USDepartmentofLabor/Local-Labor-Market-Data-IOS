@@ -89,6 +89,9 @@
 		03F1F8A220EAC99700662446 /* ZipCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F8A020EAC99700662446 /* ZipCountyMap+CoreDataClass.swift */; };
 		03F1F8A620EAD23C00662446 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F8A520EAD23C00662446 /* String+Extension.swift */; };
 		597EE8F32188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */; };
+		59E7A05D219F45C30060B7FF /* sm.industry.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A059219F45C20060B7FF /* sm.industry.txt */; };
+		59E7A05F219F45C30060B7FF /* ce.industry.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A05B219F45C30060B7FF /* ce.industry.txt */; };
+		59E7A065219F69DF0060B7FF /* CE_Industry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E7A063219F69DF0060B7FF /* CE_Industry+CoreDataClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,6 +207,10 @@
 		03F1F8A520EAD23C00662446 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CbsaCountyMap+CoreDataClass.swift"; sourceTree = "<group>"; };
 		59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZIP_NECTA.csv; sourceTree = "<group>"; };
+		59E7A057219F45630060B7FF /* BLSApp 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BLSApp 3.xcdatamodel"; sourceTree = "<group>"; };
+		59E7A059219F45C20060B7FF /* sm.industry.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sm.industry.txt; sourceTree = "<group>"; };
+		59E7A05B219F45C30060B7FF /* ce.industry.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ce.industry.txt; sourceTree = "<group>"; };
+		59E7A063219F69DF0060B7FF /* CE_Industry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CE_Industry+CoreDataClass.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,6 +413,7 @@
 		03F1F89120EAA69800662446 /* LookupData */ = {
 			isa = PBXGroup;
 			children = (
+				59E7A060219F4B5F0060B7FF /* CES */,
 				59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */,
 				03287A7C2187665A0067686A /* CBSA_COUNTY.txt */,
 				03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */,
@@ -435,6 +443,7 @@
 		03F1F89D20EABEF400662446 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				59E7A063219F69DF0060B7FF /* CE_Industry+CoreDataClass.swift */,
 				597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */,
 				03953C18210F9F8C00BED557 /* Area+CoreDataClass.swift */,
 				036164C9210D2C660055708A /* Metro+CoreDataClass.swift */,
@@ -466,6 +475,15 @@
 				03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		59E7A060219F4B5F0060B7FF /* CES */ = {
+			isa = PBXGroup;
+			children = (
+				59E7A05B219F45C30060B7FF /* ce.industry.txt */,
+				59E7A059219F45C20060B7FF /* sm.industry.txt */,
+			);
+			path = CES;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -591,10 +609,12 @@
 				03953C2B21122FDB00BED557 /* AreaSectionHeaderView.xib in Resources */,
 				03E35086213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm in Resources */,
 				0396A05F2107581400DBECBD /* SearchSectionTableHeaderView.xib in Resources */,
+				59E7A05F219F45C30060B7FF /* ce.industry.txt in Resources */,
 				03F1F86B20EA623000662446 /* Assets.xcassets in Resources */,
 				03F1F86620EA622D00662446 /* Main.storyboard in Resources */,
 				03E35085213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal in Resources */,
 				0348FD1A211DD64800155BE8 /* EmploymentWageTableViewCell.xib in Resources */,
+				59E7A05D219F45C30060B7FF /* sm.industry.txt in Resources */,
 				03287A7F2187665A0067686A /* NECTACBSA_COUNTY.txt in Resources */,
 				0348FD1D211E0AB200155BE8 /* OwnershipDataTableViewCell.xib in Resources */,
 			);
@@ -680,6 +700,7 @@
 				03F1F86120EA622D00662446 /* AppDelegate.swift in Sources */,
 				597EE8F32188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift in Sources */,
 				03953C372113877E00BED557 /* AreaViewController.swift in Sources */,
+				59E7A065219F69DF0060B7FF /* CE_Industry+CoreDataClass.swift in Sources */,
 				03953C12210F83EF00BED557 /* SeriesReport.swift in Sources */,
 				03953C4B211B509D00BED557 /* AboutViewController.swift in Sources */,
 				0348FD0C211B9A7200155BE8 /* QCEWReport.swift in Sources */,
@@ -1013,10 +1034,11 @@
 		03F1F86720EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				59E7A057219F45630060B7FF /* BLSApp 3.xcdatamodel */,
 				03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */,
 				03F1F86820EA622D00662446 /* BLSApp.xcdatamodel */,
 			);
-			currentVersion = 03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */;
+			currentVersion = 59E7A057219F45630060B7FF /* BLSApp 3.xcdatamodel */;
 			path = Local_Labor_Market_Data.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

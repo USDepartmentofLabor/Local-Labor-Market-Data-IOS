@@ -34,4 +34,11 @@ extension String {
     func add(prefix: String) -> String {
         return prefix + self
     }
+    
+    func trailingTrim(_ characterSet : CharacterSet) -> String {
+        if let range = rangeOfCharacter(from: characterSet, options: [.anchored, .backwards]) {
+            return String(self[..<range.lowerBound]).trailingTrim(characterSet)
+        }
+        return self
+    }
 }

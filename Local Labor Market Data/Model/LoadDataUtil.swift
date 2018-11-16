@@ -24,7 +24,61 @@ class LoadDataUtil {
     init(managedContext: NSManagedObjectContext) {
         self.managedObjectContext = managedContext
     }
+    // MARK: Load/Parse Files
+    class func loadDataResource(resourceName: String, withExtension ext: String = "csv",
+                                subdirectory subpath: String? = nil) -> [[String]]? {
+        guard let fileContents = loadDataFile(resourceName: resourceName, withExtension: ext, subdirectory: subpath) else {return nil}
+        if ext ==  "txt" {
+            return parseTXT(dataStr: fileContents)
+        }
+        
+        return parseCSV(dataStr: fileContents)
+    }
     
+    fileprivate class func loadDataFile(resourceName: String, withExtension ext: String, subdirectory subpath: String?) -> String? {
+        
+        guard let resourceURL = Bundle.main.url(forResource: resourceName, withExtension:ext, subdirectory: subpath)
+            else { return nil }
+        
+        do {
+            var contents = try String(contentsOf: resourceURL, encoding: .utf8)
+            //                cleanFile = cleanFile.stringByReplacingOccurrencesOfString("\r", withString: "\n")
+            //                cleanFile = cleanFile.stringByReplacingOccurrencesOfString("\n\n", withString: "\n")
+            
+            contents = contents.replacingOccurrences(of: "\r\n", with: "\n")
+            contents = contents.replacingOccurrences(of: "\"", with: "")
+            return contents
+        }
+        catch (let error) {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+    
+    fileprivate class func parseTXT(dataStr: String) -> [[String]] {
+        return parse(dataStr: dataStr, seperator: "\t")
+    }
+    
+    fileprivate class func parseCSV(dataStr: String) -> [[String]] {
+        return parse(dataStr: dataStr, seperator: ",")
+    }
+    
+    fileprivate class func parse(dataStr: String, seperator: String) -> [[String]] {
+        let rows = dataStr.components(separatedBy: .newlines)
+        
+        var result = [[String]]()
+        for row in rows {
+            let columns = row.components(separatedBy: seperator)
+            result.append(columns)
+        }
+        
+        return result
+    }
+
+}
+
+// MARK: Load ZIP->County, ZIP_Metro mapping, MSA_COUNTY mapping
+extension LoadDataUtil {
     // MARK: ZIP County Mapping
     func loadZipCountyMap() {
         guard let items = LoadDataUtil.loadDataResource(resourceName: LoadDataUtil.ZIP_COUNTY_MAP) else { return }
@@ -136,13 +190,11 @@ class LoadDataUtil {
         
     }
     
-    // #MARK: QCEW
-    // Load All QCEW Lookup Data Files
-    func loadAllQCEWData() {
-    }
-    
-    
-    // MARK: LAUS
+}
+
+
+// MARK: Load LAUS Area
+extension LoadDataUtil {
     // Load All LAUS Lookup Data Files
     // https://download.bls.gov/pub/time.series/la/la.area
     func loadLAUSData() {
@@ -233,81 +285,64 @@ class LoadDataUtil {
         catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
-        
-    }
-    
-    // MARK: Load/Parse Files
-    class func loadDataResource(resourceName: String, withExtension ext: String = "csv",
-                                      subdirectory subpath: String? = nil) -> [[String]]? {
-        guard let fileContents = loadDataFile(resourceName: resourceName, withExtension: ext, subdirectory: subpath) else {return nil}
-        if ext ==  "txt" {
-            return parseTXT(dataStr: fileContents)
-        }
-        
-        return parseCSV(dataStr: fileContents)
-    }
-    
-    fileprivate class func loadDataFile(resourceName: String, withExtension ext: String, subdirectory subpath: String?) -> String? {
-        
-        guard let resourceURL = Bundle.main.url(forResource: resourceName, withExtension:ext, subdirectory: subpath)
-            else { return nil }
-        
-        do {
-            var contents = try String(contentsOf: resourceURL, encoding: .utf8)
-            //                cleanFile = cleanFile.stringByReplacingOccurrencesOfString("\r", withString: "\n")
-            //                cleanFile = cleanFile.stringByReplacingOccurrencesOfString("\n\n", withString: "\n")
-            
-            contents = contents.replacingOccurrences(of: "\r\n", with: "\n")
-            contents = contents.replacingOccurrences(of: "\"", with: "")
-            return contents
-        }
-        catch (let error) {
-            print(error.localizedDescription)
-            return nil
-        }
-    }
-    
-    fileprivate class func parseTXT(dataStr: String) -> [[String]] {
-        return parse(dataStr: dataStr, seperator: "\t")
-    }
-    
-    fileprivate class func parseCSV(dataStr: String) -> [[String]] {
-        return parse(dataStr: dataStr, seperator: ",")
-    }
-    
-    fileprivate class func parse(dataStr: String, seperator: String) -> [[String]] {
-        let rows = dataStr.components(separatedBy: .newlines)
-        
-        var result = [[String]]()
-        for row in rows {
-            let columns = row.components(separatedBy: seperator)
-            result.append(columns)
-        }
-        
-        return result
     }
 }
 
-/*
- func convertCSV(file:String){
- let rows = cleanRows(file).componentsSeparatedByString("\n")
- if rows.count > 0 {
- data = []
- columnTitles = getStringFieldsForRow(rows.first!,delimiter:",")
- for row in rows{
- let fields = getStringFieldsForRow(row,delimiter: ",")
- if fields.count != columnTitles.count {continue}
- var dataRow = [String:String]()
- for (index,field) in fields.enumerate(){
- let fieldName = columnTitles[index]
- dataRow[fieldName] = field
- }
- data += [dataRow]
- }
- } else {
- print("No data in file")
- }
- }
- https://makeapppie.com/2016/05/23/reading-and-writing-text-and-csv-files-in-swift/
- */
 
+// MARK: Load CES Industry
+extension LoadDataUtil {
+    static let CE_SUPERSECTOR_MAP = "ce.supersector"
+    static let CE_INDUSTRY_MAP = "ce.industry"
+    static let SM_SUPERSECTOR_MAP = "sm.supersector"
+    static let SM_INDUSTRY_MAP = "sm.industry"
+    
+    func loadCEIndustry() {
+        guard let industryItems =
+            LoadDataUtil.loadDataResource(resourceName: LoadDataUtil.CE_INDUSTRY_MAP,
+                                          withExtension: "txt")
+            else { return }
+
+        var currentIndex = 2
+        while currentIndex < industryItems.count-1 {
+            let industryItem = industryItems[currentIndex]
+            let supersector = CE_Industry(context: managedObjectContext)
+            supersector.code = industryItem[0]
+            supersector.title = industryItem[3]
+            supersector.supersector = true
+            currentIndex = currentIndex+1
+            loadSubIndustry(parent: supersector, industryItems: industryItems,
+                            currentIndex: &currentIndex)
+        }
+        
+        do {
+            try managedObjectContext.save()
+        }
+        catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func loadSubIndustry(parent: CE_Industry, industryItems: [[String]], currentIndex: inout Int) {
+        guard let code = parent.code else { return }
+        
+        let parentCode: String
+        
+        // If this is a supersector then use 2 digit code
+        if parent.parent == nil {
+            parentCode = String(code.prefix(2))
+        }
+        else {
+           parentCode = code.trailingTrim(CharacterSet(charactersIn: "0"))
+        }
+
+        while industryItems[currentIndex][0].hasPrefix(parentCode) {
+            
+            let industry = CE_Industry(context: managedObjectContext)
+            industry.code = industryItems[currentIndex][0]
+            industry.title = industryItems[currentIndex][3]
+            industry.parent = parent
+            currentIndex = currentIndex+1
+            loadSubIndustry(parent: industry, industryItems: industryItems, currentIndex: &currentIndex)
+        }        
+    }
+}
