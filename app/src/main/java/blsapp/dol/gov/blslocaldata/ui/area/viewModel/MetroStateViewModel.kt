@@ -8,6 +8,7 @@ import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.db.LocalRepository
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
+import blsapp.dol.gov.blslocaldata.model.DataUtil
 import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.ui.area.ReportRow
@@ -17,9 +18,22 @@ import org.jetbrains.anko.doAsync
 
 data class ReportSection(
     var title: String?,
-    var collapsed: Boolean,
+    private var _collapsed: Boolean,
     var reportTypes: List<ReportType>?,
     var subSections : List<ReportSection>? = null) {
+
+    var collapsed: Boolean
+        get() {
+            if (DataUtil.isTalkBackActive()) {
+                return false
+            }
+
+            return _collapsed
+        }
+        set(value) {
+            _collapsed = value
+        }
+
 }
 
 

@@ -1,6 +1,7 @@
 package blsapp.dol.gov.blslocaldata.ui.area
 
 import android.content.Context
+import android.opengl.Visibility
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -417,6 +418,14 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         val mHeaderTextView: TextView = mView.header_text
         val mHeaderImageView: ImageView = mView.showImageView
 
+        init {
+            if (DataUtil.isTalkBackActive()) {
+                mHeaderImageView.visibility = View.GONE
+            }
+            else {
+                mHeaderImageView.visibility = View.VISIBLE
+            }
+        }
         override fun toString(): String {
             return super.toString() + " '" + mHeaderTextView.text + "'"
         }

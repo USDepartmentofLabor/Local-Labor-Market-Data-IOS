@@ -19,12 +19,16 @@
 
     <TextView
         android:id="@+id/monthYearTextView"
+        style="@style/reportMonthYear"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        style="@style/reportMonthYear"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:gravity="end"
         android:text=""
         app:layout_constraintBottom_toBottomOf="@+id/areaTextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/areaTextView"
         app:layout_constraintTop_toTopOf="@+id/areaTextView" />
 
     <LinearLayout

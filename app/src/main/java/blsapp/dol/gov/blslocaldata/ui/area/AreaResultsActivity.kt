@@ -38,6 +38,7 @@ class AreaResultsActivity : AppCompatActivity(), AreaListAdapter.OnItemClickList
 
 
         titleTextView.text = mCurrentArea?.title
+        titleTextView.contentDescription = mCurrentArea?.accessibilityStr
 
         subAreas?.firstOrNull()?.let {
             when (it) {

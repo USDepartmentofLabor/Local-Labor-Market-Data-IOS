@@ -37,22 +37,22 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
                                     dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                             ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.TOTAL_COVERED,
                                     dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage)), subSections =
-                listOf(ReportSection(title = "Private", collapsed = true, reportTypes =
+                listOf(ReportSection(title = "Private", _collapsed = true, reportTypes =
                             listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.PRIVATE_OWNERSHIP,
                                     dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                             ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.PRIVATE_OWNERSHIP,
                                     dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
-                        ReportSection(title = "Federal Government", collapsed = true, reportTypes =
+                        ReportSection(title = "Federal Government", _collapsed = true, reportTypes =
                         listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.FEDERAL_GOVT,
                                 dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                                 ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.FEDERAL_GOVT,
                                         dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
-                        ReportSection(title = "State Government", collapsed = true, reportTypes =
+                        ReportSection(title = "State Government", _collapsed = true, reportTypes =
                         listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.STATE_GOVT,
                                 dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                                 ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.STATE_GOVT,
                                         dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
-                        ReportSection(title = "Local Government", collapsed = true, reportTypes =
+                        ReportSection(title = "Local Government", _collapsed = true, reportTypes =
                         listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.LOCAL_GOVT,
                                 dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                                 ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.LOCAL_GOVT,

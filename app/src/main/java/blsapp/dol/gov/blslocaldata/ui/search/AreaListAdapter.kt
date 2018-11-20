@@ -67,6 +67,7 @@ class AreaListAdapter(
 
         } else if (holder is AreaViewHolder && areaRow.area != null) {
             holder.mTitleTextView.text = areaRow.area!!.title
+            holder.mTitleTextView.contentDescription = areaRow.area!!.accessibilityStr
             with(holder.mView) {
                 tag = areaRow.area
                 setOnClickListener {

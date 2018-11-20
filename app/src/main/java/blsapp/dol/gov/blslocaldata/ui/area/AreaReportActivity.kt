@@ -83,6 +83,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         }
 
         areaTitleTextView.text = mArea.title
+        areaTitleTextView.contentDescription = mArea.accessibilityStr
         viewModel = createViewModel(mArea)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         adapter = ReportListAdapter(this, this)

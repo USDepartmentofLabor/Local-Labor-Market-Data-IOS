@@ -130,5 +130,62 @@ class LocalRepository private constructor(private val mDatabase: BLSDatabase) {
             }
             return instance!!
         }
+
+        private var stateMap: Map<String, String> = hashMapOf("AL" to "Alabama",
+                                "AK" to "alaska",
+                                "AZ" to "arizona",
+                                "AR" to "arkansas",
+                                "CA" to "california",
+                                "CO" to "colorado",
+                                "CT" to "connecticut",
+                                "DE" to "delaware",
+                                "DC" to "district of columbia",
+                                "FL" to "florida",
+                                "GA" to "georgia",
+                                "HI" to "hawaii",
+                                "ID" to "idaho",
+                                "IL" to "illinois",
+                                "IN" to "indiana",
+                                "IA" to "iowa",
+                                "KS" to "kansas",
+                                "KY" to "kentucky",
+                                "LA" to "louisiana",
+                                "ME" to "maine",
+                                "MD" to "maryland",
+                                "MA" to "massachusetts",
+                                "MI" to "michigan",
+                                "MN" to "minnesota",
+                                "MS" to "mississippi",
+                                "MO" to "missouri",
+                                "MT" to "montana",
+                                "NE" to "nebraska",
+                                "NV" to "nevada",
+                                "NH" to "new hampshire",
+                                "NJ" to "new jersey",
+                                "NM" to "new mexico",
+                                "NY" to "new york",
+                                "NC" to "north carolina",
+                                "ND" to "north dakota",
+                                "OH" to "ohio",
+                                "OK" to "oklahoma",
+                                "OR" to "oregon",
+                                "PA" to "pennsylvania",
+                                "RI" to "rhode island",
+                                "SC" to "south carolina",
+                                "SD" to "south dakota",
+                                "TN" to "tennessee",
+                                "TX" to "texas",
+                                "UT" to "utah",
+                                "VT" to "vermont",
+                                "VA" to "virginia",
+                                "WA" to "washington",
+                                "WV" to "west virginia",
+                                "WI" to "wisconsin",
+                                "WY" to "wyoming",
+                                "PR" to "Puerto Rico")
+
+        fun stateName(stateCode: String): String? {
+            return stateMap[stateCode]
+        }
     }
 }

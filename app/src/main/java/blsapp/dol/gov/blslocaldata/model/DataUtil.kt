@@ -1,6 +1,11 @@
 package blsapp.dol.gov.blslocaldata.model
 
 import java.text.NumberFormat
+import android.accessibilityservice.AccessibilityServiceInfo
+import android.content.Context
+import android.view.accessibility.AccessibilityManager
+import blsapp.dol.gov.blslocaldata.BLSApplication
+
 
 class DataUtil {
     companion object {
@@ -78,6 +83,24 @@ class DataUtil {
             val month = monthNumber.substring(1,3)
             val quarter = (month.toInt() - 1)/3 + 1
             return "Q" + quarter.toString().padStart(2, '0')
+        }
+
+        fun isTalkBackActive(): Boolean {
+
+            val context = BLSApplication.applicationContext()
+            val accessibilityManager = context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager?
+
+            val serviceInfoList = accessibilityManager!!.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_SPOKEN)
+
+            for (serviceInfo in serviceInfoList) {
+                //Could get even more specific here if you wanted. IDs have fully qualified package names in them as well.
+                if (serviceInfo.id.endsWith("TalkBackService")) {
+                    //TalkBack is on do your thing
+                    return true
+                }
+            }
+
+            return false
         }
     }
 }

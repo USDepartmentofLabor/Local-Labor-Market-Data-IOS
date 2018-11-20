@@ -27,6 +27,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/ic_left_arrow_up"
         android:drawableLeft="@drawable/ic_left_arrow_up"
         android:text="@string/state"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,15 +43,16 @@
         android:text="@string/county"
         app:layout_constraintBottom_toBottomOf="@+id/leftButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/leftButton" />
+        app:layout_constraintTop_toTopOf="@+id/leftButton"
+        android:drawableEnd="@drawable/ic_right_arrow_up"
+        android:nextFocusForward="@id/areaTitleTextView"/>
 
     <TextView
         android:id="@+id/areaTitleTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/rightButton"
         app:layout_constraintStart_toStartOf="@+id/leftButton"
         app:layout_constraintTop_toBottomOf="@+id/leftButton" />
