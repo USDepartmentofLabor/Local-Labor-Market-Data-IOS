@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataUtil.loadZipCBSAMap()
         dataUtil.loadMSACountyMap()
         dataUtil.loadLAUSData()
-        dataUtil.loadCEIndustry()
+        dataUtil.loadCESIndustries()
     }
     
 }

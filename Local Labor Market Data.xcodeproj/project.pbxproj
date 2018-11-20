@@ -78,7 +78,6 @@
 		03E3508E213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3508D213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift */; };
 		03E35096213EFC1A00AC7383 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */; };
 		03F1F86120EA622D00662446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86020EA622D00662446 /* AppDelegate.swift */; };
-		03F1F86320EA622D00662446 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86220EA622D00662446 /* ViewController.swift */; };
 		03F1F86620EA622D00662446 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86420EA622D00662446 /* Main.storyboard */; };
 		03F1F86920EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86720EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld */; };
 		03F1F86B20EA623000662446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86A20EA623000662446 /* Assets.xcassets */; };
@@ -190,7 +189,6 @@
 		03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		03F1F85D20EA622D00662446 /* Local Labor Market Data.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Local Labor Market Data.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03F1F86020EA622D00662446 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		03F1F86220EA622D00662446 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		03F1F86520EA622D00662446 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		03F1F86820EA622D00662446 /* BLSApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BLSApp.xcdatamodel; sourceTree = "<group>"; };
 		03F1F86A20EA623000662446 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -390,7 +388,6 @@
 				03F1F89620EAA8FD00662446 /* Model */,
 				03F1F89120EAA69800662446 /* LookupData */,
 				03F1F86020EA622D00662446 /* AppDelegate.swift */,
-				03F1F86220EA622D00662446 /* ViewController.swift */,
 				03F1F86420EA622D00662446 /* Main.storyboard */,
 				03F1F86A20EA623000662446 /* Assets.xcassets */,
 				03F1F86C20EA623000662446 /* LaunchScreen.storyboard */,
@@ -666,7 +663,6 @@
 				03953C3D2114A02600BED557 /* CPSReport.swift in Sources */,
 				03B708882123026E00C370D7 /* OwnershipTableViewCell.swift in Sources */,
 				03953C15210F968100BED557 /* ReportManager.swift in Sources */,
-				03F1F86320EA622D00662446 /* ViewController.swift in Sources */,
 				03953C47211B297C00BED557 /* UIBarButtonItem+Extension.swift in Sources */,
 				0396A00120FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift in Sources */,
 				03953C45211B23A300BED557 /* InfoViewController.swift in Sources */,

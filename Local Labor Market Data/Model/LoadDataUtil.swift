@@ -296,22 +296,39 @@ extension LoadDataUtil {
     static let SM_SUPERSECTOR_MAP = "sm.supersector"
     static let SM_INDUSTRY_MAP = "sm.industry"
     
-    func loadCEIndustry() {
+    func loadCESIndustries() {
+        Industry.deleteAll(managedContext: managedObjectContext)
+        loadIndustry(resourceName: LoadDataUtil.CE_INDUSTRY_MAP, withExt: "txt", type: CE_Industry.self)
+        loadIndustry(resourceName: LoadDataUtil.SM_INDUSTRY_MAP, withExt: "txt", type: SM_Industry.self)
+    }
+    
+    func loadIndustry<T: Industry>(resourceName: String, withExt ext: String, type: T.Type) {
         guard let industryItems =
-            LoadDataUtil.loadDataResource(resourceName: LoadDataUtil.CE_INDUSTRY_MAP,
-                                          withExtension: "txt")
+            LoadDataUtil.loadDataResource(resourceName: resourceName,
+                                          withExtension: ext)
             else { return }
 
         var currentIndex = 2
         while currentIndex < industryItems.count-1 {
             let industryItem = industryItems[currentIndex]
-            let supersector = CE_Industry(context: managedObjectContext)
-            supersector.code = industryItem[0]
-            supersector.title = industryItem[3]
+            if let supersector = NSEntityDescription.insertNewObject(forEntityName: T.entityName(),
+                                                                     into: managedObjectContext) as? T {
+                
+                let code = industryItem[0]
+                let title: String
+                if resourceName == LoadDataUtil.CE_INDUSTRY_MAP {
+                    title = industryItem[3]
+                }
+                else {
+                    title = industryItem[1]
+                }
+            supersector.code = code
+            supersector.title = title
             supersector.supersector = true
             currentIndex = currentIndex+1
             loadSubIndustry(parent: supersector, industryItems: industryItems,
                             currentIndex: &currentIndex)
+            }
         }
         
         do {
@@ -322,11 +339,10 @@ extension LoadDataUtil {
         }
     }
     
-    func loadSubIndustry(parent: CE_Industry, industryItems: [[String]], currentIndex: inout Int) {
+    func loadSubIndustry<T: Industry>(parent: T, industryItems: [[String]], currentIndex: inout Int) {
         guard let code = parent.code else { return }
         
         let parentCode: String
-        
         // If this is a supersector then use 2 digit code
         if parent.parent == nil {
             parentCode = String(code.prefix(2))
@@ -336,13 +352,23 @@ extension LoadDataUtil {
         }
 
         while industryItems[currentIndex][0].hasPrefix(parentCode) {
-            
-            let industry = CE_Industry(context: managedObjectContext)
-            industry.code = industryItems[currentIndex][0]
-            industry.title = industryItems[currentIndex][3]
-            industry.parent = parent
-            currentIndex = currentIndex+1
-            loadSubIndustry(parent: industry, industryItems: industryItems, currentIndex: &currentIndex)
+            if let obj = NSEntityDescription.insertNewObject(forEntityName: T.entityName(), into: managedObjectContext) as? T {
+                
+                let code = industryItems[currentIndex][0]
+                let title: String
+                if parent is CE_Industry {
+                    title = industryItems[currentIndex][3]
+                }
+                else {
+                    title = industryItems[currentIndex][1]
+                }
+                
+                obj.code = code
+                obj.title = title
+                obj.parent = parent
+                currentIndex = currentIndex+1
+                loadSubIndustry(parent: obj, industryItems: industryItems, currentIndex: &currentIndex)
+            }
         }        
     }
 }
