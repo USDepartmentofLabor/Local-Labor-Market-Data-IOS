@@ -50,9 +50,9 @@
         <element name="LAUS_Area" positionX="45" positionY="18" width="128" height="90"/>
         <element name="Metro" positionX="43" positionY="126" width="128" height="60"/>
         <element name="National" positionX="63" positionY="45" width="128" height="45"/>
+        <element name="SM_Industry" positionX="45" positionY="9" width="128" height="45"/>
         <element name="State" positionX="63" positionY="-124" width="128" height="43"/>
         <element name="ZipCBSAMap" positionX="-153" positionY="74" width="135" height="90"/>
         <element name="ZipCountyMap" positionX="-162" positionY="-97" width="128" height="75"/>
-        <element name="SM_Industry" positionX="45" positionY="9" width="128" height="45"/>
     </elements>
 </model>

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,7 +50,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4n-mz-5ds" userLabel="ValueView">
-                                        <rect key="frame" x="0.0" y="40.5" width="307" height="61"/>
+                                        <rect key="frame" x="0.0" y="40" width="307" height="61.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mean Annual Wage" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfg-Qp-PqN" userLabel="dataTitleLabel">
                                                 <rect key="frame" x="91.5" y="0.0" width="124" height="17"/>
@@ -61,7 +59,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$23,000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="da4-8Q-hHN" userLabel="dataValueLabel">
-                                                <rect key="frame" x="93" y="25" width="120.5" height="36"/>
+                                                <rect key="frame" x="93.5" y="25" width="120.5" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -69,12 +67,14 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kfg-Qp-PqN" secondAttribute="trailing" id="Eec-qr-qop"/>
                                             <constraint firstItem="kfg-Qp-PqN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="g4n-mz-5ds" secondAttribute="leading" id="EuT-ea-mwG"/>
                                             <constraint firstItem="da4-8Q-hHN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="g4n-mz-5ds" secondAttribute="leading" id="Gdk-Mt-6t3"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="da4-8Q-hHN" secondAttribute="trailing" id="KnA-hf-lPl"/>
                                             <constraint firstItem="kfg-Qp-PqN" firstAttribute="centerX" secondItem="g4n-mz-5ds" secondAttribute="centerX" id="fKm-t2-0h2"/>
                                             <constraint firstItem="kfg-Qp-PqN" firstAttribute="top" secondItem="g4n-mz-5ds" secondAttribute="top" id="jah-6b-esr"/>
+                                            <constraint firstAttribute="bottom" secondItem="da4-8Q-hHN" secondAttribute="bottom" constant="0.5" id="m8Z-fB-gJi"/>
                                             <constraint firstItem="da4-8Q-hHN" firstAttribute="centerX" secondItem="g4n-mz-5ds" secondAttribute="centerX" id="sSJ-pb-53U"/>
-                                            <constraint firstAttribute="bottom" secondItem="da4-8Q-hHN" secondAttribute="bottom" id="siD-ZR-8Fp"/>
                                             <constraint firstItem="da4-8Q-hHN" firstAttribute="top" secondItem="kfg-Qp-PqN" secondAttribute="bottom" constant="8" id="zsi-4z-ZD2"/>
                                         </constraints>
                                     </view>

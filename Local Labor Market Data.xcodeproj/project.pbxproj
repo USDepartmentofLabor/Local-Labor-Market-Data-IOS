@@ -384,7 +384,6 @@
 				0396A05B21074DC000DBECBD /* View */,
 				0396A011210268C400DBECBD /* ViewController */,
 				03F1F8A420EAD21800662446 /* Extensions */,
-				03F1F89D20EABEF400662446 /* CoreData */,
 				03F1F89620EAA8FD00662446 /* Model */,
 				03F1F89120EAA69800662446 /* LookupData */,
 				03F1F86020EA622D00662446 /* AppDelegate.swift */,
@@ -393,7 +392,6 @@
 				03F1F86C20EA623000662446 /* LaunchScreen.storyboard */,
 				03F1F86F20EA623000662446 /* Info.plist */,
 				03F1F86720EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld */,
-				035D9722212C4F3A005F1CA9 /* Style.swift */,
 			);
 			path = "Local Labor Market Data";
 			sourceTree = "<group>";
@@ -428,6 +426,8 @@
 		03F1F89620EAA8FD00662446 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				03F1F89D20EABEF400662446 /* CoreData */,
+				035D9722212C4F3A005F1CA9 /* Style.swift */,
 				03953C4C211B8CE100BED557 /* QCEW */,
 				03953C02210F518900BED557 /* Report */,
 				03F1F89720EAA93000662446 /* DataUtil.swift */,

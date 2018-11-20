@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -58,7 +56,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="138.5" height="171"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q0e-dF-llO" userLabel="EmploymentValueView">
-                                                        <rect key="frame" x="0.0" y="10" width="139" height="65.5"/>
+                                                        <rect key="frame" x="0.0" y="10" width="138.5" height="65.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Employment Level" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfg-Qp-PqN" userLabel="dataTitleLabel">
                                                                 <rect key="frame" x="3.5" y="0.0" width="132" height="19.5"/>
@@ -67,7 +65,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32,000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="da4-8Q-hHN" userLabel="dataValueLabel">
-                                                                <rect key="frame" x="19" y="29.5" width="102" height="36"/>
+                                                                <rect key="frame" x="18.5" y="29.5" width="102" height="36"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -85,32 +83,32 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SO0-Hs-SBF" userLabel="lineView">
-                                                        <rect key="frame" x="19.5" y="80.5" width="99.5" height="1"/>
+                                                        <rect key="frame" x="19" y="80.5" width="101" height="1"/>
                                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="N0A-GB-GL8"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPk-de-QT1" userLabel="ChangeView">
-                                                        <rect key="frame" x="0.0" y="86.5" width="138.5" height="85"/>
+                                                        <rect key="frame" x="0.0" y="86.5" width="138.5" height="84.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="njL-gR-vnr" userLabel="12MonthChangeView">
                                                                 <rect key="frame" x="0.0" y="5" width="138.5" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12-month Change" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5t-c0-M9j" userLabel="ChangeTitleLabel">
-                                                                        <rect key="frame" x="19.5" y="0.0" width="101" height="14.5"/>
+                                                                        <rect key="frame" x="19" y="0.0" width="101" height="14.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                                         <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+130" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Glb-02-Wow" userLabel="NetChangeValueLabel">
-                                                                        <rect key="frame" x="51" y="22.5" width="38" height="19.5"/>
+                                                                        <rect key="frame" x="50.5" y="22.5" width="38" height="19.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2%" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3Y-iQ-1zF" userLabel="RateChangeValueLabel">
-                                                                        <rect key="frame" x="58.5" y="50" width="23" height="19.5"/>
+                                                                        <rect key="frame" x="58" y="50" width="23" height="19.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -158,7 +156,7 @@
                                                 <rect key="frame" x="148.5" y="0.0" width="138.5" height="171"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z8A-YC-XwU" userLabel="WageValueView">
-                                                        <rect key="frame" x="0.0" y="10" width="139" height="65.5"/>
+                                                        <rect key="frame" x="0.0" y="10" width="138.5" height="65.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avg Weekly wage" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3X-4V-UxS" userLabel="dataTitleLabel">
                                                                 <rect key="frame" x="6" y="0.0" width="126.5" height="19.5"/>
@@ -184,7 +182,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vnk-In-HiL" userLabel="lineView">
-                                                        <rect key="frame" x="20.5" y="80.5" width="97.5" height="1"/>
+                                                        <rect key="frame" x="20" y="80.5" width="99" height="1"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="juS-g5-CKd"/>
@@ -194,22 +192,22 @@
                                                         <rect key="frame" x="0.0" y="86.5" width="138.5" height="84.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lA0-v3-E1F" userLabel="12MonthChangeView">
-                                                                <rect key="frame" x="0.0" y="5" width="138.5" height="74"/>
+                                                                <rect key="frame" x="0.0" y="5" width="138.5" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12-month change" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8B-tN-3wA" userLabel="ChangeTitleLabel">
-                                                                        <rect key="frame" x="20.5" y="0.0" width="99" height="14.5"/>
+                                                                        <rect key="frame" x="20" y="0.0" width="99" height="14.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                                         <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+130" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axX-Dj-ann" userLabel="NetChangeValueLabel">
-                                                                        <rect key="frame" x="51" y="22.5" width="38" height="19.5"/>
+                                                                        <rect key="frame" x="50.5" y="22.5" width="38" height="19.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3%" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRx-7j-CHt" userLabel="RateChangeValueLabel">
-                                                                        <rect key="frame" x="58.5" y="50" width="23.5" height="19.5"/>
+                                                                        <rect key="frame" x="57.5" y="50" width="23.5" height="19.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -273,9 +271,9 @@
                                     <constraint firstItem="AOm-jS-cR8" firstAttribute="leading" secondItem="jZh-L0-fpR" secondAttribute="leading" constant="5" id="AQH-3T-2Bp"/>
                                     <constraint firstAttribute="trailing" secondItem="D4K-tm-Rvw" secondAttribute="trailing" constant="10" id="Lec-aa-tos"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="RYs-ug-fsN" secondAttribute="trailing" constant="5" id="Mrl-SU-qQR"/>
-                                    <constraint firstItem="AOm-jS-cR8" firstAttribute="top" secondItem="jZh-L0-fpR" secondAttribute="top" constant="5" id="UDS-Xr-TlI"/>
                                     <constraint firstItem="D4K-tm-Rvw" firstAttribute="leading" secondItem="jZh-L0-fpR" secondAttribute="leading" constant="10" id="bqr-Pc-cJq"/>
                                     <constraint firstAttribute="bottom" secondItem="D4K-tm-Rvw" secondAttribute="bottom" constant="10" id="e3U-5y-PWJ"/>
+                                    <constraint firstItem="AOm-jS-cR8" firstAttribute="top" secondItem="jZh-L0-fpR" secondAttribute="top" constant="5.5" id="hbz-RO-OY2"/>
                                     <constraint firstItem="D4K-tm-Rvw" firstAttribute="top" secondItem="AOm-jS-cR8" secondAttribute="bottom" constant="10" id="hmV-LR-Bb7"/>
                                     <constraint firstItem="RYs-ug-fsN" firstAttribute="centerY" secondItem="AOm-jS-cR8" secondAttribute="centerY" id="w13-Yz-EtN"/>
                                     <constraint firstItem="RYs-ug-fsN" firstAttribute="width" relation="lessThanOrEqual" secondItem="jZh-L0-fpR" secondAttribute="width" multiplier="0.5" id="xNc-rz-GrD"/>
