@@ -11,7 +11,7 @@
     </entity>
     <entity name="CE_Industry" representedClassName="CE_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="category"/>
     <entity name="County" representedClassName="County" parentEntity="Area" syncable="YES" codeGenerationType="category"/>
-    <entity name="Industry" representedClassName="Industry" syncable="YES" codeGenerationType="class">
+    <entity name="Industry" representedClassName="Industry" syncable="YES" codeGenerationType="category">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="supersector" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,6 +27,12 @@
         <attribute name="stateCode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="National" representedClassName="National" parentEntity="Area" syncable="YES" codeGenerationType="class"/>
+    <entity name="Occupation" representedClassName="Occupation" syncable="YES" codeGenerationType="class">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Occupation" inverseName="parent" inverseEntity="Occupation" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Occupation" inverseName="children" inverseEntity="Occupation" syncable="YES"/>
+    </entity>
     <entity name="SM_Industry" representedClassName="SM_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="class"/>
     <entity name="State" representedClassName="State" parentEntity="Area" syncable="YES" codeGenerationType="category"/>
     <entity name="ZipCBSAMap" representedClassName="ZipCBSAMap" syncable="YES" codeGenerationType="category">
@@ -54,5 +60,6 @@
         <element name="State" positionX="63" positionY="-124" width="128" height="43"/>
         <element name="ZipCBSAMap" positionX="-153" positionY="74" width="135" height="90"/>
         <element name="ZipCountyMap" positionX="-162" positionY="-97" width="128" height="75"/>
+        <element name="Occupation" positionX="45" positionY="9" width="128" height="105"/>
     </elements>
 </model>

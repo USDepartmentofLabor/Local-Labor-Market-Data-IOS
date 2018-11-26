@@ -372,3 +372,37 @@ extension LoadDataUtil {
         }        
     }
 }
+
+// MARK: Load OES Occupation
+extension LoadDataUtil {
+    static let OES_OCCUPATION_MAP = "oe.occupation"
+    
+    func loadOESOccupations() {
+        Occupation.deleteAll(managedContext: managedObjectContext)
+        loadOccupation(resourceName: LoadDataUtil.OES_OCCUPATION_MAP, withExt: "txt")
+    }
+    
+    func loadOccupation(resourceName: String, withExt ext: String) {
+        guard let occupationItems =
+            LoadDataUtil.loadDataResource(resourceName: resourceName,
+                                          withExtension: ext)
+            else { return }
+
+        var currentIndex = 2
+        while currentIndex < occupationItems.count-1 {
+            let occupationItem = occupationItems[currentIndex]
+            let occupation = Occupation(context: managedObjectContext)
+            occupation.code = occupationItem[0]
+            occupation.title = occupationItem[1]
+        }
+        
+        do {
+            try managedObjectContext.save()
+        }
+        catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+}
+
+

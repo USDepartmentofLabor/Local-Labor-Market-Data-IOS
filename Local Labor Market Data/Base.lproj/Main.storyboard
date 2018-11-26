@@ -239,11 +239,68 @@
                         <outlet property="subAreaHeightConstraint" destination="YtE-OS-1g3" id="F05-tz-3ov"/>
                         <outlet property="tableView" destination="DX6-Km-Hcd" id="HUA-6m-zeh"/>
                         <segue destination="aBT-jb-OwT" kind="show" identifier="showInfo" id="JVm-UH-LeO"/>
+                        <segue destination="mlb-lD-uxZ" kind="show" identifier="showIndustry" id="2u0-wo-yL8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4H-Ko-5tM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1704.8" y="1006.1469265367317"/>
+        </scene>
+        <!--Industry View Controller-->
+        <scene sceneID="ci9-oS-a7g">
+            <objects>
+                <viewController id="mlb-lD-uxZ" customClass="CEIndustryViewController" customModule="Local_Labor_Market_Data" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Cv-T7-4Xq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8X0-Tx-9F4">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" textLabel="RnE-Ol-W0N" style="IBUITableViewCellStyleDefault" id="UFX-PH-zR3">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UFX-PH-zR3" id="ZXC-sK-gMj">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RnE-Ol-W0N">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="mlb-lD-uxZ" kind="show" identifier="showIndustry" id="Jcf-XY-kfz"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mlb-lD-uxZ" id="bqs-0v-If9"/>
+                                    <outlet property="delegate" destination="mlb-lD-uxZ" id="0hL-T6-3EY"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xau-jv-ntF" firstAttribute="bottom" secondItem="8X0-Tx-9F4" secondAttribute="bottom" id="58Y-Zf-fSy"/>
+                            <constraint firstItem="8X0-Tx-9F4" firstAttribute="top" secondItem="xau-jv-ntF" secondAttribute="top" id="FVX-T8-24x"/>
+                            <constraint firstItem="xau-jv-ntF" firstAttribute="trailing" secondItem="8X0-Tx-9F4" secondAttribute="trailing" id="get-ZD-Rt7"/>
+                            <constraint firstItem="8X0-Tx-9F4" firstAttribute="leading" secondItem="xau-jv-ntF" secondAttribute="leading" id="mtv-8l-1eV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xau-jv-ntF"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="8X0-Tx-9F4" id="Pbc-vH-k6I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QBY-VF-m1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1817" y="1803"/>
         </scene>
         <!--Results View Controller-->
         <scene sceneID="VT9-sY-o2r">
@@ -326,23 +383,23 @@
             <objects>
                 <viewController id="7qL-l2-ozW" customClass="AboutViewController" customModule="Local_Labor_Market_Data" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mAr-0Q-c5j">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="555"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHz-ZJ-h7J">
-                                <rect key="frame" x="10" y="74" width="355" height="533"/>
+                                <rect key="frame" x="10" y="30" width="315" height="465"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfc-vE-Lx9">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="533"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="465"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="061-Sy-DyM">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="533"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="315" height="465"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-a5-M57">
-                                                        <rect key="frame" x="0.0" y="5" width="355" height="168"/>
+                                                        <rect key="frame" x="0.0" y="5" width="315" height="168"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVi-wj-GTy" userLabel="Description1 Label">
-                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="18"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="315" height="18"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -351,7 +408,7 @@
                                                                 </variation>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aek-Jk-nIw" userLabel="Description2 Label">
-                                                                <rect key="frame" x="0.0" y="30" width="355" height="18"/>
+                                                                <rect key="frame" x="0.0" y="30" width="315" height="18"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -360,7 +417,7 @@
                                                                 </variation>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eII-ww-qrP" userLabel="Description3 Label">
-                                                                <rect key="frame" x="0.0" y="60" width="355" height="18"/>
+                                                                <rect key="frame" x="0.0" y="60" width="315" height="18"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -369,7 +426,7 @@
                                                                 </variation>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cz9-GL-AMX" userLabel="Description4 Label">
-                                                                <rect key="frame" x="0.0" y="90" width="355" height="18"/>
+                                                                <rect key="frame" x="0.0" y="90" width="315" height="18"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -378,7 +435,7 @@
                                                                 </variation>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBi-MF-Vfg" userLabel="Description5 Label">
-                                                                <rect key="frame" x="0.0" y="120" width="355" height="18"/>
+                                                                <rect key="frame" x="0.0" y="120" width="315" height="18"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -387,7 +444,7 @@
                                                                 </variation>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTP-3u-QlL" userLabel="Description6 Label">
-                                                                <rect key="frame" x="0.0" y="150" width="355" height="18"/>
+                                                                <rect key="frame" x="0.0" y="150" width="315" height="18"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -398,7 +455,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More information on all BLS programs, and additional data, can be found at www.bls.gov" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0U-2V-8RQ" userLabel="blsWebLabel">
-                                                        <rect key="frame" x="0.0" y="495" width="355" height="38"/>
+                                                        <rect key="frame" x="0.0" y="427" width="315" height="38"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -407,7 +464,7 @@
                                                         </variation>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R87-oB-9lM" userLabel="VersionView">
-                                                        <rect key="frame" x="0.0" y="451" width="355" height="34"/>
+                                                        <rect key="frame" x="0.0" y="383" width="315" height="34"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vsg-mM-a8G">
                                                                 <rect key="frame" x="5" y="0.0" width="94.5" height="34"/>
@@ -500,7 +557,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OCIO" translatesAutoresizingMaskIntoConstraints="NO" id="4WH-2Z-1Dj">
-                                <rect key="frame" x="10" y="617" width="355" height="50"/>
+                                <rect key="frame" x="10" y="505" width="315" height="50"/>
                                 <accessibility key="accessibilityConfiguration" label="Powered by OCIO">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -804,7 +861,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="JVm-UH-LeO"/>
-        <segue reference="EEn-pf-Eig"/>
+        <segue reference="gNx-IP-W6z"/>
         <segue reference="xET-zh-0oi"/>
     </inferredMetricsTieBreakers>
 </document>
