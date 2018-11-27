@@ -147,6 +147,9 @@ class CountyViewController: AreaViewController {
             metroVC.area = metros[0]
             navigationController?.pushViewController(metroVC, animated: true)
         }
+        else {
+            displayError(message: "This county is not a part of a Metropolitan Statistical Area.", title: "")
+        }
     }
 }
 
