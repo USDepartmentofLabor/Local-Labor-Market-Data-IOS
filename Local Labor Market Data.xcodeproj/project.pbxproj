@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		03287A7F2187665A0067686A /* NECTACBSA_COUNTY.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */; };
+		032B241921AC5A470029AC90 /* CEIndustryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032B241821AC5A470029AC90 /* CEIndustryViewController.swift */; };
+		032B241C21AC734B0029AC90 /* Industry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032B241A21AC734B0029AC90 /* Industry+CoreDataClass.swift */; };
+		032B242021AC8C8B0029AC90 /* oe.occupation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 032B241F21AC8C8B0029AC90 /* oe.occupation.txt */; };
 		032C16652138241E004C1B3F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16642138241E004C1B3F /* Util.swift */; };
 		032C16672139918B004C1B3F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16662139918B004C1B3F /* Settings.swift */; };
 		032C16692139927F004C1B3F /* UICustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16682139927F004C1B3F /* UICustomSwitch.swift */; };
@@ -114,6 +117,9 @@
 		03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BLSApp 2.xcdatamodel"; sourceTree = "<group>"; };
 		03287A7C2187665A0067686A /* CBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CBSA_COUNTY.txt; sourceTree = "<group>"; };
 		03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NECTACBSA_COUNTY.txt; sourceTree = "<group>"; };
+		032B241821AC5A470029AC90 /* CEIndustryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CEIndustryViewController.swift; sourceTree = "<group>"; };
+		032B241A21AC734B0029AC90 /* Industry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Industry+CoreDataClass.swift"; sourceTree = "<group>"; };
+		032B241F21AC8C8B0029AC90 /* oe.occupation.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oe.occupation.txt; sourceTree = "<group>"; };
 		032C16642138241E004C1B3F /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		032C16662139918B004C1B3F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		032C16682139927F004C1B3F /* UICustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomSwitch.swift; sourceTree = "<group>"; };
@@ -237,6 +243,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		032B241E21AC8C760029AC90 /* OES */ = {
+			isa = PBXGroup;
+			children = (
+				032B241F21AC8C8B0029AC90 /* oe.occupation.txt */,
+			);
+			path = OES;
+			sourceTree = "<group>";
+		};
 		036164BC210B4FEA0055708A /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +267,7 @@
 				036164C1210B869B0055708A /* MetroStateViewController.swift */,
 				03953C362113877E00BED557 /* AreaViewController.swift */,
 				03CB7D082130470C001C1570 /* NationalViewController.swift */,
+				032B241821AC5A470029AC90 /* CEIndustryViewController.swift */,
 			);
 			path = MetroStateArea;
 			sourceTree = "<group>";
@@ -408,6 +423,7 @@
 		03F1F89120EAA69800662446 /* LookupData */ = {
 			isa = PBXGroup;
 			children = (
+				032B241E21AC8C760029AC90 /* OES */,
 				59E7A060219F4B5F0060B7FF /* CES */,
 				59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */,
 				03287A7C2187665A0067686A /* CBSA_COUNTY.txt */,
@@ -440,10 +456,11 @@
 		03F1F89D20EABEF400662446 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				032B241A21AC734B0029AC90 /* Industry+CoreDataClass.swift */,
+				036164C9210D2C660055708A /* Metro+CoreDataClass.swift */,
 				59E7A063219F69DF0060B7FF /* CE_Industry+CoreDataClass.swift */,
 				597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */,
 				03953C18210F9F8C00BED557 /* Area+CoreDataClass.swift */,
-				036164C9210D2C660055708A /* Metro+CoreDataClass.swift */,
 				036164CB210D2C660055708A /* State+CoreDataClass.swift */,
 				036164C5210D2C310055708A /* County+CoreDataClass.swift */,
 				0396A0142106090800DBECBD /* LAUS_Area+CoreDataClass.swift */,
@@ -613,6 +630,7 @@
 				0348FD1A211DD64800155BE8 /* EmploymentWageTableViewCell.xib in Resources */,
 				59E7A05D219F45C30060B7FF /* sm.industry.txt in Resources */,
 				03287A7F2187665A0067686A /* NECTACBSA_COUNTY.txt in Resources */,
+				032B242021AC8C8B0029AC90 /* oe.occupation.txt in Resources */,
 				0348FD1D211E0AB200155BE8 /* OwnershipDataTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -669,6 +687,7 @@
 				036164C4210BA5AE0055708A /* ResultsViewController.swift in Sources */,
 				03B7088B2123211700C370D7 /* ReportViewCell.swift in Sources */,
 				036164B9210A67980055708A /* Array+Extension.swift in Sources */,
+				032B241921AC5A470029AC90 /* CEIndustryViewController.swift in Sources */,
 				03F1F89F20EABF0200662446 /* CoreDataManager.swift in Sources */,
 				03953C11210F83EF00BED557 /* SeriesData.swift in Sources */,
 				0396A05D21074E5400DBECBD /* SearchSectionTableHeaderView.swift in Sources */,
@@ -687,6 +706,7 @@
 				03F1F89820EAA93000662446 /* DataUtil.swift in Sources */,
 				03953C0B210F631000BED557 /* API.swift in Sources */,
 				03953C4E211B8D0900BED557 /* QCEWDataUtil.swift in Sources */,
+				032B241C21AC734B0029AC90 /* Industry+CoreDataClass.swift in Sources */,
 				036164CF210D2C660055708A /* State+CoreDataClass.swift in Sources */,
 				03953C49211B49E500BED557 /* GlossaryViewController.swift in Sources */,
 				03CB7D092130470C001C1570 /* NationalViewController.swift in Sources */,

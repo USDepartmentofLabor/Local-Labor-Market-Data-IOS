@@ -78,6 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataUtil.loadMSACountyMap()
         dataUtil.loadLAUSData()
         dataUtil.loadCESIndustries()
+        dataUtil.loadOESOccupations()
     }
     
 }

@@ -11,13 +11,13 @@ import CoreData
 
 class LoadDataUtil {
     
-    static let MSATitle = "Metropolitan Statistical Area"
-    static let NECTATitle = "Metropolitan NECTA"
-    static let ZIP_COUNTY_MAP = "ZIP_COUNTY"
-    static let ZIP_NECTA_MAP = "ZIP_NECTA"
-    static let ZIP_CBSA_MAP = "ZIP_CBSA"
-    static let CBSA_COUNTY_MAP = "CBSA_COUNTY"
-    static let NECTA_CBSA_COUNTY_MAP = "NECTACBSA_COUNTY"
+    private static let MSATitle = "Metropolitan Statistical Area"
+    private static let NECTATitle = "Metropolitan NECTA"
+    private static let ZIP_COUNTY_MAP = "ZIP_COUNTY"
+    private static let ZIP_NECTA_MAP = "ZIP_NECTA"
+    private static let ZIP_CBSA_MAP = "ZIP_CBSA"
+    private static let CBSA_COUNTY_MAP = "CBSA_COUNTY"
+    private static let NECTA_CBSA_COUNTY_MAP = "NECTACBSA_COUNTY"
     
     var managedObjectContext: NSManagedObjectContext
     
@@ -291,10 +291,10 @@ extension LoadDataUtil {
 
 // MARK: Load CES Industry
 extension LoadDataUtil {
-    static let CE_SUPERSECTOR_MAP = "ce.supersector"
-    static let CE_INDUSTRY_MAP = "ce.industry"
-    static let SM_SUPERSECTOR_MAP = "sm.supersector"
-    static let SM_INDUSTRY_MAP = "sm.industry"
+    private static let CE_SUPERSECTOR_MAP = "ce.supersector"
+    private static let CE_INDUSTRY_MAP = "ce.industry"
+    private static let SM_SUPERSECTOR_MAP = "sm.supersector"
+    private static let SM_INDUSTRY_MAP = "sm.industry"
     
     func loadCESIndustries() {
         Industry.deleteAll(managedContext: managedObjectContext)
@@ -302,7 +302,7 @@ extension LoadDataUtil {
         loadIndustry(resourceName: LoadDataUtil.SM_INDUSTRY_MAP, withExt: "txt", type: SM_Industry.self)
     }
     
-    func loadIndustry<T: Industry>(resourceName: String, withExt ext: String, type: T.Type) {
+    private func loadIndustry<T: Industry>(resourceName: String, withExt ext: String, type: T.Type) {
         guard let industryItems =
             LoadDataUtil.loadDataResource(resourceName: resourceName,
                                           withExtension: ext)
@@ -339,7 +339,7 @@ extension LoadDataUtil {
         }
     }
     
-    func loadSubIndustry<T: Industry>(parent: T, industryItems: [[String]], currentIndex: inout Int) {
+    private func loadSubIndustry<T: Industry>(parent: T, industryItems: [[String]], currentIndex: inout Int) {
         guard let code = parent.code else { return }
         
         let parentCode: String
@@ -372,3 +372,47 @@ extension LoadDataUtil {
         }        
     }
 }
+
+// MARK: Load OES Occupation
+extension LoadDataUtil {
+    static let OES_OCCUPATION_MAP = "oe.occupation"
+    
+    func loadOESOccupations() {
+        Occupation.deleteAll(managedContext: managedObjectContext)
+        loadOccupations(resourceName: LoadDataUtil.OES_OCCUPATION_MAP, withExt: "txt")
+    }
+    
+    private func loadOccupations(resourceName: String, withExt ext: String) {
+        guard let occupationItems =
+            LoadDataUtil.loadDataResource(resourceName: resourceName,
+                                          withExtension: ext)
+            else { return }
+
+        var currentIndex = 2
+        loadOccupation(occupationItems: occupationItems, currentIndex: &currentIndex)
+        
+        do {
+            try managedObjectContext.save()
+        }
+        catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    private func loadOccupation(occupationItems: [[String]], parent: Occupation? = nil, currentIndex: inout Int) {
+        let occupationItem = occupationItems[currentIndex]
+        let occupation = Occupation(context: managedObjectContext)
+        occupation.code = occupationItem[0]
+        occupation.title = occupationItem[1]
+        occupation.parent = parent
+        
+        // Load Children
+        let parentCode = occupation.code?.trailingTrim(CharacterSet(charactersIn: "0")) ?? ""
+        currentIndex = currentIndex+1
+        while occupationItems[currentIndex][0].hasPrefix(parentCode) {
+            loadOccupation(occupationItems: occupationItems, parent: occupation, currentIndex: &currentIndex)
+        }
+    }
+}
+
+

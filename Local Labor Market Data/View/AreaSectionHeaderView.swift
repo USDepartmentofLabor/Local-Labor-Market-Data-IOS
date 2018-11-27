@@ -10,8 +10,15 @@ import UIKit
 
 protocol AreaSectionHeaderDelegate: class {
     func sectionHeader(_ sectionHeader: AreaSectionHeaderView, toggleExpand section:Int)
+    
+    func sectionHeader(_ sectionHeader: AreaSectionHeaderView, displayDetails section:Int)
 }
 
+extension AreaSectionHeaderDelegate {
+    func sectionHeader(_ sectionHeader: AreaSectionHeaderView, displayDetails section:Int) {
+        
+    }
+}
 
 class AreaSectionHeaderView: UITableViewHeaderFooterView {
     class var nibName: String { return "AreaSectionHeaderView" }
@@ -55,6 +62,11 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
 
     @objc private func toggleOpen(_ sender: UITapGestureRecognizer) {
         toggleExpand(withUserAction: true)
+    }
+    
+    
+    @IBAction func displayDetails(_ sender: Any) {
+        delegate?.sectionHeader(self, displayDetails: section)
     }
     
     func configure(title: String, section: Int, collapse: Bool) {

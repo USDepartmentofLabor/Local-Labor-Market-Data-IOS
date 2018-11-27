@@ -387,6 +387,19 @@ extension MetroStateViewController: AreaSectionHeaderDelegate {
 //        tableView.deleteRows(at: removeIndexPaths, with: .automatic)
         tableView.endUpdates()
     }
+    
+    func sectionHeader(_ sectionHeader: AreaSectionHeaderView, displayDetails section: Int) {
+        let section = sections[section]
+        
+        // For Industry Title
+        if section.title == Section.IndustryEmploymentTitle {
+            displayCEIndustry()
+        }
+    }
+    
+    func displayCEIndustry() {
+        performSegue(withIdentifier: "showIndustry", sender: self)
+    }
 }
 
 extension MetroStateViewController: UIAccessibilityContainerDataTable {
