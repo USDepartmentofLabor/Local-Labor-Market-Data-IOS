@@ -375,11 +375,11 @@ extension LoadDataUtil {
 
 // MARK: Load OES Occupation
 extension LoadDataUtil {
-    static let OES_OCCUPATION_MAP = "oe.occupation"
+    static let OE_OCCUPATION_MAP = "oe.occupation"
     
     func loadOESOccupations() {
-        Occupation.deleteAll(managedContext: managedObjectContext)
-        loadOccupations(resourceName: LoadDataUtil.OES_OCCUPATION_MAP, withExt: "txt")
+        OE_Occupation.deleteAll(managedContext: managedObjectContext)
+        loadOccupations(resourceName: LoadDataUtil.OE_OCCUPATION_MAP, withExt: "txt")
     }
     
     private func loadOccupations(resourceName: String, withExt ext: String) {
@@ -399,9 +399,9 @@ extension LoadDataUtil {
         }
     }
     
-    private func loadOccupation(occupationItems: [[String]], parent: Occupation? = nil, currentIndex: inout Int) {
+    private func loadOccupation(occupationItems: [[String]], parent: OE_Occupation? = nil, currentIndex: inout Int) {
         let occupationItem = occupationItems[currentIndex]
-        let occupation = Occupation(context: managedObjectContext)
+        let occupation = OE_Occupation(context: managedObjectContext)
         occupation.code = occupationItem[0]
         occupation.title = occupationItem[1]
         occupation.parent = parent

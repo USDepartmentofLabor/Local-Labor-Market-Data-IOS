@@ -9,14 +9,16 @@
         <attribute name="cbsaCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="countyCode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="CE_Industry" representedClassName="CE_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="category"/>
+    <entity name="CE_Industry" representedClassName="CE_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="class"/>
     <entity name="County" representedClassName="County" parentEntity="Area" syncable="YES" codeGenerationType="category"/>
-    <entity name="Industry" representedClassName="Industry" syncable="YES" codeGenerationType="category">
+    <entity name="Industry" representedClassName="Industry" isAbstract="YES" parentEntity="Item" syncable="YES" codeGenerationType="category">
+        <attribute name="supersector" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="Item" representedClassName="Item" isAbstract="YES" syncable="YES" codeGenerationType="category">
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="supersector" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Industry" inverseName="subIndustry" inverseEntity="Industry" syncable="YES"/>
-        <relationship name="subIndustry" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Industry" inverseName="parent" inverseEntity="Industry" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Item" inverseName="parent" inverseEntity="Item" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="children" inverseEntity="Item" syncable="YES"/>
     </entity>
     <entity name="LAUS_Area" representedClassName="LAUS_Area" syncable="YES" codeGenerationType="category">
         <attribute name="areaCode" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,12 +29,7 @@
         <attribute name="stateCode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="National" representedClassName="National" parentEntity="Area" syncable="YES" codeGenerationType="class"/>
-    <entity name="Occupation" representedClassName="Occupation" syncable="YES" codeGenerationType="class">
-        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="children" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Occupation" inverseName="parent" inverseEntity="Occupation" syncable="YES"/>
-        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Occupation" inverseName="children" inverseEntity="Occupation" syncable="YES"/>
-    </entity>
+    <entity name="OE_Occupation" representedClassName="OE_Occupation" parentEntity="Item" syncable="YES" codeGenerationType="class"/>
     <entity name="SM_Industry" representedClassName="SM_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="class"/>
     <entity name="State" representedClassName="State" parentEntity="Area" syncable="YES" codeGenerationType="category"/>
     <entity name="ZipCBSAMap" representedClassName="ZipCBSAMap" syncable="YES" codeGenerationType="category">
@@ -52,14 +49,15 @@
         <element name="CbsaCountyMap" positionX="45" positionY="27" width="128" height="75"/>
         <element name="CE_Industry" positionX="54" positionY="18" width="128" height="45"/>
         <element name="County" positionX="63" positionY="-63" width="128" height="45"/>
-        <element name="Industry" positionX="63" positionY="27" width="128" height="120"/>
         <element name="LAUS_Area" positionX="45" positionY="18" width="128" height="90"/>
         <element name="Metro" positionX="43" positionY="126" width="128" height="60"/>
         <element name="National" positionX="63" positionY="45" width="128" height="45"/>
+        <element name="Item" positionX="45" positionY="9" width="128" height="105"/>
         <element name="SM_Industry" positionX="45" positionY="9" width="128" height="45"/>
         <element name="State" positionX="63" positionY="-124" width="128" height="43"/>
         <element name="ZipCBSAMap" positionX="-153" positionY="74" width="135" height="90"/>
         <element name="ZipCountyMap" positionX="-162" positionY="-97" width="128" height="75"/>
-        <element name="Occupation" positionX="45" positionY="9" width="128" height="105"/>
+        <element name="OE_Occupation" positionX="45" positionY="9" width="128" height="45"/>
+        <element name="Industry" positionX="54" positionY="18" width="128" height="60"/>
     </elements>
 </model>

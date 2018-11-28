@@ -1,5 +1,5 @@
 //
-//  CEIndustryViewController.swift
+//  ItemViewController.swift
 //  Local Labor Market Data
 //
 //  Created by Nidhi Chawla on 11/26/18.
@@ -8,72 +8,70 @@
 
 import UIKit
 
-class CEIndustryViewController: UIViewController {
+class ItemViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var parentIndustry: CE_Industry?
-    var industries: [CE_Industry]?
+    var parentItem: Item?
+    var items: [Item]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
     }
     
 
     func setupView() {
-        if parentIndustry == nil {
-            industries = CE_Industry.getSupersectors(context:
-                CoreDataManager.shared().viewManagedContext) as? [CE_Industry]
+        if parentItem == nil {
+//            occupations = CE_Industry.getSupersectors(context:
+//                CoreDataManager.shared().viewManagedContext)
             title = "Supersectors"
         }
         else {
-            industries = parentIndustry?.subItems() as? [CE_Industry]
-            title = parentIndustry?.title
+            items = parentItem?.subItems() as? [OE_Occupation]
+            title = parentItem?.title
         }
     }
 }
 
 // MARK: TableView DataSource
-extension CEIndustryViewController: UITableViewDataSource {
+extension ItemViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return industries?.count ?? 0
+        return items?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
         
-        if let industry = industries?[indexPath.row] {
-            cell.textLabel?.text = industry.title
+        if let item = items?[indexPath.row] {
+            cell.textLabel?.text = item.title
             
-            if (industry.subItems()?.count ?? 0) > 0 {
+            if (item.children?.count ?? 0) > 0 {
                 cell.accessoryType = .disclosureIndicator
             }
             else {
                 cell.accessoryType = .none
             }
         }
-        
         return cell
     }
 }
 
-extension CEIndustryViewController: UITableViewDelegate {
+extension ItemViewController: UITableViewDelegate {
 }
 
-extension CEIndustryViewController {
+extension ItemViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if segue.identifier == "showIndustry" {
+        if segue.identifier == "showOccupation" {
             if let cell = sender as? UITableViewCell,
                 let indexPath = tableView.indexPath(for: cell),
-                let destViewController = segue.destination as? CEIndustryViewController,
-                let industry = industries?[indexPath.row] {
-                    destViewController.parentIndustry = industry
+                let destViewController = segue.destination as? ItemViewController,
+                let item = items?[indexPath.row] {
+                    destViewController.parentItem = item
             }
         }
     }

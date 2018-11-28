@@ -395,10 +395,18 @@ extension MetroStateViewController: AreaSectionHeaderDelegate {
         if section.title == Section.IndustryEmploymentTitle {
             displayCEIndustry()
         }
+        else if section.title == Section.OccupationEmploymentTitle {
+            displayOESOccupation()
+        }
+
     }
     
     func displayCEIndustry() {
         performSegue(withIdentifier: "showIndustry", sender: self)
+    }
+    
+    func displayOESOccupation() {
+        performSegue(withIdentifier: "showOccupation", sender: self)
     }
 }
 

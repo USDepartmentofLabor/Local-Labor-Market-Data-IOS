@@ -240,6 +240,7 @@
                         <outlet property="tableView" destination="DX6-Km-Hcd" id="HUA-6m-zeh"/>
                         <segue destination="aBT-jb-OwT" kind="show" identifier="showInfo" id="JVm-UH-LeO"/>
                         <segue destination="mlb-lD-uxZ" kind="show" identifier="showIndustry" id="2u0-wo-yL8"/>
+                        <segue destination="QdT-t9-Sbm" kind="show" identifier="showOccupation" id="2kf-4M-44H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4H-Ko-5tM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -300,7 +301,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QBY-VF-m1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1817" y="1803"/>
+            <point key="canvasLocation" x="1190" y="1885"/>
         </scene>
         <!--Results View Controller-->
         <scene sceneID="VT9-sY-o2r">
@@ -848,6 +849,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1S-JR-QgY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5193" y="748"/>
+        </scene>
+        <!--Item View Controller-->
+        <scene sceneID="QcT-Bz-gVt">
+            <objects>
+                <viewController id="QdT-t9-Sbm" customClass="ItemViewController" customModule="Local_Labor_Market_Data" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jvf-xy-zxQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ab3-Nb-sIm">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" textLabel="pqJ-KE-hRM" style="IBUITableViewCellStyleDefault" id="CzK-xo-dZJ">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CzK-xo-dZJ" id="M0L-u3-Zxo">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pqJ-KE-hRM">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="QdT-t9-Sbm" kind="show" identifier="showIndustry" id="coQ-MZ-eaO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="QdT-t9-Sbm" id="zoh-b5-fet"/>
+                                    <outlet property="delegate" destination="QdT-t9-Sbm" id="54n-tC-boX"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0hS-C9-uM6" firstAttribute="bottom" secondItem="Ab3-Nb-sIm" secondAttribute="bottom" id="L8q-sq-IvT"/>
+                            <constraint firstItem="Ab3-Nb-sIm" firstAttribute="top" secondItem="0hS-C9-uM6" secondAttribute="top" id="Q84-No-54k"/>
+                            <constraint firstItem="Ab3-Nb-sIm" firstAttribute="leading" secondItem="0hS-C9-uM6" secondAttribute="leading" id="wUv-Gg-sBe"/>
+                            <constraint firstItem="0hS-C9-uM6" firstAttribute="trailing" secondItem="Ab3-Nb-sIm" secondAttribute="trailing" id="zPS-Ew-8gZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0hS-C9-uM6"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Ab3-Nb-sIm" id="jQF-Ov-eXj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wsn-qg-FQu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1990" y="1885"/>
         </scene>
     </scenes>
     <resources>

@@ -1,8 +1,8 @@
 //
-//  Industry+CoreDataClass.swift
+//  CE_Industry+CoreDataClass.swift
 //  Local Labor Market Data
 //
-//  Created by Nidhi Chawla on 11/26/18.
+//  Created by Nidhi Chawla on 11/16/18.
 //  Copyright © 2018 Department of Labor. All rights reserved.
 //
 //
@@ -11,20 +11,24 @@ import Foundation
 import CoreData
 
 @objc(Industry)
-public class Industry: NSManagedObject {
+public class Industry: Item {
     
-    // Sorted SubIndustries
-    func subIndustries() -> [Industry]? {
-        return (subIndustry?.allObjects as? [Industry])?.sorted()
+    class func getSupersectors(context: NSManagedObjectContext) -> [Industry]? {
+        let results: [Industry]?
+        
+        let fetchRequest: NSFetchRequest<Industry> = Industry.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "supersector = true")
+        
+        do {
+            results = try context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            results = nil
+        }
+        
+//        return results?.sorted(by: { ($0.code ?? "") < ($1.code ?? "") })
+        return results?.sorted()
     }
 }
 
-extension Industry: Comparable {
-    static func == (lhs: Industry, rhs: Industry) -> Bool {
-        return lhs.code == rhs.code
-    }
-    
-    public static func < (lhs: Industry, rhs: Industry) -> Bool {
-        return (lhs.code ?? "") < (rhs.code ?? "")
-    }
-}
+
