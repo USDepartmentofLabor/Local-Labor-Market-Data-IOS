@@ -1,0 +1,6 @@
+framework module Pods_Local_Labor_Market_DataUITests {
+  umbrella header "Pods-Local Labor Market DataUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

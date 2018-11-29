@@ -12,10 +12,15 @@ protocol AreaSectionHeaderDelegate: class {
     func sectionHeader(_ sectionHeader: AreaSectionHeaderView, toggleExpand section:Int)
     
     func sectionHeader(_ sectionHeader: AreaSectionHeaderView, displayDetails section:Int)
+    func sectionHeader(_ sectionHeader: AreaSectionHeaderView, displayHistory section:Int)
 }
 
 extension AreaSectionHeaderDelegate {
     func sectionHeader(_ sectionHeader: AreaSectionHeaderView, displayDetails section:Int) {
+        
+    }
+    
+    func sectionHeader(_ sectionHeader: AreaSectionHeaderView, displayHistory section:Int) {
         
     }
 }
@@ -64,9 +69,12 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
         toggleExpand(withUserAction: true)
     }
     
-    
     @IBAction func displayDetails(_ sender: Any) {
         delegate?.sectionHeader(self, displayDetails: section)
+    }
+    
+    @IBAction func displayHistory(_ sender: Any) {
+        delegate?.sectionHeader(self, displayHistory: section)
     }
     
     func configure(title: String, section: Int, collapse: Bool) {

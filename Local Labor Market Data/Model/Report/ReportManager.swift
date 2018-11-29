@@ -187,6 +187,33 @@ class ReportManager {
     }
 }
 
+// Mark: History
+extension ReportManager {
+    // Get
+    class func getHistory(areaReport: AreaReport, seasonalAdjustment: SeasonalAdjustment,
+                          completion: ((APIResult<[SeriesReport]?, ReportError>) -> Void)?) {
+        guard let seriesId = areaReport.seriesId else { return }
+        
+        _ = API().getReports(seriesIds: [seriesId], startYear: "", endYear: "",
+                             completion: { response in
+                                switch response {
+                                case .success(let reportResponse):
+            
+                                    // Map the series from response to request
+                                    if reportResponse.status == .REQUEST_SUCCEEDED {
+                                        let seriesReports = reportResponse.series
+                                        completion?(.success(seriesReports))
+                                    }
+                                case .failure(let error):
+                                    os_log("Report Error: %@", error.localizedDescription)
+            
+                                    completion?(.failure(error))
+                        }
+        })
+    }
+
+}
+
 extension ReportType: Hashable, Equatable {
     public var hashValue: Int {
         switch self {

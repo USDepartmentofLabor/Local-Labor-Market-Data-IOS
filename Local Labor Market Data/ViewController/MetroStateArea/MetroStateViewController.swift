@@ -180,18 +180,34 @@ class MetroStateViewController: AreaViewController {
             navigationController?.pushViewController(countyVC, animated: true)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Display History
+        if segue.identifier == "showHistory" {
+            if let destVC = segue.destination as? HistoryViewController,
+                let reportType = sender as? ReportType {
+
+                if let report = localAreaReportsDict?[reportType] {
+                    let viewModel = HistoryViewModel(areaReport: report)
+                    destVC.viewModel = viewModel
+                }
+            }
+        }
+    }
 }
 
-
-// Load Reports
+// MARK: Load Reports
 extension MetroStateViewController {
     
     func loadReports() {
         if seasonalAdjustment == .adjusted {
-            UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: "Loading Seasonally Adjusted Reports")
+            UIAccessibility.post(notification: UIAccessibility.Notification.announcement,
+                                 argument: "Loading Seasonally Adjusted Reports")
         }
         else {
-            UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: "Loading Not Seasonally Adjusted Reports")
+            UIAccessibility.post(notification: UIAccessibility.Notification.announcement,
+                                 argument: "Loading Not Seasonally Adjusted Reports")
         }
         
         // Empty Local/Nationa Area Reports
@@ -316,7 +332,7 @@ extension MetroStateViewController: UITableViewDataSource {
         guard let reportCell = cell as? ReportTableViewCell else { return }
         guard let reportType = sections[indexPath.section].reportTypes?.first else { return }
 
-         let localAreaSeriesReport = localAreaReportsDict?[reportType]?.seriesReport
+        let localAreaSeriesReport = localAreaReportsDict?[reportType]?.seriesReport
         if indexPath.row == 0 {
             reportCell.displaySeries(area: area, seriesReport: localAreaSeriesReport, periodName: nil, year: nil)
         }
@@ -343,6 +359,7 @@ extension MetroStateViewController: UITableViewDelegate {
     }
 }
 
+// MARK: Report Header Delegate
 extension MetroStateViewController: AreaSectionHeaderDelegate {
     // If user opens a section, close any previous opened Section
     func sectionHeader(_ sectionHeader: AreaSectionHeaderView, toggleExpand section: Int) {
@@ -388,6 +405,19 @@ extension MetroStateViewController: AreaSectionHeaderDelegate {
         tableView.endUpdates()
     }
     
+    func sectionHeader(_ sectionHeader: AreaSectionHeaderView, displayHistory section: Int) {
+        let section = sections[section]
+        
+        if section.title == Section.UnemploymentRateTitle {
+            displayUnemploymentHistory()
+        }
+        // For Industry Title
+        else if section.title == Section.IndustryEmploymentTitle {
+            displayIndustryHistory()
+        }
+        
+    }
+
     func sectionHeader(_ sectionHeader: AreaSectionHeaderView, displayDetails section: Int) {
         let section = sections[section]
         
@@ -398,18 +428,32 @@ extension MetroStateViewController: AreaSectionHeaderDelegate {
         else if section.title == Section.OccupationEmploymentTitle {
             displayOESOccupation()
         }
-
     }
     
     func displayCEIndustry() {
-        performSegue(withIdentifier: "showIndustry", sender: self)
+        let vc = ItemViewController<CE_Industry>(area: area, title: "Industry-Supersectors")
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func displayOESOccupation() {
-        performSegue(withIdentifier: "showOccupation", sender: self)
+        let viewModel = ItemViewModel<OE_Occupation>()
+//        performSegue(withIdentifier: "showOccupation", sender: self)
+        let vc = ItemViewController<OE_Occupation>(area: area, title: "Supersectors")
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func displayUnemploymentHistory() {
+        let reportType: ReportType = .unemployment(measureCode: .unemploymentRate)
+        performSegue(withIdentifier: "showHistory", sender: reportType)
+    }
+    
+    func displayIndustryHistory() {
+        let reportType: ReportType = .industryEmployment(industryCode: "00000000", .allEmployees)
+       performSegue(withIdentifier: "showHistory", sender: reportType)
     }
 }
 
+// MARK: Accesibility
 extension MetroStateViewController: UIAccessibilityContainerDataTable {
     func accessibilityDataTableCellElement(forRow row: Int, column: Int) -> UIAccessibilityContainerDataTableCell? {
         return nil

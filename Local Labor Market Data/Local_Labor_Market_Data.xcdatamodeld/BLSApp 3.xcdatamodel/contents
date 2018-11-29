@@ -9,7 +9,7 @@
         <attribute name="cbsaCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="countyCode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="CE_Industry" representedClassName="CE_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="class"/>
+    <entity name="CE_Industry" representedClassName="CE_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="category"/>
     <entity name="County" representedClassName="County" parentEntity="Area" syncable="YES" codeGenerationType="category"/>
     <entity name="Industry" representedClassName="Industry" isAbstract="YES" parentEntity="Item" syncable="YES" codeGenerationType="category">
         <attribute name="supersector" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -49,15 +49,15 @@
         <element name="CbsaCountyMap" positionX="45" positionY="27" width="128" height="75"/>
         <element name="CE_Industry" positionX="54" positionY="18" width="128" height="45"/>
         <element name="County" positionX="63" positionY="-63" width="128" height="45"/>
+        <element name="Industry" positionX="54" positionY="18" width="128" height="60"/>
+        <element name="Item" positionX="45" positionY="9" width="128" height="105"/>
         <element name="LAUS_Area" positionX="45" positionY="18" width="128" height="90"/>
         <element name="Metro" positionX="43" positionY="126" width="128" height="60"/>
         <element name="National" positionX="63" positionY="45" width="128" height="45"/>
-        <element name="Item" positionX="45" positionY="9" width="128" height="105"/>
+        <element name="OE_Occupation" positionX="45" positionY="9" width="128" height="45"/>
         <element name="SM_Industry" positionX="45" positionY="9" width="128" height="45"/>
         <element name="State" positionX="63" positionY="-124" width="128" height="43"/>
         <element name="ZipCBSAMap" positionX="-153" positionY="74" width="135" height="90"/>
         <element name="ZipCountyMap" positionX="-162" positionY="-97" width="128" height="75"/>
-        <element name="OE_Occupation" positionX="45" positionY="9" width="128" height="45"/>
-        <element name="Industry" positionX="54" positionY="18" width="128" height="60"/>
     </elements>
 </model>

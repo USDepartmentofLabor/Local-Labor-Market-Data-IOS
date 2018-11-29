@@ -13,22 +13,6 @@ import CoreData
 @objc(Industry)
 public class Industry: Item {
     
-    class func getSupersectors(context: NSManagedObjectContext) -> [Industry]? {
-        let results: [Industry]?
-        
-        let fetchRequest: NSFetchRequest<Industry> = Industry.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "supersector = true")
-        
-        do {
-            results = try context.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-            results = nil
-        }
-        
-//        return results?.sorted(by: { ($0.code ?? "") < ($1.code ?? "") })
-        return results?.sorted()
-    }
 }
 
 

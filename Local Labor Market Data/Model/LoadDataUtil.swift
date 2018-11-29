@@ -291,9 +291,7 @@ extension LoadDataUtil {
 
 // MARK: Load CES Industry
 extension LoadDataUtil {
-    private static let CE_SUPERSECTOR_MAP = "ce.supersector"
     private static let CE_INDUSTRY_MAP = "ce.industry"
-    private static let SM_SUPERSECTOR_MAP = "sm.supersector"
     private static let SM_INDUSTRY_MAP = "sm.industry"
     
     func loadCESIndustries() {
@@ -389,7 +387,9 @@ extension LoadDataUtil {
             else { return }
 
         var currentIndex = 2
-        loadOccupation(occupationItems: occupationItems, currentIndex: &currentIndex)
+        while currentIndex < occupationItems.count {
+            loadOccupation(occupationItems: occupationItems, currentIndex: &currentIndex)
+        }
         
         do {
             try managedObjectContext.save()
@@ -402,13 +402,16 @@ extension LoadDataUtil {
     private func loadOccupation(occupationItems: [[String]], parent: OE_Occupation? = nil, currentIndex: inout Int) {
         let occupationItem = occupationItems[currentIndex]
         let occupation = OE_Occupation(context: managedObjectContext)
+        
+        currentIndex = currentIndex+1
+        guard occupationItem.count > 1 else { return }
+        
         occupation.code = occupationItem[0]
         occupation.title = occupationItem[1]
         occupation.parent = parent
         
         // Load Children
         let parentCode = occupation.code?.trailingTrim(CharacterSet(charactersIn: "0")) ?? ""
-        currentIndex = currentIndex+1
         while occupationItems[currentIndex][0].hasPrefix(parentCode) {
             loadOccupation(occupationItems: occupationItems, parent: occupation, currentIndex: &currentIndex)
         }
