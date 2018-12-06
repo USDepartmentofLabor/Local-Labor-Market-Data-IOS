@@ -38,4 +38,28 @@ extension DateFormatter {
         
         return nil
     }
+    
+    class func month(fromMonth name: String) -> Int? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale.current
+        
+        dateFormatter.dateFormat = "MMMM"
+        
+        if let date = dateFormatter.date(from: name) {
+            let calendar = Calendar.current
+            let month = calendar.component(.month, from: date)
+            return month
+        }
+        
+        return nil
+    }
+    
+    class func date(fromMonth month: String, fromYear year: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale.current
+        
+        dateFormatter.dateFormat = "MMMM yyyy"
+        return dateFormatter.date(from: "\(month) \(year)")        
+    }
+
 }

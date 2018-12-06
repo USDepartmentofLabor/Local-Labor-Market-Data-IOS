@@ -27,7 +27,6 @@
 		0348FD1A211DD64800155BE8 /* EmploymentWageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0348FD18211DD64800155BE8 /* EmploymentWageTableViewCell.xib */; };
 		0348FD1D211E0AB200155BE8 /* OwnershipDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0348FD1B211E0AB200155BE8 /* OwnershipDataTableViewCell.xib */; };
 		0348FD1E211E0AB200155BE8 /* OwnershipDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD1C211E0AB200155BE8 /* OwnershipDataTableViewCell.swift */; };
-		0348FD20211E307900155BE8 /* QCEWReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD1F211E307900155BE8 /* QCEWReportManager.swift */; };
 		0348FD24211FB03D00155BE8 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD23211FB03D00155BE8 /* Dictionary+Extension.swift */; };
 		035D971B2126267F005F1CA9 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D971A2126267F005F1CA9 /* ActivityIndicatorView.swift */; };
 		035D971F21270782005F1CA9 /* NumberFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D971E21270782005F1CA9 /* NumberFormatter+Extension.swift */; };
@@ -68,7 +67,6 @@
 		03953C47211B297C00BED557 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C46211B297C00BED557 /* UIBarButtonItem+Extension.swift */; };
 		03953C49211B49E500BED557 /* GlossaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C48211B49E500BED557 /* GlossaryViewController.swift */; };
 		03953C4B211B509D00BED557 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C4A211B509D00BED557 /* AboutViewController.swift */; };
-		03953C4E211B8D0900BED557 /* QCEWDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C4D211B8D0900BED557 /* QCEWDataUtil.swift */; };
 		0396A00120FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03969FFF20FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift */; };
 		0396A013210268FF00DBECBD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A012210268FF00DBECBD /* SearchViewController.swift */; };
 		0396A0162106090800DBECBD /* LAUS_Area+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A0142106090800DBECBD /* LAUS_Area+CoreDataClass.swift */; };
@@ -143,7 +141,6 @@
 		0348FD18211DD64800155BE8 /* EmploymentWageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmploymentWageTableViewCell.xib; sourceTree = "<group>"; };
 		0348FD1B211E0AB200155BE8 /* OwnershipDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OwnershipDataTableViewCell.xib; sourceTree = "<group>"; };
 		0348FD1C211E0AB200155BE8 /* OwnershipDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnershipDataTableViewCell.swift; sourceTree = "<group>"; };
-		0348FD1F211E307900155BE8 /* QCEWReportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QCEWReportManager.swift; sourceTree = "<group>"; };
 		0348FD23211FB03D00155BE8 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		035D971A2126267F005F1CA9 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		035D971E21270782005F1CA9 /* NumberFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extension.swift"; sourceTree = "<group>"; };
@@ -184,7 +181,6 @@
 		03953C46211B297C00BED557 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		03953C48211B49E500BED557 /* GlossaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryViewController.swift; sourceTree = "<group>"; };
 		03953C4A211B509D00BED557 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		03953C4D211B8D0900BED557 /* QCEWDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QCEWDataUtil.swift; sourceTree = "<group>"; };
 		03969FFF20FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZipCBSAMap+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0396A012210268FF00DBECBD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0396A0142106090800DBECBD /* LAUS_Area+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LAUS_Area+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -333,7 +329,6 @@
 				03953C16210F98DC00BED557 /* CESReport.swift */,
 				03953C1E2110AE0100BED557 /* OESReport.swift */,
 				03953C3C2114A02600BED557 /* CPSReport.swift */,
-				0348FD1F211E307900155BE8 /* QCEWReportManager.swift */,
 				03CB7D0A2130A1B1001C1570 /* CacheManager.swift */,
 			);
 			path = Report;
@@ -352,7 +347,6 @@
 		03953C4C211B8CE100BED557 /* QCEW */ = {
 			isa = PBXGroup;
 			children = (
-				03953C4D211B8D0900BED557 /* QCEWDataUtil.swift */,
 				0348FD0B211B9A7200155BE8 /* QCEWReport.swift */,
 			);
 			path = QCEW;
@@ -858,14 +852,12 @@
 				0396A05A21061F2900DBECBD /* Bundle+Extension.swift in Sources */,
 				03953C3F2118D28400BED557 /* CountyViewController.swift in Sources */,
 				036164C2210B869B0055708A /* MetroStateViewController.swift in Sources */,
-				0348FD20211E307900155BE8 /* QCEWReportManager.swift in Sources */,
 				03953C0A210F631000BED557 /* Network.swift in Sources */,
 				03953C17210F98DC00BED557 /* CESReport.swift in Sources */,
 				0348FD1E211E0AB200155BE8 /* OwnershipDataTableViewCell.swift in Sources */,
 				03953C04210F528E00BED557 /* LAUSReport.swift in Sources */,
 				03F1F89820EAA93000662446 /* DataUtil.swift in Sources */,
 				03953C0B210F631000BED557 /* API.swift in Sources */,
-				03953C4E211B8D0900BED557 /* QCEWDataUtil.swift in Sources */,
 				036164CF210D2C660055708A /* State+CoreDataClass.swift in Sources */,
 				0323B7BB21AEE48000A3E73C /* ItemViewModel.swift in Sources */,
 				03953C49211B49E500BED557 /* GlossaryViewController.swift in Sources */,

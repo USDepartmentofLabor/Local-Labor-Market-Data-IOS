@@ -30,6 +30,7 @@
     </entity>
     <entity name="National" representedClassName="National" parentEntity="Area" syncable="YES" codeGenerationType="class"/>
     <entity name="OE_Occupation" representedClassName="OE_Occupation" parentEntity="Item" syncable="YES" codeGenerationType="class"/>
+    <entity name="QCEW_Industry" representedClassName="QCEW_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="class"/>
     <entity name="SM_Industry" representedClassName="SM_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="class"/>
     <entity name="State" representedClassName="State" parentEntity="Area" syncable="YES" codeGenerationType="category"/>
     <entity name="ZipCBSAMap" representedClassName="ZipCBSAMap" syncable="YES" codeGenerationType="category">
@@ -59,5 +60,6 @@
         <element name="State" positionX="63" positionY="-124" width="128" height="43"/>
         <element name="ZipCBSAMap" positionX="-153" positionY="74" width="135" height="90"/>
         <element name="ZipCountyMap" positionX="-162" positionY="-97" width="128" height="75"/>
+        <element name="QCEW_Industry" positionX="45" positionY="9" width="128" height="45"/>
     </elements>
 </model>

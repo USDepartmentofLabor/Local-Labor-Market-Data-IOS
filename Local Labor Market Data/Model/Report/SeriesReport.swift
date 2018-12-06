@@ -63,5 +63,6 @@ struct SeriesReport : Decodable {
         
         return latestData.periodName
     }
+    
 }
 

@@ -79,6 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataUtil.loadLAUSData()
         dataUtil.loadCESIndustries()
         dataUtil.loadOESOccupations()
+        dataUtil.loadQCEWIndustries()
     }
     
 }

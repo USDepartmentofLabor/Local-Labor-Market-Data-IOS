@@ -399,7 +399,9 @@ extension LoadDataUtil {
         }
     }
     
-    private func loadOccupation(occupationItems: [[String]], parent: OE_Occupation? = nil, currentIndex: inout Int) {
+    private func loadOccupation(occupationItems: [[String]], parent: OE_Occupation? = nil,
+                                currentIndex: inout Int) {
+        
         let occupationItem = occupationItems[currentIndex]
         let occupation = OE_Occupation(context: managedObjectContext)
         
@@ -419,3 +421,10 @@ extension LoadDataUtil {
 }
 
 
+// MARK: Load QCEW Industry
+extension LoadDataUtil {
+    func loadQCEWIndustries() {
+        QCEW_Industry.deleteAll(managedContext: managedObjectContext)
+        
+    }
+}

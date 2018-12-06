@@ -190,11 +190,43 @@ class ReportManager {
 // Mark: History
 extension ReportManager {
     // Get
-    class func getHistory(areaReport: AreaReport, seasonalAdjustment: SeasonalAdjustment,
+    class func getHistory(areaReport: AreaReport, seasonalAdjustment: SeasonalAdjustment? = nil,
+                          monthsHistory: Int,
                           completion: ((APIResult<[SeriesReport]?, ReportError>) -> Void)?) {
         guard let seriesId = areaReport.seriesId else { return }
         
-        _ = API().getReports(seriesIds: [seriesId], startYear: "", endYear: "",
+        // Get Month and Year of SeriesReport
+        // If SeriesReport doesn't have Year/Month then use today.
+        let calendar = Calendar.current
+        let latestDate: Date
+        
+        // If Latest SeriesReport is available, use that as End Year
+        let latestData = areaReport.seriesReport?.latestData()
+        if let latestData = latestData {
+            latestDate = DateFormatter.date(fromMonth: latestData.periodName, fromYear: latestData.year)
+                ?? Date()
+        }
+        else {
+            latestDate = Date()
+        }
+
+        let startDate = calendar.date(byAdding: .month, value: monthsHistory, to: latestDate)
+        let endYear = calendar.component(.year, from: latestDate)
+        let startYear: Int? = (startDate != nil) ? calendar.component(.year, from: startDate!) : nil
+        
+        if let startYear = startYear {
+            getHistory(seriesIds: [seriesId],
+                       startYear: String(startYear),
+                        endYear:String(endYear),
+                        completion: completion)
+        }
+    }
+    
+    class func getHistory(seriesIds: [String], seasonalAdjustment: SeasonalAdjustment? = nil,
+                          startYear: String, endYear: String,
+                          completion: ((APIResult<[SeriesReport]?, ReportError>) -> Void)?) {
+        
+        _ = API().getReports(seriesIds: seriesIds, startYear: startYear, endYear: endYear,
                              completion: { response in
                                 switch response {
                                 case .success(let reportResponse):

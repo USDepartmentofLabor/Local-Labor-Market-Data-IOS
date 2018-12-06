@@ -10,7 +10,11 @@ import Foundation
 
 
 class HistoryViewModel {
+    static var HISTORY_MONTHS = 24
+
     var areaReport: AreaReport
+    var localSeriesReport: [SeriesReport]?
+    var nationalSeriesReport: [SeriesReport]?
     
     init(areaReport: AreaReport) {
         self.areaReport = areaReport
@@ -32,6 +36,23 @@ class HistoryViewModel {
     }
     
     func loadHistory() {
-        
+        ReportManager.getHistory(areaReport: areaReport,
+                                 monthsHistory: HistoryViewModel.HISTORY_MONTHS) {
+                                    [weak self] (apiResult) in
+
+            guard let strongSelf = self else {return}
+
+            switch(apiResult) {
+            case .success(let seriesReport):
+                if (strongSelf.areaReport.area is National) {
+                    strongSelf.nationalSeriesReport = seriesReport
+                }
+                else {
+                    strongSelf.localSeriesReport = seriesReport
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }

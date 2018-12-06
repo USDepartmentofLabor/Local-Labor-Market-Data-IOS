@@ -253,9 +253,24 @@
                     <view key="view" contentMode="scaleToFill" id="Cg2-oE-pZ8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qA5-Wy-ywD" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="i8b-b5-m1b" firstAttribute="bottom" secondItem="qA5-Wy-ywD" secondAttribute="bottom" id="2q4-Ld-Tt1"/>
+                            <constraint firstItem="qA5-Wy-ywD" firstAttribute="leading" secondItem="i8b-b5-m1b" secondAttribute="leading" id="GgE-nb-Su6"/>
+                            <constraint firstItem="i8b-b5-m1b" firstAttribute="trailing" secondItem="qA5-Wy-ywD" secondAttribute="trailing" id="Np6-m1-VIZ"/>
+                            <constraint firstItem="qA5-Wy-ywD" firstAttribute="top" secondItem="i8b-b5-m1b" secondAttribute="top" id="y6f-kd-QUD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="i8b-b5-m1b"/>
                     </view>
+                    <connections>
+                        <outlet property="chartView" destination="qA5-Wy-ywD" id="LCJ-yh-caS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OAV-SH-fKC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
