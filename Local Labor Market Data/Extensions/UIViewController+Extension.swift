@@ -26,13 +26,16 @@ extension UIViewController {
 // MARK: Error Handling
 extension UIViewController {
     func handleError(error: Error, title: String? = nil) {
-        if let reportError = error as? ReportError {
-            
+        if let reportError = error as? ReportError {            
             let titleStr = title ?? reportError.title
-            let alertController = UIAlertController(title: titleStr, message: reportError.description, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
-            present(alertController, animated: false)
+            displayError(message: reportError.description, title: titleStr)
         }
+    }
+    
+    func displayError(message: String, title: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
+        present(alertController, animated: false)
     }
 }
 

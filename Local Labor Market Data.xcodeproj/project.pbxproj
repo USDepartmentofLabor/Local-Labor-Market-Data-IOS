@@ -1,10 +1,10 @@
 // !$*UTF8*$!
 {
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 50;
-	objects = {
+    archiveVersion = 1;
+    classes = {
+    };
+    objectVersion = 50;
+    objects = {
 
 /* Begin PBXBuildFile section */
 		0322AE2D21B04AF200592970 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322AE2C21B04AF200592970 /* HistoryViewController.swift */; };
@@ -19,1206 +19,1206 @@
 		0323B7BE21AEF1F300A3E73C /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */; };
 		03287A7F2187665A0067686A /* NECTACBSA_COUNTY.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */; };
 		032B242021AC8C8B0029AC90 /* oe.occupation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 032B241F21AC8C8B0029AC90 /* oe.occupation.txt */; };
-		032C16652138241E004C1B3F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16642138241E004C1B3F /* Util.swift */; };
-		032C16672139918B004C1B3F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16662139918B004C1B3F /* Settings.swift */; };
-		032C16692139927F004C1B3F /* UICustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16682139927F004C1B3F /* UICustomSwitch.swift */; };
-		0348FD0C211B9A7200155BE8 /* QCEWReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD0B211B9A7200155BE8 /* QCEWReport.swift */; };
-		0348FD19211DD64800155BE8 /* EmploymentWageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD17211DD64800155BE8 /* EmploymentWageTableViewCell.swift */; };
-		0348FD1A211DD64800155BE8 /* EmploymentWageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0348FD18211DD64800155BE8 /* EmploymentWageTableViewCell.xib */; };
-		0348FD1D211E0AB200155BE8 /* OwnershipDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0348FD1B211E0AB200155BE8 /* OwnershipDataTableViewCell.xib */; };
-		0348FD1E211E0AB200155BE8 /* OwnershipDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD1C211E0AB200155BE8 /* OwnershipDataTableViewCell.swift */; };
-		0348FD24211FB03D00155BE8 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD23211FB03D00155BE8 /* Dictionary+Extension.swift */; };
-		035D971B2126267F005F1CA9 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D971A2126267F005F1CA9 /* ActivityIndicatorView.swift */; };
-		035D971F21270782005F1CA9 /* NumberFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D971E21270782005F1CA9 /* NumberFormatter+Extension.swift */; };
-		035D9723212C4F3A005F1CA9 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D9722212C4F3A005F1CA9 /* Style.swift */; };
-		035D9725212C7DF9005F1CA9 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D9724212C7DF9005F1CA9 /* UILabel+Extension.swift */; };
-		036164B9210A67980055708A /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164B8210A67980055708A /* Array+Extension.swift */; };
-		036164C0210B5DB70055708A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036164BF210B5DB70055708A /* CoreLocation.framework */; };
-		036164C2210B869B0055708A /* MetroStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164C1210B869B0055708A /* MetroStateViewController.swift */; };
-		036164C4210BA5AE0055708A /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164C3210BA5AE0055708A /* ResultsViewController.swift */; };
-		036164C7210D2C310055708A /* County+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164C5210D2C310055708A /* County+CoreDataClass.swift */; };
-		036164CD210D2C660055708A /* Metro+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164C9210D2C660055708A /* Metro+CoreDataClass.swift */; };
-		036164CF210D2C660055708A /* State+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164CB210D2C660055708A /* State+CoreDataClass.swift */; };
-		03953C01210F50B200BED557 /* APIReportRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C00210F50B200BED557 /* APIReportRequest.swift */; };
-		03953C04210F528E00BED557 /* LAUSReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C03210F528E00BED557 /* LAUSReport.swift */; };
-		03953C0A210F631000BED557 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C08210F631000BED557 /* Network.swift */; };
-		03953C0B210F631000BED557 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C09210F631000BED557 /* API.swift */; };
-		03953C11210F83EF00BED557 /* SeriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C0E210F83EF00BED557 /* SeriesData.swift */; };
-		03953C12210F83EF00BED557 /* SeriesReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C0F210F83EF00BED557 /* SeriesReport.swift */; };
-		03953C13210F83EF00BED557 /* APIReportResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C10210F83EF00BED557 /* APIReportResponse.swift */; };
-		03953C15210F968100BED557 /* ReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C14210F968100BED557 /* ReportManager.swift */; };
-		03953C17210F98DC00BED557 /* CESReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C16210F98DC00BED557 /* CESReport.swift */; };
-		03953C19210F9F8C00BED557 /* Area+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C18210F9F8C00BED557 /* Area+CoreDataClass.swift */; };
-		03953C1F2110AE0100BED557 /* OESReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C1E2110AE0100BED557 /* OESReport.swift */; };
-		03953C212110EDB800BED557 /* AreaSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C202110EDB800BED557 /* AreaSectionHeaderView.swift */; };
-		03953C2B21122FDB00BED557 /* AreaSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03953C2A21122FDB00BED557 /* AreaSectionHeaderView.xib */; };
-		03953C2E2112360A00BED557 /* UnEmploymentRateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C2C2112360A00BED557 /* UnEmploymentRateTableViewCell.swift */; };
-		03953C2F2112360A00BED557 /* UnEmploymentRateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03953C2D2112360A00BED557 /* UnEmploymentRateTableViewCell.xib */; };
-		03953C3221136F1900BED557 /* IndustryEmploymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C3021136F1900BED557 /* IndustryEmploymentTableViewCell.swift */; };
-		03953C3321136F1900BED557 /* IndustryEmploymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03953C3121136F1900BED557 /* IndustryEmploymentTableViewCell.xib */; };
-		03953C372113877E00BED557 /* AreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C362113877E00BED557 /* AreaViewController.swift */; };
-		03953C3A211393D900BED557 /* OccupationalEmploymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C38211393D900BED557 /* OccupationalEmploymentTableViewCell.swift */; };
-		03953C3B211393D900BED557 /* OccupationalEmploymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03953C39211393D900BED557 /* OccupationalEmploymentTableViewCell.xib */; };
-		03953C3D2114A02600BED557 /* CPSReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C3C2114A02600BED557 /* CPSReport.swift */; };
-		03953C3F2118D28400BED557 /* CountyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C3E2118D28400BED557 /* CountyViewController.swift */; };
-		03953C412119C3D300BED557 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C402119C3D300BED557 /* UIColor+Extension.swift */; };
-		03953C43211A2A1500BED557 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C42211A2A1500BED557 /* UIView+Extension.swift */; };
-		03953C45211B23A300BED557 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C44211B23A300BED557 /* InfoViewController.swift */; };
-		03953C47211B297C00BED557 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C46211B297C00BED557 /* UIBarButtonItem+Extension.swift */; };
-		03953C49211B49E500BED557 /* GlossaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C48211B49E500BED557 /* GlossaryViewController.swift */; };
-		03953C4B211B509D00BED557 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C4A211B509D00BED557 /* AboutViewController.swift */; };
-		0396A00120FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03969FFF20FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift */; };
-		0396A013210268FF00DBECBD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A012210268FF00DBECBD /* SearchViewController.swift */; };
-		0396A0162106090800DBECBD /* LAUS_Area+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A0142106090800DBECBD /* LAUS_Area+CoreDataClass.swift */; };
-		0396A05A21061F2900DBECBD /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A05921061F2900DBECBD /* Bundle+Extension.swift */; };
-		0396A05D21074E5400DBECBD /* SearchSectionTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A05C21074E5400DBECBD /* SearchSectionTableHeaderView.swift */; };
-		0396A05F2107581400DBECBD /* SearchSectionTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0396A05E2107581400DBECBD /* SearchSectionTableHeaderView.xib */; };
-		0396A068210774E400DBECBD /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A067210774E400DBECBD /* UIViewController+Extension.swift */; };
-		0396A06C210A331600DBECBD /* LoadDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A06B210A331600DBECBD /* LoadDataUtil.swift */; };
-		03AC614020EAFB660088E694 /* NSManagedObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AC613F20EAFB660088E694 /* NSManagedObject+Extension.swift */; };
-		03B708882123026E00C370D7 /* OwnershipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B708862123026E00C370D7 /* OwnershipTableViewCell.swift */; };
-		03B708892123026E00C370D7 /* OwnershipTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03B708872123026E00C370D7 /* OwnershipTableViewCell.xib */; };
-		03B7088B2123211700C370D7 /* ReportViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B7088A2123211700C370D7 /* ReportViewCell.swift */; };
-		03CB7D092130470C001C1570 /* NationalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB7D082130470C001C1570 /* NationalViewController.swift */; };
-		03CB7D0B2130A1B1001C1570 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB7D0A2130A1B1001C1570 /* CacheManager.swift */; };
-		03E35084213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */; };
-		03E35085213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */; };
-		03E35086213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */; };
-		03E3508E213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3508D213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift */; };
-		03E35096213EFC1A00AC7383 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */; };
-		03F1F86120EA622D00662446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86020EA622D00662446 /* AppDelegate.swift */; };
-		03F1F86620EA622D00662446 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86420EA622D00662446 /* Main.storyboard */; };
-		03F1F86920EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86720EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld */; };
-		03F1F86B20EA623000662446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86A20EA623000662446 /* Assets.xcassets */; };
-		03F1F86E20EA623000662446 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86C20EA623000662446 /* LaunchScreen.storyboard */; };
-		03F1F87920EA623000662446 /* Local_Labor_Market_DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F87820EA623000662446 /* Local_Labor_Market_DataTests.swift */; };
-		03F1F89820EAA93000662446 /* DataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F89720EAA93000662446 /* DataUtil.swift */; };
-		03F1F89F20EABF0200662446 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F89E20EABF0200662446 /* CoreDataManager.swift */; };
-		03F1F8A220EAC99700662446 /* ZipCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F8A020EAC99700662446 /* ZipCountyMap+CoreDataClass.swift */; };
-		03F1F8A620EAD23C00662446 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F8A520EAD23C00662446 /* String+Extension.swift */; };
-		12559994DF82B8FAEFC34EBC /* Pods_Local_Labor_Market_Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5AB87D9078368A6696D4D4F /* Pods_Local_Labor_Market_Data.framework */; };
-		13F69C4C74B3CE64A313C4E7 /* Pods_Local_Labor_Market_DataUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB30557B868A6C1C804C809 /* Pods_Local_Labor_Market_DataUITests.framework */; };
-		597EE8F32188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */; };
-		59E7A05D219F45C30060B7FF /* sm.industry.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A059219F45C20060B7FF /* sm.industry.txt */; };
-		59E7A05F219F45C30060B7FF /* ce.industry.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A05B219F45C30060B7FF /* ce.industry.txt */; };
-		59E7A065219F69DF0060B7FF /* Industry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E7A063219F69DF0060B7FF /* Industry+CoreDataClass.swift */; };
-		59ECE38D21ADC2F000EE06BE /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ECE38C21ADC2F000EE06BE /* ItemViewController.swift */; };
-		9C6ECE10018322AD100C417F /* Pods_Local_Labor_Market_DataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A14D7D86491DEBEF52401E /* Pods_Local_Labor_Market_DataTests.framework */; };
+        032C16652138241E004C1B3F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16642138241E004C1B3F /* Util.swift */; };
+        032C16672139918B004C1B3F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16662139918B004C1B3F /* Settings.swift */; };
+        032C16692139927F004C1B3F /* UICustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16682139927F004C1B3F /* UICustomSwitch.swift */; };
+        0348FD0C211B9A7200155BE8 /* QCEWReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD0B211B9A7200155BE8 /* QCEWReport.swift */; };
+        0348FD19211DD64800155BE8 /* EmploymentWageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD17211DD64800155BE8 /* EmploymentWageTableViewCell.swift */; };
+        0348FD1A211DD64800155BE8 /* EmploymentWageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0348FD18211DD64800155BE8 /* EmploymentWageTableViewCell.xib */; };
+        0348FD1D211E0AB200155BE8 /* OwnershipDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0348FD1B211E0AB200155BE8 /* OwnershipDataTableViewCell.xib */; };
+        0348FD1E211E0AB200155BE8 /* OwnershipDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD1C211E0AB200155BE8 /* OwnershipDataTableViewCell.swift */; };
+        0348FD24211FB03D00155BE8 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD23211FB03D00155BE8 /* Dictionary+Extension.swift */; };
+        035D971B2126267F005F1CA9 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D971A2126267F005F1CA9 /* ActivityIndicatorView.swift */; };
+        035D971F21270782005F1CA9 /* NumberFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D971E21270782005F1CA9 /* NumberFormatter+Extension.swift */; };
+        035D9723212C4F3A005F1CA9 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D9722212C4F3A005F1CA9 /* Style.swift */; };
+        035D9725212C7DF9005F1CA9 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D9724212C7DF9005F1CA9 /* UILabel+Extension.swift */; };
+        036164B9210A67980055708A /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164B8210A67980055708A /* Array+Extension.swift */; };
+        036164C0210B5DB70055708A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036164BF210B5DB70055708A /* CoreLocation.framework */; };
+        036164C2210B869B0055708A /* MetroStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164C1210B869B0055708A /* MetroStateViewController.swift */; };
+        036164C4210BA5AE0055708A /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164C3210BA5AE0055708A /* ResultsViewController.swift */; };
+        036164C7210D2C310055708A /* County+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164C5210D2C310055708A /* County+CoreDataClass.swift */; };
+        036164CD210D2C660055708A /* Metro+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164C9210D2C660055708A /* Metro+CoreDataClass.swift */; };
+        036164CF210D2C660055708A /* State+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164CB210D2C660055708A /* State+CoreDataClass.swift */; };
+        03953C01210F50B200BED557 /* APIReportRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C00210F50B200BED557 /* APIReportRequest.swift */; };
+        03953C04210F528E00BED557 /* LAUSReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C03210F528E00BED557 /* LAUSReport.swift */; };
+        03953C0A210F631000BED557 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C08210F631000BED557 /* Network.swift */; };
+        03953C0B210F631000BED557 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C09210F631000BED557 /* API.swift */; };
+        03953C11210F83EF00BED557 /* SeriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C0E210F83EF00BED557 /* SeriesData.swift */; };
+        03953C12210F83EF00BED557 /* SeriesReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C0F210F83EF00BED557 /* SeriesReport.swift */; };
+        03953C13210F83EF00BED557 /* APIReportResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C10210F83EF00BED557 /* APIReportResponse.swift */; };
+        03953C15210F968100BED557 /* ReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C14210F968100BED557 /* ReportManager.swift */; };
+        03953C17210F98DC00BED557 /* CESReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C16210F98DC00BED557 /* CESReport.swift */; };
+        03953C19210F9F8C00BED557 /* Area+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C18210F9F8C00BED557 /* Area+CoreDataClass.swift */; };
+        03953C1F2110AE0100BED557 /* OESReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C1E2110AE0100BED557 /* OESReport.swift */; };
+        03953C212110EDB800BED557 /* AreaSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C202110EDB800BED557 /* AreaSectionHeaderView.swift */; };
+        03953C2B21122FDB00BED557 /* AreaSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03953C2A21122FDB00BED557 /* AreaSectionHeaderView.xib */; };
+        03953C2E2112360A00BED557 /* UnEmploymentRateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C2C2112360A00BED557 /* UnEmploymentRateTableViewCell.swift */; };
+        03953C2F2112360A00BED557 /* UnEmploymentRateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03953C2D2112360A00BED557 /* UnEmploymentRateTableViewCell.xib */; };
+        03953C3221136F1900BED557 /* IndustryEmploymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C3021136F1900BED557 /* IndustryEmploymentTableViewCell.swift */; };
+        03953C3321136F1900BED557 /* IndustryEmploymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03953C3121136F1900BED557 /* IndustryEmploymentTableViewCell.xib */; };
+        03953C372113877E00BED557 /* AreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C362113877E00BED557 /* AreaViewController.swift */; };
+        03953C3A211393D900BED557 /* OccupationalEmploymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C38211393D900BED557 /* OccupationalEmploymentTableViewCell.swift */; };
+        03953C3B211393D900BED557 /* OccupationalEmploymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03953C39211393D900BED557 /* OccupationalEmploymentTableViewCell.xib */; };
+        03953C3D2114A02600BED557 /* CPSReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C3C2114A02600BED557 /* CPSReport.swift */; };
+        03953C3F2118D28400BED557 /* CountyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C3E2118D28400BED557 /* CountyViewController.swift */; };
+        03953C412119C3D300BED557 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C402119C3D300BED557 /* UIColor+Extension.swift */; };
+        03953C43211A2A1500BED557 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C42211A2A1500BED557 /* UIView+Extension.swift */; };
+        03953C45211B23A300BED557 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C44211B23A300BED557 /* InfoViewController.swift */; };
+        03953C47211B297C00BED557 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C46211B297C00BED557 /* UIBarButtonItem+Extension.swift */; };
+        03953C49211B49E500BED557 /* GlossaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C48211B49E500BED557 /* GlossaryViewController.swift */; };
+        03953C4B211B509D00BED557 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C4A211B509D00BED557 /* AboutViewController.swift */; };
+        0396A00120FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03969FFF20FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift */; };
+        0396A013210268FF00DBECBD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A012210268FF00DBECBD /* SearchViewController.swift */; };
+        0396A0162106090800DBECBD /* LAUS_Area+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A0142106090800DBECBD /* LAUS_Area+CoreDataClass.swift */; };
+        0396A05A21061F2900DBECBD /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A05921061F2900DBECBD /* Bundle+Extension.swift */; };
+        0396A05D21074E5400DBECBD /* SearchSectionTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A05C21074E5400DBECBD /* SearchSectionTableHeaderView.swift */; };
+        0396A05F2107581400DBECBD /* SearchSectionTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0396A05E2107581400DBECBD /* SearchSectionTableHeaderView.xib */; };
+        0396A068210774E400DBECBD /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A067210774E400DBECBD /* UIViewController+Extension.swift */; };
+        0396A06C210A331600DBECBD /* LoadDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0396A06B210A331600DBECBD /* LoadDataUtil.swift */; };
+        03AC614020EAFB660088E694 /* NSManagedObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AC613F20EAFB660088E694 /* NSManagedObject+Extension.swift */; };
+        03B708882123026E00C370D7 /* OwnershipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B708862123026E00C370D7 /* OwnershipTableViewCell.swift */; };
+        03B708892123026E00C370D7 /* OwnershipTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03B708872123026E00C370D7 /* OwnershipTableViewCell.xib */; };
+        03B7088B2123211700C370D7 /* ReportViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B7088A2123211700C370D7 /* ReportViewCell.swift */; };
+        03CB7D092130470C001C1570 /* NationalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB7D082130470C001C1570 /* NationalViewController.swift */; };
+        03CB7D0B2130A1B1001C1570 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB7D0A2130A1B1001C1570 /* CacheManager.swift */; };
+        03E35084213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */; };
+        03E35085213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */; };
+        03E35086213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */; };
+        03E3508E213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3508D213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift */; };
+        03E35096213EFC1A00AC7383 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */; };
+        03F1F86120EA622D00662446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86020EA622D00662446 /* AppDelegate.swift */; };
+        03F1F86620EA622D00662446 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86420EA622D00662446 /* Main.storyboard */; };
+        03F1F86920EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86720EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld */; };
+        03F1F86B20EA623000662446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86A20EA623000662446 /* Assets.xcassets */; };
+        03F1F86E20EA623000662446 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86C20EA623000662446 /* LaunchScreen.storyboard */; };
+        03F1F87920EA623000662446 /* Local_Labor_Market_DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F87820EA623000662446 /* Local_Labor_Market_DataTests.swift */; };
+        03F1F89820EAA93000662446 /* DataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F89720EAA93000662446 /* DataUtil.swift */; };
+        03F1F89F20EABF0200662446 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F89E20EABF0200662446 /* CoreDataManager.swift */; };
+        03F1F8A220EAC99700662446 /* ZipCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F8A020EAC99700662446 /* ZipCountyMap+CoreDataClass.swift */; };
+        03F1F8A620EAD23C00662446 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F8A520EAD23C00662446 /* String+Extension.swift */; };
+        12559994DF82B8FAEFC34EBC /* Pods_Local_Labor_Market_Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5AB87D9078368A6696D4D4F /* Pods_Local_Labor_Market_Data.framework */; };
+        13F69C4C74B3CE64A313C4E7 /* Pods_Local_Labor_Market_DataUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB30557B868A6C1C804C809 /* Pods_Local_Labor_Market_DataUITests.framework */; };
+        597EE8F32188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */; };
+        59E7A05D219F45C30060B7FF /* sm.industry.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A059219F45C20060B7FF /* sm.industry.txt */; };
+        59E7A05F219F45C30060B7FF /* ce.industry.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A05B219F45C30060B7FF /* ce.industry.txt */; };
+        59E7A065219F69DF0060B7FF /* Industry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E7A063219F69DF0060B7FF /* Industry+CoreDataClass.swift */; };
+        59ECE38D21ADC2F000EE06BE /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ECE38C21ADC2F000EE06BE /* ItemViewController.swift */; };
+        9C6ECE10018322AD100C417F /* Pods_Local_Labor_Market_DataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A14D7D86491DEBEF52401E /* Pods_Local_Labor_Market_DataTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		03E35090213ED85900AC7383 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 03F1F85520EA622D00662446 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 03F1F85C20EA622D00662446;
-			remoteInfo = "Local Labor Market Data";
-		};
-		03F1F87520EA623000662446 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 03F1F85520EA622D00662446 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 03F1F85C20EA622D00662446;
-			remoteInfo = BLSApp;
-		};
+        03E35090213ED85900AC7383 /* PBXContainerItemProxy */ = {
+            isa = PBXContainerItemProxy;
+            containerPortal = 03F1F85520EA622D00662446 /* Project object */;
+            proxyType = 1;
+            remoteGlobalIDString = 03F1F85C20EA622D00662446;
+            remoteInfo = "Local Labor Market Data";
+        };
+        03F1F87520EA623000662446 /* PBXContainerItemProxy */ = {
+            isa = PBXContainerItemProxy;
+            containerPortal = 03F1F85520EA622D00662446 /* Project object */;
+            proxyType = 1;
+            remoteGlobalIDString = 03F1F85C20EA622D00662446;
+            remoteInfo = BLSApp;
+        };
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0322AE2C21B04AF200592970 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		0322AE2E21B063A900592970 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
-		0323B7B821AED3FA00A3E73C /* CE_Industry+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CE_Industry+CoreDataClass.swift"; sourceTree = "<group>"; };
-		0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
-		0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
-		03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BLSApp 2.xcdatamodel"; sourceTree = "<group>"; };
-		03287A7C2187665A0067686A /* CBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CBSA_COUNTY.txt; sourceTree = "<group>"; };
-		03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NECTACBSA_COUNTY.txt; sourceTree = "<group>"; };
-		032B241F21AC8C8B0029AC90 /* oe.occupation.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oe.occupation.txt; sourceTree = "<group>"; };
-		032C16642138241E004C1B3F /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		032C16662139918B004C1B3F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		032C16682139927F004C1B3F /* UICustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomSwitch.swift; sourceTree = "<group>"; };
-		0348FD0B211B9A7200155BE8 /* QCEWReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QCEWReport.swift; sourceTree = "<group>"; };
-		0348FD17211DD64800155BE8 /* EmploymentWageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmploymentWageTableViewCell.swift; sourceTree = "<group>"; };
-		0348FD18211DD64800155BE8 /* EmploymentWageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmploymentWageTableViewCell.xib; sourceTree = "<group>"; };
-		0348FD1B211E0AB200155BE8 /* OwnershipDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OwnershipDataTableViewCell.xib; sourceTree = "<group>"; };
-		0348FD1C211E0AB200155BE8 /* OwnershipDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnershipDataTableViewCell.swift; sourceTree = "<group>"; };
-		0348FD23211FB03D00155BE8 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
-		035D971A2126267F005F1CA9 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
-		035D971E21270782005F1CA9 /* NumberFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extension.swift"; sourceTree = "<group>"; };
-		035D9722212C4F3A005F1CA9 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
-		035D9724212C7DF9005F1CA9 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
-		036164B8210A67980055708A /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
-		036164BF210B5DB70055708A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		036164C1210B869B0055708A /* MetroStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroStateViewController.swift; sourceTree = "<group>"; };
-		036164C3210BA5AE0055708A /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
-		036164C5210D2C310055708A /* County+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "County+CoreDataClass.swift"; sourceTree = "<group>"; };
-		036164C9210D2C660055708A /* Metro+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metro+CoreDataClass.swift"; sourceTree = "<group>"; };
-		036164CB210D2C660055708A /* State+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "State+CoreDataClass.swift"; sourceTree = "<group>"; };
-		03953C00210F50B200BED557 /* APIReportRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIReportRequest.swift; sourceTree = "<group>"; };
-		03953C03210F528E00BED557 /* LAUSReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LAUSReport.swift; sourceTree = "<group>"; };
-		03953C08210F631000BED557 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		03953C09210F631000BED557 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		03953C0E210F83EF00BED557 /* SeriesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesData.swift; sourceTree = "<group>"; };
-		03953C0F210F83EF00BED557 /* SeriesReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesReport.swift; sourceTree = "<group>"; };
-		03953C10210F83EF00BED557 /* APIReportResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIReportResponse.swift; sourceTree = "<group>"; };
-		03953C14210F968100BED557 /* ReportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportManager.swift; sourceTree = "<group>"; };
-		03953C16210F98DC00BED557 /* CESReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CESReport.swift; sourceTree = "<group>"; };
-		03953C18210F9F8C00BED557 /* Area+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Area+CoreDataClass.swift"; sourceTree = "<group>"; };
-		03953C1E2110AE0100BED557 /* OESReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OESReport.swift; sourceTree = "<group>"; };
-		03953C202110EDB800BED557 /* AreaSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaSectionHeaderView.swift; sourceTree = "<group>"; };
-		03953C2A21122FDB00BED557 /* AreaSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AreaSectionHeaderView.xib; sourceTree = "<group>"; };
-		03953C2C2112360A00BED557 /* UnEmploymentRateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnEmploymentRateTableViewCell.swift; sourceTree = "<group>"; };
-		03953C2D2112360A00BED557 /* UnEmploymentRateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnEmploymentRateTableViewCell.xib; sourceTree = "<group>"; };
-		03953C3021136F1900BED557 /* IndustryEmploymentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndustryEmploymentTableViewCell.swift; sourceTree = "<group>"; };
-		03953C3121136F1900BED557 /* IndustryEmploymentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndustryEmploymentTableViewCell.xib; sourceTree = "<group>"; };
-		03953C362113877E00BED557 /* AreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaViewController.swift; sourceTree = "<group>"; };
-		03953C38211393D900BED557 /* OccupationalEmploymentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccupationalEmploymentTableViewCell.swift; sourceTree = "<group>"; };
-		03953C39211393D900BED557 /* OccupationalEmploymentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OccupationalEmploymentTableViewCell.xib; sourceTree = "<group>"; };
-		03953C3C2114A02600BED557 /* CPSReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPSReport.swift; sourceTree = "<group>"; };
-		03953C3E2118D28400BED557 /* CountyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountyViewController.swift; sourceTree = "<group>"; };
-		03953C402119C3D300BED557 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		03953C42211A2A1500BED557 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		03953C44211B23A300BED557 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		03953C46211B297C00BED557 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
-		03953C48211B49E500BED557 /* GlossaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryViewController.swift; sourceTree = "<group>"; };
-		03953C4A211B509D00BED557 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		03969FFF20FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZipCBSAMap+CoreDataClass.swift"; sourceTree = "<group>"; };
-		0396A012210268FF00DBECBD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		0396A0142106090800DBECBD /* LAUS_Area+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LAUS_Area+CoreDataClass.swift"; sourceTree = "<group>"; };
-		0396A05521061D1300DBECBD /* LAUS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LAUS; sourceTree = "<group>"; };
-		0396A05621061D1300DBECBD /* QCEW */ = {isa = PBXFileReference; lastKnownFileType = folder; path = QCEW; sourceTree = "<group>"; };
-		0396A05921061F2900DBECBD /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
-		0396A05C21074E5400DBECBD /* SearchSectionTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSectionTableHeaderView.swift; sourceTree = "<group>"; };
-		0396A05E2107581400DBECBD /* SearchSectionTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSectionTableHeaderView.xib; sourceTree = "<group>"; };
-		0396A067210774E400DBECBD /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		0396A06B210A331600DBECBD /* LoadDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDataUtil.swift; sourceTree = "<group>"; };
-		03AC613F20EAFB660088E694 /* NSManagedObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extension.swift"; sourceTree = "<group>"; };
-		03B708862123026E00C370D7 /* OwnershipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnershipTableViewCell.swift; sourceTree = "<group>"; };
-		03B708872123026E00C370D7 /* OwnershipTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OwnershipTableViewCell.xib; sourceTree = "<group>"; };
-		03B7088A2123211700C370D7 /* ReportViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewCell.swift; sourceTree = "<group>"; };
-		03CB7D082130470C001C1570 /* NationalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalViewController.swift; sourceTree = "<group>"; };
-		03CB7D0A2130A1B1001C1570 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
-		03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Local_Labor_Market_Data.sqlite; sourceTree = "<group>"; };
-		03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Local_Labor_Market_Data.sqlite-wal"; sourceTree = "<group>"; };
-		03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Local_Labor_Market_Data.sqlite-shm"; sourceTree = "<group>"; };
-		03E3508B213ED85900AC7383 /* Local Labor Market DataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Local Labor Market DataUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		03E3508D213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Local_Labor_Market_DataUITests.swift; sourceTree = "<group>"; };
-		03E3508F213ED85900AC7383 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
-		03F1F85D20EA622D00662446 /* Local Labor Market Data.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Local Labor Market Data.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		03F1F86020EA622D00662446 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		03F1F86520EA622D00662446 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		03F1F86820EA622D00662446 /* BLSApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BLSApp.xcdatamodel; sourceTree = "<group>"; };
-		03F1F86A20EA623000662446 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		03F1F86D20EA623000662446 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		03F1F86F20EA623000662446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03F1F87420EA623000662446 /* Local Labor Market DataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Local Labor Market DataTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		03F1F87820EA623000662446 /* Local_Labor_Market_DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Local_Labor_Market_DataTests.swift; sourceTree = "<group>"; };
-		03F1F87A20EA623000662446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03F1F89220EAA6C200662446 /* ZIP_CBSA.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZIP_CBSA.csv; sourceTree = "<group>"; };
-		03F1F89320EAA6C200662446 /* ZIP_COUNTY.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZIP_COUNTY.csv; sourceTree = "<group>"; };
-		03F1F89720EAA93000662446 /* DataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUtil.swift; sourceTree = "<group>"; };
-		03F1F89E20EABF0200662446 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		03F1F8A020EAC99700662446 /* ZipCountyMap+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZipCountyMap+CoreDataClass.swift"; sourceTree = "<group>"; };
-		03F1F8A520EAD23C00662446 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		04CAEFBB44F319BB2DAE7CF1 /* Pods-Local Labor Market DataTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Local Labor Market DataTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Local Labor Market DataTests/Pods-Local Labor Market DataTests.release.xcconfig"; sourceTree = "<group>"; };
-		2135BA66718F87B55EB3D9A0 /* Pods-Local Labor Market DataUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Local Labor Market DataUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Local Labor Market DataUITests/Pods-Local Labor Market DataUITests.release.xcconfig"; sourceTree = "<group>"; };
-		4E6A92103FB212CB270FA9AA /* Pods-Local Labor Market DataUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Local Labor Market DataUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Local Labor Market DataUITests/Pods-Local Labor Market DataUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CbsaCountyMap+CoreDataClass.swift"; sourceTree = "<group>"; };
-		59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZIP_NECTA.csv; sourceTree = "<group>"; };
-		59E7A057219F45630060B7FF /* BLSApp 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BLSApp 3.xcdatamodel"; sourceTree = "<group>"; };
-		59E7A059219F45C20060B7FF /* sm.industry.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sm.industry.txt; sourceTree = "<group>"; };
-		59E7A05B219F45C30060B7FF /* ce.industry.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ce.industry.txt; sourceTree = "<group>"; };
-		59E7A063219F69DF0060B7FF /* Industry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Industry+CoreDataClass.swift"; sourceTree = "<group>"; };
-		59ECE38C21ADC2F000EE06BE /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
-		B331991BCEAB2EFA65C5A8AE /* Pods-Local Labor Market DataTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Local Labor Market DataTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Local Labor Market DataTests/Pods-Local Labor Market DataTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B9A14D7D86491DEBEF52401E /* Pods_Local_Labor_Market_DataTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Local_Labor_Market_DataTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDB30557B868A6C1C804C809 /* Pods_Local_Labor_Market_DataUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Local_Labor_Market_DataUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E48D8C4DF2105E5CC3C73D26 /* Pods-Local Labor Market Data.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Local Labor Market Data.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data.debug.xcconfig"; sourceTree = "<group>"; };
-		E5AB87D9078368A6696D4D4F /* Pods_Local_Labor_Market_Data.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Local_Labor_Market_Data.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA7CB4E8B74C84B3038D6C93 /* Pods-Local Labor Market Data.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Local Labor Market Data.release.xcconfig"; path = "Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data.release.xcconfig"; sourceTree = "<group>"; };
+        0322AE2C21B04AF200592970 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+        0322AE2E21B063A900592970 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+        0323B7B821AED3FA00A3E73C /* CE_Industry+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CE_Industry+CoreDataClass.swift"; sourceTree = "<group>"; };
+        0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
+        0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+        03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BLSApp 2.xcdatamodel"; sourceTree = "<group>"; };
+        03287A7C2187665A0067686A /* CBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CBSA_COUNTY.txt; sourceTree = "<group>"; };
+        03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NECTACBSA_COUNTY.txt; sourceTree = "<group>"; };
+        032B241F21AC8C8B0029AC90 /* oe.occupation.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oe.occupation.txt; sourceTree = "<group>"; };
+        032C16642138241E004C1B3F /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+        032C16662139918B004C1B3F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+        032C16682139927F004C1B3F /* UICustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomSwitch.swift; sourceTree = "<group>"; };
+        0348FD0B211B9A7200155BE8 /* QCEWReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QCEWReport.swift; sourceTree = "<group>"; };
+        0348FD17211DD64800155BE8 /* EmploymentWageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmploymentWageTableViewCell.swift; sourceTree = "<group>"; };
+        0348FD18211DD64800155BE8 /* EmploymentWageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmploymentWageTableViewCell.xib; sourceTree = "<group>"; };
+        0348FD1B211E0AB200155BE8 /* OwnershipDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OwnershipDataTableViewCell.xib; sourceTree = "<group>"; };
+        0348FD1C211E0AB200155BE8 /* OwnershipDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnershipDataTableViewCell.swift; sourceTree = "<group>"; };
+        0348FD23211FB03D00155BE8 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+        035D971A2126267F005F1CA9 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+        035D971E21270782005F1CA9 /* NumberFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extension.swift"; sourceTree = "<group>"; };
+        035D9722212C4F3A005F1CA9 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+        035D9724212C7DF9005F1CA9 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+        036164B8210A67980055708A /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+        036164BF210B5DB70055708A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+        036164C1210B869B0055708A /* MetroStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroStateViewController.swift; sourceTree = "<group>"; };
+        036164C3210BA5AE0055708A /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+        036164C5210D2C310055708A /* County+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "County+CoreDataClass.swift"; sourceTree = "<group>"; };
+        036164C9210D2C660055708A /* Metro+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metro+CoreDataClass.swift"; sourceTree = "<group>"; };
+        036164CB210D2C660055708A /* State+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "State+CoreDataClass.swift"; sourceTree = "<group>"; };
+        03953C00210F50B200BED557 /* APIReportRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIReportRequest.swift; sourceTree = "<group>"; };
+        03953C03210F528E00BED557 /* LAUSReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LAUSReport.swift; sourceTree = "<group>"; };
+        03953C08210F631000BED557 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+        03953C09210F631000BED557 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+        03953C0E210F83EF00BED557 /* SeriesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesData.swift; sourceTree = "<group>"; };
+        03953C0F210F83EF00BED557 /* SeriesReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesReport.swift; sourceTree = "<group>"; };
+        03953C10210F83EF00BED557 /* APIReportResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIReportResponse.swift; sourceTree = "<group>"; };
+        03953C14210F968100BED557 /* ReportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportManager.swift; sourceTree = "<group>"; };
+        03953C16210F98DC00BED557 /* CESReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CESReport.swift; sourceTree = "<group>"; };
+        03953C18210F9F8C00BED557 /* Area+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Area+CoreDataClass.swift"; sourceTree = "<group>"; };
+        03953C1E2110AE0100BED557 /* OESReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OESReport.swift; sourceTree = "<group>"; };
+        03953C202110EDB800BED557 /* AreaSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaSectionHeaderView.swift; sourceTree = "<group>"; };
+        03953C2A21122FDB00BED557 /* AreaSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AreaSectionHeaderView.xib; sourceTree = "<group>"; };
+        03953C2C2112360A00BED557 /* UnEmploymentRateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnEmploymentRateTableViewCell.swift; sourceTree = "<group>"; };
+        03953C2D2112360A00BED557 /* UnEmploymentRateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnEmploymentRateTableViewCell.xib; sourceTree = "<group>"; };
+        03953C3021136F1900BED557 /* IndustryEmploymentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndustryEmploymentTableViewCell.swift; sourceTree = "<group>"; };
+        03953C3121136F1900BED557 /* IndustryEmploymentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndustryEmploymentTableViewCell.xib; sourceTree = "<group>"; };
+        03953C362113877E00BED557 /* AreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaViewController.swift; sourceTree = "<group>"; };
+        03953C38211393D900BED557 /* OccupationalEmploymentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccupationalEmploymentTableViewCell.swift; sourceTree = "<group>"; };
+        03953C39211393D900BED557 /* OccupationalEmploymentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OccupationalEmploymentTableViewCell.xib; sourceTree = "<group>"; };
+        03953C3C2114A02600BED557 /* CPSReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPSReport.swift; sourceTree = "<group>"; };
+        03953C3E2118D28400BED557 /* CountyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountyViewController.swift; sourceTree = "<group>"; };
+        03953C402119C3D300BED557 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+        03953C42211A2A1500BED557 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+        03953C44211B23A300BED557 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+        03953C46211B297C00BED557 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
+        03953C48211B49E500BED557 /* GlossaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryViewController.swift; sourceTree = "<group>"; };
+        03953C4A211B509D00BED557 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+        03969FFF20FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZipCBSAMap+CoreDataClass.swift"; sourceTree = "<group>"; };
+        0396A012210268FF00DBECBD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+        0396A0142106090800DBECBD /* LAUS_Area+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LAUS_Area+CoreDataClass.swift"; sourceTree = "<group>"; };
+        0396A05521061D1300DBECBD /* LAUS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LAUS; sourceTree = "<group>"; };
+        0396A05621061D1300DBECBD /* QCEW */ = {isa = PBXFileReference; lastKnownFileType = folder; path = QCEW; sourceTree = "<group>"; };
+        0396A05921061F2900DBECBD /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+        0396A05C21074E5400DBECBD /* SearchSectionTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSectionTableHeaderView.swift; sourceTree = "<group>"; };
+        0396A05E2107581400DBECBD /* SearchSectionTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSectionTableHeaderView.xib; sourceTree = "<group>"; };
+        0396A067210774E400DBECBD /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+        0396A06B210A331600DBECBD /* LoadDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDataUtil.swift; sourceTree = "<group>"; };
+        03AC613F20EAFB660088E694 /* NSManagedObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extension.swift"; sourceTree = "<group>"; };
+        03B708862123026E00C370D7 /* OwnershipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnershipTableViewCell.swift; sourceTree = "<group>"; };
+        03B708872123026E00C370D7 /* OwnershipTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OwnershipTableViewCell.xib; sourceTree = "<group>"; };
+        03B7088A2123211700C370D7 /* ReportViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewCell.swift; sourceTree = "<group>"; };
+        03CB7D082130470C001C1570 /* NationalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalViewController.swift; sourceTree = "<group>"; };
+        03CB7D0A2130A1B1001C1570 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+        03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Local_Labor_Market_Data.sqlite; sourceTree = "<group>"; };
+        03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Local_Labor_Market_Data.sqlite-wal"; sourceTree = "<group>"; };
+        03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Local_Labor_Market_Data.sqlite-shm"; sourceTree = "<group>"; };
+        03E3508B213ED85900AC7383 /* Local Labor Market DataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Local Labor Market DataUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+        03E3508D213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Local_Labor_Market_DataUITests.swift; sourceTree = "<group>"; };
+        03E3508F213ED85900AC7383 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+        03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+        03F1F85D20EA622D00662446 /* Local Labor Market Data.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Local Labor Market Data.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+        03F1F86020EA622D00662446 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+        03F1F86520EA622D00662446 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+        03F1F86820EA622D00662446 /* BLSApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BLSApp.xcdatamodel; sourceTree = "<group>"; };
+        03F1F86A20EA623000662446 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+        03F1F86D20EA623000662446 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+        03F1F86F20EA623000662446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+        03F1F87420EA623000662446 /* Local Labor Market DataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Local Labor Market DataTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+        03F1F87820EA623000662446 /* Local_Labor_Market_DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Local_Labor_Market_DataTests.swift; sourceTree = "<group>"; };
+        03F1F87A20EA623000662446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+        03F1F89220EAA6C200662446 /* ZIP_CBSA.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZIP_CBSA.csv; sourceTree = "<group>"; };
+        03F1F89320EAA6C200662446 /* ZIP_COUNTY.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZIP_COUNTY.csv; sourceTree = "<group>"; };
+        03F1F89720EAA93000662446 /* DataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUtil.swift; sourceTree = "<group>"; };
+        03F1F89E20EABF0200662446 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+        03F1F8A020EAC99700662446 /* ZipCountyMap+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZipCountyMap+CoreDataClass.swift"; sourceTree = "<group>"; };
+        03F1F8A520EAD23C00662446 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+        04CAEFBB44F319BB2DAE7CF1 /* Pods-Local Labor Market DataTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Local Labor Market DataTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Local Labor Market DataTests/Pods-Local Labor Market DataTests.release.xcconfig"; sourceTree = "<group>"; };
+        2135BA66718F87B55EB3D9A0 /* Pods-Local Labor Market DataUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Local Labor Market DataUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Local Labor Market DataUITests/Pods-Local Labor Market DataUITests.release.xcconfig"; sourceTree = "<group>"; };
+        4E6A92103FB212CB270FA9AA /* Pods-Local Labor Market DataUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Local Labor Market DataUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Local Labor Market DataUITests/Pods-Local Labor Market DataUITests.debug.xcconfig"; sourceTree = "<group>"; };
+        597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CbsaCountyMap+CoreDataClass.swift"; sourceTree = "<group>"; };
+        59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZIP_NECTA.csv; sourceTree = "<group>"; };
+        59E7A057219F45630060B7FF /* BLSApp 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BLSApp 3.xcdatamodel"; sourceTree = "<group>"; };
+        59E7A059219F45C20060B7FF /* sm.industry.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sm.industry.txt; sourceTree = "<group>"; };
+        59E7A05B219F45C30060B7FF /* ce.industry.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ce.industry.txt; sourceTree = "<group>"; };
+        59E7A063219F69DF0060B7FF /* Industry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Industry+CoreDataClass.swift"; sourceTree = "<group>"; };
+        59ECE38C21ADC2F000EE06BE /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
+        B331991BCEAB2EFA65C5A8AE /* Pods-Local Labor Market DataTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Local Labor Market DataTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Local Labor Market DataTests/Pods-Local Labor Market DataTests.debug.xcconfig"; sourceTree = "<group>"; };
+        B9A14D7D86491DEBEF52401E /* Pods_Local_Labor_Market_DataTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Local_Labor_Market_DataTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+        CDB30557B868A6C1C804C809 /* Pods_Local_Labor_Market_DataUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Local_Labor_Market_DataUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+        E48D8C4DF2105E5CC3C73D26 /* Pods-Local Labor Market Data.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Local Labor Market Data.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data.debug.xcconfig"; sourceTree = "<group>"; };
+        E5AB87D9078368A6696D4D4F /* Pods_Local_Labor_Market_Data.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Local_Labor_Market_Data.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+        EA7CB4E8B74C84B3038D6C93 /* Pods-Local Labor Market Data.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Local Labor Market Data.release.xcconfig"; path = "Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		03E35088213ED85900AC7383 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				13F69C4C74B3CE64A313C4E7 /* Pods_Local_Labor_Market_DataUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		03F1F85A20EA622D00662446 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				036164C0210B5DB70055708A /* CoreLocation.framework in Frameworks */,
-				12559994DF82B8FAEFC34EBC /* Pods_Local_Labor_Market_Data.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		03F1F87120EA623000662446 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9C6ECE10018322AD100C417F /* Pods_Local_Labor_Market_DataTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+        03E35088213ED85900AC7383 /* Frameworks */ = {
+            isa = PBXFrameworksBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                13F69C4C74B3CE64A313C4E7 /* Pods_Local_Labor_Market_DataUITests.framework in Frameworks */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        03F1F85A20EA622D00662446 /* Frameworks */ = {
+            isa = PBXFrameworksBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                036164C0210B5DB70055708A /* CoreLocation.framework in Frameworks */,
+                12559994DF82B8FAEFC34EBC /* Pods_Local_Labor_Market_Data.framework in Frameworks */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        03F1F87120EA623000662446 /* Frameworks */ = {
+            isa = PBXFrameworksBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                9C6ECE10018322AD100C417F /* Pods_Local_Labor_Market_DataTests.framework in Frameworks */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0322AE2B21B04AD900592970 /* History */ = {
-			isa = PBXGroup;
-			children = (
-				0322AE2C21B04AF200592970 /* HistoryViewController.swift */,
-				0322AE2E21B063A900592970 /* HistoryViewModel.swift */,
-			);
-			path = History;
-			sourceTree = "<group>";
-		};
-		032B241E21AC8C760029AC90 /* OES */ = {
-			isa = PBXGroup;
-			children = (
-				032B241F21AC8C8B0029AC90 /* oe.occupation.txt */,
-			);
-			path = OES;
-			sourceTree = "<group>";
-		};
-		036164BC210B4FEA0055708A /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				0396A012210268FF00DBECBD /* SearchViewController.swift */,
-				036164C3210BA5AE0055708A /* ResultsViewController.swift */,
-			);
-			path = Search;
-			sourceTree = "<group>";
-		};
-		036164BD210B50480055708A /* MetroStateArea */ = {
-			isa = PBXGroup;
-			children = (
-				03953C3E2118D28400BED557 /* CountyViewController.swift */,
-				036164C1210B869B0055708A /* MetroStateViewController.swift */,
-				03953C362113877E00BED557 /* AreaViewController.swift */,
-				03CB7D082130470C001C1570 /* NationalViewController.swift */,
-				59ECE38C21ADC2F000EE06BE /* ItemViewController.swift */,
-				0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */,
-			);
-			path = MetroStateArea;
-			sourceTree = "<group>";
-		};
-		036164BE210B5DB60055708A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				036164BF210B5DB70055708A /* CoreLocation.framework */,
-				E5AB87D9078368A6696D4D4F /* Pods_Local_Labor_Market_Data.framework */,
-				B9A14D7D86491DEBEF52401E /* Pods_Local_Labor_Market_DataTests.framework */,
-				CDB30557B868A6C1C804C809 /* Pods_Local_Labor_Market_DataUITests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		03953C02210F518900BED557 /* Report */ = {
-			isa = PBXGroup;
-			children = (
-				03953C10210F83EF00BED557 /* APIReportResponse.swift */,
-				03953C0E210F83EF00BED557 /* SeriesData.swift */,
-				03953C0F210F83EF00BED557 /* SeriesReport.swift */,
-				03953C00210F50B200BED557 /* APIReportRequest.swift */,
-				03953C03210F528E00BED557 /* LAUSReport.swift */,
-				03953C14210F968100BED557 /* ReportManager.swift */,
-				03953C16210F98DC00BED557 /* CESReport.swift */,
-				03953C1E2110AE0100BED557 /* OESReport.swift */,
-				03953C3C2114A02600BED557 /* CPSReport.swift */,
-				03CB7D0A2130A1B1001C1570 /* CacheManager.swift */,
-			);
-			path = Report;
-			sourceTree = "<group>";
-		};
-		03953C07210F62E800BED557 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				03953C09210F631000BED557 /* API.swift */,
-				03953C08210F631000BED557 /* Network.swift */,
-				032C16662139918B004C1B3F /* Settings.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		03953C4C211B8CE100BED557 /* QCEW */ = {
-			isa = PBXGroup;
-			children = (
-				0348FD0B211B9A7200155BE8 /* QCEWReport.swift */,
-			);
-			path = QCEW;
-			sourceTree = "<group>";
-		};
-		0396A011210268C400DBECBD /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				0322AE2B21B04AD900592970 /* History */,
-				036164BD210B50480055708A /* MetroStateArea */,
-				036164BC210B4FEA0055708A /* Search */,
-				0396A0622107701C00DBECBD /* Resources */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		0396A05B21074DC000DBECBD /* View */ = {
-			isa = PBXGroup;
-			children = (
-				0348FD1C211E0AB200155BE8 /* OwnershipDataTableViewCell.swift */,
-				0348FD1B211E0AB200155BE8 /* OwnershipDataTableViewCell.xib */,
-				0348FD17211DD64800155BE8 /* EmploymentWageTableViewCell.swift */,
-				0348FD18211DD64800155BE8 /* EmploymentWageTableViewCell.xib */,
-				03953C38211393D900BED557 /* OccupationalEmploymentTableViewCell.swift */,
-				03953C39211393D900BED557 /* OccupationalEmploymentTableViewCell.xib */,
-				03953C3021136F1900BED557 /* IndustryEmploymentTableViewCell.swift */,
-				03953C3121136F1900BED557 /* IndustryEmploymentTableViewCell.xib */,
-				0396A05C21074E5400DBECBD /* SearchSectionTableHeaderView.swift */,
-				0396A05E2107581400DBECBD /* SearchSectionTableHeaderView.xib */,
-				03953C202110EDB800BED557 /* AreaSectionHeaderView.swift */,
-				03953C2A21122FDB00BED557 /* AreaSectionHeaderView.xib */,
-				03953C2C2112360A00BED557 /* UnEmploymentRateTableViewCell.swift */,
-				03953C2D2112360A00BED557 /* UnEmploymentRateTableViewCell.xib */,
-				03B708862123026E00C370D7 /* OwnershipTableViewCell.swift */,
-				03B708872123026E00C370D7 /* OwnershipTableViewCell.xib */,
-				03B7088A2123211700C370D7 /* ReportViewCell.swift */,
-				035D971A2126267F005F1CA9 /* ActivityIndicatorView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		0396A0622107701C00DBECBD /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				03953C44211B23A300BED557 /* InfoViewController.swift */,
-				03953C48211B49E500BED557 /* GlossaryViewController.swift */,
-				03953C4A211B509D00BED557 /* AboutViewController.swift */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		03E3508C213ED85900AC7383 /* Local Labor Market DataUITests */ = {
-			isa = PBXGroup;
-			children = (
-				03E3508D213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift */,
-				03E3508F213ED85900AC7383 /* Info.plist */,
-			);
-			path = "Local Labor Market DataUITests";
-			sourceTree = "<group>";
-		};
-		03F1F85420EA622D00662446 = {
-			isa = PBXGroup;
-			children = (
-				03F1F85F20EA622D00662446 /* Local Labor Market Data */,
-				03F1F87720EA623000662446 /* Local Labor Market DataTests */,
-				03E3508C213ED85900AC7383 /* Local Labor Market DataUITests */,
-				03F1F85E20EA622D00662446 /* Products */,
-				036164BE210B5DB60055708A /* Frameworks */,
-				7F5F713D94FC84C57682A229 /* Pods */,
-			);
-			sourceTree = "<group>";
-		};
-		03F1F85E20EA622D00662446 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				03F1F85D20EA622D00662446 /* Local Labor Market Data.app */,
-				03F1F87420EA623000662446 /* Local Labor Market DataTests.xctest */,
-				03E3508B213ED85900AC7383 /* Local Labor Market DataUITests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		03F1F85F20EA622D00662446 /* Local Labor Market Data */ = {
-			isa = PBXGroup;
-			children = (
-				03953C07210F62E800BED557 /* API */,
-				0396A05B21074DC000DBECBD /* View */,
-				0396A011210268C400DBECBD /* ViewController */,
-				03F1F8A420EAD21800662446 /* Extensions */,
-				03F1F89620EAA8FD00662446 /* Model */,
-				03F1F89120EAA69800662446 /* LookupData */,
-				03F1F86020EA622D00662446 /* AppDelegate.swift */,
-				03F1F86420EA622D00662446 /* Main.storyboard */,
-				03F1F86A20EA623000662446 /* Assets.xcassets */,
-				03F1F86C20EA623000662446 /* LaunchScreen.storyboard */,
-				03F1F86F20EA623000662446 /* Info.plist */,
-				03F1F86720EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld */,
-			);
-			path = "Local Labor Market Data";
-			sourceTree = "<group>";
-		};
-		03F1F87720EA623000662446 /* Local Labor Market DataTests */ = {
-			isa = PBXGroup;
-			children = (
-				03F1F87820EA623000662446 /* Local_Labor_Market_DataTests.swift */,
-				03F1F87A20EA623000662446 /* Info.plist */,
-			);
-			path = "Local Labor Market DataTests";
-			sourceTree = "<group>";
-		};
-		03F1F89120EAA69800662446 /* LookupData */ = {
-			isa = PBXGroup;
-			children = (
-				032B241E21AC8C760029AC90 /* OES */,
-				59E7A060219F4B5F0060B7FF /* CES */,
-				59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */,
-				03287A7C2187665A0067686A /* CBSA_COUNTY.txt */,
-				03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */,
-				03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */,
-				03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */,
-				03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */,
-				0396A05521061D1300DBECBD /* LAUS */,
-				0396A05621061D1300DBECBD /* QCEW */,
-				03F1F89220EAA6C200662446 /* ZIP_CBSA.csv */,
-				03F1F89320EAA6C200662446 /* ZIP_COUNTY.csv */,
-			);
-			path = LookupData;
-			sourceTree = "<group>";
-		};
-		03F1F89620EAA8FD00662446 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				03F1F89D20EABEF400662446 /* CoreData */,
-				035D9722212C4F3A005F1CA9 /* Style.swift */,
-				03953C4C211B8CE100BED557 /* QCEW */,
-				03953C02210F518900BED557 /* Report */,
-				03F1F89720EAA93000662446 /* DataUtil.swift */,
-				0396A06B210A331600DBECBD /* LoadDataUtil.swift */,
-				032C16642138241E004C1B3F /* Util.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		03F1F89D20EABEF400662446 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */,
-				036164C9210D2C660055708A /* Metro+CoreDataClass.swift */,
-				59E7A063219F69DF0060B7FF /* Industry+CoreDataClass.swift */,
-				0323B7B821AED3FA00A3E73C /* CE_Industry+CoreDataClass.swift */,
-				597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */,
-				03953C18210F9F8C00BED557 /* Area+CoreDataClass.swift */,
-				036164CB210D2C660055708A /* State+CoreDataClass.swift */,
-				036164C5210D2C310055708A /* County+CoreDataClass.swift */,
-				0396A0142106090800DBECBD /* LAUS_Area+CoreDataClass.swift */,
-				03969FFF20FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift */,
-				03F1F8A020EAC99700662446 /* ZipCountyMap+CoreDataClass.swift */,
-				03F1F89E20EABF0200662446 /* CoreDataManager.swift */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
-		03F1F8A420EAD21800662446 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				03F1F8A520EAD23C00662446 /* String+Extension.swift */,
-				03AC613F20EAFB660088E694 /* NSManagedObject+Extension.swift */,
-				0396A05921061F2900DBECBD /* Bundle+Extension.swift */,
-				0396A067210774E400DBECBD /* UIViewController+Extension.swift */,
-				036164B8210A67980055708A /* Array+Extension.swift */,
-				03953C402119C3D300BED557 /* UIColor+Extension.swift */,
-				03953C42211A2A1500BED557 /* UIView+Extension.swift */,
-				03953C46211B297C00BED557 /* UIBarButtonItem+Extension.swift */,
-				0348FD23211FB03D00155BE8 /* Dictionary+Extension.swift */,
-				035D971E21270782005F1CA9 /* NumberFormatter+Extension.swift */,
-				035D9724212C7DF9005F1CA9 /* UILabel+Extension.swift */,
-				032C16682139927F004C1B3F /* UICustomSwitch.swift */,
-				03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		59E7A060219F4B5F0060B7FF /* CES */ = {
-			isa = PBXGroup;
-			children = (
-				59E7A05B219F45C30060B7FF /* ce.industry.txt */,
-				59E7A059219F45C20060B7FF /* sm.industry.txt */,
-			);
-			path = CES;
-			sourceTree = "<group>";
-		};
-		7F5F713D94FC84C57682A229 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E48D8C4DF2105E5CC3C73D26 /* Pods-Local Labor Market Data.debug.xcconfig */,
-				EA7CB4E8B74C84B3038D6C93 /* Pods-Local Labor Market Data.release.xcconfig */,
-				B331991BCEAB2EFA65C5A8AE /* Pods-Local Labor Market DataTests.debug.xcconfig */,
-				04CAEFBB44F319BB2DAE7CF1 /* Pods-Local Labor Market DataTests.release.xcconfig */,
-				4E6A92103FB212CB270FA9AA /* Pods-Local Labor Market DataUITests.debug.xcconfig */,
-				2135BA66718F87B55EB3D9A0 /* Pods-Local Labor Market DataUITests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
+        0322AE2B21B04AD900592970 /* History */ = {
+            isa = PBXGroup;
+            children = (
+                0322AE2C21B04AF200592970 /* HistoryViewController.swift */,
+                0322AE2E21B063A900592970 /* HistoryViewModel.swift */,
+            );
+            path = History;
+            sourceTree = "<group>";
+        };
+        032B241E21AC8C760029AC90 /* OES */ = {
+            isa = PBXGroup;
+            children = (
+                032B241F21AC8C8B0029AC90 /* oe.occupation.txt */,
+            );
+            path = OES;
+            sourceTree = "<group>";
+        };
+        036164BC210B4FEA0055708A /* Search */ = {
+            isa = PBXGroup;
+            children = (
+                0396A012210268FF00DBECBD /* SearchViewController.swift */,
+                036164C3210BA5AE0055708A /* ResultsViewController.swift */,
+            );
+            path = Search;
+            sourceTree = "<group>";
+        };
+        036164BD210B50480055708A /* MetroStateArea */ = {
+            isa = PBXGroup;
+            children = (
+                03953C3E2118D28400BED557 /* CountyViewController.swift */,
+                036164C1210B869B0055708A /* MetroStateViewController.swift */,
+                03953C362113877E00BED557 /* AreaViewController.swift */,
+                03CB7D082130470C001C1570 /* NationalViewController.swift */,
+                59ECE38C21ADC2F000EE06BE /* ItemViewController.swift */,
+                0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */,
+            );
+            path = MetroStateArea;
+            sourceTree = "<group>";
+        };
+        036164BE210B5DB60055708A /* Frameworks */ = {
+            isa = PBXGroup;
+            children = (
+                036164BF210B5DB70055708A /* CoreLocation.framework */,
+                E5AB87D9078368A6696D4D4F /* Pods_Local_Labor_Market_Data.framework */,
+                B9A14D7D86491DEBEF52401E /* Pods_Local_Labor_Market_DataTests.framework */,
+                CDB30557B868A6C1C804C809 /* Pods_Local_Labor_Market_DataUITests.framework */,
+            );
+            name = Frameworks;
+            sourceTree = "<group>";
+        };
+        03953C02210F518900BED557 /* Report */ = {
+            isa = PBXGroup;
+            children = (
+                03953C10210F83EF00BED557 /* APIReportResponse.swift */,
+                03953C0E210F83EF00BED557 /* SeriesData.swift */,
+                03953C0F210F83EF00BED557 /* SeriesReport.swift */,
+                03953C00210F50B200BED557 /* APIReportRequest.swift */,
+                03953C03210F528E00BED557 /* LAUSReport.swift */,
+                03953C14210F968100BED557 /* ReportManager.swift */,
+                03953C16210F98DC00BED557 /* CESReport.swift */,
+                03953C1E2110AE0100BED557 /* OESReport.swift */,
+                03953C3C2114A02600BED557 /* CPSReport.swift */,
+                03CB7D0A2130A1B1001C1570 /* CacheManager.swift */,
+            );
+            path = Report;
+            sourceTree = "<group>";
+        };
+        03953C07210F62E800BED557 /* API */ = {
+            isa = PBXGroup;
+            children = (
+                03953C09210F631000BED557 /* API.swift */,
+                03953C08210F631000BED557 /* Network.swift */,
+                032C16662139918B004C1B3F /* Settings.swift */,
+            );
+            path = API;
+            sourceTree = "<group>";
+        };
+        03953C4C211B8CE100BED557 /* QCEW */ = {
+            isa = PBXGroup;
+            children = (
+                0348FD0B211B9A7200155BE8 /* QCEWReport.swift */,
+            );
+            path = QCEW;
+            sourceTree = "<group>";
+        };
+        0396A011210268C400DBECBD /* ViewController */ = {
+            isa = PBXGroup;
+            children = (
+                0322AE2B21B04AD900592970 /* History */,
+                036164BD210B50480055708A /* MetroStateArea */,
+                036164BC210B4FEA0055708A /* Search */,
+                0396A0622107701C00DBECBD /* Resources */,
+            );
+            path = ViewController;
+            sourceTree = "<group>";
+        };
+        0396A05B21074DC000DBECBD /* View */ = {
+            isa = PBXGroup;
+            children = (
+                0348FD1C211E0AB200155BE8 /* OwnershipDataTableViewCell.swift */,
+                0348FD1B211E0AB200155BE8 /* OwnershipDataTableViewCell.xib */,
+                0348FD17211DD64800155BE8 /* EmploymentWageTableViewCell.swift */,
+                0348FD18211DD64800155BE8 /* EmploymentWageTableViewCell.xib */,
+                03953C38211393D900BED557 /* OccupationalEmploymentTableViewCell.swift */,
+                03953C39211393D900BED557 /* OccupationalEmploymentTableViewCell.xib */,
+                03953C3021136F1900BED557 /* IndustryEmploymentTableViewCell.swift */,
+                03953C3121136F1900BED557 /* IndustryEmploymentTableViewCell.xib */,
+                0396A05C21074E5400DBECBD /* SearchSectionTableHeaderView.swift */,
+                0396A05E2107581400DBECBD /* SearchSectionTableHeaderView.xib */,
+                03953C202110EDB800BED557 /* AreaSectionHeaderView.swift */,
+                03953C2A21122FDB00BED557 /* AreaSectionHeaderView.xib */,
+                03953C2C2112360A00BED557 /* UnEmploymentRateTableViewCell.swift */,
+                03953C2D2112360A00BED557 /* UnEmploymentRateTableViewCell.xib */,
+                03B708862123026E00C370D7 /* OwnershipTableViewCell.swift */,
+                03B708872123026E00C370D7 /* OwnershipTableViewCell.xib */,
+                03B7088A2123211700C370D7 /* ReportViewCell.swift */,
+                035D971A2126267F005F1CA9 /* ActivityIndicatorView.swift */,
+            );
+            path = View;
+            sourceTree = "<group>";
+        };
+        0396A0622107701C00DBECBD /* Resources */ = {
+            isa = PBXGroup;
+            children = (
+                03953C44211B23A300BED557 /* InfoViewController.swift */,
+                03953C48211B49E500BED557 /* GlossaryViewController.swift */,
+                03953C4A211B509D00BED557 /* AboutViewController.swift */,
+            );
+            path = Resources;
+            sourceTree = "<group>";
+        };
+        03E3508C213ED85900AC7383 /* Local Labor Market DataUITests */ = {
+            isa = PBXGroup;
+            children = (
+                03E3508D213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift */,
+                03E3508F213ED85900AC7383 /* Info.plist */,
+            );
+            path = "Local Labor Market DataUITests";
+            sourceTree = "<group>";
+        };
+        03F1F85420EA622D00662446 = {
+            isa = PBXGroup;
+            children = (
+                03F1F85F20EA622D00662446 /* Local Labor Market Data */,
+                03F1F87720EA623000662446 /* Local Labor Market DataTests */,
+                03E3508C213ED85900AC7383 /* Local Labor Market DataUITests */,
+                03F1F85E20EA622D00662446 /* Products */,
+                036164BE210B5DB60055708A /* Frameworks */,
+                7F5F713D94FC84C57682A229 /* Pods */,
+            );
+            sourceTree = "<group>";
+        };
+        03F1F85E20EA622D00662446 /* Products */ = {
+            isa = PBXGroup;
+            children = (
+                03F1F85D20EA622D00662446 /* Local Labor Market Data.app */,
+                03F1F87420EA623000662446 /* Local Labor Market DataTests.xctest */,
+                03E3508B213ED85900AC7383 /* Local Labor Market DataUITests.xctest */,
+            );
+            name = Products;
+            sourceTree = "<group>";
+        };
+        03F1F85F20EA622D00662446 /* Local Labor Market Data */ = {
+            isa = PBXGroup;
+            children = (
+                03953C07210F62E800BED557 /* API */,
+                0396A05B21074DC000DBECBD /* View */,
+                0396A011210268C400DBECBD /* ViewController */,
+                03F1F8A420EAD21800662446 /* Extensions */,
+                03F1F89620EAA8FD00662446 /* Model */,
+                03F1F89120EAA69800662446 /* LookupData */,
+                03F1F86020EA622D00662446 /* AppDelegate.swift */,
+                03F1F86420EA622D00662446 /* Main.storyboard */,
+                03F1F86A20EA623000662446 /* Assets.xcassets */,
+                03F1F86C20EA623000662446 /* LaunchScreen.storyboard */,
+                03F1F86F20EA623000662446 /* Info.plist */,
+                03F1F86720EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld */,
+            );
+            path = "Local Labor Market Data";
+            sourceTree = "<group>";
+        };
+        03F1F87720EA623000662446 /* Local Labor Market DataTests */ = {
+            isa = PBXGroup;
+            children = (
+                03F1F87820EA623000662446 /* Local_Labor_Market_DataTests.swift */,
+                03F1F87A20EA623000662446 /* Info.plist */,
+            );
+            path = "Local Labor Market DataTests";
+            sourceTree = "<group>";
+        };
+        03F1F89120EAA69800662446 /* LookupData */ = {
+            isa = PBXGroup;
+            children = (
+                032B241E21AC8C760029AC90 /* OES */,
+                59E7A060219F4B5F0060B7FF /* CES */,
+                59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */,
+                03287A7C2187665A0067686A /* CBSA_COUNTY.txt */,
+                03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */,
+                03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */,
+                03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */,
+                03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */,
+                0396A05521061D1300DBECBD /* LAUS */,
+                0396A05621061D1300DBECBD /* QCEW */,
+                03F1F89220EAA6C200662446 /* ZIP_CBSA.csv */,
+                03F1F89320EAA6C200662446 /* ZIP_COUNTY.csv */,
+            );
+            path = LookupData;
+            sourceTree = "<group>";
+        };
+        03F1F89620EAA8FD00662446 /* Model */ = {
+            isa = PBXGroup;
+            children = (
+                03F1F89D20EABEF400662446 /* CoreData */,
+                035D9722212C4F3A005F1CA9 /* Style.swift */,
+                03953C4C211B8CE100BED557 /* QCEW */,
+                03953C02210F518900BED557 /* Report */,
+                03F1F89720EAA93000662446 /* DataUtil.swift */,
+                0396A06B210A331600DBECBD /* LoadDataUtil.swift */,
+                032C16642138241E004C1B3F /* Util.swift */,
+            );
+            path = Model;
+            sourceTree = "<group>";
+        };
+        03F1F89D20EABEF400662446 /* CoreData */ = {
+            isa = PBXGroup;
+            children = (
+                0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */,
+                036164C9210D2C660055708A /* Metro+CoreDataClass.swift */,
+                59E7A063219F69DF0060B7FF /* Industry+CoreDataClass.swift */,
+                0323B7B821AED3FA00A3E73C /* CE_Industry+CoreDataClass.swift */,
+                597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */,
+                03953C18210F9F8C00BED557 /* Area+CoreDataClass.swift */,
+                036164CB210D2C660055708A /* State+CoreDataClass.swift */,
+                036164C5210D2C310055708A /* County+CoreDataClass.swift */,
+                0396A0142106090800DBECBD /* LAUS_Area+CoreDataClass.swift */,
+                03969FFF20FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift */,
+                03F1F8A020EAC99700662446 /* ZipCountyMap+CoreDataClass.swift */,
+                03F1F89E20EABF0200662446 /* CoreDataManager.swift */,
+            );
+            path = CoreData;
+            sourceTree = "<group>";
+        };
+        03F1F8A420EAD21800662446 /* Extensions */ = {
+            isa = PBXGroup;
+            children = (
+                03F1F8A520EAD23C00662446 /* String+Extension.swift */,
+                03AC613F20EAFB660088E694 /* NSManagedObject+Extension.swift */,
+                0396A05921061F2900DBECBD /* Bundle+Extension.swift */,
+                0396A067210774E400DBECBD /* UIViewController+Extension.swift */,
+                036164B8210A67980055708A /* Array+Extension.swift */,
+                03953C402119C3D300BED557 /* UIColor+Extension.swift */,
+                03953C42211A2A1500BED557 /* UIView+Extension.swift */,
+                03953C46211B297C00BED557 /* UIBarButtonItem+Extension.swift */,
+                0348FD23211FB03D00155BE8 /* Dictionary+Extension.swift */,
+                035D971E21270782005F1CA9 /* NumberFormatter+Extension.swift */,
+                035D9724212C7DF9005F1CA9 /* UILabel+Extension.swift */,
+                032C16682139927F004C1B3F /* UICustomSwitch.swift */,
+                03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */,
+            );
+            path = Extensions;
+            sourceTree = "<group>";
+        };
+        59E7A060219F4B5F0060B7FF /* CES */ = {
+            isa = PBXGroup;
+            children = (
+                59E7A05B219F45C30060B7FF /* ce.industry.txt */,
+                59E7A059219F45C20060B7FF /* sm.industry.txt */,
+            );
+            path = CES;
+            sourceTree = "<group>";
+        };
+        7F5F713D94FC84C57682A229 /* Pods */ = {
+            isa = PBXGroup;
+            children = (
+                E48D8C4DF2105E5CC3C73D26 /* Pods-Local Labor Market Data.debug.xcconfig */,
+                EA7CB4E8B74C84B3038D6C93 /* Pods-Local Labor Market Data.release.xcconfig */,
+                B331991BCEAB2EFA65C5A8AE /* Pods-Local Labor Market DataTests.debug.xcconfig */,
+                04CAEFBB44F319BB2DAE7CF1 /* Pods-Local Labor Market DataTests.release.xcconfig */,
+                4E6A92103FB212CB270FA9AA /* Pods-Local Labor Market DataUITests.debug.xcconfig */,
+                2135BA66718F87B55EB3D9A0 /* Pods-Local Labor Market DataUITests.release.xcconfig */,
+            );
+            name = Pods;
+            sourceTree = "<group>";
+        };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		03E3508A213ED85900AC7383 /* Local Labor Market DataUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 03E35092213ED85900AC7383 /* Build configuration list for PBXNativeTarget "Local Labor Market DataUITests" */;
-			buildPhases = (
-				892D2C37631997F247B0D6B7 /* [CP] Check Pods Manifest.lock */,
-				03E35087213ED85900AC7383 /* Sources */,
-				03E35088213ED85900AC7383 /* Frameworks */,
-				03E35089213ED85900AC7383 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				03E35091213ED85900AC7383 /* PBXTargetDependency */,
-			);
-			name = "Local Labor Market DataUITests";
-			productName = "Local Labor Market DataUITests";
-			productReference = 03E3508B213ED85900AC7383 /* Local Labor Market DataUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		03F1F85C20EA622D00662446 /* Local Labor Market Data */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 03F1F88820EA623000662446 /* Build configuration list for PBXNativeTarget "Local Labor Market Data" */;
-			buildPhases = (
-				34497028C9D00B9A4019D698 /* [CP] Check Pods Manifest.lock */,
-				03F1F85920EA622D00662446 /* Sources */,
-				03F1F85A20EA622D00662446 /* Frameworks */,
-				03F1F85B20EA622D00662446 /* Resources */,
-				38B68C7179DFFD76B6340EA1 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Local Labor Market Data";
-			productName = BLSApp;
-			productReference = 03F1F85D20EA622D00662446 /* Local Labor Market Data.app */;
-			productType = "com.apple.product-type.application";
-		};
-		03F1F87320EA623000662446 /* Local Labor Market DataTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 03F1F88B20EA623000662446 /* Build configuration list for PBXNativeTarget "Local Labor Market DataTests" */;
-			buildPhases = (
-				6EE7311C2117B1F9B545BB0D /* [CP] Check Pods Manifest.lock */,
-				03F1F87020EA623000662446 /* Sources */,
-				03F1F87120EA623000662446 /* Frameworks */,
-				03F1F87220EA623000662446 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				03F1F87620EA623000662446 /* PBXTargetDependency */,
-			);
-			name = "Local Labor Market DataTests";
-			productName = BLSAppTests;
-			productReference = 03F1F87420EA623000662446 /* Local Labor Market DataTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
+        03E3508A213ED85900AC7383 /* Local Labor Market DataUITests */ = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = 03E35092213ED85900AC7383 /* Build configuration list for PBXNativeTarget "Local Labor Market DataUITests" */;
+            buildPhases = (
+                892D2C37631997F247B0D6B7 /* [CP] Check Pods Manifest.lock */,
+                03E35087213ED85900AC7383 /* Sources */,
+                03E35088213ED85900AC7383 /* Frameworks */,
+                03E35089213ED85900AC7383 /* Resources */,
+            );
+            buildRules = (
+            );
+            dependencies = (
+                03E35091213ED85900AC7383 /* PBXTargetDependency */,
+            );
+            name = "Local Labor Market DataUITests";
+            productName = "Local Labor Market DataUITests";
+            productReference = 03E3508B213ED85900AC7383 /* Local Labor Market DataUITests.xctest */;
+            productType = "com.apple.product-type.bundle.ui-testing";
+        };
+        03F1F85C20EA622D00662446 /* Local Labor Market Data */ = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = 03F1F88820EA623000662446 /* Build configuration list for PBXNativeTarget "Local Labor Market Data" */;
+            buildPhases = (
+                34497028C9D00B9A4019D698 /* [CP] Check Pods Manifest.lock */,
+                03F1F85920EA622D00662446 /* Sources */,
+                03F1F85A20EA622D00662446 /* Frameworks */,
+                03F1F85B20EA622D00662446 /* Resources */,
+                38B68C7179DFFD76B6340EA1 /* [CP] Embed Pods Frameworks */,
+            );
+            buildRules = (
+            );
+            dependencies = (
+            );
+            name = "Local Labor Market Data";
+            productName = BLSApp;
+            productReference = 03F1F85D20EA622D00662446 /* Local Labor Market Data.app */;
+            productType = "com.apple.product-type.application";
+        };
+        03F1F87320EA623000662446 /* Local Labor Market DataTests */ = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = 03F1F88B20EA623000662446 /* Build configuration list for PBXNativeTarget "Local Labor Market DataTests" */;
+            buildPhases = (
+                6EE7311C2117B1F9B545BB0D /* [CP] Check Pods Manifest.lock */,
+                03F1F87020EA623000662446 /* Sources */,
+                03F1F87120EA623000662446 /* Frameworks */,
+                03F1F87220EA623000662446 /* Resources */,
+            );
+            buildRules = (
+            );
+            dependencies = (
+                03F1F87620EA623000662446 /* PBXTargetDependency */,
+            );
+            name = "Local Labor Market DataTests";
+            productName = BLSAppTests;
+            productReference = 03F1F87420EA623000662446 /* Local Labor Market DataTests.xctest */;
+            productType = "com.apple.product-type.bundle.unit-test";
+        };
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		03F1F85520EA622D00662446 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "Department of Labor";
-				TargetAttributes = {
-					03E3508A213ED85900AC7383 = {
-						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
-						TestTargetID = 03F1F85C20EA622D00662446;
-					};
-					03F1F85C20EA622D00662446 = {
-						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
-					};
-					03F1F87320EA623000662446 = {
-						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
-						TestTargetID = 03F1F85C20EA622D00662446;
-					};
-				};
-			};
-			buildConfigurationList = 03F1F85820EA622D00662446 /* Build configuration list for PBXProject "Local Labor Market Data" */;
-			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = 03F1F85420EA622D00662446;
-			productRefGroup = 03F1F85E20EA622D00662446 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				03F1F85C20EA622D00662446 /* Local Labor Market Data */,
-				03F1F87320EA623000662446 /* Local Labor Market DataTests */,
-				03E3508A213ED85900AC7383 /* Local Labor Market DataUITests */,
-			);
-		};
+        03F1F85520EA622D00662446 /* Project object */ = {
+            isa = PBXProject;
+            attributes = {
+                LastSwiftUpdateCheck = 0940;
+                LastUpgradeCheck = 0940;
+                ORGANIZATIONNAME = "Department of Labor";
+                TargetAttributes = {
+                    03E3508A213ED85900AC7383 = {
+                        CreatedOnToolsVersion = 9.4.1;
+                        LastSwiftMigration = 1000;
+                        TestTargetID = 03F1F85C20EA622D00662446;
+                    };
+                    03F1F85C20EA622D00662446 = {
+                        CreatedOnToolsVersion = 9.4.1;
+                        LastSwiftMigration = 1000;
+                    };
+                    03F1F87320EA623000662446 = {
+                        CreatedOnToolsVersion = 9.4.1;
+                        LastSwiftMigration = 1000;
+                        TestTargetID = 03F1F85C20EA622D00662446;
+                    };
+                };
+            };
+            buildConfigurationList = 03F1F85820EA622D00662446 /* Build configuration list for PBXProject "Local Labor Market Data" */;
+            compatibilityVersion = "Xcode 9.3";
+            developmentRegion = en;
+            hasScannedForEncodings = 0;
+            knownRegions = (
+                en,
+                Base,
+            );
+            mainGroup = 03F1F85420EA622D00662446;
+            productRefGroup = 03F1F85E20EA622D00662446 /* Products */;
+            projectDirPath = "";
+            projectRoot = "";
+            targets = (
+                03F1F85C20EA622D00662446 /* Local Labor Market Data */,
+                03F1F87320EA623000662446 /* Local Labor Market DataTests */,
+                03E3508A213ED85900AC7383 /* Local Labor Market DataUITests */,
+            );
+        };
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		03E35089213ED85900AC7383 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		03F1F85B20EA622D00662446 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0323B7B321AED22600A3E73C /* ZIP_NECTA.csv in Resources */,
-				0323B7B421AED22600A3E73C /* CBSA_COUNTY.txt in Resources */,
-				0323B7B521AED22600A3E73C /* LAUS in Resources */,
-				0323B7B621AED22600A3E73C /* ZIP_CBSA.csv in Resources */,
-				0323B7B721AED22600A3E73C /* ZIP_COUNTY.csv in Resources */,
-				03B708892123026E00C370D7 /* OwnershipTableViewCell.xib in Resources */,
-				03953C3321136F1900BED557 /* IndustryEmploymentTableViewCell.xib in Resources */,
-				03F1F86E20EA623000662446 /* LaunchScreen.storyboard in Resources */,
-				03E35084213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite in Resources */,
-				03953C3B211393D900BED557 /* OccupationalEmploymentTableViewCell.xib in Resources */,
-				03953C2F2112360A00BED557 /* UnEmploymentRateTableViewCell.xib in Resources */,
-				03953C2B21122FDB00BED557 /* AreaSectionHeaderView.xib in Resources */,
-				03E35086213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm in Resources */,
-				0396A05F2107581400DBECBD /* SearchSectionTableHeaderView.xib in Resources */,
-				59E7A05F219F45C30060B7FF /* ce.industry.txt in Resources */,
-				03F1F86B20EA623000662446 /* Assets.xcassets in Resources */,
-				03F1F86620EA622D00662446 /* Main.storyboard in Resources */,
-				03E35085213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal in Resources */,
-				0348FD1A211DD64800155BE8 /* EmploymentWageTableViewCell.xib in Resources */,
-				59E7A05D219F45C30060B7FF /* sm.industry.txt in Resources */,
-				03287A7F2187665A0067686A /* NECTACBSA_COUNTY.txt in Resources */,
-				032B242021AC8C8B0029AC90 /* oe.occupation.txt in Resources */,
-				0348FD1D211E0AB200155BE8 /* OwnershipDataTableViewCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		03F1F87220EA623000662446 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+        03E35089213ED85900AC7383 /* Resources */ = {
+            isa = PBXResourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        03F1F85B20EA622D00662446 /* Resources */ = {
+            isa = PBXResourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                0323B7B321AED22600A3E73C /* ZIP_NECTA.csv in Resources */,
+                0323B7B421AED22600A3E73C /* CBSA_COUNTY.txt in Resources */,
+                0323B7B521AED22600A3E73C /* LAUS in Resources */,
+                0323B7B621AED22600A3E73C /* ZIP_CBSA.csv in Resources */,
+                0323B7B721AED22600A3E73C /* ZIP_COUNTY.csv in Resources */,
+                03B708892123026E00C370D7 /* OwnershipTableViewCell.xib in Resources */,
+                03953C3321136F1900BED557 /* IndustryEmploymentTableViewCell.xib in Resources */,
+                03F1F86E20EA623000662446 /* LaunchScreen.storyboard in Resources */,
+                03E35084213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite in Resources */,
+                03953C3B211393D900BED557 /* OccupationalEmploymentTableViewCell.xib in Resources */,
+                03953C2F2112360A00BED557 /* UnEmploymentRateTableViewCell.xib in Resources */,
+                03953C2B21122FDB00BED557 /* AreaSectionHeaderView.xib in Resources */,
+                03E35086213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm in Resources */,
+                0396A05F2107581400DBECBD /* SearchSectionTableHeaderView.xib in Resources */,
+                59E7A05F219F45C30060B7FF /* ce.industry.txt in Resources */,
+                03F1F86B20EA623000662446 /* Assets.xcassets in Resources */,
+                03F1F86620EA622D00662446 /* Main.storyboard in Resources */,
+                03E35085213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal in Resources */,
+                0348FD1A211DD64800155BE8 /* EmploymentWageTableViewCell.xib in Resources */,
+                59E7A05D219F45C30060B7FF /* sm.industry.txt in Resources */,
+                03287A7F2187665A0067686A /* NECTACBSA_COUNTY.txt in Resources */,
+                032B242021AC8C8B0029AC90 /* oe.occupation.txt in Resources */,
+                0348FD1D211E0AB200155BE8 /* OwnershipDataTableViewCell.xib in Resources */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        03F1F87220EA623000662446 /* Resources */ = {
+            isa = PBXResourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		34497028C9D00B9A4019D698 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Local Labor Market Data-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		38B68C7179DFFD76B6340EA1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6EE7311C2117B1F9B545BB0D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Local Labor Market DataTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		892D2C37631997F247B0D6B7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Local Labor Market DataUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
+        34497028C9D00B9A4019D698 /* [CP] Check Pods Manifest.lock */ = {
+            isa = PBXShellScriptBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            inputFileListPaths = (
+            );
+            inputPaths = (
+                "${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+                "${PODS_ROOT}/Manifest.lock",
+            );
+            name = "[CP] Check Pods Manifest.lock";
+            outputFileListPaths = (
+            );
+            outputPaths = (
+                "$(DERIVED_FILE_DIR)/Pods-Local Labor Market Data-checkManifestLockResult.txt",
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+            shellPath = /bin/sh;
+            shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+            showEnvVarsInLog = 0;
+        };
+        38B68C7179DFFD76B6340EA1 /* [CP] Embed Pods Frameworks */ = {
+            isa = PBXShellScriptBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            inputFileListPaths = (
+            );
+            inputPaths = (
+                "${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh",
+                "${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+            );
+            name = "[CP] Embed Pods Frameworks";
+            outputFileListPaths = (
+            );
+            outputPaths = (
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+            shellPath = /bin/sh;
+            shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh\"\n";
+            showEnvVarsInLog = 0;
+        };
+        6EE7311C2117B1F9B545BB0D /* [CP] Check Pods Manifest.lock */ = {
+            isa = PBXShellScriptBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            inputFileListPaths = (
+            );
+            inputPaths = (
+                "${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+                "${PODS_ROOT}/Manifest.lock",
+            );
+            name = "[CP] Check Pods Manifest.lock";
+            outputFileListPaths = (
+            );
+            outputPaths = (
+                "$(DERIVED_FILE_DIR)/Pods-Local Labor Market DataTests-checkManifestLockResult.txt",
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+            shellPath = /bin/sh;
+            shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+            showEnvVarsInLog = 0;
+        };
+        892D2C37631997F247B0D6B7 /* [CP] Check Pods Manifest.lock */ = {
+            isa = PBXShellScriptBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            inputFileListPaths = (
+            );
+            inputPaths = (
+                "${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+                "${PODS_ROOT}/Manifest.lock",
+            );
+            name = "[CP] Check Pods Manifest.lock";
+            outputFileListPaths = (
+            );
+            outputPaths = (
+                "$(DERIVED_FILE_DIR)/Pods-Local Labor Market DataUITests-checkManifestLockResult.txt",
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+            shellPath = /bin/sh;
+            shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+            showEnvVarsInLog = 0;
+        };
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		03E35087213ED85900AC7383 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				03E3508E213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		03F1F85920EA622D00662446 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				03CB7D0B2130A1B1001C1570 /* CacheManager.swift in Sources */,
-				03E35096213EFC1A00AC7383 /* DateFormatter+Extension.swift in Sources */,
-				03953C1F2110AE0100BED557 /* OESReport.swift in Sources */,
-				03953C43211A2A1500BED557 /* UIView+Extension.swift in Sources */,
-				59ECE38D21ADC2F000EE06BE /* ItemViewController.swift in Sources */,
-				03953C412119C3D300BED557 /* UIColor+Extension.swift in Sources */,
-				0396A013210268FF00DBECBD /* SearchViewController.swift in Sources */,
-				03953C3221136F1900BED557 /* IndustryEmploymentTableViewCell.swift in Sources */,
-				035D971B2126267F005F1CA9 /* ActivityIndicatorView.swift in Sources */,
-				032C16652138241E004C1B3F /* Util.swift in Sources */,
-				03953C19210F9F8C00BED557 /* Area+CoreDataClass.swift in Sources */,
-				036164C7210D2C310055708A /* County+CoreDataClass.swift in Sources */,
-				0323B7BE21AEF1F300A3E73C /* Item+CoreDataClass.swift in Sources */,
-				035D9725212C7DF9005F1CA9 /* UILabel+Extension.swift in Sources */,
-				032C16692139927F004C1B3F /* UICustomSwitch.swift in Sources */,
-				03953C3A211393D900BED557 /* OccupationalEmploymentTableViewCell.swift in Sources */,
-				03953C2E2112360A00BED557 /* UnEmploymentRateTableViewCell.swift in Sources */,
-				032C16672139918B004C1B3F /* Settings.swift in Sources */,
-				03AC614020EAFB660088E694 /* NSManagedObject+Extension.swift in Sources */,
-				0396A068210774E400DBECBD /* UIViewController+Extension.swift in Sources */,
-				0323B7B921AED3FA00A3E73C /* CE_Industry+CoreDataClass.swift in Sources */,
-				03F1F8A620EAD23C00662446 /* String+Extension.swift in Sources */,
-				0396A06C210A331600DBECBD /* LoadDataUtil.swift in Sources */,
-				03953C212110EDB800BED557 /* AreaSectionHeaderView.swift in Sources */,
-				0322AE2D21B04AF200592970 /* HistoryViewController.swift in Sources */,
-				03953C3D2114A02600BED557 /* CPSReport.swift in Sources */,
-				03B708882123026E00C370D7 /* OwnershipTableViewCell.swift in Sources */,
-				03953C15210F968100BED557 /* ReportManager.swift in Sources */,
-				03953C47211B297C00BED557 /* UIBarButtonItem+Extension.swift in Sources */,
-				0396A00120FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift in Sources */,
-				03953C45211B23A300BED557 /* InfoViewController.swift in Sources */,
-				036164C4210BA5AE0055708A /* ResultsViewController.swift in Sources */,
-				03B7088B2123211700C370D7 /* ReportViewCell.swift in Sources */,
-				036164B9210A67980055708A /* Array+Extension.swift in Sources */,
-				03F1F89F20EABF0200662446 /* CoreDataManager.swift in Sources */,
-				03953C11210F83EF00BED557 /* SeriesData.swift in Sources */,
-				0396A05D21074E5400DBECBD /* SearchSectionTableHeaderView.swift in Sources */,
-				0348FD19211DD64800155BE8 /* EmploymentWageTableViewCell.swift in Sources */,
-				03953C13210F83EF00BED557 /* APIReportResponse.swift in Sources */,
-				0348FD24211FB03D00155BE8 /* Dictionary+Extension.swift in Sources */,
-				03F1F8A220EAC99700662446 /* ZipCountyMap+CoreDataClass.swift in Sources */,
-				0396A05A21061F2900DBECBD /* Bundle+Extension.swift in Sources */,
-				03953C3F2118D28400BED557 /* CountyViewController.swift in Sources */,
-				036164C2210B869B0055708A /* MetroStateViewController.swift in Sources */,
-				03953C0A210F631000BED557 /* Network.swift in Sources */,
-				03953C17210F98DC00BED557 /* CESReport.swift in Sources */,
-				0348FD1E211E0AB200155BE8 /* OwnershipDataTableViewCell.swift in Sources */,
-				03953C04210F528E00BED557 /* LAUSReport.swift in Sources */,
-				03F1F89820EAA93000662446 /* DataUtil.swift in Sources */,
-				03953C0B210F631000BED557 /* API.swift in Sources */,
-				036164CF210D2C660055708A /* State+CoreDataClass.swift in Sources */,
-				0323B7BB21AEE48000A3E73C /* ItemViewModel.swift in Sources */,
-				03953C49211B49E500BED557 /* GlossaryViewController.swift in Sources */,
-				0322AE2F21B063A900592970 /* HistoryViewModel.swift in Sources */,
-				03CB7D092130470C001C1570 /* NationalViewController.swift in Sources */,
-				035D971F21270782005F1CA9 /* NumberFormatter+Extension.swift in Sources */,
-				03953C01210F50B200BED557 /* APIReportRequest.swift in Sources */,
-				035D9723212C4F3A005F1CA9 /* Style.swift in Sources */,
-				03F1F86120EA622D00662446 /* AppDelegate.swift in Sources */,
-				597EE8F32188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift in Sources */,
-				03953C372113877E00BED557 /* AreaViewController.swift in Sources */,
-				59E7A065219F69DF0060B7FF /* Industry+CoreDataClass.swift in Sources */,
-				03953C12210F83EF00BED557 /* SeriesReport.swift in Sources */,
-				03953C4B211B509D00BED557 /* AboutViewController.swift in Sources */,
-				0348FD0C211B9A7200155BE8 /* QCEWReport.swift in Sources */,
-				0396A0162106090800DBECBD /* LAUS_Area+CoreDataClass.swift in Sources */,
-				03F1F86920EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld in Sources */,
-				036164CD210D2C660055708A /* Metro+CoreDataClass.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		03F1F87020EA623000662446 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				03F1F87920EA623000662446 /* Local_Labor_Market_DataTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+        03E35087213ED85900AC7383 /* Sources */ = {
+            isa = PBXSourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                03E3508E213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift in Sources */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        03F1F85920EA622D00662446 /* Sources */ = {
+            isa = PBXSourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                03CB7D0B2130A1B1001C1570 /* CacheManager.swift in Sources */,
+                03E35096213EFC1A00AC7383 /* DateFormatter+Extension.swift in Sources */,
+                03953C1F2110AE0100BED557 /* OESReport.swift in Sources */,
+                03953C43211A2A1500BED557 /* UIView+Extension.swift in Sources */,
+                59ECE38D21ADC2F000EE06BE /* ItemViewController.swift in Sources */,
+                03953C412119C3D300BED557 /* UIColor+Extension.swift in Sources */,
+                0396A013210268FF00DBECBD /* SearchViewController.swift in Sources */,
+                03953C3221136F1900BED557 /* IndustryEmploymentTableViewCell.swift in Sources */,
+                035D971B2126267F005F1CA9 /* ActivityIndicatorView.swift in Sources */,
+                032C16652138241E004C1B3F /* Util.swift in Sources */,
+                03953C19210F9F8C00BED557 /* Area+CoreDataClass.swift in Sources */,
+                036164C7210D2C310055708A /* County+CoreDataClass.swift in Sources */,
+                0323B7BE21AEF1F300A3E73C /* Item+CoreDataClass.swift in Sources */,
+                035D9725212C7DF9005F1CA9 /* UILabel+Extension.swift in Sources */,
+                032C16692139927F004C1B3F /* UICustomSwitch.swift in Sources */,
+                03953C3A211393D900BED557 /* OccupationalEmploymentTableViewCell.swift in Sources */,
+                03953C2E2112360A00BED557 /* UnEmploymentRateTableViewCell.swift in Sources */,
+                032C16672139918B004C1B3F /* Settings.swift in Sources */,
+                03AC614020EAFB660088E694 /* NSManagedObject+Extension.swift in Sources */,
+                0396A068210774E400DBECBD /* UIViewController+Extension.swift in Sources */,
+                0323B7B921AED3FA00A3E73C /* CE_Industry+CoreDataClass.swift in Sources */,
+                03F1F8A620EAD23C00662446 /* String+Extension.swift in Sources */,
+                0396A06C210A331600DBECBD /* LoadDataUtil.swift in Sources */,
+                03953C212110EDB800BED557 /* AreaSectionHeaderView.swift in Sources */,
+                0322AE2D21B04AF200592970 /* HistoryViewController.swift in Sources */,
+                03953C3D2114A02600BED557 /* CPSReport.swift in Sources */,
+                03B708882123026E00C370D7 /* OwnershipTableViewCell.swift in Sources */,
+                03953C15210F968100BED557 /* ReportManager.swift in Sources */,
+                03953C47211B297C00BED557 /* UIBarButtonItem+Extension.swift in Sources */,
+                0396A00120FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift in Sources */,
+                03953C45211B23A300BED557 /* InfoViewController.swift in Sources */,
+                036164C4210BA5AE0055708A /* ResultsViewController.swift in Sources */,
+                03B7088B2123211700C370D7 /* ReportViewCell.swift in Sources */,
+                036164B9210A67980055708A /* Array+Extension.swift in Sources */,
+                03F1F89F20EABF0200662446 /* CoreDataManager.swift in Sources */,
+                03953C11210F83EF00BED557 /* SeriesData.swift in Sources */,
+                0396A05D21074E5400DBECBD /* SearchSectionTableHeaderView.swift in Sources */,
+                0348FD19211DD64800155BE8 /* EmploymentWageTableViewCell.swift in Sources */,
+                03953C13210F83EF00BED557 /* APIReportResponse.swift in Sources */,
+                0348FD24211FB03D00155BE8 /* Dictionary+Extension.swift in Sources */,
+                03F1F8A220EAC99700662446 /* ZipCountyMap+CoreDataClass.swift in Sources */,
+                0396A05A21061F2900DBECBD /* Bundle+Extension.swift in Sources */,
+                03953C3F2118D28400BED557 /* CountyViewController.swift in Sources */,
+                036164C2210B869B0055708A /* MetroStateViewController.swift in Sources */,
+                03953C0A210F631000BED557 /* Network.swift in Sources */,
+                03953C17210F98DC00BED557 /* CESReport.swift in Sources */,
+                0348FD1E211E0AB200155BE8 /* OwnershipDataTableViewCell.swift in Sources */,
+                03953C04210F528E00BED557 /* LAUSReport.swift in Sources */,
+                03F1F89820EAA93000662446 /* DataUtil.swift in Sources */,
+                03953C0B210F631000BED557 /* API.swift in Sources */,
+                036164CF210D2C660055708A /* State+CoreDataClass.swift in Sources */,
+                0323B7BB21AEE48000A3E73C /* ItemViewModel.swift in Sources */,
+                03953C49211B49E500BED557 /* GlossaryViewController.swift in Sources */,
+                0322AE2F21B063A900592970 /* HistoryViewModel.swift in Sources */,
+                03CB7D092130470C001C1570 /* NationalViewController.swift in Sources */,
+                035D971F21270782005F1CA9 /* NumberFormatter+Extension.swift in Sources */,
+                03953C01210F50B200BED557 /* APIReportRequest.swift in Sources */,
+                035D9723212C4F3A005F1CA9 /* Style.swift in Sources */,
+                03F1F86120EA622D00662446 /* AppDelegate.swift in Sources */,
+                597EE8F32188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift in Sources */,
+                03953C372113877E00BED557 /* AreaViewController.swift in Sources */,
+                59E7A065219F69DF0060B7FF /* Industry+CoreDataClass.swift in Sources */,
+                03953C12210F83EF00BED557 /* SeriesReport.swift in Sources */,
+                03953C4B211B509D00BED557 /* AboutViewController.swift in Sources */,
+                0348FD0C211B9A7200155BE8 /* QCEWReport.swift in Sources */,
+                0396A0162106090800DBECBD /* LAUS_Area+CoreDataClass.swift in Sources */,
+                03F1F86920EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld in Sources */,
+                036164CD210D2C660055708A /* Metro+CoreDataClass.swift in Sources */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        03F1F87020EA623000662446 /* Sources */ = {
+            isa = PBXSourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                03F1F87920EA623000662446 /* Local_Labor_Market_DataTests.swift in Sources */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		03E35091213ED85900AC7383 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 03F1F85C20EA622D00662446 /* Local Labor Market Data */;
-			targetProxy = 03E35090213ED85900AC7383 /* PBXContainerItemProxy */;
-		};
-		03F1F87620EA623000662446 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 03F1F85C20EA622D00662446 /* Local Labor Market Data */;
-			targetProxy = 03F1F87520EA623000662446 /* PBXContainerItemProxy */;
-		};
+        03E35091213ED85900AC7383 /* PBXTargetDependency */ = {
+            isa = PBXTargetDependency;
+            target = 03F1F85C20EA622D00662446 /* Local Labor Market Data */;
+            targetProxy = 03E35090213ED85900AC7383 /* PBXContainerItemProxy */;
+        };
+        03F1F87620EA623000662446 /* PBXTargetDependency */ = {
+            isa = PBXTargetDependency;
+            target = 03F1F85C20EA622D00662446 /* Local Labor Market Data */;
+            targetProxy = 03F1F87520EA623000662446 /* PBXContainerItemProxy */;
+        };
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		03F1F86420EA622D00662446 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				03F1F86520EA622D00662446 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		03F1F86C20EA623000662446 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				03F1F86D20EA623000662446 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
+        03F1F86420EA622D00662446 /* Main.storyboard */ = {
+            isa = PBXVariantGroup;
+            children = (
+                03F1F86520EA622D00662446 /* Base */,
+            );
+            name = Main.storyboard;
+            sourceTree = "<group>";
+        };
+        03F1F86C20EA623000662446 /* LaunchScreen.storyboard */ = {
+            isa = PBXVariantGroup;
+            children = (
+                03F1F86D20EA623000662446 /* Base */,
+            );
+            name = LaunchScreen.storyboard;
+            sourceTree = "<group>";
+        };
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		03E35093213ED85900AC7383 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E6A92103FB212CB270FA9AA /* Pods-Local Labor Market DataUITests.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6KRG7875GS;
-				INFOPLIST_FILE = "Local Labor Market DataUITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dol.blsApp.Local-Labor-Market-DataUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Local Labor Market Data";
-			};
-			name = Debug;
-		};
-		03E35094213ED85900AC7383 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2135BA66718F87B55EB3D9A0 /* Pods-Local Labor Market DataUITests.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6KRG7875GS;
-				INFOPLIST_FILE = "Local Labor Market DataUITests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dol.blsApp.Local-Labor-Market-DataUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Local Labor Market Data";
-			};
-			name = Release;
-		};
-		03F1F88620EA623000662446 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Debug;
-		};
-		03F1F88720EA623000662446 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		03F1F88920EA623000662446 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E48D8C4DF2105E5CC3C73D26 /* Pods-Local Labor Market Data.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.bls.BLSApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		03F1F88A20EA623000662446 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA7CB4E8B74C84B3038D6C93 /* Pods-Local Labor Market Data.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.bls.BLSApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		03F1F88C20EA623000662446 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B331991BCEAB2EFA65C5A8AE /* Pods-Local Labor Market DataTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Local Labor Market DataTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dol.blsApp.Local-Labor-Market-DataTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Local Labor Market Data.app/Local Labor Market Data";
-			};
-			name = Debug;
-		};
-		03F1F88D20EA623000662446 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 04CAEFBB44F319BB2DAE7CF1 /* Pods-Local Labor Market DataTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Local Labor Market DataTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dol.blsApp.Local-Labor-Market-DataTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Local Labor Market Data.app/Local Labor Market Data";
-			};
-			name = Release;
-		};
+        03E35093213ED85900AC7383 /* Debug */ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = 4E6A92103FB212CB270FA9AA /* Pods-Local Labor Market DataUITests.debug.xcconfig */;
+            buildSettings = {
+                CODE_SIGN_STYLE = Automatic;
+                DEVELOPMENT_TEAM = 6KRG7875GS;
+                INFOPLIST_FILE = "Local Labor Market DataUITests/Info.plist";
+                IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+                LD_RUNPATH_SEARCH_PATHS = (
+                    "$(inherited)",
+                    "@executable_path/Frameworks",
+                    "@loader_path/Frameworks",
+                );
+                PRODUCT_BUNDLE_IDENTIFIER = "com.dol.blsApp.Local-Labor-Market-DataUITests";
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                SWIFT_VERSION = 4.2;
+                TARGETED_DEVICE_FAMILY = "1,2";
+                TEST_TARGET_NAME = "Local Labor Market Data";
+            };
+            name = Debug;
+        };
+        03E35094213ED85900AC7383 /* Release */ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = 2135BA66718F87B55EB3D9A0 /* Pods-Local Labor Market DataUITests.release.xcconfig */;
+            buildSettings = {
+                CODE_SIGN_STYLE = Automatic;
+                DEVELOPMENT_TEAM = 6KRG7875GS;
+                INFOPLIST_FILE = "Local Labor Market DataUITests/Info.plist";
+                IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+                LD_RUNPATH_SEARCH_PATHS = (
+                    "$(inherited)",
+                    "@executable_path/Frameworks",
+                    "@loader_path/Frameworks",
+                );
+                PRODUCT_BUNDLE_IDENTIFIER = "com.dol.blsApp.Local-Labor-Market-DataUITests";
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                SWIFT_VERSION = 4.2;
+                TARGETED_DEVICE_FAMILY = "1,2";
+                TEST_TARGET_NAME = "Local Labor Market Data";
+            };
+            name = Release;
+        };
+        03F1F88620EA623000662446 /* Debug */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ALWAYS_SEARCH_USER_PATHS = NO;
+                CLANG_ANALYZER_NONNULL = YES;
+                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+                CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+                CLANG_CXX_LIBRARY = "libc++";
+                CLANG_ENABLE_MODULES = YES;
+                CLANG_ENABLE_OBJC_ARC = YES;
+                CLANG_ENABLE_OBJC_WEAK = YES;
+                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+                CLANG_WARN_BOOL_CONVERSION = YES;
+                CLANG_WARN_COMMA = YES;
+                CLANG_WARN_CONSTANT_CONVERSION = YES;
+                CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+                CLANG_WARN_EMPTY_BODY = YES;
+                CLANG_WARN_ENUM_CONVERSION = YES;
+                CLANG_WARN_INFINITE_RECURSION = YES;
+                CLANG_WARN_INT_CONVERSION = YES;
+                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+                CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+                CLANG_WARN_STRICT_PROTOTYPES = YES;
+                CLANG_WARN_SUSPICIOUS_MOVE = YES;
+                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+                CLANG_WARN_UNREACHABLE_CODE = YES;
+                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+                CODE_SIGN_IDENTITY = "iPhone Developer";
+                COPY_PHASE_STRIP = NO;
+                DEBUG_INFORMATION_FORMAT = dwarf;
+                ENABLE_STRICT_OBJC_MSGSEND = YES;
+                ENABLE_TESTABILITY = YES;
+                GCC_C_LANGUAGE_STANDARD = gnu11;
+                GCC_DYNAMIC_NO_PIC = NO;
+                GCC_NO_COMMON_BLOCKS = YES;
+                GCC_OPTIMIZATION_LEVEL = 0;
+                GCC_PREPROCESSOR_DEFINITIONS = (
+                    "DEBUG=1",
+                    "$(inherited)",
+                );
+                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+                GCC_WARN_UNDECLARED_SELECTOR = YES;
+                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+                GCC_WARN_UNUSED_FUNCTION = YES;
+                GCC_WARN_UNUSED_VARIABLE = YES;
+                IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+                MTL_ENABLE_DEBUG_INFO = YES;
+                ONLY_ACTIVE_ARCH = YES;
+                SDKROOT = iphoneos;
+                SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+                SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+                SWIFT_VERSION = 4.0;
+            };
+            name = Debug;
+        };
+        03F1F88720EA623000662446 /* Release */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ALWAYS_SEARCH_USER_PATHS = NO;
+                CLANG_ANALYZER_NONNULL = YES;
+                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+                CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+                CLANG_CXX_LIBRARY = "libc++";
+                CLANG_ENABLE_MODULES = YES;
+                CLANG_ENABLE_OBJC_ARC = YES;
+                CLANG_ENABLE_OBJC_WEAK = YES;
+                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+                CLANG_WARN_BOOL_CONVERSION = YES;
+                CLANG_WARN_COMMA = YES;
+                CLANG_WARN_CONSTANT_CONVERSION = YES;
+                CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+                CLANG_WARN_EMPTY_BODY = YES;
+                CLANG_WARN_ENUM_CONVERSION = YES;
+                CLANG_WARN_INFINITE_RECURSION = YES;
+                CLANG_WARN_INT_CONVERSION = YES;
+                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+                CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+                CLANG_WARN_STRICT_PROTOTYPES = YES;
+                CLANG_WARN_SUSPICIOUS_MOVE = YES;
+                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+                CLANG_WARN_UNREACHABLE_CODE = YES;
+                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+                CODE_SIGN_IDENTITY = "iPhone Developer";
+                COPY_PHASE_STRIP = NO;
+                DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+                ENABLE_NS_ASSERTIONS = NO;
+                ENABLE_STRICT_OBJC_MSGSEND = YES;
+                GCC_C_LANGUAGE_STANDARD = gnu11;
+                GCC_NO_COMMON_BLOCKS = YES;
+                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+                GCC_WARN_UNDECLARED_SELECTOR = YES;
+                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+                GCC_WARN_UNUSED_FUNCTION = YES;
+                GCC_WARN_UNUSED_VARIABLE = YES;
+                IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+                MTL_ENABLE_DEBUG_INFO = NO;
+                SDKROOT = iphoneos;
+                SWIFT_COMPILATION_MODE = wholemodule;
+                SWIFT_OPTIMIZATION_LEVEL = "-O";
+                SWIFT_VERSION = 4.0;
+                VALIDATE_PRODUCT = YES;
+            };
+            name = Release;
+        };
+        03F1F88920EA623000662446 /* Debug */ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = E48D8C4DF2105E5CC3C73D26 /* Pods-Local Labor Market Data.debug.xcconfig */;
+            buildSettings = {
+                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+                CODE_SIGN_IDENTITY = "iPhone Developer";
+                CODE_SIGN_STYLE = Automatic;
+                DEVELOPMENT_TEAM = "";
+                INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
+                LD_RUNPATH_SEARCH_PATHS = (
+                    "$(inherited)",
+                    "@executable_path/Frameworks",
+                );
+                PRODUCT_BUNDLE_IDENTIFIER = gov.dol.bls.BLSApp;
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                PROVISIONING_PROFILE_SPECIFIER = "";
+                SWIFT_VERSION = 4.2;
+                TARGETED_DEVICE_FAMILY = "1,2";
+            };
+            name = Debug;
+        };
+        03F1F88A20EA623000662446 /* Release */ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = EA7CB4E8B74C84B3038D6C93 /* Pods-Local Labor Market Data.release.xcconfig */;
+            buildSettings = {
+                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+                CODE_SIGN_IDENTITY = "iPhone Developer";
+                CODE_SIGN_STYLE = Automatic;
+                DEVELOPMENT_TEAM = "";
+                INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
+                LD_RUNPATH_SEARCH_PATHS = (
+                    "$(inherited)",
+                    "@executable_path/Frameworks",
+                );
+                PRODUCT_BUNDLE_IDENTIFIER = gov.dol.bls.BLSApp;
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                PROVISIONING_PROFILE_SPECIFIER = "";
+                SWIFT_VERSION = 4.2;
+                TARGETED_DEVICE_FAMILY = "1,2";
+            };
+            name = Release;
+        };
+        03F1F88C20EA623000662446 /* Debug */ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = B331991BCEAB2EFA65C5A8AE /* Pods-Local Labor Market DataTests.debug.xcconfig */;
+            buildSettings = {
+                ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+                BUNDLE_LOADER = "$(TEST_HOST)";
+                CODE_SIGN_STYLE = Automatic;
+                INFOPLIST_FILE = "Local Labor Market DataTests/Info.plist";
+                LD_RUNPATH_SEARCH_PATHS = (
+                    "$(inherited)",
+                    "@executable_path/Frameworks",
+                    "@loader_path/Frameworks",
+                );
+                PRODUCT_BUNDLE_IDENTIFIER = "com.dol.blsApp.Local-Labor-Market-DataTests";
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                SWIFT_VERSION = 4.2;
+                TARGETED_DEVICE_FAMILY = "1,2";
+                TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Local Labor Market Data.app/Local Labor Market Data";
+            };
+            name = Debug;
+        };
+        03F1F88D20EA623000662446 /* Release */ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = 04CAEFBB44F319BB2DAE7CF1 /* Pods-Local Labor Market DataTests.release.xcconfig */;
+            buildSettings = {
+                ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+                BUNDLE_LOADER = "$(TEST_HOST)";
+                CODE_SIGN_STYLE = Automatic;
+                INFOPLIST_FILE = "Local Labor Market DataTests/Info.plist";
+                LD_RUNPATH_SEARCH_PATHS = (
+                    "$(inherited)",
+                    "@executable_path/Frameworks",
+                    "@loader_path/Frameworks",
+                );
+                PRODUCT_BUNDLE_IDENTIFIER = "com.dol.blsApp.Local-Labor-Market-DataTests";
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                SWIFT_VERSION = 4.2;
+                TARGETED_DEVICE_FAMILY = "1,2";
+                TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Local Labor Market Data.app/Local Labor Market Data";
+            };
+            name = Release;
+        };
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		03E35092213ED85900AC7383 /* Build configuration list for PBXNativeTarget "Local Labor Market DataUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				03E35093213ED85900AC7383 /* Debug */,
-				03E35094213ED85900AC7383 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		03F1F85820EA622D00662446 /* Build configuration list for PBXProject "Local Labor Market Data" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				03F1F88620EA623000662446 /* Debug */,
-				03F1F88720EA623000662446 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		03F1F88820EA623000662446 /* Build configuration list for PBXNativeTarget "Local Labor Market Data" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				03F1F88920EA623000662446 /* Debug */,
-				03F1F88A20EA623000662446 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		03F1F88B20EA623000662446 /* Build configuration list for PBXNativeTarget "Local Labor Market DataTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				03F1F88C20EA623000662446 /* Debug */,
-				03F1F88D20EA623000662446 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
+        03E35092213ED85900AC7383 /* Build configuration list for PBXNativeTarget "Local Labor Market DataUITests" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                03E35093213ED85900AC7383 /* Debug */,
+                03E35094213ED85900AC7383 /* Release */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
+        03F1F85820EA622D00662446 /* Build configuration list for PBXProject "Local Labor Market Data" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                03F1F88620EA623000662446 /* Debug */,
+                03F1F88720EA623000662446 /* Release */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
+        03F1F88820EA623000662446 /* Build configuration list for PBXNativeTarget "Local Labor Market Data" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                03F1F88920EA623000662446 /* Debug */,
+                03F1F88A20EA623000662446 /* Release */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
+        03F1F88B20EA623000662446 /* Build configuration list for PBXNativeTarget "Local Labor Market DataTests" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                03F1F88C20EA623000662446 /* Debug */,
+                03F1F88D20EA623000662446 /* Release */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		03F1F86720EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				59E7A057219F45630060B7FF /* BLSApp 3.xcdatamodel */,
-				03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */,
-				03F1F86820EA622D00662446 /* BLSApp.xcdatamodel */,
-			);
-			currentVersion = 59E7A057219F45630060B7FF /* BLSApp 3.xcdatamodel */;
-			path = Local_Labor_Market_Data.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
+        03F1F86720EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld */ = {
+            isa = XCVersionGroup;
+            children = (
+                59E7A057219F45630060B7FF /* BLSApp 3.xcdatamodel */,
+                03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */,
+                03F1F86820EA622D00662446 /* BLSApp.xcdatamodel */,
+            );
+            currentVersion = 59E7A057219F45630060B7FF /* BLSApp 3.xcdatamodel */;
+            path = Local_Labor_Market_Data.xcdatamodeld;
+            sourceTree = "<group>";
+            versionGroupType = wrapper.xcdatamodel;
+        };
 /* End XCVersionGroup section */
-	};
-	rootObject = 03F1F85520EA622D00662446 /* Project object */;
+    };
+    rootObject = 03F1F85520EA622D00662446 /* Project object */;
 }
