@@ -370,7 +370,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="315" height="465"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-a5-M57">
-                                                        <rect key="frame" x="0.0" y="5" width="315" height="168"/>
+                                                        <rect key="frame" x="0.0" y="5" width="315" height="198"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVi-wj-GTy" userLabel="Description1 Label">
                                                                 <rect key="frame" x="0.0" y="0.0" width="315" height="18"/>
@@ -419,6 +419,15 @@
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTP-3u-QlL" userLabel="Description6 Label">
                                                                 <rect key="frame" x="0.0" y="150" width="315" height="18"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                </variation>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOg-My-Bjd" userLabel="Description7 Label">
+                                                                <rect key="frame" x="0.0" y="180" width="315" height="18"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -561,6 +570,7 @@
                         <outlet property="description4Label" destination="Cz9-GL-AMX" id="BSD-pl-lWX"/>
                         <outlet property="description5Label" destination="eBi-MF-Vfg" id="J2y-xw-edq"/>
                         <outlet property="description6Label" destination="cTP-3u-QlL" id="xyI-Sb-4BS"/>
+                        <outlet property="description7Label" destination="UOg-My-Bjd" id="TBj-ST-2a0"/>
                         <outlet property="releaseDateLabel" destination="c6n-IT-2QJ" id="ie4-hS-Lwl"/>
                         <outlet property="versionValueLabel" destination="DvW-8f-5Ue" id="bGT-rg-W5J"/>
                     </connections>
