@@ -10,46 +10,39 @@ import Foundation
 
 
 class HistoryViewModel {
-    static var HISTORY_MONTHS = 24
+    static var HISTORY_MONTHS = -24
 
-    var areaReport: AreaReport
-    var localSeriesReport: [SeriesReport]?
-    var nationalSeriesReport: [SeriesReport]?
+    var localSeriesId: String?
+    var nationalSeriesId: String?
+    var currentDate: Date!
+    var title: String
     
-    init(areaReport: AreaReport) {
-        self.areaReport = areaReport
-    }
-    
-    var title: String {
-     get {
-        var title = "History"
-        switch areaReport.reportType {
-        case .unemployment( _):
-                title = "Unemployment - \(title)"
-        case .industryEmployment(_, _):
-            title = "Industry - \(title)"
-        default:
-            title = "History"
-        }
-        return title
-        }
+    init(title: String, localSeriesId: String?, nationalSeriedId: String?, latestDate: Date) {
+        self.title = title
+        self.localSeriesId = localSeriesId
+        self.nationalSeriesId = nationalSeriedId
+        self.currentDate = latestDate
+        loadHistory()
     }
     
     func loadHistory() {
-        ReportManager.getHistory(areaReport: areaReport,
+        var seriesIds =  [String]()
+        if let localSeriesId = localSeriesId {
+            seriesIds.append(localSeriesId)
+        }
+        if let nationalSeriesId = nationalSeriesId {
+            seriesIds.append(nationalSeriesId)
+        }
+        ReportManager.getHistory(seriesIds: seriesIds,
                                  monthsHistory: HistoryViewModel.HISTORY_MONTHS) {
                                     [weak self] (apiResult) in
 
             guard let strongSelf = self else {return}
 
             switch(apiResult) {
-            case .success(let seriesReport):
-                if (strongSelf.areaReport.area is National) {
-                    strongSelf.nationalSeriesReport = seriesReport
-                }
-                else {
-                    strongSelf.localSeriesReport = seriesReport
-                }
+            case .success(let seriesReports):
+                print(seriesReports)
+                
             case .failure(let error):
                 print(error)
             }

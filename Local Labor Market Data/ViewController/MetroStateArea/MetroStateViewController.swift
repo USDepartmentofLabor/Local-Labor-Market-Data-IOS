@@ -188,9 +188,29 @@ class MetroStateViewController: AreaViewController {
             if let destVC = segue.destination as? HistoryViewController,
                 let reportType = sender as? ReportType {
 
+                var title = "History"
+                switch(reportType) {
+                case .unemployment (_):
+                    title += "- Unemployment"
+                case .industryEmployment(_, _):
+                    title += "- Industry"
+                default:
+                    title = "History"
+                }
                 if let report = localAreaReportsDict?[reportType] {
-                    let viewModel = HistoryViewModel(areaReport: report)
-                    destVC.viewModel = viewModel
+                    let localAreaReport = localAreaReportsDict?[reportType]
+                    let nationalAreaReport = nationalAreaReportsDict[reportType]
+                    let calendar = Calendar.current
+                    let latestDate: Date
+                    
+                    //        // If Latest SeriesReport is available, use that as End Year
+                    let latestData = localAreaReport?.seriesReport?.latestData()
+                    if let latestData = latestData {
+                        latestDate = DateFormatter.date(fromMonth: latestData.periodName, fromYear: latestData.year) ?? Date()
+
+                        let viewModel = HistoryViewModel(title: title, localSeriesId: localAreaReport?.seriesId, nationalSeriedId: nationalAreaReport?.seriesId, latestDate: latestDate)
+                        destVC.viewModel = viewModel
+                    }
                 }
             }
         }
