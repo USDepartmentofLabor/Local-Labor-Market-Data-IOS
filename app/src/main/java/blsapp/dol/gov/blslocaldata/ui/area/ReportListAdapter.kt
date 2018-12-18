@@ -1,7 +1,6 @@
 package blsapp.dol.gov.blslocaldata.ui.area
 
 import android.content.Context
-import android.opengl.Visibility
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -21,6 +20,8 @@ import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
 import kotlinx.android.synthetic.main.report_header.view.*
 import java.text.NumberFormat
+
+
 
 enum class ReportRowType {
     HEADER,
@@ -46,6 +47,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         when (viewType) {
             ReportRowType.UNEMPLOYMENAT_RATE_ITEM.ordinal -> {
                 val inflatedView = layoutInflater.inflate(R.layout.unemployment_rate, parent, false)
+                inflatedView.isFocusable = false
                 return UnemploymentRateHolder(inflatedView)
             }
             ReportRowType.INDUSTRY_EMPLOYMENT_ITEM.ordinal -> {
@@ -426,6 +428,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
                 mHeaderImageView.visibility = View.VISIBLE
             }
         }
+
         override fun toString(): String {
             return super.toString() + " '" + mHeaderTextView.text + "'"
         }

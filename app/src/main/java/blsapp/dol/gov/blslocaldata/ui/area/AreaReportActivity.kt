@@ -73,7 +73,11 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
                 leftAreaImage = ContextCompat.getDrawable(this,R.drawable.ic_left_arrow_up)
                 rightAreaImage = ContextCompat.getDrawable(this,R.drawable.ic_right_arrow_up)
             }
+
         }
+        leftButton.contentDescription = "Display " + leftButton.text + " report for " + title
+        rightButton.contentDescription = "Display " + rightButton.text + " report for " + title
+
 
         leftAreaImage?.let {
             leftButton.setCompoundDrawablesWithIntrinsicBounds(it, null, null, null)
@@ -202,6 +206,11 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
             when (mArea) {
                 is CountyEntity -> {
                     subAreas = repository.getMetroAreas(mArea) as ArrayList<AreaEntity>
+                    if (subAreas.count() < 1) {
+                        uiThread {
+                            showMessage(getString(R.string.county_not_in_metro))
+                        }
+                    }
                 } else -> {
                     // dislay Counties
                     subAreas = repository.getCountyAreas(mArea) as ArrayList<AreaEntity>
@@ -245,6 +254,10 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
     }
 
     private fun showError(error: ReportError) {
-            Snackbar.make(recyclerView, error.displayMessage, Snackbar.LENGTH_LONG).show()
+        showMessage(error.displayMessage)
+    }
+
+    private fun showMessage(message: String) {
+            Snackbar.make(recyclerView, message, Snackbar.LENGTH_LONG).show()
     }
 }

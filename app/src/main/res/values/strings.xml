@@ -20,11 +20,11 @@
 
     <string name="about">About</string>
     <string name="about1">The Bureau of Labor Statistics (BLS) Local Labor Market Data app presents data on unemployment rates and employment by industry and occupation for states, metro areas, and counties. The most recent figures are presented, although the latest available data will vary by data type and geography.</string>
-    <string name="about2">National unemployment rate comes from the Current Population Survey (CPS), while state, metro area, and county unemployment rates come from the Local Area Unemployment Statistics (LAUS) program.</string>
-    <string name="about3">National, state, and metro area employment by industry comes from the Current Employment Statistics (CES) program.</string>
-    <string name="about4">County employment and wages by industry come from the Quarterly Census of Employment and Wages (QCEW) program.</string>
-    <string name="about5">National, state, and metro area employment and wages by occupation come from the Occupational Employment Statistics (OES) program.</string>
-    <string name="about6">At this time, metropolitan areas in New England states (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, and Vermont) are not available in the Local Labor Market Data app.</string>
+    <string name="about2">New England metro areas shown in this app are delineated by New England cities and towns (NECTAs).  In all other states, metropolitan areas are county-based</string>
+    <string name="about3">National unemployment rate comes from the Current Population Survey (CPS), while state, metro area, and county unemployment rates come from the Local Area Unemployment Statistics (LAUS) program.</string>
+    <string name="about4">National, state, and metro area employment by industry comes from the Current Employment Statistics (CES) program.</string>
+    <string name="about5">County employment and wages by industry come from the Quarterly Census of Employment and Wages (QCEW) program.</string>
+    <string name="about6">National, state, and metro area employment and wages by occupation come from the Occupational Employment Statistics (OES) program.</string>
     <string name="about7">The Local Labor Market Data app presents both seasonally adjusted and not seasonally adjusted data where available. Note that seasonally adjusted data are not generally available for metro areas and counties.</string>
     <string name="powered_by_ocio">Powered By OCIO</string>
     <string name="version_title">Version Number:</string>
@@ -47,15 +47,26 @@
     <string name="glossaryTitle6">Unemployment rate</string>
     <string name="glossary6">The unemployment rate represents the number of unemployed (persons who had no employment, were available for work, and had made specific efforts to find employment) as a percent of the labor force (all persons employed and unemployed).</string>
 
+    <string name="local_area">Local Area</string>
+    <string name="national_area">National Area</string>
     <string name="seasonally_adjusted">Seasonally Adjusted</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="unemployment_rate">Unemployment Rate</string>
+    <string name="industry_employment">Industry Employment</string>
+    <string name="occupational_employment_wages">Occupational Employment &amp; Wages</string>
+    <string name="employment_wages">Employment &amp; Wages</string>
+    <string name="ownership_private">Private</string>
+    <string name="ownership_federal_govt">Federal Government</string>
+    <string name="ownership_state_govt">State Government</string>
+    <string name="ownership_local_govt">Local Government</string>
+
+
     <string name="employment_level">Employment Level</string>
     <string name="mean_annual_wage">Mean Annual Wage</string>
     <string name="net_change">Net Change</string>
     <string name="one_month_change">1-Month Change</string>
     <string name="twelve_month_change">12-Month Change</string>
     <string name="average_weekly_wage">Avg Weekly wage</string>
+    <string name="average_weekly_wage_accessible">Average Weekly wage</string>
+    <string name="county_not_in_metro">This county is not a part of a Metropolitan Statistical Area.</string>
 </resources>

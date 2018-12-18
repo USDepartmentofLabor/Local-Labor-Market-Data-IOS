@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 
 import blsapp.dol.gov.blslocaldata.BLSApplication
+import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.LocalRepository
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
@@ -30,29 +31,33 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
     override var reportRows = MutableLiveData<List<ReportRow>>()
 
     var reportSections = listOf<ReportSection>(
-            ReportSection("Unemployment Rate", false,
+            ReportSection( application.getString(R.string.unemployment_rate), false,
                     listOf(ReportType.Unemployment(LAUSReport.MeasureCode.UNEMPLOYMENT_RATE))),
-            ReportSection("Employment & Wages", true,
+            ReportSection(application.getString(R.string.employment_wages), true,
                     listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.TOTAL_COVERED,
                                     dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                             ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.TOTAL_COVERED,
                                     dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage)), subSections =
-                listOf(ReportSection(title = "Private", _collapsed = true, reportTypes =
+                listOf(ReportSection(title = application.getString(R.string.ownership_private),
+                        _collapsed = true, reportTypes =
                             listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.PRIVATE_OWNERSHIP,
                                     dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                             ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.PRIVATE_OWNERSHIP,
                                     dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
-                        ReportSection(title = "Federal Government", _collapsed = true, reportTypes =
+                        ReportSection(title = application.getString(R.string.ownership_federal_govt),
+                                _collapsed = true, reportTypes =
                         listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.FEDERAL_GOVT,
                                 dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                                 ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.FEDERAL_GOVT,
                                         dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
-                        ReportSection(title = "State Government", _collapsed = true, reportTypes =
+                        ReportSection(title = application.getString(R.string.ownership_state_govt),
+                                _collapsed = true, reportTypes =
                         listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.STATE_GOVT,
                                 dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                                 ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.STATE_GOVT,
                                         dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
-                        ReportSection(title = "Local Government", _collapsed = true, reportTypes =
+                        ReportSection(title = application.getString(R.string.ownership_local_govt),
+                                _collapsed = true, reportTypes =
                         listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.LOCAL_GOVT,
                                 dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                                 ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.LOCAL_GOVT,
@@ -171,10 +176,12 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
                     }
 
                     var rowType = getRowType(reportSection)
-                    rows.add(ReportRow(rowType, "Local Area", areaReports, header = null))
+
+                    rows.add(ReportRow(rowType, getApplication<BLSApplication>().getString(R.string.local_area), areaReports, header = null))
                     val latestLocalData = areaReports?.firstOrNull()?.seriesReport?.latestData()
                     if (nationalAreaReports.filterNotNull().isNotEmpty()) {
-                        rows.add(ReportRow(rowType, "National Area", nationalAreaReports,
+                        rows.add(ReportRow(rowType, getApplication<BLSApplication>().getString(R.string.national_area),
+                                nationalAreaReports,
                                 period = latestLocalData?.period,
                                 year = latestLocalData?.year,
                                 header = null))

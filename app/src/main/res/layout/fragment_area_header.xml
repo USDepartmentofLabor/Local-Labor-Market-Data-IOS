@@ -29,6 +29,7 @@
         android:layout_marginTop="8dp"
         android:drawableStart="@drawable/ic_left_arrow_up"
         android:drawableLeft="@drawable/ic_left_arrow_up"
+        android:background="@android:color/transparent"
         android:text="@string/state"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seasonallyAdjustedSwitch" />
@@ -40,6 +41,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:drawableRight="@drawable/ic_right_arrow_up"
+        android:background="@android:color/transparent"
         android:text="@string/county"
         app:layout_constraintBottom_toBottomOf="@+id/leftButton"
         app:layout_constraintEnd_toEndOf="parent"

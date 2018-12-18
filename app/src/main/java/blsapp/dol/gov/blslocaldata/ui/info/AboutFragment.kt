@@ -40,7 +40,8 @@ class AboutFragment : Fragment() {
         line3.text = getString(R.string.about3)
         line4.text = getString(R.string.about4)
         line5.text = getString(R.string.about5)
-        line6.text = getString(R.string.about7)
+        line6.text = getString(R.string.about6)
+        line7.text = getString(R.string.about7)
 
         versionValue.text = BuildConfig.VERSION_NAME
         releaseDateValue.text = AboutFragment.releaseDate

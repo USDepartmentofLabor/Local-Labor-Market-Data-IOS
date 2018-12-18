@@ -56,7 +56,7 @@ class ExampleInstrumentedTest {
         val repository = LocalRepository.getInstance(db)
         val areas = repository.getStateAreas("Virginia")
         if (areas.count() > 0) {
-            val seriesid = OESReport.getSeriesId(area = areas.first(), adjustment = SeasonalAdjustment.NOT_ADJUSTED,
+            val seriesid = OESReport.getSeriesId(area = areas.first(),
                     dataTypeCode = OESReport.DataTypeCode.EMPLOYMENT)
             Log.w("Test", seriesid)
             assertEquals("OEUS510000000000000000001", seriesid)
@@ -70,7 +70,7 @@ class ExampleInstrumentedTest {
         val repository = LocalRepository.getInstance(db)
         val areas = repository.getMetroAreas("Washington-Arlington-Alexandria, DC-VA-MD-WV")
         if (areas.count() > 0) {
-            val seriesid = OESReport.getSeriesId(area = areas.first(), adjustment = SeasonalAdjustment.ADJUSTED,
+            val seriesid = OESReport.getSeriesId(area = areas.first(),
                     dataTypeCode = OESReport.DataTypeCode.ANNUALMEANWAGE)
             Log.w("Test", seriesid)
             assertEquals("OEUM004790000000000000004", seriesid)

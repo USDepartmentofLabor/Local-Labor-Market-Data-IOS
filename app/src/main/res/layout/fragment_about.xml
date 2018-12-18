@@ -101,6 +101,16 @@
                 app:layout_constraintStart_toStartOf="@+id/line1"
                 app:layout_constraintTop_toBottomOf="@+id/line5" />
 
+            <TextView
+                android:id="@+id/line7"
+                style="@style/info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=""
+                app:layout_constraintEnd_toEndOf="@+id/line1"
+                app:layout_constraintStart_toStartOf="@+id/line1"
+                app:layout_constraintTop_toBottomOf="@+id/line6" />
+
             <android.support.constraint.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -108,7 +118,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/line1"
-                app:layout_constraintTop_toBottomOf="@+id/line6">
+                app:layout_constraintTop_toBottomOf="@+id/line7">
 
                 <TextView
                     android:id="@+id/versionTitle"

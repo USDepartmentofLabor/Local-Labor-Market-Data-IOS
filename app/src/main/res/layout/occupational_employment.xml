@@ -6,14 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/report_item_back"
-    android:padding="15dp">
+    android:padding="15dp"
+    android:importantForAccessibility="no">
 
     <TextView
         android:id="@+id/areaTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/reportAreaType"
-        android:text="Local Area"
+        android:text="@string/local_area"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

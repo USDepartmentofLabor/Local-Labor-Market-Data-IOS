@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 
 import blsapp.dol.gov.blslocaldata.BLSApplication
+import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.LocalRepository
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
@@ -52,11 +53,11 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
     override var reportRows = MutableLiveData<List<ReportRow>>()
 
     var reportSections = listOf<ReportSection>(
-            ReportSection("Unemployment Rate", false,
+            ReportSection(application.getString(R.string.unemployment_rate), false,
                     listOf(ReportType.Unemployment(LAUSReport.MeasureCode.UNEMPLOYMENT_RATE))),
-            ReportSection("Industry Employment", true,
+            ReportSection(application.getString(R.string.industry_employment), true,
                     listOf(ReportType.IndustryEmployment("00000000", CESReport.DataTypeCode.ALLEMPLOYEES))),
-            ReportSection("Occupational Employment & Wages", true,
+            ReportSection(application.getString(R.string.occupational_employment_wages), true,
                     listOf(ReportType.OccupationalEmployment("000000", OESReport.DataTypeCode.ANNUALMEANWAGE))))
 
     init {
@@ -154,10 +155,14 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                 }
 
                 var rowType = getRowType(reportSection)
-                rows.add(ReportRow(rowType, "Local Area", areaReports, header = null))
+                rows.add(ReportRow(rowType,
+                        getApplication<BLSApplication>().getString(R.string.local_area),
+                        areaReports, header = null))
                 val latestLocalData = areaReports?.firstOrNull()?.seriesReport?.latestData()
                 if (nationalAreaReports.count() > 0) {
-                    rows.add(ReportRow(rowType, "National Area", nationalAreaReports,
+                    rows.add(ReportRow(rowType,
+                            getApplication<BLSApplication>().getString(R.string.national_area),
+                            nationalAreaReports,
                             period = latestLocalData?.period,
                             year = latestLocalData?.year,
                             header = null))
