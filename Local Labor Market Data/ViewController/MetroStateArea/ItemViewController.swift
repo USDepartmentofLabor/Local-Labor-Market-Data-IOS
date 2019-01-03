@@ -13,27 +13,144 @@ struct ReportItem<T> {
     var reportTypes: [ReportType]?
 }
 
-class ItemViewController<T: Item>: UITableViewController {
-    var area: Area
-    var parentItem: T?
-    var reportItems: [ReportItem<T>]?
+class ItemViewController: UIViewController {
+    var viewModel: ItemViewModel!
+    
+    @IBOutlet weak var areaTitleLabel: UILabel!
+    @IBOutlet weak var seasonallyAdjustedSwitch: UICustomSwitch!
+    @IBOutlet weak var seasonallyAdjustedTitle: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     var reportResultsdict: [ReportType : AreaReport]?
     
-    init(area: Area, parentItem: T? = nil, title: String) {
-        self.area = area
-        self.parentItem = parentItem
-        super.init(style: .plain)
-        self.title = title
+    var seasonalAdjustment: SeasonalAdjustment {
+        get {
+            return ReportManager.seasonalAdjustment
+        }
+        set(newValue) {
+            ReportManager.seasonalAdjustment = newValue
+//            localAreaReportsDict?.removeAll()
+            tableView.reloadData()
+            
+//            loadReports()
+        }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+    }
+    
+    func setupView() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(displaySearchBar(sender:)))
         
-        let items: [T]?
-        if parentItem == nil {
-            items = T.getSuperParents(context: CoreDataManager.shared().viewManagedContext)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 60
+
+        areaTitleLabel.scaleFont(forDataType: .reportAreaTitle, for:traitCollection)
+        seasonallyAdjustedSwitch.tintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
+        seasonallyAdjustedSwitch.onTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
+        seasonallyAdjustedTitle.scaleFont(forDataType: .seasonallyAdjustedSwitch, for: traitCollection)
+
+        areaTitleLabel.text = viewModel.area.title
+        seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
+        setupAccessbility()
+
+        tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.height)
+//        tableView.scrollToRow(at: IndexPath(row: 1, section: 0), at: .top, animated: false)
+        
+
+        loadReports()
+    }
+    
+    func setupAccessbility() {
+        seasonallyAdjustedSwitch.accessibilityLabel = "Seasonally Adjusted"
+        seasonallyAdjustedTitle.isAccessibilityElement = false
+        tableView.isAccessibilityElement = false
+        areaTitleLabel.accessibilityTraits = UIAccessibilityTraits.header
+        areaTitleLabel.accessibilityLabel = viewModel.area.accessibilityStr
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showIndustries",
+            let destVC = segue.destination as? ItemViewController {
+            
+            if let selectedIndexPath = tableView.indexPathForSelectedRow,
+                let selectedItem = viewModel.items?[selectedIndexPath.row] {
+            
+                let vm = ItemViewModel(area: viewModel.area, parent: selectedItem, itemType: type(of: selectedItem))
+                destVC.viewModel = vm
+                destVC.title = selectedItem.title
+            }
         }
-        else {
-            items = parentItem?.subItems() as? [T]
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "showIndustries" {
+            
+            if let selectedIndexPath = tableView.indexPathForSelectedRow,
+                let selectedItem = viewModel.items?[selectedIndexPath.row],
+                selectedItem.children?.count ?? 0 > 0 {
+                return true
+            }
+            return false
         }
-        reportItems = items?.compactMap({ (item) -> ReportItem<T> in
+        
+        return true
+    }
+    
+    @IBAction func seasonallyAdjustClick(_ sender: Any) {
+        seasonalAdjustment = seasonallyAdjustedSwitch.isOn ? .adjusted : .notAdjusted
+    }
+    
+    @objc func displaySearchBar(sender: Any) {
+        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
+        searchBar.becomeFirstResponder()
+    }
+}
+
+// MARK: TableView DataSource
+extension ItemViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.items?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCellId") as! ItemTableViewCell
+
+        if let reportItem = viewModel.items?[indexPath.row] {
+            cell.titleLabel?.text = reportItem.title
+        
+            if (reportItem.children?.count ?? 0) > 0 {
+                cell.detailImageView.image = #imageLiteral(resourceName: "place")
+                cell.selectionStyle = .default
+            }
+            else {
+                cell.detailImageView.image = nil
+                cell.selectionStyle = .none
+            }
+        }
+        return cell
+    }
+}
+
+extension ItemViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+}
+
+
+// MARK: SeriesId
+extension ItemViewController {
+    func loadReports() {
+        let reportItems = viewModel.items?.compactMap({ (item) -> ReportItem<Item> in
             let reportTypes: [ReportType]?
             if let code = item.code {
                 if item is OE_Occupation {
@@ -53,69 +170,12 @@ class ItemViewController<T: Item>: UITableViewController {
                 reportTypes = nil
             }
             
-            return ReportItem<T>(item: item, reportTypes: reportTypes)
+            return ReportItem<Item>(item: item, reportTypes: reportTypes)
         })
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupView()
-    }
-    
-    func setupView() {
-        loadReports()
-    }
-    
-// MARK: TableView DataSource
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reportItems?.count ?? 0
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "cellId")
 
-        if let reportItem = reportItems?[indexPath.row] {
-            cell.textLabel?.text = reportItem.item.title
-        
-            if (reportItem.item.children?.count ?? 0) > 0 {
-                cell.accessoryType = .disclosureIndicator
-                cell.selectionStyle = .default
-            }
-            else {
-                cell.accessoryType = .none
-                cell.selectionStyle = .none
-            }
-        }
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        if let reportItem = reportItems?[indexPath.row] {
-            let item = reportItem.item
-            if (item.children?.count ?? 0) > 0 {
-                let vc = ItemViewController(area: area, parentItem: item, title: item.title ?? "")
-                navigationController?.pushViewController(vc, animated: true)
-            }
-        }
-    }
-}
-
-
-// MARK: SeriesId
-extension ItemViewController {
-    func loadReports() {
-
-        if let reportTypes = reportItems?.compactMap({$0.reportTypes}).flatMap({$0}) {
-            ReportManager.getReports(forArea: area, reportTypes: reportTypes,
+/*
+        if let reportTypes = viewModel?.items?.compactMap({$0.reportTypes}).flatMap({$0}) {
+            ReportManager.getReports(forArea: viewModel?.area, reportTypes: reportTypes,
                                  seasonalAdjustment: SeasonalAdjustment.adjusted) {
                 [weak self] (apiResult) in
                 guard let strongSelf = self else {return}
@@ -128,6 +188,7 @@ extension ItemViewController {
                 }
             }
         }
+ */
     }
     
     func displayReportResults(areaReportsDict: ([ReportType : AreaReport])) {

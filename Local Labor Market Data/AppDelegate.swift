@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-#if false
+#if true
         loadData()
 #endif
         
@@ -81,6 +81,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataUtil.loadOESOccupations()
         dataUtil.loadQCEWIndustries()
     }
-    
 }
 

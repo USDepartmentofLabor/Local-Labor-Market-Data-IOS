@@ -16,9 +16,9 @@ public class Item: NSManagedObject {
     {
         let results: [T]?
         
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = T.fetchRequest()
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = self.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "parent == nil")
-        fetchRequest.entity = T.entity()
+        fetchRequest.entity = self.entity()
         do {
             results = try context.fetch(fetchRequest) as? [T]
         } catch let error as NSError {

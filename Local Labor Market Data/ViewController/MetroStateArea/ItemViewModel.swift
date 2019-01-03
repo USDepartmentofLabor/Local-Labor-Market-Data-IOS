@@ -9,19 +9,21 @@
 import Foundation
 
 
-class ItemViewModel<T: Item>: NSObject {
-    var parentItem: T?
-    var items: [T]?
+class ItemViewModel: NSObject {
+    
+    var area: Area
+    var parentItem: Item?
+    var items: [Item]?
 
-    init(parent: T? = nil) {
+    init(area: Area, parent: Item? = nil, itemType: Item.Type) {
+        self.area = area
         if parent == nil {
-            items = T.self.getSuperParents(context:
-                CoreDataManager.shared().viewManagedContext) as? [T]
+            items = itemType.getSuperParents(context:
+                CoreDataManager.shared().viewManagedContext)
         }
         else {
             parentItem = parent
-            items = parentItem?.subItems() as? [T]
+            items = parentItem?.subItems()
         }
     }
-    
 }

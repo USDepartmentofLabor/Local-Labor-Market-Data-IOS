@@ -309,7 +309,7 @@ extension LoadDataUtil {
         var currentIndex = 2
         while currentIndex < industryItems.count-1 {
             let industryItem = industryItems[currentIndex]
-            if let supersector = NSEntityDescription.insertNewObject(forEntityName: T.entityName(),
+            if let supersector = NSEntityDescription.insertNewObject(forEntityName: type.entityName(),
                                                                      into: managedObjectContext) as? T {
                 
                 let code = industryItem[0]

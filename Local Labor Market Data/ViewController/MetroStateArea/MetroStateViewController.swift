@@ -214,6 +214,27 @@ class MetroStateViewController: AreaViewController {
                 }
             }
         }
+        else if segue.identifier == "showIndustries" {
+            if let destVC = segue.destination as? ItemViewController {
+                let type: Item.Type
+                if area is National {
+                    type = SM_Industry.self
+                }
+                else {
+                    type = CE_Industry.self
+                }
+                let viewModel = ItemViewModel(area: area, parent: nil, itemType: type)
+                destVC.viewModel = viewModel
+                destVC.title = "Industry - Supersectors"
+            }
+        }
+        else if segue.identifier == "showOccupations" {
+            if let destVC = segue.destination as? ItemViewController {
+                let viewModel = ItemViewModel(area: area, parent: nil, itemType: OE_Occupation.self)
+                destVC.viewModel = viewModel
+                destVC.title = "Occupations"
+            }
+        }
     }
 }
 
@@ -451,15 +472,11 @@ extension MetroStateViewController: AreaSectionHeaderDelegate {
     }
     
     func displayCEIndustry() {
-        let vc = ItemViewController<CE_Industry>(area: area, title: "Industry-Supersectors")
-        navigationController?.pushViewController(vc, animated: true)
+        performSegue(withIdentifier: "showIndustries", sender: nil)
     }
     
     func displayOESOccupation() {
-        let viewModel = ItemViewModel<OE_Occupation>()
-//        performSegue(withIdentifier: "showOccupation", sender: self)
-        let vc = ItemViewController<OE_Occupation>(area: area, title: "Supersectors")
-        navigationController?.pushViewController(vc, animated: true)
+        performSegue(withIdentifier: "showOccupations", sender: nil)
     }
     
     func displayUnemploymentHistory() {
