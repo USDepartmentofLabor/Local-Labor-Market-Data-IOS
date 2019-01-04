@@ -17,7 +17,7 @@ struct APIReportRequest : Encodable {
     let catalog: Bool?
     let calculations: Bool?
     let annualaverage: Bool?
-    var latest: Bool? = true
+//    var latest: Bool? = true
 
     init(seriesIds: [String], registrationKey: String, startYear: String? = nil, endYear: String? = nil,
          catalog: Bool? = false, calculations: Bool? = true, annualAverage: Bool? = false) {
@@ -31,12 +31,12 @@ struct APIReportRequest : Encodable {
             else {
                 self.endyear = startYear
             }
-            self.latest = false
+//            self.latest = false
         }
         else {
             self.startyear = nil
             self.endyear = nil
-            self.latest = true
+//            self.latest = true
         }
         self.catalog = catalog
         self.calculations = calculations
@@ -51,7 +51,6 @@ struct APIReportRequest : Encodable {
         SeriesId: \(seriesid)
         StartYear: \(startyear ?? "")
         EndYear: \(endyear ?? "")
-        Latest: \(latest ?? false)
         """
 }
     
