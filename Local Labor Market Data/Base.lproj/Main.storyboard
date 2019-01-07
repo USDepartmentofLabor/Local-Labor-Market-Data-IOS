@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4j2-sT-K6v">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jg2-W3-x1l">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,6 +11,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Split View Controller-->
+        <scene sceneID="Tbf-55-sBB">
+            <objects>
+                <splitViewController id="jg2-W3-x1l" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="4j2-sT-K6v" kind="relationship" relationship="masterViewController" id="D64-ZV-RDr"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UpK-zz-fxZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1111" y="17"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7X-pU-99x">
             <objects>
@@ -87,10 +99,10 @@
                     <connections>
                         <outlet property="areaSegment" destination="1BS-Yi-ap0" id="wr2-mc-dff"/>
                         <outlet property="tableView" destination="06i-m9-0gb" id="oZq-qj-ZJw"/>
-                        <segue destination="QEG-Ga-aqY" kind="show" identifier="showMetroArea" id="6Qi-XW-j07"/>
-                        <segue destination="QEG-Ga-aqY" kind="show" identifier="showStateArea" id="xET-zh-0oi"/>
-                        <segue destination="syA-ro-GOG" kind="show" identifier="showCountyArea" id="9nZ-bI-2Mc"/>
                         <segue destination="7qL-l2-ozW" kind="show" identifier="showInfo" id="EEn-pf-Eig"/>
+                        <segue destination="LYj-9y-hys" kind="showDetail" identifier="showMetroArea" id="fQc-Pt-WaI"/>
+                        <segue destination="H2L-Aa-FKH" kind="showDetail" identifier="showCountyArea" id="YAq-gk-NrT"/>
+                        <segue destination="LYj-9y-hys" kind="showDetail" identifier="showStateArea" id="zBq-aa-XRS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h81-fa-kbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -230,6 +242,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TbK-QC-bbp"/>
                     </view>
+                    <navigationItem key="navigationItem" id="aKf-eU-iPo"/>
                     <connections>
                         <outlet property="areaTitleLabel" destination="b2N-gv-slk" id="zjs-Yk-RS2"/>
                         <outlet property="leftSubArea" destination="Vjj-VQ-lqD" id="W8W-D3-rA3"/>
@@ -277,6 +290,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OAV-SH-fKC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1484" y="1721"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xJ3-3b-3TH">
+            <objects>
+                <navigationController id="LYj-9y-hys" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oph-Tc-RFx">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="QEG-Ga-aqY" kind="relationship" relationship="rootViewController" id="Q95-Br-UhC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2RW-w0-q4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1932" y="882"/>
         </scene>
         <!--Results View Controller-->
         <scene sceneID="VT9-sY-o2r">
@@ -923,6 +952,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7ur-KB-M4e"/>
                     </view>
+                    <navigationItem key="navigationItem" id="r2g-TI-53R"/>
                     <connections>
                         <outlet property="areaTitleLabel" destination="csf-9U-mOa" id="NBg-O2-Mae"/>
                         <outlet property="leftSubArea" destination="efY-W4-pKC" id="6iJ-L0-6n4"/>
@@ -983,6 +1013,22 @@
             </objects>
             <point key="canvasLocation" x="5193" y="748"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DbA-BS-f9s">
+            <objects>
+                <navigationController id="H2L-Aa-FKH" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vTX-m0-8ia">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="syA-ro-GOG" kind="relationship" relationship="rootViewController" id="9Eh-V7-hmW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JUY-Cj-Y2y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="543" y="971"/>
+        </scene>
     </scenes>
     <resources>
         <image name="OCIO" width="2250" height="376"/>
@@ -997,6 +1043,6 @@
         <segue reference="JVm-UH-LeO"/>
         <segue reference="EEn-pf-Eig"/>
         <segue reference="EfZ-PW-sgg"/>
-        <segue reference="6Qi-XW-j07"/>
+        <segue reference="fQc-Pt-WaI"/>
     </inferredMetricsTieBreakers>
 </document>

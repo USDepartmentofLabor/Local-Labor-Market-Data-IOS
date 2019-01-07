@@ -122,16 +122,19 @@ extension ResultsViewController: UITableViewDelegate {
         
         guard let selectedArea = resultAreas?[indexPath.row] else { return }
         
+        let areaVC: AreaViewController
         if selectedArea is County {
-            let countyVC = CountyViewController.instantiateFromStoryboard()
-            countyVC.area = selectedArea
-            navigationController?.pushViewController(countyVC, animated: true)
+            areaVC = CountyViewController.instantiateFromStoryboard()
         }
         else {
-            let metroStateVC = MetroStateViewController.instantiateFromStoryboard()
-            metroStateVC.area = selectedArea
-            navigationController?.pushViewController(metroStateVC, animated: true)
+            areaVC = MetroStateViewController.instantiateFromStoryboard()
         }
+        
+        areaVC.area = selectedArea
+        let navVC = UINavigationController(rootViewController: areaVC)
+        areaVC.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+        areaVC.navigationItem.leftItemsSupplementBackButton = true
+        splitViewController?.showDetailViewController(navVC, sender: nil)
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView,

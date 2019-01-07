@@ -129,7 +129,7 @@ class CountyViewController: AreaViewController {
         
         let stateVC = MetroStateViewController.instantiateFromStoryboard()
         stateVC.area = state
-        navigationController?.pushViewController(stateVC, animated: true)
+        displayAreaViewController(vc: stateVC)
     }
     
     func displayMetros() {
@@ -145,7 +145,7 @@ class CountyViewController: AreaViewController {
         else if metros.count == 1 {
             let metroVC = MetroStateViewController.instantiateFromStoryboard()
             metroVC.area = metros[0]
-            navigationController?.pushViewController(metroVC, animated: true)
+            displayAreaViewController(vc: metroVC)
         }
         else {
             displayError(message: "This county is not a part of a Metropolitan Statistical Area.", title: "")

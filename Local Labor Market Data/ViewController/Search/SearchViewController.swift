@@ -102,6 +102,9 @@ class SearchViewController: UIViewController {
         let infoItem = UIBarButtonItem.infoButton(target: self, action: #selector(infoClicked(sender:)))
         navigationItem.rightBarButtonItem = infoItem
         
+        splitViewController?.delegate = self
+        splitViewController?.preferredDisplayMode = .allVisible
+        
         tableView.register(UINib(nibName: SearchSectionTableHeaderView.nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: SearchSectionTableHeaderView.reuseIdentifier)
         tableView.sectionHeaderHeight = UITableView.automaticDimension;
         tableView.estimatedSectionHeaderHeight = 50
@@ -150,8 +153,16 @@ class SearchViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let area = sender as? Area, let areaVC =  segue.destination as? AreaViewController {
+        if let area = sender as? Area, let navVC = segue.destination as? UINavigationController,
+            let areaVC =  navVC.topViewController as? AreaViewController {
             areaVC.area = area
+        }
+        
+        if let splitVC = splitViewController,
+            let navVC = segue.destination as? UINavigationController,
+                let detailVC = navVC.topViewController {
+            detailVC.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem
+            detailVC.navigationItem.leftItemsSupplementBackButton = true
         }
     }
 }
@@ -179,7 +190,13 @@ extension SearchViewController {
         let vc = MetroStateViewController.instantiateFromStoryboard()
         object_setClass(vc, NationalViewController.self)
         vc.area = dataUtil.nationalArea()
-        navigationController?.pushViewController(vc, animated: true)
+        if let splitVC = splitViewController {
+            let navController = UINavigationController(rootViewController: vc)
+            splitVC.showDetailViewController(navController, sender: nil)
+        }
+        else {
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 
@@ -268,7 +285,7 @@ extension SearchViewController: UITableViewDelegate {
         guard let area = areas?[indexPath.row] else {return}
         
         let segueIdentifier: String?
-        tableView.deselectRow(at: indexPath, animated: false)
+//        tableView.deselectRow(at: indexPath, animated: false)
         if area is Metro {
             segueIdentifier = "showMetroArea"
         }
@@ -329,8 +346,10 @@ extension SearchViewController: SearchSectionHeaderDelegate {
         else if section == nationalSection {
             displayNationalReports()
         }
-        getCurrentLocation()
-        searchController.searchBar.text = currentLocationTitle
+        else {
+            getCurrentLocation()
+            searchController.searchBar.text = currentLocationTitle
+        }
     }
 }
 
@@ -458,3 +477,14 @@ extension SearchViewController: CLLocationManagerDelegate {
     
 }
 
+extension SearchViewController: UISplitViewControllerDelegate {
+    func targetDisplayModeForAction(in svc: UISplitViewController) -> UISplitViewController.DisplayMode {
+        
+        if svc.displayMode == UISplitViewController.DisplayMode.primaryOverlay ||
+            svc.displayMode == UISplitViewController.DisplayMode.primaryHidden {
+            return UISplitViewController.DisplayMode.allVisible
+        }
+        
+        return UISplitViewController.DisplayMode.primaryHidden
+    }
+}

@@ -129,7 +129,8 @@ class MetroStateViewController: AreaViewController {
         else if states.count == 1 {
             let stateVC = MetroStateViewController.instantiateFromStoryboard()
             stateVC.area = states[0]
-            navigationController?.pushViewController(stateVC, animated: true)
+
+            displayAreaViewController(vc: stateVC)
         }
     }
     
@@ -146,7 +147,7 @@ class MetroStateViewController: AreaViewController {
         else if metros.count == 1 {
             let metroVC = MetroStateViewController.instantiateFromStoryboard()
             metroVC.area = metros[0]
-            navigationController?.pushViewController(metroVC, animated: true)
+            displayAreaViewController(vc: metroVC)
         }
 
     }
@@ -177,7 +178,7 @@ class MetroStateViewController: AreaViewController {
         else if counties.count == 1 {
             let countyVC = CountyViewController.instantiateFromStoryboard()
             countyVC.area = counties[0]
-            navigationController?.pushViewController(countyVC, animated: true)
+            displayAreaViewController(vc: countyVC)
         }
     }
     

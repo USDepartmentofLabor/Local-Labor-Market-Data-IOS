@@ -33,15 +33,13 @@ class AreaViewController: UIViewController {
     }
     
     func setupView() {
-        navigationItem.hidesBackButton = true
-//        let searchItem = UIBarButtonItem(barButtonSystemItem: .search, target: self,
-//                                         action: #selector(searchClicked(sender:)))
+//        navigationItem.hidesBackButton = true
         let infoItem = UIBarButtonItem.infoButton(target: self, action: #selector(infoClicked(sender:)))
         navigationItem.rightBarButtonItems = [infoItem]
         
         let homeItem = UIBarButtonItem(title: "Home", style: .plain,
                                        target: self, action: #selector(searchClicked(sender:)))
-        navigationItem.leftBarButtonItem = homeItem
+//        navigationItem.leftBarButtonItem = homeItem
         
         seasonallyAdjustedSwitch.tintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
         seasonallyAdjustedSwitch.onTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
@@ -80,5 +78,18 @@ class AreaViewController: UIViewController {
     
     @objc func voiceOverStatusChanged() {
         tableView.reloadData()
+    }
+    
+    func displayAreaViewController(vc: UIViewController) {
+        if splitViewController?.viewControllers.count ?? 0 > 1,
+            let navVC = splitViewController?.viewControllers[1] as? UINavigationController {
+            vc.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+            vc.navigationItem.leftItemsSupplementBackButton = true
+            navVC.viewControllers = [vc]
+        }
+        else {
+            let navVC = UINavigationController(rootViewController: vc)
+            splitViewController?.showDetailViewController(navVC, sender: nil)
+        }
     }
 }
