@@ -201,8 +201,10 @@ extension CountyViewController {
         let today = Date()
         let endYear = Calendar.current.component(.year, from: today)
         activityIndicator.startAnimating()
+//        ReportManager.getReports(forArea: county, reportTypes: reportTypes,
+//                                 seasonalAdjustment: seasonalAdjustment,startYear: String(endYear-1), endYear: String(endYear)) {
         ReportManager.getReports(forArea: county, reportTypes: reportTypes,
-                                 seasonalAdjustment: seasonalAdjustment,startYear: String(endYear-1), endYear: String(endYear)) {
+                                 seasonalAdjustment: seasonalAdjustment) {
                 [weak self] (apiResult) in
                 guard let strongSelf = self else {return}
                 strongSelf.activityIndicator.stopAnimating()
