@@ -99,7 +99,7 @@
                     <connections>
                         <outlet property="areaSegment" destination="1BS-Yi-ap0" id="wr2-mc-dff"/>
                         <outlet property="tableView" destination="06i-m9-0gb" id="oZq-qj-ZJw"/>
-                        <segue destination="7qL-l2-ozW" kind="show" identifier="showInfo" id="EEn-pf-Eig"/>
+                        <segue destination="7qL-l2-ozW" kind="showDetail" identifier="showInfo" id="EEn-pf-Eig"/>
                         <segue destination="LYj-9y-hys" kind="showDetail" identifier="showMetroArea" id="fQc-Pt-WaI"/>
                         <segue destination="H2L-Aa-FKH" kind="showDetail" identifier="showCountyArea" id="YAq-gk-NrT"/>
                         <segue destination="LYj-9y-hys" kind="showDetail" identifier="showStateArea" id="zBq-aa-XRS"/>
