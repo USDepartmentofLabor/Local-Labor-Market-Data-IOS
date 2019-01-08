@@ -89,6 +89,9 @@ class SearchViewController: UIViewController {
         super.viewWillAppear(animated)
         let titleStr = "\(Bundle.main.appName)"
         self.title = titleStr
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: false)
+        }
     }
     
     override func didReceiveMemoryWarning() {

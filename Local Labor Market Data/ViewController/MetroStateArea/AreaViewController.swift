@@ -81,15 +81,8 @@ class AreaViewController: UIViewController {
     }
     
     func displayAreaViewController(vc: UIViewController) {
-        if splitViewController?.viewControllers.count ?? 0 > 1,
-            let navVC = splitViewController?.viewControllers[1] as? UINavigationController {
-            vc.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-            vc.navigationItem.leftItemsSupplementBackButton = true
-            navVC.viewControllers = [vc]
-        }
-        else {
-            let navVC = UINavigationController(rootViewController: vc)
-            splitViewController?.showDetailViewController(navVC, sender: nil)
-        }
+        vc.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+        vc.navigationItem.leftItemsSupplementBackButton = true
+        navigationController?.replaceTopViewController(with: vc, animated: true)
     }
 }

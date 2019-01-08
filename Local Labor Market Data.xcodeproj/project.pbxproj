@@ -22,6 +22,7 @@
 		032C16652138241E004C1B3F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16642138241E004C1B3F /* Util.swift */; };
 		032C16672139918B004C1B3F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16662139918B004C1B3F /* Settings.swift */; };
 		032C16692139927F004C1B3F /* UICustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16682139927F004C1B3F /* UICustomSwitch.swift */; };
+		032C1D2C21E4F1C4007EEFF5 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C1D2B21E4F1C4007EEFF5 /* UINavigationController+Extension.swift */; };
 		033230BC21DE4AC80051E783 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230BB21DE4AC80051E783 /* ItemTableViewCell.swift */; };
 		033230BF21DE62D70051E783 /* SearchHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230BE21DE62D70051E783 /* SearchHistoryManager.swift */; };
 		033230C121DE63110051E783 /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230C021DE63110051E783 /* SearchHistory.swift */; };
@@ -139,6 +140,7 @@
 		032C16642138241E004C1B3F /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		032C16662139918B004C1B3F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		032C16682139927F004C1B3F /* UICustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomSwitch.swift; sourceTree = "<group>"; };
+		032C1D2B21E4F1C4007EEFF5 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		033230BB21DE4AC80051E783 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		033230BE21DE62D70051E783 /* SearchHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryManager.swift; sourceTree = "<group>"; };
 		033230C021DE63110051E783 /* SearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistory.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 				035D9724212C7DF9005F1CA9 /* UILabel+Extension.swift */,
 				032C16682139927F004C1B3F /* UICustomSwitch.swift */,
 				03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */,
+				032C1D2B21E4F1C4007EEFF5 /* UINavigationController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -852,6 +855,7 @@
 				03B7088B2123211700C370D7 /* ReportViewCell.swift in Sources */,
 				036164B9210A67980055708A /* Array+Extension.swift in Sources */,
 				03F1F89F20EABF0200662446 /* CoreDataManager.swift in Sources */,
+				032C1D2C21E4F1C4007EEFF5 /* UINavigationController+Extension.swift in Sources */,
 				03953C11210F83EF00BED557 /* SeriesData.swift in Sources */,
 				0396A05D21074E5400DBECBD /* SearchSectionTableHeaderView.swift in Sources */,
 				0348FD19211DD64800155BE8 /* EmploymentWageTableViewCell.swift in Sources */,
