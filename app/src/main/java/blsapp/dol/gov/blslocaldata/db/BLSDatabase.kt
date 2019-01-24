@@ -11,7 +11,7 @@ import java.util.concurrent.Executors
 
 @Database(entities = arrayOf(ZipCountyEntity::class, ZipCbsaEntity::class, NationalEntity::class,
         MetroEntity::class, StateEntity::class, CountyEntity::class,
-        MSACountyEntity::class), version = 1)
+        MSACountyEntity::class, IndustryEntity::class), version = 2)
 abstract class BLSDatabase: RoomDatabase() {
     abstract fun zipCountyDAO(): ZipCountyDao
     abstract fun zipCbsaDAO(): ZipCbsaDao
@@ -20,6 +20,7 @@ abstract class BLSDatabase: RoomDatabase() {
     abstract fun countyDAO(): CountyDao
     abstract fun nationalDAO(): NationalDao
     abstract fun msaCountyDAO(): MSACountyDao
+    abstract fun industryDAO(): IndustryDao
 
     companion object {
         @Volatile

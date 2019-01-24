@@ -1,5 +1,6 @@
 package blsapp.dol.gov.blslocaldata.db
 
+import android.arch.persistence.room.Dao
 import android.content.Context
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.*
@@ -7,6 +8,7 @@ import java.io.BufferedReader
 import java.io.FileReader
 import java.io.IOException
 import java.io.InputStreamReader
+import java.util.*
 
 class LoadDataUtil {
 
@@ -55,6 +57,9 @@ class LoadDataUtil {
         }
 
         fun preloadDB(context: Context, db: BLSDatabase) {
+//            db.industryDAO().deleteAll()
+//            loadIndustry(context, db, R.raw.ce_industry)
+//            loadIndustry(context, db, R.raw.sm_industry)
             loadZipCounty(context, db)
             loadZipCbsa(context, db)
             loadArea(context, db)
@@ -111,6 +116,55 @@ class LoadDataUtil {
                     db.msaCountyDAO().insert(msaCounty = msaCounty)
                 }
             }
+        }
+        private fun loadIndustry(context: Context, db: BLSDatabase, resourceId: Int) {
+
+            val lines = readFile(context, resourceId, ext = "txt")
+            var currentIndex = 2
+
+            while (currentIndex < lines.count()-1) {
+                var line = lines[currentIndex]
+                if (line.count() > 1) {
+
+                    val title = if (resourceId == R.raw.ce_industry) line[3] else line[1]
+                    val industry = IndustryEntity(id = null,
+                            industryCode = line[0],
+                            title = title,
+                            superSector = true,
+                            industryType = resourceId,
+                            parentId = -1)
+
+                    var parentId = db.industryDAO().insert(industry = industry)
+
+                    currentIndex++
+
+                    currentIndex = loadSubIndustry( db, industry, currentIndex, parentId, lines)
+                }
+            }
+        }
+        private fun loadSubIndustry(db: BLSDatabase, parent: IndustryEntity,
+                                    currentIndex: Int, parentId: Long,
+                                    industrys: ArrayList<List<String>> ):Int {
+
+            var currIndex = currentIndex
+            val parentCode = if (parent.parentId == -1L) parent.industryCode.substring(0, 2) else parent.industryCode.trimEnd('0')
+
+            while (industrys[currIndex][0].startsWith(parentCode)) {
+                val title = if (parent.industryType == R.raw.ce_industry) industrys[currIndex][3] else industrys[currIndex][1]
+                val code = industrys[currIndex][0]
+                val industry = IndustryEntity(id = null,
+                        industryCode = code,
+                        title = title,
+                        superSector = false,
+                        industryType = parent.industryType,
+                        parentId = parentId)
+
+                var parentId = db.industryDAO().insert(industry = industry)
+
+                currIndex++
+                currIndex = loadSubIndustry(db, industry, currIndex, parentId, industrys)
+            }
+            return currIndex
         }
 
         private fun loadArea(context: Context, db: BLSDatabase) {
