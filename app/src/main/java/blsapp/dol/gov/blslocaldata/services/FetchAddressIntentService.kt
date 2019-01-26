@@ -75,7 +75,7 @@ class FetchAddressIntentService : IntentService("FetchAddressIntentService") {
             // Fetch the address lines using getAddressLine,
             // join them, and send them to the thread.
             val addressFragments = with(address) {
-                (0..maxAddressLineIndex).map { getAddressLine(it) }
+                (0..maxAddressLineIndex).map { postalCode }
             }
             Log.i(TAG, getString(R.string.address_found))
             deliverResultToReceiver(Constants.SUCCESS_RESULT,

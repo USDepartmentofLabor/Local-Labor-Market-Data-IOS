@@ -41,6 +41,7 @@ import com.reddit.indicatorfastscroll.FastScrollerThumbView
 import com.reddit.indicatorfastscroll.FastScrollerView
 import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.textView
 import org.jetbrains.anko.uiThread
 
 
@@ -142,6 +143,13 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 areaViewModel.setQuery(newText!!)
+                if (newText.isEmpty()) {
+                    doAsync {
+                        uiThread {
+                            searchView.clearFocus()
+                        }
+                    }
+                }
                 return true
             }
 
@@ -290,6 +298,10 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
             // Display the address string
             // or an error message sent from the intent service.
             val address = resultData?.getString(Constants.RESULT_DATA_KEY) ?: ""
+
+            searchView.setIconifiedByDefault(false)
+            searchView.setQuery("Current Location", false)
+            areaViewModel.setQuery(address!!)
 
         }
     }
