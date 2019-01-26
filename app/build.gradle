@@ -7,7 +7,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "blsapp.dol.gov.blslocaldata"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -50,4 +50,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
 
     implementation "org.jetbrains.anko:anko:0.10.4"
+    implementation 'com.reddit:indicator-fast-scroll:1.0.1'
 }
