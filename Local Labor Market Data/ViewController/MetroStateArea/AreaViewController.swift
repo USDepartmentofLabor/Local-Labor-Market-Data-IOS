@@ -37,9 +37,11 @@ class AreaViewController: UIViewController {
         let infoItem = UIBarButtonItem.infoButton(target: self, action: #selector(infoClicked(sender:)))
         navigationItem.rightBarButtonItems = [infoItem]
         
-        let homeItem = UIBarButtonItem(title: "Home", style: .plain,
+        if splitViewController?.isCollapsed ?? true {
+            let homeItem = UIBarButtonItem(title: "Home", style: .plain,
                                        target: self, action: #selector(searchClicked(sender:)))
-//        navigationItem.leftBarButtonItem = homeItem
+            navigationItem.leftBarButtonItem = homeItem
+        }
         
         seasonallyAdjustedSwitch.tintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
         seasonallyAdjustedSwitch.onTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
@@ -82,7 +84,9 @@ class AreaViewController: UIViewController {
     
     func displayAreaViewController(vc: UIViewController) {
         vc.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-        vc.navigationItem.leftItemsSupplementBackButton = true
+        if !(splitViewController?.isCollapsed ?? false) {
+            vc.navigationItem.leftItemsSupplementBackButton = true
+        }
         navigationController?.replaceTopViewController(with: vc, animated: true)
     }
 }

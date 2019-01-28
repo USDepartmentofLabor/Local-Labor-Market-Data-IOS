@@ -131,9 +131,14 @@ extension ResultsViewController: UITableViewDelegate {
         }
         
         areaVC.area = selectedArea
-//        areaVC.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-//        areaVC.navigationItem.leftItemsSupplementBackButton = true
-        splitViewController?.showDetailViewController(areaVC, sender: nil)
+        if splitViewController?.isCollapsed ?? true {
+            navigationController?.pushViewController(areaVC, animated: true)
+        }
+        else {
+            areaVC.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+            areaVC.navigationItem.leftItemsSupplementBackButton = true
+            navigationController?.pushViewController(areaVC, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView,

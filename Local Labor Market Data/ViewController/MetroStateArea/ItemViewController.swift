@@ -22,7 +22,8 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    
+    lazy var activityIndicator = ActivityIndicatorView(text: "Loading", inView: view)
+
     var reportResultsdict: [ReportType : AreaReport]?
     
     var seasonalAdjustment: SeasonalAdjustment {
@@ -58,9 +59,10 @@ class ItemViewController: UIViewController {
         seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
         setupAccessbility()
 
-        tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.height)
-//        tableView.scrollToRow(at: IndexPath(row: 1, section: 0), at: .top, animated: false)
-        
+//        tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.height)
+        if viewModel.items?.count ?? 0 > 0 {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
 
         loadReports()
     }
@@ -80,7 +82,7 @@ class ItemViewController: UIViewController {
             if let selectedIndexPath = tableView.indexPathForSelectedRow,
                 let selectedItem = viewModel.items?[selectedIndexPath.row] {
             
-                let vm = ItemViewModel(area: viewModel.area, parent: selectedItem, itemType: type(of: selectedItem))
+                let vm = ItemViewModel(area: viewModel.area, parent: selectedItem, itemType: type(of: selectedItem), dataYear:viewModel.dataYear)
                 destVC.viewModel = vm
                 destVC.title = selectedItem.title
             }
@@ -150,36 +152,14 @@ extension ItemViewController: UITableViewDelegate {
 // MARK: SeriesId
 extension ItemViewController {
     func loadReports() {
-        let reportItems = viewModel.items?.compactMap({ (item) -> ReportItem<Item> in
-            let reportTypes: [ReportType]?
-            if let code = item.code {
-                if item is OE_Occupation {
-                    reportTypes = [ReportType.occupationEmployment(occupationalCode: code, OESReport.DataTypeCode.annualMeanWage),                    ReportType.occupationEmployment(occupationalCode: code, OESReport.DataTypeCode.employment)]
-                }
-                else if item is CE_Industry {
-                    reportTypes = [ReportType.industryEmployment(industryCode: code, CESReport.DataTypeCode.allEmployees)]
-                }
-                else if item is SM_Industry {
-                    reportTypes = [ReportType.industryEmployment(industryCode: code, CESReport.DataTypeCode.allEmployees)]
-                }
-                else {
-                    reportTypes = nil
-                }
-            }
-            else {
-                reportTypes = nil
-            }
-            
-            return ReportItem<Item>(item: item, reportTypes: reportTypes)
-        })
-
-/*
-        if let reportTypes = viewModel?.items?.compactMap({$0.reportTypes}).flatMap({$0}) {
-            ReportManager.getReports(forArea: viewModel?.area, reportTypes: reportTypes,
-                                 seasonalAdjustment: SeasonalAdjustment.adjusted) {
+        if let reportTypes = viewModel.reportItems()?.compactMap({$0.reportTypes}).flatMap({$0}) {
+            activityIndicator.startAnimating(disableUI: true)
+            ReportManager.getReports(forArea: viewModel.area, reportTypes: reportTypes,
+                                     seasonalAdjustment: SeasonalAdjustment.notAdjusted, year:viewModel.dataYear) {
                 [weak self] (apiResult) in
                 guard let strongSelf = self else {return}
-                
+                strongSelf.activityIndicator.stopAnimating()
+
                 switch apiResult {
                 case .success(let areaReportsDict):
                     strongSelf.displayReportResults(areaReportsDict: areaReportsDict)
@@ -188,7 +168,6 @@ extension ItemViewController {
                 }
             }
         }
- */
     }
     
     func displayReportResults(areaReportsDict: ([ReportType : AreaReport])) {

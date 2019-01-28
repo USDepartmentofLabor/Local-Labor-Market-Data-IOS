@@ -11,9 +11,11 @@ import CoreLocation
 
 class SearchViewController: UIViewController {
 
-    @IBOutlet weak var searchContainerView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var areaSegment: UISegmentedControl!
+    
+    @IBOutlet weak var historyContainerView: UIView!
+    @IBOutlet weak var searchContainerHeightConstraint: NSLayoutConstraint!
     
     let currentLocationTitle = "Current Location"
     let nationalTitle = "National"
@@ -92,6 +94,7 @@ class SearchViewController: UIViewController {
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: false)
         }
+        historyContainerView.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -165,7 +168,7 @@ class SearchViewController: UIViewController {
             let navVC = segue.destination as? UINavigationController,
                 let detailVC = navVC.topViewController {
             detailVC.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem
-            detailVC.navigationItem.leftItemsSupplementBackButton = true
+//            detailVC.navigationItem.leftItemsSupplementBackButton = true
         }
     }
 }
@@ -241,7 +244,14 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "cellID")
+        let cell: UITableViewCell
+        
+        if let c = tableView.dequeueReusableCell(withIdentifier: "cellID") {
+            cell = c
+        }
+        else {
+            cell = UITableViewCell(style: .default, reuseIdentifier: "cellID")
+        }
         if let area = areas?[indexPath.row] {
             cell.indentationLevel = 4
             cell.textLabel?.scaleFont(forDataType: .areaNameList, for: traitCollection)
@@ -287,6 +297,9 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let area = areas?[indexPath.row] else {return}
         
+        if let title = area.title {
+            SearchHistoryManager.shared().add(searchText: title)
+        }
         let segueIdentifier: String?
 //        tableView.deselectRow(at: indexPath, animated: false)
         if area is Metro {
@@ -410,8 +423,13 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        let announecemntnStr = "Found \(areas?.count ?? 0) results"
-        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: announecemntnStr)
+        let announcementStr = "Found \(areas?.count ?? 0) results"
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: announcementStr)
+        historyContainerView.isHidden = true
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        historyContainerView.isHidden = false
     }
 }
 

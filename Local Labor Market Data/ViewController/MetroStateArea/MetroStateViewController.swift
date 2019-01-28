@@ -201,7 +201,6 @@ class MetroStateViewController: AreaViewController {
                 if let report = localAreaReportsDict?[reportType] {
                     let localAreaReport = localAreaReportsDict?[reportType]
                     let nationalAreaReport = nationalAreaReportsDict[reportType]
-                    let calendar = Calendar.current
                     let latestDate: Date
                     
                     //        // If Latest SeriesReport is available, use that as End Year
@@ -216,7 +215,8 @@ class MetroStateViewController: AreaViewController {
             }
         }
         else if segue.identifier == "showIndustries" {
-            if let destVC = segue.destination as? ItemViewController {
+            if let destVC = segue.destination as? ItemViewController,
+                let reportType = sender as? ReportType {
                 let type: Item.Type
                 if area is National {
                     type = SM_Industry.self
@@ -224,14 +224,21 @@ class MetroStateViewController: AreaViewController {
                 else {
                     type = CE_Industry.self
                 }
-                let viewModel = ItemViewModel(area: area, parent: nil, itemType: type)
+                var latestYear: String = ""
+                if let localAreaReport = localAreaReportsDict?[reportType] {
+                    if let latestData = localAreaReport.seriesReport?.latestData() {
+                        latestYear = latestData.year
+                    }
+                }
+                let viewModel = ItemViewModel(area: area, parent: nil, itemType: type, dataYear: latestYear)
                 destVC.viewModel = viewModel
                 destVC.title = "Industry - Supersectors"
             }
         }
         else if segue.identifier == "showOccupations" {
             if let destVC = segue.destination as? ItemViewController {
-                let viewModel = ItemViewModel(area: area, parent: nil, itemType: OE_Occupation.self)
+                let viewModel = ItemViewModel(area: area, parent: nil, itemType: OE_Occupation.self,
+                                              dataYear: "")
                 destVC.viewModel = viewModel
                 destVC.title = "Occupations"
             }
@@ -473,11 +480,13 @@ extension MetroStateViewController: AreaSectionHeaderDelegate {
     }
     
     func displayCEIndustry() {
-        performSegue(withIdentifier: "showIndustries", sender: nil)
+        let reportType: ReportType = .industryEmployment(industryCode: "00000000", .allEmployees)
+        performSegue(withIdentifier: "showIndustries", sender: reportType)
     }
     
     func displayOESOccupation() {
-        performSegue(withIdentifier: "showOccupations", sender: nil)
+        let reportType: ReportType = .occupationEmployment(occupationalCode: "000000", .annualMeanWage)
+        performSegue(withIdentifier: "showOccupations", sender: reportType)
     }
     
     func displayUnemploymentHistory() {

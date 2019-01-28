@@ -198,8 +198,8 @@ extension CountyViewController {
         //Quarterly report with latest, returns annual Data, since we want quarterly data,
         // Get report for Current year and last year, since quartely data may not be available
         // for current year
-        let today = Date()
-        let endYear = Calendar.current.component(.year, from: today)
+//        let today = Date()
+//        let endYear = Calendar.current.component(.year, from: today)
         activityIndicator.startAnimating()
 //        ReportManager.getReports(forArea: county, reportTypes: reportTypes,
 //                                 seasonalAdjustment: seasonalAdjustment,startYear: String(endYear-1), endYear: String(endYear)) {
