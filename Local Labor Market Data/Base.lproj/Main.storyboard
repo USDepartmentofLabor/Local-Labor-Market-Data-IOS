@@ -975,6 +975,7 @@
                         <outlet property="seasonallyAdjustedTitle" destination="CfK-YY-0Ey" id="Mxc-Fe-bxC"/>
                         <outlet property="tableView" destination="q6D-yb-J2f" id="hnp-hQ-ddR"/>
                         <segue destination="aBT-jb-OwT" kind="show" identifier="showInfo" id="9gK-SD-TvZ"/>
+                        <segue destination="QuN-hg-S9u" kind="show" identifier="showIndustries" id="ipL-KK-Ovc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AgZ-Vu-fQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1093,7 +1094,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="9gK-SD-TvZ"/>
         <segue reference="EEn-pf-Eig"/>
-        <segue reference="EfZ-PW-sgg"/>
+        <segue reference="ipL-KK-Ovc"/>
         <segue reference="fQc-Pt-WaI"/>
     </inferredMetricsTieBreakers>
 </document>

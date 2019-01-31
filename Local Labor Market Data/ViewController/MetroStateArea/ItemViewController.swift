@@ -128,6 +128,7 @@ extension ItemViewController: UITableViewDataSource {
 
         if let reportItem = viewModel.items?[indexPath.row] {
             cell.titleLabel?.text = reportItem.title
+            cell.valueLabel.text = reportItem.code
         
             if (reportItem.children?.count ?? 0) > 0 {
                 cell.detailImageView.image = #imageLiteral(resourceName: "place")

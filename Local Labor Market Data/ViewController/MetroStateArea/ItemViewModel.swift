@@ -48,6 +48,9 @@ class ItemViewModel: NSObject {
             else if item is SM_Industry {
                 reportTypes = [ReportType.industryEmployment(industryCode: code, CESReport.DataTypeCode.allEmployees)]
             }
+            else if item is QCEW_Industry {
+                reportTypes = [ReportType.quarterlyEmploymentWageFrom(ownershipCode: .totalCovered, dataType: QCEWReport.DataTypeCode.allEmployees)]
+            }
             else {
                 reportTypes = nil
             }

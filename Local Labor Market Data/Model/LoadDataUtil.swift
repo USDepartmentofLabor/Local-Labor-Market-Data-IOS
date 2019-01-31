@@ -423,8 +423,10 @@ extension LoadDataUtil {
 
 // MARK: Load QCEW Industry
 extension LoadDataUtil {
+    static let QCEW_INDUSTRY_MAP = "industry_titles"
+
     func loadQCEWIndustries() {
         QCEW_Industry.deleteAll(managedContext: managedObjectContext)
-        
+        loadIndustry(resourceName: LoadDataUtil.QCEW_INDUSTRY_MAP, withExt: "txt", type: QCEW_Industry.self)
     }
 }

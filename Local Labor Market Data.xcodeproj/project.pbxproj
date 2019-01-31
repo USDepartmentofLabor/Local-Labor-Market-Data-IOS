@@ -23,6 +23,8 @@
 		032C16672139918B004C1B3F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16662139918B004C1B3F /* Settings.swift */; };
 		032C16692139927F004C1B3F /* UICustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16682139927F004C1B3F /* UICustomSwitch.swift */; };
 		032C1D2C21E4F1C4007EEFF5 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C1D2B21E4F1C4007EEFF5 /* UINavigationController+Extension.swift */; };
+		032F6E7422033AF50068455C /* industry_titles.csv in Resources */ = {isa = PBXBuildFile; fileRef = 032F6E7322033AF50068455C /* industry_titles.csv */; };
+		032F6E76220341210068455C /* QCEW_Industry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F6E75220341210068455C /* QCEW_Industry+CoreDataClass.swift */; };
 		033230BC21DE4AC80051E783 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230BB21DE4AC80051E783 /* ItemTableViewCell.swift */; };
 		033230BF21DE62D70051E783 /* SearchHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230BE21DE62D70051E783 /* SearchHistoryManager.swift */; };
 		033230C121DE63110051E783 /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230C021DE63110051E783 /* SearchHistory.swift */; };
@@ -142,6 +144,8 @@
 		032C16662139918B004C1B3F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		032C16682139927F004C1B3F /* UICustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomSwitch.swift; sourceTree = "<group>"; };
 		032C1D2B21E4F1C4007EEFF5 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		032F6E7322033AF50068455C /* industry_titles.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = industry_titles.csv; sourceTree = "<group>"; };
+		032F6E75220341210068455C /* QCEW_Industry+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QCEW_Industry+CoreDataClass.swift"; sourceTree = "<group>"; };
 		033230BB21DE4AC80051E783 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		033230BE21DE62D70051E783 /* SearchHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryManager.swift; sourceTree = "<group>"; };
 		033230C021DE63110051E783 /* SearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistory.swift; sourceTree = "<group>"; };
@@ -194,7 +198,6 @@
 		0396A012210268FF00DBECBD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0396A0142106090800DBECBD /* LAUS_Area+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LAUS_Area+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0396A05521061D1300DBECBD /* LAUS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LAUS; sourceTree = "<group>"; };
-		0396A05621061D1300DBECBD /* QCEW */ = {isa = PBXFileReference; lastKnownFileType = folder; path = QCEW; sourceTree = "<group>"; };
 		0396A05921061F2900DBECBD /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		0396A05C21074E5400DBECBD /* SearchSectionTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSectionTableHeaderView.swift; sourceTree = "<group>"; };
 		0396A05E2107581400DBECBD /* SearchSectionTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSectionTableHeaderView.xib; sourceTree = "<group>"; };
@@ -292,6 +295,14 @@
 				032B241F21AC8C8B0029AC90 /* oe.occupation.txt */,
 			);
 			path = OES;
+			sourceTree = "<group>";
+		};
+		032F6E72220339B00068455C /* QCEW */ = {
+			isa = PBXGroup;
+			children = (
+				032F6E7322033AF50068455C /* industry_titles.csv */,
+			);
+			path = QCEW;
 			sourceTree = "<group>";
 		};
 		036164BC210B4FEA0055708A /* Search */ = {
@@ -474,6 +485,7 @@
 		03F1F89120EAA69800662446 /* LookupData */ = {
 			isa = PBXGroup;
 			children = (
+				032F6E72220339B00068455C /* QCEW */,
 				032B241E21AC8C760029AC90 /* OES */,
 				59E7A060219F4B5F0060B7FF /* CES */,
 				59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */,
@@ -483,7 +495,6 @@
 				03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */,
 				03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */,
 				0396A05521061D1300DBECBD /* LAUS */,
-				0396A05621061D1300DBECBD /* QCEW */,
 				03F1F89220EAA6C200662446 /* ZIP_CBSA.csv */,
 				03F1F89320EAA6C200662446 /* ZIP_COUNTY.csv */,
 			);
@@ -507,6 +518,7 @@
 		03F1F89D20EABEF400662446 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				032F6E75220341210068455C /* QCEW_Industry+CoreDataClass.swift */,
 				0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */,
 				036164C9210D2C660055708A /* Metro+CoreDataClass.swift */,
 				59E7A063219F69DF0060B7FF /* Industry+CoreDataClass.swift */,
@@ -687,6 +699,7 @@
 				0323B7B321AED22600A3E73C /* ZIP_NECTA.csv in Resources */,
 				0323B7B421AED22600A3E73C /* CBSA_COUNTY.txt in Resources */,
 				0323B7B521AED22600A3E73C /* LAUS in Resources */,
+				032F6E7422033AF50068455C /* industry_titles.csv in Resources */,
 				0323B7B621AED22600A3E73C /* ZIP_CBSA.csv in Resources */,
 				0323B7B721AED22600A3E73C /* ZIP_COUNTY.csv in Resources */,
 				03B708892123026E00C370D7 /* OwnershipTableViewCell.xib in Resources */,
@@ -828,6 +841,7 @@
 				03953C1F2110AE0100BED557 /* OESReport.swift in Sources */,
 				03953C43211A2A1500BED557 /* UIView+Extension.swift in Sources */,
 				59ECE38D21ADC2F000EE06BE /* ItemViewController.swift in Sources */,
+				032F6E76220341210068455C /* QCEW_Industry+CoreDataClass.swift in Sources */,
 				03953C412119C3D300BED557 /* UIColor+Extension.swift in Sources */,
 				0396A013210268FF00DBECBD /* SearchViewController.swift in Sources */,
 				59ED36C721ED16DD00C45797 /* SearchHistoryViewController.swift in Sources */,

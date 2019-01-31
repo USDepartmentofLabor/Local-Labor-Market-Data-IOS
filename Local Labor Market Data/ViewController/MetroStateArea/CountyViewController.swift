@@ -151,7 +151,58 @@ class CountyViewController: AreaViewController {
             displayError(message: "This county is not a part of a Metropolitan Statistical Area.", title: "")
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Display History
+        if segue.identifier == "showHistory" {
+            if let destVC = segue.destination as? HistoryViewController,
+                let reportType = sender as? ReportType {
+                
+                var title = "History"
+                switch(reportType) {
+                case .unemployment (_):
+                    title += "- Unemployment"
+                case .industryEmployment(_, _):
+                    title += "- Industry"
+                default:
+                    title = "History"
+                }
+                if let report = localAreaReportsDict[reportType] {
+                    let localAreaReport = localAreaReportsDict[reportType]
+                    let nationalAreaReport = nationalAreaReportsDict[reportType]
+                    let latestDate: Date
+                    
+                    //        // If Latest SeriesReport is available, use that as End Year
+                    let latestData = localAreaReport?.seriesReport?.latestData()
+                    if let latestData = latestData {
+                        latestDate = DateFormatter.date(fromMonth: latestData.periodName, fromYear: latestData.year) ?? Date()
+                        
+                        let viewModel = HistoryViewModel(title: title, localSeriesId: localAreaReport?.seriesId, nationalSeriedId: nationalAreaReport?.seriesId, latestDate: latestDate)
+                        destVC.viewModel = viewModel
+                    }
+                }
+            }
+        }
+        else if segue.identifier == "showIndustries" {
+            if let destVC = segue.destination as? ItemViewController,
+                let reportType = sender as? ReportType {
+                let type = QCEW_Industry.self
+                var latestYear: String = ""
+                if let localAreaReport = localAreaReportsDict[reportType] {
+                    if let latestData = localAreaReport.seriesReport?.latestData() {
+                        latestYear = latestData.year
+                    }
+                }
+                let viewModel = ItemViewModel(area: area, parent: nil, itemType: type, dataYear: latestYear)
+                destVC.viewModel = viewModel
+                destVC.title = "Industry - Supersectors"
+            }
+        }
+    }
 }
+
+
 
 
 // Load Reports
@@ -535,6 +586,19 @@ extension CountyViewController: AreaSectionHeaderDelegate {
         tableView.endUpdates()
     }
     
+    func sectionHeader(_ sectionHeader: AreaSectionHeaderView, displayDetails section: Int) {
+        let section = reportSections[section]
+        
+        // For Industry Title
+        if section.title == CountyReport.employmentWageTotal {
+            displayQCEWIndustry()
+        }
+    }
+    func displayQCEWIndustry() {
+        let reportType: ReportType = .quarterlyEmploymentWageFrom(ownershipCode: .totalCovered, dataType: .allEmployees)
+        performSegue(withIdentifier: "showIndustries", sender: reportType)
+    }
+
 }
 
 extension CountyViewController: OwnershipTableViewCellDelegate {
