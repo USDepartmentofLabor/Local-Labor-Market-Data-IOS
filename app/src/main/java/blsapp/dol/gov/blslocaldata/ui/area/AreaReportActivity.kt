@@ -28,6 +28,13 @@ import kotlinx.android.synthetic.main.activity_metro_state.*
 import kotlinx.android.synthetic.main.fragment_area_header.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import android.view.accessibility.AccessibilityEvent
+import android.content.Context.ACCESSIBILITY_SERVICE
+import android.support.v4.content.ContextCompat.getSystemService
+import android.view.accessibility.AccessibilityManager
+import android.content.Context
+import blsapp.dol.gov.blslocaldata.ui.UIUtil
+
 
 class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemClickListener {
     companion object {
@@ -250,7 +257,14 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
     }
 
     private fun showLoadingDialog(show: Boolean) {
-        if (show) progressBar.visibility = View.VISIBLE else progressBar.visibility = View.GONE
+        if (show) {
+            progressBar.visibility = View.VISIBLE
+            if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED)
+                UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_seasonally_adjusted_reports))
+            else
+                UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_not_seasonally_adjusted_reports))
+        } else progressBar.visibility = View.GONE
+
     }
 
     private fun showError(error: ReportError) {
@@ -260,4 +274,5 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
     private fun showMessage(message: String) {
             Snackbar.make(recyclerView, message, Snackbar.LENGTH_LONG).show()
     }
+
 }

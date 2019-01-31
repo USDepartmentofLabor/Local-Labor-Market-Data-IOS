@@ -31,6 +31,7 @@ import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.services.Constants
 import blsapp.dol.gov.blslocaldata.services.FetchAddressIntentService
+import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.area.AreaReportActivity
 import blsapp.dol.gov.blslocaldata.ui.info.AboutActivity
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.*
@@ -241,6 +242,8 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
         val itemRows = areaList.map { AreaRow(RowType.ITEM, it, null, null) }
         areaRows.addAll(itemRows)
+
+        UIUtil.accessibilityAnnounce(applicationContext, String.format(getString(R.string.found_n_results), itemRows.size))
         return areaRows
     }
 
