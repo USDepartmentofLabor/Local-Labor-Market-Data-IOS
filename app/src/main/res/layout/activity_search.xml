@@ -76,6 +76,7 @@
     <com.reddit.indicatorfastscroll.FastScrollerView
         android:id="@+id/fastscroller"
         style="@style/Widget.FastScroller"
+        android:contentDescription="@string/alphabet_selector_hint"
         android:layout_width="32dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
