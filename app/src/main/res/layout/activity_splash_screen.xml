@@ -6,21 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".ui.SplashScreenActivity">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/dolLogo"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@string/powered_by_ocio"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/dol_logo_with_hammer" />
+
+    <ImageView
+        android:id="@+id/mapImage"
+        android:contentDescription="@string/powered_by_ocio"
+        android:alpha="0.30"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="150dp"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:srcCompat="@drawable/map_3a" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/local_labor_market_data" />
-    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/laborTextView"
+        style="@style/splashTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/local_labor_market_data"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/blsLogo"
+        android:contentDescription="@string/powered_by_ocio"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:translationX="-80dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@id/laborTextView"
+        app:layout_constraintStart_toStartOf="@id/laborTextView"
+        app:srcCompat="@drawable/ic_bls_emblem_2016" />
+
+    <ImageView
+        android:id="@+id/footerImage"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/powered_by_ocio"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_poweredbyocio" />
 
 
 </android.support.constraint.ConstraintLayout>
