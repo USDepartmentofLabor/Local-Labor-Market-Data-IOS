@@ -51,6 +51,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         setContentView(R.layout.activity_metro_state)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+      //  supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_home_24px)
 
         var leftAreaImage: Drawable? = null
         var rightAreaImage: Drawable? = null

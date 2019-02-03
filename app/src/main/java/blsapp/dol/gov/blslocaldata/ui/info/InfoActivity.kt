@@ -1,11 +1,13 @@
 package blsapp.dol.gov.blslocaldata.ui.info
 
+import android.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import blsapp.dol.gov.blslocaldata.R
 import kotlinx.android.synthetic.main.activity_info.*
-import kotlinx.android.synthetic.main.content_info.*
+import android.widget.TextView
+
 
 class InfoActivity : AppCompatActivity() {
 
@@ -17,6 +19,12 @@ class InfoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_info)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+     //   supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_home_24px)
+
+//        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+//        supportActionBar?.setCustomView(blsapp.dol.gov.blslocaldata.R.layout.nav_header)
+//        val tvTitle = supportActionBar?.customView?.findViewById(R.id.header_text) as TextView
+//        tvTitle.text = "New Greg Title"
 
         displayGlossary()
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
