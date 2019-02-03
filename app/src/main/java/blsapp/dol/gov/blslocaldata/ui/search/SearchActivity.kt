@@ -93,6 +93,41 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
             }
         })
 
+        setupAlphabetScroller()
+
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            var areaType = AreaType.METRO
+            when(checkedId) {
+                R.id.metroRadioButton -> { areaType = AreaType.METRO }
+                R.id.stateRadioButton -> { areaType = AreaType.STATE }
+                R.id.countyRadioButton -> { areaType = AreaType.COUNTY }
+
+            }
+            areaViewModel.setAreaType(areaType)
+        }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                areaViewModel.setQuery(newText!!)
+                if (newText.isEmpty()) {
+                    doAsync {
+                        uiThread {
+                            searchView.clearFocus()
+                        }
+                    }
+                }
+                return true
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                return true
+            }
+        })
+    }
+
+    private fun setupAlphabetScroller () {
         fastScrollerView = findViewById(R.id.fastscroller)
         fastScrollerView.apply {
             setupWithRecyclerView(
@@ -128,37 +163,6 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
         fastScrollerThumbView = findViewById(R.id.fastscrollerthumb)
         fastScrollerThumbView.setupWithFastScroller(fastScrollerView)
-
-        radioGroup.setOnCheckedChangeListener { _, checkedId ->
-            var areaType = AreaType.METRO
-            when(checkedId) {
-                R.id.metroRadioButton -> { areaType = AreaType.METRO }
-                R.id.stateRadioButton -> { areaType = AreaType.STATE }
-                R.id.countyRadioButton -> { areaType = AreaType.COUNTY }
-
-            }
-            areaViewModel.setAreaType(areaType)
-        }
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                areaViewModel.setQuery(newText!!)
-                if (newText.isEmpty()) {
-                    doAsync {
-                        uiThread {
-                            searchView.clearFocus()
-                        }
-                    }
-                }
-                return true
-            }
-
-            override fun onQueryTextSubmit(query: String?): Boolean {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                return true
-            }
-        })
     }
 
     public override fun onStart() {
