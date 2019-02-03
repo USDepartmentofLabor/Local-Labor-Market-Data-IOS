@@ -19,6 +19,11 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
+    <style name="actionBar">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 
     <style name="info">
         <item name="android:textSize">18sp</item>
@@ -112,5 +117,10 @@
         <item name="android:textSize">14sp</item>
         <item name="android:layout_marginTop">8dp</item>
     </style>
+
+    <style name="SwitchCompatTheme" >
+        <item name="trackTint">@android:color/darker_gray</item>
+    </style>
+
 
 </resources>
