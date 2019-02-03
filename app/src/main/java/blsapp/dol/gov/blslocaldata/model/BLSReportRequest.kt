@@ -16,7 +16,6 @@ class BLSReportRequest(seriesIds: List<String>, registrationKey: String): JSONCo
     @SerializedName("endyear")
     var endYear: String? = null
     val calculations: Boolean = true
-    var latest: Boolean = true
     @SerializedName("annualaverage")
     val annualAverage: Boolean? = false
 
@@ -26,17 +25,12 @@ class BLSReportRequest(seriesIds: List<String>, registrationKey: String): JSONCo
     }
 
     constructor(seriesIds: List<String>, registrationKey: String, startYear: String?, endYear: String? = null) : this(seriesIds, registrationKey) {
+
         this.startYear = startYear
 
         endYear?.let {
             this.endYear = it
         } ?: kotlin.run { this.endYear = startYear }
-
-        if (startYear == null) {
-            this.latest = true
-        } else {
-            this.latest = false
-        }
     }
 }
 
