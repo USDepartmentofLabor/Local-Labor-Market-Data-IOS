@@ -12,6 +12,7 @@ class DataUtil {
         fun currencyValue(valueStr: String): String? {
 
             val currencyFormatter = NumberFormat.getCurrencyInstance()
+            currencyFormatter.setMaximumFractionDigits(0)
             val decimalValue = valueStr.toBigDecimalOrNull()
             decimalValue?.let {
                 return currencyFormatter.format(decimalValue)
