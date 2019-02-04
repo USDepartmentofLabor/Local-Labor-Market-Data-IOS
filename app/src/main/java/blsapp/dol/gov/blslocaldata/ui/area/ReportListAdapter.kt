@@ -155,10 +155,10 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
                 holder.mMonthYearTextView.text = it.periodName + " " + it.year
 
                 holder.mOneMonthChangeTextView.text =
-                        DataUtil.changeValueByPercent(it.calculations?.netChanges?.oneMonth) ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                        DataUtil.changeValueByPercent(it.calculations?.netChanges?.oneMonth, "") ?: ReportManager.DATA_NOT_AVAILABLE_STR
 
                 holder.mTwelveMonthChangeTextView.text =
-                        DataUtil.changeValueByPercent(it.calculations?.netChanges?.twelveMonth) ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                        DataUtil.changeValueByPercent(it.calculations?.netChanges?.twelveMonth, "") ?: ReportManager.DATA_NOT_AVAILABLE_STR
             } ?: run {
                 holder.mMonthYearTextView.text = ""
                 holder.mDataValueTextView.text = ReportManager.DATA_NOT_AVAILABLE_STR
@@ -193,9 +193,9 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
                             DataUtil.changeValueByThousand(it.calculations?.netChanges?.twelveMonth) ?: ReportManager.DATA_NOT_AVAILABLE_STR
 
                 holder.mOneMonthRateChangeTextView.text =
-                        DataUtil.changeValueByPercent(it.calculations?.percentChanges?.oneMonth) ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                        DataUtil.changeValueByPercent(it.calculations?.percentChanges?.oneMonth, "%") ?: ReportManager.DATA_NOT_AVAILABLE_STR
                 holder.mTwelveMonthRateChangeTextView.text =
-                        DataUtil.changeValueByPercent(it.calculations?.percentChanges?.twelveMonth) ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                        DataUtil.changeValueByPercent(it.calculations?.percentChanges?.twelveMonth, "%") ?: ReportManager.DATA_NOT_AVAILABLE_STR
 
             } ?: run {
                 holder.mMonthYearTextView.text = ""
@@ -300,7 +300,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
                         DataUtil.changeValueStr(it.calculations?.netChanges?.twelveMonth) ?:  ReportManager.DATA_NOT_AVAILABLE_STR
 
                 holder.mTwelveMonthRateChangeTextView.text =
-                        DataUtil.changeValueByPercent(it.calculations?.percentChanges?.twelveMonth) ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                        DataUtil.changeValueByPercent(it.calculations?.percentChanges?.twelveMonth, "%") ?: ReportManager.DATA_NOT_AVAILABLE_STR
 
             } ?: run {
                 holder.mMonthYearTextView.text = ""
@@ -337,7 +337,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
                 holder.mWageTwelveMonthChangeTextView.text =
                         DataUtil.changeValueStr(it.calculations?.netChanges?.twelveMonth) ?:  ReportManager.DATA_NOT_AVAILABLE_STR
                 holder.mWageTwelveMonthRateChangeTextView.text =
-                    DataUtil.changeValueByPercent(it.calculations?.percentChanges?.twelveMonth) ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                    DataUtil.changeValueByPercent(it.calculations?.percentChanges?.twelveMonth, "%") ?: ReportManager.DATA_NOT_AVAILABLE_STR
 
             } ?: run {
                 holder.mWageDataValueTextView.text = ReportManager.DATA_NOT_AVAILABLE_STR
@@ -437,7 +437,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         set(value) {
             if (value)
             {
-                mHeaderImageView.setImageResource(R.drawable.ic_expand_less_black_24dp)
+                mHeaderImageView.setImageResource(R.drawable.ic_baseline_chevron_right_24px)
             } else {
                 mHeaderImageView.setImageResource(R.drawable.ic_expand_more_black_24dp)
             }
