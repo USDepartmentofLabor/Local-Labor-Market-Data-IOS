@@ -34,6 +34,8 @@ import android.support.v4.content.ContextCompat.getSystemService
 import android.view.accessibility.AccessibilityManager
 import android.content.Context
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
+import android.content.DialogInterface
+import android.support.v7.app.AlertDialog
 
 
 class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemClickListener {
@@ -51,7 +53,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         setContentView(R.layout.activity_metro_state)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-      //  supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_home_24px)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_home_24px)
 
         var leftAreaImage: Drawable? = null
         var rightAreaImage: Drawable? = null
@@ -265,7 +267,6 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
             else
                 UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_not_seasonally_adjusted_reports))
         } else progressBar.visibility = View.GONE
-
     }
 
     private fun showError(error: ReportError) {
@@ -273,7 +274,13 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
     }
 
     private fun showMessage(message: String) {
-            Snackbar.make(recyclerView, message, Snackbar.LENGTH_LONG).show()
+
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("Ok", null)
+        val alert = builder.create()
+        alert.show()
     }
 
 }
