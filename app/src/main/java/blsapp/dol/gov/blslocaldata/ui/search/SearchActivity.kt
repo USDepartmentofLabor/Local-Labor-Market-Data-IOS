@@ -31,13 +31,18 @@ import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.services.Constants
 import blsapp.dol.gov.blslocaldata.services.FetchAddressIntentService
+import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.area.AreaReportActivity
 import blsapp.dol.gov.blslocaldata.ui.info.AboutActivity
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.*
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.OnSuccessListener
+import com.reddit.indicatorfastscroll.FastScrollItemIndicator
+import com.reddit.indicatorfastscroll.FastScrollerThumbView
+import com.reddit.indicatorfastscroll.FastScrollerView
 import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.linearLayout
 import org.jetbrains.anko.textView
 import org.jetbrains.anko.uiThread
 
@@ -53,6 +58,9 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
     private var lastLocation: Location? = null
     private lateinit var addressResultReceiver: AddressResultReceiver
     private var fusedLocationClient : FusedLocationProviderClient? = null
+    private lateinit var fastScrollerView: FastScrollerView
+    private lateinit var fastScrollerThumbView: FastScrollerThumbView
+    private lateinit var linearLayoutManger: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +72,8 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val adapter = AreaListAdapter(this)
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        linearLayoutManger = LinearLayoutManager(this)
+        recyclerView.layoutManager = linearLayoutManger
 
         val decorator = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
 
@@ -80,8 +89,14 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
         // in the foreground.
         areaViewModel.areas.observe(this, Observer { areas ->
             // Update the cached copy of the words in the adapter.
-            areas?.let { adapter.setArea(getAreaRows(it)) }
+            areas?.let {
+
+                adapter.setArea(getAreaRows(it))
+
+            }
         })
+
+        setupAlphabetScroller()
 
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
             var areaType = AreaType.METRO
@@ -113,6 +128,44 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
                 return true
             }
         })
+    }
+
+    private fun setupAlphabetScroller () {
+        fastScrollerView = findViewById(R.id.fastscroller)
+        fastScrollerView.apply {
+            setupWithRecyclerView(
+                    recyclerView,
+                    { position ->
+                        if (position <=  2) {
+                            FastScrollItemIndicator.Icon(R.drawable.ic_baseline_arrow_upward_24px)
+                        } else {
+                            val areaList = areaViewModel.areas.value
+                            val item = areaList!![position - 3]
+                            FastScrollItemIndicator.Text(
+                                    item.title.substring(0, 1).toUpperCase() // Grab the first letter and capitalize it
+                            )
+                        }
+                    }
+            )
+        }
+
+        fastScrollerView.useDefaultScroller = false
+        fastScrollerView.itemIndicatorSelectedCallbacks += object : FastScrollerView.ItemIndicatorSelectedCallback {
+            override fun onItemIndicatorSelected(
+                    indicator: FastScrollItemIndicator,
+                    indicatorCenterY: Int,
+                    itemPosition: Int
+            ) {
+                // Handle scrolling
+                recyclerView!!.apply {
+                    stopScroll()
+                    linearLayoutManger.scrollToPositionWithOffset(itemPosition, 50)
+                }
+            }
+        }
+
+        fastScrollerThumbView = findViewById(R.id.fastscrollerthumb)
+        fastScrollerThumbView.setupWithFastScroller(fastScrollerView)
     }
 
     public override fun onStart() {
@@ -196,6 +249,8 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
         val itemRows = areaList.map { AreaRow(RowType.ITEM, it, null, null) }
         areaRows.addAll(itemRows)
+
+        UIUtil.accessibilityAnnounce(applicationContext, String.format(getString(R.string.found_n_results), itemRows.size))
         return areaRows
     }
 

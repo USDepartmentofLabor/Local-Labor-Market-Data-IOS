@@ -12,6 +12,7 @@ class DataUtil {
         fun currencyValue(valueStr: String): String? {
 
             val currencyFormatter = NumberFormat.getCurrencyInstance()
+            currencyFormatter.setMaximumFractionDigits(0)
             val decimalValue = valueStr.toBigDecimalOrNull()
             decimalValue?.let {
                 return currencyFormatter.format(decimalValue)
@@ -49,12 +50,12 @@ class DataUtil {
         }
 
 
-        fun changeValueByPercent(valueStr: String?): String? {
+        fun changeValueByPercent(valueStr: String?, percentStr: String): String? {
             valueStr?.let {
                 val decimalValue = valueStr.toDoubleOrNull()
                 decimalValue?.let { value ->
                     val prefix = if (value > 0) "+" else ""
-                    return prefix + valueStr + "%"
+                    return prefix + valueStr + percentStr
                 }
             }
             return null

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/homeButton"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="0dp"
+        android:contentDescription="@null"
+        style="@style/actionBar"
+        app:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/headerTitle"
+        android:text="Home" />
+
+    <ImageView
+        android:id="@+id/backImage"
+        android:layout_width="45dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@null"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/headerTitle"
+        style="@style/actionBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Front Hazard" />
+
+
+    <ImageView
+        android:id="@+id/infoImage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_info_details"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription = "@null"
+        android:color="@android:color/black"/>
+
+</android.support.constraint.ConstraintLayout>
