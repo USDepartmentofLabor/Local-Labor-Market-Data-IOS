@@ -23,7 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.search.SearchActivity" />
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:label="@string/main_title"
+            />
         <activity
             android:name=".ui.info.AboutActivity"
             android:label="@string/about"
