@@ -42,6 +42,7 @@ import com.reddit.indicatorfastscroll.FastScrollerThumbView
 import com.reddit.indicatorfastscroll.FastScrollerView
 import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.linearLayout
 import org.jetbrains.anko.textView
 import org.jetbrains.anko.uiThread
 
@@ -59,6 +60,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
     private var fusedLocationClient : FusedLocationProviderClient? = null
     private lateinit var fastScrollerView: FastScrollerView
     private lateinit var fastScrollerThumbView: FastScrollerThumbView
+    private lateinit var linearLayoutManger: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,7 +72,8 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val adapter = AreaListAdapter(this)
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        linearLayoutManger = LinearLayoutManager(this)
+        recyclerView.layoutManager = linearLayoutManger
 
         val decorator = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
 
@@ -134,7 +137,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
                     recyclerView,
                     { position ->
                         if (position <=  2) {
-                            FastScrollItemIndicator.Icon(R.drawable.ic_currentlocation)
+                            FastScrollItemIndicator.Icon(R.drawable.ic_baseline_arrow_upward_24px)
                         } else {
                             val areaList = areaViewModel.areas.value
                             val item = areaList!![position - 3]
@@ -156,7 +159,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
                 // Handle scrolling
                 recyclerView!!.apply {
                     stopScroll()
-                    scrollToPosition(itemPosition)
+                    linearLayoutManger.scrollToPositionWithOffset(itemPosition, 50)
                 }
             }
         }
