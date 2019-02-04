@@ -61,6 +61,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
     private lateinit var fastScrollerView: FastScrollerView
     private lateinit var fastScrollerThumbView: FastScrollerThumbView
     private lateinit var linearLayoutManger: LinearLayoutManager
+    private var showingCurrentLocation = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,6 +117,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
                 if (newText.isEmpty()) {
                     doAsync {
                         uiThread {
+                            showingCurrentLocation = false
                             searchView.clearFocus()
                         }
                     }
@@ -217,6 +219,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
     }
 
     fun displayCurrentLocation() {
+        showingCurrentLocation = true
         if (!checkPermissions()) {
             requestPermissions()
         }
@@ -235,7 +238,9 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
     fun getAreaRows(areaList: List<AreaEntity>) : ArrayList<AreaRow> {
         val areaRows = ArrayList<AreaRow>()
-        areaRows.add(AreaRow(RowType.HEADER, null, CURRENT_LOCATION_TEXT, R.drawable.ic_currentlocation))
+        if (!showingCurrentLocation) {
+            areaRows.add(AreaRow(RowType.HEADER, null, CURRENT_LOCATION_TEXT, R.drawable.ic_currentlocation))
+        }
         areaRows.add(AreaRow(RowType.HEADER, null, NATIONAL_TEXT, R.drawable.ic_flag))
 
         val areaTitle: String
