@@ -314,15 +314,28 @@ extension LoadDataUtil {
                 
                 let code = industryItem[0]
                 let title: String
+                var parentCode: String = ""
+                
                 if resourceName == LoadDataUtil.CE_INDUSTRY_MAP {
                     title = industryItem[3]
+                    parentCode = industryItem[2]
                 }
                 else {
                     title = industryItem[1]
+                    if industryItem.count > 2 {
+                        parentCode = industryItem[2]
+                    }
                 }
             supersector.code = code
             supersector.title = title
-            supersector.supersector = true
+            if !parentCode.isEmpty {
+                let parent = T.getItem(context: managedObjectContext, code: parentCode)
+                supersector.parent = parent
+            }
+            else  {
+                supersector.supersector = true
+            }
+                
             currentIndex = currentIndex+1
             loadSubIndustry(parent: supersector, industryItems: industryItems,
                             currentIndex: &currentIndex)
@@ -340,13 +353,17 @@ extension LoadDataUtil {
     private func loadSubIndustry<T: Industry>(parent: T, industryItems: [[String]], currentIndex: inout Int) {
         guard let code = parent.code else { return }
         
-        let parentCode: String
+        var parentCode: String
         // If this is a supersector then use 2 digit code
-        if parent.parent == nil {
-            parentCode = String(code.prefix(2))
-        }
-        else {
+//        if parent.parent == nil {
+//            parentCode = String(code.prefix(2))
+//        }
+//        else {
            parentCode = code.trailingTrim(CharacterSet(charactersIn: "0"))
+//        }
+        
+        if parentCode.count == 1 {
+            parentCode.append("0")
         }
 
         while industryItems[currentIndex][0].hasPrefix(parentCode) {

@@ -127,8 +127,9 @@ extension ItemViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCellId") as! ItemTableViewCell
 
         if let reportItem = viewModel.items?[indexPath.row] {
-            cell.titleLabel?.text = reportItem.title
-            cell.valueLabel.text = reportItem.code
+            var title = reportItem.title! + "(" + reportItem.code! + ")"
+            cell.titleLabel?.text = title
+            cell.valueLabel.text = reportItem.parent?.code
         
             if (reportItem.children?.count ?? 0) > 0 {
                 cell.detailImageView.image = #imageLiteral(resourceName: "place")

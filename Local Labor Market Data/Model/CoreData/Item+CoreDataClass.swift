@@ -18,6 +18,8 @@ public class Item: NSManagedObject {
         
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = self.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "parent == nil")
+        let sortDescriptor = NSSortDescriptor(key: "code", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         fetchRequest.entity = self.entity()
         do {
             results = try context.fetch(fetchRequest) as? [T]
@@ -27,6 +29,22 @@ public class Item: NSManagedObject {
         }
         
         return results?.sorted()
+    }
+    
+    class func getItem<T: Item>(context: NSManagedObjectContext, code: String) -> T? {
+        let results: [T]?
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = self.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "code == %@", code)
+        fetchRequest.entity = self.entity()
+        do {
+            results = try context.fetch(fetchRequest) as? [T]
+        } catch let error as NSError {
+            print("context.fetch error in getWholeEntity(): " + error.debugDescription)
+            results = nil
+        }
+        
+        return results?.first
     }
     
     // Sorted SubItems

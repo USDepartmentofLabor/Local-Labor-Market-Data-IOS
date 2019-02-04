@@ -1,10 +1,11 @@
-industry_code	industry_name
-00000000	Total Nonfarm
-05000000	Total Private
-06000000	Goods Producing
+industry_code	industry_name	parent				
+00000000	Total Nonfarm	
+05000000	Total Private	
+06000000	Goods Producing	05000000
 07000000	Service-Providing
-08000000	Private Service Providing
-10000000	Mining and Logging
+08000000	Private Service Providing	05000000
+15000000	Mining, Logging and Construction	06000000
+10000000	Mining and Logging	15000000
 10113300	Logging
 10210000	Mining, Quarrying, and Oil and Gas Extraction
 10211000	Oil and Gas Extraction
@@ -14,8 +15,7 @@ industry_code	industry_name
 10213000	Support Activities for Mining
 10213111	Drilling Oil and Gas Wells
 10213112	Support Activities for Oil and Gas Operations
-15000000	Mining, Logging and Construction
-20000000	Construction
+20000000	Construction	15000000	
 20236000	Construction of Buildings
 20236100	Residential Building Construction
 20236200	Nonresidential Building Construction
@@ -29,8 +29,8 @@ industry_code	industry_name
 20238200	Building Equipment Contractors
 20238300	Building Finishing Contractors
 20238900	Other Specialty Trade Contractors
-30000000	Manufacturing
-31000000	Durable Goods
+30000000	Manufacturing	06000000
+31000000	Durable Goods	30000000
 31321000	Wood Product Manufacturing
 31321100	Sawmills and Wood Preservation
 31321200	Veneer, Plywood, and Engineered Wood Product Manufacturing
@@ -74,7 +74,7 @@ industry_code	industry_name
 31339100	Medical Equipment and Supplies Manufacturing
 31339900	Other Miscellaneous Manufacturing
 31339910	Jewelry and Silverware Manufacturing
-32000000	Non-Durable Goods
+32000000	Non-Durable Goods	30000000
 32311000	Food Manufacturing
 32311200	Grain and Oilseed Milling
 32311400	Fruit and Vegetable Preserving and Specialty Food Manufacturing
@@ -107,8 +107,8 @@ industry_code	industry_name
 32326000	Plastics and Rubber Products Manufacturing
 32326100	Plastics Product Manufacturing
 32326200	Rubber Product Manufacturing
-40000000	Trade, Transportation, and Utilities
-41000000	Wholesale Trade
+40000000	Trade, Transportation, and Utilities	08000000
+41000000	Wholesale Trade	40000000
 41423000	Merchant Wholesalers, Durable Goods
 41423100	Motor Vehicle and Motor Vehicle Parts and Supplies Merchant Wholesalers
 41423200	Furniture and Home Furnishing Merchant Wholesalers
@@ -125,7 +125,7 @@ industry_code	industry_name
 41424600	Chemical and Allied Products Merchant Wholesalers
 41424900	Miscellaneous Nondurable Goods Merchant Wholesalers
 41425000	Wholesale Electronic Markets and Agents and Brokers
-42000000	Retail Trade
+42000000	Retail Trade	40000000
 42441000	Motor Vehicle and Parts Dealers
 42441100	Automobile Dealers
 42441200	Other Motor Vehicle Dealers
@@ -157,7 +157,7 @@ industry_code	industry_name
 42453900	Other Miscellaneous Store Retailers
 42454000	Nonstore Retailers
 42454100	Electronic Shopping and Mail-Order Houses
-43000000	Transportation, Warehousing, and Utilities
+43000000	Transportation, Warehousing, and Utilities	40000000
 43220000	Utilities
 43221100	Electric Power Generation, Transmission and Distribution
 43221200	Natural Gas Distribution
@@ -180,7 +180,7 @@ industry_code	industry_name
 43488500	Freight Transportation Arrangement
 43492000	Couriers and Messengers
 43493000	Warehousing and Storage
-50000000	Information
+50000000	Information	08000000
 50511000	Publishing Industries (except Internet)
 50511100	Newspaper, Periodical, Book, and Directory Publishers
 50511200	Software Publishers
@@ -196,7 +196,7 @@ industry_code	industry_name
 50517312	Wireless Telecommunications Carriers (except Satellite)
 50518000	Data Processing, Hosting, and Related Services
 50519000	Other Information Services
-55000000	Financial Activities
+55000000	Financial Activities	08000000
 55520000	Finance and Insurance
 55522000	Credit Intermediation and Related Activities including Monetary Authorities - Central Bank
 55522100	Depository Credit Intermediation including Monetary Authorities - Central Bank
@@ -224,7 +224,7 @@ industry_code	industry_name
 55532200	Consumer Goods Rental
 55532300	General Rental Centers
 55532400	Commercial and Industrial Machinery and Equipment Rental and Leasing
-60000000	Professional and Business Services
+60000000	Professional and Business Services	08000000
 60540000	Professional, Scientific, and Technical Services
 60541100	Legal Services
 60541200	Accounting, Tax Preparation, Bookkeeping, and Payroll Services
@@ -250,7 +250,7 @@ industry_code	industry_name
 60561700	Services to Buildings and Dwellings
 60561900	Other Support Services
 60562000	Waste Management and Remediation Services
-65000000	Education and Health Services
+65000000	Education and Health Services	08000000
 65610000	Educational Services
 65611100	Elementary and Secondary Schools
 65611200	Junior Colleges
@@ -280,7 +280,7 @@ industry_code	industry_name
 65624200	Community Food and Housing, and Emergency and Other Relief Services
 65624300	Vocational Rehabilitation Services
 65624400	Child Day Care Services
-70000000	Leisure and Hospitality
+70000000	Leisure and Hospitality	08000000
 70710000	Arts, Entertainment, and Recreation
 70711000	Performing Arts, Spectator Sports, and Related Industries
 70711100	Performing Arts Companies
@@ -304,7 +304,7 @@ industry_code	industry_name
 70722500	Restaurants and Other Eating Places
 70722511	Full-Service Restaurants
 70722590	Limited-Service Restaurants and Other Eating Places
-80000000	Other Services
+80000000	Other Services	08000000
 80811000	Repair and Maintenance
 80811100	Automotive Repair and Maintenance
 80811300	Commercial and Industrial Machinery and Equipment (except Automotive and Electronic) Repair and Maintenance
@@ -319,7 +319,7 @@ industry_code	industry_name
 80813300	Social Advocacy Organizations
 80813400	Civic and Social Organizations
 80813900	Business, Professional, Labor, Political, and Similar Organizations
-90000000	Government
+90000000	Government	07000000
 90910000	Federal Government
 90912811	National Security
 90912991	Federal Government excluding Department of Defense
