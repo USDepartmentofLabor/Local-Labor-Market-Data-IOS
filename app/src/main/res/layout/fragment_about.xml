@@ -180,7 +180,7 @@
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
         android:contentDescription="@string/powered_by_ocio"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
