@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Debug
 import android.util.Log
 import android.view.textclassifier.TextLinks
+import blsapp.dol.gov.blslocaldata.BuildConfig
 import blsapp.dol.gov.blslocaldata.model.*
 import com.android.volley.Request
 import com.android.volley.Response
@@ -34,7 +35,10 @@ class BlsAPI constructor(val appContext: Context) {
                    successHandler: (BLSReportResponse) -> Unit, failureHandler: (ReportError) -> Unit) {
 
         val requestQueue = BLSRequestQueue.getInstance(appContext)
-        val reportRequest = BLSReportRequest(seriesIds = seriesIds, registrationKey = appContext.getString(R.string.bls_api_key),
+
+        val apiKey = if (BuildConfig.DEBUG)  R.string.bls_api_key_debug else R.string.bls_api_key
+
+        val reportRequest = BLSReportRequest(seriesIds = seriesIds, registrationKey = appContext.getString(apiKey),
                 startYear = startYear, endYear = endYear)
 
 //        val gson = GsonBuilder()
