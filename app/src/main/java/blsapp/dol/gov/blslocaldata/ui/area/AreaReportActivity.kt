@@ -60,7 +60,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         mArea = intent.getSerializableExtra(KEY_AREA) as AreaEntity
         when (mArea) {
             is NationalEntity -> {
-                title = "National"
+                title = mArea.title
                 leftButton.visibility = View.GONE
                 rightButton.visibility = View.GONE
             }
@@ -127,12 +127,11 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
             viewModel.mArea = it
         }
         seasonallyAdjustedSwitch.isChecked = if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED) true else false
-        seasonallyAdjustedSwitch.setOnClickListener {
+        seasonallyAdjustedSwitch.setOnCheckedChangeListener{ _, isChecked ->
             ReportManager.adjustment =
-                    if (seasonallyAdjustedSwitch.isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
+                    if (isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
             viewModel.setAdjustment(ReportManager.adjustment)
         }
-
         viewModel.getReports()
     }
 
