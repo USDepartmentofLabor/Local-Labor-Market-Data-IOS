@@ -30,37 +30,32 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofv-fb-pg3" userLabel="titleLabel">
-                                    <rect key="frame" x="38" y="10" width="312" height="19"/>
+                                    <rect key="frame" x="38" y="10" width="302" height="19"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="148-db-Dtg" userLabel="InfoButton">
-                                    <rect key="frame" x="305" y="4.5" width="30" height="30"/>
-                                    <state key="normal" title="I"/>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="148-db-Dtg" userLabel="InfoButton">
+                                    <rect key="frame" x="345" y="7" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="aYk-dE-Iq6"/>
+                                        <constraint firstAttribute="height" constant="25" id="lic-md-1vu"/>
+                                    </constraints>
+                                    <state key="normal" image="rightChevron"/>
                                     <connections>
                                         <action selector="displayDetails:" destination="-2" eventType="touchUpInside" id="3Hb-7d-nxa"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHE-Ew-zZB" userLabel="HistoryButton">
-                                    <rect key="frame" x="340" y="4.5" width="30" height="30"/>
-                                    <state key="normal" title="H"/>
-                                    <connections>
-                                        <action selector="displayHistory:" destination="-1" eventType="touchUpInside" id="JOh-QG-zUf"/>
                                     </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.83137254901960778" green="0.83137254901960778" blue="0.83137254901960778" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstItem="lHE-Ew-zZB" firstAttribute="centerY" secondItem="qUt-JP-IXs" secondAttribute="centerY" id="3kY-Bs-vn3"/>
                                 <constraint firstItem="O0i-bh-T58" firstAttribute="leading" secondItem="qUt-JP-IXs" secondAttribute="leading" priority="999" constant="8" id="Dcg-Y4-l6a"/>
-                                <constraint firstAttribute="trailing" secondItem="lHE-Ew-zZB" secondAttribute="trailing" constant="5" id="Sps-1G-oio"/>
                                 <constraint firstItem="Ofv-fb-pg3" firstAttribute="centerY" secondItem="O0i-bh-T58" secondAttribute="centerY" id="ZU2-8D-fBo"/>
                                 <constraint firstAttribute="bottom" secondItem="Ofv-fb-pg3" secondAttribute="bottom" constant="10" id="eM7-uU-sFJ"/>
-                                <constraint firstItem="lHE-Ew-zZB" firstAttribute="leading" secondItem="148-db-Dtg" secondAttribute="trailing" constant="5" id="iVT-xW-jyg"/>
                                 <constraint firstItem="148-db-Dtg" firstAttribute="centerY" secondItem="qUt-JP-IXs" secondAttribute="centerY" id="jyf-eF-bqZ"/>
+                                <constraint firstAttribute="trailing" secondItem="148-db-Dtg" secondAttribute="trailing" constant="5" id="lmm-Rw-ovc"/>
                                 <constraint firstItem="Ofv-fb-pg3" firstAttribute="leading" secondItem="O0i-bh-T58" secondAttribute="trailing" priority="999" constant="10" id="mcX-u6-iJ4"/>
-                                <constraint firstAttribute="trailing" secondItem="Ofv-fb-pg3" secondAttribute="trailing" priority="999" constant="25" id="oGo-Rt-JpU"/>
+                                <constraint firstItem="148-db-Dtg" firstAttribute="leading" secondItem="Ofv-fb-pg3" secondAttribute="trailing" constant="5" id="q7I-rZ-5B0"/>
                                 <constraint firstItem="Ofv-fb-pg3" firstAttribute="top" secondItem="qUt-JP-IXs" secondAttribute="top" constant="10" id="qdS-0x-2VH"/>
                             </constraints>
                         </view>
@@ -86,6 +81,7 @@
             <connections>
                 <outlet property="dataView" destination="qUt-JP-IXs" id="eOO-8F-SbM"/>
                 <outlet property="expandCollapseImageView" destination="O0i-bh-T58" id="bLI-ah-bBU"/>
+                <outlet property="infoButton" destination="148-db-Dtg" id="Tzg-fQ-swm"/>
                 <outlet property="titleLabel" destination="Ofv-fb-pg3" id="Prc-o3-BV3"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="81"/>

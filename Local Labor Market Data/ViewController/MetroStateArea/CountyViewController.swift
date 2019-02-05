@@ -416,10 +416,6 @@ extension CountyViewController: UITableViewDataSource {
         return cell!
     }
 
-    func titleForHeaderInSection(section: Int) -> String? {
-        return reportSections[section].title
-    }
-    
     func displayEmploymentWage(area: Area?, cell: EmploymentWageTableViewCell, section: ReportSection) {
         guard let area = area else {return}
 
@@ -467,9 +463,8 @@ extension CountyViewController: UITableViewDelegate {
             tableView.dequeueReusableHeaderFooterView(withIdentifier: "AreaSectionHeaderView") as? AreaSectionHeaderView
             else { return nil }
         
-        let title = titleForHeaderInSection(section: section) ?? ""
-        
-        sectionHeaderView.configure(title: title, section: section, collapse: reportSections[section].collapsed)
+        let currentSection = reportSections[section]
+        sectionHeaderView.configure(title: currentSection.title, section: section, collapse: currentSection.collapsed)
 
         sectionHeaderView.delegate = self
         return sectionHeaderView

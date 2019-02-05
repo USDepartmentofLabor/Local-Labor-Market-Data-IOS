@@ -179,6 +179,7 @@ extension OwnershipTableViewCell: UITableViewDelegate {
         sectionHeaderView.titleLabel.scaleFont(forDataType: .reportOwnershipTitle, for: traitCollection)
         sectionHeaderView.collapseSection(collapse: reportSections?[section].collapsed ?? true)
         sectionHeaderView.delegate = self
+        sectionHeaderView.infoButton.isHidden = false
         sectionHeaderView.sectionBackgroundColor = UIColor(hex: 0xEFEFEF)
         return sectionHeaderView
     }

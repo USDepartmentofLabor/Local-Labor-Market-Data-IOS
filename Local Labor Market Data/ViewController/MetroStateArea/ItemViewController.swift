@@ -20,9 +20,10 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var seasonallyAdjustedSwitch: UICustomSwitch!
     @IBOutlet weak var seasonallyAdjustedTitle: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
     
     lazy var activityIndicator = ActivityIndicatorView(text: "Loading", inView: view)
+//    lazy var searchController = UISearchController(searchResultsController: nil)
+    var searchController = UISearchController(searchResultsController: nil)
 
     var reportResultsdict: [ReportType : AreaReport]?
     
@@ -47,9 +48,6 @@ class ItemViewController: UIViewController {
     func setupView() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(displaySearchBar(sender:)))
         
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 60
-
         areaTitleLabel.scaleFont(forDataType: .reportAreaTitle, for:traitCollection)
         seasonallyAdjustedSwitch.tintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
         seasonallyAdjustedSwitch.onTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
@@ -59,7 +57,9 @@ class ItemViewController: UIViewController {
         seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
         setupAccessbility()
 
-//        tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.height)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 60
+        
         if viewModel.items?.count ?? 0 > 0 {
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         }
@@ -108,8 +108,13 @@ class ItemViewController: UIViewController {
     }
     
     @objc func displaySearchBar(sender: Any) {
-        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
-        searchBar.becomeFirstResponder()
+        // Setup the Search Controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+            navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
     }
 }
 
@@ -132,11 +137,11 @@ extension ItemViewController: UITableViewDataSource {
             cell.valueLabel.text = reportItem.parent?.code
         
             if (reportItem.children?.count ?? 0) > 0 {
-                cell.detailImageView.image = #imageLiteral(resourceName: "place")
+                cell.accessoryType = .disclosureIndicator
                 cell.selectionStyle = .default
             }
             else {
-                cell.detailImageView.image = nil
+                cell.accessoryType = .none
                 cell.selectionStyle = .none
             }
         }
@@ -148,6 +153,28 @@ extension ItemViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+/*
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView =
+            tableView.dequeueReusableHeaderFooterView(withIdentifier: ItemHeaderView.reuseIdentifier) as? ItemHeaderView
+            else { return nil }
+        
+        
+        let currentSection = sections[section]
+        sectionHeaderView.configure(title: currentSection.title, section: section,
+                                    collapse: currentSection.collapsed)
+        
+        if currentSection.title != Section.UnemploymentRateTitle {
+            sectionHeaderView.infoButton.isHidden = false
+        }
+        else {
+            sectionHeaderView.infoButton.isHidden = true
+        }
+        
+        sectionHeaderView.delegate = self
+        return sectionHeaderView
+    }
+*/
 }
 
 
@@ -175,6 +202,17 @@ extension ItemViewController {
     func displayReportResults(areaReportsDict: ([ReportType : AreaReport])) {
         print("Reports")
         reportResultsdict = areaReportsDict
+        tableView.reloadData()
+    }
+}
+
+extension ItemViewController: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        // TODO
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         tableView.reloadData()
     }
 }

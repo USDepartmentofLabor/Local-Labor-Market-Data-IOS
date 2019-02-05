@@ -318,7 +318,9 @@ extension LoadDataUtil {
                 
                 if resourceName == LoadDataUtil.CE_INDUSTRY_MAP {
                     title = industryItem[3]
-                    parentCode = industryItem[2]
+                    if industryItem.count > 7 {
+                        parentCode = industryItem[7]
+                    }
                 }
                 else {
                     title = industryItem[1]

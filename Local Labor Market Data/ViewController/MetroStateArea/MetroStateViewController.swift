@@ -219,10 +219,10 @@ class MetroStateViewController: AreaViewController {
                 let reportType = sender as? ReportType {
                 let type: Item.Type
                 if area is National {
-                    type = SM_Industry.self
+                    type = CE_Industry.self
                 }
                 else {
-                    type = CE_Industry.self
+                    type = SM_Industry.self
                 }
                 var latestYear: String = ""
                 if let localAreaReport = localAreaReportsDict?[reportType] {
@@ -396,13 +396,21 @@ extension MetroStateViewController: UITableViewDataSource {
 extension MetroStateViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let sectionHeaderView =
-            tableView.dequeueReusableHeaderFooterView(withIdentifier: "AreaSectionHeaderView") as? AreaSectionHeaderView
+            tableView.dequeueReusableHeaderFooterView(withIdentifier: AreaSectionHeaderView.reuseIdentifier) as? AreaSectionHeaderView
             else { return nil }
         
+
+        let currentSection = sections[section]
+        sectionHeaderView.configure(title: currentSection.title, section: section,
+                                    collapse: currentSection.collapsed)
         
-//        sectionHeaderView.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
-        sectionHeaderView.configure(title: sections[section].title, section: section,
-                                    collapse: sections[section].collapsed)
+        if currentSection.title != Section.UnemploymentRateTitle {
+            sectionHeaderView.infoButton.isHidden = false
+        }
+        else {
+            sectionHeaderView.infoButton.isHidden = true
+        }
+        
         sectionHeaderView.delegate = self
         return sectionHeaderView
     }

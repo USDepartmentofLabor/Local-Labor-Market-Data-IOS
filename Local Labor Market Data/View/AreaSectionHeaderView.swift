@@ -32,6 +32,7 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dataView: UIView!
     @IBOutlet weak var expandCollapseImageView: UIImageView!
+    @IBOutlet weak var infoButton: UIButton!
     
     var section: Int = 0
     weak var delegate: AreaSectionHeaderDelegate?
