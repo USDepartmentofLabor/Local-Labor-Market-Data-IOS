@@ -28,6 +28,15 @@ import kotlinx.android.synthetic.main.activity_metro_state.*
 import kotlinx.android.synthetic.main.fragment_area_header.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import android.view.accessibility.AccessibilityEvent
+import android.content.Context.ACCESSIBILITY_SERVICE
+import android.support.v4.content.ContextCompat.getSystemService
+import android.view.accessibility.AccessibilityManager
+import android.content.Context
+import blsapp.dol.gov.blslocaldata.ui.UIUtil
+import android.content.DialogInterface
+import android.support.v7.app.AlertDialog
+
 
 class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemClickListener {
     companion object {
@@ -44,13 +53,14 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         setContentView(R.layout.activity_metro_state)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_home_24px)
 
         var leftAreaImage: Drawable? = null
         var rightAreaImage: Drawable? = null
         mArea = intent.getSerializableExtra(KEY_AREA) as AreaEntity
         when (mArea) {
             is NationalEntity -> {
-                title = "National"
+                title = mArea.title
                 leftButton.visibility = View.GONE
                 rightButton.visibility = View.GONE
             }
@@ -117,12 +127,11 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
             viewModel.mArea = it
         }
         seasonallyAdjustedSwitch.isChecked = if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED) true else false
-        seasonallyAdjustedSwitch.setOnClickListener {
+        seasonallyAdjustedSwitch.setOnCheckedChangeListener{ _, isChecked ->
             ReportManager.adjustment =
-                    if (seasonallyAdjustedSwitch.isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
+                    if (isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
             viewModel.setAdjustment(ReportManager.adjustment)
         }
-
         viewModel.getReports()
     }
 
@@ -250,7 +259,13 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
     }
 
     private fun showLoadingDialog(show: Boolean) {
-        if (show) progressBar.visibility = View.VISIBLE else progressBar.visibility = View.GONE
+        if (show) {
+            progressBar.visibility = View.VISIBLE
+            if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED)
+                UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_seasonally_adjusted_reports))
+            else
+                UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_not_seasonally_adjusted_reports))
+        } else progressBar.visibility = View.GONE
     }
 
     private fun showError(error: ReportError) {
@@ -258,6 +273,13 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
     }
 
     private fun showMessage(message: String) {
-            Snackbar.make(recyclerView, message, Snackbar.LENGTH_LONG).show()
+
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("Ok", null)
+        val alert = builder.create()
+        alert.show()
     }
+
 }

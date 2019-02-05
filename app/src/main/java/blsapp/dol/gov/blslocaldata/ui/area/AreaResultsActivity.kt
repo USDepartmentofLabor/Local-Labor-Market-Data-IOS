@@ -32,6 +32,7 @@ class AreaResultsActivity : AppCompatActivity(), AreaListAdapter.OnItemClickList
         setContentView(R.layout.activity_area_results)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_home_24px)
 
         mCurrentArea = intent.getSerializableExtra(KEY_CURRENT_AREA) as AreaEntity
         val subAreas = (intent.getSerializableExtra(KEY_SUB_AREAS) as? List<AreaEntity>)

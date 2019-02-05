@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Debug
 import android.util.Log
 import android.view.textclassifier.TextLinks
+import blsapp.dol.gov.blslocaldata.BuildConfig
 import blsapp.dol.gov.blslocaldata.model.*
 import com.android.volley.Request
 import com.android.volley.Response
@@ -12,12 +13,12 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import org.json.JSONObject
+import blsapp.dol.gov.blslocaldata.R
 
 
 class BlsAPI constructor(val appContext: Context) {
 
     companion object {
-        private val REGISTRATION_KEY = "a4533a531fde441cbab0ac31c16ec8b0"
         private val BLS_API_URL = "https://api.bls.gov/publicAPI/v2/timeseries/data/"
 
         @Volatile
@@ -34,8 +35,12 @@ class BlsAPI constructor(val appContext: Context) {
                    successHandler: (BLSReportResponse) -> Unit, failureHandler: (ReportError) -> Unit) {
 
         val requestQueue = BLSRequestQueue.getInstance(appContext)
-        val reportRequest = BLSReportRequest(seriesIds = seriesIds, registrationKey = BlsAPI.REGISTRATION_KEY,
+
+        val apiKey = if (BuildConfig.DEBUG)  R.string.bls_api_key_debug else R.string.bls_api_key
+
+        val reportRequest = BLSReportRequest(seriesIds = seriesIds, registrationKey = appContext.getString(apiKey),
                 startYear = startYear, endYear = endYear)
+
 //        val gson = GsonBuilder()
 //                .registerTypeAdapter(BLSReportRequest::class.java, BLSReportRequestAdapter())
 //                .create()

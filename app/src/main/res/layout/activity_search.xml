@@ -73,5 +73,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
+    <com.reddit.indicatorfastscroll.FastScrollerView
+        android:id="@+id/fastscroller"
+        style="@style/Widget.FastScroller"
+        android:contentDescription="@string/alphabet_selector_hint"
+        android:layout_width="44dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        />
+
+    <com.reddit.indicatorfastscroll.FastScrollerThumbView
+        android:id="@+id/fastscrollerthumb"
+        android:layout_width="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="16dp"
+        android:layout_centerVertical="true"
+        app:layout_constraintEnd_toStartOf="@+id/fastscroller"
+        />
+
 
 </android.support.constraint.ConstraintLayout>

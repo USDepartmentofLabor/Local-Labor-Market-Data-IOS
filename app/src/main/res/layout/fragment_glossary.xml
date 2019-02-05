@@ -24,6 +24,13 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/glossaryHeading"
+                style="@style/headingTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossary" />
+
+            <TextView
                 android:id="@+id/title1"
                 style="@style/infoTitle"
                 android:layout_width="match_parent"
