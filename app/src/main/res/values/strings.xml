@@ -50,7 +50,7 @@
     <string name="glossary6">The unemployment rate represents the number of unemployed (persons who had no employment, were available for work, and had made specific efforts to find employment) as a percent of the labor force (all persons employed and unemployed).</string>
 
     <string name="local_area">Local Area</string>
-    <string name="national_area">National Area</string>
+    <string name="national_area">National Data</string>
     <string name="seasonally_adjusted">Seasonally Adjusted</string>
 
     <string name="unemployment_rate">Unemployment Rate</string>

@@ -155,8 +155,10 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                 }
 
                 var rowType = getRowType(reportSection)
+                val areaType = if (mArea is NationalEntity) R.string.national_area else R.string.local_area
+
                 rows.add(ReportRow(rowType,
-                        getApplication<BLSApplication>().getString(R.string.local_area),
+                        getApplication<BLSApplication>().getString(areaType),
                         areaReports, header = null))
                 val latestLocalData = areaReports?.firstOrNull()?.seriesReport?.latestData()
                 if (nationalAreaReports.count() > 0) {

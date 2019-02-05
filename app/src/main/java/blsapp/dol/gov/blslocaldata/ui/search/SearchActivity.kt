@@ -212,6 +212,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
     fun displayNationalReport() {
         doAsync {
             var nationalArea = areaViewModel.nationaArea
+            nationalArea.title = "National Data"
             uiThread {
                 displayReport(nationalArea)
             }
