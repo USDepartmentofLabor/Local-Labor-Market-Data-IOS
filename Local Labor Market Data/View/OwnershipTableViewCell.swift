@@ -10,6 +10,7 @@ import UIKit
 
 protocol OwnershipTableViewCellDelegate: class {
     func contentDidChange(cell: UITableViewCell)
+    func ownership(_ cell: OwnershipTableViewCell, displayDetails reportSection: ReportSection)
 }
 
 
@@ -191,6 +192,7 @@ extension OwnershipTableViewCell: UITableViewDelegate {
     func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         return true
     }
+    
 }
 
 extension OwnershipTableViewCell: AreaSectionHeaderDelegate {
@@ -219,6 +221,11 @@ extension OwnershipTableViewCell: AreaSectionHeaderDelegate {
         delegate?.contentDidChange(cell: self)
     }
     
+    func sectionHeader(_ sectionHeader: AreaSectionHeaderView, displayDetails section: Int) {
+        if let reportSection = reportSections?[section] {
+            delegate?.ownership(self, displayDetails: reportSection)
+        }
+    }
 }
 
 

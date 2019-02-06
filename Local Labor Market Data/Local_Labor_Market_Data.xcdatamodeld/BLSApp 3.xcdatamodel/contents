@@ -9,7 +9,7 @@
         <attribute name="cbsaCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="countyCode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="CE_Industry" representedClassName="CE_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="category"/>
+    <entity name="CE_Industry" representedClassName="CE_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="class"/>
     <entity name="County" representedClassName="County" parentEntity="Area" syncable="YES" codeGenerationType="category"/>
     <entity name="Industry" representedClassName="Industry" isAbstract="YES" parentEntity="Item" syncable="YES" codeGenerationType="category">
         <attribute name="supersector" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -30,7 +30,7 @@
     </entity>
     <entity name="National" representedClassName="National" parentEntity="Area" syncable="YES" codeGenerationType="class"/>
     <entity name="OE_Occupation" representedClassName="OE_Occupation" parentEntity="Item" syncable="YES" codeGenerationType="class"/>
-    <entity name="QCEW_Industry" representedClassName="QCEW_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="category"/>
+    <entity name="QCEW_Industry" representedClassName="QCEW_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="class"/>
     <entity name="SM_Industry" representedClassName="SM_Industry" parentEntity="Industry" syncable="YES" codeGenerationType="class"/>
     <entity name="State" representedClassName="State" parentEntity="Area" syncable="YES" codeGenerationType="category"/>
     <entity name="ZipCBSAMap" representedClassName="ZipCBSAMap" syncable="YES" codeGenerationType="category">

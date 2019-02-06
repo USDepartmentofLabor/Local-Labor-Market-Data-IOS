@@ -355,6 +355,8 @@ extension LoadDataUtil {
     private func loadSubIndustry<T: Industry>(parent: T, industryItems: [[String]], currentIndex: inout Int) {
         guard let code = parent.code else { return }
         
+        guard currentIndex < industryItems.count - 1 else { return }
+        
         var parentCode: String
         // If this is a supersector then use 2 digit code
 //        if parent.parent == nil {
@@ -368,7 +370,8 @@ extension LoadDataUtil {
             parentCode.append("0")
         }
 
-        while industryItems[currentIndex][0].hasPrefix(parentCode) {
+        while currentIndex < industryItems.count - 1 &&
+            industryItems[currentIndex][0].hasPrefix(parentCode) {
             if let obj = NSEntityDescription.insertNewObject(forEntityName: T.entityName(), into: managedObjectContext) as? T {
                 
                 let code = industryItems[currentIndex][0]
@@ -422,11 +425,12 @@ extension LoadDataUtil {
                                 currentIndex: inout Int) {
         
         let occupationItem = occupationItems[currentIndex]
-        let occupation = OE_Occupation(context: managedObjectContext)
         
         currentIndex = currentIndex+1
         guard occupationItem.count > 1 else { return }
+
         
+        let occupation = OE_Occupation(context: managedObjectContext)
         occupation.code = occupationItem[0]
         occupation.title = occupationItem[1]
         occupation.parent = parent
@@ -446,6 +450,6 @@ extension LoadDataUtil {
 
     func loadQCEWIndustries() {
         QCEW_Industry.deleteAll(managedContext: managedObjectContext)
-        loadIndustry(resourceName: LoadDataUtil.QCEW_INDUSTRY_MAP, withExt: "txt", type: QCEW_Industry.self)
+        loadIndustry(resourceName: LoadDataUtil.QCEW_INDUSTRY_MAP, withExt: "csv", type: QCEW_Industry.self)
     }
 }

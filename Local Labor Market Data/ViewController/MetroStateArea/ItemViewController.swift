@@ -132,7 +132,7 @@ extension ItemViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCellId") as! ItemTableViewCell
 
         if let reportItem = viewModel.items?[indexPath.row] {
-            var title = reportItem.title! + "(" + reportItem.code! + ")"
+            let title = reportItem.title! + "(" + reportItem.code! + ")"
             cell.titleLabel?.text = title
             cell.valueLabel.text = reportItem.parent?.code
         

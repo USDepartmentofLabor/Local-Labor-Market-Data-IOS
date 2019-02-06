@@ -14,7 +14,6 @@
 		0323B7B521AED22600A3E73C /* LAUS in Resources */ = {isa = PBXBuildFile; fileRef = 0396A05521061D1300DBECBD /* LAUS */; };
 		0323B7B621AED22600A3E73C /* ZIP_CBSA.csv in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F89220EAA6C200662446 /* ZIP_CBSA.csv */; };
 		0323B7B721AED22600A3E73C /* ZIP_COUNTY.csv in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F89320EAA6C200662446 /* ZIP_COUNTY.csv */; };
-		0323B7B921AED3FA00A3E73C /* CE_Industry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323B7B821AED3FA00A3E73C /* CE_Industry+CoreDataClass.swift */; };
 		0323B7BB21AEE48000A3E73C /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */; };
 		0323B7BE21AEF1F300A3E73C /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */; };
 		03287A7F2187665A0067686A /* NECTACBSA_COUNTY.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */; };
@@ -24,7 +23,6 @@
 		032C16692139927F004C1B3F /* UICustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16682139927F004C1B3F /* UICustomSwitch.swift */; };
 		032C1D2C21E4F1C4007EEFF5 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C1D2B21E4F1C4007EEFF5 /* UINavigationController+Extension.swift */; };
 		032F6E7422033AF50068455C /* industry_titles.csv in Resources */ = {isa = PBXBuildFile; fileRef = 032F6E7322033AF50068455C /* industry_titles.csv */; };
-		032F6E76220341210068455C /* QCEW_Industry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F6E75220341210068455C /* QCEW_Industry+CoreDataClass.swift */; };
 		033230BC21DE4AC80051E783 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230BB21DE4AC80051E783 /* ItemTableViewCell.swift */; };
 		033230BF21DE62D70051E783 /* SearchHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230BE21DE62D70051E783 /* SearchHistoryManager.swift */; };
 		033230C121DE63110051E783 /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230C021DE63110051E783 /* SearchHistory.swift */; };
@@ -133,7 +131,6 @@
 /* Begin PBXFileReference section */
 		0322AE2C21B04AF200592970 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0322AE2E21B063A900592970 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
-		0323B7B821AED3FA00A3E73C /* CE_Industry+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CE_Industry+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BLSApp 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -145,7 +142,6 @@
 		032C16682139927F004C1B3F /* UICustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomSwitch.swift; sourceTree = "<group>"; };
 		032C1D2B21E4F1C4007EEFF5 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		032F6E7322033AF50068455C /* industry_titles.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = industry_titles.csv; sourceTree = "<group>"; };
-		032F6E75220341210068455C /* QCEW_Industry+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QCEW_Industry+CoreDataClass.swift"; sourceTree = "<group>"; };
 		033230BB21DE4AC80051E783 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		033230BE21DE62D70051E783 /* SearchHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryManager.swift; sourceTree = "<group>"; };
 		033230C021DE63110051E783 /* SearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistory.swift; sourceTree = "<group>"; };
@@ -518,11 +514,9 @@
 		03F1F89D20EABEF400662446 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				032F6E75220341210068455C /* QCEW_Industry+CoreDataClass.swift */,
 				0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */,
 				036164C9210D2C660055708A /* Metro+CoreDataClass.swift */,
 				59E7A063219F69DF0060B7FF /* Industry+CoreDataClass.swift */,
-				0323B7B821AED3FA00A3E73C /* CE_Industry+CoreDataClass.swift */,
 				597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */,
 				03953C18210F9F8C00BED557 /* Area+CoreDataClass.swift */,
 				036164CB210D2C660055708A /* State+CoreDataClass.swift */,
@@ -841,7 +835,6 @@
 				03953C1F2110AE0100BED557 /* OESReport.swift in Sources */,
 				03953C43211A2A1500BED557 /* UIView+Extension.swift in Sources */,
 				59ECE38D21ADC2F000EE06BE /* ItemViewController.swift in Sources */,
-				032F6E76220341210068455C /* QCEW_Industry+CoreDataClass.swift in Sources */,
 				03953C412119C3D300BED557 /* UIColor+Extension.swift in Sources */,
 				0396A013210268FF00DBECBD /* SearchViewController.swift in Sources */,
 				59ED36C721ED16DD00C45797 /* SearchHistoryViewController.swift in Sources */,
@@ -858,7 +851,6 @@
 				032C16672139918B004C1B3F /* Settings.swift in Sources */,
 				03AC614020EAFB660088E694 /* NSManagedObject+Extension.swift in Sources */,
 				0396A068210774E400DBECBD /* UIViewController+Extension.swift in Sources */,
-				0323B7B921AED3FA00A3E73C /* CE_Industry+CoreDataClass.swift in Sources */,
 				03F1F8A620EAD23C00662446 /* String+Extension.swift in Sources */,
 				0396A06C210A331600DBECBD /* LoadDataUtil.swift in Sources */,
 				03953C212110EDB800BED557 /* AreaSectionHeaderView.swift in Sources */,

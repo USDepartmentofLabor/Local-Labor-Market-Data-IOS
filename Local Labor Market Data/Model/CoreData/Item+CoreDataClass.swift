@@ -16,7 +16,7 @@ public class Item: NSManagedObject {
     {
         let results: [T]?
         
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = self.fetchRequest()
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = T.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "parent == nil")
         let sortDescriptor = NSSortDescriptor(key: "code", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]

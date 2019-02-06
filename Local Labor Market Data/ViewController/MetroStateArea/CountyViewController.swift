@@ -186,14 +186,14 @@ class CountyViewController: AreaViewController {
         }
         else if segue.identifier == "showIndustries" {
             if let destVC = segue.destination as? ItemViewController,
-                let reportType = sender as? ReportType {
+                let reportSection = sender as? ReportSection {
                 let type = QCEW_Industry.self
                 var latestYear: String = ""
-                if let localAreaReport = localAreaReportsDict[reportType] {
-                    if let latestData = localAreaReport.seriesReport?.latestData() {
-                        latestYear = latestData.year
-                    }
-                }
+//                if let localAreaReport = localAreaReportsDict[reportType] {
+//                    if let latestData = localAreaReport.seriesReport?.latestData() {
+//                        latestYear = latestData.year
+//                    }
+//                }
                 let viewModel = ItemViewModel(area: area, parent: nil, itemType: type, dataYear: latestYear)
                 destVC.viewModel = viewModel
                 destVC.title = "Industry - Supersectors"
@@ -609,6 +609,11 @@ extension CountyViewController: OwnershipTableViewCellDelegate {
         cell.layoutIfNeeded()
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
+    }
+    
+    func ownership(_ cell: OwnershipTableViewCell, displayDetails reportSection: ReportSection) {
+        
+        performSegue(withIdentifier: "showIndustries", sender: reportSection)
     }
 }
 
