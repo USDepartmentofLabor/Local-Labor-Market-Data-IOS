@@ -306,7 +306,7 @@ extension LoadDataUtil {
                                           withExtension: ext)
             else { return }
 
-        var currentIndex = 2
+        var currentIndex = 1
         while currentIndex < industryItems.count-1 {
             let industryItem = industryItems[currentIndex]
             if let supersector = NSEntityDescription.insertNewObject(forEntityName: type.entityName(),
@@ -328,6 +328,7 @@ extension LoadDataUtil {
                         parentCode = industryItem[2]
                     }
                 }
+                
             supersector.code = code
             supersector.title = title
             if !parentCode.isEmpty {
@@ -408,9 +409,17 @@ extension LoadDataUtil {
                                           withExtension: ext)
             else { return }
 
-        var currentIndex = 2
+        var currentIndex = 1
+        
+        // First Item is parent
+        let occupationItem = occupationItems[currentIndex]
+        let occupation = OE_Occupation(context: managedObjectContext)
+        occupation.code = occupationItem[0]
+        occupation.title = occupationItem[1]
+
+        currentIndex = currentIndex + 1
         while currentIndex < occupationItems.count {
-            loadOccupation(occupationItems: occupationItems, currentIndex: &currentIndex)
+            loadOccupation(occupationItems: occupationItems, parent: occupation, currentIndex: &currentIndex)
         }
         
         do {
@@ -450,6 +459,6 @@ extension LoadDataUtil {
 
     func loadQCEWIndustries() {
         QCEW_Industry.deleteAll(managedContext: managedObjectContext)
-        loadIndustry(resourceName: LoadDataUtil.QCEW_INDUSTRY_MAP, withExt: "csv", type: QCEW_Industry.self)
+        loadIndustry(resourceName: LoadDataUtil.QCEW_INDUSTRY_MAP, withExt: "txt", type: QCEW_Industry.self)
     }
 }

@@ -471,8 +471,46 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="sLw-G3-mPV"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdu-Fi-6mu" userLabel="TableHeaderView">
+                                <rect key="frame" x="0.0" y="208.5" width="375" height="40.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nlQ-Qu-9Kb" userLabel="ParentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="40.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygt-RN-LkC" userLabel="ParentTitleLabel">
+                                                <rect key="frame" x="10" y="10" width="42" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XH4-A0-Qf3" userLabel="ParentValueLabel">
+                                                <rect key="frame" x="323" y="10" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="XH4-A0-Qf3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ygt-RN-LkC" secondAttribute="trailing" constant="10" id="4zV-j2-XC5"/>
+                                            <constraint firstItem="ygt-RN-LkC" firstAttribute="top" secondItem="nlQ-Qu-9Kb" secondAttribute="top" constant="10" id="MvI-Li-3dt"/>
+                                            <constraint firstAttribute="bottom" secondItem="ygt-RN-LkC" secondAttribute="bottom" constant="10" id="XWZ-T4-2wX"/>
+                                            <constraint firstItem="ygt-RN-LkC" firstAttribute="leading" secondItem="nlQ-Qu-9Kb" secondAttribute="leading" constant="10" id="aYl-a7-OxO"/>
+                                            <constraint firstItem="XH4-A0-Qf3" firstAttribute="centerY" secondItem="ygt-RN-LkC" secondAttribute="centerY" id="g6V-FB-jhP"/>
+                                            <constraint firstAttribute="trailing" secondItem="XH4-A0-Qf3" secondAttribute="trailing" constant="10" id="w3a-7x-YBZ"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="nlQ-Qu-9Kb" firstAttribute="leading" secondItem="mdu-Fi-6mu" secondAttribute="leading" id="8NX-jQ-Fgv"/>
+                                    <constraint firstItem="nlQ-Qu-9Kb" firstAttribute="top" secondItem="mdu-Fi-6mu" secondAttribute="top" id="Iqc-0G-3oK"/>
+                                    <constraint firstAttribute="bottom" secondItem="nlQ-Qu-9Kb" secondAttribute="bottom" id="Y5J-uB-H5n"/>
+                                    <constraint firstAttribute="trailing" secondItem="nlQ-Qu-9Kb" secondAttribute="trailing" id="dbi-yC-udg"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ngo-Gu-xgj">
-                                <rect key="frame" x="0.0" y="208.5" width="375" height="458.5"/>
+                                <rect key="frame" x="0.0" y="259" width="375" height="408"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ItemCellId" rowHeight="87" id="5AN-qh-SIU" customClass="ItemTableViewCell" customModule="Local_Labor_Market_Data" customModuleProvider="target">
@@ -520,10 +558,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YbM-ci-uQT" firstAttribute="trailing" secondItem="Ngo-Gu-xgj" secondAttribute="trailing" id="4vf-m1-OlU"/>
-                            <constraint firstItem="Ngo-Gu-xgj" firstAttribute="top" secondItem="UBR-LL-iTb" secondAttribute="bottom" constant="20" id="NNt-6G-vQ6"/>
+                            <constraint firstItem="mdu-Fi-6mu" firstAttribute="top" secondItem="UBR-LL-iTb" secondAttribute="bottom" constant="20" id="RSX-uQ-JkW"/>
+                            <constraint firstItem="mdu-Fi-6mu" firstAttribute="leading" secondItem="UBR-LL-iTb" secondAttribute="leading" id="Wrt-KY-Uq8"/>
                             <constraint firstItem="UBR-LL-iTb" firstAttribute="leading" secondItem="YbM-ci-uQT" secondAttribute="leading" id="XcW-DJ-0aj"/>
                             <constraint firstItem="Ngo-Gu-xgj" firstAttribute="leading" secondItem="YbM-ci-uQT" secondAttribute="leading" id="bKV-mp-aHd"/>
                             <constraint firstItem="UBR-LL-iTb" firstAttribute="trailing" secondItem="YbM-ci-uQT" secondAttribute="trailing" id="bWn-ay-w62"/>
+                            <constraint firstItem="mdu-Fi-6mu" firstAttribute="trailing" secondItem="UBR-LL-iTb" secondAttribute="trailing" id="fpV-M6-Cer"/>
+                            <constraint firstItem="Ngo-Gu-xgj" firstAttribute="top" secondItem="mdu-Fi-6mu" secondAttribute="bottom" constant="10" id="gv3-W9-FLy"/>
                             <constraint firstItem="YbM-ci-uQT" firstAttribute="bottom" secondItem="Ngo-Gu-xgj" secondAttribute="bottom" id="mWN-l3-2zF"/>
                             <constraint firstItem="UBR-LL-iTb" firstAttribute="top" secondItem="YbM-ci-uQT" secondAttribute="top" id="n4x-lw-F3j"/>
                         </constraints>
@@ -531,6 +572,8 @@
                     </view>
                     <connections>
                         <outlet property="areaTitleLabel" destination="ZVv-d4-mae" id="h4n-ux-8vY"/>
+                        <outlet property="parentTitleLabel" destination="ygt-RN-LkC" id="XOj-mJ-ftD"/>
+                        <outlet property="parentValueLabel" destination="XH4-A0-Qf3" id="x6f-BF-Dwm"/>
                         <outlet property="seasonallyAdjustedSwitch" destination="r2d-ew-HUy" id="liq-Xh-Zhv"/>
                         <outlet property="seasonallyAdjustedTitle" destination="uKr-3H-JRl" id="NSn-Za-3kR"/>
                         <outlet property="tableView" destination="Ngo-Gu-xgj" id="za2-Bf-MFA"/>

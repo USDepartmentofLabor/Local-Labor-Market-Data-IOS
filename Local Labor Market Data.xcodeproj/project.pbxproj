@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0322AE2D21B04AF200592970 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322AE2C21B04AF200592970 /* HistoryViewController.swift */; };
 		0322AE2F21B063A900592970 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322AE2E21B063A900592970 /* HistoryViewModel.swift */; };
+		03238022220C73F5009275F6 /* OccupationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03238021220C73F5009275F6 /* OccupationViewModel.swift */; };
 		0323B7B321AED22600A3E73C /* ZIP_NECTA.csv in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */; };
 		0323B7B421AED22600A3E73C /* CBSA_COUNTY.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03287A7C2187665A0067686A /* CBSA_COUNTY.txt */; };
 		0323B7B521AED22600A3E73C /* LAUS in Resources */ = {isa = PBXBuildFile; fileRef = 0396A05521061D1300DBECBD /* LAUS */; };
@@ -16,13 +17,13 @@
 		0323B7B721AED22600A3E73C /* ZIP_COUNTY.csv in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F89320EAA6C200662446 /* ZIP_COUNTY.csv */; };
 		0323B7BB21AEE48000A3E73C /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */; };
 		0323B7BE21AEF1F300A3E73C /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */; };
+		03248DE7220B72EB004E4916 /* industry_titles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03248DE6220B72EB004E4916 /* industry_titles.txt */; };
 		03287A7F2187665A0067686A /* NECTACBSA_COUNTY.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */; };
 		032B242021AC8C8B0029AC90 /* oe.occupation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 032B241F21AC8C8B0029AC90 /* oe.occupation.txt */; };
 		032C16652138241E004C1B3F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16642138241E004C1B3F /* Util.swift */; };
 		032C16672139918B004C1B3F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16662139918B004C1B3F /* Settings.swift */; };
 		032C16692139927F004C1B3F /* UICustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16682139927F004C1B3F /* UICustomSwitch.swift */; };
 		032C1D2C21E4F1C4007EEFF5 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C1D2B21E4F1C4007EEFF5 /* UINavigationController+Extension.swift */; };
-		032F6E7422033AF50068455C /* industry_titles.csv in Resources */ = {isa = PBXBuildFile; fileRef = 032F6E7322033AF50068455C /* industry_titles.csv */; };
 		033230BC21DE4AC80051E783 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230BB21DE4AC80051E783 /* ItemTableViewCell.swift */; };
 		033230BF21DE62D70051E783 /* SearchHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230BE21DE62D70051E783 /* SearchHistoryManager.swift */; };
 		033230C121DE63110051E783 /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230C021DE63110051E783 /* SearchHistory.swift */; };
@@ -131,8 +132,10 @@
 /* Begin PBXFileReference section */
 		0322AE2C21B04AF200592970 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0322AE2E21B063A900592970 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		03238021220C73F5009275F6 /* OccupationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccupationViewModel.swift; sourceTree = "<group>"; };
 		0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		03248DE6220B72EB004E4916 /* industry_titles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = industry_titles.txt; sourceTree = "<group>"; };
 		03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BLSApp 2.xcdatamodel"; sourceTree = "<group>"; };
 		03287A7C2187665A0067686A /* CBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CBSA_COUNTY.txt; sourceTree = "<group>"; };
 		03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NECTACBSA_COUNTY.txt; sourceTree = "<group>"; };
@@ -141,7 +144,6 @@
 		032C16662139918B004C1B3F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		032C16682139927F004C1B3F /* UICustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomSwitch.swift; sourceTree = "<group>"; };
 		032C1D2B21E4F1C4007EEFF5 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
-		032F6E7322033AF50068455C /* industry_titles.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = industry_titles.csv; sourceTree = "<group>"; };
 		033230BB21DE4AC80051E783 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		033230BE21DE62D70051E783 /* SearchHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryManager.swift; sourceTree = "<group>"; };
 		033230C021DE63110051E783 /* SearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistory.swift; sourceTree = "<group>"; };
@@ -296,7 +298,7 @@
 		032F6E72220339B00068455C /* QCEW */ = {
 			isa = PBXGroup;
 			children = (
-				032F6E7322033AF50068455C /* industry_titles.csv */,
+				03248DE6220B72EB004E4916 /* industry_titles.txt */,
 			);
 			path = QCEW;
 			sourceTree = "<group>";
@@ -316,6 +318,7 @@
 		036164BD210B50480055708A /* MetroStateArea */ = {
 			isa = PBXGroup;
 			children = (
+				03238021220C73F5009275F6 /* OccupationViewModel.swift */,
 				03953C3E2118D28400BED557 /* CountyViewController.swift */,
 				036164C1210B869B0055708A /* MetroStateViewController.swift */,
 				03953C362113877E00BED557 /* AreaViewController.swift */,
@@ -693,7 +696,6 @@
 				0323B7B321AED22600A3E73C /* ZIP_NECTA.csv in Resources */,
 				0323B7B421AED22600A3E73C /* CBSA_COUNTY.txt in Resources */,
 				0323B7B521AED22600A3E73C /* LAUS in Resources */,
-				032F6E7422033AF50068455C /* industry_titles.csv in Resources */,
 				0323B7B621AED22600A3E73C /* ZIP_CBSA.csv in Resources */,
 				0323B7B721AED22600A3E73C /* ZIP_COUNTY.csv in Resources */,
 				03B708892123026E00C370D7 /* OwnershipTableViewCell.xib in Resources */,
@@ -706,6 +708,7 @@
 				03E35086213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm in Resources */,
 				0396A05F2107581400DBECBD /* SearchSectionTableHeaderView.xib in Resources */,
 				59E7A05F219F45C30060B7FF /* ce.industry.txt in Resources */,
+				03248DE7220B72EB004E4916 /* industry_titles.txt in Resources */,
 				03F1F86B20EA623000662446 /* Assets.xcassets in Resources */,
 				03F1F86620EA622D00662446 /* Main.storyboard in Resources */,
 				03E35085213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal in Resources */,
@@ -851,6 +854,7 @@
 				032C16672139918B004C1B3F /* Settings.swift in Sources */,
 				03AC614020EAFB660088E694 /* NSManagedObject+Extension.swift in Sources */,
 				0396A068210774E400DBECBD /* UIViewController+Extension.swift in Sources */,
+				03238022220C73F5009275F6 /* OccupationViewModel.swift in Sources */,
 				03F1F8A620EAD23C00662446 /* String+Extension.swift in Sources */,
 				0396A06C210A331600DBECBD /* LoadDataUtil.swift in Sources */,
 				03953C212110EDB800BED557 /* AreaSectionHeaderView.swift in Sources */,
@@ -1113,13 +1117,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LTK6MX8TBS;
 				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.bls.BLSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.bls.BLSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -1134,13 +1138,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LTK6MX8TBS;
 				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.bls.BLSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.bls.BLSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

@@ -237,7 +237,7 @@ class MetroStateViewController: AreaViewController {
         }
         else if segue.identifier == "showOccupations" {
             if let destVC = segue.destination as? ItemViewController {
-                let viewModel = ItemViewModel(area: area, parent: nil, itemType: OE_Occupation.self,
+                let viewModel = OccupationViewModel(area: area, parent: nil,
                                               dataYear: "")
                 destVC.viewModel = viewModel
                 destVC.title = "Occupations"

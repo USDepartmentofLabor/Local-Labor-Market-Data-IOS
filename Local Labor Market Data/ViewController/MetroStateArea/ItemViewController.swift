@@ -8,11 +8,6 @@
 
 import UIKit
 
-struct ReportItem<T> {
-    var item: T
-    var reportTypes: [ReportType]?
-}
-
 class ItemViewController: UIViewController {
     var viewModel: ItemViewModel!
     
@@ -21,22 +16,20 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var seasonallyAdjustedTitle: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var parentTitleLabel: UILabel!
+    @IBOutlet weak var parentValueLabel: UILabel!
+    
     lazy var activityIndicator = ActivityIndicatorView(text: "Loading", inView: view)
 //    lazy var searchController = UISearchController(searchResultsController: nil)
     var searchController = UISearchController(searchResultsController: nil)
 
-    var reportResultsdict: [ReportType : AreaReport]?
-    
     var seasonalAdjustment: SeasonalAdjustment {
         get {
             return ReportManager.seasonalAdjustment
         }
         set(newValue) {
             ReportManager.seasonalAdjustment = newValue
-//            localAreaReportsDict?.removeAll()
-            tableView.reloadData()
-            
-//            loadReports()
+            loadReports()
         }
     }
 
@@ -64,6 +57,8 @@ class ItemViewController: UIViewController {
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         }
 
+        parentTitleLabel.text = viewModel.parentItem.title
+        parentValueLabel.text = ""
         loadReports()
     }
     
@@ -82,7 +77,7 @@ class ItemViewController: UIViewController {
             if let selectedIndexPath = tableView.indexPathForSelectedRow,
                 let selectedItem = viewModel.items?[selectedIndexPath.row] {
             
-                let vm = ItemViewModel(area: viewModel.area, parent: selectedItem, itemType: type(of: selectedItem), dataYear:viewModel.dataYear)
+                let vm = viewModel.createInstance(forParent: selectedItem)
                 destVC.viewModel = vm
                 destVC.title = selectedItem.title
             }
@@ -131,12 +126,12 @@ extension ItemViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCellId") as! ItemTableViewCell
 
-        if let reportItem = viewModel.items?[indexPath.row] {
-            let title = reportItem.title! + "(" + reportItem.code! + ")"
+        if let item = viewModel.items?[indexPath.row] {
+            let title = item.title! + "(" + item.code! + ")"
             cell.titleLabel?.text = title
-            cell.valueLabel.text = reportItem.parent?.code
+            cell.valueLabel.text = viewModel.getReportValue(item: item) ?? ReportManager.dataNotAvailableStr
         
-            if (reportItem.children?.count ?? 0) > 0 {
+            if (item.children?.count ?? 0) > 0 {
                 cell.accessoryType = .disclosureIndicator
                 cell.selectionStyle = .default
             }
@@ -181,7 +176,18 @@ extension ItemViewController: UITableViewDelegate {
 // MARK: SeriesId
 extension ItemViewController {
     func loadReports() {
-        if let reportTypes = viewModel.reportItems()?.compactMap({$0.reportTypes}).flatMap({$0}) {
+        activityIndicator.startAnimating(disableUI: true)
+        viewModel.loadReport {
+            [weak self] () in
+            guard let strongSelf = self else {return}
+            strongSelf.activityIndicator.stopAnimating()
+            strongSelf.tableView.reloadData()
+            strongSelf.parentValueLabel.text = strongSelf.viewModel.getParentReportValue()
+        }
+    }
+    
+    func loadReports1() {
+        if let reportTypes = viewModel.getReportTypes() {
             activityIndicator.startAnimating(disableUI: true)
             ReportManager.getReports(forArea: viewModel.area, reportTypes: reportTypes,
                                      seasonalAdjustment: SeasonalAdjustment.notAdjusted, year:viewModel.dataYear) {
@@ -201,7 +207,7 @@ extension ItemViewController {
     
     func displayReportResults(areaReportsDict: ([ReportType : AreaReport])) {
         print("Reports")
-        reportResultsdict = areaReportsDict
+//        reportResultsdict = areaReportsDict
         tableView.reloadData()
     }
 }
