@@ -1,4 +1,4 @@
-package blsapp.dol.gov.blslocaldata.ui.area
+package blsapp.dol.gov.blslocaldata.ui.area.viewHolders
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

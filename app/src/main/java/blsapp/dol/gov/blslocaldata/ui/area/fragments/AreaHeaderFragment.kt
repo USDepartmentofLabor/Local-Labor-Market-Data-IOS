@@ -1,4 +1,4 @@
-package blsapp.dol.gov.blslocaldata.ui.area
+package blsapp.dol.gov.blslocaldata.ui.area.fragments
 
 import android.content.Context
 import android.net.Uri

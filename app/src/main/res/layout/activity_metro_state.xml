@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.area.AreaReportActivity">
+    tools:context=".ui.area.activities.AreaReportActivity">
 
     <fragment
         android:id="@+id/headerFragment"
-        android:name="blsapp.dol.gov.blslocaldata.ui.area.AreaHeaderFragment"
+        android:name="blsapp.dol.gov.blslocaldata.ui.area.fragments.AreaHeaderFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

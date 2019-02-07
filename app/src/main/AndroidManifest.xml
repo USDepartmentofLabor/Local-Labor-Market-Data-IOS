@@ -37,12 +37,12 @@
             android:exported="false" />
 
         <activity
-            android:name=".ui.area.AreaReportActivity"
+            android:name=".ui.area.activities.AreaReportActivity"
             android:label="@string/metro" />
         <activity
             android:name=".ui.info.InfoActivity"
             android:label="@string/title_activity_info" />
-        <activity android:name=".ui.area.AreaResultsActivity"></activity>
+        <activity android:name=".ui.area.activities.AreaResultsActivity"></activity>
     </application>
 
 </manifest>

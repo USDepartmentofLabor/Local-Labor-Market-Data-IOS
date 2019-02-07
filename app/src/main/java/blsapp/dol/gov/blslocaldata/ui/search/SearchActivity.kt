@@ -32,7 +32,7 @@ import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.services.Constants
 import blsapp.dol.gov.blslocaldata.services.FetchAddressIntentService
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
-import blsapp.dol.gov.blslocaldata.ui.area.AreaReportActivity
+import blsapp.dol.gov.blslocaldata.ui.area.activities.AreaReportActivity
 import blsapp.dol.gov.blslocaldata.ui.info.AboutActivity
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.*
 import com.google.android.gms.location.*
@@ -42,8 +42,6 @@ import com.reddit.indicatorfastscroll.FastScrollerThumbView
 import com.reddit.indicatorfastscroll.FastScrollerView
 import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.linearLayout
-import org.jetbrains.anko.textView
 import org.jetbrains.anko.uiThread
 
 

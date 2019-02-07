@@ -1,4 +1,4 @@
-package blsapp.dol.gov.blslocaldata.ui.area
+package blsapp.dol.gov.blslocaldata.ui.area.activities
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -28,14 +27,11 @@ import kotlinx.android.synthetic.main.activity_metro_state.*
 import kotlinx.android.synthetic.main.fragment_area_header.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import android.view.accessibility.AccessibilityEvent
-import android.content.Context.ACCESSIBILITY_SERVICE
-import android.support.v4.content.ContextCompat.getSystemService
-import android.view.accessibility.AccessibilityManager
-import android.content.Context
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
-import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
+import blsapp.dol.gov.blslocaldata.ui.area.ReportHeaderItemDecoration
+import blsapp.dol.gov.blslocaldata.ui.area.ReportListAdapter
+import blsapp.dol.gov.blslocaldata.ui.area.ReportRow
 
 
 class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemClickListener {

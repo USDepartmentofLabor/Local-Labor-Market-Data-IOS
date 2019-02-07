@@ -18,6 +18,7 @@ import blsapp.dol.gov.blslocaldata.model.reports.AreaReport
 import blsapp.dol.gov.blslocaldata.model.reports.QCEWReport
 import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
+import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.*
 import kotlinx.android.synthetic.main.report_header.view.*
 import java.text.NumberFormat
 

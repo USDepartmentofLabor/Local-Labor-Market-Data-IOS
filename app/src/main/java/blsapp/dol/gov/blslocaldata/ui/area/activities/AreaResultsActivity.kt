@@ -1,4 +1,4 @@
-package blsapp.dol.gov.blslocaldata.ui.area
+package blsapp.dol.gov.blslocaldata.ui.area.activities
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
