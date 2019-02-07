@@ -2,13 +2,17 @@ package blsapp.dol.gov.blslocaldata.db
 
 import android.arch.persistence.room.Dao
 import android.content.Context
+import android.util.Log
 import blsapp.dol.gov.blslocaldata.R
+import blsapp.dol.gov.blslocaldata.db.dao.IndustryDao
+import blsapp.dol.gov.blslocaldata.db.dao.IndustryType
 import blsapp.dol.gov.blslocaldata.db.entity.*
 import java.io.BufferedReader
 import java.io.FileReader
 import java.io.IOException
 import java.io.InputStreamReader
 import java.util.*
+import kotlin.math.absoluteValue
 
 class LoadDataUtil {
 
@@ -57,9 +61,11 @@ class LoadDataUtil {
         }
 
         fun preloadDB(context: Context, db: BLSDatabase) {
-//            db.industryDAO().deleteAll()
-//            loadIndustry(context, db, R.raw.ce_industry)
-//            loadIndustry(context, db, R.raw.sm_industry)
+            db.industryDAO().deleteAll()
+            loadIndustry(context, db, IndustryType.CE_INDUSTRY, R.raw.ce_industry, "txt")
+            loadIndustry(context, db, IndustryType.SM_INDUSTRY, R.raw.sm_industry, "txt")
+            loadIndustry(context, db, IndustryType.QCEW_INDUSTRY, R.raw.industry_titles, "csv")
+            loadOccupation(context, db,  R.raw.oe_occupation, "txt")
             loadZipCounty(context, db)
             loadZipCbsa(context, db)
             loadArea(context, db)
@@ -117,28 +123,93 @@ class LoadDataUtil {
                 }
             }
         }
-        private fun loadIndustry(context: Context, db: BLSDatabase, resourceId: Int) {
 
-            val lines = readFile(context, resourceId, ext = "txt")
+        private fun loadOccupation(context: Context, db: BLSDatabase, resourceId: Int, ext: String) {
+
+            val occupationItems = readFile(context, resourceId, ext)
             var currentIndex = 2
 
-            while (currentIndex < lines.count()-1) {
-                var line = lines[currentIndex]
-                if (line.count() > 1) {
+            while (currentIndex < occupationItems.count()) {
+                currentIndex = loadSubOccupation( db, currentIndex, -1, occupationItems)
+            }
+        }
+        private fun loadSubOccupation(db: BLSDatabase, currentIndex: Int, parentId: Long,
+                                    occupations: ArrayList<List<String>> ):Int {
 
-                    val title = if (resourceId == R.raw.ce_industry) line[3] else line[1]
+            var currIndex = currentIndex
+            val occupationItem = occupations[currIndex]
+
+            currIndex++
+
+            if (occupationItem.count() <= 1) return currIndex
+
+            val title = occupationItem[1]
+            val code = occupationItem[0]
+
+
+            var superSector:Boolean = parentId.toInt() == -1
+
+            val occupation = IndustryEntity(id = null,
+                    industryCode = code,
+                    title = title,
+                    superSector = superSector,
+                    industryType = IndustryType.OE_OCCUPATION.ordinal,
+                    parentId = parentId)
+
+            Log.d("#DB", "Occupation Item: " + occupation.toString())
+            var parentId = db.industryDAO().insert(industry = occupation)
+
+
+            val parentCode = occupation.industryCode.trimEnd('0')
+            while (currIndex < occupations.size && occupations[currIndex][0].startsWith(parentCode)) {
+                currIndex = loadSubOccupation(db, currIndex, parentId, occupations)
+            }
+            return currIndex
+        }
+
+        private fun loadIndustry(context: Context, db: BLSDatabase, industryType: IndustryType, resourceId: Int, ext: String) {
+
+            val industryItems = readFile(context, resourceId, ext)
+            var currentIndex = 2
+
+            while (currentIndex < industryItems.count()-1) {
+                var industryItem = industryItems[currentIndex]
+                if (industryItem.count() > 1) {
+
+                    var title: String?
+                    var parentCode = ""
+
+                    if (industryType == IndustryType.CE_INDUSTRY) {
+                        title = industryItem[3]
+                        if (industryItem.count() > 7) parentCode = industryItem[7]
+                    } else {
+                        title = industryItem[1]
+                        if (industryItem.count() > 2) parentCode = industryItem[2]
+                    }
+                    var parentId:Long = -1
+                    var parentIndustry : IndustryEntity
+                    if (parentCode.count() > 0) {
+                        val industries = db.industryDAO().findByCodeAndType(parentCode, industryType.ordinal)
+                        if (industries.isNotEmpty()) {
+                            parentIndustry = industries[0]
+                            parentId = parentIndustry.id!!.toLong()
+                            Log.d("#DB", "ParentID: $parentId")
+                        }
+                    }
+
                     val industry = IndustryEntity(id = null,
-                            industryCode = line[0],
+                            industryCode = industryItem[0],
                             title = title,
                             superSector = true,
-                            industryType = resourceId,
-                            parentId = -1)
+                            industryType = industryType.ordinal,
+                            parentId = parentId!!)
 
-                    var parentId = db.industryDAO().insert(industry = industry)
+                    Log.d("#DB", "Parent: " + industry.toString())
+                    parentId = db.industryDAO().insert(industry = industry)
 
                     currentIndex++
 
-                    currentIndex = loadSubIndustry( db, industry, currentIndex, parentId, lines)
+                    currentIndex = loadSubIndustry( db, industry, currentIndex, parentId, industryItems)
                 }
             }
         }
@@ -147,9 +218,10 @@ class LoadDataUtil {
                                     industrys: ArrayList<List<String>> ):Int {
 
             var currIndex = currentIndex
-            val parentCode = if (parent.parentId == -1L) parent.industryCode.substring(0, 2) else parent.industryCode.trimEnd('0')
+            val parentCode = parent.industryCode.trimEnd('0')
+            if (parentCode.length == 1) parentCode + "0"
 
-            while (industrys[currIndex][0].startsWith(parentCode)) {
+            while (currIndex < industrys.size && industrys[currIndex][0].startsWith(parentCode)) {
                 val title = if (parent.industryType == R.raw.ce_industry) industrys[currIndex][3] else industrys[currIndex][1]
                 val code = industrys[currIndex][0]
                 val industry = IndustryEntity(id = null,
@@ -159,6 +231,7 @@ class LoadDataUtil {
                         industryType = parent.industryType,
                         parentId = parentId)
 
+                Log.d("#DB", "Child: " + industry.toString())
                 var parentId = db.industryDAO().insert(industry = industry)
 
                 currIndex++
