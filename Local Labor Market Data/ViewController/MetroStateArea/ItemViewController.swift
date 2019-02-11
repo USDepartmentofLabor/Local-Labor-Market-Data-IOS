@@ -16,6 +16,8 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var seasonallyAdjustedTitle: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    
+    @IBOutlet weak var reportPeriodLabel: UILabel!
     @IBOutlet weak var parentTitleLabel: UILabel!
     @IBOutlet weak var parentValueLabel: UILabel!
     
@@ -59,6 +61,8 @@ class ItemViewController: UIViewController {
 
         parentTitleLabel.text = viewModel.parentItem.title
         parentValueLabel.text = ""
+        reportPeriodLabel.text = ""
+        
         loadReports()
     }
     
@@ -129,7 +133,15 @@ extension ItemViewController: UITableViewDataSource {
         if let item = viewModel.items?[indexPath.row] {
             let title = item.title! + "(" + item.code! + ")"
             cell.titleLabel?.text = title
-            cell.valueLabel.text = viewModel.getReportValue(item: item) ?? ReportManager.dataNotAvailableStr
+
+            let latestData = viewModel.getReportLatestData(item: item)
+            cell.valueLabel.text = latestData?.value ?? ReportManager.dataNotAvailableStr
+            if let seriesData = viewModel.getNationalReportData(item: item, period: latestData?.period, year: latestData?.year) {
+                cell.nationalValueLabel.text = seriesData.value
+            }
+            else {
+                cell.nationalValueLabel.text = ""
+            }
         
             if (item.children?.count ?? 0) > 0 {
                 cell.accessoryType = .disclosureIndicator
@@ -177,31 +189,13 @@ extension ItemViewController: UITableViewDelegate {
 extension ItemViewController {
     func loadReports() {
         activityIndicator.startAnimating(disableUI: true)
-        viewModel.loadReport {
+        viewModel.loadReport(seasonalAdjustment: seasonalAdjustment) {
             [weak self] () in
             guard let strongSelf = self else {return}
             strongSelf.activityIndicator.stopAnimating()
             strongSelf.tableView.reloadData()
             strongSelf.parentValueLabel.text = strongSelf.viewModel.getParentReportValue()
-        }
-    }
-    
-    func loadReports1() {
-        if let reportTypes = viewModel.getReportTypes() {
-            activityIndicator.startAnimating(disableUI: true)
-            ReportManager.getReports(forArea: viewModel.area, reportTypes: reportTypes,
-                                     seasonalAdjustment: SeasonalAdjustment.notAdjusted, year:viewModel.dataYear) {
-                [weak self] (apiResult) in
-                guard let strongSelf = self else {return}
-                strongSelf.activityIndicator.stopAnimating()
-
-                switch apiResult {
-                case .success(let areaReportsDict):
-                    strongSelf.displayReportResults(areaReportsDict: areaReportsDict)
-                case .failure(let error):
-                    strongSelf.handleError(error: error)
-                }
-            }
+            strongSelf.reportPeriodLabel.text = strongSelf.viewModel.getReportPeriod()
         }
     }
     

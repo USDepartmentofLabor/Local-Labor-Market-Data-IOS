@@ -447,7 +447,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGo-Dg-zTt" userLabel="ReportTimeLabel">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGo-Dg-zTt" userLabel="ReportPeriodLabel">
                                         <rect key="frame" x="10" y="100" width="39.5" height="19.5"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" staticText="YES" header="YES"/>
@@ -521,28 +521,49 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label aksjd sadfsl sfjh sdfkjh sdfkjh sdkjhasdf k sdfhadfakjdfhkjfdhkjsdfh askjdfhskjdfh" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5W2-ij-DEf" userLabel="titleLabel">
-                                                    <rect key="frame" x="10" y="10" width="274.5" height="66.5"/>
+                                                    <rect key="frame" x="10" y="10" width="293" height="66.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1L-PP-29h" userLabel="valueLabel">
-                                                    <rect key="frame" x="293" y="33" width="42" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QoB-4T-8DD">
+                                                    <rect key="frame" x="308" y="33" width="47" height="20.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fw1-Km-eqI" userLabel="nationalValueLabel">
+                                                            <rect key="frame" x="0.0" y="10.5" width="0.0" height="0.0"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1L-PP-29h" userLabel="valueLabel">
+                                                            <rect key="frame" x="5" y="0.0" width="42" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Fw1-Km-eqI" firstAttribute="centerY" secondItem="QoB-4T-8DD" secondAttribute="centerY" id="Cg1-eG-3AS"/>
+                                                        <constraint firstAttribute="bottom" secondItem="j1L-PP-29h" secondAttribute="bottom" id="HEH-bl-8Tj"/>
+                                                        <constraint firstItem="j1L-PP-29h" firstAttribute="leading" secondItem="Fw1-Km-eqI" secondAttribute="trailing" constant="5" id="J5Q-0h-QAN"/>
+                                                        <constraint firstItem="Fw1-Km-eqI" firstAttribute="leading" secondItem="QoB-4T-8DD" secondAttribute="leading" id="VNC-BC-W6t"/>
+                                                        <constraint firstAttribute="trailing" secondItem="j1L-PP-29h" secondAttribute="trailing" id="iwr-uE-GXP"/>
+                                                        <constraint firstItem="j1L-PP-29h" firstAttribute="top" secondItem="QoB-4T-8DD" secondAttribute="top" id="tjJ-4Z-iRX"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="j1L-PP-29h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5W2-ij-DEf" secondAttribute="trailing" constant="8" id="Df2-93-vqw"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="QoB-4T-8DD" secondAttribute="trailing" constant="5" id="DcY-zk-U7m"/>
                                                 <constraint firstItem="5W2-ij-DEf" firstAttribute="top" secondItem="AYJ-LW-Wbk" secondAttribute="top" constant="10" id="HdJ-3d-aHC"/>
-                                                <constraint firstItem="j1L-PP-29h" firstAttribute="centerY" secondItem="AYJ-LW-Wbk" secondAttribute="centerY" id="Qpq-ie-5Fx"/>
+                                                <constraint firstItem="QoB-4T-8DD" firstAttribute="leading" secondItem="5W2-ij-DEf" secondAttribute="trailing" constant="5" id="OGT-wV-MwI"/>
+                                                <constraint firstItem="QoB-4T-8DD" firstAttribute="centerY" secondItem="5W2-ij-DEf" secondAttribute="centerY" id="ovD-e9-IUm"/>
                                                 <constraint firstAttribute="bottom" secondItem="5W2-ij-DEf" secondAttribute="bottom" constant="10" id="s0u-Lz-O0b"/>
                                                 <constraint firstItem="5W2-ij-DEf" firstAttribute="leading" secondItem="AYJ-LW-Wbk" secondAttribute="leading" constant="10" id="vdR-ip-M8Q"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="j1L-PP-29h" secondAttribute="trailing" constant="25" id="xde-kG-LwI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="nationalValueLabel" destination="Fw1-Km-eqI" id="U1w-Vg-ogE"/>
                                             <outlet property="titleLabel" destination="5W2-ij-DEf" id="63h-Jh-0nk"/>
                                             <outlet property="valueLabel" destination="j1L-PP-29h" id="J4s-2S-yhu"/>
                                             <segue destination="QuN-hg-S9u" kind="show" identifier="showIndustries" id="y3b-m6-j2L"/>
@@ -574,6 +595,7 @@
                         <outlet property="areaTitleLabel" destination="ZVv-d4-mae" id="h4n-ux-8vY"/>
                         <outlet property="parentTitleLabel" destination="ygt-RN-LkC" id="XOj-mJ-ftD"/>
                         <outlet property="parentValueLabel" destination="XH4-A0-Qf3" id="x6f-BF-Dwm"/>
+                        <outlet property="reportPeriodLabel" destination="BGo-Dg-zTt" id="1Hc-2p-yxd"/>
                         <outlet property="seasonallyAdjustedSwitch" destination="r2d-ew-HUy" id="liq-Xh-Zhv"/>
                         <outlet property="seasonallyAdjustedTitle" destination="uKr-3H-JRl" id="NSn-Za-3kR"/>
                         <outlet property="tableView" destination="Ngo-Gu-xgj" id="za2-Bf-MFA"/>

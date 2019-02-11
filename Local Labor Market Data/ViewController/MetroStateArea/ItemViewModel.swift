@@ -33,14 +33,34 @@ class ItemViewModel: NSObject {
         return ItemViewModel(area: area, parent: parent, itemType: type(of: parent), dataYear: dataYear)
     }
     
+    func getReportPeriod() -> String {
+        if let latestData = getReportLatestData(item: parentItem) {
+            return "\(latestData.periodName) \(latestData.year)"
+        }
+        
+        return ""
+    }
+    
+    func getReportValue(item: Item) -> String? {
+        
+        if let latestData = getReportLatestData(item: item) {
+            return latestData.value
+        }
+        return nil
+    }
+    
+    func getReportLatestData(item: Item) -> SeriesData? {
+        return nil
+    }
+    
+    func getNationalReportData(item: Item, period: String?, year: String?) -> SeriesData? {
+        return nil
+    }
+    
     func getParentReportValue() -> String? {
         return getReportValue(item: parentItem)
     }
 
-    func getReportValue(item: Item) -> String? {
-        return nil
-    }
-    
     func getParentReportType() -> ReportType? {
         return getReportType(for: parentItem)
     }
@@ -83,15 +103,16 @@ class ItemViewModel: NSObject {
         return reportType
     }
     
-    func loadReport(completion: @escaping () -> Void) {
-        loadReportFromAPI { (apiResult) in
+    func loadReport(seasonalAdjustment: SeasonalAdjustment, completion: @escaping () -> Void) {
+        loadReportFromAPI(area: area, seasonalAdjustment: seasonalAdjustment) { (apiResult) in
             completion()
         }
     }
-    func loadReportFromAPI(completion: ((APIResult<[ReportType: AreaReport], ReportError>) -> Void)?) {
+    func loadReportFromAPI(area: Area, seasonalAdjustment: SeasonalAdjustment,
+                           completion: ((APIResult<[ReportType: AreaReport], ReportError>) -> Void)?) {
         if let reportTypes = getReportTypes() {
             ReportManager.getReports(forArea: area, reportTypes: reportTypes,
-                                     seasonalAdjustment: SeasonalAdjustment.notAdjusted, year:dataYear, completion: completion)
+                                     seasonalAdjustment: seasonalAdjustment, year:dataYear, completion: completion)
         }
     }
 }
