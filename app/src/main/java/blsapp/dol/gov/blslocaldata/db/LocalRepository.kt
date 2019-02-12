@@ -6,6 +6,7 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import blsapp.dol.gov.blslocaldata.R
+import blsapp.dol.gov.blslocaldata.db.dao.IndustryType
 import blsapp.dol.gov.blslocaldata.db.entity.*
 import blsapp.dol.gov.blslocaldata.ioThread
 import java.util.concurrent.Executors
@@ -98,7 +99,7 @@ class LocalRepository private constructor(private val mDatabase: BLSDatabase) {
         return metros
     }
 
-    fun getStateAreas(area: AreaEntity): List<StateEntity>? {
+    fun getStateAreas(area: AreaEntity): List<AreaEntity>? {
 
         var states: List<StateEntity>? = null
         when(area) {
@@ -115,6 +116,19 @@ class LocalRepository private constructor(private val mDatabase: BLSDatabase) {
             }
         }
         return states
+    }
+
+    fun getChildIndustries(parentCode: Long, industryType: IndustryType): List<IndustryEntity> {
+        val industries = mDatabase.industryDAO().findChildrenByParentAndType(parentCode, industryType.ordinal)
+        return industries
+    }
+
+    fun getIndustry(industryId: Long): IndustryEntity? {
+        val industries = mDatabase.industryDAO().findIndustryById(industryId)
+        var retIndustry: IndustryEntity? = null
+        if (industries.isNotEmpty())
+            retIndustry = industries.first()
+        return retIndustry
     }
 
     companion object {

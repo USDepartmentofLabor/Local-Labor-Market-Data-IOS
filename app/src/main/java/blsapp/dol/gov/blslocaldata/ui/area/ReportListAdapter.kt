@@ -18,25 +18,11 @@ import blsapp.dol.gov.blslocaldata.model.reports.AreaReport
 import blsapp.dol.gov.blslocaldata.model.reports.QCEWReport
 import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.*
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRow
 import kotlinx.android.synthetic.main.report_header.view.*
 import java.text.NumberFormat
-
-
-
-enum class ReportRowType {
-    HEADER,
-    SUB_HEADER,
-    UNEMPLOYMENAT_RATE_ITEM,
-    INDUSTRY_EMPLOYMENT_ITEM,
-    OCCUPATIONAL_EMPLOYMENT_ITEM,
-    EMPLOYMENT_WAGES_ITEM,
-    OWNERSHIP_EMPLOYMENT_WAGES_ITEM
-}
-
-data class ReportRow(var type: ReportRowType, val areaType: String?, val areaReports: List<AreaReport>?,
-                     var period: String? = null, var year: String? = null, var header: String?, var headerCollapsed: Boolean = true,
-                     var subReportRows: List<ReportRow>? = null)
 
 class ReportListAdapter(private val context: Context, private val mListener: ReportListAdapter.OnReportItemClickListener?)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -97,11 +83,24 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         if (reportRow.type == ReportRowType.HEADER &&
                 holder is ReportHeaderViewHolder) {
             holder.mHeaderTextView.text = reportRow.header
+
+            if (reportRow.subIndustries)
+                holder.mHeaderSubIndustriesIndicator.visibility = View.VISIBLE
+            else
+                holder.mHeaderSubIndustriesIndicator.visibility = View.GONE
+
             holder.collapse = reportRow.headerCollapsed
             with(holder.mView) {
                 tag = reportRow
                 setOnClickListener {
                     mListener?.onItemClick(reportRow)
+                }
+            }
+
+            with(holder.mHeaderSubIndustriesIndicator) {
+                tag = reportRow
+                setOnClickListener {
+                    mListener?.onSubIndustriesClick(reportRow)
                 }
             }
 
@@ -420,6 +419,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
     inner class ReportHeaderViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         val mHeaderTextView: TextView = mView.header_text
         val mHeaderImageView: ImageView = mView.showImageView
+        val mHeaderSubIndustriesIndicator: ImageView = mView.showIndustriesIndicator
 
         init {
             if (DataUtil.isTalkBackActive()) {
@@ -438,9 +438,9 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         set(value) {
             if (value)
             {
-                mHeaderImageView.setImageResource(R.drawable.ic_baseline_chevron_right_24px)
+                mHeaderImageView.setImageResource(R.drawable.ic_baseline_add_24px)
             } else {
-                mHeaderImageView.setImageResource(R.drawable.ic_expand_more_black_24dp)
+                mHeaderImageView.setImageResource(R.drawable.ic_baseline_remove_24px)
             }
         }
 
@@ -448,6 +448,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
 
     interface OnReportItemClickListener {
         fun onItemClick(item: ReportRow)
+        fun onSubIndustriesClick(item: ReportRow)
     }
 
 }

@@ -12,14 +12,13 @@ import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
 import blsapp.dol.gov.blslocaldata.model.DataUtil
 import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
-import blsapp.dol.gov.blslocaldata.ui.area.ReportRow
-import blsapp.dol.gov.blslocaldata.ui.area.ReportRowType
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
 import org.jetbrains.anko.doAsync
 
 data class ReportSection(
     var title: String?,
     private var _collapsed: Boolean,
+    var  subIndustries: Boolean,
     var reportTypes: List<ReportType>?,
     var subSections : List<ReportSection>? = null) {
 
@@ -53,11 +52,11 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
     override var reportRows = MutableLiveData<List<ReportRow>>()
 
     var reportSections = listOf<ReportSection>(
-            ReportSection(application.getString(R.string.unemployment_rate), false,
+            ReportSection(application.getString(R.string.unemployment_rate), false, false,
                     listOf(ReportType.Unemployment(LAUSReport.MeasureCode.UNEMPLOYMENT_RATE))),
-            ReportSection(application.getString(R.string.industry_employment), true,
+            ReportSection(application.getString(R.string.industry_employment), true, true,
                     listOf(ReportType.IndustryEmployment("00000000", CESReport.DataTypeCode.ALLEMPLOYEES))),
-            ReportSection(application.getString(R.string.occupational_employment_wages), true,
+            ReportSection(application.getString(R.string.occupational_employment_wages), true, true,
                     listOf(ReportType.OccupationalEmployment("000000", OESReport.DataTypeCode.ANNUALMEANWAGE))))
 
     init {
@@ -141,7 +140,10 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
         val rows = ArrayList<ReportRow>()
 
         reportSections.forEach{ reportSection ->
-            rows.add(ReportRow(ReportRowType.HEADER, null, null,header = reportSection.title, headerCollapsed = reportSection.collapsed))
+            var rowType = getRowType(reportSection)
+            rows.add(ReportRow(ReportRowType.HEADER, null, null,header = reportSection.title,
+                    headerCollapsed = reportSection.collapsed, subIndustries = reportSection.subIndustries, headerType = rowType))
+
             if (!reportSection.collapsed) {
                 val areaReports = localAreaReports?.filter { areaReport ->
                     reportSection.reportTypes?.let { reportTypes ->
@@ -154,7 +156,6 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                     } ?: kotlin.run { false }
                 }
 
-                var rowType = getRowType(reportSection)
                 val areaType = if (mArea is NationalEntity) R.string.national_area else R.string.local_area
 
                 rows.add(ReportRow(rowType,

@@ -7,7 +7,7 @@ import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
 import android.view.View
-
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType
 
 
 class ReportHeaderItemDecoration constructor(val mDivider: Drawable): RecyclerView.ItemDecoration() {
