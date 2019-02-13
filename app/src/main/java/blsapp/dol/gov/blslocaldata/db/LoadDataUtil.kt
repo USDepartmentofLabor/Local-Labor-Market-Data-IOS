@@ -65,7 +65,7 @@ class LoadDataUtil {
             loadIndustry(context, db, IndustryType.CE_INDUSTRY, R.raw.ce_industry, "txt")
             loadIndustry(context, db, IndustryType.SM_INDUSTRY, R.raw.sm_industry, "txt")
             loadIndustry(context, db, IndustryType.QCEW_INDUSTRY, R.raw.industry_titles, "txt")
-            loadOccupation(context, db,  R.raw.oe_occupation, "txt")
+            loadIndustry(context, db, IndustryType.OE_OCCUPATION,  R.raw.oe_occupation, "txt")
 //            loadZipCounty(context, db)
 //            loadZipCbsa(context, db)
 //            loadArea(context, db)
@@ -124,80 +124,80 @@ class LoadDataUtil {
             }
         }
 
-        private fun loadOccupation(context: Context, db: BLSDatabase, resourceId: Int, ext: String) {
-
-            val occupationItems = readFile(context, resourceId, ext)
-            var currentIndex = 1
-
-            val occupationItem = occupationItems[currentIndex]
-
-            val title = occupationItem[1]
-            val code = occupationItem[0]
-
-            val occupation = IndustryEntity(id = null,
-                    industryCode = code,
-                    title = title,
-                    superSector = true,
-                    industryType = IndustryType.OE_OCCUPATION.ordinal,
-                    parentId = -1)
-
-            Log.d("#DB", "Occupation Item: " + occupation.toString())
-            var parentId = db.industryDAO().insert(industry = occupation)
-            occupation.id = parentId
-
-            currentIndex++
-
-            while (currentIndex < occupationItems.count()) {
-                var newIndex = loadSubOccupation( db, currentIndex, parentId, occupationItems)
-                if (newIndex != currentIndex)
-                    currentIndex = newIndex
-                else {
-                    occupation.superSector = false
-                    db.industryDAO().updateIndustry(industry = occupation)
-                }
-            }
-        }
-        private fun loadSubOccupation(db: BLSDatabase, currentIndex: Int, parentId: Long,
-                                    occupations: ArrayList<List<String>> ):Int {
-
-            var currIndex = currentIndex
-            val occupationItem = occupations[currIndex]
-
-            currIndex++
-
-            if (occupationItem.count() <= 1) return currIndex
-
-            val title = occupationItem[1]
-            val code = occupationItem[0]
-
-            val occupation = IndustryEntity(id = null,
-                    industryCode = code,
-                    title = title,
-                    superSector = true,
-                    industryType = IndustryType.OE_OCCUPATION.ordinal,
-                    parentId = parentId)
-
-            Log.d("#DB", "Occupation Item: " + occupation.toString())
-            var parentId = db.industryDAO().insert(industry = occupation)
-            occupation.id = parentId
-
-            var parentCode = occupation.industryCode
-            if (occupation.industryCode.count() > 2)
-                parentCode = occupation.industryCode.trimEnd('0')
-
-            if (parentCode.length == 1) parentCode + "0"
-
-            while (currIndex < occupations.size && occupations[currIndex][0].startsWith(parentCode)) {
-                var newIndex = loadSubOccupation(db, currIndex, parentId, occupations)
-                if (newIndex != currIndex)
-                    currIndex = newIndex
-                else {
-                    occupation.superSector = false
-                    db.industryDAO().updateIndustry(industry = occupation)
-                }
-            }
-            return currIndex
-        }
+//        private fun loadOccupation(context: Context, db: BLSDatabase, resourceId: Int, ext: String) {
+//
+//            val occupationItems = readFile(context, resourceId, ext)
+//            var currentIndex = 1
+//
+//            val occupationItem = occupationItems[currentIndex]
+//
+//            val title = occupationItem[1]
+//            val code = occupationItem[0]
+//
+//            val occupation = IndustryEntity(id = null,
+//                    industryCode = code,
+//                    title = title,
+//                    superSector = true,
+//                    industryType = IndustryType.OE_OCCUPATION.ordinal,
+//                    parentId = -1)
+//
+//            Log.d("#DB", "Occupation Item: " + occupation.toString())
+//            var parentId = db.industryDAO().insert(industry = occupation)
+//            occupation.id = parentId
+//
+//            currentIndex++
+//
+//            while (currentIndex < occupationItems.count()) {
+//                var newIndex = loadSubOccupation( db, currentIndex, parentId, occupationItems)
+//                if (newIndex != currentIndex)
+//                    currentIndex = newIndex
+//                else {
+//                    occupation.superSector = false
+//                    db.industryDAO().updateIndustry(industry = occupation)
+//                }
+//            }
+//        }
+//        private fun loadSubOccupation(db: BLSDatabase, currentIndex: Int, parentId: Long,
+//                                    occupations: ArrayList<List<String>> ):Int {
+//
+//            var currIndex = currentIndex
+//            val occupationItem = occupations[currIndex]
+//
+//            currIndex++
+//
+//            if (occupationItem.count() <= 1) return currIndex
+//
+//            val title = occupationItem[1]
+//            val code = occupationItem[0]
+//
+//            val occupation = IndustryEntity(id = null,
+//                    industryCode = code,
+//                    title = title,
+//                    superSector = true,
+//                    industryType = IndustryType.OE_OCCUPATION.ordinal,
+//                    parentId = parentId)
+//
+//            Log.d("#DB", "Occupation Item: " + occupation.toString())
+//            var parentId = db.industryDAO().insert(industry = occupation)
+//            occupation.id = parentId
+//
+//            var parentCode = occupation.industryCode
+//            if (occupation.industryCode.count() > 2)
+//                parentCode = occupation.industryCode.trimEnd('0')
+//
+//            if (parentCode.length == 1) parentCode + "0"
+//
+//            while (currIndex < occupations.size && occupations[currIndex][0].startsWith(parentCode)) {
+//                var newIndex = loadSubOccupation(db, currIndex, parentId, occupations)
+//                if (newIndex != currIndex)
+//                    currIndex = newIndex
+//                else {
+//                    occupation.superSector = false
+//                    db.industryDAO().updateIndustry(industry = occupation)
+//                }
+//            }
+//            return currIndex
+//        }
 
         private fun loadIndustry(context: Context, db: BLSDatabase, industryType: IndustryType, resourceId: Int, ext: String) {
 
@@ -214,6 +214,8 @@ class LoadDataUtil {
                     if (industryType == IndustryType.CE_INDUSTRY) {
                         title = industryItem[3]
                         if (industryItem.count() > 7) parentCode = industryItem[7]
+                    } else if (industryType == IndustryType.OE_OCCUPATION) {
+                        title = industryItem[1]
                     } else {
                         title = industryItem[1]
                         if (industryItem.count() > 2) parentCode = industryItem[2]
