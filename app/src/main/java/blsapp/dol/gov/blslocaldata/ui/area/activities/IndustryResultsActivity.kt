@@ -98,7 +98,7 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryAdapter.OnItemClick
                     if (isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
             viewModel.setAdjustment(ReportManager.adjustment)
         }
-        viewModel.getIndustries()
+        viewModel.getReports()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

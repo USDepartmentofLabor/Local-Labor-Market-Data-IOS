@@ -5,11 +5,12 @@ import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Context
 import android.view.accessibility.AccessibilityManager
 import blsapp.dol.gov.blslocaldata.BLSApplication
+import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
 
 
 class DataUtil {
     companion object {
-        fun currencyValue(valueStr: String): String? {
+        fun currencyValue(valueStr: String): String {
 
             val currencyFormatter = NumberFormat.getCurrencyInstance()
             currencyFormatter.setMaximumFractionDigits(0)
@@ -17,7 +18,7 @@ class DataUtil {
             decimalValue?.let {
                 return currencyFormatter.format(decimalValue)
             }
-            return null
+            return ReportManager.DATA_NOT_AVAILABLE_STR
         }
 
         fun numberValue(valueStr: String): String? {

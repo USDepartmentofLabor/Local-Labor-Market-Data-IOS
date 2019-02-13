@@ -222,11 +222,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
             }
 
             seriesData?.let {seriesReport ->
-                val currencyValue = DataUtil.currencyValue(seriesReport.value)
-                currencyValue?.let {
-                    holder.mDataValueTextView.text = it
-                } ?: run { holder.mDataValueTextView.text =  ReportManager.DATA_NOT_AVAILABLE_STR }
-
+                holder.mDataValueTextView.text = DataUtil.currencyValue(seriesReport.value)
                 holder.mMonthYearTextView.text = seriesReport.year
 
             } ?: run {
@@ -326,14 +322,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
 
 
             seriesData?.let {
-                var dataValue = ReportManager.DATA_NOT_AVAILABLE_STR
-
-                DataUtil.currencyValue(it.value)?.let {
-                    dataValue = it
-                }
-
-                holder.mWageDataValueTextView.text = dataValue
-
+                holder.mWageDataValueTextView.text = DataUtil.currencyValue(it.value)
                 holder.mWageTwelveMonthChangeTextView.text =
                         DataUtil.changeValueStr(it.calculations?.netChanges?.twelveMonth) ?:  ReportManager.DATA_NOT_AVAILABLE_STR
                 holder.mWageTwelveMonthRateChangeTextView.text =
@@ -391,13 +380,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
 
 
             seriesData?.let {
-                var dataValue = ReportManager.DATA_NOT_AVAILABLE_STR
-
-                DataUtil.currencyValue(it.value)?.let {
-                    dataValue = it
-                }
-
-                holder.mWageDataValueTextView.text = dataValue
+                holder.mWageDataValueTextView.text = DataUtil.currencyValue(it.value)
 
             } ?: run {
                 holder.mWageDataValueTextView.text = ReportManager.DATA_NOT_AVAILABLE_STR

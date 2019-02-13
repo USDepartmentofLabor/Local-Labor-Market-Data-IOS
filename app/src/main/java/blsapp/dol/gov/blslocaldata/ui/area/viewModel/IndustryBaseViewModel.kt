@@ -14,6 +14,6 @@ interface IndustryBaseViewModel {
     var reportError: MutableLiveData<ReportError>
 
     fun setAdjustment(adjustment: SeasonalAdjustment)
-    fun getIndustries()
+    fun getReports()
     fun toggleSection(reportRow: IndustryRow)
 }

@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.IndustryEntity
+import blsapp.dol.gov.blslocaldata.model.DataUtil
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.IndustryItemHolder
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.IndustryRow
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.RowType
@@ -48,10 +49,17 @@ class IndustryAdapter(
                 holder.mIndustryTitle.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
                 holder.mIndustryLocalValue.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
                 holder.mIndustryNationalValue.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
+            } else {
+                holder.mView.backgroundColor = getColor(holder.itemView.context,android.R.color.white)
+                holder.mIndustryTitle.textColor = getColor(holder.itemView.context,android.R.color.black)
+                holder.mIndustryLocalValue.textColor = getColor(holder.itemView.context, android.R.color.black)
+                holder.mIndustryNationalValue.textColor = getColor(holder.itemView.context, android.R.color.black)
             }
             holder.mIndustryTitle.text = areaRow.title
-            holder.mIndustryLocalValue.text = areaRow.localValue
-            holder.mIndustryNationalValue.text = areaRow.nationalValue
+
+            holder.mIndustryLocalValue.text = DataUtil.currencyValue(areaRow.localValue!!)
+            holder.mIndustryNationalValue.text = DataUtil.currencyValue(areaRow.nationalValue!!)
+
             if (areaRow.superSector!!) {
                 holder.mSubIndustryIndicator.visibility = View.VISIBLE
 

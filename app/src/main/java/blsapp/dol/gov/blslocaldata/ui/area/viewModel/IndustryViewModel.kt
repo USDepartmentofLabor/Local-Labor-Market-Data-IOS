@@ -3,6 +3,7 @@ package blsapp.dol.gov.blslocaldata.ui.viewmodel
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
+import android.util.Log
 
 import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.R
@@ -13,6 +14,7 @@ import blsapp.dol.gov.blslocaldata.ioThread
 import blsapp.dol.gov.blslocaldata.model.DataUtil
 import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
+import blsapp.dol.gov.blslocaldata.services.FetchAddressIntentService
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.IndustryBaseViewModel
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType.INDUSTRY_EMPLOYMENT_ITEM
 import org.jetbrains.anko.doAsync
@@ -26,12 +28,13 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
     override var reportError = MutableLiveData<ReportError>()
 
     private val repository: LocalRepository = (application as BLSApplication).repository
+    private var nationalArea: NationalEntity? = null
 
     override var industryRows = MutableLiveData<List<IndustryRow>>()
 
     override fun setAdjustment(adjustment: SeasonalAdjustment) {
         mAdjustment = adjustment
-        loadIndustries()
+        loadReportCategories()
     }
 
     private var parentId: Long? =  null
@@ -61,14 +64,17 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    override fun getIndustries() {
+    override fun getReports() {
 
         isLoading.value = true
-        loadIndustries()
+        loadReportCategories()
     }
 
-    fun loadIndustries() {
+    fun loadReportCategories() {
         ioThread {
+
+            nationalArea = repository.getNationalArea()
+
             val rows = ArrayList<IndustryRow>()
             var parentIdSafe:Long? = parentId
             var parentIndustryData: IndustryEntity? = null
@@ -91,10 +97,9 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
                         parentIndustryData,
                         parentIndustryData.id,
                         mergeTitle,
-                        "1000", "2000",
+                        "N/A", "N/A",
                         false))
             }
-
 
             var fetchedData = repository.getChildIndustries(parentIdSafe!!, industryType)
 
@@ -104,12 +109,76 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
                         industry,
                         industry.id,
                         mergeTitle,
-                        "100", "200",
+                        "N/A", "N/A",
                         industry.superSector))
             }
             industryRows.postValue(rows)
-            isLoading.postValue(false)
+
+            if (mArea is NationalEntity)
+                getNationalReports(rows)
+            else
+                getLocalReports(rows)
+
         }
+    }
+
+    fun getLocalReports(industryRows: ArrayList<IndustryRow>) {
+
+        var reportTypes = mutableListOf<ReportType>()
+
+        industryRows.forEach {
+            reportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, OESReport.DataTypeCode.ANNUALMEANWAGE))
+        }
+
+        ReportManager.getReport(mArea, reportTypes, adjustment = mAdjustment,
+                successHandler = {
+                    isLoading.postValue(false)
+                    updateIndustryRows(it, industryRows)
+
+                    getNationalReports(industryRows)
+
+                    this.industryRows.postValue(industryRows)
+                },
+                failureHandler = { it ->
+                    isLoading.postValue(false)
+                    reportError.value = it
+                })
+    }
+
+    fun getNationalReports(industryRows: ArrayList<IndustryRow>) {
+
+        var reportTypes = mutableListOf<ReportType>()
+
+        industryRows.forEach {
+            reportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, OESReport.DataTypeCode.ANNUALMEANWAGE))
+        }
+
+        ReportManager.getReport(nationalArea!!, reportTypes, adjustment = mAdjustment,
+                successHandler = {
+                    isLoading.postValue(false)
+                    updateIndustryRows(it, industryRows)
+
+                    this.industryRows.postValue(industryRows)
+                },
+                failureHandler = { it ->
+                    isLoading.postValue(false)
+                    reportError.value = it
+                })
+    }
+
+    fun updateIndustryRows(areaReport: List<AreaReport>, industryRows: ArrayList<IndustryRow>) {
+
+        for (i in areaReport.indices) {
+            val thisAreaRow = areaReport[i]
+            val thisIndustryRow = industryRows[i]
+            if  (thisAreaRow.seriesReport != null && thisAreaRow.seriesReport!!.data.isNotEmpty()) {
+                if (thisAreaRow.area is NationalEntity)
+                    thisIndustryRow.nationalValue = thisAreaRow.seriesReport!!.data[0].value
+                else
+                    thisIndustryRow.localValue = thisAreaRow.seriesReport!!.data[0].value
+            }
+        }
+
     }
 
     override fun toggleSection(reportRow: IndustryRow) {
