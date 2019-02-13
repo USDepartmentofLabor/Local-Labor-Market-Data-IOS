@@ -342,6 +342,7 @@ extension LoadDataUtil {
             currentIndex = currentIndex+1
             loadSubIndustry(parent: supersector, industryItems: industryItems,
                             currentIndex: &currentIndex)
+                print("returned")
             }
         }
         
@@ -366,22 +367,30 @@ extension LoadDataUtil {
 //        else {
            parentCode = code.trailingTrim(CharacterSet(charactersIn: "0"))
 //        }
-        
+
         if parentCode.count == 1 {
             parentCode.append("0")
         }
 
         while currentIndex < industryItems.count - 1 &&
+            !parentCode.isEmpty &&
             industryItems[currentIndex][0].hasPrefix(parentCode) {
             if let obj = NSEntityDescription.insertNewObject(forEntityName: T.entityName(), into: managedObjectContext) as? T {
                 
-                let code = industryItems[currentIndex][0]
+                let industryItem = industryItems[currentIndex]
+                let code = industryItem[0]
                 let title: String
                 if parent is CE_Industry {
-                    title = industryItems[currentIndex][3]
+                    title = industryItem[3]
+//                    if industryItem.count > 7 {
+//                        parentCode = industryItem[7]
+//                    }
                 }
                 else {
-                    title = industryItems[currentIndex][1]
+                    title = industryItem[1]
+//                    if industryItem.count > 2 {
+//                        parentCode = industryItem[2]
+//                    }
                 }
                 
                 obj.code = code
@@ -390,7 +399,9 @@ extension LoadDataUtil {
                 currentIndex = currentIndex+1
                 loadSubIndustry(parent: obj, industryItems: industryItems, currentIndex: &currentIndex)
             }
-        }        
+        }
+        
+        return
     }
 }
 

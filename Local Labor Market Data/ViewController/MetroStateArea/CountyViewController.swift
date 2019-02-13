@@ -186,22 +186,23 @@ class CountyViewController: AreaViewController {
         }
         else if segue.identifier == "showIndustries" {
             if let destVC = segue.destination as? ItemViewController,
-                let reportSection = sender as? ReportSection {
-                let type = QCEW_Industry.self
+                let reportType = sender as? ReportType {
                 var latestYear: String = ""
-//                if let localAreaReport = localAreaReportsDict[reportType] {
-//                    if let latestData = localAreaReport.seriesReport?.latestData() {
-//                        latestYear = latestData.year
-//                    }
-//                }
-                let viewModel = ItemViewModel(area: area, parent: nil, itemType: type, dataYear: latestYear)
+                let localAreaReport = localAreaReportsDict[reportType]
+                if let latestData = localAreaReport?.seriesReport?.latestData() {
+                    latestYear = latestData.year
+                }
+                var ownershipCode = QCEWReport.OwnershipCode.privateOwnership
+                if case .quarterlyEmploymentWage(let ownership, _, _, _) = reportType {
+                    ownershipCode = ownership
+                }
+                let viewModel = QCEWIndustryViewModel(area: area, parent: nil, ownershipCode: ownershipCode, dataYear: latestYear)
                 destVC.viewModel = viewModel
-                destVC.title = "Industry - Supersectors"
+                destVC.title = "Industry - Sectors"
             }
         }
     }
 }
-
 
 
 
@@ -612,8 +613,10 @@ extension CountyViewController: OwnershipTableViewCellDelegate {
     }
     
     func ownership(_ cell: OwnershipTableViewCell, displayDetails reportSection: ReportSection) {
+        guard reportSection.reportTypes?.count ?? 0 > 0,
+            let reportTypes = reportSection.reportTypes else {return}
         
-        performSegue(withIdentifier: "showIndustries", sender: reportSection)
+        performSegue(withIdentifier: "showIndustries", sender: reportTypes[0])
     }
 }
 

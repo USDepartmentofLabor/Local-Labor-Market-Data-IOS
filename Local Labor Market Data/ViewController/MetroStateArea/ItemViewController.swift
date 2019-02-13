@@ -14,12 +14,20 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var areaTitleLabel: UILabel!
     @IBOutlet weak var seasonallyAdjustedSwitch: UICustomSwitch!
     @IBOutlet weak var seasonallyAdjustedTitle: UILabel!
+    
+    @IBOutlet weak var dataTitleLabel: UILabel!
+    @IBOutlet weak var dataTypeTitleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     
     @IBOutlet weak var reportPeriodLabel: UILabel!
+    
     @IBOutlet weak var parentTitleLabel: UILabel!
     @IBOutlet weak var parentValueLabel: UILabel!
+    @IBOutlet weak var ownershipLabel: UILabel!
+    
+    @IBOutlet weak var parentNationalValueLabel: UILabel!
+    @IBOutlet weak var dataTypeButton: UIButton!
     
     lazy var activityIndicator = ActivityIndicatorView(text: "Loading", inView: view)
 //    lazy var searchController = UISearchController(searchResultsController: nil)
@@ -48,6 +56,7 @@ class ItemViewController: UIViewController {
         seasonallyAdjustedSwitch.onTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
         seasonallyAdjustedTitle.scaleFont(forDataType: .seasonallyAdjustedSwitch, for: traitCollection)
 
+        dataTitleLabel.text = viewModel.dataTitle
         areaTitleLabel.text = viewModel.area.title
         seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
         setupAccessbility()
@@ -62,7 +71,23 @@ class ItemViewController: UIViewController {
         parentTitleLabel.text = viewModel.parentItem.title
         parentValueLabel.text = ""
         reportPeriodLabel.text = ""
+        ownershipLabel.text = ""
         
+        if viewModel.itemDataTypes.count > 1 {
+            dataTypeButton.isHidden = false
+        }
+        else {
+            dataTypeButton.isHidden = true
+            dataTypeButton.removeFromSuperview()
+        }
+        
+        if let vm = viewModel as? QCEWIndustryViewModel {
+            ownershipLabel.isHidden = false
+            ownershipLabel.text = "\(vm.ownershipCode.title)"
+        }
+        else {
+            ownershipLabel.removeFromSuperview()
+        }
         loadReports()
     }
     
@@ -85,6 +110,16 @@ class ItemViewController: UIViewController {
                 destVC.viewModel = vm
                 destVC.title = selectedItem.title
             }
+        }
+        else if segue.identifier == "showDataTypes" {
+            if let popoverViewController = segue.destination as? DataTypeViewController {
+                popoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
+                popoverViewController.itemDataTypes = viewModel.itemDataTypes
+                popoverViewController.delegate = self
+                popoverViewController.popoverPresentationController!.delegate = self
+                popoverViewController.popoverPresentationController?.sourceRect = (sender as! UIView).bounds
+            }
+            
         }
     }
     
@@ -115,6 +150,28 @@ class ItemViewController: UIViewController {
             navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
     }
+    
+    @IBAction func localBtnClick(_ sender: Any) {
+        if case .local(let asc) = viewModel.dataSort {
+            viewModel.dataSort = .local(ascending: !asc)
+        }
+        else {
+            viewModel.dataSort = .local(ascending: true)
+        }
+        
+        tableView.reloadData()
+    }
+    
+    @IBAction func nationalBtnClick(_ sender: Any) {
+        if case .national(let asc) = viewModel.dataSort {
+            viewModel.dataSort = .national(ascending: !asc)
+        }
+        else {
+            viewModel.dataSort = .national(ascending: true)
+        }
+        
+        tableView.reloadData()
+    }
 }
 
 // MARK: TableView DataSource
@@ -134,14 +191,8 @@ extension ItemViewController: UITableViewDataSource {
             let title = item.title! + "(" + item.code! + ")"
             cell.titleLabel?.text = title
 
-            let latestData = viewModel.getReportLatestData(item: item)
-            cell.valueLabel.text = latestData?.value ?? ReportManager.dataNotAvailableStr
-            if let seriesData = viewModel.getNationalReportData(item: item, period: latestData?.period, year: latestData?.year) {
-                cell.nationalValueLabel.text = seriesData.value
-            }
-            else {
-                cell.nationalValueLabel.text = ""
-            }
+             cell.valueLabel.text = viewModel.getReportValue(item: item) ?? ReportManager.dataNotAvailableStr
+            cell.nationalValueLabel.text = viewModel.getNationalReportValue(item: item) ?? ReportManager.dataNotAvailableStr
         
             if (item.children?.count ?? 0) > 0 {
                 cell.accessoryType = .disclosureIndicator
@@ -188,6 +239,9 @@ extension ItemViewController: UITableViewDelegate {
 // MARK: SeriesId
 extension ItemViewController {
     func loadReports() {
+        let title = viewModel.currentDataType.title
+        dataTypeTitleLabel.text = title
+        dataTypeButton.setTitle(title, for: .normal)
         activityIndicator.startAnimating(disableUI: true)
         viewModel.loadReport(seasonalAdjustment: seasonalAdjustment) {
             [weak self] () in
@@ -195,6 +249,7 @@ extension ItemViewController {
             strongSelf.activityIndicator.stopAnimating()
             strongSelf.tableView.reloadData()
             strongSelf.parentValueLabel.text = strongSelf.viewModel.getParentReportValue()
+            strongSelf.parentNationalValueLabel.text = strongSelf.viewModel.getParentNationalReportValue()
             strongSelf.reportPeriodLabel.text = strongSelf.viewModel.getReportPeriod()
         }
     }
@@ -214,5 +269,24 @@ extension ItemViewController: UISearchResultsUpdating {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         tableView.reloadData()
+    }
+}
+
+extension ItemViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController,
+                                   traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+       return UIModalPresentationStyle.none
+    }
+}
+
+extension ItemViewController: DataTypeViewDelegate {
+    func didSelect(for controller: DataTypeViewController, dataTpe: ItemDataType) {
+        viewModel.currentDataType = dataTpe
+        controller.dismiss(animated: true, completion: nil)
+        loadReports()
     }
 }

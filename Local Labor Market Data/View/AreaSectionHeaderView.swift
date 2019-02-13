@@ -29,6 +29,8 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
     class var nibName: String { return "AreaSectionHeaderView" }
     class var reuseIdentifier: String { return "AreaSectionHeaderView" }
     
+    
+    @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dataView: UIView!
     @IBOutlet weak var expandCollapseImageView: UIImageView!
@@ -60,7 +62,7 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleOpen(_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
-        addGestureRecognizer(tapGestureRecognizer)
+        titleView.addGestureRecognizer(tapGestureRecognizer)
         
         titleLabel.scaleFont(forDataType: .reportSectionTitle, for: traitCollection)
         

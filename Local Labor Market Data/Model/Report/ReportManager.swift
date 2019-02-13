@@ -70,9 +70,9 @@ enum ReportType {
     case unemployment(measureCode: LAUSReport.MeasureCode)
     case industryEmployment(industryCode: String, CESReport.DataTypeCode)
     case occupationEmployment(occupationalCode: String, OESReport.DataTypeCode)
-    case quarterlyEmploymentWage(ownershipCode: QCEWReport.OwnershipCode, industryCode:QCEWReport.IndustryCode, establishmentSize: QCEWReport.EstablishmentSize, dataType: QCEWReport.DataTypeCode)
+    case quarterlyEmploymentWage(ownershipCode: QCEWReport.OwnershipCode, industryCode: String, establishmentSize: QCEWReport.EstablishmentSize, dataType: QCEWReport.DataTypeCode)
     
-    public static func quarterlyEmploymentWageFrom(ownershipCode: QCEWReport.OwnershipCode, industryCode:QCEWReport.IndustryCode = .allIndustry, establishmentSize: QCEWReport.EstablishmentSize = .all, dataType: QCEWReport.DataTypeCode) -> ReportType {
+    public static func quarterlyEmploymentWageFrom(ownershipCode: QCEWReport.OwnershipCode, industryCode: String = QCEWReport.ALL_INDUSTRY_CODE, establishmentSize: QCEWReport.EstablishmentSize = .all, dataType: QCEWReport.DataTypeCode) -> ReportType {
         return ReportType.quarterlyEmploymentWage(ownershipCode: ownershipCode, industryCode:industryCode, establishmentSize: establishmentSize, dataType: dataType)
     }
     

@@ -232,7 +232,7 @@ class MetroStateViewController: AreaViewController {
                 }
                 let viewModel = ItemViewModel(area: area, parent: nil, itemType: type, dataYear: latestYear)
                 destVC.viewModel = viewModel
-                destVC.title = "Industry - Supersectors"
+                destVC.title = "Industry - Sectors"
             }
         }
         else if segue.identifier == "showOccupations" {

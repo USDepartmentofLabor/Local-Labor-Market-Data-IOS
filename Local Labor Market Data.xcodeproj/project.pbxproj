@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0321E89F221459A2000780A4 /* QCEWIndustryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0321E89E221459A2000780A4 /* QCEWIndustryViewModel.swift */; };
 		0322AE2D21B04AF200592970 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322AE2C21B04AF200592970 /* HistoryViewController.swift */; };
 		0322AE2F21B063A900592970 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322AE2E21B063A900592970 /* HistoryViewModel.swift */; };
 		03238022220C73F5009275F6 /* OccupationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03238021220C73F5009275F6 /* OccupationViewModel.swift */; };
@@ -18,6 +19,7 @@
 		0323B7BB21AEE48000A3E73C /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */; };
 		0323B7BE21AEF1F300A3E73C /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */; };
 		03248DE7220B72EB004E4916 /* industry_titles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03248DE6220B72EB004E4916 /* industry_titles.txt */; };
+		0325C00B221334E200AE8405 /* DataTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0325C00A221334E200AE8405 /* DataTypeViewController.swift */; };
 		03287A7F2187665A0067686A /* NECTACBSA_COUNTY.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */; };
 		032B242021AC8C8B0029AC90 /* oe.occupation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 032B241F21AC8C8B0029AC90 /* oe.occupation.txt */; };
 		032C16652138241E004C1B3F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16642138241E004C1B3F /* Util.swift */; };
@@ -130,12 +132,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0321E89E221459A2000780A4 /* QCEWIndustryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QCEWIndustryViewModel.swift; sourceTree = "<group>"; };
 		0322AE2C21B04AF200592970 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0322AE2E21B063A900592970 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		03238021220C73F5009275F6 /* OccupationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccupationViewModel.swift; sourceTree = "<group>"; };
 		0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		03248DE6220B72EB004E4916 /* industry_titles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = industry_titles.txt; sourceTree = "<group>"; };
+		0325C00A221334E200AE8405 /* DataTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypeViewController.swift; sourceTree = "<group>"; };
 		03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BLSApp 2.xcdatamodel"; sourceTree = "<group>"; };
 		03287A7C2187665A0067686A /* CBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CBSA_COUNTY.txt; sourceTree = "<group>"; };
 		03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NECTACBSA_COUNTY.txt; sourceTree = "<group>"; };
@@ -326,6 +330,8 @@
 				59ECE38C21ADC2F000EE06BE /* ItemViewController.swift */,
 				0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */,
 				033230BB21DE4AC80051E783 /* ItemTableViewCell.swift */,
+				0325C00A221334E200AE8405 /* DataTypeViewController.swift */,
+				0321E89E221459A2000780A4 /* QCEWIndustryViewModel.swift */,
 			);
 			path = MetroStateArea;
 			sourceTree = "<group>";
@@ -852,6 +858,7 @@
 				03953C3A211393D900BED557 /* OccupationalEmploymentTableViewCell.swift in Sources */,
 				03953C2E2112360A00BED557 /* UnEmploymentRateTableViewCell.swift in Sources */,
 				032C16672139918B004C1B3F /* Settings.swift in Sources */,
+				0321E89F221459A2000780A4 /* QCEWIndustryViewModel.swift in Sources */,
 				03AC614020EAFB660088E694 /* NSManagedObject+Extension.swift in Sources */,
 				0396A068210774E400DBECBD /* UIViewController+Extension.swift in Sources */,
 				03238022220C73F5009275F6 /* OccupationViewModel.swift in Sources */,
@@ -895,6 +902,7 @@
 				03953C01210F50B200BED557 /* APIReportRequest.swift in Sources */,
 				035D9723212C4F3A005F1CA9 /* Style.swift in Sources */,
 				03F1F86120EA622D00662446 /* AppDelegate.swift in Sources */,
+				0325C00B221334E200AE8405 /* DataTypeViewController.swift in Sources */,
 				597EE8F32188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift in Sources */,
 				03953C372113877E00BED557 /* AreaViewController.swift in Sources */,
 				033230BF21DE62D70051E783 /* SearchHistoryManager.swift in Sources */,

@@ -30,7 +30,7 @@ class CESReport {
                            dataTypeCode: DataTypeCode,
                            adjustment: SeasonalAdjustment) -> SeriesId? {
         if area is National {
-            return getNationalSeriesId(dataTypeCode: dataTypeCode, adjustment: adjustment)
+            return getNationalSeriesId(industryCode: industryCode, dataTypeCode: dataTypeCode, adjustment: adjustment)
         }
         else {
             return getLocalAreaSeriesId(forArea: area, industryCode: industryCode, dataTypeCode: dataTypeCode, adjustment: adjustment)

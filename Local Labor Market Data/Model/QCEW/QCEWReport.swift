@@ -10,7 +10,7 @@ import Foundation
 struct QCEWData {
     var areaCode: String
     var ownershipCode: QCEWReport.OwnershipCode
-    var industryCode: QCEWReport.IndustryCode
+    var industryCode: String
     var size: QCEWReport.EstablishmentSize
     var year: String
     var qtr: String
@@ -60,17 +60,36 @@ class QCEWReport {
         case otyAvgWklyWagePctChange = 41
     }
     
+    static let ALL_INDUSTRY_CODE = "10"
+    
     enum OwnershipCode: String {
         case totalCovered = "0"
         case privateOwnership = "5"
         case federalGovt = "1"
         case stateGovt = "2"
         case localGovt = "3"
+        
+        var title: String {
+            let title: String
+            switch self {
+            case .totalCovered:
+                title = "Total"
+            case .privateOwnership:
+                title = "Private"
+            case .federalGovt:
+                title = "Federal Government"
+            case .stateGovt:
+                title = "State Government"
+            case .localGovt:
+                title = "Local Government"
+            }
+            return title
+        }
     }
 
-    enum IndustryCode: String {
-        case allIndustry = "10"
-    }
+//    enum IndustryCode: String {
+//        case allIndustry = "10"
+//    }
 
     enum EstablishmentSize: String {
         case all = "0"
@@ -89,7 +108,7 @@ class QCEWReport {
         case avgAnnualPay = "5"
     }
     
-    func getReport(area: Area, ownership: OwnershipCode, industryCode: IndustryCode = IndustryCode.allIndustry) -> QCEWData? {
+    func getReport(area: Area, ownership: OwnershipCode, industryCode: String = ALL_INDUSTRY_CODE) -> QCEWData? {
         
         let agglCode: AgglvlCode
         if ownership == .totalCovered {
@@ -102,7 +121,7 @@ class QCEWReport {
         return getQCEWData(area: area, ownership: ownership, industryCode: industryCode, aggLevelCode: agglCode)
     }
     
-    fileprivate func getQCEWData(area: Area, ownership: OwnershipCode, industryCode: IndustryCode, aggLevelCode: AgglvlCode, size: EstablishmentSize = .all) -> QCEWData? {
+    fileprivate func getQCEWData(area: Area, ownership: OwnershipCode, industryCode: String, aggLevelCode: AgglvlCode, size: EstablishmentSize = .all) -> QCEWData? {
         guard let items = LoadDataUtil.loadDataResource(resourceName: "51107") else { return nil }
 
         let filteredResults = items.filter { (item) -> Bool in
@@ -116,7 +135,7 @@ class QCEWReport {
             let itemEstablishmentSize = item[QCEWDataFileIndex.sizeCode.rawValue]
             
             if ownership.rawValue == itemOwnership &&
-                industryCode.rawValue == itemIndustryCode &&
+                industryCode == itemIndustryCode &&
                 aggLevelCode.rawValue == itemAggLvlCode &&
                 size.rawValue == itemEstablishmentSize {
                 return true
@@ -129,7 +148,7 @@ class QCEWReport {
         
         let areaCode = item[QCEWDataFileIndex.areaCode.rawValue]
         let ownershipCode = OwnershipCode(rawValue: item[QCEWDataFileIndex.ownershipCode.rawValue])!
-        let industryCode = IndustryCode(rawValue:item[QCEWDataFileIndex.industryCode.rawValue])!
+        let industryCode = item[QCEWDataFileIndex.industryCode.rawValue]
         let size = EstablishmentSize(rawValue:  item[QCEWDataFileIndex.sizeCode.rawValue])!
         let year = item[QCEWDataFileIndex.year.rawValue]
         let qtr = item[QCEWDataFileIndex.qtr.rawValue]
@@ -155,7 +174,7 @@ class QCEWReport {
     }
     
     class func getSeriesId(forArea area: Area, ownershipCode: OwnershipCode, industryCode:
-                IndustryCode, establishmentSize: EstablishmentSize,
+                String, establishmentSize: EstablishmentSize,
                 dataTypeCode: DataTypeCode, adjustment: SeasonalAdjustment) -> SeriesId? {
         
         guard var areaCode = area.code else { return nil}
@@ -164,7 +183,7 @@ class QCEWReport {
             areaCode = "US000"
         }
         
-        let seriesId = "EN" + adjustment.rawValue  + areaCode + dataTypeCode.rawValue + establishmentSize.rawValue + ownershipCode.rawValue + industryCode.rawValue
+        let seriesId = "EN" + adjustment.rawValue  + areaCode + dataTypeCode.rawValue + establishmentSize.rawValue + ownershipCode.rawValue + industryCode
         
         return seriesId
     }
