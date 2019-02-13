@@ -61,11 +61,11 @@ class LoadDataUtil {
         }
 
         fun preloadDB(context: Context, db: BLSDatabase) {
-            db.industryDAO().deleteAll()
-            loadIndustry(context, db, IndustryType.CE_INDUSTRY, R.raw.ce_industry, "txt")
-            loadIndustry(context, db, IndustryType.SM_INDUSTRY, R.raw.sm_industry, "txt")
-            loadIndustry(context, db, IndustryType.QCEW_INDUSTRY, R.raw.industry_titles, "txt")
-            loadIndustry(context, db, IndustryType.OE_OCCUPATION,  R.raw.oe_occupation, "txt")
+//            db.industryDAO().deleteAll()
+//            loadIndustry(context, db, IndustryType.CE_INDUSTRY, R.raw.ce_industry, "txt")
+//            loadIndustry(context, db, IndustryType.SM_INDUSTRY, R.raw.sm_industry, "txt")
+//            loadIndustry(context, db, IndustryType.QCEW_INDUSTRY, R.raw.industry_titles, "txt")
+//            loadIndustry(context, db, IndustryType.OE_OCCUPATION,  R.raw.oe_occupation, "txt")
 //            loadZipCounty(context, db)
 //            loadZipCbsa(context, db)
 //            loadArea(context, db)
