@@ -39,12 +39,13 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
 
     private var parentId: Long? =  null
     private var industryType: IndustryType = IndustryType.CE_INDUSTRY
+    private var wageVsLevelType: OESReport.DataTypeCode = OESReport.DataTypeCode.ANNUALMEANWAGE
 
     fun setParentId(originalInput: Long?) {
         parentId = originalInput
     }
 
-    fun setReportType(reportType: ReportRowType?) {
+    fun setReportType(reportType: ReportRowType?, wageVsLevelType: ReportWageVsLevelType) {
         when (reportType!!.ordinal) {
             ReportRowType.INDUSTRY_EMPLOYMENT_ITEM.ordinal -> {
                 when (mArea) {
@@ -62,6 +63,15 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
                 industryType = IndustryType.QCEW_INDUSTRY
             }
         }
+        when (wageVsLevelType!!.ordinal) {
+            ReportWageVsLevelType.ANNUAL_MEAN_WAGE.ordinal -> {
+                this.wageVsLevelType = OESReport.DataTypeCode.ANNUALMEANWAGE
+            }
+            ReportWageVsLevelType.EMPLOYMENT_LEVEL.ordinal -> {
+                this.wageVsLevelType = OESReport.DataTypeCode.EMPLOYMENT
+            }
+        }
+
     }
 
     override fun getReports() {
@@ -127,7 +137,7 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
         var reportTypes = mutableListOf<ReportType>()
 
         industryRows.forEach {
-            reportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, OESReport.DataTypeCode.ANNUALMEANWAGE))
+            reportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, wageVsLevelType))
         }
 
         ReportManager.getReport(mArea, reportTypes, adjustment = mAdjustment,
@@ -150,7 +160,7 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
         var reportTypes = mutableListOf<ReportType>()
 
         industryRows.forEach {
-            reportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, OESReport.DataTypeCode.ANNUALMEANWAGE))
+            reportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, wageVsLevelType))
         }
 
         ReportManager.getReport(nationalArea!!, reportTypes, adjustment = mAdjustment,
@@ -172,10 +182,18 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
             val thisAreaRow = areaReport[i]
             val thisIndustryRow = industryRows[i]
             if  (thisAreaRow.seriesReport != null && thisAreaRow.seriesReport!!.data.isNotEmpty()) {
-                if (thisAreaRow.area is NationalEntity)
-                    thisIndustryRow.nationalValue = thisAreaRow.seriesReport!!.data[0].value
-                else
-                    thisIndustryRow.localValue = thisAreaRow.seriesReport!!.data[0].value
+                if (wageVsLevelType == OESReport.DataTypeCode.ANNUALMEANWAGE) {
+                    if (thisAreaRow.area is NationalEntity)
+                        thisIndustryRow.nationalValue = DataUtil.currencyValue(thisAreaRow.seriesReport!!.data[0].value)
+                    else
+                        thisIndustryRow.localValue = DataUtil.currencyValue(thisAreaRow.seriesReport!!.data[0].value)
+                } else {
+
+                    if (thisAreaRow.area is NationalEntity)
+                        thisIndustryRow.nationalValue = DataUtil.numberValueToThousand(thisAreaRow.seriesReport!!.data[0].value)
+                    else
+                        thisIndustryRow.localValue = DataUtil.numberValueToThousand(thisAreaRow.seriesReport!!.data[0].value)
+                }
             }
         }
 

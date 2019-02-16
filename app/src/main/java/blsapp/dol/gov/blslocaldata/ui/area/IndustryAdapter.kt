@@ -13,6 +13,7 @@ import blsapp.dol.gov.blslocaldata.db.entity.IndustryEntity
 import blsapp.dol.gov.blslocaldata.model.DataUtil
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.IndustryItemHolder
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.IndustryRow
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportWageVsLevelType
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.RowType
 
 import kotlinx.android.synthetic.main.area_item.view.*
@@ -26,7 +27,6 @@ class IndustryAdapter(
 
 //    private val mOnClickListener: View.OnClickListener
     private var mIndustries = emptyList<IndustryRow>()
-
 
     fun setIndustries(industries: List<IndustryRow>) {
         mIndustries = industries
@@ -57,8 +57,8 @@ class IndustryAdapter(
             }
             holder.mIndustryTitle.text = areaRow.title
 
-            holder.mIndustryLocalValue.text = DataUtil.currencyValue(areaRow.localValue!!)
-            holder.mIndustryNationalValue.text = DataUtil.currencyValue(areaRow.nationalValue!!)
+            holder.mIndustryLocalValue.text = areaRow.localValue!!
+            holder.mIndustryNationalValue.text = areaRow.nationalValue!!
 
             if (areaRow.superSector!!) {
                 holder.mSubIndustryIndicator.visibility = View.VISIBLE

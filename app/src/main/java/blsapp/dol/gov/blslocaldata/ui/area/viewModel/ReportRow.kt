@@ -13,7 +13,18 @@ enum class ReportRowType {
     UNKNOWN
 }
 
-data class ReportRow(var type: ReportRowType, val areaType: String?, val areaReports: List<AreaReport>?,
-                     var period: String? = null, var year: String? = null, var header: String?, var headerCollapsed: Boolean = true,
+enum class ReportWageVsLevelType {
+    ANNUAL_MEAN_WAGE,
+    EMPLOYMENT_LEVEL
+}
+
+data class ReportRow(var type: ReportRowType,
+                     val areaType: String?,
+                     val areaReports: List<AreaReport>?,
+                     var period: String? = null,
+                     var year: String? = null,
+                     var header: String?,
+                     var headerCollapsed: Boolean = true,
                      var subIndustries: Boolean = false,
-                     var subReportRows: List<ReportRow>? = null, var headerType: ReportRowType? = ReportRowType.UNKNOWN)
+                     var subReportRows: List<ReportRow>? = null,
+                     var headerType: ReportRowType? = ReportRowType.UNKNOWN)
