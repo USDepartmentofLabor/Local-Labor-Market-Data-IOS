@@ -39,6 +39,18 @@ class DataUtil {
             return null
         }
 
+        fun numberValueToThousand(valueStr: String?): String? {
+            valueStr?.let {
+                val decimalValue = valueStr.toDoubleOrNull()
+                decimalValue?.let { value ->
+                    val numberFormatter = NumberFormat.getNumberInstance()
+                    numberFormatter.maximumFractionDigits = 0
+                    return numberFormatter.format(value / 1000)
+                }
+            }
+            return null
+        }
+
         fun changeValueByThousand(valueStr: String?): String? {
             valueStr?.let {
                 val decimalValue = valueStr.toDoubleOrNull()
