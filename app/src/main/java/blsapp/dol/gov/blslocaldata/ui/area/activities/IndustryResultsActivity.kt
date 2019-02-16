@@ -30,11 +30,15 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import android.support.v7.app.AlertDialog
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import blsapp.dol.gov.blslocaldata.ui.search.IndustryAdapter
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.*
 
 
 class IndustryResultsActivity : AppCompatActivity(), IndustryAdapter.OnItemClickListener {
+
     companion object {
         const val KEY_AREA = "Area"
         const val PARENT_ID = "ParentId"
@@ -46,7 +50,9 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryAdapter.OnItemClick
     private lateinit var viewModel: IndustryViewModel
     private lateinit var adapter: IndustryAdapter
     private lateinit var reportType: ReportRowType
-
+    private var wageVsLevelSpinnerTitles = arrayOf("Annual Mean Wage", "Employment Level")
+    private var wageVsLevelSpinnerValues = arrayOf(ReportWageVsLevelType.ANNUAL_MEAN_WAGE, ReportWageVsLevelType.EMPLOYMENT_LEVEL)
+    private var reportWageVsLevelType = wageVsLevelSpinnerValues[0]
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,7 +96,6 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryAdapter.OnItemClick
         }
 
         viewModel.setParentId(parentId)
-        viewModel.setReportType(reportType)
 
         seasonallyAdjustedSwitch.isChecked = if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED) true else false
         seasonallyAdjustedSwitch.setOnCheckedChangeListener{ _, isChecked ->
@@ -98,7 +103,24 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryAdapter.OnItemClick
                     if (isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
             viewModel.setAdjustment(ReportManager.adjustment)
         }
-        viewModel.getReports()
+
+        val wageVsLevelSpinner = findViewById<Spinner>(R.id.wageVsLevelSpinner)
+        //item selected listener for spinner
+        wageVsLevelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                reportWageVsLevelType = wageVsLevelSpinnerValues[0]
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                reportWageVsLevelType = wageVsLevelSpinnerValues[pos]
+                viewModel.setReportType(reportType, reportWageVsLevelType)
+                viewModel.getReports()
+            }
+
+        }
+        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, wageVsLevelSpinnerTitles)
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        wageVsLevelSpinner!!.adapter = aa
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
