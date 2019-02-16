@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import blsapp.dol.gov.blslocaldata.R
 
 /**
- * A placeholder fragment containing a simple view.
+ * GlossaryFragment - Fragment that displays glossary information used in the app
  */
 class GlossaryFragment : Fragment() {
 

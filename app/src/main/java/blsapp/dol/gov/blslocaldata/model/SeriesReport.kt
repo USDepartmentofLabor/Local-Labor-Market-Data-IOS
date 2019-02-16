@@ -2,6 +2,10 @@ package blsapp.dol.gov.blslocaldata.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * SeriesReport - JSON Serialization of series data, latestData sorted
+ */
+
 data class SeriesReport (
     @SerializedName("seriesID")
     val seriesId: String,

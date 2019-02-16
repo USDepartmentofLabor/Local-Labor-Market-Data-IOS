@@ -18,6 +18,10 @@ import blsapp.dol.gov.blslocaldata.ui.viewmodel.AreaRow
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.RowType
 import kotlinx.android.synthetic.main.activity_area_results.*
 
+/**
+ * AreaResultsActivity - Displays list of areas (County, State, Metro) to select from
+ */
+
 class AreaResultsActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener {
     companion object {
         const val KEY_CURRENT_AREA = "Area"

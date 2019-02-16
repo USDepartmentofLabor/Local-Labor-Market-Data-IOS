@@ -5,6 +5,10 @@ import android.view.View
 import android.widget.TextView
 import kotlinx.android.synthetic.main.unemployment_rate.view.*
 
+/**
+ * UnemploymentRateHolder - holds the inflated view for Unemployment Rate Report view
+ */
+
 class UnemploymentRateHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
     val mDataValueTextView: TextView = mView.dataValueTextView
     val mAreaTitleTextView: TextView = mView.areaTextView

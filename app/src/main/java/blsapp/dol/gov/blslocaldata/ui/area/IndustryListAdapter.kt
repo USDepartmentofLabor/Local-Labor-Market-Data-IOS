@@ -11,7 +11,7 @@ import android.widget.TextView
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.IndustryEntity
 import blsapp.dol.gov.blslocaldata.model.DataUtil
-import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.IndustryItemHolder
+import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.IndustryEntryHolder
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.IndustryRow
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportWageVsLevelType
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.RowType
@@ -21,7 +21,11 @@ import kotlinx.android.synthetic.main.areaheader_item.view.*
 import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.textColor
 
-class IndustryAdapter(
+/**
+ * IndustryListAdapter - Industry / Occupation List Adapter Comparison View
+ */
+
+class IndustryListAdapter(
         private val mListener: OnItemClickListener?)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -37,13 +41,13 @@ class IndustryAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val inflatedView = layoutInflater.inflate(R.layout.industry_item, parent, false)
-        return IndustryItemHolder(inflatedView)
+        return IndustryEntryHolder(inflatedView)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         val areaRow = mIndustries[position]
-        if (holder is IndustryItemHolder) {
+        if (holder is IndustryEntryHolder) {
             if (position == 0) {
                 holder.mView.backgroundColor = getColor(holder.itemView.context, R.color.colorPrimary)
                 holder.mIndustryTitle.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)

@@ -4,6 +4,10 @@ import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.MetroEntity
 import blsapp.dol.gov.blslocaldata.db.entity.StateEntity
 
+/**
+ * OESReport - Occupational Report for Metro, State Area
+ */
+
 class OESReport {
     enum class DataTypeCode(val code: String) {
         EMPLOYMENT("01"),

@@ -15,6 +15,9 @@ import com.google.gson.JsonObject
 import org.json.JSONObject
 import blsapp.dol.gov.blslocaldata.R
 
+/**
+ * BlsAPI - Makes requests to the BLS API
+ */
 
 class BlsAPI constructor(val appContext: Context) {
 

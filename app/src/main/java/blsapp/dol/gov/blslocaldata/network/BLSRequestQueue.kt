@@ -8,6 +8,9 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.ImageLoader
 import com.android.volley.toolbox.Volley
 
+/**
+ * BLSRequestQueue - Queueing wrapper for BLS API requests
+ */
 class BLSRequestQueue constructor(context: Context) {
     companion object {
         @Volatile

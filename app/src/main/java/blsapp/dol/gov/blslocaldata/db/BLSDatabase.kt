@@ -16,9 +16,15 @@ import java.nio.file.Files.exists
 
 
 
-@Database(entities = arrayOf(ZipCountyEntity::class, ZipCbsaEntity::class, NationalEntity::class,
-        MetroEntity::class, StateEntity::class, CountyEntity::class,
-        MSACountyEntity::class, IndustryEntity::class), version = 2)
+@Database(entities = arrayOf(ZipCountyEntity::class,
+        ZipCbsaEntity::class,
+        NationalEntity::class,
+        MetroEntity::class,
+        StateEntity::class,
+        CountyEntity::class,
+        MSACountyEntity::class,
+        IndustryEntity::class), version = 2)
+
 abstract class BLSDatabase: RoomDatabase() {
 
     abstract fun zipCountyDAO(): ZipCountyDao

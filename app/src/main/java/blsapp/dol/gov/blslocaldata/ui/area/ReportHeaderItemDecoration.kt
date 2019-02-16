@@ -9,7 +9,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType
 
-
+/**
+ * ReportHeaderItemDecoration - Decoration for Report Header
+ */
 class ReportHeaderItemDecoration constructor(val mDivider: Drawable): RecyclerView.ItemDecoration() {
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {

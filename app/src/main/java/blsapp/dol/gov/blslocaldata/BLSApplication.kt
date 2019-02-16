@@ -9,6 +9,10 @@ import blsapp.dol.gov.blslocaldata.db.entity.ZipCountyEntity
 import blsapp.dol.gov.blslocaldata.model.DataUtil
 import java.security.Provider
 
+/**
+ *  BLSApplication - Base Application for the BLS Local Area Data
+ */
+
 class BLSApplication : Application() {
 
     init {

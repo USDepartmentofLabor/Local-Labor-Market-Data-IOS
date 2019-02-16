@@ -18,12 +18,16 @@ import blsapp.dol.gov.blslocaldata.model.reports.AreaReport
 import blsapp.dol.gov.blslocaldata.model.reports.QCEWReport
 import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
+import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.*
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRow
 import kotlinx.android.synthetic.main.report_header.view.*
 import java.text.NumberFormat
 
+/**
+ * ReportListAdapter - Report List Adapter View
+ */
 class ReportListAdapter(private val context: Context, private val mListener: ReportListAdapter.OnReportItemClickListener?)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -405,7 +409,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         val mHeaderSubIndustriesIndicator: ImageView = mView.showIndustriesIndicator
 
         init {
-            if (DataUtil.isTalkBackActive()) {
+            if (UIUtil.isTalkBackActive()) {
                 mHeaderImageView.visibility = View.GONE
             }
             else {

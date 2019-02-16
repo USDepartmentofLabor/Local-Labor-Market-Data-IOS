@@ -11,6 +11,10 @@ import blsapp.dol.gov.blslocaldata.db.entity.*
 import blsapp.dol.gov.blslocaldata.ioThread
 import java.util.concurrent.Executors
 
+/**
+ * LocalRepository - Local Database Accessor fuctions
+ */
+
 class LocalRepository private constructor(private val mDatabase: BLSDatabase) {
 
     fun getMetroAreas(search: String?): List<MetroEntity> {

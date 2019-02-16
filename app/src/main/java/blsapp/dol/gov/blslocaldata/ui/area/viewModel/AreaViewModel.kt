@@ -6,6 +6,10 @@ import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRow
 
+/**
+ * AreaViewModel - Base ViewModel for Areas (Metro/State/National, County)
+ */
+
 interface AreaViewModel {
     var mAdjustment: SeasonalAdjustment
     var mArea: AreaEntity
@@ -14,6 +18,6 @@ interface AreaViewModel {
     var reportError: MutableLiveData<ReportError>
 
     fun setAdjustment(adjustment: SeasonalAdjustment)
-    fun getReports()
+    fun getAreaReports()
     fun toggleSection(reportRow: ReportRow)
 }

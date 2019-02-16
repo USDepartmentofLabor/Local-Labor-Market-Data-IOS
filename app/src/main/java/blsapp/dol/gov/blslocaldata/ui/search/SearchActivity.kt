@@ -44,7 +44,9 @@ import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-
+/**
+ * SearchActivity - Main screen of app - allows users to select which area to explore
+ */
 class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener {
     private val TAG = SearchActivity::class.java.simpleName
     private var REQUEST_PERMISSIONS_REQUEST_CODE = 34

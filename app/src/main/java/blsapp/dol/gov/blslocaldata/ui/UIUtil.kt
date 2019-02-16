@@ -1,8 +1,14 @@
 package blsapp.dol.gov.blslocaldata.ui
 
+import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Context
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityManager
+import blsapp.dol.gov.blslocaldata.BLSApplication
+
+/**
+ * UIUtil - Utility class for accessibility functions
+ */
 
 class UIUtil {
 
@@ -18,6 +24,24 @@ class UIUtil {
                 e.text.add(message)
                 manager.sendAccessibilityEvent(e)
             }
+        }
+
+        fun isTalkBackActive(): Boolean {
+
+            val context = BLSApplication.applicationContext()
+            val accessibilityManager = context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager?
+
+            val serviceInfoList = accessibilityManager!!.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_SPOKEN)
+
+            for (serviceInfo in serviceInfoList) {
+                //Could get even more specific here if you wanted. IDs have fully qualified package names in them as well.
+                if (serviceInfo.id.endsWith("TalkBackService")) {
+                    //TalkBack is on do your thing
+                    return true
+                }
+            }
+
+            return false
         }
     }
 }

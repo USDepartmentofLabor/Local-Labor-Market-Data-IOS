@@ -3,6 +3,10 @@ package blsapp.dol.gov.blslocaldata.model.reports
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
 
+/**
+ * ReportType - Provides Report Classes based on Type, provides seriesId access based on ReportType
+ */
+
 sealed class ReportType {
     class Unemployment(val measureCode: LAUSReport.MeasureCode): ReportType()
     class IndustryEmployment(val industryCode: String, val dataType: CESReport.DataTypeCode): ReportType()

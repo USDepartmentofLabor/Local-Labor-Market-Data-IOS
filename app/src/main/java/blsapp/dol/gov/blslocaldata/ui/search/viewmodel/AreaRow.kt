@@ -7,4 +7,11 @@ enum class RowType {
     ITEM
 }
 
-data class AreaRow(var type: RowType, var area: AreaEntity?, var header: String?, val image: Int?)
+/**
+ * AreaRow - Area Entry information for display from the ViewModel
+ */
+
+data class AreaRow(var type: RowType,
+                   var area: AreaEntity?,
+                   var header: String?,
+                   val image: Int?)

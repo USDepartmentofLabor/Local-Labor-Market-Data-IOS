@@ -9,10 +9,16 @@ import blsapp.dol.gov.blslocaldata.model.ReportStatus
 import blsapp.dol.gov.blslocaldata.model.SeriesReport
 import blsapp.dol.gov.blslocaldata.network.BlsAPI
 
-class AreaReport(val seriesId: String, val reportType: ReportType, val area: AreaEntity) {
+class AreaReport(val seriesId: String,
+                 val reportType: ReportType,
+                 val area: AreaEntity) {
+
     var seriesReport: SeriesReport? = null
 }
 
+/**
+ * ReportManager - Provides main getReport interface, creates seriesIds and areaReports for reportTypes
+ */
 
 class ReportManager {
 

@@ -19,6 +19,10 @@ import blsapp.dol.gov.blslocaldata.ui.area.viewModel.IndustryBaseViewModel
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType.INDUSTRY_EMPLOYMENT_ITEM
 import org.jetbrains.anko.doAsync
 
+/**
+ * IndustryViewModel - View Model for Industry Comparison View
+ */
+
 class IndustryViewModel(application: Application) : AndroidViewModel(application), IndustryBaseViewModel {
 
     lateinit override var mArea: AreaEntity
@@ -74,7 +78,7 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
 
     }
 
-    override fun getReports() {
+    override fun getIndustryReports() {
 
         isLoading.value = true
         loadReportCategories()

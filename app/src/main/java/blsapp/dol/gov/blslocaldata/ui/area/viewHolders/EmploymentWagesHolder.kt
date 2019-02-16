@@ -5,6 +5,9 @@ import android.view.View
 import android.widget.TextView
 import kotlinx.android.synthetic.main.employment_wages.view.*
 
+/**
+ * EmploymentWagesHolder - holds the inflated view for the Employment Wages Report view
+ */
 class EmploymentWagesHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
     val mAreaTitleTextView: TextView = mView.areaTextView
     val mMonthYearTextView: TextView = mView.monthYearTextView

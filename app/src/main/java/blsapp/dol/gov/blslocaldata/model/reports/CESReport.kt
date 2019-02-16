@@ -4,6 +4,10 @@ import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.MetroEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
 
+/**
+ * CESReport - Industry Employment Report for Metro, State and National Areas
+ */
+
 class CESReport {
     enum class DataTypeCode(val code: String) {
         ALLEMPLOYEES("01"),

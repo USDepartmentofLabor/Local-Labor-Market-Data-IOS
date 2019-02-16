@@ -9,6 +9,10 @@ enum class SeasonalAdjustment(val value: String) {
     NOT_ADJUSTED("U")
 }
 
+/**
+ *LAUSReport - UnEmployment Report for Metro, County, State Area
+ */
+
 class LAUSReport {
     enum class MeasureCode(val code: String) {
         UNEMPLOYMENT_RATE("03"),

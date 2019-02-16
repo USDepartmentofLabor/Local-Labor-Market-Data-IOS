@@ -21,7 +21,7 @@ import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
 import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
 import blsapp.dol.gov.blslocaldata.ui.info.InfoActivity
-import blsapp.dol.gov.blslocaldata.ui.viewmodel.CountyViewModel
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.CountyAreaViewModel
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.MetroStateViewModel
 import kotlinx.android.synthetic.main.activity_metro_state.*
 import kotlinx.android.synthetic.main.fragment_area_header.*
@@ -29,11 +29,13 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import android.support.v7.app.AlertDialog
-import blsapp.dol.gov.blslocaldata.ui.area.ReportHeaderItemDecoration
 import blsapp.dol.gov.blslocaldata.ui.area.ReportListAdapter
 import blsapp.dol.gov.blslocaldata.ui.area.activities.IndustryResultsActivity.Companion.KEY_REPORT_TYPE
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRow
 
+/**
+ * AreaReportActivity - Main Report Displaying Activity
+ */
 
 class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemClickListener {
     companion object {
@@ -129,7 +131,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
                     if (isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
             viewModel.setAdjustment(ReportManager.adjustment)
         }
-        viewModel.getReports()
+        viewModel.getAreaReports()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -174,7 +176,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
 
     private fun createViewModel(area: AreaEntity): AreaViewModel {
         when(area) {
-            is CountyEntity -> return ViewModelProviders.of(this).get(CountyViewModel::class.java)
+            is CountyEntity -> return ViewModelProviders.of(this).get(CountyAreaViewModel::class.java)
         }
 
         return ViewModelProviders.of(this).get(MetroStateViewModel::class.java)

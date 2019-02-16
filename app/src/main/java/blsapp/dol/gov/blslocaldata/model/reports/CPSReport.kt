@@ -2,6 +2,11 @@ package blsapp.dol.gov.blslocaldata.model.reports
 
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 
+
+/**
+ * CPSReport - UnEmployment Report for National Area
+ */
+
 class CPSReport {
     enum class LFSTCode(val code: String) {
         UNEMPLOYMENT("30"),

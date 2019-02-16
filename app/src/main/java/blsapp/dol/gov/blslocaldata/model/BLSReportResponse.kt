@@ -11,7 +11,9 @@ import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
 
-
+/**
+ * ReportError - Error Handling for the BLS API
+ */
 class ReportError constructor(var errorCode: ErrorCode, var errorMessage: String) {
     enum class ErrorCode {
         TimeOutError,

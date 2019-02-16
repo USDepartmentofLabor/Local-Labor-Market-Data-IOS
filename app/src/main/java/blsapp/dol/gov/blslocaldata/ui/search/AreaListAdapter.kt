@@ -14,6 +14,9 @@ import blsapp.dol.gov.blslocaldata.ui.viewmodel.RowType
 import kotlinx.android.synthetic.main.area_item.view.*
 import kotlinx.android.synthetic.main.areaheader_item.view.*
 
+/**
+ * AreaListAdapter - Area List Adapter View
+ */
 class AreaListAdapter(
         private val mListener: OnItemClickListener?)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

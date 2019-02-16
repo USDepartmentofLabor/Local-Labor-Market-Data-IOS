@@ -11,13 +11,14 @@ import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
 import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
-import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRow
-import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
 import org.jetbrains.anko.doAsync
 
+/**
+ * CountyAreaViewModel - Subclass of AreaViewModel for County Areas
+ */
 
-class CountyViewModel(application: Application) : AndroidViewModel(application), AreaViewModel {
+class CountyAreaViewModel(application: Application) : AndroidViewModel(application), AreaViewModel {
 
     lateinit override var mArea: AreaEntity
     lateinit override var mAdjustment: SeasonalAdjustment
@@ -33,30 +34,37 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
     var reportSections = listOf<ReportSection>(
             ReportSection( application.getString(R.string.unemployment_rate), false, false,
                     listOf(ReportType.Unemployment(LAUSReport.MeasureCode.UNEMPLOYMENT_RATE))),
+
             ReportSection(application.getString(R.string.employment_wages), true, false,
                     listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.TOTAL_COVERED,
                                     dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                             ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.TOTAL_COVERED,
-                                    dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage)), subSections =
-                listOf(ReportSection(title = application.getString(R.string.ownership_private),
+                                    dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage)),
+
+                    subSections =
+                        listOf(
+                                ReportSection(title = application.getString(R.string.ownership_private),
                         _collapsed = true, subIndustries = true, reportTypes =
                             listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.PRIVATE_OWNERSHIP,
                                     dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                             ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.PRIVATE_OWNERSHIP,
                                     dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
-                        ReportSection(title = application.getString(R.string.ownership_federal_govt),
+
+                                ReportSection(title = application.getString(R.string.ownership_federal_govt),
                                 _collapsed = true, subIndustries = true, reportTypes =
                         listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.FEDERAL_GOVT,
                                 dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                                 ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.FEDERAL_GOVT,
                                         dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
-                        ReportSection(title = application.getString(R.string.ownership_state_govt),
+
+                                ReportSection(title = application.getString(R.string.ownership_state_govt),
                                 _collapsed = true, subIndustries = true, reportTypes =
                         listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.STATE_GOVT,
                                 dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                                 ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.STATE_GOVT,
                                         dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
-                        ReportSection(title = application.getString(R.string.ownership_local_govt),
+
+                                ReportSection(title = application.getString(R.string.ownership_local_govt),
                                 _collapsed = true, subIndustries = true, reportTypes =
                         listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.LOCAL_GOVT,
                                 dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
@@ -73,10 +81,10 @@ class CountyViewModel(application: Application) : AndroidViewModel(application),
         mAdjustment = adjustment
         localAreaReports?.clear()
         nationalAreaReports.clear()
-        getReports()
+        getAreaReports()
     }
 
-    override fun getReports() {
+    override fun getAreaReports() {
         getLocalReports()
     }
 

@@ -3,6 +3,12 @@ package blsapp.dol.gov.blslocaldata.model.reports
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
 
+/**
+ * QCEWReport - Quarterly County Employment Wages &
+ * QCEWReport - Occupational Report for Counties &
+ * QCEWReport - Average Weekly Wage for Counties
+ */
+
 class QCEWReport {
     enum class QCEWDataFileIndex(val code: Int) {
         areaCode(0),

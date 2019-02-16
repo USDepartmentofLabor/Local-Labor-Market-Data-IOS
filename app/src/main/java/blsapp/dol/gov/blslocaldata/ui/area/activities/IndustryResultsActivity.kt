@@ -1,14 +1,10 @@
 package blsapp.dol.gov.blslocaldata.ui.area.activities
 
-import android.app.PendingIntent
-import android.app.TaskStackBuilder
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.NotificationCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -16,28 +12,26 @@ import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.*
 import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
 import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
-import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
 import blsapp.dol.gov.blslocaldata.ui.info.InfoActivity
 import kotlinx.android.synthetic.main.activity_metro_state.*
 import kotlinx.android.synthetic.main.fragment_area_header.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import android.support.v7.app.AlertDialog
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import blsapp.dol.gov.blslocaldata.ui.search.IndustryAdapter
+import blsapp.dol.gov.blslocaldata.ui.search.IndustryListAdapter
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.*
 
-
-class IndustryResultsActivity : AppCompatActivity(), IndustryAdapter.OnItemClickListener {
+/**
+ * IndustryResultsActivity - Displays a list of industries and key values associated with them
+ */
+class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemClickListener {
 
     companion object {
         const val KEY_AREA = "Area"
@@ -48,7 +42,7 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryAdapter.OnItemClick
     private lateinit var mArea: AreaEntity
     private var parentId: Long? = null
     private lateinit var viewModel: IndustryViewModel
-    private lateinit var adapter: IndustryAdapter
+    private lateinit var adapter: IndustryListAdapter
     private lateinit var reportType: ReportRowType
     private var wageVsLevelSpinnerTitles = arrayOf("Annual Mean Wage", "Employment Level")
     private var wageVsLevelSpinnerValues = arrayOf(ReportWageVsLevelType.ANNUAL_MEAN_WAGE, ReportWageVsLevelType.EMPLOYMENT_LEVEL)
@@ -78,7 +72,7 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryAdapter.OnItemClick
         viewModel = ViewModelProviders.of(this).get(IndustryViewModel::class.java)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        adapter = IndustryAdapter(this)
+        adapter = IndustryListAdapter(this)
         recyclerView.apply {
             adapter = this@IndustryResultsActivity.adapter
             layoutManager = LinearLayoutManager(this@IndustryResultsActivity)
@@ -114,7 +108,7 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryAdapter.OnItemClick
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 reportWageVsLevelType = wageVsLevelSpinnerValues[pos]
                 viewModel.setReportType(reportType, reportWageVsLevelType)
-                viewModel.getReports()
+                viewModel.getIndustryReports()
             }
 
         }

@@ -13,10 +13,7 @@ import kotlinx.android.synthetic.main.fragment_about.*
 
 
 /**
- * A simple [Fragment] subclass.
- * Use the [AboutFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
+ * AboutFragment - Fragment that defines about content for the about screen
  */
 class AboutFragment : Fragment() {
 

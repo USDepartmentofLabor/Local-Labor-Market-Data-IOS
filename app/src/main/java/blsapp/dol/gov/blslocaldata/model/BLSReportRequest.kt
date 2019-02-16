@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
 
+/**
+ * BLSReportRequest - builds the request for BLS API Requests
+ */
 class BLSReportRequest(seriesIds: List<String>, registrationKey: String): JSONConvertable {
 
     @SerializedName("seriesid")

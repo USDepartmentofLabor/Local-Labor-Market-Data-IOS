@@ -2,6 +2,9 @@ package blsapp.dol.gov.blslocaldata.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * SeriesData - JSON serialization
+ */
 data class SeriesData(
         val year: String,
         val period: String,

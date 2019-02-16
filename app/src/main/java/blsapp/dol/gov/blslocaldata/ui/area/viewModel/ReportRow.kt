@@ -18,6 +18,10 @@ enum class ReportWageVsLevelType {
     EMPLOYMENT_LEVEL
 }
 
+/**
+ * ReportRow - Report Entry information for display from the ViewModel
+ */
+
 data class ReportRow(var type: ReportRowType,
                      val areaType: String?,
                      val areaReports: List<AreaReport>?,

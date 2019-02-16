@@ -8,6 +8,9 @@ import blsapp.dol.gov.blslocaldata.R
 import kotlinx.android.synthetic.main.activity_info.*
 import android.widget.TextView
 
+/**
+ * InfoActivity - Screen that displays either the about content or glossary content
+ */
 
 class InfoActivity : AppCompatActivity() {
 

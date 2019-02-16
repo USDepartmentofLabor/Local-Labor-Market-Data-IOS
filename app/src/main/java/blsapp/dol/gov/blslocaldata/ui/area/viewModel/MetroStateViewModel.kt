@@ -12,9 +12,13 @@ import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
 import blsapp.dol.gov.blslocaldata.model.DataUtil
 import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
+import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
 import org.jetbrains.anko.doAsync
 
+/**
+ * ReportSection - Grouping of elements that make up a section of the Area Report
+ */
 data class ReportSection(
     var title: String?,
     private var _collapsed: Boolean,
@@ -24,7 +28,7 @@ data class ReportSection(
 
     var collapsed: Boolean
         get() {
-            if (DataUtil.isTalkBackActive()) {
+            if (UIUtil.isTalkBackActive()) {
                 return false
             }
 
@@ -37,6 +41,9 @@ data class ReportSection(
 }
 
 
+/**
+ * MetroStateViewModel - View Model for Metro, State, National Area Reports
+ */
 class MetroStateViewModel(application: Application) : AndroidViewModel(application), AreaViewModel {
 
     lateinit override var mArea: AreaEntity
@@ -68,10 +75,10 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
         mAdjustment = adjustment
         localAreaReports?.clear()
         nationalAreaReports.clear()
-        getReports()
+        getAreaReports()
     }
 
-    override fun getReports() {
+    override fun getAreaReports() {
         getLocalReports()
     }
 

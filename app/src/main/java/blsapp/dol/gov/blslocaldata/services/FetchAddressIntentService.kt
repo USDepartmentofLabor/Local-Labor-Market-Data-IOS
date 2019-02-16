@@ -15,8 +15,8 @@ import java.util.*
 
 
 /**
- * An [IntentService] subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
+ * FetchAddressIntentService - An [IntentService] subclass for handling asynchronous GEO Location task
+ * requests in a service on a separate handler thread.
  */
 class FetchAddressIntentService : IntentService("FetchAddressIntentService") {
 

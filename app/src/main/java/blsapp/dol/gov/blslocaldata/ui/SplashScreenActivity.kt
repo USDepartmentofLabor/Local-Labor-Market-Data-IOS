@@ -6,6 +6,9 @@ import blsapp.dol.gov.blslocaldata.R
 import android.content.Intent
 import blsapp.dol.gov.blslocaldata.ui.search.SearchActivity
 
+/**
+ * SplashScreenActivity - Splash Screen - launching of app
+ */
 
 class SplashScreenActivity : AppCompatActivity() {
 

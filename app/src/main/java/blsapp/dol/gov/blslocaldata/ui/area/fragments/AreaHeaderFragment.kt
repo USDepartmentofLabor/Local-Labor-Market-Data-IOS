@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import blsapp.dol.gov.blslocaldata.R
 
 /**
- * A simple [Fragment] subclass.
+ * AreaHeaderFragment - A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
  * [AreaHeaderFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.

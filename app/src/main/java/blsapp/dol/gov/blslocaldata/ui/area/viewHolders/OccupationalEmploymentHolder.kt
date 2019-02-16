@@ -5,6 +5,10 @@ import android.view.View
 import android.widget.TextView
 import kotlinx.android.synthetic.main.occupational_employment.view.*
 
+/**
+ * OccupationalEmploymentHolder - holds the inflated view for the Occupation Report view
+ */
+
 class OccupationalEmploymentHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
     val mDataValueTextView: TextView = mView.dataValueTextView
     val mAreaTitleTextView: TextView = mView.areaTextView

@@ -6,6 +6,10 @@ import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.IndustryRow
 
+/**
+ * IndustryBaseViewModel - Base class for Industry and Occupational Comparison reports
+ */
+
 interface IndustryBaseViewModel {
     var mAdjustment: SeasonalAdjustment
     var mArea: AreaEntity
@@ -14,6 +18,6 @@ interface IndustryBaseViewModel {
     var reportError: MutableLiveData<ReportError>
 
     fun setAdjustment(adjustment: SeasonalAdjustment)
-    fun getReports()
+    fun getIndustryReports()
     fun toggleSection(reportRow: IndustryRow)
 }

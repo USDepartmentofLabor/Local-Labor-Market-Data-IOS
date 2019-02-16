@@ -15,6 +15,10 @@ enum class AreaType {
     STATE,
     COUNTY
 }
+
+/**
+ * SearchAreaViewModel - View Model for the Area Screen screen (currently 1st screen in app)
+ */
 class SearchAreaViewModel(application: Application) : AndroidViewModel(application) {
 
     val repository: LocalRepository
