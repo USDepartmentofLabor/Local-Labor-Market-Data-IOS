@@ -16,8 +16,8 @@ class ReportHeaderItemDecoration constructor(val mDivider: Drawable): RecyclerVi
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
-        val dividerLeft = parent.paddingLeft
-        val dividerRight = parent.width - parent.paddingRight
+//        val dividerLeft = parent.paddingLeft
+//        val dividerRight = parent.width - parent.paddingRight
 
         val childCount = parent.childCount
         for (i in 0 until childCount) {
@@ -48,7 +48,7 @@ class ReportHeaderItemDecoration constructor(val mDivider: Drawable): RecyclerVi
 
         val params = view.layoutParams as RecyclerView.LayoutParams
         val dividerTop = view.bottom + params.bottomMargin
-        val dividerBottom = dividerTop + mDivider.getIntrinsicHeight()
+    //    val dividerBottom = dividerTop + mDivider.getIntrinsicHeight()
 
 
         val paint = Paint()

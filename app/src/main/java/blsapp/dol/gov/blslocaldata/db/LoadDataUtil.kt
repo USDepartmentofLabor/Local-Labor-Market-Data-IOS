@@ -65,15 +65,15 @@ class LoadDataUtil {
         }
 
         fun preloadDB(context: Context, db: BLSDatabase) {
-//            db.industryDAO().deleteAll()
-//            loadIndustry(context, db, IndustryType.CE_INDUSTRY, R.raw.ce_industry, "txt")
-//            loadIndustry(context, db, IndustryType.SM_INDUSTRY, R.raw.sm_industry, "txt")
-//            loadIndustry(context, db, IndustryType.QCEW_INDUSTRY, R.raw.industry_titles, "txt")
-//            loadIndustry(context, db, IndustryType.OE_OCCUPATION,  R.raw.oe_occupation, "txt")
-//            loadZipCounty(context, db)
-//            loadZipCbsa(context, db)
-//            loadArea(context, db)
-//            loadMsaCounty(context, db)
+            db.industryDAO().deleteAll()
+            loadIndustry(context, db, IndustryType.CE_INDUSTRY, R.raw.ce_industry, "txt")
+            loadIndustry(context, db, IndustryType.SM_INDUSTRY, R.raw.sm_industry, "txt")
+            loadIndustry(context, db, IndustryType.QCEW_INDUSTRY, R.raw.industry_titles, "txt")
+            loadIndustry(context, db, IndustryType.OE_OCCUPATION,  R.raw.oe_occupation, "txt")
+            loadZipCounty(context, db)
+            loadZipCbsa(context, db)
+            loadArea(context, db)
+            loadMsaCounty(context, db)
         }
 
         private fun loadZipCounty(context: Context, db: BLSDatabase) {
@@ -169,7 +169,7 @@ class LoadDataUtil {
                             title = title,
                             superSector = true,
                             industryType = industryType.ordinal,
-                            parentId = parentId!!)
+                            parentId = parentId)
 
                     Log.d("#DB", "Parent: " + industry.toString())
                     parentId = db.industryDAO().insert(industry = industry)
@@ -202,11 +202,11 @@ class LoadDataUtil {
                         parentId = parentId)
 
                 Log.d("#DB", "Child: " + industry.toString())
-                var parentId = db.industryDAO().insert(industry = industry)
-                industry.id = parentId
+                var newParentId = db.industryDAO().insert(industry = industry)
+                industry.id = newParentId
 
                 currIndex++
-                var newIndex = loadSubIndustry(db, industry, currIndex, parentId, industrys)
+                var newIndex = loadSubIndustry(db, industry, currIndex, newParentId, industrys)
                 if (newIndex != currIndex)
                     currIndex = newIndex
                 else {

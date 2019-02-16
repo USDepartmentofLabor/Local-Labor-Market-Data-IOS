@@ -67,7 +67,7 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
                 industryType = IndustryType.QCEW_INDUSTRY
             }
         }
-        when (wageVsLevelType!!.ordinal) {
+        when (wageVsLevelType.ordinal) {
             ReportWageVsLevelType.ANNUAL_MEAN_WAGE.ordinal -> {
                 this.wageVsLevelType = OESReport.DataTypeCode.ANNUALMEANWAGE
             }
@@ -117,7 +117,7 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
 
             var fetchedData = repository.getChildIndustries(parentIdSafe!!, industryType)
 
-            fetchedData.forEach{ industry ->
+            fetchedData?.forEach{ industry ->
                 val mergeTitle = industry.title + " (" + industry.industryCode + ")"
                 rows.add(IndustryRow(IndustryRowType.ITEM,
                         industry,

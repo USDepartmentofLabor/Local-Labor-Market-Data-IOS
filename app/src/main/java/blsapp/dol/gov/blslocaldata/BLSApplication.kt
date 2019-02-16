@@ -37,9 +37,9 @@ class BLSApplication : Application() {
         super.onCreate()
 
         ioThread {
-           // if (database.zipCountyDAO().getAll().isEmpty()) {
+            if (database.zipCountyDAO().getAll().isEmpty()) {
                 LoadDataUtil.preloadDB(this, database)
-           // }
+            }
         }
     }
 

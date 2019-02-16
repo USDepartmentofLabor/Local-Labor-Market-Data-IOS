@@ -318,7 +318,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
             searchView.setIconifiedByDefault(false)
             searchView.setQuery("Current Location", false)
-            areaViewModel.setQuery(address!!)
+            areaViewModel.setQuery(address)
 
         }
     }

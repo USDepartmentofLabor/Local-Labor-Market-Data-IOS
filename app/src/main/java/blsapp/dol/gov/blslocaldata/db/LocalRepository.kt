@@ -122,7 +122,7 @@ class LocalRepository private constructor(private val mDatabase: BLSDatabase) {
         return states
     }
 
-    fun getChildIndustries(parentCode: Long, industryType: IndustryType): List<IndustryEntity> {
+    fun getChildIndustries(parentCode: Long, industryType: IndustryType): List<IndustryEntity>? {
         val industries = mDatabase.industryDAO().findChildrenByParentAndType(parentCode, industryType.ordinal)
         return industries
     }
