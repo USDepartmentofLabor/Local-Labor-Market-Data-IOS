@@ -56,7 +56,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
     var nationalAreaReports = mutableListOf<AreaReport>()
 
     val repository: LocalRepository
-    override var reportRows = MutableLiveData<List<ReportRow>>()
+    override var reportRows = MutableLiveData<List<AreaReportRow>>()
 
     var reportSections = listOf<ReportSection>(
             ReportSection(application.getString(R.string.unemployment_rate), false, false,
@@ -144,11 +144,11 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     private fun updateReportRows() {
-        val rows = ArrayList<ReportRow>()
+        val rows = ArrayList<AreaReportRow>()
 
         reportSections.forEach{ reportSection ->
             var rowType = getRowType(reportSection)
-            rows.add(ReportRow(ReportRowType.HEADER, null, null,header = reportSection.title,
+            rows.add(AreaReportRow(ReportRowType.HEADER, null, null,header = reportSection.title,
                     headerCollapsed = reportSection.collapsed, subIndustries = reportSection.subIndustries, headerType = rowType))
 
             if (!reportSection.collapsed) {
@@ -165,12 +165,12 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
 
                 val areaType = if (mArea is NationalEntity) R.string.national_area else R.string.local_area
 
-                rows.add(ReportRow(rowType,
+                rows.add(AreaReportRow(rowType,
                         getApplication<BLSApplication>().getString(areaType),
                         areaReports, header = null))
                 val latestLocalData = areaReports?.firstOrNull()?.seriesReport?.latestData()
                 if (nationalAreaReports.count() > 0) {
-                    rows.add(ReportRow(rowType,
+                    rows.add(AreaReportRow(rowType,
                             getApplication<BLSApplication>().getString(R.string.national_area),
                             nationalAreaReports,
                             period = latestLocalData?.period,
@@ -201,7 +201,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
         return rowType
     }
 
-    override fun toggleSection(reportRow: ReportRow) {
+    override fun toggleSection(reportRow: AreaReportRow) {
         if (reportRow.type != ReportRowType.HEADER) return
 
         val currentSection = reportSections.filter { it.title == reportRow.header }.singleOrNull()

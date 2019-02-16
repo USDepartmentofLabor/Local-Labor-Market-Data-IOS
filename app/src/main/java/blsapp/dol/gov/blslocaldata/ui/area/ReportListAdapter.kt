@@ -21,7 +21,7 @@ import blsapp.dol.gov.blslocaldata.model.reports.ReportType
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.*
-import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRow
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.AreaReportRow
 import kotlinx.android.synthetic.main.report_header.view.*
 import java.text.NumberFormat
 
@@ -31,7 +31,7 @@ import java.text.NumberFormat
 class ReportListAdapter(private val context: Context, private val mListener: ReportListAdapter.OnReportItemClickListener?)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var mReportRows = emptyList<ReportRow>()
+    private var mReportRows = emptyList<AreaReportRow>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -141,7 +141,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         }
     }
 
-    fun displayUnemploymentRate(holder: UnemploymentRateHolder, reportRow: ReportRow) {
+    fun displayUnemploymentRate(holder: UnemploymentRateHolder, reportRow: AreaReportRow) {
         holder.mAreaTitleTextView.text = reportRow.areaType
         reportRow.areaReports?.firstOrNull()?.seriesReport?.let {
 
@@ -172,7 +172,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         }
     }
 
-    fun displayIndustryEmployment(holder: IndustryEmploymentHolder, reportRow: ReportRow) {
+    fun displayIndustryEmployment(holder: IndustryEmploymentHolder, reportRow: AreaReportRow) {
         holder.mAreaTitleTextView.text = reportRow.areaType
         reportRow.areaReports?.firstOrNull()?.seriesReport?.let {
 
@@ -212,7 +212,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         }
     }
 
-    fun displayOccupationalEmployment(holder: OccupationalEmploymentHolder, reportRow: ReportRow) {
+    fun displayOccupationalEmployment(holder: OccupationalEmploymentHolder, reportRow: AreaReportRow) {
         holder.mAreaTitleTextView.text = reportRow.areaType
         reportRow.areaReports?.firstOrNull()?.seriesReport?.let {
 
@@ -236,7 +236,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         }
     }
 
-    fun displayEmploymentWages(holder: EmploymentWagesHolder, reportRow: ReportRow) {
+    fun displayEmploymentWages(holder: EmploymentWagesHolder, reportRow: AreaReportRow) {
         holder.mAreaTitleTextView.text = reportRow.areaType
         val year = reportRow.year
         val period = reportRow.period
@@ -255,7 +255,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         }
     }
 
-    fun displayOwnershipEmploymentWages(holder: OwnershipEmploymentWagesHolder, reportRow: ReportRow) {
+    fun displayOwnershipEmploymentWages(holder: OwnershipEmploymentWagesHolder, reportRow: AreaReportRow) {
         holder.mAreaTitleTextView.text = reportRow.areaType
         val year = reportRow.year
         val period = reportRow.period
@@ -392,11 +392,11 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         }
     }
 
-    fun setReportRows(reportRows: List<ReportRow>) {
+    fun setReportRows(reportRows: List<AreaReportRow>) {
         mReportRows = reportRows
         notifyDataSetChanged()
     }
-    fun reportRows(): List<ReportRow> {
+    fun reportRows(): List<AreaReportRow> {
         return mReportRows
     }
 
@@ -434,8 +434,8 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
     }
 
     interface OnReportItemClickListener {
-        fun onItemClick(item: ReportRow)
-        fun onSubIndustriesClick(item: ReportRow)
+        fun onItemClick(item: AreaReportRow)
+        fun onSubIndustriesClick(item: AreaReportRow)
     }
 
 }

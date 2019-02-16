@@ -31,7 +31,7 @@ import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import android.support.v7.app.AlertDialog
 import blsapp.dol.gov.blslocaldata.ui.area.ReportListAdapter
 import blsapp.dol.gov.blslocaldata.ui.area.activities.IndustryResultsActivity.Companion.KEY_REPORT_TYPE
-import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRow
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.AreaReportRow
 
 /**
  * AreaReportActivity - Main Report Displaying Activity
@@ -154,16 +154,16 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         }
     }
 
-    override fun onItemClick(item: ReportRow) {
+    override fun onItemClick(item: AreaReportRow) {
         viewModel.toggleSection(item)
     }
 
-    override fun onSubIndustriesClick(item: ReportRow) {
+    override fun onSubIndustriesClick(item: AreaReportRow) {
         displaySubIndustries(mArea, item)
     }
 
     private fun attachObserver() {
-        viewModel.reportRows.observe(this, Observer<List<ReportRow>> {
+        viewModel.reportRows.observe(this, Observer<List<AreaReportRow>> {
             adapter.setReportRows(it!!)
         })
         viewModel.isLoading.observe(this, Observer<Boolean> {
@@ -261,7 +261,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         }
     }
 
-    fun displaySubIndustries(area: AreaEntity?, item: ReportRow) {
+    fun displaySubIndustries(area: AreaEntity?, item: AreaReportRow) {
 
         val intent = Intent(applicationContext, IndustryResultsActivity::class.java)
 

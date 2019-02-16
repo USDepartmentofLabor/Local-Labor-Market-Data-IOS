@@ -22,7 +22,7 @@ enum class ReportWageVsLevelType {
  * ReportRow - Report Entry information for display from the ViewModel
  */
 
-data class ReportRow(var type: ReportRowType,
+data class AreaReportRow(var type: ReportRowType,
                      val areaType: String?,
                      val areaReports: List<AreaReport>?,
                      var period: String? = null,
@@ -30,5 +30,5 @@ data class ReportRow(var type: ReportRowType,
                      var header: String?,
                      var headerCollapsed: Boolean = true,
                      var subIndustries: Boolean = false,
-                     var subReportRows: List<ReportRow>? = null,
+                     var subReportRows: List<AreaReportRow>? = null,
                      var headerType: ReportRowType? = ReportRowType.UNKNOWN)

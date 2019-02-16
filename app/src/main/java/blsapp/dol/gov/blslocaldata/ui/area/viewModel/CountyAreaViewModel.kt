@@ -29,7 +29,7 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
     var nationalAreaReports = mutableListOf<AreaReport>()
 
     val repository: LocalRepository
-    override var reportRows = MutableLiveData<List<ReportRow>>()
+    override var reportRows = MutableLiveData<List<AreaReportRow>>()
 
     var reportSections = listOf<ReportSection>(
             ReportSection( application.getString(R.string.unemployment_rate), false, false,
@@ -167,15 +167,15 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
 
     }
 
-    private fun updateReportRows(sections: List<ReportSection>): List<ReportRow> {
-        val rows = ArrayList<ReportRow>()
+    private fun updateReportRows(sections: List<ReportSection>): List<AreaReportRow> {
+        val rows = ArrayList<AreaReportRow>()
 
         sections.forEach { reportSection ->
 
             var rowType = getRowType(reportSection)
 
             reportSection.title?.let { title ->
-                rows.add(ReportRow(ReportRowType.HEADER, null, null,
+                rows.add(AreaReportRow(ReportRowType.HEADER, null, null,
                         header = title, headerCollapsed = reportSection.collapsed,
                         subIndustries = reportSection.subIndustries, headerType = rowType))
             }
@@ -188,10 +188,10 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
                         areaReport.reportType in reportTypes
                     }
 
-                    rows.add(ReportRow(rowType, getApplication<BLSApplication>().getString(R.string.local_area), areaReports, header = null))
+                    rows.add(AreaReportRow(rowType, getApplication<BLSApplication>().getString(R.string.local_area), areaReports, header = null))
                     val latestLocalData = areaReports?.firstOrNull()?.seriesReport?.latestData()
                     if (nationalAreaReports.filterNotNull().isNotEmpty()) {
-                        rows.add(ReportRow(rowType, getApplication<BLSApplication>().getString(R.string.national_area),
+                        rows.add(AreaReportRow(rowType, getApplication<BLSApplication>().getString(R.string.national_area),
                                 nationalAreaReports,
                                 period = latestLocalData?.period,
                                 year = latestLocalData?.year,
@@ -201,7 +201,7 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
 
                 reportSection.subSections?.let {
                     val subRows = updateReportRows(it)
-                    rows.add(ReportRow(ReportRowType.SUB_HEADER, areaType = null,
+                    rows.add(AreaReportRow(ReportRowType.SUB_HEADER, areaType = null,
                             areaReports = null, header = null, subReportRows = subRows))
                 }
             }
@@ -235,12 +235,12 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
         return rowType
     }
 
-    override fun toggleSection(reportRow: ReportRow) {
+    override fun toggleSection(reportRow: AreaReportRow) {
         toggleSection(reportRow, reportSections)
         updateReportRows()
     }
 
-    fun toggleSection(reportRow: ReportRow, sections: List<ReportSection>) {
+    fun toggleSection(reportRow: AreaReportRow, sections: List<ReportSection>) {
         if (reportRow.type != ReportRowType.HEADER) return
 
         sections.forEach {
