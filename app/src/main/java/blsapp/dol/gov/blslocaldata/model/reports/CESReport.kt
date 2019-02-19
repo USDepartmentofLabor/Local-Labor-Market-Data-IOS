@@ -28,11 +28,11 @@ class CESReport {
 
             when (area) {
                 is NationalEntity -> {
-                    return getNationalSeriesId(dataTypeCode = dataTypeCode, adjustment = adjustment)
+                    return getNationalSeriesId(industryCode = industryCode,dataTypeCode = dataTypeCode, adjustment = adjustment)
                 }
             }
 
-            return getLocalAreaSeriesId(area, dataTypeCode = dataTypeCode, adjustment = adjustment)
+            return getLocalAreaSeriesId(area, industryCode = industryCode, dataTypeCode = dataTypeCode, adjustment = adjustment)
         }
 
         fun getNationalSeriesId(industryCode: String = "00000000",

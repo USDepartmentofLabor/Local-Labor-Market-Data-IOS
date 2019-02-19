@@ -1,6 +1,7 @@
 package blsapp.dol.gov.blslocaldata.ui.viewmodel
 
 import blsapp.dol.gov.blslocaldata.model.reports.AreaReport
+import blsapp.dol.gov.blslocaldata.model.reports.ReportType
 
 enum class ReportRowType {
     HEADER,
@@ -23,12 +24,13 @@ enum class ReportWageVsLevelType {
  */
 
 data class AreaReportRow(var type: ReportRowType,
-                     val areaType: String?,
-                     val areaReports: List<AreaReport>?,
-                     var period: String? = null,
-                     var year: String? = null,
-                     var header: String?,
-                     var headerCollapsed: Boolean = true,
-                     var subIndustries: Boolean = false,
-                     var subReportRows: List<AreaReportRow>? = null,
-                     var headerType: ReportRowType? = ReportRowType.UNKNOWN)
+                         val areaType: String?,
+                         val areaReports: List<AreaReport>?,
+                         var period: String? = null,
+                         var year: String? = null,
+                         var header: String?,
+                         val reportType: ReportType? = null,
+                         var headerCollapsed: Boolean = true,
+                         var subIndustries: Boolean = false,
+                         var subReportRows: List<AreaReportRow>? = null,
+                         var headerType: ReportRowType? = ReportRowType.UNKNOWN)

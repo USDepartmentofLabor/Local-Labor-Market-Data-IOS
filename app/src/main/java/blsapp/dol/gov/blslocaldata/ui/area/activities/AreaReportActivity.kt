@@ -266,7 +266,8 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         val intent = Intent(applicationContext, IndustryResultsActivity::class.java)
 
         intent.putExtra(KEY_AREA, mArea)
-        intent.putExtra(KEY_REPORT_TYPE, item.headerType)
+        intent.putExtra(KEY_REPORT_TYPE, item.reportType)
+        intent.putExtra(IndustryResultsActivity.KEY_REPORT_ROW_TYPE, item.headerType)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
     }

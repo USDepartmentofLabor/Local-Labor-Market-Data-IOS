@@ -25,8 +25,10 @@ import android.support.v7.app.AlertDialog
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import blsapp.dol.gov.blslocaldata.model.reports.ReportType
 import blsapp.dol.gov.blslocaldata.ui.search.IndustryListAdapter
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.*
+import kotlinx.android.synthetic.main.activity_industry_results.*
 
 /**
  * IndustryResultsActivity - Displays a list of industries and key values associated with them
@@ -37,13 +39,15 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
         const val KEY_AREA = "Area"
         const val PARENT_ID = "ParentId"
         const val KEY_REPORT_TYPE = "ReportType"
+        const val KEY_REPORT_ROW_TYPE = "ReportRowType"
     }
 
     private lateinit var mArea: AreaEntity
     private var parentId: Long? = null
     private lateinit var viewModel: IndustryViewModel
     private lateinit var adapter: IndustryListAdapter
-    private lateinit var reportType: ReportRowType
+    private lateinit var reportType: ReportType
+    private lateinit var industryType: ReportRowType
     private var wageVsLevelSpinnerTitles = arrayOf("Annual Mean Wage", "Employment Level")
     private var wageVsLevelSpinnerValues = arrayOf(ReportWageVsLevelType.ANNUAL_MEAN_WAGE, ReportWageVsLevelType.EMPLOYMENT_LEVEL)
     private var reportWageVsLevelType = wageVsLevelSpinnerValues[0]
@@ -57,11 +61,8 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
 
         mArea = intent.getSerializableExtra(KEY_AREA) as AreaEntity
         parentId = intent.getSerializableExtra(PARENT_ID) as Long?
-        reportType = intent.getSerializableExtra(KEY_REPORT_TYPE) as ReportRowType
-
-        if (reportType == ReportRowType.OCCUPATIONAL_EMPLOYMENT_ITEM) {
-            title = "Occupations"
-        }
+        reportType = intent.getSerializableExtra(KEY_REPORT_TYPE) as ReportType
+        industryType = intent.getSerializableExtra(KEY_REPORT_ROW_TYPE) as ReportRowType
 
         leftButton.visibility = View.GONE
         rightButton.visibility = View.GONE
@@ -98,23 +99,34 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
             viewModel.setAdjustment(ReportManager.adjustment)
         }
 
-        val wageVsLevelSpinner = findViewById<Spinner>(R.id.wageVsLevelSpinner)
-        //item selected listener for spinner
-        wageVsLevelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                reportWageVsLevelType = wageVsLevelSpinnerValues[0]
+        val wageVsLevelSpinner = findViewById<Spinner>(R.id.wageVsLevelSpinner) as Spinner
+
+        if (industryType == ReportRowType.INDUSTRY_EMPLOYMENT_ITEM) {
+
+            reportWageVsLevelType = wageVsLevelSpinnerValues[1]
+            viewModel.setReportType(industryType, reportType, reportWageVsLevelType)
+            viewModel.getIndustryReports()
+
+            wageVsLevelSpinner.visibility = View.INVISIBLE
+
+        } else {
+
+            wageVsLevelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    reportWageVsLevelType = wageVsLevelSpinnerValues[0]
+                }
+
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                    reportWageVsLevelType = wageVsLevelSpinnerValues[pos]
+                    viewModel.setReportType(industryType, reportType, reportWageVsLevelType)
+                    viewModel.getIndustryReports()
+                }
             }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                reportWageVsLevelType = wageVsLevelSpinnerValues[pos]
-                viewModel.setReportType(reportType, reportWageVsLevelType)
-                viewModel.getIndustryReports()
-            }
-
+            val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, wageVsLevelSpinnerTitles)
+            aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            wageVsLevelSpinner!!.adapter = aa
         }
-        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, wageVsLevelSpinnerTitles)
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        wageVsLevelSpinner!!.adapter = aa
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -159,18 +171,19 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
         intent.putExtra(KEY_AREA, mArea)
         intent.putExtra(PARENT_ID, item.itemId)
         intent.putExtra(KEY_REPORT_TYPE, reportType)
+        intent.putExtra(KEY_REPORT_ROW_TYPE, industryType)
         startActivity(intent)
 
     }
 
     private fun showLoadingDialog(show: Boolean) {
         if (show) {
-            progressBar.visibility = View.VISIBLE
+            industryProgressBar.visibility = View.VISIBLE
             if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED)
                 UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_seasonally_adjusted_reports))
             else
                 UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_not_seasonally_adjusted_reports))
-        } else progressBar.visibility = View.GONE
+        } else industryProgressBar.visibility = View.GONE
     }
 
     private fun showError(error: ReportError) {

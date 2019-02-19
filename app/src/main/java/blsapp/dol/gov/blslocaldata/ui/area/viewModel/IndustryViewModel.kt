@@ -41,16 +41,22 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
         loadReportCategories()
     }
 
+    private var reportType: ReportType? =  null
+    private var reportRowType: ReportRowType? =  null
     private var parentId: Long? =  null
     private var industryType: IndustryType = IndustryType.CE_INDUSTRY
-    private var wageVsLevelType: OESReport.DataTypeCode = OESReport.DataTypeCode.ANNUALMEANWAGE
+    private var wageVsLevelTypeOccupation: OESReport.DataTypeCode = OESReport.DataTypeCode.ANNUALMEANWAGE
 
     fun setParentId(originalInput: Long?) {
         parentId = originalInput
     }
 
-    fun setReportType(reportType: ReportRowType?, wageVsLevelType: ReportWageVsLevelType) {
-        when (reportType!!.ordinal) {
+    fun setReportType(reportRowType: ReportRowType?, reportType: ReportType, wageVsLevelType: ReportWageVsLevelType) {
+
+        this.reportType = reportType
+        this.reportRowType = reportRowType
+
+        when (reportRowType!!.ordinal) {
             ReportRowType.INDUSTRY_EMPLOYMENT_ITEM.ordinal -> {
                 when (mArea) {
                     is NationalEntity -> {
@@ -69,10 +75,10 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
         }
         when (wageVsLevelType.ordinal) {
             ReportWageVsLevelType.ANNUAL_MEAN_WAGE.ordinal -> {
-                this.wageVsLevelType = OESReport.DataTypeCode.ANNUALMEANWAGE
+                this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.ANNUALMEANWAGE
             }
             ReportWageVsLevelType.EMPLOYMENT_LEVEL.ordinal -> {
-                this.wageVsLevelType = OESReport.DataTypeCode.EMPLOYMENT
+                this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.EMPLOYMENT
             }
         }
 
@@ -141,7 +147,24 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
         var reportTypes = mutableListOf<ReportType>()
 
         industryRows.forEach {
-            reportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, wageVsLevelType))
+
+            when (reportRowType!!.ordinal) {
+                ReportRowType.INDUSTRY_EMPLOYMENT_ITEM.ordinal -> {
+                    reportTypes.add(ReportType.IndustryEmployment(it.industry!!.industryCode, CESReport.DataTypeCode.ALLEMPLOYEES))
+                }
+                ReportRowType.OCCUPATIONAL_EMPLOYMENT_ITEM.ordinal -> {
+                    reportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, wageVsLevelTypeOccupation))
+                }
+                ReportRowType.OWNERSHIP_EMPLOYMENT_WAGES_ITEM.ordinal -> {
+
+                    val reportTypeQCEW: ReportType.QuarterlyEmploymentWages = this.reportType as ReportType.QuarterlyEmploymentWages
+                    reportTypes.add(ReportType.OccupationalEmploymentQCEW(
+                            reportTypeQCEW.ownershipCode,
+                            it.industry!!.industryCode,
+                            QCEWReport.EstablishmentSize.ALL,
+                            QCEWReport.DataTypeCode.allEmployees))
+                }
+            }
         }
 
         ReportManager.getReport(mArea, reportTypes, adjustment = mAdjustment,
@@ -164,7 +187,24 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
         var reportTypes = mutableListOf<ReportType>()
 
         industryRows.forEach {
-            reportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, wageVsLevelType))
+
+            when (reportRowType!!.ordinal) {
+                ReportRowType.INDUSTRY_EMPLOYMENT_ITEM.ordinal -> {
+                    reportTypes.add(ReportType.IndustryEmployment(it.industry!!.industryCode, CESReport.DataTypeCode.ALLEMPLOYEES))
+                }
+                ReportRowType.OCCUPATIONAL_EMPLOYMENT_ITEM.ordinal -> {
+                    reportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, wageVsLevelTypeOccupation))
+                }
+                ReportRowType.OWNERSHIP_EMPLOYMENT_WAGES_ITEM.ordinal -> {
+                    val reportTypeQCEW: ReportType.QuarterlyEmploymentWages = this.reportType as ReportType.QuarterlyEmploymentWages
+                    reportTypes.add(ReportType.OccupationalEmploymentQCEW(
+                            reportTypeQCEW.ownershipCode,
+                            it.industry!!.industryCode,
+                            QCEWReport.EstablishmentSize.ALL,
+                            QCEWReport.DataTypeCode.allEmployees))
+                }
+            }
+
         }
 
         ReportManager.getReport(nationalArea!!, reportTypes, adjustment = mAdjustment,
@@ -186,7 +226,7 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
             val thisAreaRow = areaReport[i]
             val thisIndustryRow = industryRows[i]
             if  (thisAreaRow.seriesReport != null && thisAreaRow.seriesReport!!.data.isNotEmpty()) {
-                if (wageVsLevelType == OESReport.DataTypeCode.ANNUALMEANWAGE) {
+                if (wageVsLevelTypeOccupation == OESReport.DataTypeCode.ANNUALMEANWAGE) {
                     if (thisAreaRow.area is NationalEntity)
                         thisIndustryRow.nationalValue = DataUtil.currencyValue(thisAreaRow.seriesReport!!.data[0].value)
                     else
@@ -194,9 +234,9 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
                 } else {
 
                     if (thisAreaRow.area is NationalEntity)
-                        thisIndustryRow.nationalValue = DataUtil.numberValueToThousand(thisAreaRow.seriesReport!!.data[0].value)
+                        thisIndustryRow.nationalValue = DataUtil.numberValue(thisAreaRow.seriesReport!!.data[0].value)
                     else
-                        thisIndustryRow.localValue = DataUtil.numberValueToThousand(thisAreaRow.seriesReport!!.data[0].value)
+                        thisIndustryRow.localValue = DataUtil.numberValue(thisAreaRow.seriesReport!!.data[0].value)
                 }
             }
         }

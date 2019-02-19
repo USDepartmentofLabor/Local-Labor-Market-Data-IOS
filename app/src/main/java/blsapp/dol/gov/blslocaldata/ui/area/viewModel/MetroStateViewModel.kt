@@ -148,8 +148,18 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
 
         reportSections.forEach{ reportSection ->
             var rowType = getRowType(reportSection)
-            rows.add(AreaReportRow(ReportRowType.HEADER, null, null,header = reportSection.title,
-                    headerCollapsed = reportSection.collapsed, subIndustries = reportSection.subIndustries, headerType = rowType))
+
+            var reportType: ReportType? = null
+            if (reportSection.reportTypes != null && reportSection.reportTypes!!.isNotEmpty()) {
+                reportType = reportSection.reportTypes!![0]
+            }
+
+            rows.add(AreaReportRow(ReportRowType.HEADER, null, null,
+                    header = reportSection.title,
+                    reportType = reportType,
+                    headerCollapsed = reportSection.collapsed,
+                    subIndustries = reportSection.subIndustries,
+                    headerType = rowType))
 
             if (!reportSection.collapsed) {
                 val areaReports = localAreaReports?.filter { areaReport ->

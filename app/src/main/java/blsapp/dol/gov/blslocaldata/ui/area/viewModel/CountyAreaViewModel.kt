@@ -175,8 +175,14 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
             var rowType = getRowType(reportSection)
 
             reportSection.title?.let { title ->
-                rows.add(AreaReportRow(ReportRowType.HEADER, null, null,
-                        header = title, headerCollapsed = reportSection.collapsed,
+
+                var reportType: ReportType? = null
+                if (reportSection.reportTypes != null && reportSection.reportTypes!!.isNotEmpty()) {
+                    reportType = reportSection.reportTypes!![0]
+                }
+
+                rows.add(AreaReportRow(ReportRowType.HEADER,null, null,
+                        header = title, reportType = reportType, headerCollapsed = reportSection.collapsed,
                         subIndustries = reportSection.subIndustries, headerType = rowType))
             }
             if (!reportSection.collapsed) {

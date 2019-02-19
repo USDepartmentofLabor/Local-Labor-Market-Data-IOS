@@ -2,17 +2,26 @@ package blsapp.dol.gov.blslocaldata.model.reports
 
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
+import java.io.Serializable
 
 /**
- * ReportType - Provides Report Classes based on Type, provides seriesId access based on ReportType
+ * ReportType - Report Classes based on Type, provides seriesId access based on ReportType
  */
 
-sealed class ReportType {
+sealed class ReportType : Serializable {
     class Unemployment(val measureCode: LAUSReport.MeasureCode): ReportType()
+
     class IndustryEmployment(val industryCode: String, val dataType: CESReport.DataTypeCode): ReportType()
+
     class OccupationalEmployment(val occupationalCode: String, val dataType: OESReport.DataTypeCode): ReportType()
+
+    class OccupationalEmploymentQCEW(val ownershipCode: QCEWReport.OwnershipCode,
+                                 val industryCode: String = QCEWReport.IndustryCode.ALL_INDUSTRY.code,
+                                 val establishmentSize: QCEWReport.EstablishmentSize = QCEWReport.EstablishmentSize.ALL,
+                                 val dataTypeCode: QCEWReport.DataTypeCode): ReportType()
+
     class QuarterlyEmploymentWages(val ownershipCode: QCEWReport.OwnershipCode,
-                                   val industryCode: QCEWReport.IndustryCode = QCEWReport.IndustryCode.ALL_INDUSTRY,
+                                   val industryCode: String = QCEWReport.IndustryCode.ALL_INDUSTRY.code,
                                    val establishmentSize: QCEWReport.EstablishmentSize = QCEWReport.EstablishmentSize.ALL,
                                    val dataTypeCode: QCEWReport.DataTypeCode): ReportType()
 
@@ -38,6 +47,9 @@ sealed class ReportType {
             }
 
             is QuarterlyEmploymentWages -> {
+                seriesId = QCEWReport.getSeriesId(area, ownershipCode, industryCode, establishmentSize, dataTypeCode, adjustment)
+            }
+            is OccupationalEmploymentQCEW -> {
                 seriesId = QCEWReport.getSeriesId(area, ownershipCode, industryCode, establishmentSize, dataTypeCode, adjustment)
             }
         }

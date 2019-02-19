@@ -69,7 +69,7 @@ class QCEWReport {
     companion object {
 
         fun getSeriesId(area: AreaEntity, ownershipCode: OwnershipCode, industryCode:
-            IndustryCode, establishmentSize: EstablishmentSize,
+            String, establishmentSize: EstablishmentSize,
                         dataTypeCode: DataTypeCode, adjustment: SeasonalAdjustment) : SeriesId {
 
             var areaCode = area.code
@@ -79,7 +79,7 @@ class QCEWReport {
             }
 
             val seriesId = "EN" + adjustment.value  + areaCode + dataTypeCode.code +
-                    establishmentSize.code + ownershipCode.code + industryCode.code
+                    establishmentSize.code + ownershipCode.code + industryCode
 
             return seriesId
         }
