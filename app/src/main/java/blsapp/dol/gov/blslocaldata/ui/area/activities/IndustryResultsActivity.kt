@@ -97,7 +97,8 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
         if (industryType == ReportRowType.INDUSTRY_EMPLOYMENT_ITEM) {
 
             reportWageVsLevelType = wageVsLevelSpinnerValues[0]
-            viewModel.setReportType(industryType, reportType, reportWageVsLevelType)
+            viewModel.setReportType(reportType)
+            viewModel.setWageVsLevelType(reportWageVsLevelType)
             viewModel.getIndustryReports()
 
             wageVsLevelSpinner.visibility = View.INVISIBLE
@@ -113,7 +114,8 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
 
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                     reportWageVsLevelType = wageVsLevelSpinnerValues[pos]
-                    viewModel.setReportType(industryType, reportType, reportWageVsLevelType)
+                    viewModel.setReportType(reportType)
+                    viewModel.setWageVsLevelType(reportWageVsLevelType)
                     viewModel.getIndustryReports()
                 }
             }
