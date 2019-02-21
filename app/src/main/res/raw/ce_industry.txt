@@ -2,7 +2,6 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 00000000	-	B	Total nonfarm	0	T	1
 05000000	-	A	Total private	1	T	2	00000000
 06000000	-	A	Goods-producing	1	T	3	05000000
-07000000	-	B	Service-providing	1	T	4	00000000
 08000000	-	A	Private service-providing	1	T	5	05000000
 10000000	-	A	Mining and logging	2	T	6	06000000
 10113300	1133	A	Logging	5	T	7
@@ -523,14 +522,14 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 44221200	2212	A	Natural gas distribution	5	T	522
 44221300	2213	A	Water, sewage and other systems	5	T	523
 50000000	51	A	Information	2	T	524	08000000
-50511000	511	A	Publishing hierarchies, except Internet	4	T	525
+50511000	511	A	Publishing industries, except Internet	4	T	525
 50511100	5111	A	Newspaper, book, and directory publishers	5	T	526
 50511110	51111	A	Newspaper publishers	6	T	527
 50511120	51112	A	Periodical publishers	6	T	528
 50511130	51113	E	Book publishers	6	T	529
 50511190	51114,9	C	Directory, mailing list, and other publishers	6	T	530
 50511200	5112	A	Software publishers	5	T	531
-50512000	512	A	Motion picture and sound recording hierarchies	4	T	532
+50512000	512	A	Motion picture and sound recording industries	4	T	532
 50512110	51211	C	Motion picture and video production	6	T	533
 50512130	51213	C	Motion picture and video exhibition	6	T	534
 50515000	515	A	Broadcasting, except Internet	4	T	535
@@ -802,16 +801,16 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 70712190	71212,3,9	A	Historical sites and other similar institutions	6	T	801
 70713000	713	A	Amusements, gambling, and recreation	4	T	802
 70713100	7131	E	Amusement parks and arcades	5	T	803
-70713200	7132	A	Gambling hierarchies	5	T	804
+70713200	7132	A	Gambling industries	5	T	804
 70713210	71321	E	Casinos, except casino hotels	6	T	805
-70713290	71329	E	Other gambling hierarchies	6	T	806
-70713900	7139	E	Other amusement and recreation hierarchies	5	T	807
+70713290	71329	E	Other gambling industries	6	T	806
+70713900	7139	E	Other amusement and recreation industries	5	T	807
 70713910	71391	A	Golf courses and country clubs	6	T	808
 70713920	71392	A	Skiing facilities	6	T	809
 70713930	71393	A	Marinas	6	T	810
 70713940	71394	A	Fitness and recreational sports centers	6	T	811
 70713950	71395	A	Bowling centers	6	T	812
-70713990	71399	E	All other amusement and recreation hierarchies	6	T	813
+70713990	71399	E	All other amusement and recreation industries	6	T	813
 70720000	72	A	Accommodation and food services	3	T	814
 70721000	721	A	Accommodation	4	T	815
 70721100	7211	A	Traveler accommodation	5	T	816
@@ -884,7 +883,7 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 80813920	81392	A	Professional organizations	6	T	883
 80813930	81393	A	Labor unions and similar labor organizations	6	T	884
 80813990	81394,9	A	Miscellaneous professional and similar organizations	6	T	885
-90000000	-	B	Government	2	T	886	07000000
+90000000	-	B	Government	2	T	886	00000000
 90910000	-	B	Federal	3	T	887
 90911000	-	B	Federal, except U.S. Postal Service	4	T	888
 90916220	-	B	Federal hospitals	5	T	889
