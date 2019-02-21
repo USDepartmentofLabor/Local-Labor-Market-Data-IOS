@@ -1,18 +1,14 @@
 package blsapp.dol.gov.blslocaldata.db
 
-import android.arch.persistence.room.Dao
 import android.content.Context
 import android.util.Log
 import blsapp.dol.gov.blslocaldata.R
-import blsapp.dol.gov.blslocaldata.db.dao.IndustryDao
 import blsapp.dol.gov.blslocaldata.db.dao.IndustryType
 import blsapp.dol.gov.blslocaldata.db.entity.*
 import java.io.BufferedReader
-import java.io.FileReader
 import java.io.IOException
 import java.io.InputStreamReader
 import java.util.*
-import kotlin.math.absoluteValue
 
 /**
  * LoadDataUtil - Load Data from CSV / TXT files into database (Used to prep app database before release)
@@ -66,10 +62,10 @@ class LoadDataUtil {
 
         fun preloadDB(context: Context, db: BLSDatabase) {
             db.industryDAO().deleteAll()
-            loadIndustry(context, db, IndustryType.CE_INDUSTRY, R.raw.ce_industry, "txt") // National Data
-            loadIndustry(context, db, IndustryType.SM_INDUSTRY, R.raw.sm_industry, "txt") // Metro, State Data
-            loadIndustry(context, db, IndustryType.QCEW_INDUSTRY, R.raw.industry_titles, "txt") // County Data
-            loadIndustry(context, db, IndustryType.OE_OCCUPATION,  R.raw.oe_occupation, "txt")
+            loadHierarchy(context, db, IndustryType.CE_INDUSTRY, R.raw.ce_industry, "txt") // National Data
+            loadHierarchy(context, db, IndustryType.SM_INDUSTRY, R.raw.sm_industry, "txt") // Metro, State Data
+            loadHierarchy(context, db, IndustryType.QCEW_INDUSTRY, R.raw.industry_titles, "txt") // County Data
+            loadHierarchy(context, db, IndustryType.OE_OCCUPATION,  R.raw.oe_occupation, "txt")
             loadZipCounty(context, db)
             loadZipCbsa(context, db)
             loadArea(context, db)
@@ -128,7 +124,7 @@ class LoadDataUtil {
             }
         }
 
-        private fun loadIndustry(context: Context, db: BLSDatabase, industryType: IndustryType, resourceId: Int, ext: String) {
+        private fun loadHierarchy(context: Context, db: BLSDatabase, industryType: IndustryType, resourceId: Int, ext: String) {
 
             val industryItems = readFile(context, resourceId, ext)
             var currentIndex = 1
