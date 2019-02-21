@@ -62,7 +62,7 @@
     <string name="ownership_federal_govt">Federal Government</string>
     <string name="ownership_state_govt">State Government</string>
     <string name="ownership_local_govt">Local Government</string>
-
+    <string name="ownership_total_covered">Total</string>
 
     <string name="employment_level">Employment Level</string>
     <string name="mean_annual_wage">Mean Annual Wage</string>

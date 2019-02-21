@@ -1,5 +1,7 @@
 package blsapp.dol.gov.blslocaldata.model.reports
 
+import blsapp.dol.gov.blslocaldata.BLSApplication
+import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
 
@@ -82,6 +84,26 @@ class QCEWReport {
                     establishmentSize.code + ownershipCode.code + industryCode
 
             return seriesId
+        }
+
+        fun getOwnershipTitle(ownershipCode: OwnershipCode) : String {
+            when (ownershipCode) {
+                OwnershipCode.FEDERAL_GOVT -> {
+                    return BLSApplication.applicationContext().getString(R.string.ownership_federal_govt)
+                }
+                OwnershipCode.STATE_GOVT -> {
+                    return BLSApplication.applicationContext().getString(R.string.ownership_state_govt)
+                }
+                OwnershipCode.LOCAL_GOVT -> {
+                    return BLSApplication.applicationContext().getString(R.string.ownership_local_govt)
+                }
+                OwnershipCode.PRIVATE_OWNERSHIP -> {
+                    return BLSApplication.applicationContext().getString(R.string.ownership_private)
+                }
+                OwnershipCode.TOTAL_COVERED -> {
+                    return BLSApplication.applicationContext().getString(R.string.ownership_total_covered)
+                }
+            }
         }
     }
 
