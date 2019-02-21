@@ -29,6 +29,7 @@ import blsapp.dol.gov.blslocaldata.model.reports.ReportType
 import blsapp.dol.gov.blslocaldata.ui.search.IndustryListAdapter
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.*
 import kotlinx.android.synthetic.main.activity_industry_results.*
+import kotlinx.android.synthetic.main.fragment_industry_header.*
 
 /**
  * IndustryResultsActivity - Displays a list of industries and key values associated with them
@@ -48,8 +49,8 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
     private lateinit var adapter: IndustryListAdapter
     private lateinit var reportType: ReportType
     private lateinit var industryType: ReportRowType
-    private var wageVsLevelSpinnerTitles = arrayOf("Annual Mean Wage", "Employment Level")
-    private var wageVsLevelSpinnerValues = arrayOf(ReportWageVsLevelType.ANNUAL_MEAN_WAGE, ReportWageVsLevelType.EMPLOYMENT_LEVEL)
+    private var wageVsLevelSpinnerTitles = arrayOf( "Employment Level", "Annual Mean Wage")
+    private var wageVsLevelSpinnerValues = arrayOf( ReportWageVsLevelType.EMPLOYMENT_LEVEL, ReportWageVsLevelType.ANNUAL_MEAN_WAGE)
     private var reportWageVsLevelType = wageVsLevelSpinnerValues[0]
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,13 +65,12 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
         reportType = intent.getSerializableExtra(KEY_REPORT_TYPE) as ReportType
         industryType = intent.getSerializableExtra(KEY_REPORT_ROW_TYPE) as ReportRowType
 
-        leftButton.visibility = View.GONE
-        rightButton.visibility = View.GONE
-
-        areaTitleTextView.text = mArea.title
-        areaTitleTextView.contentDescription = mArea.accessibilityStr
-
         viewModel = ViewModelProviders.of(this).get(IndustryViewModel::class.java)
+        viewModel.mAdjustment = ReportManager.adjustment
+        mArea.let {
+            viewModel.mArea = it
+        }
+        viewModel.setParentId(parentId)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         adapter = IndustryListAdapter(this)
@@ -85,15 +85,8 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
             decorator.setDrawable(it) }
         recyclerView.addItemDecoration(decorator)
 
-        viewModel.mAdjustment = ReportManager.adjustment
-        mArea.let {
-            viewModel.mArea = it
-        }
-
-        viewModel.setParentId(parentId)
-
-        seasonallyAdjustedSwitch.isChecked = if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED) true else false
-        seasonallyAdjustedSwitch.setOnCheckedChangeListener{ _, isChecked ->
+        industrySeasonallyAdjustedSwitch.isChecked = if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED) true else false
+        industrySeasonallyAdjustedSwitch.setOnCheckedChangeListener{ _, isChecked ->
             ReportManager.adjustment =
                     if (isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
             viewModel.setAdjustment(ReportManager.adjustment)
@@ -103,13 +96,15 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
 
         if (industryType == ReportRowType.INDUSTRY_EMPLOYMENT_ITEM) {
 
-            reportWageVsLevelType = wageVsLevelSpinnerValues[1]
+            reportWageVsLevelType = wageVsLevelSpinnerValues[0]
             viewModel.setReportType(industryType, reportType, reportWageVsLevelType)
             viewModel.getIndustryReports()
 
             wageVsLevelSpinner.visibility = View.INVISIBLE
 
         } else {
+
+            wageVsLevelSpinnerTitles = arrayOf( "Employment Level", "Avg Weekly Wage")
 
             wageVsLevelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -127,6 +122,15 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
             aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             wageVsLevelSpinner!!.adapter = aa
         }
+
+        updateHeader()
+    }
+
+    fun updateHeader() {
+        industryAreaTextView.text = viewModel.areaTitle
+        industryAreaTextView.contentDescription = viewModel.accessibilityStr
+        ownershipTextView.text = viewModel.getOwnershipTitle()
+        timePeriodTextView.text = viewModel.getTimePeriodTitle()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -156,6 +160,7 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
     private fun attachObserver() {
         viewModel.industryRows?.observe(this, Observer<List<IndustryRow>> {
             adapter.setIndustryRows(it!!)
+            updateHeader()
         })
         viewModel.isLoading.observe(this, Observer<Boolean> {
             it?.let { showLoadingDialog(it) }

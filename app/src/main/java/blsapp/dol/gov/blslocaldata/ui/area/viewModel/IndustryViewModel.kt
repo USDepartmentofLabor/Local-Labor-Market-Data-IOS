@@ -30,23 +30,48 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
 
     override var isLoading = MutableLiveData<Boolean>()
     override var reportError = MutableLiveData<ReportError>()
-
-    private val repository: LocalRepository = (application as BLSApplication).repository
-    private var nationalArea: NationalEntity? = null
-
     override var industryRows = MutableLiveData<List<IndustryRow>>()
-
     override fun setAdjustment(adjustment: SeasonalAdjustment) {
         mAdjustment = adjustment
         loadReportCategories()
     }
 
+    var localAreaReports: MutableList<AreaReport>? = null
+
+    var areaTitle: String? = null
+        get() = mArea.title
+
+    var accessibilityStr: String? = null
+        get() = mArea.accessibilityStr
+
+    private val repository: LocalRepository = (application as BLSApplication).repository
+    private var nationalArea: NationalEntity? = null
     private var reportType: ReportType? =  null
+    private var reportTypes: MutableList<ReportType>? = null
     private var reportRowType: ReportRowType? =  null
     private var parentId: Long? =  null
     private var industryType: IndustryType = IndustryType.CE_INDUSTRY
-    private var wageVsLevelTypeOccupation: OESReport.DataTypeCode = OESReport.DataTypeCode.ANNUALMEANWAGE
+    private var wageVsLevelTypeOccupation: OESReport.DataTypeCode = OESReport.DataTypeCode.EMPLOYMENT
+    private var QCEWwageVsLevelTypeOccupation: QCEWReport.DataTypeCode = QCEWReport.DataTypeCode.allEmployees
 
+    fun getOwnershipTitle(): String {
+        var ownTitle = " "
+        if (this.reportType is ReportType.QuarterlyEmploymentWages) {
+            val reportTypeQCEW: ReportType.QuarterlyEmploymentWages = reportType as ReportType.QuarterlyEmploymentWages
+            ownTitle = QCEWReport.getOwnershipTitle(reportTypeQCEW.ownershipCode)
+        }
+        return ownTitle
+    }
+
+    fun getTimePeriodTitle(): String {
+        var timeTitle = " "
+        val localAreaReport = localAreaReports?.filter { areaReport ->
+            areaReport.reportType == reportTypes?.first() }?.firstOrNull()
+        localAreaReport?.seriesReport?.latestData()?.let { localReport ->
+            timeTitle = localReport.periodName + " " + localReport.year
+        }
+        return timeTitle
+    }
     fun setParentId(originalInput: Long?) {
         parentId = originalInput
     }
@@ -75,10 +100,19 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
         }
         when (wageVsLevelType.ordinal) {
             ReportWageVsLevelType.ANNUAL_MEAN_WAGE.ordinal -> {
-                this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.ANNUALMEANWAGE
+
+                if (reportRowType!!.ordinal == ReportRowType.OWNERSHIP_EMPLOYMENT_WAGES_ITEM.ordinal) {
+                    this.QCEWwageVsLevelTypeOccupation = QCEWReport.DataTypeCode.avgWeeklyWage
+                } else {
+                    this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.ANNUALMEANWAGE
+                }
             }
             ReportWageVsLevelType.EMPLOYMENT_LEVEL.ordinal -> {
-                this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.EMPLOYMENT
+                if (reportRowType!!.ordinal == ReportRowType.OWNERSHIP_EMPLOYMENT_WAGES_ITEM.ordinal) {
+                    this.QCEWwageVsLevelTypeOccupation = QCEWReport.DataTypeCode.allEmployees
+                } else {
+                    this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.EMPLOYMENT
+                }
             }
         }
 
@@ -144,32 +178,33 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
 
     fun getLocalReports(industryRows: ArrayList<IndustryRow>) {
 
-        var reportTypes = mutableListOf<ReportType>()
+        reportTypes = mutableListOf<ReportType>()
 
         industryRows.forEach {
 
             when (reportRowType!!.ordinal) {
                 ReportRowType.INDUSTRY_EMPLOYMENT_ITEM.ordinal -> {
-                    reportTypes.add(ReportType.IndustryEmployment(it.industry!!.industryCode, CESReport.DataTypeCode.ALLEMPLOYEES))
+                    reportTypes?.add(ReportType.IndustryEmployment(it.industry!!.industryCode, CESReport.DataTypeCode.ALLEMPLOYEES))
                 }
                 ReportRowType.OCCUPATIONAL_EMPLOYMENT_ITEM.ordinal -> {
-                    reportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, wageVsLevelTypeOccupation))
+                    reportTypes?.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, wageVsLevelTypeOccupation))
                 }
                 ReportRowType.OWNERSHIP_EMPLOYMENT_WAGES_ITEM.ordinal -> {
 
                     val reportTypeQCEW: ReportType.QuarterlyEmploymentWages = this.reportType as ReportType.QuarterlyEmploymentWages
-                    reportTypes.add(ReportType.OccupationalEmploymentQCEW(
+                    reportTypes?.add(ReportType.OccupationalEmploymentQCEW(
                             reportTypeQCEW.ownershipCode,
                             it.industry!!.industryCode,
                             QCEWReport.EstablishmentSize.ALL,
-                            QCEWReport.DataTypeCode.allEmployees))
+                            QCEWwageVsLevelTypeOccupation))
                 }
             }
         }
 
-        ReportManager.getReport(mArea, reportTypes, adjustment = mAdjustment,
+        ReportManager.getReport(mArea, reportTypes!!, adjustment = mAdjustment,
                 successHandler = {
                     isLoading.postValue(false)
+                    localAreaReports = it.toMutableList()
                     updateIndustryRows(it, industryRows)
 
                     getNationalReports(industryRows)
@@ -184,30 +219,41 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
 
     fun getNationalReports(industryRows: ArrayList<IndustryRow>) {
 
-        var reportTypes = mutableListOf<ReportType>()
+        var natReportTypes = mutableListOf<ReportType>()
 
         industryRows.forEach {
 
             when (reportRowType!!.ordinal) {
                 ReportRowType.INDUSTRY_EMPLOYMENT_ITEM.ordinal -> {
-                    reportTypes.add(ReportType.IndustryEmployment(it.industry!!.industryCode, CESReport.DataTypeCode.ALLEMPLOYEES))
+                    natReportTypes.add(ReportType.IndustryEmployment(it.industry!!.industryCode, CESReport.DataTypeCode.ALLEMPLOYEES))
                 }
                 ReportRowType.OCCUPATIONAL_EMPLOYMENT_ITEM.ordinal -> {
-                    reportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, wageVsLevelTypeOccupation))
+                    natReportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, wageVsLevelTypeOccupation))
                 }
                 ReportRowType.OWNERSHIP_EMPLOYMENT_WAGES_ITEM.ordinal -> {
                     val reportTypeQCEW: ReportType.QuarterlyEmploymentWages = this.reportType as ReportType.QuarterlyEmploymentWages
-                    reportTypes.add(ReportType.OccupationalEmploymentQCEW(
+                    natReportTypes.add(ReportType.OccupationalEmploymentQCEW(
                             reportTypeQCEW.ownershipCode,
                             it.industry!!.industryCode,
                             QCEWReport.EstablishmentSize.ALL,
-                            QCEWReport.DataTypeCode.allEmployees))
+                            QCEWwageVsLevelTypeOccupation))
                 }
             }
 
         }
 
-        ReportManager.getReport(nationalArea!!, reportTypes, adjustment = mAdjustment,
+        val localAreaReport = localAreaReports?.filter { areaReport ->
+            areaReport.reportType == reportTypes?.first() }?.firstOrNull()
+        var startYear: String? = null
+        localAreaReport?.seriesReport?.latestData()?.let { localReport ->
+            startYear = localReport.year
+        }
+
+        ReportManager.getReport(nationalArea!!,
+                natReportTypes,
+                startYear = startYear,
+                endYear = startYear,
+                adjustment = mAdjustment,
                 successHandler = {
                     isLoading.postValue(false)
                     updateIndustryRows(it, industryRows)
@@ -226,7 +272,8 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
             val thisAreaRow = areaReport[i]
             val thisIndustryRow = industryRows[i]
             if  (thisAreaRow.seriesReport != null && thisAreaRow.seriesReport!!.data.isNotEmpty()) {
-                if (wageVsLevelTypeOccupation == OESReport.DataTypeCode.ANNUALMEANWAGE) {
+                if (wageVsLevelTypeOccupation == OESReport.DataTypeCode.ANNUALMEANWAGE ||
+                        QCEWwageVsLevelTypeOccupation == QCEWReport.DataTypeCode.avgWeeklyWage) {
                     if (thisAreaRow.area is NationalEntity)
                         thisIndustryRow.nationalValue = DataUtil.currencyValue(thisAreaRow.seriesReport!!.data[0].value)
                     else
