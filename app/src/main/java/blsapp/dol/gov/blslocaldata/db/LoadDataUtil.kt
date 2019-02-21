@@ -66,9 +66,9 @@ class LoadDataUtil {
 
         fun preloadDB(context: Context, db: BLSDatabase) {
             db.industryDAO().deleteAll()
-            loadIndustry(context, db, IndustryType.CE_INDUSTRY, R.raw.ce_industry, "txt")
-            loadIndustry(context, db, IndustryType.SM_INDUSTRY, R.raw.sm_industry, "txt")
-            loadIndustry(context, db, IndustryType.QCEW_INDUSTRY, R.raw.industry_titles, "txt")
+            loadIndustry(context, db, IndustryType.CE_INDUSTRY, R.raw.ce_industry, "txt") // National Data
+            loadIndustry(context, db, IndustryType.SM_INDUSTRY, R.raw.sm_industry, "txt") // Metro, State Data
+            loadIndustry(context, db, IndustryType.QCEW_INDUSTRY, R.raw.industry_titles, "txt") // County Data
             loadIndustry(context, db, IndustryType.OE_OCCUPATION,  R.raw.oe_occupation, "txt")
             loadZipCounty(context, db)
             loadZipCbsa(context, db)
@@ -142,12 +142,16 @@ class LoadDataUtil {
 
                     if (industryType == IndustryType.CE_INDUSTRY) {
                         title = industryItem[3]
-                        if (industryItem.count() > 7) parentCode = industryItem[7]
+                        if (industryItem.count() > 7) {
+                            parentCode = industryItem[7]
+                        }
                     } else if (industryType == IndustryType.OE_OCCUPATION) {
                         title = industryItem[1]
                     } else {
                         title = industryItem[1]
-                        if (industryItem.count() > 2) parentCode = industryItem[2]
+                        if (industryItem.count() > 2) {
+                            parentCode = industryItem[2]
+                        }
                     }
                     var parentId:Long = -1
                     var parentIndustry : IndustryEntity
@@ -185,13 +189,23 @@ class LoadDataUtil {
                                     industrys: ArrayList<List<String>> ):Int {
 
             var currIndex = currentIndex
-            var parentCode = parent.industryCode
-            if (parent.industryCode.count() > 2)
+            var parentCode:String = parent.industryCode
+
+            if  (parentCode == "00000000")
+                parentCode = "00"
+
+            if (parentCode.count() > 2)
                 parentCode = parent.industryCode.trimEnd('0')
 
-            if (parentCode.length == 1) parentCode + "0"
+            if (parentCode.length == 1) {
+                parentCode += "0"
+            }
+            if (parentCode.isEmpty()) {
+                parentCode = "00"
+            }
 
-            while (currIndex < industrys.size && industrys[currIndex][0].startsWith(parentCode)) {
+            while (currIndex < industrys.size &&
+                    ((industrys[currIndex][0].startsWith(parentCode)) || parent.industryCode == "000000")) {
                 val title = if (parent.industryType == IndustryType.CE_INDUSTRY.ordinal) industrys[currIndex][3] else industrys[currIndex][1]
                 val code = industrys[currIndex][0]
                 var industry = IndustryEntity(id = null,
