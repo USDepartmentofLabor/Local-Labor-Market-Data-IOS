@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/headerFragment"
-        android:name="blsapp.dol.gov.blslocaldata.ui.area.fragments.IndustryHeaderFragment"
+        android:name="blsapp.dol.gov.blslocaldata.ui.area.fragments.HierarchyHeaderFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

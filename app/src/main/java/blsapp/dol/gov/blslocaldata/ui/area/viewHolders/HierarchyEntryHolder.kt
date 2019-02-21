@@ -7,10 +7,10 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.industry_item.view.*
 
 /**
- * IndustryEntryHolder - holds the inflated view for the Industry Entries view
+ * HierarchyEntryHolder - holds the inflated view for the Industry Entries view
  */
 
-class IndustryEntryHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
+class HierarchyEntryHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
     val mIndustryTitle: TextView = mView.title
     val mIndustryLocalValue: TextView = mView.localValue
     val mIndustryNationalValue: TextView = mView.nationalValue

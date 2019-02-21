@@ -3,10 +3,8 @@ package blsapp.dol.gov.blslocaldata.ui.viewmodel
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
-import android.util.Log
 
 import blsapp.dol.gov.blslocaldata.BLSApplication
-import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.LocalRepository
 import blsapp.dol.gov.blslocaldata.db.dao.IndustryType
 import blsapp.dol.gov.blslocaldata.db.entity.*
@@ -14,23 +12,20 @@ import blsapp.dol.gov.blslocaldata.ioThread
 import blsapp.dol.gov.blslocaldata.model.DataUtil
 import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
-import blsapp.dol.gov.blslocaldata.services.FetchAddressIntentService
-import blsapp.dol.gov.blslocaldata.ui.area.viewModel.IndustryBaseViewModel
-import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType.INDUSTRY_EMPLOYMENT_ITEM
-import org.jetbrains.anko.doAsync
+import blsapp.dol.gov.blslocaldata.ui.area.viewModel.HierarchyBaseViewModel
 
 /**
- * IndustryViewModel - View Model for Industry Comparison View
+ * HierarchyViewModel - View Model for Industry Comparison View
  */
 
-class IndustryViewModel(application: Application) : AndroidViewModel(application), IndustryBaseViewModel {
+class HierarchyViewModel(application: Application) : AndroidViewModel(application), HierarchyBaseViewModel {
 
     lateinit override var mArea: AreaEntity
     lateinit override var mAdjustment: SeasonalAdjustment
 
     override var isLoading = MutableLiveData<Boolean>()
     override var reportError = MutableLiveData<ReportError>()
-    override var industryRows = MutableLiveData<List<IndustryRow>>()
+    override var hierarchyRows = MutableLiveData<List<HierarchyRow>>()
     override fun setAdjustment(adjustment: SeasonalAdjustment) {
         mAdjustment = adjustment
         loadReportCategories()
@@ -110,6 +105,10 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
+    override fun toggleSection(reportRow: HierarchyRow) {
+
+    }
+
     override fun getIndustryReports() {
 
         isLoading.value = true
@@ -121,7 +120,7 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
 
             nationalArea = repository.getNationalArea()
 
-            val rows = ArrayList<IndustryRow>()
+            val rows = ArrayList<HierarchyRow>()
             var parentIdSafe:Long? = parentId
             var parentIndustryData: IndustryEntity? = null
 
@@ -139,7 +138,7 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
 
             if (parentIndustryData != null) {
                 val mergeTitle = parentIndustryData.title
-                rows.add(IndustryRow(IndustryRowType.ITEM,
+                rows.add(HierarchyRow(HierarchyRowType.ITEM,
                         parentIndustryData,
                         parentIndustryData.id,
                         mergeTitle,
@@ -151,14 +150,14 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
 
             fetchedData?.forEach{ industry ->
                 val mergeTitle = industry.title + " (" + industry.industryCode + ")"
-                rows.add(IndustryRow(IndustryRowType.ITEM,
+                rows.add(HierarchyRow(HierarchyRowType.ITEM,
                         industry,
                         industry.id,
                         mergeTitle,
                         "N/A", "N/A",
                         industry.superSector))
             }
-            industryRows.postValue(rows)
+            hierarchyRows.postValue(rows)
 
             if (mArea is NationalEntity)
                 getNationalReports(rows)
@@ -168,10 +167,10 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    private fun getReportTypesArray(industryRows: ArrayList<IndustryRow>): MutableList<ReportType> {
+    private fun getReportTypesArray(hierarchyRows: ArrayList<HierarchyRow>): MutableList<ReportType> {
 
         var retReportTypes = mutableListOf<ReportType>()
-        industryRows.forEach {
+        hierarchyRows.forEach {
 
             when (reportType) {
                 is ReportType.IndustryEmployment ->
@@ -191,19 +190,19 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
         return retReportTypes
     }
 
-    private fun getLocalReports(industryRows: ArrayList<IndustryRow>) {
+    private fun getLocalReports(hierarchyRows: ArrayList<HierarchyRow>) {
 
-        reportTypes = getReportTypesArray(industryRows)
+        reportTypes = getReportTypesArray(hierarchyRows)
 
         ReportManager.getReport(mArea, reportTypes!!, adjustment = mAdjustment,
                 successHandler = {
                     isLoading.postValue(false)
                     localAreaReports = it.toMutableList()
-                    updateIndustryRows(it, industryRows)
+                    updateIndustryRows(it, hierarchyRows)
 
-                    getNationalReports(industryRows)
+                    getNationalReports(hierarchyRows)
 
-                    this.industryRows.postValue(industryRows)
+                    this.hierarchyRows.postValue(hierarchyRows)
                 },
                 failureHandler = { it ->
                     isLoading.postValue(false)
@@ -211,9 +210,9 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
                 })
     }
 
-    private fun getNationalReports(industryRows: ArrayList<IndustryRow>) {
+    private fun getNationalReports(hierarchyRows: ArrayList<HierarchyRow>) {
 
-        var natReportTypes = getReportTypesArray(industryRows)
+        var natReportTypes = getReportTypesArray(hierarchyRows)
 
         val localAreaReport = localAreaReports?.filter { areaReport ->
             areaReport.reportType == reportTypes?.first() }?.firstOrNull()
@@ -229,9 +228,9 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
                 adjustment = mAdjustment,
                 successHandler = {
                     isLoading.postValue(false)
-                    updateIndustryRows(it, industryRows)
+                    updateIndustryRows(it, hierarchyRows)
 
-                    this.industryRows.postValue(industryRows)
+                    this.hierarchyRows.postValue(hierarchyRows)
                 },
                 failureHandler = { it ->
                     isLoading.postValue(false)
@@ -239,11 +238,11 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
                 })
     }
 
-    private fun updateIndustryRows(areaReport: List<AreaReport>, industryRows: ArrayList<IndustryRow>) {
+    private fun updateIndustryRows(areaReport: List<AreaReport>, hierarchyRows: ArrayList<HierarchyRow>) {
 
         for (i in areaReport.indices) {
             val thisAreaRow = areaReport[i]
-            val thisIndustryRow = industryRows[i]
+            val thisIndustryRow = hierarchyRows[i]
             if  (thisAreaRow.seriesReport != null && thisAreaRow.seriesReport!!.data.isNotEmpty()) {
                 if (wageVsLevelTypeOccupation == OESReport.DataTypeCode.ANNUALMEANWAGE ||
                         QCEWwageVsLevelTypeOccupation == QCEWReport.DataTypeCode.avgWeeklyWage) {
@@ -260,10 +259,6 @@ class IndustryViewModel(application: Application) : AndroidViewModel(application
                 }
             }
         }
-
-    }
-
-    override fun toggleSection(reportRow: IndustryRow) {
 
     }
 }

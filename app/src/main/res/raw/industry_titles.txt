@@ -1,5 +1,5 @@
 industry_code	industry_title	parent
-10	10 Total, all industries
+10	10 Total, all hierarchies
 101	101 Goods-producing
 1011	1011 Natural resources and mining
 1012	1012 Construction	
@@ -1644,7 +1644,7 @@ industry_code	industry_title	parent
 49319	NAICS 49319 Other warehousing and storage
 493190	NAICS 493190 Other warehousing and storage
 51	NAICS 51 Information	1022
-511	NAICS 511 Publishing industries, except internet
+511	NAICS 511 Publishing hierarchies, except internet
 5111	NAICS 5111 Newspaper, book, and directory publishers
 51111	NAICS 51111 Newspaper publishers
 511110	NAICS 511110 Newspaper publishers
@@ -1660,8 +1660,8 @@ industry_code	industry_title	parent
 5112	NAICS 5112 Software publishers
 51121	NAICS 51121 Software publishers
 511210	NAICS 511210 Software publishers
-512	NAICS 512 Motion picture and sound recording industries
-5121	NAICS 5121 Motion picture and video industries
+512	NAICS 512 Motion picture and sound recording hierarchies
+5121	NAICS 5121 Motion picture and video hierarchies
 51211	NAICS 51211 Motion picture and video production
 512110	NAICS 512110 Motion picture and video production
 51212	NAICS 51212 Motion picture and video distribution
@@ -1669,10 +1669,10 @@ industry_code	industry_title	parent
 51213	NAICS 51213 Motion picture and video exhibition
 512131	NAICS 512131 Motion picture theaters, except drive-ins
 512132	NAICS 512132 Drive-in motion picture theaters
-51219	NAICS 51219 Postproduction and other related industries
+51219	NAICS 51219 Postproduction and other related hierarchies
 512191	NAICS 512191 Teleproduction and postproduction services
-512199	NAICS 512199 Other motion picture and video industries
-5122	NAICS 5122 Sound recording industries
+512199	NAICS 512199 Other motion picture and video hierarchies
+5122	NAICS 5122 Sound recording hierarchies
 51221	NAICS12 51221 Record production
 512210	NAICS12 512210 Record production
 51222	NAICS 51222 Integrated record production and distribution
@@ -1683,8 +1683,8 @@ industry_code	industry_title	parent
 512240	NAICS 512240 Sound recording studios
 51225	NAICS 51225 Record production and distribution
 512250	NAICS 512250 Record production and distribution
-51229	NAICS 51229 Other sound recording industries
-512290	NAICS 512290 Other sound recording industries
+51229	NAICS 51229 Other sound recording hierarchies
+512290	NAICS 512290 Other sound recording hierarchies
 515	NAICS 515 Broadcasting, except internet
 5151	NAICS 5151 Radio and television broadcasting
 51511	NAICS 51511 Radio broadcasting
@@ -2258,12 +2258,12 @@ industry_code	industry_title	parent
 713110	NAICS 713110 Amusement and theme parks
 71312	NAICS 71312 Amusement arcades
 713120	NAICS 713120 Amusement arcades
-7132	NAICS 7132 Gambling industries
+7132	NAICS 7132 Gambling hierarchies
 71321	NAICS 71321 Casinos, except casino hotels
 713210	NAICS 713210 Casinos, except casino hotels
-71329	NAICS 71329 Other gambling industries
-713290	NAICS 713290 Other gambling industries
-7139	NAICS 7139 Other amusement and recreation industries
+71329	NAICS 71329 Other gambling hierarchies
+713290	NAICS 713290 Other gambling hierarchies
+7139	NAICS 7139 Other amusement and recreation hierarchies
 71391	NAICS 71391 Golf courses and country clubs
 713910	NAICS 713910 Golf courses and country clubs
 71392	NAICS 71392 Skiing facilities
@@ -2274,8 +2274,8 @@ industry_code	industry_title	parent
 713940	NAICS 713940 Fitness and recreational sports centers
 71395	NAICS 71395 Bowling centers
 713950	NAICS 713950 Bowling centers
-71399	NAICS 71399 All other amusement and recreation industries
-713990	NAICS 713990 All other amusement and recreation industries
+71399	NAICS 71399 All other amusement and recreation hierarchies
+713990	NAICS 713990 All other amusement and recreation hierarchies
 72	NAICS 72 Accommodation and food services	1026
 721	NAICS 721 Accommodation
 7211	NAICS 7211 Traveler accommodation

@@ -41,8 +41,8 @@
             android:label="@string/metro" />
 
         <activity
-            android:name=".ui.area.activities.IndustryResultsActivity"
-            android:label="@string/industries" />
+            android:name=".ui.area.activities.HierarchyResultsActivity"
+            android:label="@string/hierarchies" />
 
         <activity
             android:name=".ui.info.InfoActivity"

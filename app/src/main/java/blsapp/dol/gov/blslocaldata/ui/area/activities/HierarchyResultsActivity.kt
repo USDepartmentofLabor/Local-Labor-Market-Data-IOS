@@ -18,23 +18,21 @@ import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
 import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
 import blsapp.dol.gov.blslocaldata.ui.info.InfoActivity
-import kotlinx.android.synthetic.main.activity_metro_state.*
-import kotlinx.android.synthetic.main.fragment_area_header.*
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import android.support.v7.app.AlertDialog
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
-import blsapp.dol.gov.blslocaldata.ui.search.IndustryListAdapter
+import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListAdapter
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.*
-import kotlinx.android.synthetic.main.activity_industry_results.*
-import kotlinx.android.synthetic.main.fragment_industry_header.*
+import kotlinx.android.synthetic.main.activity_hierarchy_results.*
+import kotlinx.android.synthetic.main.fragment_hierarchy_header.*
 
 /**
- * IndustryResultsActivity - Displays a list of industries and key values associated with them
+ * HierarchyResultsActivity - Displays a list of industries and key values associated with them
  */
-class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemClickListener {
+class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnItemClickListener {
 
     companion object {
         const val KEY_AREA = "Area"
@@ -45,8 +43,8 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
 
     private lateinit var mArea: AreaEntity
     private var parentId: Long? = null
-    private lateinit var viewModel: IndustryViewModel
-    private lateinit var adapter: IndustryListAdapter
+    private lateinit var viewModel: HierarchyViewModel
+    private lateinit var adapter: HierarchyListAdapter
     private lateinit var reportType: ReportType
     private lateinit var industryType: ReportRowType
     private var wageVsLevelSpinnerTitles = arrayOf( "Employment Level", "Annual Mean Wage")
@@ -55,7 +53,7 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_industry_results)
+        setContentView(R.layout.activity_hierarchy_results)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -65,7 +63,7 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
         reportType = intent.getSerializableExtra(KEY_REPORT_TYPE) as ReportType
         industryType = intent.getSerializableExtra(KEY_REPORT_ROW_TYPE) as ReportRowType
 
-        viewModel = ViewModelProviders.of(this).get(IndustryViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(HierarchyViewModel::class.java)
         viewModel.mAdjustment = ReportManager.adjustment
         mArea.let {
             viewModel.mArea = it
@@ -73,10 +71,10 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
         viewModel.setParentId(parentId)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        adapter = IndustryListAdapter(this)
+        adapter = HierarchyListAdapter(this)
         recyclerView.apply {
-            adapter = this@IndustryResultsActivity.adapter
-            layoutManager = LinearLayoutManager(this@IndustryResultsActivity)
+            adapter = this@HierarchyResultsActivity.adapter
+            layoutManager = LinearLayoutManager(this@HierarchyResultsActivity)
         }
         attachObserver()
 
@@ -155,12 +153,12 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
         }
     }
 
-    override fun onItemClick(item: IndustryRow) {
+    override fun onItemClick(item: HierarchyRow) {
         displaySubIndustries(mArea, item)
     }
 
     private fun attachObserver() {
-        viewModel.industryRows?.observe(this, Observer<List<IndustryRow>> {
+        viewModel.hierarchyRows?.observe(this, Observer<List<HierarchyRow>> {
             adapter.setIndustryRows(it!!)
             updateHeader()
         })
@@ -172,9 +170,9 @@ class IndustryResultsActivity : AppCompatActivity(), IndustryListAdapter.OnItemC
         })
     }
 
-    fun displaySubIndustries(area: AreaEntity?, item: IndustryRow) {
+    fun displaySubIndustries(area: AreaEntity?, item: HierarchyRow) {
 
-        intent = Intent(applicationContext, IndustryResultsActivity::class.java)
+        intent = Intent(applicationContext, HierarchyResultsActivity::class.java)
         intent.putExtra(KEY_AREA, mArea)
         intent.putExtra(PARENT_ID, item.itemId)
         intent.putExtra(KEY_REPORT_TYPE, reportType)

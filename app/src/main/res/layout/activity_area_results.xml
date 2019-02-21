@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.area.activities.IndustryResultsActivity">
+    tools:context=".ui.area.activities.HierarchyResultsActivity">
 
     <TextView
         android:id="@+id/titleTextView"

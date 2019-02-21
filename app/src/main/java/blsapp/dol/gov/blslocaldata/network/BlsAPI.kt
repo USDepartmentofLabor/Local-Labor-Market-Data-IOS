@@ -49,14 +49,13 @@ class BlsAPI constructor(val appContext: Context) {
 //                .create()
 //        gson.toJson(reportRequest)
 
-        Log.w("ggg", "JSON Request: " + reportRequest.toJSON())
+        Log.w("ggg", "BLSAPI Request: " + reportRequest.toJSON())
         val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, BLS_API_URL, JSONObject(reportRequest.toJSON()),
                 Response.Listener { response ->
                     print(response.toString())
-                    Log.w("Nidhi", response.toString())
                     val reportReponse = response.toString().toObject<BLSReportResponse>()
-                    Log.w("Nidhi", reportReponse.toString())
-
+                    Log.w("ggg", "BLSAPI Response: " + response.toString())
+//                    Log.w("ggg", "BLSAPI Request: " + reportRequest.toString())
                     if (reportReponse.status == ReportStatus.REQUEST_SUCCEEDED) {
                         successHandler(reportReponse)
                     }

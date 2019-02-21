@@ -30,7 +30,7 @@ import org.jetbrains.anko.uiThread
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import android.support.v7.app.AlertDialog
 import blsapp.dol.gov.blslocaldata.ui.area.ReportListAdapter
-import blsapp.dol.gov.blslocaldata.ui.area.activities.IndustryResultsActivity.Companion.KEY_REPORT_TYPE
+import blsapp.dol.gov.blslocaldata.ui.area.activities.HierarchyResultsActivity.Companion.KEY_REPORT_TYPE
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.AreaReportRow
 
 /**
@@ -263,11 +263,11 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
 
     fun displaySubIndustries(area: AreaEntity?, item: AreaReportRow) {
 
-        val intent = Intent(applicationContext, IndustryResultsActivity::class.java)
+        val intent = Intent(applicationContext, HierarchyResultsActivity::class.java)
 
         intent.putExtra(KEY_AREA, mArea)
         intent.putExtra(KEY_REPORT_TYPE, item.reportType)
-        intent.putExtra(IndustryResultsActivity.KEY_REPORT_ROW_TYPE, item.headerType)
+        intent.putExtra(HierarchyResultsActivity.KEY_REPORT_ROW_TYPE, item.headerType)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
     }

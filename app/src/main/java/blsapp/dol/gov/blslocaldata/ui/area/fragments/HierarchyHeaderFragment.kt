@@ -17,13 +17,13 @@ import blsapp.dol.gov.blslocaldata.R
  * to handle interaction events.
  *
  */
-class IndustryHeaderFragment : Fragment() {
+class HierarchyHeaderFragment : Fragment() {
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_industry_header, container, false)
+        return inflater.inflate(R.layout.fragment_hierarchy_header, container, false)
     }
 
     fun onButtonPressed(uri: Uri) {
