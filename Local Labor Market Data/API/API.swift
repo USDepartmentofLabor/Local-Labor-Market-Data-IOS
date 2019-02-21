@@ -25,6 +25,47 @@ class API {
     }
     
     func getReports(seriesIds: [String], startYear: String?, endYear: String?, completion: ((APIResult<APIReportResponse, ReportError>) -> Void)?) -> URLSessionDataTask {
+        
+        var reportResponse: APIResult<APIReportResponse, ReportError>? = nil
+        var seriesIdsCopy = seriesIds
+        let requestIds = Array(seriesIdsCopy.prefix(50))
+        seriesIdsCopy = seriesIdsCopy.count > 50 ? Array(seriesIdsCopy.suffix(from: 50)): [String]()
+
+        return postReport1(seriesIds: requestIds, startYear: startYear, endYear: endYear, completion: { (apiResult) in
+            switch apiResult {
+            case .success(let report):
+                if seriesIdsCopy.count > 0 {
+                    if reportResponse == nil {
+                        reportResponse = apiResult
+                    }
+                    _ = self.getReports(seriesIds: seriesIdsCopy, startYear: startYear, endYear: endYear, completion: { (result) in
+                        switch result {
+                        case .success(let report):
+                            print(result)
+                            if case .success(var prevReport)? = reportResponse {
+                                prevReport.series?.append(contentsOf: report.series!)
+                                completion?(.success(prevReport))
+                            }
+
+                        case .failure(let error):
+                            completion?(.failure(error))
+                            print("")
+                        }
+                    })
+                }
+                else {
+                    completion?(apiResult)
+                }
+                
+                print(report)
+            case .failure(_):
+                completion?(apiResult)
+            }
+        })
+    
+    }
+    
+    private func postReport1(seriesIds: [String], startYear: String?, endYear: String?, completion: ((APIResult<APIReportResponse, ReportError>) -> Void)?) -> URLSessionDataTask {
         return postReport(seriesIds: seriesIds, startYear:startYear, endYear: endYear, completion:{ (result) in
             guard let result = result else {return}
             
@@ -62,3 +103,5 @@ class API {
     }
         
 }
+
+

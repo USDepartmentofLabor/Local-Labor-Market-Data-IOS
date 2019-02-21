@@ -87,9 +87,9 @@ class UnEmploymentRateTableViewCell: UITableViewCell {
 extension UnEmploymentRateTableViewCell: ReportTableViewCell {
     
     func displaySeries(area: Area?, seriesReport: SeriesReport?, periodName: String? = nil, year: String? = nil) {
+        guard let area = area else { return }
         
-        let areaTitle = area is National ? "National Data" : "Local Data"
-        areaLabel.text = areaTitle
+        areaLabel.text = "\(area.displayType) Data"
         
         guard let seriesReport = seriesReport else {
             monthYearLabel.text = ""

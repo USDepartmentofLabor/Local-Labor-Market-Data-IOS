@@ -2,7 +2,6 @@ industry_code	industry_name	parent
 00000000	Total Nonfarm	
 05000000	Total Private	00000000
 06000000	Goods Producing	05000000
-07000000	Service-Providing	00000000
 08000000	Private Service Providing	05000000
 15000000	Mining, Logging and Construction	06000000
 10000000	Mining and Logging	15000000
@@ -319,7 +318,7 @@ industry_code	industry_name	parent
 80813300	Social Advocacy Organizations
 80813400	Civic and Social Organizations
 80813900	Business, Professional, Labor, Political, and Similar Organizations
-90000000	Government	07000000
+90000000	Government	00000000
 90910000	Federal Government
 90912811	National Security
 90912991	Federal Government excluding Department of Defense

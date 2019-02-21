@@ -9,6 +9,9 @@
 import Foundation
 
 class OESReport {
+    
+    static let ALL_OCCUPATIONS_CODE = "000000"
+    
     enum DataTypeCode: String {
         case employment = "01"
         case employmentPercentRelativeStdError = "02"
@@ -29,7 +32,7 @@ class OESReport {
         case locationQuotient = "17"
     }
     
-    class func getSeriesId(forArea area: Area, occupationCode: String = "000000",
+    class func getSeriesId(forArea area: Area, occupationCode: String = ALL_OCCUPATIONS_CODE,
                            dataTypeCode: DataTypeCode,
                            adjustment: SeasonalAdjustment) -> SeriesId? {
 

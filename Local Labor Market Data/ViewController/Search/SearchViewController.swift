@@ -193,16 +193,16 @@ extension SearchViewController {
     }
     
     func displayNationalReports() {
-        let vc = MetroStateViewController.instantiateFromStoryboard()
-        object_setClass(vc, NationalViewController.self)
-        vc.area = dataUtil.nationalArea()
-        if let splitVC = splitViewController {
-            let navController = UINavigationController(rootViewController: vc)
-            splitVC.showDetailViewController(navController, sender: nil)
-        }
-        else {
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        performSegue(withIdentifier: "showMetroArea", sender: dataUtil.nationalArea())
+//        let vc = MetroStateViewController.instantiateFromStoryboard()
+//        vc.area = dataUtil.nationalArea()
+//        if let splitVC = splitViewController {
+//            let navController = UINavigationController(rootViewController: vc)
+//            splitVC.showDetailViewController(navController, sender: nil)
+//        }
+//        else {
+//            navigationController?.pushViewController(vc, animated: true)
+//        }
     }
 }
 

@@ -107,13 +107,10 @@ extension EmploymentWageTableViewCell {
                                 periodName: String?, year: String?) {
 
         defer {applyEmploymentAccessibility()}
-        if area is National {
-            areaLabel.text = "National Data"
-        }
-        else {
-            areaLabel.text = "Local Data"
-        }
-
+        
+        guard let area = area else { return }
+        areaLabel.text = "\(area.displayType) Data"
+        
         guard let seriesReport = seriesReport else {
             qtrYearLabel.text = ""
             employmentValueLabel.text = ""

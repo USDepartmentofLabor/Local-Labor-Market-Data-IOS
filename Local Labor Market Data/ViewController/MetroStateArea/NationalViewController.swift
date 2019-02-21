@@ -24,8 +24,5 @@ class NationalViewController: MetroStateViewController {
     
     override func setupView() {
         super.setupView()
-        title = "National Data"
-        areaTitleLabel.text = "National Data"
-        subAreaHeightConstraint.constant = 0
     }
 }

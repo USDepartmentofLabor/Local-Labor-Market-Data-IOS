@@ -43,7 +43,7 @@ class MetroStateViewController: AreaViewController {
         ReportSection(title: Section.IndustryEmploymentTitle, collapsed: true,
                       reportTypes:[.industryEmployment(industryCode: "00000000", .allEmployees)]),
         ReportSection(title: Section.OccupationEmploymentTitle, collapsed: true,
-                reportTypes: [.occupationEmployment(occupationalCode: "000000", .annualMeanWage)])]
+                reportTypes: [.occupationEmployment(occupationalCode: OESReport.ALL_OCCUPATIONS_CODE, .annualMeanWage)])]
     
     var localAreaReportsDict: [ReportType: AreaReport]?
     var nationalAreaReportsDict = [ReportType: AreaReport]()
@@ -68,14 +68,22 @@ class MetroStateViewController: AreaViewController {
 
     override func setupView() {
         super.setupView()
-        title = area is Metro ? "Metro Area": "State"
-
-        let leftSubAreaTitle = area is Metro ? "State": "Metro"
         
-        rightSubArea.titleLabel?.text = "County"
-        leftSubArea.setTitle(leftSubAreaTitle, for: .normal)
-        if area is State {
-            leftSubArea.setImage(#imageLiteral(resourceName: "leftDownArrow"), for: .normal)
+        if area is National {
+            title = "National Data"
+            areaTitleLabel.text = "\(area.displayType) Data"
+            subAreaHeightConstraint.constant = 0
+        }
+        else {
+            title = area is Metro ? "Metro Area": "State"
+
+            let leftSubAreaTitle = area is Metro ? "State": "Metro"
+        
+            rightSubArea.titleLabel?.text = "County"
+            leftSubArea.setTitle(leftSubAreaTitle, for: .normal)
+            if area is State {
+                leftSubArea.setImage(#imageLiteral(resourceName: "leftDownArrow"), for: .normal)
+            }
         }
 
         tableView.register(UINib(nibName: UnEmploymentRateTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: UnEmploymentRateTableViewCell.reuseIdentifier)
@@ -86,8 +94,14 @@ class MetroStateViewController: AreaViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         tableView.register(UINib(nibName: AreaSectionHeaderView.nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: AreaSectionHeaderView.reuseIdentifier)
-        tableView.sectionHeaderHeight = UITableView.automaticDimension;
+        tableView.register(UINib(nibName: AreaSectionFooterView.nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: AreaSectionFooterView.reuseIdentifier)
+
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 44
+        
+        tableView.sectionFooterHeight = UITableView.automaticDimension
+        tableView.estimatedSectionFooterHeight = 44
+        
         seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
 
         setupAccessbility()
@@ -186,6 +200,7 @@ class MetroStateViewController: AreaViewController {
         
         // Display History
         if segue.identifier == "showHistory" {
+            splitViewController?.preferredDisplayMode = .primaryHidden
             if let destVC = segue.destination as? HistoryViewController,
                 let reportType = sender as? ReportType {
 
@@ -414,6 +429,32 @@ extension MetroStateViewController: UITableViewDelegate {
         sectionHeaderView.delegate = self
         return sectionHeaderView
     }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let currentSection = sections[section]
+
+        guard currentSection.collapsed == false else { return nil }
+        
+        guard currentSection.title == Section.UnemploymentRateTitle ||
+            currentSection.title == Section.IndustryEmploymentTitle else { return nil }
+        
+        guard let sectionFooterView =
+            tableView.dequeueReusableHeaderFooterView(withIdentifier: AreaSectionFooterView.reuseIdentifier) as? AreaSectionFooterView
+            else { return nil }
+        
+        sectionFooterView.section = section
+        sectionFooterView.delegate = self
+        return sectionFooterView
+
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let currentSection = sections[section]
+        
+        guard currentSection.collapsed == false else { return 0 }
+        
+        return 44
+    }
 }
 
 // MARK: Report Header Delegate
@@ -462,19 +503,6 @@ extension MetroStateViewController: AreaSectionHeaderDelegate {
         tableView.endUpdates()
     }
     
-    func sectionHeader(_ sectionHeader: AreaSectionHeaderView, displayHistory section: Int) {
-        let section = sections[section]
-        
-        if section.title == Section.UnemploymentRateTitle {
-            displayUnemploymentHistory()
-        }
-        // For Industry Title
-        else if section.title == Section.IndustryEmploymentTitle {
-            displayIndustryHistory()
-        }
-        
-    }
-
     func sectionHeader(_ sectionHeader: AreaSectionHeaderView, displayDetails section: Int) {
         let section = sections[section]
         
@@ -493,8 +521,24 @@ extension MetroStateViewController: AreaSectionHeaderDelegate {
     }
     
     func displayOESOccupation() {
-        let reportType: ReportType = .occupationEmployment(occupationalCode: "000000", .annualMeanWage)
+        let reportType: ReportType = .occupationEmployment(occupationalCode: OESReport.ALL_OCCUPATIONS_CODE, .annualMeanWage)
         performSegue(withIdentifier: "showOccupations", sender: reportType)
+    }
+    
+}
+
+// MARK: AreaSectionFooterDelegate
+extension MetroStateViewController: AreaSectionFooterDelegate {
+    func sectionFooter(_ sectionFooter: AreaSectionFooterView, displayHistory section: Int) {
+        let section = sections[section]
+        
+        if section.title == Section.UnemploymentRateTitle {
+            displayUnemploymentHistory()
+        }
+            // For Industry Title
+        else if section.title == Section.IndustryEmploymentTitle {
+            displayIndustryHistory()
+        }
     }
     
     func displayUnemploymentHistory() {
@@ -504,7 +548,7 @@ extension MetroStateViewController: AreaSectionHeaderDelegate {
     
     func displayIndustryHistory() {
         let reportType: ReportType = .industryEmployment(industryCode: "00000000", .allEmployees)
-       performSegue(withIdentifier: "showHistory", sender: reportType)
+        performSegue(withIdentifier: "showHistory", sender: reportType)
     }
 }
 

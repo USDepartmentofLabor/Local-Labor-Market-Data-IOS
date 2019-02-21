@@ -17,7 +17,7 @@ enum ReportStatus: String, Decodable {
 struct APIReportResponse: Decodable {
     let status: ReportStatus
     let message: [String]
-    let series: [SeriesReport]?
+    var series: [SeriesReport]?
     
 //    // Coding Keys
     enum CodingKeys: String, CodingKey {

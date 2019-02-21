@@ -12,6 +12,8 @@ class ItemViewController: UIViewController {
     var viewModel: ItemViewModel!
     
     @IBOutlet weak var areaTitleLabel: UILabel!
+    
+    @IBOutlet weak var seasonallyAdjustedView: UIView!
     @IBOutlet weak var seasonallyAdjustedSwitch: UICustomSwitch!
     @IBOutlet weak var seasonallyAdjustedTitle: UILabel!
     
@@ -26,6 +28,9 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var parentValueLabel: UILabel!
     @IBOutlet weak var ownershipLabel: UILabel!
     
+    
+    @IBOutlet weak var localTitleLabel: UIButton!
+    @IBOutlet weak var nationalTitleButton: UIButton!
     @IBOutlet weak var parentNationalValueLabel: UILabel!
     @IBOutlet weak var dataTypeButton: UIButton!
     
@@ -52,13 +57,8 @@ class ItemViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(displaySearchBar(sender:)))
         
         areaTitleLabel.scaleFont(forDataType: .reportAreaTitle, for:traitCollection)
-        seasonallyAdjustedSwitch.tintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
-        seasonallyAdjustedSwitch.onTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
-        seasonallyAdjustedTitle.scaleFont(forDataType: .seasonallyAdjustedSwitch, for: traitCollection)
-
         dataTitleLabel.text = viewModel.dataTitle
         areaTitleLabel.text = viewModel.area.title
-        seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
         setupAccessbility()
 
         tableView.rowHeight = UITableView.automaticDimension
@@ -67,6 +67,22 @@ class ItemViewController: UIViewController {
         if viewModel.items?.count ?? 0 > 0 {
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         }
+        if viewModel.isNationalReport {
+            parentNationalValueLabel.removeFromSuperview()
+            nationalTitleButton.removeFromSuperview()
+        }
+        
+        if viewModel is OccupationViewModel {
+            seasonallyAdjustedView.removeFromSuperview()
+        }
+        else {
+            seasonallyAdjustedSwitch.tintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
+            seasonallyAdjustedSwitch.onTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
+            seasonallyAdjustedTitle.scaleFont(forDataType: .seasonallyAdjustedSwitch, for: traitCollection)
+            seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
+        }
+        
+        localTitleLabel.setTitle(viewModel.area.displayType, for: .normal)
 
         parentTitleLabel.text = viewModel.parentItem.title
         parentValueLabel.text = ""
@@ -192,14 +208,22 @@ extension ItemViewController: UITableViewDataSource {
             cell.titleLabel?.text = title
 
              cell.valueLabel.text = viewModel.getReportValue(item: item) ?? ReportManager.dataNotAvailableStr
-            cell.nationalValueLabel.text = viewModel.getNationalReportValue(item: item) ?? ReportManager.dataNotAvailableStr
-        
+            
+            if viewModel.isNationalReport {
+                if let nationalValueLabel = cell.nationalValueLabel {
+                    nationalValueLabel.removeFromSuperview()
+                }
+            }
+            else {
+                cell.nationalValueLabel.text = viewModel.getNationalReportValue(item: item) ?? ReportManager.dataNotAvailableStr
+            }
+            
             if (item.children?.count ?? 0) > 0 {
-                cell.accessoryType = .disclosureIndicator
+                cell.nextImageView.isHidden = false
                 cell.selectionStyle = .default
             }
             else {
-                cell.accessoryType = .none
+                cell.nextImageView.isHidden = true
                 cell.selectionStyle = .none
             }
         }
@@ -248,8 +272,10 @@ extension ItemViewController {
             guard let strongSelf = self else {return}
             strongSelf.activityIndicator.stopAnimating()
             strongSelf.tableView.reloadData()
-            strongSelf.parentValueLabel.text = strongSelf.viewModel.getParentReportValue()
-            strongSelf.parentNationalValueLabel.text = strongSelf.viewModel.getParentNationalReportValue()
+            strongSelf.parentValueLabel.text = strongSelf.viewModel.getParentReportValue() ?? ReportManager.dataNotAvailableStr
+            if !strongSelf.viewModel.isNationalReport {
+                strongSelf.parentNationalValueLabel.text = strongSelf.viewModel.getParentNationalReportValue() ?? ReportManager.dataNotAvailableStr
+            }
             strongSelf.reportPeriodLabel.text = strongSelf.viewModel.getReportPeriod()
         }
     }

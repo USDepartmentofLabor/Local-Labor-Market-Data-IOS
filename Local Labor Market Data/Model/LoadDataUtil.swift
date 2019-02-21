@@ -342,7 +342,6 @@ extension LoadDataUtil {
             currentIndex = currentIndex+1
             loadSubIndustry(parent: supersector, industryItems: industryItems,
                             currentIndex: &currentIndex)
-                print("returned")
             }
         }
         

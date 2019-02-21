@@ -87,12 +87,8 @@ extension IndustryEmploymentTableViewCell: ReportTableViewCell {
     func displaySeries(area: Area?, seriesReport: SeriesReport?, periodName: String?, year: String?) {
 //        defer {applyAccessibility()}
         
-        if area is National {
-            areaLabel.text = "National Data"
-        }
-        else {
-            areaLabel.text = "Local Data"
-        }
+        guard let area = area else { return }
+        areaLabel.text = "\(area.displayType) Data"
         
         guard let seriesReport = seriesReport else {
             monthYearLabel.text = ""

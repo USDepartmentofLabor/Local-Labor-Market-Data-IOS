@@ -2,7 +2,6 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 00000000	-	B	Total nonfarm	0	T	1
 05000000	-	A	Total private	1	T	2	00000000
 06000000	-	A	Goods-producing	1	T	3	05000000
-07000000	-	B	Service-providing	1	T	4	00000000
 08000000	-	A	Private service-providing	1	T	5	05000000
 10000000	-	A	Mining and logging	2	T	6	06000000
 10113300	1133	A	Logging	5	T	7
@@ -884,7 +883,7 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 80813920	81392	A	Professional organizations	6	T	883
 80813930	81393	A	Labor unions and similar labor organizations	6	T	884
 80813990	81394,9	A	Miscellaneous professional and similar organizations	6	T	885
-90000000	-	B	Government	2	T	886	07000000
+90000000	-	B	Government	2	T	886	00000000
 90910000	-	B	Federal	3	T	887
 90911000	-	B	Federal, except U.S. Postal Service	4	T	888
 90916220	-	B	Federal hospitals	5	T	889

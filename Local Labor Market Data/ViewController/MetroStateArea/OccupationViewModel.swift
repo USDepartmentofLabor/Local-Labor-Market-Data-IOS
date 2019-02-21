@@ -14,8 +14,8 @@ class OccupationViewModel: ItemViewModel {
     init(area: Area, parent: Item? = nil, dataYear: String) {
         super.init(area: area, parent:parent, itemType: OE_Occupation.self, dataYear: dataYear)
         
-        itemDataTypes = [ItemDataType(title: "Annual Mean Wage", reportType: ReportType.occupationEmployment(occupationalCode: "000000", .annualMeanWage)),
-        ItemDataType(title: "Employment Level", reportType: ReportType.occupationEmployment(occupationalCode: "000000", .employment))]
+        itemDataTypes = [ItemDataType(title: "Annual Mean Wage", reportType: ReportType.occupationEmployment(occupationalCode: OESReport.ALL_OCCUPATIONS_CODE, .annualMeanWage)),
+        ItemDataType(title: "Employment Level", reportType: ReportType.occupationEmployment(occupationalCode: OESReport.ALL_OCCUPATIONS_CODE, .employment))]
         
         dataTitle = "Occupation"
         currentDataType = itemDataTypes[0]

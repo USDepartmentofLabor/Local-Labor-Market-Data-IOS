@@ -51,6 +51,31 @@ public class Item: NSManagedObject {
     func subItems() -> [Item]? {
         return (children?.allObjects as? [Item])?.sorted()
     }
+    
+    func getLeafChildren() -> [Item]? {
+        guard let children = children else { return nil }
+
+        var results = [Item]()
+        for case let item as Item in children {
+            // If this item has no children then it is leaf item
+            if item.isLeaf {
+                results.append(item)
+            }
+            else if let leaftChildren = item.getLeafChildren() {
+                results.append(contentsOf: leaftChildren)
+            }
+        }
+        
+        return results.sorted()
+    }
+    
+    var isLeaf: Bool {
+        var isLeaf = true
+        if let children = children, children.count > 0 {
+            isLeaf = false
+        }
+        return isLeaf
+    }
 }
 
 extension Item: Comparable {

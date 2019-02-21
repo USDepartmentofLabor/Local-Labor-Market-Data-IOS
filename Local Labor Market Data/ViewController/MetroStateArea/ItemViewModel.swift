@@ -36,6 +36,12 @@ class ItemViewModel: NSObject {
     var dataTitle = "Industry"
     var dataSort = DataSort.none
     
+    var isNationalReport: Bool {
+        get {
+            return area is National
+        }
+    }
+    
     var _items: [Item]?
     var items: [Item]? {
         get {
@@ -77,14 +83,27 @@ class ItemViewModel: NSObject {
         else {
             parentItem = parent!
         }
-        _items = parentItem.subItems()
+        
+        // Occupations -  except ALL_OCCUPATIONS_CODE, Show only Leaf level occupations
+        // for Non National Area
+        if !(area is National),
+            parentItem is OE_Occupation,
+            parentItem.code != OESReport.ALL_OCCUPATIONS_CODE {
+            _items = parentItem.getLeafChildren()
+            
+            print("Parent \(parentItem.title): leaf Count: \(_items?.count)")
+        }
+        else {
+            _items = parentItem.subItems()
+        }
+        
         currentDataType = itemDataTypes[0]
     }
 
     func createInstance(forParent parent: Item) -> ItemViewModel {
         let vm = ItemViewModel(area: area, parent: parent, itemType: type(of: parent), dataYear: dataYear)
         
-        vm.currentDataType = currentDataType
+        vm.setCurrentDataType(dataType: currentDataType)
         return vm
     }
     
@@ -131,7 +150,7 @@ class ItemViewModel: NSObject {
     
     
     func getNationalReportData(item: Item) -> SeriesData? {
-        let latestData = getReportData(item: item)
+        let latestData = getReportData(item: parentItem)
         return getNationalReportData(item: item, period: latestData?.period, year: latestData?.year)
     }
     
@@ -206,8 +225,19 @@ class ItemViewModel: NSObject {
 // Mark: Load Report
 extension ItemViewModel {
     func loadReport(seasonalAdjustment: SeasonalAdjustment, completion: @escaping () -> Void) {
-        loadLocalReport(seasonalAdjustment: seasonalAdjustment) {
-            self.loadNationalReport(seasonalAdjustment: seasonalAdjustment, completion:  completion)
+        loadLocalReport(seasonalAdjustment: seasonalAdjustment) {[weak self] in
+            guard let strongSelf = self else { return }
+            if strongSelf.area is National {
+                completion()
+            }
+                // National Report is required only for OES and QCEW
+            else if strongSelf.parentItem is OE_Occupation ||
+                strongSelf.parentItem is QCEW_Industry {
+                strongSelf.loadNationalReport(seasonalAdjustment: seasonalAdjustment, completion:  completion)
+            }
+            else {
+                completion()
+            }
         }
     }
     

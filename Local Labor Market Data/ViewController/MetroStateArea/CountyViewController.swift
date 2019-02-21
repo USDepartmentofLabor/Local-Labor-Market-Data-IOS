@@ -89,15 +89,19 @@ class CountyViewController: AreaViewController {
         
         tableView.register(UINib(nibName: UnEmploymentRateTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: UnEmploymentRateTableViewCell.reuseIdentifier)
         tableView.register(UINib(nibName: EmploymentWageTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: EmploymentWageTableViewCell.reuseIdentifier)
-        
+        tableView.register(UINib(nibName: OwnershipTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: OwnershipTableViewCell.reuseIdentifier)
+
         tableView.estimatedRowHeight = 230
         tableView.rowHeight = UITableView.automaticDimension
         
         tableView.register(UINib(nibName: AreaSectionHeaderView.nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: AreaSectionHeaderView.reuseIdentifier)
         tableView.sectionHeaderHeight = UITableView.automaticDimension;
         tableView.estimatedSectionHeaderHeight = 44
-
-        tableView.register(UINib(nibName: OwnershipTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: OwnershipTableViewCell.reuseIdentifier)
+        
+        tableView.register(UINib(nibName: AreaSectionFooterView.nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: AreaSectionFooterView.reuseIdentifier)
+        tableView.sectionFooterHeight = UITableView.automaticDimension;
+        tableView.estimatedSectionFooterHeight = 44
+        
         seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
 
         setupAccessbility()
@@ -397,6 +401,7 @@ extension CountyViewController: UITableViewDataSource {
                 self.tableView(tableView, numberOfRowsInSection: indexPath.section)-1 {
                 let ownershipCell = tableView.dequeueReusableCell(withIdentifier: OwnershipTableViewCell.reuseIdentifier, for:indexPath) as? OwnershipTableViewCell
                 let sectionReportTypes = reportSection.allReportTypes()
+                ownershipCell?.area = area
                 ownershipCell!.localAreaReportsDict = localAreaReportsDict.filter {sectionReportTypes?.contains($0.key) ?? false}
                 ownershipCell!.nationalAreaReportsDict = nationalAreaReportsDict.filter {sectionReportTypes?.contains($0.key) ?? false}
                 ownershipCell!.reportSections = reportSection.children
@@ -528,6 +533,30 @@ extension CountyViewController: UITableViewDelegate {
         }
         return 230
     }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let currentSection = reportSections[section]
+        
+        guard currentSection.collapsed == false else { return nil }
+        
+        guard currentSection.title == CountyReport.unemploymentRate else { return nil }
+        
+        guard let sectionFooterView =
+            tableView.dequeueReusableHeaderFooterView(withIdentifier: AreaSectionFooterView.reuseIdentifier) as? AreaSectionFooterView
+            else { return nil }
+        
+        sectionFooterView.section = section
+        sectionFooterView.delegate = self
+        return sectionFooterView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let currentSection = reportSections[section]
+        
+        guard currentSection.collapsed == false else { return 0 }
+        
+        return 44
+    }
 }
 
 extension CountyViewController: AreaSectionHeaderDelegate {
@@ -594,7 +623,22 @@ extension CountyViewController: AreaSectionHeaderDelegate {
         let reportType: ReportType = .quarterlyEmploymentWageFrom(ownershipCode: .totalCovered, dataType: .allEmployees)
         performSegue(withIdentifier: "showIndustries", sender: reportType)
     }
+}
 
+// MARK: AreaSectionFooterDelegate
+extension CountyViewController: AreaSectionFooterDelegate {
+    func sectionFooter(_ sectionFooter: AreaSectionFooterView, displayHistory section: Int) {
+        let section = reportSections[section]
+        
+        if section.title == CountyReport.unemploymentRate {
+            displayUnemploymentHistory()
+        }
+    }
+    
+    func displayUnemploymentHistory() {
+        let reportType: ReportType = .unemployment(measureCode: .unemploymentRate)
+        performSegue(withIdentifier: "showHistory", sender: reportType)
+    }
 }
 
 extension CountyViewController: OwnershipTableViewCellDelegate {

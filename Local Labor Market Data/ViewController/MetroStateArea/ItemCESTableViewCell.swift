@@ -1,21 +1,21 @@
 //
-//  ItemTableViewCell.swift
+//  ItemCESTableViewCell.swift
 //  Local Labor Market Data
 //
-//  Created by Nidhi Chawla on 1/3/19.
+//  Created by Nidhi Chawla on 2/19/19.
 //  Copyright © 2019 Department of Labor. All rights reserved.
 //
 
 import UIKit
 
-class ItemTableViewCell: UITableViewCell {
+class ItemCESTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
-    
-    @IBOutlet weak var nationalValueLabel: UILabel!
-    
-    @IBOutlet weak var nextImageView: UIImageView!
+    @IBOutlet weak var tweleveMonthPercentLabel: UILabel!
+    @IBOutlet weak var tweleveMonthValueLabel: UILabel!
+    @IBOutlet weak var oneMonthPercentLabel: UILabel!
+    @IBOutlet weak var oneMonthValueLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

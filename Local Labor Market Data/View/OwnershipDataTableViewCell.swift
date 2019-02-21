@@ -81,12 +81,8 @@ extension OwnershipDataTableViewCell {
     func displayEmploymentLevel(area: Area?, seriesReport: SeriesReport?,
                                 periodName: String?, year: String?) {
 
-        if area is National {
-            areaLabel.text = "National Data"
-        }
-        else {
-            areaLabel.text = "Local Data"
-        }
+        guard let area = area else { return }
+        areaLabel.text = "\(area.displayType) Data"
         
         // If Series doesn't exist, it hasn't been downloaded yet
         guard let seriesReport = seriesReport else {

@@ -94,3 +94,25 @@ extension Area: Comparable {
         
     }
 }
+
+extension Area {
+    var displayType: String {
+        get {
+            var type = ""
+            if self is National {
+                type = "National"
+            }
+            else if self is Metro {
+                type = "Metro"
+            }
+            if self is State {
+                type = "State"
+            }
+            if self is County {
+                type = "County"
+            }
+
+            return type
+        }
+    }
+}
