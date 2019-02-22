@@ -65,10 +65,10 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
 
         viewModel = ViewModelProviders.of(this).get(HierarchyViewModel::class.java)
         viewModel.mAdjustment = ReportManager.adjustment
+        if (parentId != null) viewModel.setParentId(parentId!!)
         mArea.let {
             viewModel.mArea = it
         }
-        viewModel.setParentId(parentId)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         adapter = HierarchyListAdapter(this)
@@ -122,6 +122,8 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
             aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             wageVsLevelSpinner!!.adapter = aa
         }
+        viewModel.setReportType(reportType)
+        viewModel.setWageVsLevelType(reportWageVsLevelType)
 
         updateHeader()
     }

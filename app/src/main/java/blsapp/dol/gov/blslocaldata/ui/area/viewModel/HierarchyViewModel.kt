@@ -12,6 +12,7 @@ import blsapp.dol.gov.blslocaldata.ioThread
 import blsapp.dol.gov.blslocaldata.model.DataUtil
 import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
+import blsapp.dol.gov.blslocaldata.model.reports.ReportType.OccupationalEmployment
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.HierarchyBaseViewModel
 
 /**
@@ -20,8 +21,8 @@ import blsapp.dol.gov.blslocaldata.ui.area.viewModel.HierarchyBaseViewModel
 
 class HierarchyViewModel(application: Application) : AndroidViewModel(application), HierarchyBaseViewModel {
 
-    lateinit override var mArea: AreaEntity
-    lateinit override var mAdjustment: SeasonalAdjustment
+    override lateinit var mArea: AreaEntity
+    override lateinit var mAdjustment: SeasonalAdjustment
 
     override var isLoading = MutableLiveData<Boolean>()
     override var reportError = MutableLiveData<ReportError>()
@@ -41,9 +42,9 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val repository: LocalRepository = (application as BLSApplication).repository
     private var nationalArea: NationalEntity? = null
-    private var reportType: ReportType? =  null
+    private lateinit var reportType: ReportType
     private var reportTypes: MutableList<ReportType>? = null
-    private var parentId: Long? =  null
+    private var parentId: Long = -1
     private var industryType: IndustryType = IndustryType.CE_INDUSTRY
     private var wageVsLevelTypeOccupation: OESReport.DataTypeCode = OESReport.DataTypeCode.EMPLOYMENT
     private var QCEWwageVsLevelTypeOccupation: QCEWReport.DataTypeCode = QCEWReport.DataTypeCode.allEmployees
@@ -66,7 +67,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         }
         return timeTitle
     }
-    fun setParentId(originalInput: Long?) {
+    fun setParentId(originalInput: Long) {
         parentId = originalInput
     }
 
@@ -81,7 +82,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                     else -> IndustryType.SM_INDUSTRY
                 }
             }
-            is ReportType.OccupationalEmployment -> industryType = IndustryType.OE_OCCUPATION
+            is OccupationalEmployment -> industryType = IndustryType.OE_OCCUPATION
             is ReportType.QuarterlyEmploymentWages -> industryType = IndustryType.QCEW_INDUSTRY
         }
     }
@@ -121,19 +122,20 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             nationalArea = repository.getNationalArea()
 
             val rows = ArrayList<HierarchyRow>()
-            var parentIdSafe:Long? = parentId
+            var parentIdLocal = parentId
             var parentIndustryData: IndustryEntity? = null
 
-            if (parentIdSafe == null) {
-                parentIdSafe = -1L
-                var baseParentIndustries = repository.getChildIndustries(parentCode = parentIdSafe, industryType = industryType)
-                if  (baseParentIndustries != null) {
+            if (parentIdLocal == -1L) {
+               // var baseParentIndustries = repository.getChildIndustries(parentCode = parentIdLocal, industryType = industryType)
+                var baseParentIndustries = getChildren(parentIdLocal, industryType)
+
+                if  (baseParentIndustries != null && baseParentIndustries.isNotEmpty()) {
                     parentIndustryData = baseParentIndustries.get(0)
-                    parentIdSafe = parentIndustryData.id
+                    if (parentIndustryData.id != null) parentIdLocal = parentIndustryData.id!!
                 }
 
             } else {
-                parentIndustryData = repository.getIndustry(parentIdSafe)
+                parentIndustryData = repository.getIndustry(parentIdLocal)
             }
 
             if (parentIndustryData != null) {
@@ -146,7 +148,8 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                         false))
             }
 
-            var fetchedData = repository.getChildIndustries(parentIdSafe!!, industryType)
+            //var fetchedData = repository.getChildIndustries(parentIdLocal!!, industryType)
+            var fetchedData = getChildren(parentIdLocal!!, industryType)
 
             fetchedData?.forEach{ industry ->
                 val mergeTitle = industry.title + " (" + industry.industryCode + ")"
@@ -167,6 +170,20 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
+    private fun getChildren(parentId: Long, industryType: IndustryType) : List<IndustryEntity>? {
+
+        var retChildren: List<IndustryEntity>? = null
+
+        if (reportType is OccupationalEmployment &&
+                !(mArea is NationalEntity) &&
+                this.parentId >= 0) {
+            retChildren = repository.getChildLeafIndustries(parentId, industryType)
+        } else
+            retChildren = repository.getChildIndustries(parentId, industryType)
+
+        return retChildren
+    }
+
     private fun getReportTypesArray(hierarchyRows: ArrayList<HierarchyRow>): MutableList<ReportType> {
 
         var retReportTypes = mutableListOf<ReportType>()
@@ -175,8 +192,8 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             when (reportType) {
                 is ReportType.IndustryEmployment ->
                     retReportTypes.add(ReportType.IndustryEmployment(it.industry!!.industryCode, CESReport.DataTypeCode.ALLEMPLOYEES))
-                is ReportType.OccupationalEmployment ->
-                    retReportTypes.add(ReportType.OccupationalEmployment(it.industry!!.industryCode, wageVsLevelTypeOccupation))
+                is OccupationalEmployment ->
+                    retReportTypes.add(OccupationalEmployment(it.industry!!.industryCode, wageVsLevelTypeOccupation))
                 is ReportType.QuarterlyEmploymentWages -> {
                     val reportTypeQCEW: ReportType.QuarterlyEmploymentWages = this.reportType as ReportType.QuarterlyEmploymentWages
                     retReportTypes.add(ReportType.OccupationalEmploymentQCEW(

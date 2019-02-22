@@ -122,6 +122,22 @@ class LocalRepository private constructor(private val mDatabase: BLSDatabase) {
         return states
     }
 
+    fun getChildLeafIndustries(parentCode: Long, industryType: IndustryType): List<IndustryEntity>? {
+        var retIndustries: MutableList <IndustryEntity> = mutableListOf()
+        val industries = mDatabase.industryDAO().findChildrenByParentAndType(parentCode, industryType.ordinal)
+        for (industry in industries) {
+            if (!industry.superSector) {
+                retIndustries.add(industry)
+            } else {
+                val leafChildren = getChildLeafIndustries(industry.id!!.toLong(), industryType)
+                if (leafChildren != null && leafChildren.isNotEmpty()) {
+                    retIndustries.addAll(leafChildren)
+                }
+            }
+        }
+        return retIndustries
+    }
+
     fun getChildIndustries(parentCode: Long, industryType: IndustryType): List<IndustryEntity>? {
         val industries = mDatabase.industryDAO().findChildrenByParentAndType(parentCode, industryType.ordinal)
         return industries
