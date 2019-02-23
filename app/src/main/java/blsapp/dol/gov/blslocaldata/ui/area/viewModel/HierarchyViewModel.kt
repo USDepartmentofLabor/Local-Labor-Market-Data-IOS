@@ -34,6 +34,9 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         loadReportCategories()
     }
 
+    private var column1Descending:Boolean = false
+    private var column2Descending:Boolean = false
+
     var localAreaReports: MutableList<AreaReport>? = null
 
     var areaTitle: String? = null
@@ -151,19 +154,32 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         loadReportCategories()
     }
 
-    fun sortByColumn1() {
+    fun sortByColumn1():Boolean {
         var tmpList = hierarchyRows.value
-        hierarchyRows.postValue(tmpList?.sortedWith(compareBy(
+        tmpList = tmpList?.sortedWith(compareBy(
                 { it.localValue?.length },
                 { it.localValue }
-        )))
+        ))
+        if (column1Descending) {
+            tmpList = tmpList?.reversed()
+        }
+        column1Descending = !column1Descending
+        hierarchyRows.postValue(tmpList)
+        return column1Descending
     }
-    fun sortByColumn2() {
+    fun sortByColumn2():Boolean {
         var tmpList = hierarchyRows.value
-        hierarchyRows.postValue(tmpList?.sortedWith(compareBy(
+        tmpList = tmpList?.sortedWith(compareBy(
                 { it.nationalValue?.length },
                 { it.nationalValue }
-        )))
+        ))
+
+        if (column2Descending) {
+            tmpList = tmpList?.reversed()
+        }
+        column2Descending = !column2Descending
+        hierarchyRows.postValue(tmpList)
+        return column2Descending
     }
 
     private fun loadReportCategories() {

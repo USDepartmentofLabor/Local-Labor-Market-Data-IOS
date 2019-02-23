@@ -19,6 +19,10 @@ import blsapp.dol.gov.blslocaldata.ui.viewmodel.HierarchyRow
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.HierarchyViewModel
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType
 import kotlinx.android.synthetic.main.fragment_hierarchy_header.*
+import android.support.graphics.drawable.VectorDrawableCompat
+import android.support.v4.content.ContextCompat
+import android.support.v4.graphics.drawable.DrawableCompat
+
 
 /**
  * AreaHeaderFragment - A simple [Fragment] subclass.
@@ -86,17 +90,31 @@ class HierarchyHeaderFragment : Fragment() {
 
         val clickListener = View.OnClickListener {view ->
 
+            turnOffArrows()
             when (view.getId()) {
                 R.id.colum1View -> {
-                    viewModel.sortByColumn1()
+                    if (viewModel.sortByColumn1())
+                        DrawableCompat.setTint(col1UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                    else
+                        DrawableCompat.setTint(col1DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
                 }
                 R.id.colum2View -> {
-                    viewModel.sortByColumn2()
+                    if (viewModel.sortByColumn2())
+                        DrawableCompat.setTint(col2UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                    else
+                        DrawableCompat.setTint(col2DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
                 }
             }
         }
         colum1View.setOnClickListener(clickListener)
         colum2View.setOnClickListener(clickListener)
+    }
+
+    private fun turnOffArrows() {
+        DrawableCompat.setTint(col1UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(col1DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(col2UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(col2DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
     }
 
     private fun setupLevelVsWageSpinner () {
