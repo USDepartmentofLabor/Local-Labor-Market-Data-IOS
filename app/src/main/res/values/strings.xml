@@ -5,6 +5,7 @@
     <string name="metro">Metro</string>
     <string name="state">State</string>
     <string name="county">County</string>
+    <string name="national">National</string>
     <string name="home">Home</string>
     <string name="local_labor_market_data">Local Labor \nMarket Data</string>
     <string name="action_info">Info</string>
@@ -63,14 +64,16 @@
     <string name="ownership_state_govt">State Government</string>
     <string name="ownership_local_govt">Local Government</string>
     <string name="ownership_total_covered">Total</string>
+    <string name="industries_title">Industries</string>
+    <string name="occupation_title">Occupations</string>
 
     <string name="employment_level">Employment Level</string>
     <string name="mean_annual_wage">Mean Annual Wage</string>
     <string name="net_change">Net Change</string>
     <string name="one_month_change">1-Month Change</string>
     <string name="twelve_month_change">12-Month Change</string>
-    <string name="average_weekly_wage">Avg Weekly wage</string>
-    <string name="average_weekly_wage_accessible">Average Weekly wage</string>
+    <string name="average_weekly_wage">Avg Weekly Wage</string>
+    <string name="average_weekly_wage_accessible">Average Weekly Wage</string>
     <string name="county_not_in_metro">This county is not a part of a Metropolitan Statistical Area.</string>
     <string name="loading_seasonally_adjusted_reports">Loading Seasonally Adjusted Reports</string>
     <string name="loading_not_seasonally_adjusted_reports">Loading Not Seasonally Adjusted Reports</string>

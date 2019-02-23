@@ -47,9 +47,6 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
     private lateinit var adapter: HierarchyListAdapter
     private lateinit var reportType: ReportType
     private lateinit var industryType: ReportRowType
-    private var wageVsLevelSpinnerTitles = arrayOf( "Employment Level", "Annual Mean Wage")
-    private var wageVsLevelSpinnerValues = arrayOf( ReportWageVsLevelType.EMPLOYMENT_LEVEL, ReportWageVsLevelType.ANNUAL_MEAN_WAGE)
-    private var reportWageVsLevelType = wageVsLevelSpinnerValues[0]
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,50 +86,7 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
                     if (isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
             viewModel.setAdjustment(ReportManager.adjustment)
         }
-
-        val wageVsLevelSpinner = findViewById<Spinner>(R.id.wageVsLevelSpinner) as Spinner
-
-        if (industryType == ReportRowType.INDUSTRY_EMPLOYMENT_ITEM) {
-
-            reportWageVsLevelType = wageVsLevelSpinnerValues[0]
-            viewModel.setReportType(reportType)
-            viewModel.setWageVsLevelType(reportWageVsLevelType)
-            viewModel.getIndustryReports()
-
-            wageVsLevelSpinner.visibility = View.INVISIBLE
-
-        } else {
-
-            wageVsLevelSpinnerTitles = arrayOf( "Employment Level", "Avg Weekly Wage")
-
-            wageVsLevelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    reportWageVsLevelType = wageVsLevelSpinnerValues[0]
-                }
-
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                    reportWageVsLevelType = wageVsLevelSpinnerValues[pos]
-                    viewModel.setReportType(reportType)
-                    viewModel.setWageVsLevelType(reportWageVsLevelType)
-                    viewModel.getIndustryReports()
-                }
-            }
-
-            val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, wageVsLevelSpinnerTitles)
-            aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            wageVsLevelSpinner!!.adapter = aa
-        }
         viewModel.setReportType(reportType)
-        viewModel.setWageVsLevelType(reportWageVsLevelType)
-
-        updateHeader()
-    }
-
-    fun updateHeader() {
-        industryAreaTextView.text = viewModel.areaTitle
-        industryAreaTextView.contentDescription = viewModel.accessibilityStr
-        ownershipTextView.text = viewModel.getOwnershipTitle()
-        timePeriodTextView.text = viewModel.getTimePeriodTitle()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -162,7 +116,6 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
     private fun attachObserver() {
         viewModel.hierarchyRows?.observe(this, Observer<List<HierarchyRow>> {
             adapter.setIndustryRows(it!!)
-            updateHeader()
         })
         viewModel.isLoading.observe(this, Observer<Boolean> {
             it?.let { showLoadingDialog(it) }

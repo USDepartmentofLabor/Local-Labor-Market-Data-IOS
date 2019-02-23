@@ -1,5 +1,7 @@
 package blsapp.dol.gov.blslocaldata.ui.area.fragments
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -7,8 +9,16 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 
 import blsapp.dol.gov.blslocaldata.R
+import blsapp.dol.gov.blslocaldata.model.ReportError
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.HierarchyRow
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.HierarchyViewModel
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType
+import kotlinx.android.synthetic.main.fragment_hierarchy_header.*
 
 /**
  * AreaHeaderFragment - A simple [Fragment] subclass.
@@ -19,11 +29,14 @@ import blsapp.dol.gov.blslocaldata.R
  */
 class HierarchyHeaderFragment : Fragment() {
     private var listener: OnFragmentInteractionListener? = null
+    private lateinit var viewModel: HierarchyViewModel
+    private var wageVsLevelTitles:MutableList<String>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hierarchy_header, container, false)
+        val headerView = inflater.inflate(R.layout.fragment_hierarchy_header, container, false)
+
+        return headerView
     }
 
     fun onButtonPressed(uri: Uri) {
@@ -34,8 +47,83 @@ class HierarchyHeaderFragment : Fragment() {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
             listener = context
+
         } else {
 //            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+        }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        viewModel = ViewModelProviders.of(activity!!).get(HierarchyViewModel::class.java)
+        attachObserver()
+        updateHeader()
+    }
+    private fun attachObserver() {
+        viewModel.hierarchyRows?.observe(this, Observer<List<HierarchyRow>> {
+          //  updateHeader()
+        })
+    }
+
+    private fun updateHeader() {
+        industryAreaTextView.text = viewModel.areaTitle
+        industryAreaTextView.contentDescription = viewModel.accessibilityStr
+        ownershipTextView.text = viewModel.getOwnershipTitle()
+        timePeriodTextView.text = viewModel.getTimePeriodTitle()
+        detailTitle.text = viewModel.detailTitle
+        setupLevelVsWageSpinner()
+        setupColumnHeaders()
+    }
+
+    private fun setupColumnHeaders() {
+        if  (viewModel.column1Title == null) {
+            colum1View.visibility = View.INVISIBLE
+        } else {
+            column1Title.text = viewModel.column1Title
+        }
+        column2Title.text = viewModel.column2Title
+
+        val clickListener = View.OnClickListener {view ->
+
+            when (view.getId()) {
+                R.id.colum1View -> {
+                    viewModel.sortByColumn1()
+                }
+                R.id.colum2View -> {
+                    viewModel.sortByColumn2()
+                }
+            }
+        }
+        colum1View.setOnClickListener(clickListener)
+        colum2View.setOnClickListener(clickListener)
+    }
+
+    private fun setupLevelVsWageSpinner () {
+
+        wageVsLevelTitles = viewModel.getWageVsLevelTitles()
+        if (wageVsLevelTitles == null) {
+            viewModel.setWageVsLevelIndex(0)
+            viewModel.getIndustryReports()
+            wageVsLevelSpinner.visibility = View.INVISIBLE
+        } else {
+            wageVsLevelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    viewModel.setWageVsLevelIndex(0)
+                }
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                    viewModel.setWageVsLevelIndex(pos)
+                    viewModel.getIndustryReports()
+
+                    wageVsLevelTitles?.let {
+                        dataTitle.text = it[pos]
+                    }
+                }
+            }
+
+            val aa = ArrayAdapter(activity, android.R.layout.simple_spinner_item, viewModel.getWageVsLevelTitles())
+            aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            wageVsLevelSpinner!!.adapter = aa
         }
     }
 

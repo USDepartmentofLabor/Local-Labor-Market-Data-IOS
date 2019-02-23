@@ -26,6 +26,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
+import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.BuildConfig
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
@@ -212,7 +213,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
     fun displayNationalReport() {
         doAsync {
             var nationalArea = areaViewModel.nationaArea
-            nationalArea.title = "National Data"
+            nationalArea.title =  getApplication().getString(R.string.national_area)
             uiThread {
                 displayReport(nationalArea)
             }
