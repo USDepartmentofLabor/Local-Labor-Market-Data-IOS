@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 
 import blsapp.dol.gov.blslocaldata.BLSApplication
+import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.LocalRepository
 import blsapp.dol.gov.blslocaldata.db.dao.IndustryType
 import blsapp.dol.gov.blslocaldata.db.entity.*
@@ -14,6 +15,7 @@ import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType.OccupationalEmployment
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.HierarchyBaseViewModel
+import kotlinx.android.synthetic.main.industry_item.view.*
 
 /**
  * HierarchyViewModel - View Model for Industry Comparison View
@@ -36,6 +38,10 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
     var areaTitle: String? = null
         get() = mArea.title
+
+    var detailTitle:String = getApplication<BLSApplication>().getString(R.string.industries_title)
+    var column1Title:String? = getApplication<BLSApplication>().getString(R.string.metro)
+    var column2Title:String = getApplication<BLSApplication>().getString(R.string.national)
 
     var accessibilityStr: String? = null
         get() = mArea.accessibilityStr
@@ -67,6 +73,24 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         }
         return timeTitle
     }
+
+    fun getWageVsLevelTitles(): MutableList<String>? {
+        var retArray:MutableList<String>? = null
+        when (reportType) {
+            is OccupationalEmployment -> {
+                retArray = mutableListOf(
+                        getApplication<BLSApplication>().getString(R.string.employment_level),
+                        getApplication<BLSApplication>().getString(R.string.mean_annual_wage))
+            }
+            is ReportType.QuarterlyEmploymentWages -> {
+                retArray = mutableListOf(
+                        getApplication<BLSApplication>().getString(R.string.employment_level),
+                        getApplication<BLSApplication>().getString(R.string.average_weekly_wage))
+            }
+        }
+        return retArray
+    }
+
     fun setParentId(originalInput: Long) {
         parentId = originalInput
     }
@@ -74,34 +98,45 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
     fun setReportType(reportType: ReportType) {
 
         this.reportType = reportType
+        if (mArea is NationalEntity) column1Title = null
 
         when (reportType) {
+
             is ReportType.IndustryEmployment -> {
                 industryType = when (mArea) {
                     is NationalEntity -> IndustryType.CE_INDUSTRY
+                    is StateEntity -> {
+                        column1Title = getApplication<BLSApplication>().getString(R.string.state)
+                        IndustryType.SM_INDUSTRY
+                    }
                     else -> IndustryType.SM_INDUSTRY
                 }
             }
-            is OccupationalEmployment -> industryType = IndustryType.OE_OCCUPATION
-            is ReportType.QuarterlyEmploymentWages -> industryType = IndustryType.QCEW_INDUSTRY
+            is OccupationalEmployment -> {
+                industryType = IndustryType.OE_OCCUPATION
+                detailTitle = getApplication<BLSApplication>().getString(R.string.occupation_title)
+            }
+            is ReportType.QuarterlyEmploymentWages -> {
+                industryType = IndustryType.QCEW_INDUSTRY
+                detailTitle = getApplication<BLSApplication>().getString(R.string.occupation_title)
+                column1Title = getApplication<BLSApplication>().getString(R.string.county)
+            }
         }
     }
 
-    fun setWageVsLevelType(wageVsLevelType: ReportWageVsLevelType) {
-        when (wageVsLevelType.ordinal) {
-            ReportWageVsLevelType.ANNUAL_MEAN_WAGE.ordinal -> {
-                if (reportType is ReportType.QuarterlyEmploymentWages) {
-                    this.QCEWwageVsLevelTypeOccupation = QCEWReport.DataTypeCode.avgWeeklyWage
-                } else {
-                    this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.ANNUALMEANWAGE
-                }
-            }
-            ReportWageVsLevelType.EMPLOYMENT_LEVEL.ordinal -> {
-                if (reportType is ReportType.QuarterlyEmploymentWages) {
+    fun setWageVsLevelIndex(wageVsLevelType: Int) {
+        when (wageVsLevelType) {
+            0 -> {
+                if (reportType is ReportType.QuarterlyEmploymentWages)
                     this.QCEWwageVsLevelTypeOccupation = QCEWReport.DataTypeCode.allEmployees
-                } else {
+                else
                     this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.EMPLOYMENT
-                }
+            }
+            1 -> {
+                if (reportType is ReportType.QuarterlyEmploymentWages)
+                    this.QCEWwageVsLevelTypeOccupation = QCEWReport.DataTypeCode.avgWeeklyWage
+                else
+                    this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.ANNUALMEANWAGE
             }
         }
     }
@@ -114,6 +149,21 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
         isLoading.value = true
         loadReportCategories()
+    }
+
+    fun sortByColumn1() {
+        var tmpList = hierarchyRows.value
+        hierarchyRows.postValue(tmpList?.sortedWith(compareBy(
+                { it.localValue?.length },
+                { it.localValue }
+        )))
+    }
+    fun sortByColumn2() {
+        var tmpList = hierarchyRows.value
+        hierarchyRows.postValue(tmpList?.sortedWith(compareBy(
+                { it.nationalValue?.length },
+                { it.nationalValue }
+        )))
     }
 
     private fun loadReportCategories() {
@@ -273,6 +323,9 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                         thisIndustryRow.nationalValue = DataUtil.numberValue(thisAreaRow.seriesReport!!.data[0].value)
                     else
                         thisIndustryRow.localValue = DataUtil.numberValue(thisAreaRow.seriesReport!!.data[0].value)
+                }
+                if (mArea is NationalEntity) {
+                    thisIndustryRow.localValue = " "
                 }
             }
         }
