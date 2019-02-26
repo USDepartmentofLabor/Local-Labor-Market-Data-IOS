@@ -27,6 +27,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.accessibility.AccessibilityEvent
 import android.widget.SearchView
 import blsapp.dol.gov.blslocaldata.BuildConfig
 import blsapp.dol.gov.blslocaldata.R
@@ -125,10 +126,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
                         uiThread {
                             showingCurrentLocation = false
                             searchAnnounce = false
-                            //adapter.notifyDataSetChanged()
                             searchView.clearFocus()
-                            recyclerView.scrollToPosition(0)
-                            //recyclerView.requestFocus()
                         }
                     }
                 }
@@ -137,10 +135,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchAnnounce = false
-                //adapter.notifyDataSetChanged()
                 searchView.clearFocus()
-                recyclerView.scrollToPosition(0)
-                //recyclerView.requestFocus()
                 return true
             }
         })

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.accessibility.AccessibilityManager
 import android.widget.ImageView
 import android.widget.TextView
 import blsapp.dol.gov.blslocaldata.R
@@ -20,6 +21,12 @@ import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
 import kotlinx.android.synthetic.main.report_header.view.*
 import java.text.NumberFormat
+import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
+import android.support.v4.view.ViewCompat.onInitializeAccessibilityNodeInfo
+import android.support.v4.view.AccessibilityDelegateCompat
+import android.support.v4.view.ViewCompat
+
+
 
 
 
@@ -44,6 +51,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
+
         when (viewType) {
             ReportRowType.UNEMPLOYMENAT_RATE_ITEM.ordinal -> {
                 val inflatedView = layoutInflater.inflate(R.layout.unemployment_rate, parent, false)
@@ -95,6 +103,17 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         val reportRow = mReportRows[position]
         if (reportRow.type == ReportRowType.HEADER &&
                 holder is ReportHeaderViewHolder) {
+
+            val manager = context
+                    .getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+
+            ViewCompat.setAccessibilityDelegate(holder.mView, object : AccessibilityDelegateCompat() {
+                override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+            //        super.onInitializeAccessibilityNodeInfo(host, info)
+                    info.addAction(AccessibilityNodeInfoCompat.ACTION_FOCUS)
+                }
+            })
+
             holder.mHeaderTextView.text = reportRow.header
             holder.collapse = reportRow.headerCollapsed
             with(holder.mView) {

@@ -76,15 +76,17 @@ class AreaResultsActivity : AppCompatActivity(), AreaListAdapter.OnItemClickList
     }
 
     override fun onItemClick(item: AreaRow) {
-        val intent = Intent(applicationContext, AreaReportActivity::class.java)
-        intent.putExtra(AreaReportActivity.KEY_AREA, item.area)
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(intent)
+        if (item.type != RowType.HEADER) {
+            val intent = Intent(applicationContext, AreaReportActivity::class.java)
+            intent.putExtra(AreaReportActivity.KEY_AREA, item.area)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
     }
 
     fun getAreaRows(areaList: List<AreaEntity>) : ArrayList<AreaRow> {
         val areaRows = ArrayList<AreaRow>()
-      //  areaRows.add(AreaRow(RowType.HEADER, null, "Select", null))
+      //  areaRows.add(AreaRow(RowType.HEADER, null, "Select Location", null))
         val itemRows = areaList.map { AreaRow(RowType.ITEM, it, null, null) }
         areaRows.addAll(itemRows)
         return areaRows
