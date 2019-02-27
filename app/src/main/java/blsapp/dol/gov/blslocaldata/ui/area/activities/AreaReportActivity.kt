@@ -45,7 +45,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
     lateinit var mArea: AreaEntity
     private lateinit var viewModel: AreaViewModel
     private lateinit var adapter: ReportListAdapter
-
+    private var announceSeasonalAdjusted = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +53,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_home_24px)
+        supportActionBar?.setHomeActionContentDescription("Home")
 
         var leftAreaImage: Drawable? = null
         var rightAreaImage: Drawable? = null
@@ -127,6 +128,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         }
         seasonallyAdjustedSwitch.isChecked = if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED) true else false
         seasonallyAdjustedSwitch.setOnCheckedChangeListener{ _, isChecked ->
+            announceSeasonalAdjusted = true
             ReportManager.adjustment =
                     if (isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
             viewModel.setAdjustment(ReportManager.adjustment)
@@ -275,10 +277,14 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
     private fun showLoadingDialog(show: Boolean) {
         if (show) {
             progressBar.visibility = View.VISIBLE
-            if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED)
+            if (!announceSeasonalAdjusted) {
+                UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_reports))
+            } else if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED)
                 UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_seasonally_adjusted_reports))
             else
                 UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_not_seasonally_adjusted_reports))
+            announceSeasonalAdjusted = false
+
         } else progressBar.visibility = View.GONE
     }
 

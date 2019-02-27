@@ -51,6 +51,7 @@
 
     <TextView
         android:id="@+id/areaTitleTextView"
+        android:accessibilityHeading="true"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"

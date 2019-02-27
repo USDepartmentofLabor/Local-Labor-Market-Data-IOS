@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
@@ -21,10 +22,12 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.AttributeSet
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.accessibility.AccessibilityEvent
 import android.widget.SearchView
 import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.BuildConfig
@@ -42,6 +45,7 @@ import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import com.reddit.indicatorfastscroll.FastScrollerThumbView
 import com.reddit.indicatorfastscroll.FastScrollerView
 import kotlinx.android.synthetic.main.activity_search.*
+import kotlinx.android.synthetic.main.nav_header.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -63,6 +67,8 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
     private lateinit var fastScrollerThumbView: FastScrollerThumbView
     private lateinit var linearLayoutManger: LinearLayoutManager
     private var showingCurrentLocation = false
+    private var searchAnnounce = false
+    private var currentLocationAnnounce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,11 +120,13 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                searchAnnounce = true;
                 areaViewModel.setQuery(newText!!)
                 if (newText.isEmpty()) {
                     doAsync {
                         uiThread {
                             showingCurrentLocation = false
+                            searchAnnounce = false
                             searchView.clearFocus()
                         }
                     }
@@ -127,7 +135,8 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
             }
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                searchAnnounce = false
+                searchView.clearFocus()
                 return true
             }
         })
@@ -257,7 +266,18 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
         val itemRows = areaList.map { AreaRow(RowType.ITEM, it, null, null) }
         areaRows.addAll(itemRows)
 
-        UIUtil.accessibilityAnnounce(applicationContext, String.format(getString(R.string.found_n_results), itemRows.size))
+        if  (currentLocationAnnounce) {
+            if (itemRows.count() == 1) {
+                val itemRow = itemRows[0]
+                UIUtil.accessibilityAnnounce(applicationContext,  itemRow.area!!.title)
+                currentLocationAnnounce = false
+            }
+        } else {
+            if (searchAnnounce) {
+                UIUtil.accessibilityAnnounce(applicationContext, String.format(getString(R.string.found_n_results), itemRows.size))
+                searchAnnounce = false
+            }
+        }
         return areaRows
     }
 
@@ -317,6 +337,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
             val address = resultData?.getString(Constants.RESULT_DATA_KEY) ?: ""
 
+            currentLocationAnnounce = true
             searchView.setIconifiedByDefault(false)
             searchView.setQuery("Current Location", false)
             areaViewModel.setQuery(address)

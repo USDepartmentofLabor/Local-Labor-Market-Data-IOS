@@ -75,8 +75,10 @@
     <string name="average_weekly_wage">Avg Weekly Wage</string>
     <string name="average_weekly_wage_accessible">Average Weekly Wage</string>
     <string name="county_not_in_metro">This county is not a part of a Metropolitan Statistical Area.</string>
+    <string name="loading_reports">Loading Reports</string>
     <string name="loading_seasonally_adjusted_reports">Loading Seasonally Adjusted Reports</string>
     <string name="loading_not_seasonally_adjusted_reports">Loading Not Seasonally Adjusted Reports</string>
     <string name="found_n_results">Found %1$d results</string>
+    <string name="found_current_location_results">Found one result %s</string>
     <string name="alphabet_selector_hint">Table Index</string>
 </resources>

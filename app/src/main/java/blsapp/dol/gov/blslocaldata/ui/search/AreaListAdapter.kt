@@ -1,5 +1,6 @@
 package blsapp.dol.gov.blslocaldata.ui.search
 
+import android.os.Build
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,12 @@ import blsapp.dol.gov.blslocaldata.ui.viewmodel.RowType
 
 import kotlinx.android.synthetic.main.area_item.view.*
 import kotlinx.android.synthetic.main.areaheader_item.view.*
+import android.support.v4.view.ViewCompat.onInitializeAccessibilityNodeInfo
+import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
+import android.support.v4.view.AccessibilityDelegateCompat
+import android.support.v4.view.ViewCompat
+
+
 
 /**
  * AreaListAdapter - Area List Adapter View
@@ -56,6 +63,15 @@ class AreaListAdapter(
         if (areaRow.type == RowType.HEADER &&
                 holder is AreaHeaderViewHolder) {
             holder.mheaderTextView.text = areaRow.header
+
+            ViewCompat.setAccessibilityDelegate(holder.mView, object : AccessibilityDelegateCompat() {
+                override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                    super.onInitializeAccessibilityNodeInfo(host, info)
+                    info.addAction(AccessibilityNodeInfoCompat.ACTION_FOCUS)
+                    info.isHeading = true
+                }
+            })
+
             areaRow.image?.let {
                 holder.mHeaderImageView.setImageResource(areaRow.image)
             }

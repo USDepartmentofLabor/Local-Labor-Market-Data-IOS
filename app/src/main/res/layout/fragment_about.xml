@@ -26,6 +26,18 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/aboutHeading"
+                android:accessibilityHeading="true"
+                style="@style/headingTitle"
+                android:layout_width="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/about" />
+
+            <TextView
                 android:id="@+id/line1"
                 style="@style/info"
                 android:layout_width="0dp"
@@ -40,7 +52,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/line2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/aboutHeading"
                 app:layout_constraintVertical_chainStyle="spread_inside" />
 
             <TextView
@@ -163,7 +175,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:gravity="center"
                     android:text=""
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
