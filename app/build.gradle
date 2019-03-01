@@ -23,6 +23,13 @@ android {
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
     }
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
+}
+
+repositories {
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -51,4 +58,5 @@ dependencies {
 
     implementation "org.jetbrains.anko:anko:0.10.4"
     implementation 'com.reddit:indicator-fast-scroll:1.0.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 }

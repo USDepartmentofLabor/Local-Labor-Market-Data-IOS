@@ -65,6 +65,10 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
                 val inflatedView = layoutInflater.inflate(R.layout.ownership_employment_wages, parent, false)
                 return OwnershipEmploymentWagesHolder(inflatedView)
             }
+            ReportRowType.HISTORY_ITEM.ordinal -> {
+                val inflatedView = layoutInflater.inflate(R.layout.history_footer, parent, false)
+                return ReportHistoryFooterViewHolder(inflatedView)
+            }
             ReportRowType.SUB_HEADER.ordinal -> {
                 val inflatedView = layoutInflater.inflate(R.layout.report_sub_section, parent, false)
                 val holder = ReportSubSectionHolder(inflatedView)
@@ -140,7 +144,17 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
                 }
             }
 
-        } else {
+        } else if (reportRow.type == ReportRowType.HISTORY_ITEM &&
+                holder is ReportHistoryFooterViewHolder) {
+
+            with(holder.mView) {
+                tag = reportRow
+                setOnClickListener {
+                    mListener?.onIndustriesChartClick(reportRow)
+                }
+            }
+
+        }else {
             if (reportRow.type == ReportRowType.UNEMPLOYMENAT_RATE_ITEM &&
                         holder is UnemploymentRateHolder) {
                 displayUnemploymentRate(holder, reportRow)
@@ -158,6 +172,10 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
                 displayOwnershipEmploymentWages(holder, reportRow)
             }
         }
+    }
+
+    private fun displayCharts() {
+
     }
 
     fun displayUnemploymentRate(holder: UnemploymentRateHolder, reportRow: AreaReportRow) {
@@ -452,9 +470,15 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
 
     }
 
+    inner class ReportHistoryFooterViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
+
+
+    }
+
     interface OnReportItemClickListener {
         fun onItemClick(item: AreaReportRow)
         fun onSubIndustriesClick(item: AreaReportRow)
+        fun onIndustriesChartClick(item: AreaReportRow)
     }
 
 }

@@ -47,7 +47,14 @@
         <activity
             android:name=".ui.info.InfoActivity"
             android:label="@string/title_activity_info" />
+
         <activity android:name=".ui.area.activities.AreaResultsActivity"></activity>
+
+        <activity
+            android:name=".ui.area.activities.HistoryBarChartActivity"
+            android:label="@string/title_activity_history"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:parentActivityName=".ui.area.activities.AreaReportActivity" />
     </application>
 
 </manifest>

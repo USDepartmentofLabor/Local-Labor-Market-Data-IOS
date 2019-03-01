@@ -5,8 +5,10 @@
     <color name="colorAccent">#293683</color>
     <color name="colorPrimaryText">#FFFFFF</color>
     <color name="colorReportHeader">#D4D4D4</color>
+    <color name="colorHierarchyCell">#D4D4D4</color>
     <color name="colorItemBorder">#D4D4D4</color>
     <color name="colorSwitchTrack">#999999</color>
-    <color name="colorSelectedArrow">#ADD8E6</color>
+    <color name="colorSelectedArrow">#293683</color>
     <color name="colorUnSelectedArrow">#000000</color>
+    <color name="colorHistoryButton">#669CF2</color>
 </resources>

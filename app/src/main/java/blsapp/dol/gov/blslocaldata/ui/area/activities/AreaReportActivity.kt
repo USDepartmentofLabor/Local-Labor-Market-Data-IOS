@@ -164,6 +164,10 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         displaySubIndustries(mArea, item)
     }
 
+    override fun onIndustriesChartClick(item: AreaReportRow) {
+        displayIndustriesCharts(mArea, item)
+    }
+
     private fun attachObserver() {
         viewModel.reportRows.observe(this, Observer<List<AreaReportRow>> {
             adapter.setReportRows(it!!)
@@ -270,6 +274,16 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         intent.putExtra(KEY_AREA, mArea)
         intent.putExtra(KEY_REPORT_TYPE, item.reportType)
         intent.putExtra(HierarchyResultsActivity.KEY_REPORT_ROW_TYPE, item.headerType)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+    }
+
+    private fun displayIndustriesCharts(area: AreaEntity?, item: AreaReportRow) {
+
+        val intent = Intent(applicationContext, HistoryBarChartActivity::class.java)
+
+        intent.putExtra(KEY_AREA, mArea)
+        intent.putExtra(KEY_REPORT_TYPE, item.reportType)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
     }

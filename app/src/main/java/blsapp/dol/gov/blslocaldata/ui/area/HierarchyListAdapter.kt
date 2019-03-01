@@ -48,7 +48,7 @@ class HierarchyListAdapter(
                 holder.mIndustryLocalValue.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
                 holder.mIndustryNationalValue.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
             } else {
-                holder.mView.backgroundColor = getColor(holder.itemView.context,android.R.color.white)
+                holder.mView.backgroundColor = getColor(holder.itemView.context,R.color.colorHierarchyCell)
                 holder.mIndustryTitle.textColor = getColor(holder.itemView.context,android.R.color.black)
                 holder.mIndustryLocalValue.textColor = getColor(holder.itemView.context, android.R.color.black)
                 holder.mIndustryNationalValue.textColor = getColor(holder.itemView.context, android.R.color.black)
