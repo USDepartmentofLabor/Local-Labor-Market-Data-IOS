@@ -46,10 +46,6 @@ import java.util.ArrayList
  class HistoryBarChartActivity: AppCompatActivity(), OnSeekBarChangeListener, OnChartValueSelectedListener {
 
 private var chart:BarChart? = null
-//private var seekBarX:SeekBar? = null
-//private var seekBarY:SeekBar? = null
-//private var tvX:TextView? = null
-//private var tvY:TextView? = null
 
 private val onValueSelectedRectF = RectF()
 
@@ -65,10 +61,7 @@ private val onValueSelectedRectF = RectF()
 
          setTitle("History - Unemployment")
 
-//         tvX = findViewById(R.id.tvXMax)
-//         tvY = findViewById(R.id.tvYMax)
-
-         chart = findViewById(R.id.chart1)
+         chart = findViewById(R.id.chart)
          chart!!.setOnChartValueSelectedListener(this)
 
          chart!!.setDrawBarShadow(false)
@@ -79,12 +72,8 @@ private val onValueSelectedRectF = RectF()
          // if more than 60 entries are displayed in the chart, no values will be
          // drawn
          chart!!.setMaxVisibleValueCount(60)
-
-         // scaling can now only be done on x- and y-axis separately
          chart!!.setPinchZoom(false)
-
          chart!!.setDrawGridBackground(false)
-         // chart.setDrawYLabels(false);
 
          var xAxisFormatter:IAxisValueFormatter? = null
          chart?.let {
@@ -93,34 +82,24 @@ private val onValueSelectedRectF = RectF()
 
          val xAxis = chart!!.xAxis
          xAxis.position = XAxisPosition.BOTTOM
-         //GGG    xAxis.typeface = tfLight
          xAxis.setDrawGridLines(false)
          xAxis.granularity = 1f // only intervals of 1 day
-         xAxis.labelCount = 7
+         xAxis.labelCount = 12
          xAxis.valueFormatter = xAxisFormatter
 
-         //GGG     val custom = MyValueFormatter("$")
-
          val leftAxis = chart!!.axisLeft
-         //GGG     leftAxis.typeface = tfLight
-         leftAxis.setLabelCount(8, false)
-         //GGG leftAxis.valueFormatter = custom
+         leftAxis.setLabelCount(6, false)
+         leftAxis.setDrawGridLines(false)
          leftAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART)
          leftAxis.spaceTop = 15f
          leftAxis.axisMinimum = 0f // this replaces setStartAtZero(true)
 
-         val rightAxis = chart!!.axisRight
-         rightAxis.setDrawGridLines(false)
-         //GGG rightAxis.typeface = tfLight
-         rightAxis.setLabelCount(8, false)
-         //GGG rightAxis.valueFormatter = custom
-         rightAxis.spaceTop = 15f
-         rightAxis.axisMinimum = 0f // this replaces setStartAtZero(true)
+         chart!!.axisRight.setEnabled(false);
 
          val l = chart!!.legend
-         l.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
-         l.horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT
-         l.orientation = Legend.LegendOrientation.HORIZONTAL
+         l.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+         l.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+         l.orientation = Legend.LegendOrientation.VERTICAL
          l.setDrawInside(false)
          l.form = LegendForm.SQUARE
          l.formSize = 9f

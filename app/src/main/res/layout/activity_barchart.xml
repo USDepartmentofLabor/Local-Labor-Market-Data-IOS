@@ -33,7 +33,7 @@
         android:id="@+id/graphTypeRadioGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="14dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/border"
@@ -85,69 +85,29 @@
         app:layout_constraintTop_toBottomOf="@+id/graphTypeRadioGroup"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <View
-        android:id="@+id/nationalColorSwatch"
-        android:layout_marginEnd="100dp"
-        android:layout_marginTop="15dp"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintTop_toBottomOf="@+id/graphTypeRadioGroup"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/nationalColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:text="National"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintTop_toBottomOf="@+id/graphTypeRadioGroup"
-        app:layout_constraintStart_toEndOf="@+id/nationalColorSwatch" />
-
-    <View
-        android:id="@+id/areaColorSwatch"
-        android:layout_marginEnd="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:background="@color/colorHistoryButton"
-        app:layout_constraintTop_toBottomOf="@+id/nationalColorSwatch"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/AreaColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="0dp"
-        android:text="County"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintTop_toBottomOf="@+id/nationalColor"
-        app:layout_constraintStart_toEndOf="@+id/areaColorSwatch" />
-
     <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/chart1"
+        android:id="@+id/chart"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
-        app:layout_constraintStart_toEndOf="@+id/yAxisLabel"
-        app:layout_constraintTop_toBottomOf="@id/AreaColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yAxisLabel"
         app:layout_constraintBottom_toTopOf="@id/xAxisLabel"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
         android:id="@+id/backGraph"
-        android:layout_width="24dp"
-        android:layout_height="0dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="10dp"
         android:contentDescription="@null"
+        app:layout_constraintStart_toStartOf="@+id/chart"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_chevron_right_24px" />
+        app:srcCompat="@drawable/ic_baseline_chevron_left_24px" />
 
     <TextView
         android:id="@+id/xAxisLabel"
@@ -166,12 +126,12 @@
 
     <ImageView
         android:id="@+id/forwardGraph"
-        android:layout_width="24dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="10dp"
         android:contentDescription="@null"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/chart"
         app:srcCompat="@drawable/ic_baseline_chevron_right_24px" />
 </android.support.constraint.ConstraintLayout>
