@@ -17,6 +17,8 @@ class IndustryEmploymentTableViewCell: UITableViewCell {
     @IBOutlet weak var dataView: UIView!
     @IBOutlet weak var areaLabel: UILabel!
     @IBOutlet weak var monthYearLabel: UILabel!
+    @IBOutlet weak var seasonalAdjustmentLabel: UILabel!
+    
     @IBOutlet weak var dataTitleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     
@@ -84,7 +86,8 @@ class IndustryEmploymentTableViewCell: UITableViewCell {
 
 extension IndustryEmploymentTableViewCell: ReportTableViewCell {
     
-    func displaySeries(area: Area?, seriesReport: SeriesReport?, periodName: String?, year: String?) {
+    func displaySeries(area: Area?, seriesReport: SeriesReport?, periodName: String?, year: String?,
+                       seasonallyAdjusted: SeasonalAdjustment?) {
 //        defer {applyAccessibility()}
         
         guard let area = area else { return }
@@ -97,6 +100,7 @@ extension IndustryEmploymentTableViewCell: ReportTableViewCell {
             oneMonthNetChangeLabel.text = ""
             twelveMonthRateChangeLabel.text = ""
             twelveMonthNetChangeLabel.text = ""
+            seasonalAdjustmentLabel.text = ""
             return
         }
         
@@ -119,6 +123,7 @@ extension IndustryEmploymentTableViewCell: ReportTableViewCell {
         }
         
         monthYearLabel.text = "\(seriesData.periodName) \(seriesData.year)"
+        seasonalAdjustmentLabel.text = seasonallyAdjusted?.description
 
         if var doubleValue = Double(seriesData.value) {
             doubleValue = doubleValue * 1000

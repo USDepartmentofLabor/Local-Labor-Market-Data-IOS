@@ -11,7 +11,7 @@ import UIKit
 
 
 protocol ReportTableViewCell {
-    func displaySeries(area: Area?, seriesReport: SeriesReport?, periodName: String?, year: String?)
+    func displaySeries(area: Area?, seriesReport: SeriesReport?, periodName: String?, year: String?, seasonallyAdjusted: SeasonalAdjustment?)
 }
 
 

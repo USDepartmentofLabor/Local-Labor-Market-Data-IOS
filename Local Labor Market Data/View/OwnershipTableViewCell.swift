@@ -35,7 +35,8 @@ class OwnershipTableViewCell: UITableViewCell {
     var area: Area?
     var localAreaReportsDict: [ReportType: AreaReport]?
     var nationalAreaReportsDict: [ReportType: AreaReport]?
-
+    let seasonalAdjustment: SeasonalAdjustment = ReportManager.seasonalAdjustment
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -134,7 +135,7 @@ extension OwnershipTableViewCell: UITableViewDataSource {
         }
         
         guard reportsDict != nil, reportsDict!.count > 0 else {
-            cell.displayEmploymentLevel(area: currentArea, seriesReport: nil, periodName: nil, year: nil)
+            cell.displayEmploymentLevel(area: currentArea, seriesReport: nil, periodName: nil, year: nil, seasonalAdjustment: seasonalAdjustment)
             cell.displayAverageWage(area: currentArea, seriesReport: nil, periodName: nil, year: nil)
             return
         }
@@ -154,7 +155,7 @@ extension OwnershipTableViewCell: UITableViewDataSource {
                 }
                 
                 if dataType == QCEWReport.DataTypeCode.allEmployees {
-                    cell.displayEmploymentLevel(area: currentArea, seriesReport: seriesReport, periodName: latestLocalSeriesData?.periodName, year: latestLocalSeriesData?.year)
+                    cell.displayEmploymentLevel(area: currentArea, seriesReport: seriesReport, periodName: latestLocalSeriesData?.periodName, year: latestLocalSeriesData?.year, seasonalAdjustment: seasonalAdjustment)
                 }
                 else if dataType == QCEWReport.DataTypeCode.avgWeeklyWage {
                     cell.displayAverageWage(area: currentArea, seriesReport: seriesReport, periodName: latestLocalSeriesData?.periodName, year: latestLocalSeriesData?.year)

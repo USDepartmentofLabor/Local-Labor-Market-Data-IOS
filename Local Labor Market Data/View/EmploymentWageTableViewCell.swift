@@ -18,6 +18,7 @@ class EmploymentWageTableViewCell: UITableViewCell {
     @IBOutlet weak var areaLabel: UILabel!
     @IBOutlet weak var qtrYearLabel: UILabel!
     
+    @IBOutlet weak var seasonalAdjustmentLabel: UILabel!
     @IBOutlet weak var employmentView: UIView!
     @IBOutlet weak var employmentValueView: UIView!
     @IBOutlet weak var employmentTitleLabel: UILabel!
@@ -104,7 +105,8 @@ class EmploymentWageTableViewCell: UITableViewCell {
 extension EmploymentWageTableViewCell {
     
     func displayEmploymentLevel(area: Area?, seriesReport: SeriesReport?,
-                                periodName: String?, year: String?) {
+                                periodName: String?, year: String?,
+                                seasonalAdjustment: SeasonalAdjustment) {
 
         defer {applyEmploymentAccessibility()}
         
@@ -116,6 +118,7 @@ extension EmploymentWageTableViewCell {
             employmentValueLabel.text = ""
             employmentLevelNetChangeLabel.text = ""
             employmentLevelRateChangeLabel.text = ""
+            seasonalAdjustmentLabel.text = ""
             return
         }
         
@@ -129,6 +132,7 @@ extension EmploymentWageTableViewCell {
         
         guard let seriesData = data else {
             qtrYearLabel.text = ""
+            seasonalAdjustmentLabel.text = ""
             employmentValueLabel.text = ReportManager.dataNotAvailableStr
             employmentValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             employmentLevelNetChangeLabel.text = ReportManager.dataNotAvailableStr
@@ -144,6 +148,7 @@ extension EmploymentWageTableViewCell {
             qtrYearLabel.text = "\(seriesData.periodName) \(seriesData.year)"
         }
         
+        seasonalAdjustmentLabel.text = seasonalAdjustment.description
 
         if let doubleValue = Double(seriesData.value) {
             employmentValueLabel.text = NumberFormatter.localizedString(from: NSNumber(value: doubleValue), number: NumberFormatter.Style.decimal)

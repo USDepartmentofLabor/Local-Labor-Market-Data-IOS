@@ -168,7 +168,9 @@ class SearchViewController: UIViewController {
             let navVC = segue.destination as? UINavigationController,
                 let detailVC = navVC.topViewController {
             detailVC.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem
-//            detailVC.navigationItem.leftItemsSupplementBackButton = true
+            if detailVC is AboutViewController {
+                detailVC.navigationItem.leftItemsSupplementBackButton = true
+            }
         }
     }
 }

@@ -20,6 +20,7 @@ class QCEWIndustryViewModel: ItemViewModel {
             ItemDataType(title: "Avg Weekly Wage", reportType: .quarterlyEmploymentWageFrom(ownershipCode: ownershipCode, dataType: .avgWeeklyWage))]
         
         currentDataType = itemDataTypes[0]
+        dataTitle = "Industry"
     }
     
     override func createInstance(forParent parent: Item) -> ItemViewModel {

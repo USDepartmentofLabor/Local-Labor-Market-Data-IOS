@@ -14,10 +14,10 @@ class OccupationViewModel: ItemViewModel {
     init(area: Area, parent: Item? = nil, dataYear: String) {
         super.init(area: area, parent:parent, itemType: OE_Occupation.self, dataYear: dataYear)
         
-        itemDataTypes = [ItemDataType(title: "Annual Mean Wage", reportType: ReportType.occupationEmployment(occupationalCode: OESReport.ALL_OCCUPATIONS_CODE, .annualMeanWage)),
+        itemDataTypes = [ItemDataType(title: "Mean Annual Wage", reportType: ReportType.occupationEmployment(occupationalCode: OESReport.ALL_OCCUPATIONS_CODE, .annualMeanWage)),
         ItemDataType(title: "Employment Level", reportType: ReportType.occupationEmployment(occupationalCode: OESReport.ALL_OCCUPATIONS_CODE, .employment))]
         
-        dataTitle = "Occupation"
+        dataTitle = "Occupation (Code)"
         currentDataType = itemDataTypes[0]
     }
     
@@ -27,7 +27,6 @@ class OccupationViewModel: ItemViewModel {
         viewModel.setCurrentDataType(dataType: currentDataType)
         return viewModel
     }
-
     
     override func getReportPeriod() -> String {
         if let latestData = getReportData(item: parentItem) {

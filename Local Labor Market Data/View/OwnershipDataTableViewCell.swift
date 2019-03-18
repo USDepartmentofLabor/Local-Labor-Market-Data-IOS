@@ -17,6 +17,8 @@ class OwnershipDataTableViewCell: UITableViewCell {
     @IBOutlet weak var dataView: UIView!
     @IBOutlet weak var areaLabel: UILabel!
     @IBOutlet weak var qtrYearLabel: UILabel!
+    
+    @IBOutlet weak var seasonalAdjustmentLabel: UILabel!
     @IBOutlet weak var employmentTitleLabel: UILabel!
     @IBOutlet weak var employmentValueLabel: UILabel!
     @IBOutlet weak var wageTitleLabel: UILabel!
@@ -79,7 +81,8 @@ class OwnershipDataTableViewCell: UITableViewCell {
 
 extension OwnershipDataTableViewCell {
     func displayEmploymentLevel(area: Area?, seriesReport: SeriesReport?,
-                                periodName: String?, year: String?) {
+                                periodName: String?, year: String?,
+                                seasonalAdjustment: SeasonalAdjustment) {
 
         guard let area = area else { return }
         areaLabel.text = "\(area.displayType) Data"
@@ -88,6 +91,7 @@ extension OwnershipDataTableViewCell {
         guard let seriesReport = seriesReport else {
             qtrYearLabel.text = ""
             employmentValueLabel.text = ""
+            seasonalAdjustmentLabel.text = ""
             return
         }
         
@@ -102,6 +106,7 @@ extension OwnershipDataTableViewCell {
         // If Series exist but there is not SeriesData, then Data is not Available
         guard let seriesData = data else {
             qtrYearLabel.text = ""
+            seasonalAdjustmentLabel.text = ""
             employmentValueLabel.text = ReportManager.dataNotAvailableStr
             employmentValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             return
@@ -114,6 +119,8 @@ extension OwnershipDataTableViewCell {
             qtrYearLabel.text = "\(seriesData.periodName) \(seriesData.year)"
         }
 
+        seasonalAdjustmentLabel.text = seasonalAdjustment.description
+        
         if let doubleValue = Double(seriesData.value) {
             employmentValueLabel.text = NumberFormatter.localizedString(from: NSNumber(value: doubleValue), number: NumberFormatter.Style.decimal)
         }

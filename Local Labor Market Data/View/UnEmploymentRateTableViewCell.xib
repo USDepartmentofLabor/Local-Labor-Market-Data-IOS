@@ -13,17 +13,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UnEmploymentRateTableViewCell" id="KGk-i7-Jjw" customClass="UnEmploymentRateTableViewCell" customModule="Local_Labor_Market_Data" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="317" height="204"/>
+            <rect key="frame" x="0.0" y="0.0" width="317" height="206"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="317" height="203.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="317" height="205.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoA-64-JC2">
-                        <rect key="frame" x="0.0" y="0.0" width="317" height="198.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="317" height="200.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZh-L0-fpR">
-                                <rect key="frame" x="5" y="5" width="307" height="188.5"/>
+                                <rect key="frame" x="5" y="5" width="307" height="190.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CqZ-c4-rL4" userLabel="AreaView">
                                         <rect key="frame" x="5" y="4.5" width="110" height="22.5"/>
@@ -44,13 +44,19 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="July 2018" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYs-ug-fsN" userLabel="monthYearLabel">
-                                        <rect key="frame" x="239.5" y="8.5" width="54.5" height="14.5"/>
+                                        <rect key="frame" x="239.5" y="4.5" width="54.5" height="14.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcF-aW-1rQ" userLabel="SeasonallAdjustedLabel">
+                                        <rect key="frame" x="265.5" y="21" width="28.5" height="13.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YaF-3u-7b9" userLabel="ValueView">
-                                        <rect key="frame" x="0.0" y="37" width="307" height="54.5"/>
+                                        <rect key="frame" x="0.0" y="39" width="307" height="54.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unemployment Rate" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfg-Qp-PqN" userLabel="dataTitleLabel">
                                                 <rect key="frame" x="84" y="0.0" width="139.5" height="18"/>
@@ -76,14 +82,14 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SO0-Hs-SBF" userLabel="lineView">
-                                        <rect key="frame" x="25.5" y="99.5" width="256" height="2"/>
+                                        <rect key="frame" x="25.5" y="101.5" width="256" height="2"/>
                                         <color key="backgroundColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="N0A-GB-GL8"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPk-de-QT1" userLabel="ChangeView">
-                                        <rect key="frame" x="5" y="109.5" width="297" height="74"/>
+                                        <rect key="frame" x="5" y="111.5" width="297" height="74"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Net Change" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWb-Hh-o4U" userLabel="ChangeTitleLabel">
                                                 <rect key="frame" x="115" y="2" width="67.5" height="14.5"/>
@@ -174,6 +180,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="hPk-de-QT1" secondAttribute="bottom" constant="5" id="2hm-o3-f50"/>
+                                    <constraint firstItem="OcF-aW-1rQ" firstAttribute="top" secondItem="RYs-ug-fsN" secondAttribute="bottom" constant="2" id="Cgw-Zc-6pv"/>
                                     <constraint firstItem="hPk-de-QT1" firstAttribute="top" secondItem="SO0-Hs-SBF" secondAttribute="bottom" constant="8" id="JKJ-35-dJ4"/>
                                     <constraint firstItem="YaF-3u-7b9" firstAttribute="leading" secondItem="jZh-L0-fpR" secondAttribute="leading" id="KyK-lw-xkO"/>
                                     <constraint firstItem="CqZ-c4-rL4" firstAttribute="leading" secondItem="jZh-L0-fpR" secondAttribute="leading" constant="5" id="LFT-zg-52G"/>
@@ -181,11 +188,12 @@
                                     <constraint firstItem="CqZ-c4-rL4" firstAttribute="width" relation="lessThanOrEqual" secondItem="jZh-L0-fpR" secondAttribute="width" multiplier="0.5" id="Mzj-80-dA5"/>
                                     <constraint firstAttribute="trailing" secondItem="hPk-de-QT1" secondAttribute="trailing" constant="5" id="P3P-pC-cTw"/>
                                     <constraint firstItem="SO0-Hs-SBF" firstAttribute="centerX" secondItem="jZh-L0-fpR" secondAttribute="centerX" id="PQ1-1o-Dp5"/>
-                                    <constraint firstItem="YaF-3u-7b9" firstAttribute="top" secondItem="CqZ-c4-rL4" secondAttribute="bottom" constant="10" id="btR-g7-OAP"/>
+                                    <constraint firstItem="RYs-ug-fsN" firstAttribute="trailing" secondItem="OcF-aW-1rQ" secondAttribute="trailing" id="PmE-J0-WTp"/>
+                                    <constraint firstItem="RYs-ug-fsN" firstAttribute="top" secondItem="CqZ-c4-rL4" secondAttribute="top" id="VyX-E4-pnQ"/>
+                                    <constraint firstItem="YaF-3u-7b9" firstAttribute="top" secondItem="CqZ-c4-rL4" secondAttribute="bottom" constant="12" id="btR-g7-OAP"/>
                                     <constraint firstAttribute="trailing" secondItem="YaF-3u-7b9" secondAttribute="trailing" id="clL-4V-Q3h"/>
                                     <constraint firstItem="SO0-Hs-SBF" firstAttribute="top" secondItem="YaF-3u-7b9" secondAttribute="bottom" constant="8" id="fvd-dt-8i9"/>
                                     <constraint firstItem="SO0-Hs-SBF" firstAttribute="leading" secondItem="h5t-c0-M9j" secondAttribute="leading" id="gDG-gc-A4I"/>
-                                    <constraint firstItem="RYs-ug-fsN" firstAttribute="centerY" secondItem="CqZ-c4-rL4" secondAttribute="centerY" id="qPV-HJ-wQV"/>
                                     <constraint firstItem="RYs-ug-fsN" firstAttribute="width" relation="lessThanOrEqual" secondItem="jZh-L0-fpR" secondAttribute="width" multiplier="0.5" id="s2e-uG-iWm"/>
                                     <constraint firstItem="CqZ-c4-rL4" firstAttribute="top" secondItem="jZh-L0-fpR" secondAttribute="top" constant="4.5" id="utr-Vf-3xU"/>
                                     <constraint firstItem="hPk-de-QT1" firstAttribute="leading" secondItem="jZh-L0-fpR" secondAttribute="leading" constant="5" id="xXO-PZ-hv7"/>
@@ -221,6 +229,7 @@
                 <outlet property="oneMonthNetChangeLabel" destination="dhU-SY-uxd" id="y54-5j-Nlq"/>
                 <outlet property="outlineView" destination="zoA-64-JC2" id="e7l-gd-Bo5"/>
                 <outlet property="percentPointTitle" destination="UWb-Hh-o4U" id="vKo-We-7MH"/>
+                <outlet property="seasonallyAdjustedLabel" destination="OcF-aW-1rQ" id="DU8-uv-3jk"/>
                 <outlet property="twelveMonthChangeTitleLabel" destination="SkZ-O9-dEl" id="OCM-Pw-dfB"/>
                 <outlet property="twelveMonthChangeView" destination="1yS-Ra-Bhg" id="PNg-Se-9dr"/>
                 <outlet property="twelveMonthNetChangeLabel" destination="fBt-1r-juc" id="Nsn-m4-vjI"/>

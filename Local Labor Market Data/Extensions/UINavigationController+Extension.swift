@@ -16,4 +16,7 @@ extension UINavigationController {
         setViewControllers(vcs, animated: animated)
     }
     
+    func containsViewController(ofKind kind: AnyClass) -> UIViewController? {
+        return self.viewControllers.filter {$0.isKind(of: kind)}.first
+    }    
 }

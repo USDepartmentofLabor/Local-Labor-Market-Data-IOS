@@ -172,17 +172,16 @@ class CountyViewController: AreaViewController {
                 default:
                     title = "History"
                 }
-                if let report = localAreaReportsDict[reportType] {
-                    let localAreaReport = localAreaReportsDict[reportType]
+                if let localAreaReport = localAreaReportsDict[reportType] {
                     let nationalAreaReport = nationalAreaReportsDict[reportType]
                     let latestDate: Date
                     
                     //        // If Latest SeriesReport is available, use that as End Year
-                    let latestData = localAreaReport?.seriesReport?.latestData()
+                    let latestData = localAreaReport.seriesReport?.latestData()
                     if let latestData = latestData {
                         latestDate = DateFormatter.date(fromMonth: latestData.periodName, fromYear: latestData.year) ?? Date()
                         
-                        let viewModel = HistoryViewModel(title: title, localSeriesId: localAreaReport?.seriesId, nationalSeriedId: nationalAreaReport?.seriesId, latestDate: latestDate)
+                        let viewModel = HistoryViewModel(title: title, localSeriesId: localAreaReport.seriesId, nationalSeriedId: nationalAreaReport?.seriesId, latestDate: latestDate)
                         destVC.viewModel = viewModel
                     }
                 }
@@ -290,23 +289,24 @@ extension CountyViewController {
     
     func loadNationalReport(areaReportsDict: [ReportType: AreaReport]) {
         
-        guard let nationalArea = nationalArea else {return}
+//        guard let nationalArea = nationalArea else {return}
         var reportStartYear: Int = 9999
         var reportEndYear: Int = -1
         var nationalReportTypes = [ReportType]()
         areaReportsDict.forEach { (reportType, areaReport) in
             
-            // Check if report exist in Cache
-            if let nationalSeriesId = reportType.seriesId(forArea: nationalArea, adjustment: seasonalAdjustment),
-                let localLatestData = areaReport.seriesReport?.latestData(),
-                let report = CacheManager.shared().getReport(seriesId: nationalSeriesId, forPeriod: localLatestData.period, year: localLatestData.year) {
-                
-                var nationalReport = AreaReport(reportType: reportType, area: area)
-                nationalReport.seriesReport = report
-                nationalReport.seriesId = nationalSeriesId
-                nationalAreaReportsDict[reportType] = nationalReport
-            }
-            else if let localLatestData = areaReport.seriesReport?.latestData() {
+//            // Check if report exist in Cache
+//            if let nationalSeriesId = reportType.seriesId(forArea: nationalArea, adjustment: seasonalAdjustment),
+//                let localLatestData = areaReport.seriesReport?.latestData(),
+//                let report = CacheManager.shared().getReport(seriesId: nationalSeriesId, forPeriod: localLatestData.period, year: localLatestData.year) {
+//
+//                var nationalReport = AreaReport(reportType: reportType, area: area)
+//                nationalReport.seriesReport = report
+//                nationalReport.seriesId = nationalSeriesId
+//                nationalAreaReportsDict[reportType] = nationalReport
+//            }
+//            else
+            if let localLatestData = areaReport.seriesReport?.latestData() {
                 if reportStartYear > Int(localLatestData.year)! {
                     reportStartYear = Int(localLatestData.year)!
                 }
@@ -383,10 +383,10 @@ extension CountyViewController: UITableViewDataSource {
             if let reportType = reportSections[indexPath.section].reportTypes?.first {
                 let localAreaSeriesReport = localAreaReportsDict[reportType]?.seriesReport
                 if indexPath.row == 0 {
-                    unEmploymentCell.displaySeries(area: county, seriesReport: localAreaSeriesReport)
+                    unEmploymentCell.displaySeries(area: county, seriesReport: localAreaSeriesReport, seasonallyAdjusted: seasonalAdjustment)
                 }
                 else {
-                    unEmploymentCell.displaySeries(area: nationalArea, seriesReport: nationalAreaReportsDict[reportType]?.seriesReport, periodName: localAreaSeriesReport?.latestDataPeriodName(), year: localAreaSeriesReport?.latestDataYear())
+                    unEmploymentCell.displaySeries(area: nationalArea, seriesReport: nationalAreaReportsDict[reportType]?.seriesReport, periodName: localAreaSeriesReport?.latestDataPeriodName(), year: localAreaSeriesReport?.latestDataYear(), seasonallyAdjusted: seasonalAdjustment)
                 }
             }
             cell = unEmploymentCell
@@ -431,7 +431,8 @@ extension CountyViewController: UITableViewDataSource {
         }
 
         guard reportsDict.count > 0 else {
-            cell.displayEmploymentLevel(area: area, seriesReport: nil, periodName: nil, year: nil)
+            cell.displayEmploymentLevel(area: area, seriesReport: nil, periodName: nil, year: nil,
+                                        seasonalAdjustment: seasonalAdjustment)
             cell.displayAverageWage(area: area, seriesReport: nil, periodName: nil, year: nil)
             return
         }
@@ -450,7 +451,8 @@ extension CountyViewController: UITableViewDataSource {
                 }
                 
                 if dataType == QCEWReport.DataTypeCode.allEmployees {
-                    cell.displayEmploymentLevel(area: area, seriesReport: seriesReport, periodName: latestLocalSeriesData?.periodName, year: latestLocalSeriesData?.year)
+                    cell.displayEmploymentLevel(area: area, seriesReport: seriesReport, periodName: latestLocalSeriesData?.periodName, year: latestLocalSeriesData?.year,
+                                                seasonalAdjustment: seasonalAdjustment)
                 }
                 else if dataType == QCEWReport.DataTypeCode.avgWeeklyWage {
                     cell.displayAverageWage(area: area, seriesReport: seriesReport, periodName: latestLocalSeriesData?.periodName, year: latestLocalSeriesData?.year)

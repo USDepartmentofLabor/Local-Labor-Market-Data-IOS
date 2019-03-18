@@ -10,8 +10,8 @@ import UIKit
 
 extension ReportTableViewCell {
     func displaySeries(area: Area?, seriesReport: SeriesReport?,
-                       periodName: String? = nil, year: String? = nil) {
-        displaySeries(area: area, seriesReport: seriesReport, periodName: periodName, year: year)
+                       periodName: String? = nil, year: String? = nil, seasonallyAdjusted: SeasonalAdjustment?) {
+        displaySeries(area: area, seriesReport: seriesReport, periodName: periodName, year: year, seasonallyAdjusted: seasonallyAdjusted)
     }
 }
 
@@ -213,17 +213,16 @@ class MetroStateViewController: AreaViewController {
                 default:
                     title = "History"
                 }
-                if let report = localAreaReportsDict?[reportType] {
-                    let localAreaReport = localAreaReportsDict?[reportType]
+                if let localAreaReport = localAreaReportsDict?[reportType] {
                     let nationalAreaReport = nationalAreaReportsDict[reportType]
                     let latestDate: Date
                     
                     //        // If Latest SeriesReport is available, use that as End Year
-                    let latestData = localAreaReport?.seriesReport?.latestData()
+                    let latestData = localAreaReport.seriesReport?.latestData()
                     if let latestData = latestData {
                         latestDate = DateFormatter.date(fromMonth: latestData.periodName, fromYear: latestData.year) ?? Date()
 
-                        let viewModel = HistoryViewModel(title: title, localSeriesId: localAreaReport?.seriesId, nationalSeriedId: nationalAreaReport?.seriesId, latestDate: latestDate)
+                        let viewModel = HistoryViewModel(title: title, localSeriesId: localAreaReport.seriesId, nationalSeriedId: nationalAreaReport?.seriesId, latestDate: latestDate)
                         destVC.viewModel = viewModel
                     }
                 }
@@ -398,11 +397,11 @@ extension MetroStateViewController: UITableViewDataSource {
 
         let localAreaSeriesReport = localAreaReportsDict?[reportType]?.seriesReport
         if indexPath.row == 0 {
-            reportCell.displaySeries(area: area, seriesReport: localAreaSeriesReport, periodName: nil, year: nil)
+            reportCell.displaySeries(area: area, seriesReport: localAreaSeriesReport, periodName: nil, year: nil, seasonallyAdjusted: seasonalAdjustment)
         }
         else if indexPath.row == 1 {
             let seriesReport = nationalAreaReportsDict[reportType]?.seriesReport
-            reportCell.displaySeries(area: nationalArea, seriesReport: seriesReport, periodName: localAreaSeriesReport?.latestDataPeriodName(), year: localAreaSeriesReport?.latestDataYear())
+            reportCell.displaySeries(area: nationalArea, seriesReport: seriesReport, periodName: localAreaSeriesReport?.latestDataPeriodName(), year: localAreaSeriesReport?.latestDataYear(), seasonallyAdjusted: seasonalAdjustment)
         }
     }
 }

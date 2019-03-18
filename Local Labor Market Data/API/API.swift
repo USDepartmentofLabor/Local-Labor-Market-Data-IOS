@@ -20,28 +20,29 @@ class API {
         static let REGISTRATION_KEY = Settings.API_REGISTRATION_KEY
     }
 
-    func getReports(seriesIds: [String], year: String? = nil, completion: ((APIResult<APIReportResponse, ReportError>) -> Void)?) -> URLSessionDataTask {
-        return getReports(seriesIds: seriesIds, startYear: year, endYear: year, completion: completion)
+    func getReports(seriesIds: [String], year: String? = nil, annualAverage: Bool, completion: ((APIResult<APIReportResponse, ReportError>) -> Void)?) -> URLSessionDataTask? {
+        return getReports(seriesIds: seriesIds, startYear: year, endYear: year, annualAverage:annualAverage, completion: completion)
     }
     
-    func getReports(seriesIds: [String], startYear: String?, endYear: String?, completion: ((APIResult<APIReportResponse, ReportError>) -> Void)?) -> URLSessionDataTask {
+    func getReports(seriesIds: [String], startYear: String?, endYear: String?,
+                    annualAverage: Bool, completion: ((APIResult<APIReportResponse, ReportError>) -> Void)?) -> URLSessionDataTask? {
         
         var reportResponse: APIResult<APIReportResponse, ReportError>? = nil
         var seriesIdsCopy = seriesIds
         let requestIds = Array(seriesIdsCopy.prefix(50))
         seriesIdsCopy = seriesIdsCopy.count > 50 ? Array(seriesIdsCopy.suffix(from: 50)): [String]()
 
-        return postReport1(seriesIds: requestIds, startYear: startYear, endYear: endYear, completion: { (apiResult) in
+        return postReport1(seriesIds: requestIds, startYear: startYear, endYear: endYear, annualAverage:annualAverage, completion: { (apiResult) in
             switch apiResult {
             case .success(let report):
                 if seriesIdsCopy.count > 0 {
                     if reportResponse == nil {
                         reportResponse = apiResult
                     }
-                    _ = self.getReports(seriesIds: seriesIdsCopy, startYear: startYear, endYear: endYear, completion: { (result) in
+                    _ = self.getReports(seriesIds: seriesIdsCopy, startYear: startYear, endYear: endYear, annualAverage: annualAverage,
+                                        completion: { (result) in
                         switch result {
                         case .success(let report):
-                            print(result)
                             if case .success(var prevReport)? = reportResponse {
                                 prevReport.series?.append(contentsOf: report.series!)
                                 completion?(.success(prevReport))
@@ -49,7 +50,6 @@ class API {
 
                         case .failure(let error):
                             completion?(.failure(error))
-                            print("")
                         }
                     })
                 }
@@ -57,7 +57,6 @@ class API {
                     completion?(apiResult)
                 }
                 
-                print(report)
             case .failure(_):
                 completion?(apiResult)
             }
@@ -65,14 +64,26 @@ class API {
     
     }
     
-    private func postReport1(seriesIds: [String], startYear: String?, endYear: String?, completion: ((APIResult<APIReportResponse, ReportError>) -> Void)?) -> URLSessionDataTask {
-        return postReport(seriesIds: seriesIds, startYear:startYear, endYear: endYear, completion:{ (result) in
+    private func postReport1(seriesIds: [String], startYear: String?, endYear: String?, annualAverage: Bool, completion: ((APIResult<APIReportResponse, ReportError>) -> Void)?) -> URLSessionDataTask? {
+        
+        let reportRequest = APIReportRequest(seriesIds: seriesIds, registrationKey: Constants.REGISTRATION_KEY, startYear: startYear, endYear: endYear, annualAverage: annualAverage)
+
+        if let cachedResponse = CacheManager.shared().get(for: reportRequest) {
+            completion?(.success(cachedResponse))
+            return nil
+        }
+        
+        return postReport(reportRequest: reportRequest, completion:{ (result) in
             guard let result = result else {return}
             
             switch result {
             case .success(let jsonData):
                 do {
                     let report = try JSONDecoder().decode(APIReportResponse.self, from: jsonData)
+                    
+                    if report.status == .REQUEST_SUCCEEDED {
+                        CacheManager.shared().put(response: report, for: reportRequest)
+                    }
                     completion?(.success(report))
                 }
                 catch(let error) {
@@ -85,8 +96,7 @@ class API {
         })
     }
     
-    fileprivate func postReport(seriesIds: [String], startYear: String?, endYear: String?, completion: @escaping ((NetworkResult<ReportError>?) -> Void)) -> URLSessionDataTask {
-        let reportRequest = APIReportRequest(seriesIds: seriesIds, registrationKey: Constants.REGISTRATION_KEY, startYear: startYear, endYear: endYear)
+    fileprivate func postReport(reportRequest: APIReportRequest, completion: @escaping ((NetworkResult<ReportError>?) -> Void)) -> URLSessionDataTask {
 //        print("Request: \(reportRequest.description)")
         let requestData = try? JSONEncoder().encode(reportRequest)
         

@@ -13,17 +13,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmploymentWageTableViewCell" id="KGk-i7-Jjw" customClass="EmploymentWageTableViewCell" customModule="Local_Labor_Market_Data" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="317" height="237"/>
+            <rect key="frame" x="0.0" y="0.0" width="317" height="239"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="317" height="236.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="317" height="238.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXt-Tk-RGL">
-                        <rect key="frame" x="0.0" y="0.0" width="317" height="231.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="317" height="233.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZh-L0-fpR">
-                                <rect key="frame" x="5" y="5" width="307" height="221.5"/>
+                                <rect key="frame" x="5" y="5" width="307" height="223.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOm-jS-cR8" userLabel="AreaView">
                                         <rect key="frame" x="5" y="5.5" width="120" height="25"/>
@@ -44,13 +44,19 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="July 2018" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYs-ug-fsN" userLabel="quarterYearLabel">
-                                        <rect key="frame" x="235" y="11" width="59" height="14.5"/>
+                                        <rect key="frame" x="235" y="5.5" width="59" height="14.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qav-HH-oaH" userLabel="seasonalAdjustmentLabel">
+                                        <rect key="frame" x="265.5" y="22" width="28.5" height="13.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4K-tm-Rvw">
-                                        <rect key="frame" x="10" y="40.5" width="287" height="171"/>
+                                        <rect key="frame" x="10" y="42.5" width="287" height="171"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6Z-Yr-jCG" userLabel="EmploymentView">
                                                 <rect key="frame" x="0.0" y="0.0" width="138.5" height="171"/>
@@ -271,12 +277,14 @@
                                     <constraint firstItem="AOm-jS-cR8" firstAttribute="leading" secondItem="jZh-L0-fpR" secondAttribute="leading" constant="5" id="AQH-3T-2Bp"/>
                                     <constraint firstAttribute="trailing" secondItem="D4K-tm-Rvw" secondAttribute="trailing" constant="10" id="Lec-aa-tos"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="RYs-ug-fsN" secondAttribute="trailing" constant="5" id="Mrl-SU-qQR"/>
+                                    <constraint firstItem="RYs-ug-fsN" firstAttribute="top" secondItem="AOm-jS-cR8" secondAttribute="top" id="OdT-0O-owW"/>
                                     <constraint firstItem="D4K-tm-Rvw" firstAttribute="leading" secondItem="jZh-L0-fpR" secondAttribute="leading" constant="10" id="bqr-Pc-cJq"/>
                                     <constraint firstAttribute="bottom" secondItem="D4K-tm-Rvw" secondAttribute="bottom" constant="10" id="e3U-5y-PWJ"/>
                                     <constraint firstItem="AOm-jS-cR8" firstAttribute="top" secondItem="jZh-L0-fpR" secondAttribute="top" constant="5.5" id="hbz-RO-OY2"/>
-                                    <constraint firstItem="D4K-tm-Rvw" firstAttribute="top" secondItem="AOm-jS-cR8" secondAttribute="bottom" constant="10" id="hmV-LR-Bb7"/>
-                                    <constraint firstItem="RYs-ug-fsN" firstAttribute="centerY" secondItem="AOm-jS-cR8" secondAttribute="centerY" id="w13-Yz-EtN"/>
+                                    <constraint firstItem="D4K-tm-Rvw" firstAttribute="top" secondItem="AOm-jS-cR8" secondAttribute="bottom" constant="12" id="hmV-LR-Bb7"/>
+                                    <constraint firstItem="RYs-ug-fsN" firstAttribute="trailing" secondItem="qav-HH-oaH" secondAttribute="trailing" id="qri-GQ-rA3"/>
                                     <constraint firstItem="RYs-ug-fsN" firstAttribute="width" relation="lessThanOrEqual" secondItem="jZh-L0-fpR" secondAttribute="width" multiplier="0.5" id="xNc-rz-GrD"/>
+                                    <constraint firstItem="qav-HH-oaH" firstAttribute="top" secondItem="RYs-ug-fsN" secondAttribute="bottom" constant="2" id="xvY-1X-MWv"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -312,6 +320,7 @@
                 <outlet property="employmentView" destination="j6Z-Yr-jCG" id="7DZ-9c-1vZ"/>
                 <outlet property="outlineView" destination="aXt-Tk-RGL" id="jJn-G2-B90"/>
                 <outlet property="qtrYearLabel" destination="RYs-ug-fsN" id="vtp-ad-QXf"/>
+                <outlet property="seasonalAdjustmentLabel" destination="qav-HH-oaH" id="C6O-gH-Weq"/>
                 <outlet property="wageChangeLabel" destination="axX-Dj-ann" id="omG-a5-AoU"/>
                 <outlet property="wageChangeTitleLabel" destination="b8B-tN-3wA" id="MAz-qN-4ZA"/>
                 <outlet property="wageChangeView" destination="lA0-v3-E1F" id="bSW-lf-3g5"/>

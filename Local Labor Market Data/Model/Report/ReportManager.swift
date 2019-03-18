@@ -61,9 +61,21 @@ struct AreaReport {
     }
 }
 
-enum SeasonalAdjustment: String {
+enum SeasonalAdjustment: String, CustomStringConvertible {
     case adjusted = "S"
     case notAdjusted = "U"
+    
+    var description: String {
+        let desc: String
+        switch self {
+        case .adjusted:
+            desc = "Seasonally Adjusted"
+        case .notAdjusted:
+            desc = "Not Seasonally Adjusted"
+        }
+        
+        return desc
+    }
 }
 
 enum ReportType {
@@ -112,15 +124,17 @@ class ReportManager {
     class func getReports(forArea area: Area, reportTypes: [ReportType],
                           seasonalAdjustment: SeasonalAdjustment = .notAdjusted,
                           period: String? = nil, year: String? = nil,
+                          annualAverage: Bool = false,
                           completion: ((APIResult<[ReportType: AreaReport], ReportError>) -> Void)?) {
         getReports(forArea: area, reportTypes: reportTypes, seasonalAdjustment: seasonalAdjustment,
-                   period: period, startYear: year, endYear: year, completion: completion)
+                   period: period, startYear: year, endYear: year, annualAverage: annualAverage, completion: completion)
     }
     
     class func getReports(forArea area: Area, reportTypes: [ReportType],
                           seasonalAdjustment: SeasonalAdjustment = .notAdjusted,
                           period: String? = nil,
                           startYear: String?, endYear: String?,
+                          annualAverage: Bool = false,
                           completion: ((APIResult<[ReportType: AreaReport], ReportError>) -> Void)?) {
         
         var seriesIds = [SeriesId]()
@@ -130,14 +144,14 @@ class ReportManager {
             if let seriesId = reportType.seriesId(forArea: area, adjustment: seasonalAdjustment) {
                 areaReport.seriesId = seriesId
                 // Check if seriesID exist in cache
-                if let year = endYear, let period = period,
-                    let report = CacheManager.shared().getReport(seriesId: seriesId, forPeriod: period, year: year) {
-                    // If Yes, the no need to get it again from network
-                    areaReport.seriesReport = report
-                }
-                else {
+//                if let year = endYear, let period = period,
+//                    let report = CacheManager.shared().getReport(seriesId: seriesId, forPeriod: period, year: year) {
+//                    // If Yes, the no need to get it again from network
+//                    areaReport.seriesReport = report
+//                }
+//                else {
                     seriesIds.append(seriesId)
-                }
+//                }
             }
 
             areaReportsDict[reportType] = areaReport
@@ -147,7 +161,7 @@ class ReportManager {
             completion?(.success(areaReportsDict))
             return
         }
-        _ = API().getReports(seriesIds: seriesIds, startYear: startYear, endYear: endYear,
+        _ = API().getReports(seriesIds: seriesIds, startYear: startYear, endYear: endYear, annualAverage: annualAverage,
                              completion: { response in
             switch response {
             case .success(let reportResponse):
@@ -166,9 +180,9 @@ class ReportManager {
                         }
                         // If this is national Report then save it on Cache.
                         // And it is for Year. If just latest requested then don't cache
-                        if area is National, startYear != nil {
-                            CacheManager.shared().saveReport(seriesReport: seriesReport)
-                        }
+//                        if area is National, startYear != nil {
+//                            CacheManager.shared().saveReport(seriesReport: seriesReport)
+//                        }
                     })
                     completion?(.success(areaReportsDict))
                 }
@@ -227,7 +241,7 @@ extension ReportManager {
                           startYear: String, endYear: String,
                           completion: ((APIResult<[SeriesReport]?, ReportError>) -> Void)?) {
         
-        _ = API().getReports(seriesIds: seriesIds, startYear: startYear, endYear: endYear,
+        _ = API().getReports(seriesIds: seriesIds, startYear: startYear, endYear: endYear, annualAverage: false,
                              completion: { response in
                                 switch response {
                                 case .success(let reportResponse):

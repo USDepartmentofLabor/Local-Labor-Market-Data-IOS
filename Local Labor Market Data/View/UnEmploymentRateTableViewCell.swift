@@ -12,12 +12,12 @@ class UnEmploymentRateTableViewCell: UITableViewCell {
 
     class var nibName: String { return "UnEmploymentRateTableViewCell" }
     class var reuseIdentifier: String { return "UnEmploymentRateTableViewCell" }
-
     
     @IBOutlet weak var outlineView: UIView!
     @IBOutlet weak var dataView: UIView!
     @IBOutlet weak var areaLabel: UILabel!
     @IBOutlet weak var monthYearLabel: UILabel!
+    @IBOutlet weak var seasonallyAdjustedLabel: UILabel!
     
     @IBOutlet weak var dataTitleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
@@ -86,7 +86,8 @@ class UnEmploymentRateTableViewCell: UITableViewCell {
 
 extension UnEmploymentRateTableViewCell: ReportTableViewCell {
     
-    func displaySeries(area: Area?, seriesReport: SeriesReport?, periodName: String? = nil, year: String? = nil) {
+    func displaySeries(area: Area?, seriesReport: SeriesReport?, periodName: String? = nil,
+                       year: String? = nil, seasonallyAdjusted: SeasonalAdjustment?) {
         guard let area = area else { return }
         
         areaLabel.text = "\(area.displayType) Data"
@@ -96,6 +97,7 @@ extension UnEmploymentRateTableViewCell: ReportTableViewCell {
             valueLabel.text = ""
             oneMonthNetChangeLabel.text = ""
             twelveMonthNetChangeLabel.text = ""
+            seasonallyAdjustedLabel.text = ""
             return
         }
         
@@ -109,6 +111,7 @@ extension UnEmploymentRateTableViewCell: ReportTableViewCell {
 
         guard let seriesData = data else {
             monthYearLabel.text = ""
+            seasonallyAdjustedLabel.text = ""
             valueLabel.text = ReportManager.dataNotAvailableStr
             valueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             oneMonthNetChangeLabel.text = ReportManager.dataNotAvailableStr
@@ -121,6 +124,9 @@ extension UnEmploymentRateTableViewCell: ReportTableViewCell {
         
         monthYearLabel.accessibilityElementsHidden = false
         monthYearLabel.text = "\(seriesData.periodName) \(seriesData.year)"
+        seasonallyAdjustedLabel.text = seasonallyAdjusted?.description
+        
+
         valueLabel.text = "\(seriesData.value)%"
         
         if let netChange = seriesData.calculations?.netChanges {

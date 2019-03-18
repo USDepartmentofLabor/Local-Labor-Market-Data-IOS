@@ -76,6 +76,28 @@ public class Item: NSManagedObject {
         }
         return isLeaf
     }
+    
+    var titleWithParents: String {
+        let parentsStr = allParents
+        
+        if parentsStr.isEmpty {
+            return title ?? ""
+        }
+        
+        return "\(parentsStr) -> \(title ?? "")"
+    }
+    var allParents: String {
+        var response = ""
+        
+        if let parent = parent {
+            response.append(parent.title ?? "")
+            let parentStr = parent.allParents
+            if !parentStr.isEmpty  {
+                response = "\(parentStr) -> \(response)"
+            }
+        }
+        return response
+    }
 }
 
 extension Item: Comparable {
@@ -85,5 +107,24 @@ extension Item: Comparable {
     
     public static func < (lhs: Item, rhs: Item) -> Bool {
         return (lhs.code ?? "") < (rhs.code ?? "")
+    }
+}
+
+
+extension Item {
+    class func searchItem<T: Item>(context: NSManagedObjectContext, searchStr: String) -> [T]? {
+        let results: [T]?
+        
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = self.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "title CONTAINS[c] %@", searchStr)
+        fetchRequest.entity = self.entity()
+        do {
+            results = try context.fetch(fetchRequest) as? [T]
+        } catch let error as NSError {
+            print("context.fetch error in getWholeEntity(): " + error.debugDescription)
+            results = nil
+        }
+        
+        return results?.sorted()
     }
 }

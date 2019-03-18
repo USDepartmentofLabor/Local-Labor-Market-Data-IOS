@@ -24,6 +24,9 @@ enum DataSort {
     case none
     case local(ascending: Bool)
     case national(ascending: Bool)
+    case localOneMonthChange(ascending: Bool)
+    case localTwelveMonthChange(ascending: Bool)
+    case nationalTwelveMonthChange(ascending: Bool)
 }
 
 class ItemViewModel: NSObject {
@@ -33,8 +36,9 @@ class ItemViewModel: NSObject {
     var itemDataTypes: [ItemDataType] = [ItemDataType(title: "Employment Level", reportType: ReportType.industryEmployment(industryCode: "00000000", CESReport.DataTypeCode.allEmployees))]
     
     var currentDataType: ItemDataType
-    var dataTitle = "Industry"
+    var dataTitle = "Industry (Code)"
     var dataSort = DataSort.none
+    var annualAverage = false
     
     var isNationalReport: Bool {
         get {
@@ -70,9 +74,59 @@ class ItemViewModel: NSObject {
                     }
                     return firstValue > secondValue
                 }
+            case .localOneMonthChange(let ascending):
+                return _items?.sorted {
+                    let firstValueStr = getReportData(item: $0)?.calculations?.netChanges?.oneMonth ?? ""
+                    let secondValueStr = getReportData(item: $1)?.calculations?.netChanges?.oneMonth ?? ""
+                    let firstValue = Double(firstValueStr) ?? 0
+                    let secondValue = Double(secondValueStr) ?? 0
+                    if ascending {
+                        return firstValue < secondValue
+                    }
+                    return firstValue > secondValue
+                }
+            case .localTwelveMonthChange(let ascending):
+                return _items?.sorted {
+                    let firstValueStr = getReportData(item: $0)?.calculations?.netChanges?.twelveMonth ?? ""
+                    let secondValueStr = getReportData(item: $1)?.calculations?.netChanges?.twelveMonth ?? ""
+                    let firstValue = Double(firstValueStr) ?? 0
+                    let secondValue = Double(secondValueStr) ?? 0
+                    if ascending {
+                        return firstValue < secondValue
+                    }
+                    return firstValue > secondValue
+                }
+            case .nationalTwelveMonthChange(let ascending):
+                return _items?.sorted {
+                    let firstValueStr = getNationalReportData(item: $0)?.calculations?.netChanges?.twelveMonth ?? ""
+                    let secondValueStr = getNationalReportData(item: $1)?.calculations?.netChanges?.twelveMonth ?? ""
+                    let firstValue = Double(firstValueStr) ?? 0
+                    let secondValue = Double(secondValueStr) ?? 0
+                    if ascending {
+                        return firstValue < secondValue
+                    }
+                    return firstValue > secondValue
+                }
             }
         }
     }
+    private var _displayLeaf: Bool
+    
+    var displayLeaf: Bool {
+        get{
+            return _displayLeaf
+        }
+        set {
+            _displayLeaf = newValue
+            if _displayLeaf {
+                _items = parentItem.getLeafChildren()
+            }
+            else {
+                _items = parentItem.subItems()
+            }
+        }
+    }
+    
     init(area: Area, parent: Item? = nil, itemType: Item.Type, dataYear: String) {
         self.area = area
         self.dataYear = dataYear
@@ -89,14 +143,14 @@ class ItemViewModel: NSObject {
         if !(area is National),
             parentItem is OE_Occupation,
             parentItem.code != OESReport.ALL_OCCUPATIONS_CODE {
-            _items = parentItem.getLeafChildren()
-            
-            print("Parent \(parentItem.title): leaf Count: \(_items?.count)")
+                _displayLeaf = true
+                _items = parentItem.getLeafChildren()
         }
         else {
+            _displayLeaf = false
             _items = parentItem.subItems()
         }
-        
+    
         currentDataType = itemDataTypes[0]
     }
 
@@ -224,11 +278,11 @@ class ItemViewModel: NSObject {
 
 // Mark: Load Report
 extension ItemViewModel {
-    func loadReport(seasonalAdjustment: SeasonalAdjustment, completion: @escaping () -> Void) {
-        loadLocalReport(seasonalAdjustment: seasonalAdjustment) {[weak self] in
+    func loadReport(seasonalAdjustment: SeasonalAdjustment, completion: @escaping (ReportError?) -> Void) {
+        loadLocalReport(seasonalAdjustment: seasonalAdjustment) { [weak self] (reportError) in
             guard let strongSelf = self else { return }
             if strongSelf.area is National {
-                completion()
+                completion(reportError)
             }
                 // National Report is required only for OES and QCEW
             else if strongSelf.parentItem is OE_Occupation ||
@@ -236,37 +290,25 @@ extension ItemViewModel {
                 strongSelf.loadNationalReport(seasonalAdjustment: seasonalAdjustment, completion:  completion)
             }
             else {
-                completion()
+                completion(reportError)
             }
         }
     }
     
-    func loadLocalReport(seasonalAdjustment: SeasonalAdjustment, completion: @escaping () -> Void) {
-        if currentDataType.localReport == nil {
+    func loadLocalReport(seasonalAdjustment: SeasonalAdjustment, completion: @escaping (ReportError?) -> Void) {
             // Load the report from Server
-            loadReport(area: area, seasonalAdjustment: seasonalAdjustment, completion: completion)
-        }
-        else {
-            // return the report
-            completion()
-        }
+        loadReport(area: area, seasonalAdjustment: seasonalAdjustment, completion: completion)
     }
     
-    func loadNationalReport(seasonalAdjustment: SeasonalAdjustment, completion: @escaping () -> Void) {
+    func loadNationalReport(seasonalAdjustment: SeasonalAdjustment, completion: @escaping (ReportError?) -> Void) {
         guard let context = area.managedObjectContext,
             let nationalArea = DataUtil(managedContext: context).nationalArea()
             else {return }
         
-        if currentDataType.nationalReport == nil {
-            loadReport(area: nationalArea, seasonalAdjustment: seasonalAdjustment, completion: completion)
-        }
-        else {
-            completion()
-        }
-        
+        loadReport(area: nationalArea, seasonalAdjustment: seasonalAdjustment, completion: completion)
     }
     
-    func loadReport(area: Area, seasonalAdjustment: SeasonalAdjustment, completion: @escaping () -> Void) {
+    func loadReport(area: Area, seasonalAdjustment: SeasonalAdjustment, completion: @escaping (ReportError?) -> Void) {
         loadReportFromAPI(area: area, seasonalAdjustment: seasonalAdjustment) {
             [weak self] (apiResult) in
             guard let strongSelf = self else { return }
@@ -280,10 +322,11 @@ extension ItemViewModel {
                 else {
                     strongSelf.currentDataType.nationalReport = areaReportsDict
                 }
+            completion(nil)
             case .failure(let error):
                 print(error)
+                completion(error)
             }
-            completion()
         }
     }
 
@@ -291,7 +334,8 @@ extension ItemViewModel {
                            completion: ((APIResult<[ReportType: AreaReport], ReportError>) -> Void)?) {
         if let reportTypes = getReportTypes() {
             ReportManager.getReports(forArea: area, reportTypes: reportTypes,
-                                     seasonalAdjustment: seasonalAdjustment, year:dataYear, completion: completion)
+                                     seasonalAdjustment: seasonalAdjustment, year:dataYear,
+                                     annualAverage: annualAverage, completion: completion)
         }
     }
     

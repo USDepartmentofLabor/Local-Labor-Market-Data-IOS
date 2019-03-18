@@ -45,6 +45,7 @@ extension DataTypeViewController: UITableViewDataSource {
         }
 
         cell.textLabel?.textAlignment = .center
+        cell.textLabel?.scaleFont(forDataType: .itemDataType)
         cell.textLabel?.text = itemDataTypes?[indexPath.row].title ?? ""
         
         return cell

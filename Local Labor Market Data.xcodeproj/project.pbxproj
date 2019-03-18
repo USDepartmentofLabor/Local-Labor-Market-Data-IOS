@@ -20,9 +20,13 @@
 		0323B7BE21AEF1F300A3E73C /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */; };
 		03248DE7220B72EB004E4916 /* industry_titles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03248DE6220B72EB004E4916 /* industry_titles.txt */; };
 		0324B00B221C84900066A8CD /* ItemCESTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0324B00A221C84900066A8CD /* ItemCESTableViewCell.swift */; };
+		03254927222451A700A51046 /* SearchItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03254926222451A700A51046 /* SearchItemViewController.swift */; };
 		03256380221DEE52000F3778 /* AreaSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0325637F221DEE52000F3778 /* AreaSectionFooterView.swift */; };
 		03256382221DEE7B000F3778 /* AreaSectionFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03256381221DEE7B000F3778 /* AreaSectionFooterView.xib */; };
 		0325C00B221334E200AE8405 /* DataTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0325C00A221334E200AE8405 /* DataTypeViewController.swift */; };
+		03260D1322281E5D0001A9C5 /* SearchItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03260D1222281E5D0001A9C5 /* SearchItemViewModel.swift */; };
+		03260D1522284C2D0001A9C5 /* UITapGestrure+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03260D1422284C2D0001A9C5 /* UITapGestrure+Extension.swift */; };
+		03265FDC2233107C000DFD71 /* ItemQCEWTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03265FDB2233107C000DFD71 /* ItemQCEWTableViewCell.swift */; };
 		03287A7F2187665A0067686A /* NECTACBSA_COUNTY.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */; };
 		032B242021AC8C8B0029AC90 /* oe.occupation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 032B241F21AC8C8B0029AC90 /* oe.occupation.txt */; };
 		032C16652138241E004C1B3F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16642138241E004C1B3F /* Util.swift */; };
@@ -38,6 +42,7 @@
 		0348FD1D211E0AB200155BE8 /* OwnershipDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0348FD1B211E0AB200155BE8 /* OwnershipDataTableViewCell.xib */; };
 		0348FD1E211E0AB200155BE8 /* OwnershipDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD1C211E0AB200155BE8 /* OwnershipDataTableViewCell.swift */; };
 		0348FD24211FB03D00155BE8 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD23211FB03D00155BE8 /* Dictionary+Extension.swift */; };
+		034F90AF2225D205002909F6 /* SearchItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034F90AE2225D205002909F6 /* SearchItemTableViewCell.swift */; };
 		035D971B2126267F005F1CA9 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D971A2126267F005F1CA9 /* ActivityIndicatorView.swift */; };
 		035D971F21270782005F1CA9 /* NumberFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D971E21270782005F1CA9 /* NumberFormatter+Extension.swift */; };
 		035D9723212C4F3A005F1CA9 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D9722212C4F3A005F1CA9 /* Style.swift */; };
@@ -106,7 +111,6 @@
 		03F1F89F20EABF0200662446 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F89E20EABF0200662446 /* CoreDataManager.swift */; };
 		03F1F8A220EAC99700662446 /* ZipCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F8A020EAC99700662446 /* ZipCountyMap+CoreDataClass.swift */; };
 		03F1F8A620EAD23C00662446 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F8A520EAD23C00662446 /* String+Extension.swift */; };
-		12559994DF82B8FAEFC34EBC /* Pods_Local_Labor_Market_Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5AB87D9078368A6696D4D4F /* Pods_Local_Labor_Market_Data.framework */; };
 		13F69C4C74B3CE64A313C4E7 /* Pods_Local_Labor_Market_DataUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB30557B868A6C1C804C809 /* Pods_Local_Labor_Market_DataUITests.framework */; };
 		597EE8F32188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */; };
 		59E7A05D219F45C30060B7FF /* sm.industry.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A059219F45C20060B7FF /* sm.industry.txt */; };
@@ -115,6 +119,7 @@
 		59ECE38D21ADC2F000EE06BE /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ECE38C21ADC2F000EE06BE /* ItemViewController.swift */; };
 		59ED36C721ED16DD00C45797 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED36C621ED16DD00C45797 /* SearchHistoryViewController.swift */; };
 		9C6ECE10018322AD100C417F /* Pods_Local_Labor_Market_DataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A14D7D86491DEBEF52401E /* Pods_Local_Labor_Market_DataTests.framework */; };
+		B636B13A152248E08A838428 /* Pods_Local_Labor_Market_Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5AB87D9078368A6696D4D4F /* Pods_Local_Labor_Market_Data.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,9 +148,13 @@
 		0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		03248DE6220B72EB004E4916 /* industry_titles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = industry_titles.txt; sourceTree = "<group>"; };
 		0324B00A221C84900066A8CD /* ItemCESTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCESTableViewCell.swift; sourceTree = "<group>"; };
+		03254926222451A700A51046 /* SearchItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemViewController.swift; sourceTree = "<group>"; };
 		0325637F221DEE52000F3778 /* AreaSectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaSectionFooterView.swift; sourceTree = "<group>"; };
 		03256381221DEE7B000F3778 /* AreaSectionFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AreaSectionFooterView.xib; sourceTree = "<group>"; };
 		0325C00A221334E200AE8405 /* DataTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypeViewController.swift; sourceTree = "<group>"; };
+		03260D1222281E5D0001A9C5 /* SearchItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemViewModel.swift; sourceTree = "<group>"; };
+		03260D1422284C2D0001A9C5 /* UITapGestrure+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITapGestrure+Extension.swift"; sourceTree = "<group>"; };
+		03265FDB2233107C000DFD71 /* ItemQCEWTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemQCEWTableViewCell.swift; sourceTree = "<group>"; };
 		03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BLSApp 2.xcdatamodel"; sourceTree = "<group>"; };
 		03287A7C2187665A0067686A /* CBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CBSA_COUNTY.txt; sourceTree = "<group>"; };
 		03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NECTACBSA_COUNTY.txt; sourceTree = "<group>"; };
@@ -163,6 +172,7 @@
 		0348FD1B211E0AB200155BE8 /* OwnershipDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OwnershipDataTableViewCell.xib; sourceTree = "<group>"; };
 		0348FD1C211E0AB200155BE8 /* OwnershipDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnershipDataTableViewCell.swift; sourceTree = "<group>"; };
 		0348FD23211FB03D00155BE8 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		034F90AE2225D205002909F6 /* SearchItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemTableViewCell.swift; sourceTree = "<group>"; };
 		035D971A2126267F005F1CA9 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		035D971E21270782005F1CA9 /* NumberFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extension.swift"; sourceTree = "<group>"; };
 		035D9722212C4F3A005F1CA9 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
@@ -273,7 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				036164C0210B5DB70055708A /* CoreLocation.framework in Frameworks */,
-				12559994DF82B8FAEFC34EBC /* Pods_Local_Labor_Market_Data.framework in Frameworks */,
+				B636B13A152248E08A838428 /* Pods_Local_Labor_Market_Data.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +307,15 @@
 			path = History;
 			sourceTree = "<group>";
 		};
+		032549252224518F00A51046 /* SearchItem */ = {
+			isa = PBXGroup;
+			children = (
+				03254926222451A700A51046 /* SearchItemViewController.swift */,
+				03260D1222281E5D0001A9C5 /* SearchItemViewModel.swift */,
+			);
+			path = SearchItem;
+			sourceTree = "<group>";
+		};
 		032B241E21AC8C760029AC90 /* OES */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,7 +332,7 @@
 			path = QCEW;
 			sourceTree = "<group>";
 		};
-		036164BC210B4FEA0055708A /* Search */ = {
+		036164BC210B4FEA0055708A /* SearchArea */ = {
 			isa = PBXGroup;
 			children = (
 				0396A012210268FF00DBECBD /* SearchViewController.swift */,
@@ -322,12 +341,14 @@
 				033230C021DE63110051E783 /* SearchHistory.swift */,
 				59ED36C621ED16DD00C45797 /* SearchHistoryViewController.swift */,
 			);
-			path = Search;
+			path = SearchArea;
 			sourceTree = "<group>";
 		};
 		036164BD210B50480055708A /* MetroStateArea */ = {
 			isa = PBXGroup;
 			children = (
+				03265FDB2233107C000DFD71 /* ItemQCEWTableViewCell.swift */,
+				032549252224518F00A51046 /* SearchItem */,
 				03238021220C73F5009275F6 /* OccupationViewModel.swift */,
 				03953C3E2118D28400BED557 /* CountyViewController.swift */,
 				036164C1210B869B0055708A /* MetroStateViewController.swift */,
@@ -394,7 +415,7 @@
 			children = (
 				0322AE2B21B04AD900592970 /* History */,
 				036164BD210B50480055708A /* MetroStateArea */,
-				036164BC210B4FEA0055708A /* Search */,
+				036164BC210B4FEA0055708A /* SearchArea */,
 				0396A0622107701C00DBECBD /* Resources */,
 			);
 			path = ViewController;
@@ -423,6 +444,7 @@
 				03B7088A2123211700C370D7 /* ReportViewCell.swift */,
 				035D971A2126267F005F1CA9 /* ActivityIndicatorView.swift */,
 				0325637F221DEE52000F3778 /* AreaSectionFooterView.swift */,
+				034F90AE2225D205002909F6 /* SearchItemTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -564,6 +586,7 @@
 				032C16682139927F004C1B3F /* UICustomSwitch.swift */,
 				03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */,
 				032C1D2B21E4F1C4007EEFF5 /* UINavigationController+Extension.swift */,
+				03260D1422284C2D0001A9C5 /* UITapGestrure+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -620,7 +643,7 @@
 				03F1F85920EA622D00662446 /* Sources */,
 				03F1F85A20EA622D00662446 /* Frameworks */,
 				03F1F85B20EA622D00662446 /* Resources */,
-				38B68C7179DFFD76B6340EA1 /* [CP] Embed Pods Frameworks */,
+				BC0C08A8E401600A16DCAA9C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -768,28 +791,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		38B68C7179DFFD76B6340EA1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6EE7311C2117B1F9B545BB0D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -834,6 +835,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BC0C08A8E401600A16DCAA9C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -854,6 +877,7 @@
 				03953C1F2110AE0100BED557 /* OESReport.swift in Sources */,
 				03953C43211A2A1500BED557 /* UIView+Extension.swift in Sources */,
 				59ECE38D21ADC2F000EE06BE /* ItemViewController.swift in Sources */,
+				03254927222451A700A51046 /* SearchItemViewController.swift in Sources */,
 				03953C412119C3D300BED557 /* UIColor+Extension.swift in Sources */,
 				0396A013210268FF00DBECBD /* SearchViewController.swift in Sources */,
 				59ED36C721ED16DD00C45797 /* SearchHistoryViewController.swift in Sources */,
@@ -906,6 +930,7 @@
 				03F1F89820EAA93000662446 /* DataUtil.swift in Sources */,
 				03953C0B210F631000BED557 /* API.swift in Sources */,
 				036164CF210D2C660055708A /* State+CoreDataClass.swift in Sources */,
+				034F90AF2225D205002909F6 /* SearchItemTableViewCell.swift in Sources */,
 				0323B7BB21AEE48000A3E73C /* ItemViewModel.swift in Sources */,
 				03953C49211B49E500BED557 /* GlossaryViewController.swift in Sources */,
 				0322AE2F21B063A900592970 /* HistoryViewModel.swift in Sources */,
@@ -913,13 +938,16 @@
 				035D971F21270782005F1CA9 /* NumberFormatter+Extension.swift in Sources */,
 				03953C01210F50B200BED557 /* APIReportRequest.swift in Sources */,
 				035D9723212C4F3A005F1CA9 /* Style.swift in Sources */,
+				03260D1522284C2D0001A9C5 /* UITapGestrure+Extension.swift in Sources */,
 				03F1F86120EA622D00662446 /* AppDelegate.swift in Sources */,
 				0325C00B221334E200AE8405 /* DataTypeViewController.swift in Sources */,
 				597EE8F32188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift in Sources */,
 				03953C372113877E00BED557 /* AreaViewController.swift in Sources */,
+				03265FDC2233107C000DFD71 /* ItemQCEWTableViewCell.swift in Sources */,
 				033230BF21DE62D70051E783 /* SearchHistoryManager.swift in Sources */,
 				59E7A065219F69DF0060B7FF /* Industry+CoreDataClass.swift in Sources */,
 				033230C121DE63110051E783 /* SearchHistory.swift in Sources */,
+				03260D1322281E5D0001A9C5 /* SearchItemViewModel.swift in Sources */,
 				03953C12210F83EF00BED557 /* SeriesReport.swift in Sources */,
 				03953C4B211B509D00BED557 /* AboutViewController.swift in Sources */,
 				0348FD0C211B9A7200155BE8 /* QCEWReport.swift in Sources */,
@@ -1137,13 +1165,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LTK6MX8TBS;
+				DEVELOPMENT_TEAM = 6KRG7875GS;
 				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = gov.bls.BLSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.bls.BLSApp1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -1158,13 +1186,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LTK6MX8TBS;
+				DEVELOPMENT_TEAM = 6KRG7875GS;
 				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = gov.bls.BLSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.bls.BLSApp1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

@@ -65,7 +65,7 @@ class AboutViewController: UIViewController {
     func setupView() {
         title = "About"
         
-        navigationController?.navigationBar.topItem?.title = ""
+//        navigationController?.navigationBar.topItem?.title = ""
         description1Label.text = about1Str
         description2Label.text = about2Str
         description3Label.text = about3Str

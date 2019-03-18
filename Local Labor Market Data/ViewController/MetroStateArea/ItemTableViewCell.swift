@@ -10,6 +10,8 @@ import UIKit
 
 class ItemTableViewCell: UITableViewCell {
 
+    
+    @IBOutlet weak var dataView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     
@@ -18,13 +20,21 @@ class ItemTableViewCell: UITableViewCell {
     @IBOutlet weak var nextImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setupView()
     }
 
+    func setupView() {
+        dataView.layer.borderWidth = 1
+        dataView.layer.borderColor = UIColor(named: "borderColor")?.cgColor
+        
+        titleLabel.scaleFont(forDataType: .itemTitle)
+        valueLabel.scaleFont(forDataType: .itemValue)
+        nationalValueLabel.scaleFont(forDataType: .itemValue)
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
 
 }

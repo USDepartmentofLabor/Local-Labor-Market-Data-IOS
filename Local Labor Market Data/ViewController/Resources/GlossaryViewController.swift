@@ -59,7 +59,6 @@ extension GlossaryViewController: UITableViewDataSource {
         
         cell.isAccessibilityElement = false
         cell.textLabel?.isAccessibilityElement = true
-//        cell.textLabel?.accessibilityTraits |= UIAccessibilityTraits.header
         cell.textLabel?.accessibilityTraits = UIAccessibilityTraits.header
         cell.detailTextLabel?.isAccessibilityElement = true
         
