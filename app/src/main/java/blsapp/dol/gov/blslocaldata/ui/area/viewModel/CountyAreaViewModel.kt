@@ -8,7 +8,9 @@ import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.LocalRepository
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
+import blsapp.dol.gov.blslocaldata.db.entity.CountyEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
+import blsapp.dol.gov.blslocaldata.db.entity.StateEntity
 import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
@@ -194,7 +196,7 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
                         areaReport.reportType in reportTypes
                     }
 
-                    rows.add(AreaReportRow(rowType, getApplication<BLSApplication>().getString(R.string.local_area), areaReports, header = null))
+                    rows.add(AreaReportRow(rowType, getApplication<BLSApplication>().getString(R.string.county_area), areaReports, header = null))
                     val latestLocalData = areaReports?.firstOrNull()?.seriesReport?.latestData()
                     if (nationalAreaReports.filterNotNull().isNotEmpty()) {
                         rows.add(AreaReportRow(rowType, getApplication<BLSApplication>().getString(R.string.national_area),

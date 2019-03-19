@@ -57,6 +57,9 @@
 
     <string name="local_area">Local Area</string>
     <string name="national_area">National Data</string>
+    <string name="state_area">State Data</string>
+    <string name="metro_area">Metro Data</string>
+    <string name="county_area">County Data</string>
     <string name="seasonally_adjusted">Seasonally Adjusted</string>
 
     <string name="unemployment_rate">Unemployment Rate</string>

@@ -8,7 +8,9 @@ import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.LocalRepository
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
+import blsapp.dol.gov.blslocaldata.db.entity.CountyEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
+import blsapp.dol.gov.blslocaldata.db.entity.StateEntity
 import blsapp.dol.gov.blslocaldata.model.DataUtil
 import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
@@ -173,7 +175,15 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                     } ?: kotlin.run { false }
                 }
 
-                val areaType = if (mArea is NationalEntity) R.string.national_area else R.string.local_area
+                val areaType: Int
+                if (mArea is NationalEntity)
+                    areaType = R.string.national_area
+                else if (mArea is StateEntity)
+                    areaType = R.string.state_area
+                else if (mArea is CountyEntity)
+                    areaType = R.string.county_area
+                else
+                    areaType = R.string.metro_area
 
                 rows.add(AreaReportRow(rowType,
                         getApplication<BLSApplication>().getString(areaType),
