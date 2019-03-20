@@ -78,12 +78,8 @@ class ItemViewController: UIViewController {
     
     lazy var activityIndicator = ActivityIndicatorView(text: "Loading", inView: view)
     
-    var seasonalAdjustment: SeasonalAdjustment {
-        get {
-            return ReportManager.seasonalAdjustment
-        }
-        set(newValue) {
-            ReportManager.seasonalAdjustment = newValue
+    var seasonalAdjustment: SeasonalAdjustment = .notAdjusted {
+        didSet {
             loadReports()
         }
     }
@@ -107,7 +103,6 @@ class ItemViewController: UIViewController {
         seasonallyAdjustedSwitch.tintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
         seasonallyAdjustedSwitch.onTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
         seasonallyAdjustedTitle.scaleFont(forDataType: .seasonallyAdjustedSwitch, for: traitCollection)
-        seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
 
         parentTitleLabel.scaleFont(forDataType: .itemParentTitle)
         
@@ -151,8 +146,20 @@ class ItemViewController: UIViewController {
             dataTypeButton.isHidden = true
             dataTypeButton.removeFromSuperview()
         }
-        
-        loadReports()
+
+        if viewModel is OccupationViewModel || viewModel is QCEWIndustryViewModel {
+            seasonalAdjustment = .notAdjusted
+        }
+        else {
+            if viewModel.area is National || viewModel.area is State {
+                seasonalAdjustment = .adjusted
+            }
+            else {
+                seasonalAdjustment = .notAdjusted
+            }
+        }
+
+        seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
     }
     
     func setupOccupationView() {
@@ -304,6 +311,9 @@ class ItemViewController: UIViewController {
     }
     
     @IBAction func localBtnClick(_ sender: Any) {
+        guard viewModel.currentDataType.localReport != nil else {
+            return
+        }
         if case .local(let asc) = viewModel.dataSort {
             viewModel.dataSort = .local(ascending: !asc)
         }
@@ -315,6 +325,10 @@ class ItemViewController: UIViewController {
     }
     
     @IBAction func nationalBtnClick(_ sender: Any) {
+        guard viewModel.currentDataType.nationalReport != nil else {
+            return
+        }
+        
         if case .national(let asc) = viewModel.dataSort {
             viewModel.dataSort = .national(ascending: !asc)
         }
@@ -325,6 +339,10 @@ class ItemViewController: UIViewController {
     }
     
     @IBAction func oneMonthBtnClick(_ sender: Any) {
+        guard viewModel.currentDataType.localReport != nil else {
+            return
+        }
+
         if case .localOneMonthChange(let asc) = viewModel.dataSort {
             viewModel.dataSort = .localOneMonthChange(ascending: !asc)
         }
@@ -335,6 +353,10 @@ class ItemViewController: UIViewController {
         reloadData()
     }
     @IBAction func twelveMonthBtnClick(_ sender: Any) {
+        guard viewModel.currentDataType.localReport != nil else {
+            return
+        }
+
         if case .localTwelveMonthChange(let asc) = viewModel.dataSort {
             viewModel.dataSort = .localTwelveMonthChange(ascending: !asc)
         }
@@ -345,6 +367,10 @@ class ItemViewController: UIViewController {
         reloadData()
     }
     @IBAction func natioanlTwelveMonthBtnClick(_ sender: Any) {
+        guard viewModel.currentDataType.nationalReport != nil else {
+            return
+        }
+
         if case .nationalTwelveMonthChange(let asc) = viewModel.dataSort {
             viewModel.dataSort = .nationalTwelveMonthChange(ascending: !asc)
         }

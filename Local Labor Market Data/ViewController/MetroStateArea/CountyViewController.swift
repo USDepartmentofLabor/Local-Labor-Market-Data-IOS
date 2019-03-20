@@ -28,12 +28,8 @@ class CountyViewController: AreaViewController {
     lazy var activityIndicator = ActivityIndicatorView(text: "Loading", inView: view)
 //    var ownershipCell: OwnershipTableViewCell?
     
-    var seasonalAdjustment: SeasonalAdjustment {
-        get {
-            return ReportManager.seasonalAdjustment
-        }
-        set(newValue) {
-            ReportManager.seasonalAdjustment = newValue
+    var seasonalAdjustment: SeasonalAdjustment = .notAdjusted {
+        didSet {
             localAreaReportsDict.removeAll()
             nationalAreaReportsDict.removeAll()
             tableView.reloadData()
@@ -61,11 +57,6 @@ class CountyViewController: AreaViewController {
                     [.quarterlyEmploymentWageFrom(ownershipCode: .localGovt, dataType: .allEmployees),
                      .quarterlyEmploymentWageFrom(ownershipCode: .localGovt, dataType: .avgWeeklyWage)])]
             )]
-    
-    var localAreaReportsDict = [ReportType: AreaReport]()
-    var nationalAreaReportsDict = [ReportType: AreaReport]()
-    lazy var dataUtil = DataUtil(managedContext: CoreDataManager.shared().viewManagedContext)
-    lazy var nationalArea = dataUtil.nationalArea()
     
     override func viewDidLoad() {
         super.viewDidLoad()

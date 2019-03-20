@@ -567,14 +567,14 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ngm-XM-fm4">
                                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEX-eU-anc" userLabel="DataTypeTitleLabel">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEX-eU-anc" userLabel="DataTypeTitleLabel">
                                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="50"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(in thousands)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhy-S4-DXD" userLabel="SubTitleLabel">
-                                                                <rect key="frame" x="33" y="18.5" width="76" height="13.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(in thousands)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhy-S4-DXD" userLabel="SubTitleLabel">
+                                                                <rect key="frame" x="31" y="18.5" width="76" height="13.5"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -583,7 +583,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="VEX-eU-anc" firstAttribute="centerY" secondItem="Ngm-XM-fm4" secondAttribute="centerY" id="1WC-cT-2j2"/>
-                                                            <constraint firstItem="fhy-S4-DXD" firstAttribute="leading" secondItem="VEX-eU-anc" secondAttribute="trailing" constant="2" id="6Hv-JF-ZVg"/>
+                                                            <constraint firstItem="fhy-S4-DXD" firstAttribute="leading" secondItem="VEX-eU-anc" secondAttribute="trailing" id="6Hv-JF-ZVg"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fhy-S4-DXD" secondAttribute="trailing" id="Eda-7x-OLn"/>
                                                             <constraint firstAttribute="bottom" secondItem="VEX-eU-anc" secondAttribute="bottom" id="bqp-6g-Rgy"/>
                                                             <constraint firstItem="VEX-eU-anc" firstAttribute="leading" secondItem="Ngm-XM-fm4" secondAttribute="leading" id="iqn-cC-OjG"/>
@@ -967,7 +967,7 @@
                                         <rect key="frame" x="0.0" y="115" width="375" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VRl-6o-JFz" id="kk6-IY-OdN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNw-rF-m6Q" userLabel="DataView">
@@ -1073,7 +1073,7 @@
                                         <rect key="frame" x="0.0" y="202" width="375" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aGZ-3a-XnC" id="mMj-Ba-Vgq">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJY-oT-Kfr" userLabel="DataView">
@@ -1917,7 +1917,7 @@
         <image name="OCIO" width="2250" height="376"/>
         <image name="downArrow" width="13" height="19"/>
         <image name="dropDownArrow" width="14" height="8"/>
-        <image name="noSort" width="11" height="10"/>
+        <image name="noSort" width="15" height="15"/>
         <image name="rightChevron" width="327" height="327"/>
         <image name="rightUpArrow" width="13" height="19"/>
         <image name="upArrow" width="13" height="18"/>

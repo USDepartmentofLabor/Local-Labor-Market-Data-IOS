@@ -28,7 +28,7 @@ class MetroStateViewController: AreaViewController {
         }
         set(newValue) {
             ReportManager.seasonalAdjustment = newValue
-            localAreaReportsDict?.removeAll()
+            localAreaReportsDict.removeAll()
             nationalAreaReportsDict.removeAll()
             tableView.reloadData()
             
@@ -45,10 +45,6 @@ class MetroStateViewController: AreaViewController {
         ReportSection(title: Section.OccupationEmploymentTitle, collapsed: true,
                 reportTypes: [.occupationEmployment(occupationalCode: OESReport.ALL_OCCUPATIONS_CODE, .annualMeanWage)])]
     
-    var localAreaReportsDict: [ReportType: AreaReport]?
-    var nationalAreaReportsDict = [ReportType: AreaReport]()
-    lazy var dataUtil = DataUtil(managedContext: CoreDataManager.shared().viewManagedContext)
-    lazy var nationalArea = dataUtil.nationalArea()
     @IBOutlet weak var subAreaHeightConstraint: NSLayoutConstraint!
     
     lazy var spinnner = ActivityIndicatorView(text: "Loading", inView: view)
@@ -101,11 +97,15 @@ class MetroStateViewController: AreaViewController {
         
         tableView.sectionFooterHeight = UITableView.automaticDimension
         tableView.estimatedSectionFooterHeight = 44
-        
-        seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
-
         setupAccessbility()
-        loadReports()
+
+        if  area is Metro {
+            seasonalAdjustment = .notAdjusted
+        }
+        else {
+            seasonalAdjustment = .adjusted
+        }
+        seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
     }
     
     override func setupAccessbility() {
@@ -213,7 +213,7 @@ class MetroStateViewController: AreaViewController {
                 default:
                     title = "History"
                 }
-                if let localAreaReport = localAreaReportsDict?[reportType] {
+                if let localAreaReport = localAreaReportsDict[reportType] {
                     let nationalAreaReport = nationalAreaReportsDict[reportType]
                     let latestDate: Date
                     
@@ -239,7 +239,7 @@ class MetroStateViewController: AreaViewController {
                     type = SM_Industry.self
                 }
                 var latestYear: String = ""
-                if let localAreaReport = localAreaReportsDict?[reportType] {
+                if let localAreaReport = localAreaReportsDict[reportType] {
                     if let latestData = localAreaReport.seriesReport?.latestData() {
                         latestYear = latestData.year
                     }
@@ -317,7 +317,7 @@ extension MetroStateViewController {
     }
     
     func loadNationalReports() {
-        guard let localAreaReportsDict =  localAreaReportsDict, let nationalArea = nationalArea else {
+        guard let nationalArea = nationalArea else {
             return
         }
         
@@ -395,7 +395,7 @@ extension MetroStateViewController: UITableViewDataSource {
         guard let reportCell = cell as? ReportTableViewCell else { return }
         guard let reportType = sections[indexPath.section].reportTypes?.first else { return }
 
-        let localAreaSeriesReport = localAreaReportsDict?[reportType]?.seriesReport
+        let localAreaSeriesReport = localAreaReportsDict[reportType]?.seriesReport
         if indexPath.row == 0 {
             reportCell.displaySeries(area: area, seriesReport: localAreaSeriesReport, periodName: nil, year: nil, seasonallyAdjusted: seasonalAdjustment)
         }

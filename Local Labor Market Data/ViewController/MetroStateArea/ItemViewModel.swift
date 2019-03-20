@@ -82,8 +82,8 @@ class ItemViewModel: NSObject {
                 }
             case .localOneMonthChange(let ascending):
                 return _items?.sorted {
-                    let firstValueStr = getReportData(item: $0)?.calculations?.netChanges?.oneMonth ?? ""
-                    let secondValueStr = getReportData(item: $1)?.calculations?.netChanges?.oneMonth ?? ""
+                    let firstValueStr = getReportData(item: $0)?.calculations?.percentChanges?.oneMonth ?? ""
+                    let secondValueStr = getReportData(item: $1)?.calculations?.percentChanges?.oneMonth ?? ""
                     let firstValue = Double(firstValueStr) ?? 0
                     let secondValue = Double(secondValueStr) ?? 0
                     if ascending {
@@ -93,8 +93,8 @@ class ItemViewModel: NSObject {
                 }
             case .localTwelveMonthChange(let ascending):
                 return _items?.sorted {
-                    let firstValueStr = getReportData(item: $0)?.calculations?.netChanges?.twelveMonth ?? ""
-                    let secondValueStr = getReportData(item: $1)?.calculations?.netChanges?.twelveMonth ?? ""
+                    let firstValueStr = getReportData(item: $0)?.calculations?.percentChanges?.twelveMonth ?? ""
+                    let secondValueStr = getReportData(item: $1)?.calculations?.percentChanges?.twelveMonth ?? ""
                     let firstValue = Double(firstValueStr) ?? 0
                     let secondValue = Double(secondValueStr) ?? 0
                     if ascending {
@@ -104,8 +104,8 @@ class ItemViewModel: NSObject {
                 }
             case .nationalTwelveMonthChange(let ascending):
                 return _items?.sorted {
-                    let firstValueStr = getNationalReportData(item: $0)?.calculations?.netChanges?.twelveMonth ?? ""
-                    let secondValueStr = getNationalReportData(item: $1)?.calculations?.netChanges?.twelveMonth ?? ""
+                    let firstValueStr = getNationalReportData(item: $0)?.calculations?.percentChanges?.twelveMonth ?? ""
+                    let secondValueStr = getNationalReportData(item: $1)?.calculations?.percentChanges?.twelveMonth ?? ""
                     let firstValue = Double(firstValueStr) ?? 0
                     let secondValue = Double(secondValueStr) ?? 0
                     if ascending {
@@ -287,8 +287,13 @@ extension ItemViewModel {
     func loadReport(seasonalAdjustment: SeasonalAdjustment, completion: @escaping (ReportError?) -> Void) {
         loadLocalReport(seasonalAdjustment: seasonalAdjustment) { [weak self] (reportError) in
             guard let strongSelf = self else { return }
-            if strongSelf.area is National {
+            
+            guard reportError == nil else {
                 completion(reportError)
+                return
+            }
+            if strongSelf.area is National {
+                completion(nil)
             }
                 // National Report is required only for OES and QCEW
             else if strongSelf.parentItem is OE_Occupation ||
@@ -296,7 +301,7 @@ extension ItemViewModel {
                 strongSelf.loadNationalReport(seasonalAdjustment: seasonalAdjustment, completion:  completion)
             }
             else {
-                completion(reportError)
+                completion(nil)
             }
         }
     }

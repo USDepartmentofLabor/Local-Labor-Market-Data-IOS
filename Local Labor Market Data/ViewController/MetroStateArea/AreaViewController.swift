@@ -21,6 +21,11 @@ class AreaViewController: UIViewController {
     @IBOutlet weak var rightSubArea: UIButton!
     @IBOutlet weak var areaTitleLabel: UILabel!
     
+    var localAreaReportsDict = [ReportType: AreaReport]()
+    var nationalAreaReportsDict = [ReportType: AreaReport]()
+    lazy var dataUtil = DataUtil(managedContext: CoreDataManager.shared().viewManagedContext)
+    lazy var nationalArea = dataUtil.nationalArea()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
