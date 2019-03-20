@@ -199,7 +199,7 @@ class CountyViewController: AreaViewController {
                 if case .quarterlyEmploymentWage(let ownership, _, _, _) = reportType {
                     ownershipCode = ownership
                 }
-                let viewModel = QCEWIndustryViewModel(area: area, parent: nil, ownershipCode: ownershipCode, dataYear: latestYear)
+                let viewModel = QCEWIndustryViewModel(area: area, parent: nil, ownershipCode: ownershipCode, dataYear: nil)
                 destVC.viewModel = viewModel
                 destVC.title = "Industry - Sectors"
             }
@@ -537,6 +537,7 @@ extension CountyViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
         let currentSection = reportSections[section]
         
         guard currentSection.collapsed == false else { return nil }
@@ -553,6 +554,7 @@ extension CountyViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
         let currentSection = reportSections[section]
         
         guard currentSection.collapsed == false else { return 0 }

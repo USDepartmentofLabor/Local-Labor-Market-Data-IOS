@@ -32,7 +32,7 @@ enum DataSort {
 class ItemViewModel: NSObject {
     var area: Area
     var parentItem: Item
-    var dataYear: String
+    var dataYear: String?
     var itemDataTypes: [ItemDataType] = [ItemDataType(title: "Employment Level", reportType: ReportType.industryEmployment(industryCode: "00000000", CESReport.DataTypeCode.allEmployees))]
     
     var currentDataType: ItemDataType
@@ -43,6 +43,12 @@ class ItemViewModel: NSObject {
     var isNationalReport: Bool {
         get {
             return area is National
+        }
+    }
+    
+    var isDataDownloaded: Bool {
+        get {
+            return currentDataType.localReport != nil
         }
     }
     
@@ -127,7 +133,7 @@ class ItemViewModel: NSObject {
         }
     }
     
-    init(area: Area, parent: Item? = nil, itemType: Item.Type, dataYear: String) {
+    init(area: Area, parent: Item? = nil, itemType: Item.Type, dataYear: String?) {
         self.area = area
         self.dataYear = dataYear
         if parent == nil {

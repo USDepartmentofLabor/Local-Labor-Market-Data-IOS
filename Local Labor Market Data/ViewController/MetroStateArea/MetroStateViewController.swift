@@ -430,6 +430,7 @@ extension MetroStateViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
         let currentSection = sections[section]
 
         guard currentSection.collapsed == false else { return nil }
@@ -448,6 +449,7 @@ extension MetroStateViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
         let currentSection = sections[section]
         
         guard currentSection.collapsed == false else { return 0 }

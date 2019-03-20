@@ -19,8 +19,9 @@ struct APIReportRequest : Encodable {
     let annualaverage: Bool?
 //    var latest: Bool? = true
 
-    init(seriesIds: [String], registrationKey: String, startYear: String? = nil, endYear: String? = nil,
-         catalog: Bool? = false, calculations: Bool? = true, annualAverage: Bool? = false) {
+    init(seriesIds: [String], registrationKey: String, startYear: String? = nil,
+         endYear: String? = nil, catalog: Bool? = false, calculations: Bool? = true,
+         annualAverage: Bool? = false) {
         self.seriesid = seriesIds
         self.registrationkey = registrationKey
         if let startYear = startYear {

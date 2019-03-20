@@ -118,6 +118,7 @@ enum ReportType {
 
 class ReportManager {
     static let dataNotAvailableStr = "N/A"
+    static let dataNotDisclosable = "ND"
     static let dataNotAvailableAccessibilityStr = "Data Not Available"
     static var seasonalAdjustment: SeasonalAdjustment = .notAdjusted
 

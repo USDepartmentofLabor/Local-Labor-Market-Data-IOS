@@ -54,6 +54,15 @@ extension SeriesData {
         calculations = try container.decodeIfPresent(Calculations.self, forKey: .calculations)
     }
 
+    var isNotDisclosable: Bool {
+        get {
+            if value == "-", let footNotes = footnotes {
+                return footNotes.filter {$0.code == "ND"}.count > 0
+            }
+            return false
+        }
+    }
+
 }
 
 struct FootNote : Decodable {

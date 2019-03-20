@@ -12,7 +12,7 @@ class QCEWIndustryViewModel: ItemViewModel {
     
     var ownershipCode: QCEWReport.OwnershipCode
     
-    init(area: Area, parent: Item? = nil, ownershipCode: QCEWReport.OwnershipCode, dataYear: String) {
+    init(area: Area, parent: Item? = nil, ownershipCode: QCEWReport.OwnershipCode, dataYear: String?) {
         self.ownershipCode = ownershipCode
         super.init(area: area, parent:parent, itemType: QCEW_Industry.self, dataYear: dataYear)
         
@@ -21,6 +21,8 @@ class QCEWIndustryViewModel: ItemViewModel {
         
         currentDataType = itemDataTypes[0]
         dataTitle = "Industry"
+        
+        annualAverage = true
     }
     
     override func createInstance(forParent parent: Item) -> ItemViewModel {
@@ -44,7 +46,18 @@ class QCEWIndustryViewModel: ItemViewModel {
         return reportType
     }
 
+    override func getReportData(item: Item) -> SeriesData? {
+        guard let reportType = getReportType(for: item) else { return nil }
+        
+        // For QCEW drilldown, get Annual Data
+        return currentDataType.localReport?[reportType]?.seriesReport?.latestAnnualData()
+    }
+
     override func getReportValue(from seriesData: SeriesData) -> String? {
+        if seriesData.isNotDisclosable {
+            return ReportManager.dataNotDisclosable
+        }
+
         var reportValueStr: String? = nil
         if case .quarterlyEmploymentWage(_, _, _, let value) = currentDataType.reportType {
             if value == .allEmployees {

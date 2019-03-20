@@ -11,7 +11,7 @@ import Foundation
 
 class OccupationViewModel: ItemViewModel {
     
-    init(area: Area, parent: Item? = nil, dataYear: String) {
+    init(area: Area, parent: Item? = nil, dataYear: String?) {
         super.init(area: area, parent:parent, itemType: OE_Occupation.self, dataYear: dataYear)
         
         itemDataTypes = [ItemDataType(title: "Mean Annual Wage", reportType: ReportType.occupationEmployment(occupationalCode: OESReport.ALL_OCCUPATIONS_CODE, .annualMeanWage)),
