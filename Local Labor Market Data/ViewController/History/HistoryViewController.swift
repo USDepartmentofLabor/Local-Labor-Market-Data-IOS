@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import Charts
+//import Charts
 
 class HistoryViewController: UIViewController {
 
     var viewModel: HistoryViewModel?
-    @IBOutlet weak var chartView: BarChartView!
+//    @IBOutlet weak var chartView: BarChartView!
     
-    var dataEntry: [BarChartDataEntry] = []
+//    var dataEntry: [BarChartDataEntry] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +30,7 @@ class HistoryViewController: UIViewController {
     
     func setupChartView() {
 //        chartView.delegate = self
+/*
         chartView.noDataTextColor = .black
         chartView.noDataText = "No Data for Chart"
         chartView.backgroundColor = .white
@@ -66,5 +67,7 @@ class HistoryViewController: UIViewController {
      
         
         chartView.data = chartData
+
+ */
     }
 }

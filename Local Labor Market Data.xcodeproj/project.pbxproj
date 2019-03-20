@@ -111,6 +111,7 @@
 		03F1F89F20EABF0200662446 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F89E20EABF0200662446 /* CoreDataManager.swift */; };
 		03F1F8A220EAC99700662446 /* ZipCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F8A020EAC99700662446 /* ZipCountyMap+CoreDataClass.swift */; };
 		03F1F8A620EAD23C00662446 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F8A520EAD23C00662446 /* String+Extension.swift */; };
+		101BA052906435C0F5634D7D /* Pods_Local_Labor_Market_Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5AB87D9078368A6696D4D4F /* Pods_Local_Labor_Market_Data.framework */; };
 		13F69C4C74B3CE64A313C4E7 /* Pods_Local_Labor_Market_DataUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB30557B868A6C1C804C809 /* Pods_Local_Labor_Market_DataUITests.framework */; };
 		597EE8F32188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */; };
 		59E7A05D219F45C30060B7FF /* sm.industry.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A059219F45C20060B7FF /* sm.industry.txt */; };
@@ -119,7 +120,6 @@
 		59ECE38D21ADC2F000EE06BE /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ECE38C21ADC2F000EE06BE /* ItemViewController.swift */; };
 		59ED36C721ED16DD00C45797 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED36C621ED16DD00C45797 /* SearchHistoryViewController.swift */; };
 		9C6ECE10018322AD100C417F /* Pods_Local_Labor_Market_DataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A14D7D86491DEBEF52401E /* Pods_Local_Labor_Market_DataTests.framework */; };
-		B636B13A152248E08A838428 /* Pods_Local_Labor_Market_Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5AB87D9078368A6696D4D4F /* Pods_Local_Labor_Market_Data.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -283,7 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				036164C0210B5DB70055708A /* CoreLocation.framework in Frameworks */,
-				B636B13A152248E08A838428 /* Pods_Local_Labor_Market_Data.framework in Frameworks */,
+				101BA052906435C0F5634D7D /* Pods_Local_Labor_Market_Data.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,7 +643,6 @@
 				03F1F85920EA622D00662446 /* Sources */,
 				03F1F85A20EA622D00662446 /* Frameworks */,
 				03F1F85B20EA622D00662446 /* Resources */,
-				BC0C08A8E401600A16DCAA9C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -833,28 +832,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BC0C08A8E401600A16DCAA9C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

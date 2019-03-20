@@ -7,7 +7,7 @@ target 'Local Labor Market Data' do
   use_frameworks!
 
   # Pods for Local Labor Market Data
-	pod 'Charts'
+#	pod 'Charts'
 
   target 'Local Labor Market DataTests' do
     inherit! :search_paths
