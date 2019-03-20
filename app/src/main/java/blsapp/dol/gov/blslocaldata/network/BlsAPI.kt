@@ -39,7 +39,7 @@ class BlsAPI constructor(val appContext: Context) {
 
         val requestQueue = BLSRequestQueue.getInstance(appContext)
 
-        val apiKey = if (BuildConfig.DEBUG)  R.string.bls_api_key_debug else R.string.bls_api_key
+        val apiKey = if (BuildConfig.DEBUG)  R.string.bls_api_key_debug else R.string.bls_api_key_production
 
         val reportRequest = BLSReportRequest(seriesIds = seriesIds, registrationKey = appContext.getString(apiKey),
                 startYear = startYear, endYear = endYear)
