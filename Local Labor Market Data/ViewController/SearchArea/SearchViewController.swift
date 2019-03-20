@@ -94,7 +94,7 @@ class SearchViewController: UIViewController {
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: false)
         }
-        historyContainerView.isHidden = true
+//        historyContainerView.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -427,11 +427,11 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         let announcementStr = "Found \(areas?.count ?? 0) results"
         UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: announcementStr)
-        historyContainerView.isHidden = true
+//        historyContainerView.isHidden = true
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        historyContainerView.isHidden = false
+//        historyContainerView.isHidden = false
     }
 }
 
