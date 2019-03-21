@@ -459,7 +459,7 @@ extension ItemViewController: UITableViewDataSource {
     
     func configureCell(cell: ItemTableViewCell, indexPath: IndexPath) {
         if let item = viewModel.items?[indexPath.row] {
-            let title = item.title ?? "" + "(" + item.code! + ")"
+            let title = (item.title ?? "") + "(" + (item.code ?? "") + ")"
             cell.titleLabel?.text = title
 
             if (item.children?.count ?? 0) > 0 {
@@ -492,7 +492,7 @@ extension ItemViewController: UITableViewDataSource {
     
     func configureCell(cell: ItemCESTableViewCell, indexPath: IndexPath) {
         if let item = viewModel.items?[indexPath.row] {
-            let title = item.title ?? "" + "(" + item.code! + ")"
+            let title = (item.title ?? "") + "(" + (item.code ?? "") + ")"
             cell.titleLabel?.text = title
             if (item.children?.count ?? 0) > 0 {
                 cell.nextImageView.isHidden = false
