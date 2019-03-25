@@ -19,22 +19,14 @@ import org.jetbrains.anko.textColor
  * HierarchyListAdapter - Industry / Occupation List Adapter Comparison View
  */
 
-class HierarchyListAdapter(
-        private val mListener: OnItemClickListener?)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+open class HierarchyListAdapter(private val mListener: OnItemClickListener?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 //    private val mOnClickListener: View.OnClickListener
-    private var mIndustries = emptyList<HierarchyRow>()
-
-    fun setIndustries(hierarchies: List<HierarchyRow>) {
-        mIndustries = hierarchies
-        notifyDataSetChanged()
-    }
-
+    var mIndustries = emptyList<HierarchyRow>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val inflatedView = layoutInflater.inflate(R.layout.industry_item, parent, false)
+        val inflatedView = layoutInflater.inflate(R.layout.hierarchy_item, parent, false)
         return HierarchyEntryHolder(inflatedView)
     }
 
@@ -46,17 +38,17 @@ class HierarchyListAdapter(
                 holder.mView.backgroundColor = getColor(holder.itemView.context, R.color.colorPrimary)
                 holder.mIndustryTitle.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
                 holder.mIndustryLocalValue.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
-                holder.mIndustryNationalValue.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
+                holder.mIndustryNationalValue?.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
             } else {
                 holder.mView.backgroundColor = getColor(holder.itemView.context,R.color.colorHierarchyCell)
                 holder.mIndustryTitle.textColor = getColor(holder.itemView.context,android.R.color.black)
                 holder.mIndustryLocalValue.textColor = getColor(holder.itemView.context, android.R.color.black)
-                holder.mIndustryNationalValue.textColor = getColor(holder.itemView.context, android.R.color.black)
+                holder.mIndustryNationalValue?.textColor = getColor(holder.itemView.context, android.R.color.black)
             }
             holder.mIndustryTitle.text = areaRow.title
 
             holder.mIndustryLocalValue.text = areaRow.localValue!!
-            holder.mIndustryNationalValue.text = areaRow.nationalValue!!
+            holder.mIndustryNationalValue?.text = areaRow.nationalValue!!
 
             if (areaRow.superSector!!) {
                 holder.mSubIndustryIndicator.visibility = View.VISIBLE
@@ -74,22 +66,6 @@ class HierarchyListAdapter(
     }
     override fun getItemCount(): Int = mIndustries.size
     override fun getItemViewType(position: Int) = mIndustries[position].type.ordinal
-
-    inner class AreaHeaderViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mheaderTextView: TextView = mView.header_text
-
-        override fun toString(): String {
-            return super.toString() + " '" + mheaderTextView.text + "'"
-        }
-    }
-
-    inner class AreaViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mTitleTextView: TextView = mView.title
-
-        override fun toString(): String {
-            return super.toString() + " '" + mTitleTextView.text + "'"
-        }
-    }
 
     interface OnItemClickListener {
         fun onItemClick(item: HierarchyRow)
