@@ -11,15 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 
 import blsapp.dol.gov.blslocaldata.R
-import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.HierarchyRow
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.HierarchyViewModel
-import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType
 import kotlinx.android.synthetic.main.fragment_hierarchy_header.*
-import android.support.graphics.drawable.VectorDrawableCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
 
@@ -33,7 +29,7 @@ import android.support.v4.graphics.drawable.DrawableCompat
  */
 class HierarchyHeaderFragment : Fragment() {
     private var listener: OnFragmentInteractionListener? = null
-    private lateinit var viewModel: HierarchyViewModel
+    private lateinit var hierarchyViewModel: HierarchyViewModel
     private var wageVsLevelTitles:MutableList<String>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -60,78 +56,95 @@ class HierarchyHeaderFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(activity!!).get(HierarchyViewModel::class.java)
+        hierarchyViewModel = ViewModelProviders.of(activity!!).get(HierarchyViewModel::class.java)
         attachObserver()
         updateHeader()
     }
     private fun attachObserver() {
-        viewModel.hierarchyRows?.observe(this, Observer<List<HierarchyRow>> {
+        hierarchyViewModel.hierarchyRows?.observe(this, Observer<List<HierarchyRow>> {
           //  updateHeader()
         })
     }
 
     private fun updateHeader() {
-        industryAreaTextView.text = viewModel.areaTitle
-        industryAreaTextView.contentDescription = viewModel.accessibilityStr
-        ownershipTextView.text = viewModel.getOwnershipTitle()
-        timePeriodTextView.text = viewModel.getTimePeriodTitle()
-        detailTitle.text = viewModel.detailTitle
+        industryAreaTextView.text = hierarchyViewModel.areaTitle
+        industryAreaTextView.contentDescription = hierarchyViewModel.accessibilityStr
+        ownershipTextView.text = hierarchyViewModel.getOwnershipTitle()
+        timePeriodTextView.text = hierarchyViewModel.getTimePeriodTitle()
+        detailTitle.text = hierarchyViewModel.detailTitle
         setupLevelVsWageSpinner()
         setupColumnHeaders()
     }
 
     private fun setupColumnHeaders() {
-        if  (viewModel.column1Title == null) {
-            colum1View.visibility = View.INVISIBLE
+
+        if (hierarchyViewModel.isIndustryReport()) {
+            regionSortButtonView.visibility = View.GONE
+            nationalSortButtonView.visibility = View.GONE
         } else {
-            column1Title.text = viewModel.column1Title
+            regionChangeView.visibility = View.GONE
+            if (hierarchyViewModel.isCountyArea()) {
+                changeColumn1Title.text = getString(R.string.twelve_month_change)
+            } else {
+                changeColum1View.visibility = View.GONE
+                changeColum2View.visibility = View.GONE
+            }
         }
-        column2Title.text = viewModel.column2Title
+
+        if  (hierarchyViewModel.regionTitle == null) {
+            regionSortButtonView.visibility = View.GONE
+            if (hierarchyViewModel.isNationalArea()) {
+                regionChangeTitle.text = getString(R.string.national)
+            }
+        } else {
+            regionSortButtonTitle.text = hierarchyViewModel.regionTitle
+            regionChangeTitle.text = hierarchyViewModel.regionTitle
+        }
 
         val clickListener = View.OnClickListener {view ->
 
             turnOffArrows()
             when (view.getId()) {
-                R.id.colum1View -> {
-                    if (viewModel.sortByColumn1())
-                        DrawableCompat.setTint(col1UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                R.id.regionSortButtonView -> {
+                    if (hierarchyViewModel.sortByColumn1())
+                        DrawableCompat.setTint(regionSortButtonUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
                     else
-                        DrawableCompat.setTint(col1DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                        DrawableCompat.setTint(regionSortButtonDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
                 }
-                R.id.colum2View -> {
-                    if (viewModel.sortByColumn2())
-                        DrawableCompat.setTint(col2UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                R.id.nationalSortButtonView -> {
+                    if (hierarchyViewModel.sortByColumn2())
+                        DrawableCompat.setTint(nationalSortButtonUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
                     else
-                        DrawableCompat.setTint(col2DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                        DrawableCompat.setTint(nationalSortButtonDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
                 }
             }
         }
-        colum1View.setOnClickListener(clickListener)
-        colum2View.setOnClickListener(clickListener)
+        regionSortButtonView.setOnClickListener(clickListener)
+        nationalSortButtonView.setOnClickListener(clickListener)
     }
 
     private fun turnOffArrows() {
-        DrawableCompat.setTint(col1UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
-        DrawableCompat.setTint(col1DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
-        DrawableCompat.setTint(col2UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
-        DrawableCompat.setTint(col2DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(regionSortButtonUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(regionSortButtonDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(nationalSortButtonUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(nationalSortButtonDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
     }
 
     private fun setupLevelVsWageSpinner () {
 
-        wageVsLevelTitles = viewModel.getWageVsLevelTitles()
+        wageVsLevelTitles = hierarchyViewModel.getWageVsLevelTitles()
         if (wageVsLevelTitles == null) {
-            viewModel.setWageVsLevelIndex(0)
-            viewModel.getIndustryReports()
+            hierarchyViewModel.setWageVsLevelIndex(0)
+            hierarchyViewModel.getIndustryReports()
             wageVsLevelSpinner.visibility = View.INVISIBLE
         } else {
             wageVsLevelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
-                    viewModel.setWageVsLevelIndex(0)
+                    hierarchyViewModel.setWageVsLevelIndex(0)
                 }
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                    viewModel.setWageVsLevelIndex(pos)
-                    viewModel.getIndustryReports()
+                    hierarchyViewModel.setWageVsLevelIndex(pos)
+                    hierarchyViewModel.getIndustryReports()
 
                     wageVsLevelTitles?.let {
                         dataTitle.text = it[pos]
@@ -139,7 +152,7 @@ class HierarchyHeaderFragment : Fragment() {
                 }
             }
 
-            val aa = ArrayAdapter(activity, android.R.layout.simple_spinner_item, viewModel.getWageVsLevelTitles())
+            val aa = ArrayAdapter(activity, android.R.layout.simple_spinner_item, hierarchyViewModel.getWageVsLevelTitles())
             aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             wageVsLevelSpinner!!.adapter = aa
         }
