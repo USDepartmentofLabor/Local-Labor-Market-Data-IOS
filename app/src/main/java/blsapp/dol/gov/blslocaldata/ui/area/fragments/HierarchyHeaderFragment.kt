@@ -18,6 +18,7 @@ import blsapp.dol.gov.blslocaldata.ui.viewmodel.HierarchyViewModel
 import kotlinx.android.synthetic.main.fragment_hierarchy_header.*
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.SortStatus
 
 
 /**
@@ -106,13 +107,13 @@ class HierarchyHeaderFragment : Fragment() {
             turnOffArrows()
             when (view.getId()) {
                 R.id.regionSortButtonView -> {
-                    if (hierarchyViewModel.sortByColumn1())
+                    if (hierarchyViewModel.sortByLocalValue() == SortStatus.ASCENDING)
                         DrawableCompat.setTint(regionSortButtonUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
                     else
                         DrawableCompat.setTint(regionSortButtonDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
                 }
                 R.id.nationalSortButtonView -> {
-                    if (hierarchyViewModel.sortByColumn2())
+                    if (hierarchyViewModel.sortByNationalValue()== SortStatus.ASCENDING)
                         DrawableCompat.setTint(nationalSortButtonUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
                     else
                         DrawableCompat.setTint(nationalSortButtonDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))

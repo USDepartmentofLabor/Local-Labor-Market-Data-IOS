@@ -20,6 +20,12 @@ import blsapp.dol.gov.blslocaldata.ui.area.viewModel.HierarchyBaseViewModel
  * HierarchyViewModel - View Model for Industry Comparison View
  */
 
+enum class SortStatus {
+    NOT,
+    ASCENDING,
+    DESCENDING
+}
+
 class HierarchyViewModel(application: Application) : AndroidViewModel(application), HierarchyBaseViewModel {
 
     override lateinit var mArea: AreaEntity
@@ -33,8 +39,12 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         loadReportCategories()
     }
 
-    private var column1Descending:Boolean = false
-    private var column2Descending:Boolean = false
+    private var localValueSorted:SortStatus = SortStatus.NOT
+    private var nationalValueSorted:SortStatus = SortStatus.NOT
+    private var localOneMonthChangeSorted:SortStatus = SortStatus.NOT
+    private var nationalOneMonthChangeSorted:SortStatus = SortStatus.NOT
+    private var localTwelveMonthChangeSorted:SortStatus = SortStatus.NOT
+    private var nationalTwelveMonthChangeSorted:SortStatus = SortStatus.NOT
 
     var localAreaReports: MutableList<AreaReport>? = null
 
@@ -176,32 +186,72 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         loadReportCategories()
     }
 
-    fun sortByColumn1():Boolean {
+    private fun completeSort(tmpList: List<HierarchyRow>?, sortStatus: SortStatus):SortStatus {
+        var sortedTmpList = tmpList
+        if (sortStatus == SortStatus.DESCENDING) {
+            sortedTmpList = tmpList?.reversed()
+        }
+        hierarchyRows.postValue(sortedTmpList)
+        val retValue:SortStatus = if (sortStatus == SortStatus.DESCENDING) SortStatus.ASCENDING else SortStatus.DESCENDING
+        return retValue
+    }
+
+    fun sortByLocalOneMonthPercentChangeValue():SortStatus {
+        var tmpList = hierarchyRows.value
+        tmpList = tmpList?.sortedWith(compareBy(
+                { it.oneMonthPercent?.length },
+                { it.oneMonthPercent }
+        ))
+        localOneMonthChangeSorted = completeSort(tmpList, localOneMonthChangeSorted)
+        return localOneMonthChangeSorted
+    }
+
+    fun sortByNationalOneMonthPercentChangeValue():SortStatus {
+        var tmpList = hierarchyRows.value
+        tmpList = tmpList?.sortedWith(compareBy(
+                { it.oneMonthNationalPercent?.length },
+                { it.oneMonthNationalPercent }
+        ))
+        nationalOneMonthChangeSorted = completeSort(tmpList, nationalOneMonthChangeSorted)
+        return nationalOneMonthChangeSorted
+    }
+
+    fun sortByLocalTwelveMonthPercentChangeValue():SortStatus {
+        var tmpList = hierarchyRows.value
+        tmpList = tmpList?.sortedWith(compareBy(
+                { it.twelveMonthPercent?.length },
+                { it.twelveMonthPercent }
+        ))
+        localTwelveMonthChangeSorted = completeSort(tmpList, localTwelveMonthChangeSorted)
+        return localTwelveMonthChangeSorted
+    }
+    fun sortByNationalTwelveMonthPercentChangeValue():SortStatus {
+        var tmpList = hierarchyRows.value
+        tmpList = tmpList?.sortedWith(compareBy(
+                { it.twelveMonthNationalPercent?.length },
+                { it.twelveMonthNationalPercent }
+        ))
+        nationalTwelveMonthChangeSorted = completeSort(tmpList, nationalTwelveMonthChangeSorted)
+        return nationalTwelveMonthChangeSorted
+    }
+
+    fun sortByLocalValue():SortStatus {
         var tmpList = hierarchyRows.value
         tmpList = tmpList?.sortedWith(compareBy(
                 { it.localValue?.length },
                 { it.localValue }
         ))
-        if (column1Descending) {
-            tmpList = tmpList?.reversed()
-        }
-        column1Descending = !column1Descending
-        hierarchyRows.postValue(tmpList)
-        return column1Descending
+        localValueSorted = completeSort(tmpList, localValueSorted)
+        return localValueSorted
     }
-    fun sortByColumn2():Boolean {
+    fun sortByNationalValue():SortStatus {
         var tmpList = hierarchyRows.value
         tmpList = tmpList?.sortedWith(compareBy(
                 { it.nationalValue?.length },
                 { it.nationalValue }
         ))
-
-        if (column2Descending) {
-            tmpList = tmpList?.reversed()
-        }
-        column2Descending = !column2Descending
-        hierarchyRows.postValue(tmpList)
-        return column2Descending
+        nationalValueSorted = completeSort(tmpList, nationalValueSorted)
+        return nationalValueSorted
     }
 
     private fun loadReportCategories() {
@@ -234,7 +284,10 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                         mergeTitle,
                         "N/A", "N/A",
                         "N/A", "N/A",
-                        "N/A", "N/A", false))
+                        "N/A", "N/A",
+                        "N/A", "N/A",
+                        "N/A", "N/A",
+                        false))
             }
 
             //var fetchedData = repository.getChildIndustries(parentIdLocal!!, industryType)
@@ -246,6 +299,8 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                         industry,
                         industry.id,
                         mergeTitle,
+                        "N/A", "N/A",
+                        "N/A", "N/A",
                         "N/A", "N/A",
                         "N/A", "N/A",
                         "N/A", "N/A",
@@ -365,11 +420,19 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                     else
                         thisIndustryRow.localValue = DataUtil.numberValue(thisAreaRow.seriesReport!!.data[0].value)
                 }
-                thisIndustryRow.oneMonthValue = DataUtil.numberValue(thisAreaRow.seriesReport!!.data[0].calculations?.netChanges?.oneMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR)
-                thisIndustryRow.twelveMonthValue = DataUtil.numberValue(thisAreaRow.seriesReport!!.data[0].calculations?.netChanges?.twelveMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR)
-                thisIndustryRow.oneMonthPercent = DataUtil.changeValueByPercent(thisAreaRow.seriesReport!!.data[0].calculations?.percentChanges?.oneMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR, "%")
-                thisIndustryRow.twelveMonthPercent = DataUtil.changeValueByPercent(thisAreaRow.seriesReport!!.data[0].calculations?.percentChanges?.twelveMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR,"%")
+                if (thisAreaRow.area is NationalEntity) {
+                    thisIndustryRow.oneMonthNationalValue = DataUtil.changeValueStr(thisAreaRow.seriesReport!!.data[0].calculations?.netChanges?.oneMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR)
+                    thisIndustryRow.twelveMonthNationalValue = DataUtil.changeValueStr(thisAreaRow.seriesReport!!.data[0].calculations?.netChanges?.twelveMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR)
+                    thisIndustryRow.oneMonthNationalPercent = DataUtil.changeValueByPercent(thisAreaRow.seriesReport!!.data[0].calculations?.percentChanges?.oneMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR, "%")
+                    thisIndustryRow.twelveMonthNationalPercent = DataUtil.changeValueByPercent(thisAreaRow.seriesReport!!.data[0].calculations?.percentChanges?.twelveMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR,"%")
 
+                } else {
+                    thisIndustryRow.oneMonthValue = DataUtil.changeValueStr(thisAreaRow.seriesReport!!.data[0].calculations?.netChanges?.oneMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR)
+                    thisIndustryRow.twelveMonthValue = DataUtil.changeValueStr(thisAreaRow.seriesReport!!.data[0].calculations?.netChanges?.twelveMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR)
+                    thisIndustryRow.oneMonthPercent = DataUtil.changeValueByPercent(thisAreaRow.seriesReport!!.data[0].calculations?.percentChanges?.oneMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR, "%")
+                    thisIndustryRow.twelveMonthPercent = DataUtil.changeValueByPercent(thisAreaRow.seriesReport!!.data[0].calculations?.percentChanges?.twelveMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR,"%")
+
+                }
                 if (mArea is NationalEntity)
                     thisIndustryRow.localValue = " "
                 }
