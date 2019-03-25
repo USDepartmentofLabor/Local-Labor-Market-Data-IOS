@@ -25,7 +25,7 @@
                 android:lines="2"
                 android:gravity="center_vertical"
                 android:text="Industry with a really long name to "
-                style="@style/industryItemCellTitle"
+                style="@style/hierarchyItemCellTitle"
                 />
         </TableRow>
     </TableLayout>
@@ -44,7 +44,7 @@
             android:id="@+id/valueLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/industryItemCellValue"
+            style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
             android:text="10,418" />
 
@@ -52,7 +52,7 @@
             android:id="@+id/twelveMonthValueLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/industryItemCellValue"
+            style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
             android:layout_marginTop="8dp"
             android:text="+221" />
@@ -61,7 +61,7 @@
             android:id="@+id/twelveMonthPercentLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/industryItemCellValue"
+            style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
             android:layout_marginTop="8dp"
             android:text="+221" />
@@ -82,7 +82,7 @@
             android:id="@+id/nationalValueLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/industryItemCellValue"
+            style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
             android:text="122,386,565" />
 
@@ -90,7 +90,7 @@
             android:id="@+id/nationalTwelveMonthValueLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/industryItemCellValue"
+            style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
             android:layout_marginTop="8dp"
             android:text="+1,881,943" />
@@ -99,7 +99,7 @@
             android:id="@+id/nationalTwelveMonthPercentLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/industryItemCellValue"
+            style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
             android:layout_marginTop="8dp"
             android:text="+1.7%" />

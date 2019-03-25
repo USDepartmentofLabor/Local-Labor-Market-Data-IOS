@@ -11,4 +11,6 @@
     <color name="colorSelectedArrow">#293683</color>
     <color name="colorUnSelectedArrow">#000000</color>
     <color name="colorHistoryButton">#669CF2</color>
+    <color name="colorLinkButton">#0000EE</color>
+    <color name="colorSortButtonBackground">#D4D4D4</color>
 </resources>

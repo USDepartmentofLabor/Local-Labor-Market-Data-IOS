@@ -67,6 +67,18 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/hierarchyTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Total Nonfarm -> Total Private -> Goods Producing -> Mining, Logging and Construction"
+        android:textAppearance="@style/hierarchyBreadCrumb"
+        app:layout_constraintTop_toBottomOf="@+id/timePeriodTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/detailTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -74,111 +86,248 @@
         android:layout_marginTop="8dp"
         android:text="Occupation"
         android:textAppearance="@style/tableHeadingTitle"
-        app:layout_constraintTop_toBottomOf="@+id/timePeriodTextView"
+        app:layout_constraintTop_toBottomOf="@+id/hierarchyTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/dataTitle"
-        android:layout_width="0dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:text="Employment Level"
+        android:layout_marginEnd="8dp"
+        android:text="Employment Level (000s)"
         android:gravity="center_horizontal"
+        android:textAlignment="viewEnd"
         android:textAppearance="@style/tableHeadingTitle"
-        app:layout_constraintTop_toBottomOf="@+id/timePeriodTextView"
-        app:layout_constraintStart_toStartOf="@+id/colum1View"
-        app:layout_constraintEnd_toEndOf="@+id/colum2View"/>
+        app:layout_constraintTop_toBottomOf="@+id/hierarchyTextView"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/colum1View"
-        android:layout_width="0dp"
+        android:id="@+id/regionSortButtonView"
+        android:layout_width="85dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/item_heading_two_of_three_end_margin"
         android:layout_marginBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dataTitle">
 
         <TextView
-            android:id="@+id/column1Title"
+            android:id="@+id/regionSortButtonTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="25dp"
             android:layout_marginTop="6dp"
             android:text="State"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textAppearance="@style/hierarchyItemCellValueHeader"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
-            android:id="@+id/col1UpArrow"
+            android:id="@+id/regionSortButtonUpArrow"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="0dp"
             android:tint="@color/colorPrimary"
             app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24px"
-            app:layout_constraintStart_toEndOf="@id/column1Title"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/col1DownArrow"
+            android:id="@+id/regionSortButtonDownArrow"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="10dp"
             android:tint="@color/colorPrimary"
             app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24px"
-            app:layout_constraintStart_toEndOf="@id/column1Title"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/colum2View"
-        android:layout_width="0dp"
+        android:id="@+id/nationalSortButtonView"
+        android:layout_width="85dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/item_heading_three_of_three_end_margin"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dataTitle">
 
         <TextView
-            android:id="@+id/column2Title"
+            android:id="@+id/nationalSortButtonTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="25dp"
             android:layout_marginTop="6dp"
-            android:text="National"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/national"
+            android:textAppearance="@style/hierarchyItemCellValueHeader"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
-            android:id="@+id/col2UpArrow"
+            android:id="@+id/nationalSortButtonUpArrow"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="0dp"
             android:tint="@color/colorPrimary"
             app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24px"
-            app:layout_constraintStart_toEndOf="@id/column2Title"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/col2DownArrow"
+            android:id="@+id/nationalSortButtonDownArrow"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="10dp"
             android:tint="@color/colorPrimary"
             app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24px"
-            app:layout_constraintStart_toEndOf="@id/column2Title"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
     </android.support.constraint.ConstraintLayout>
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/regionChangeView"
+        android:layout_width="85dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="@dimen/item_heading_one_of_three_end_margin"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nationalSortButtonView">
+
+        <TextView
+            android:id="@+id/regionChangeTitle"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="6dp"
+            android:textAlignment="viewEnd"
+            android:gravity="center_vertical"
+            android:text="Metro"
+            android:textAppearance="@style/hierarchyItemCellValueHeader"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/regionChangeUpArrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:tint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/regionChangeDownArrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            android:tint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/changeColum1View"
+        android:layout_width="85dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="@dimen/item_heading_two_of_three_end_margin"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nationalSortButtonView">
+
+        <TextView
+            android:id="@+id/changeColumn1Title"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="6dp"
+            android:textAlignment="viewEnd"
+            android:gravity="center_vertical"
+            android:text="@string/one_month_change"
+            android:textAppearance="@style/hierarchyItemCellValueHeader"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/changeColumn1UpArrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:tint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/changeColumn1DownArrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            android:tint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/changeColum2View"
+        android:layout_width="85dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="@dimen/item_heading_three_of_three_end_margin"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nationalSortButtonView">
+
+        <TextView
+            android:id="@+id/changeColumn2Title"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="6dp"
+            android:textAlignment="viewEnd"
+            android:gravity="center_vertical"
+            android:text="@string/twelve_month_change"
+            android:textAppearance="@style/hierarchyItemCellValueHeader"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/changeColumn2UpArrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:tint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/changeColumn2DownArrow"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            android:tint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -25,7 +25,7 @@
                 android:lines="2"
                 android:gravity="center_vertical"
                 android:text="Industry with a really long name to "
-                style="@style/industryItemCellTitle"
+                style="@style/hierarchyItemCellTitle"
                 />
         </TableRow>
     </TableLayout>
@@ -42,7 +42,7 @@
         android:layout_gravity="end"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/industryItemCellValue" />
+        style="@style/hierarchyItemCellValue" />
 
     <LinearLayout
         android:id="@+id/linearLayoutOneMonth"
@@ -58,7 +58,7 @@
             android:id="@+id/oneMonthValueLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/industryItemCellValue"
+            style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
             android:text="-7" />
 
@@ -66,7 +66,7 @@
             android:id="@+id/oneMonthPercentLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/industryItemCellValue"
+            style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
             android:layout_marginTop="8dp"
             android:text="-20.3%" />
@@ -87,7 +87,7 @@
             android:id="@+id/twelveMonthValueLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/industryItemCellValue"
+            style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
             android:text="+3.1" />
 
@@ -95,7 +95,7 @@
             android:id="@+id/twelveMonthPercentLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/industryItemCellValue"
+            style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
             android:layout_marginTop="8dp"
             android:text="+20.1%" />

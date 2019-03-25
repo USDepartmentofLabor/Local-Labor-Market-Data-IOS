@@ -24,7 +24,7 @@
             android:lines="2"
             android:gravity="center_vertical"
             android:text="Industry with a really long name to force a wrap"
-            style="@style/industryItemCellTitle"
+            style="@style/hierarchyItemCellTitle"
             />
     </TableLayout>
 
@@ -39,7 +39,7 @@
         android:text="1000"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/industryItemCellValue"/>
+        style="@style/hierarchyItemCellValue"/>
 
     <TextView
         android:id="@+id/nationalValueLabel"
@@ -52,7 +52,7 @@
         android:text="2000"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/industryItemCellValue" />
+        style="@style/hierarchyItemCellValue" />
 
     <ImageView
         android:id="@+id/subIndustriesIndicator"

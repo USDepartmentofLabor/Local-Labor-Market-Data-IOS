@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_margin">32dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="item_title_three_column">250dp</dimen>
+    <dimen name="item_title_two_column">180dp</dimen>
+    <dimen name="item_value_one_of_three_end_margin">190dp</dimen>
+    <dimen name="item_value_two_of_three_end_margin">115dp</dimen>
+    <dimen name="item_value_three_of_three_end_margin">30dp</dimen>
+    <dimen name="item_value_one_of_two_end_margin">120dp</dimen>
+    <dimen name="item_value_two_of_two_end_margin">30dp</dimen>
+
+    <dimen name="item_heading_one_of_three_end_margin">160dp</dimen>
+    <dimen name="item_heading_two_of_three_end_margin">80dp</dimen>
+    <dimen name="item_heading_three_of_three_end_margin">0dp</dimen>
+    <dimen name="item_heading_one_of_two_end_margin">95dp</dimen>
+    <dimen name="item_heading_two_of_two_end_margin">5dp</dimen>
 </resources>

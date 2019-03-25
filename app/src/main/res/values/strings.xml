@@ -77,8 +77,8 @@
     <string name="employment_level">Employment Level</string>
     <string name="mean_annual_wage">Mean Annual Wage</string>
     <string name="net_change">Net Change</string>
-    <string name="one_month_change">1-Month Change</string>
-    <string name="twelve_month_change">12-Month Change</string>
+    <string name="one_month_change">1 Month Change</string>
+    <string name="twelve_month_change">12 Month Change</string>
     <string name="average_weekly_wage">Avg Weekly Wage</string>
     <string name="average_weekly_wage_accessible">Average Weekly Wage</string>
     <string name="county_not_in_metro">This county is not a part of a Metropolitan Statistical Area.</string>
