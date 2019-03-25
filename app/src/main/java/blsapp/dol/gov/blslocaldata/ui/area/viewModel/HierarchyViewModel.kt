@@ -15,7 +15,6 @@ import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType.OccupationalEmployment
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.HierarchyBaseViewModel
-import kotlinx.android.synthetic.main.industry_item.view.*
 
 /**
  * HierarchyViewModel - View Model for Industry Comparison View
@@ -43,8 +42,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         get() = mArea.title
 
     var detailTitle:String = getApplication<BLSApplication>().getString(R.string.industries_title)
-    var column1Title:String? = getApplication<BLSApplication>().getString(R.string.metro)
-    var column2Title:String = getApplication<BLSApplication>().getString(R.string.national)
+    var regionTitle:String? = getApplication<BLSApplication>().getString(R.string.metro)
 
     var accessibilityStr: String? = null
         get() = mArea.accessibilityStr
@@ -57,6 +55,28 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
     private var industryType: IndustryType = IndustryType.CE_INDUSTRY
     private var wageVsLevelTypeOccupation: OESReport.DataTypeCode = OESReport.DataTypeCode.EMPLOYMENT
     private var QCEWwageVsLevelTypeOccupation: QCEWReport.DataTypeCode = QCEWReport.DataTypeCode.allEmployees
+
+    fun isIndustryReport(): Boolean {
+        var retValue = false
+        when (reportType) {
+            is ReportType.IndustryEmployment -> {
+                retValue = true;
+            }
+        }
+        return retValue
+    }
+    fun isNationalArea(): Boolean {
+        return (mArea is NationalEntity)
+    }
+    fun isStateArea(): Boolean {
+        return (mArea is StateEntity)
+    }
+    fun isMetroArea(): Boolean {
+        return (mArea is MetroEntity)
+    }
+    fun isCountyArea(): Boolean {
+        return (mArea is CountyEntity)
+    }
 
     fun getOwnershipTitle(): String {
         var ownTitle = " "
@@ -101,7 +121,9 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
     fun setReportType(reportType: ReportType) {
 
         this.reportType = reportType
-        if (mArea is NationalEntity) column1Title = null
+        if (mArea is NationalEntity) regionTitle = null
+        else if (mArea is StateEntity) regionTitle =  getApplication<BLSApplication>().getString(R.string.state)
+        else if (mArea is CountyEntity) regionTitle =  getApplication<BLSApplication>().getString(R.string.county)
 
         when (reportType) {
 
@@ -109,7 +131,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                 industryType = when (mArea) {
                     is NationalEntity -> IndustryType.CE_INDUSTRY
                     is StateEntity -> {
-                        column1Title = getApplication<BLSApplication>().getString(R.string.state)
+                        regionTitle = getApplication<BLSApplication>().getString(R.string.state)
                         IndustryType.SM_INDUSTRY
                     }
                     else -> IndustryType.SM_INDUSTRY
@@ -122,7 +144,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             is ReportType.QuarterlyEmploymentWages -> {
                 industryType = IndustryType.QCEW_INDUSTRY
                 detailTitle = getApplication<BLSApplication>().getString(R.string.occupation_title)
-                column1Title = getApplication<BLSApplication>().getString(R.string.county)
+                regionTitle = getApplication<BLSApplication>().getString(R.string.county)
             }
         }
     }
@@ -205,24 +227,27 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             }
 
             if (parentIndustryData != null) {
-                val mergeTitle = parentIndustryData.title
+                val mergeTitle = parentIndustryData.title + " (" + parentIndustryData.industryCode + ")"
                 rows.add(HierarchyRow(HierarchyRowType.ITEM,
                         parentIndustryData,
                         parentIndustryData.id,
                         mergeTitle,
                         "N/A", "N/A",
-                        false))
+                        "N/A", "N/A",
+                        "N/A", "N/A", false))
             }
 
             //var fetchedData = repository.getChildIndustries(parentIdLocal!!, industryType)
             var fetchedData = getChildren(parentIdLocal!!, industryType)
 
             fetchedData?.forEach{ industry ->
-                val mergeTitle = industry.title + " (" + industry.industryCode + ")"
+                val mergeTitle = industry.title
                 rows.add(HierarchyRow(HierarchyRowType.ITEM,
                         industry,
                         industry.id,
                         mergeTitle,
+                        "N/A", "N/A",
+                        "N/A", "N/A",
                         "N/A", "N/A",
                         industry.superSector))
             }
@@ -340,11 +365,15 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                     else
                         thisIndustryRow.localValue = DataUtil.numberValue(thisAreaRow.seriesReport!!.data[0].value)
                 }
-                if (mArea is NationalEntity) {
+                thisIndustryRow.oneMonthValue = DataUtil.numberValue(thisAreaRow.seriesReport!!.data[0].calculations?.netChanges?.oneMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR)
+                thisIndustryRow.twelveMonthValue = DataUtil.numberValue(thisAreaRow.seriesReport!!.data[0].calculations?.netChanges?.twelveMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR)
+                thisIndustryRow.oneMonthPercent = DataUtil.changeValueByPercent(thisAreaRow.seriesReport!!.data[0].calculations?.percentChanges?.oneMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR, "%")
+                thisIndustryRow.twelveMonthPercent = DataUtil.changeValueByPercent(thisAreaRow.seriesReport!!.data[0].calculations?.percentChanges?.twelveMonth ?: ReportManager.DATA_NOT_AVAILABLE_STR,"%")
+
+                if (mArea is NationalEntity)
                     thisIndustryRow.localValue = " "
                 }
             }
         }
 
     }
-}

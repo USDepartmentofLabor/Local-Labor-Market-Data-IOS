@@ -5,16 +5,17 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.hierarchy_item.view.*
+import kotlinx.android.synthetic.main.hierarchy_item_ces.view.*
 
 /**
  * HierarchyEntryHolder - holds the inflated view for the Industry Entries view
  */
 
-open class HierarchyEntryHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-    val mIndustryTitle: TextView = mView.titleLabel
-    val mIndustryLocalValue: TextView = mView.valueLabel
-    val mIndustryNationalValue: TextView? = mView.nationalValueLabel
-    val mSubIndustryIndicator: ImageView = mView.subIndustriesIndicator
+class HierarchyEntryCESHolder(mView: View) : HierarchyEntryHolder(mView) {
+    val oneMonthValueLabel: TextView = mView.oneMonthValueLabel
+    val oneMonthPercentLabel: TextView = mView.oneMonthPercentLabel
+    val twelveMonthValueLabel: TextView = mView.twelveMonthValueLabel
+    val twelveMonthPercentLabel: TextView = mView.twelveMonthPercentLabel
 
     override fun toString(): String {
         return super.toString() + " '" + mIndustryTitle.text + "'"
