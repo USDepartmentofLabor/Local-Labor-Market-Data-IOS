@@ -17,4 +17,8 @@ data class HierarchyRow(var type: HierarchyRowType,
                         var title: String?,
                         var localValue: String?,
                         var nationalValue: String?,
+                        var oneMonthValue: String?,
+                        var oneMonthPercent: String?,
+                        var twelveMonthValue: String?,
+                        var twelveMonthPercent: String?,
                         var superSector: Boolean?)
