@@ -20,11 +20,10 @@ import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
 import blsapp.dol.gov.blslocaldata.ui.info.InfoActivity
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import android.support.v7.app.AlertDialog
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
 import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListAdapter
+import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListCESAdapter
+import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListQCEWAdapter
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.*
 import kotlinx.android.synthetic.main.activity_hierarchy_results.*
 import kotlinx.android.synthetic.main.fragment_hierarchy_header.*
@@ -32,8 +31,9 @@ import kotlinx.android.synthetic.main.fragment_hierarchy_header.*
 /**
  * HierarchyResultsActivity - Displays a list of industries and key values associated with them
  */
-class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnItemClickListener {
-
+class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnItemClickListener,
+                                                        HierarchyListCESAdapter.OnItemClickListener,
+                                                        HierarchyListQCEWAdapter.OnItemClickListener{
     companion object {
         const val KEY_AREA = "Area"
         const val PARENT_ID = "ParentId"
@@ -45,6 +45,8 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
     private var parentId: Long? = null
     private lateinit var viewModel: HierarchyViewModel
     private lateinit var adapter: HierarchyListAdapter
+    private lateinit var cesAdapter: HierarchyListCESAdapter
+    private lateinit var qcewAdapter: HierarchyListQCEWAdapter
     private lateinit var reportType: ReportType
     private lateinit var industryType: ReportRowType
 
@@ -67,11 +69,30 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
             viewModel.mArea = it
         }
 
+        viewModel.setReportType(reportType)
+
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        adapter = HierarchyListAdapter(this)
-        recyclerView.apply {
-            adapter = this@HierarchyResultsActivity.adapter
-            layoutManager = LinearLayoutManager(this@HierarchyResultsActivity)
+
+        if  (viewModel.isCountyArea()) {
+            qcewAdapter = HierarchyListQCEWAdapter(this)
+            recyclerView.apply {
+                adapter = this@HierarchyResultsActivity.qcewAdapter
+                layoutManager = LinearLayoutManager(this@HierarchyResultsActivity)
+            }
+        } else if (viewModel.isIndustryReport()) {
+            cesAdapter = HierarchyListCESAdapter(this, mArea)
+            recyclerView.apply {
+                adapter = this@HierarchyResultsActivity.cesAdapter
+                layoutManager = LinearLayoutManager(this@HierarchyResultsActivity)
+            }
+
+        } else {
+
+            adapter = HierarchyListAdapter(this)
+            recyclerView.apply {
+                adapter = this@HierarchyResultsActivity.adapter
+                layoutManager = LinearLayoutManager(this@HierarchyResultsActivity)
+            }
         }
         attachObserver()
 
@@ -86,7 +107,6 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
                     if (isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
             viewModel.setAdjustment(ReportManager.adjustment)
         }
-        viewModel.setReportType(reportType)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -115,7 +135,13 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
 
     private fun attachObserver() {
         viewModel.hierarchyRows?.observe(this, Observer<List<HierarchyRow>> {
-            adapter.setIndustryRows(it!!)
+            if  (viewModel.isCountyArea()) {
+                qcewAdapter.setIndustryRows(it!!)
+            } else if (viewModel.isIndustryReport()) {
+                cesAdapter.setIndustryRows(it!!)
+            } else {
+                adapter.setIndustryRows(it!!)
+            }
         })
         viewModel.isLoading.observe(this, Observer<Boolean> {
             it?.let { showLoadingDialog(it) }
