@@ -42,7 +42,7 @@
 
         <activity
             android:name=".ui.area.activities.HierarchyResultsActivity"
-            android:label="@string/hierarchies" />
+            android:label="@string/industry_heading" />
 
         <activity
             android:name=".ui.info.InfoActivity"

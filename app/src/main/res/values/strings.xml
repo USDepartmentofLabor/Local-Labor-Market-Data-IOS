@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BLS Local Data</string>
     <string name="main_title">Local Labor Market Data</string>
-    <string name="hierarchies">Industries</string>
+    <string name="industry_heading">Industry - Sectors</string>
     <string name="metro">Metro</string>
     <string name="state">State</string>
     <string name="county">County</string>
@@ -12,6 +12,7 @@
     <string name="home">Home</string>
     <string name="local_labor_market_data">Local Labor \nMarket Data</string>
     <string name="action_info">Info</string>
+    <string name="action_search">Search</string>
     <string name="settings">Settings</string>
     <string name="search">Search</string>
     <string name="address_found">Address found</string>
@@ -71,8 +72,10 @@
     <string name="ownership_state_govt">State Government</string>
     <string name="ownership_local_govt">Local Government</string>
     <string name="ownership_total_covered">Total</string>
-    <string name="industries_title">Industries</string>
+    <string name="industries_title">Industry</string>
+    <string name="industries_title_code">Industry (Code)</string>
     <string name="occupation_title">Occupations</string>
+    <string name="occupation_title_code">Occupation (Code)</string>
 
     <string name="employment_level">Employment Level</string>
     <string name="mean_annual_wage">Mean Annual Wage</string>
