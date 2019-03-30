@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.area.fragments.AreaHeaderFragment">
 
-    <android.support.v7.widget.SwitchCompat
+    <Switch
         android:id="@+id/seasonallyAdjustedSwitch"
         style="@style/SwitchCompatTheme"
         android:layout_width="wrap_content"

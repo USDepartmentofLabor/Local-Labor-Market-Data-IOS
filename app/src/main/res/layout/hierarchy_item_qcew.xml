@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="+221" />
 
         <TextView
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="+221" />
     </LinearLayout>
 
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="+1,881,943" />
 
         <TextView
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="+1.7%" />
     </LinearLayout>
 

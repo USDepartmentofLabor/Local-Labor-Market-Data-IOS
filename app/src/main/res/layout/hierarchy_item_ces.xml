@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="0dp"
             android:text="-20.3%" />
     </LinearLayout>
 
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             style="@style/hierarchyItemCellValue"
             android:layout_gravity="end"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="0dp"
             android:text="+20.1%" />
     </LinearLayout>
 

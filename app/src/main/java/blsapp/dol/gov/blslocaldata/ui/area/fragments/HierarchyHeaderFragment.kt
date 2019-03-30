@@ -18,7 +18,9 @@ import blsapp.dol.gov.blslocaldata.ui.viewmodel.HierarchyViewModel
 import kotlinx.android.synthetic.main.fragment_hierarchy_header.*
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
+import android.widget.Switch
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.SortStatus
+import kotlinx.android.synthetic.main.fragment_area_header.*
 
 
 /**
@@ -36,7 +38,6 @@ class HierarchyHeaderFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val headerView = inflater.inflate(R.layout.fragment_hierarchy_header, container, false)
-
         return headerView
     }
 
@@ -58,38 +59,51 @@ class HierarchyHeaderFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         hierarchyViewModel = ViewModelProviders.of(activity!!).get(HierarchyViewModel::class.java)
+        if (!hierarchyViewModel.isCountyArea()) {
+            ownershipTextView.visibility = View.GONE
+        }
         attachObserver()
         updateHeader()
+
     }
     private fun attachObserver() {
         hierarchyViewModel.hierarchyRows?.observe(this, Observer<List<HierarchyRow>> {
-          //  updateHeader()
+           // updateHeader()
         })
     }
 
+    fun reportLoaded() {
+        timePeriodTextView.text = hierarchyViewModel.getTimePeriodTitle()
+    }
     private fun updateHeader() {
         industryAreaTextView.text = hierarchyViewModel.areaTitle
         industryAreaTextView.contentDescription = hierarchyViewModel.accessibilityStr
         ownershipTextView.text = hierarchyViewModel.getOwnershipTitle()
         timePeriodTextView.text = hierarchyViewModel.getTimePeriodTitle()
-        detailTitle.text = hierarchyViewModel.detailTitle
         setupLevelVsWageSpinner()
         setupColumnHeaders()
+        turnOffArrows()
     }
 
     private fun setupColumnHeaders() {
 
-        if (hierarchyViewModel.isIndustryReport()) {
+
+        if (hierarchyViewModel.isCountyArea()) {
+            detailTitle.text = getString(R.string.industries_title)
+            regionChangeView.visibility = View.GONE
+            changeColumn1Title.text = getString(R.string.twelve_month_change)
+
+        } else if (hierarchyViewModel.isIndustryReport()) {
+            detailTitle.text = getString(R.string.industries_title_code)
             regionSortButtonView.visibility = View.GONE
             nationalSortButtonView.visibility = View.GONE
+
         } else {
+            hierarchySeasonallyAdjustedSwitch.visibility = View.GONE
+            detailTitle.text = getString(R.string.occupation_title_code)
             regionChangeView.visibility = View.GONE
-            if (hierarchyViewModel.isCountyArea()) {
-                changeColumn1Title.text = getString(R.string.twelve_month_change)
-            } else {
-                changeColum1View.visibility = View.GONE
-                changeColum2View.visibility = View.GONE
-            }
+            oneMonthChangeView.visibility = View.GONE
+            twelveMonthChangeView.visibility = View.GONE
         }
 
         if  (hierarchyViewModel.regionTitle == null) {
@@ -118,10 +132,54 @@ class HierarchyHeaderFragment : Fragment() {
                     else
                         DrawableCompat.setTint(nationalSortButtonDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
                 }
+
+                R.id.regionChangeView -> {
+                    if (hierarchyViewModel.isNationalArea()) {
+                        if (hierarchyViewModel.sortByNationalValue()== SortStatus.ASCENDING)
+                            DrawableCompat.setTint(sortByRegionChangeUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                        else
+                            DrawableCompat.setTint(sortByRegionChangeDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                    } else {
+                        if (hierarchyViewModel.sortByLocalValue()== SortStatus.ASCENDING)
+                            DrawableCompat.setTint(sortByRegionChangeUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                        else
+                            DrawableCompat.setTint(sortByRegionChangeDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                    }
+                }
+
+                R.id.oneMonthChangeView -> {
+                    if (hierarchyViewModel.isCountyArea()) {
+                        if (hierarchyViewModel.sortByLocalTwelveMonthPercentChangeValue()== SortStatus.ASCENDING)
+                            DrawableCompat.setTint(sortByColumn1UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                        else
+                            DrawableCompat.setTint(sortByColumn1DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                    } else {
+                        if (hierarchyViewModel.sortByLocalOneMonthPercentChangeValue()== SortStatus.ASCENDING)
+                            DrawableCompat.setTint(sortByColumn1UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                        else
+                            DrawableCompat.setTint(sortByColumn1DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                    }
+                }
+                R.id.twelveMonthChangeView -> {
+                    if (hierarchyViewModel.isCountyArea() || hierarchyViewModel.isNationalArea()) {
+                        if (hierarchyViewModel.sortByNationalTwelveMonthPercentChangeValue()== SortStatus.ASCENDING)
+                            DrawableCompat.setTint(sortByColumn2UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                        else
+                            DrawableCompat.setTint(sortByColumn2DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                    } else {
+                        if (hierarchyViewModel.sortByLocalTwelveMonthPercentChangeValue()== SortStatus.ASCENDING)
+                            DrawableCompat.setTint(sortByColumn2UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                        else
+                            DrawableCompat.setTint(sortByColumn2DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                    }
+                }
             }
         }
         regionSortButtonView.setOnClickListener(clickListener)
         nationalSortButtonView.setOnClickListener(clickListener)
+        regionChangeView.setOnClickListener(clickListener)
+        oneMonthChangeView.setOnClickListener(clickListener)
+        twelveMonthChangeView.setOnClickListener(clickListener)
     }
 
     private fun turnOffArrows() {
@@ -129,6 +187,12 @@ class HierarchyHeaderFragment : Fragment() {
         DrawableCompat.setTint(regionSortButtonDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
         DrawableCompat.setTint(nationalSortButtonUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
         DrawableCompat.setTint(nationalSortButtonDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(sortByRegionChangeUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(sortByRegionChangeDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(sortByColumn1UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(sortByColumn1DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(sortByColumn2UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(sortByColumn2DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
     }
 
     private fun setupLevelVsWageSpinner () {
