@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import blsapp.dol.gov.blslocaldata.R
+import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.HierarchyEntryCESHolder
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.HierarchyEntryHolder
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.HierarchyEntryQCEWHolder
@@ -40,37 +41,23 @@ class HierarchyListQCEWAdapter( private val mListener: OnItemClickListener?) : H
 
         super.onBindViewHolder(holder,position)
 
-//        val areaRow = mIndustries[position]
-//        if (holder is HierarchyEntryHolder) {
-//            if (position == 0) {
-//                holder.mView.backgroundColor = getColor(holder.itemView.context, R.color.colorPrimary)
-//                holder.mIndustryTitle.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
-//                holder.mIndustryLocalValue.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
-//                holder.mIndustryNationalValue?.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
-//            } else {
-//                holder.mView.backgroundColor = getColor(holder.itemView.context,R.color.colorHierarchyCell)
-//                holder.mIndustryTitle.textColor = getColor(holder.itemView.context,android.R.color.black)
-//                holder.mIndustryLocalValue.textColor = getColor(holder.itemView.context, android.R.color.black)
-//                holder.mIndustryNationalValue?.textColor = getColor(holder.itemView.context, android.R.color.black)
-//            }
-//            holder.mIndustryTitle.text = areaRow.title
-//
-//            holder.mIndustryLocalValue.text = areaRow.localValue!!
-//            holder.mIndustryNationalValue?.text = areaRow.nationalValue!!
-//
-//            if (areaRow.superSector!!) {
-//                holder.mSubIndustryIndicator.visibility = View.VISIBLE
-//
-//                with(holder.mView) {
-//                    tag = areaRow.industry
-//                    setOnClickListener {
-//                        mListener?.onItemClick(areaRow)
-//                    }
-//                }
-//            } else {
-//                holder.mSubIndustryIndicator.visibility = View.GONE
-//            }
-//        }
+        val areaRow = mIndustries[position]
+        if (holder is HierarchyEntryQCEWHolder) {
+            if (position == 0) {
+                holder.nationalTwelveMonthValueLabel.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
+                holder.nationalTwelveMonthPercentLabel.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
+                holder.twelveMonthValueLabel?.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
+                holder.twelveMonthPercentLabel?.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
+            } else {
+                holder.nationalTwelveMonthValueLabel.textColor = getColor(holder.itemView.context,android.R.color.black)
+                holder.nationalTwelveMonthPercentLabel.textColor = getColor(holder.itemView.context, android.R.color.black)
+                holder.twelveMonthValueLabel?.textColor = getColor(holder.itemView.context, android.R.color.black)
+                holder.twelveMonthPercentLabel?.textColor = getColor(holder.itemView.context, android.R.color.black)
+            }
+            holder.twelveMonthPercentLabel.text = areaRow.twelveMonthPercent!!
+            holder.twelveMonthValueLabel.text = areaRow.twelveMonthValue!!
+            holder.nationalTwelveMonthPercentLabel.text = areaRow.twelveMonthNationalPercent!!
+            holder.nationalTwelveMonthValueLabel.text = areaRow.twelveMonthNationalValue!!
+        }
     }
-
 }
