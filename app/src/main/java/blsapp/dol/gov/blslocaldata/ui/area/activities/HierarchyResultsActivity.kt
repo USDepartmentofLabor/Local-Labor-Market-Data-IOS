@@ -2,6 +2,7 @@ package blsapp.dol.gov.blslocaldata.ui.area.activities
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -20,12 +21,15 @@ import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
 import blsapp.dol.gov.blslocaldata.ui.info.InfoActivity
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import android.support.v7.app.AlertDialog
+import android.util.AttributeSet
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
+import blsapp.dol.gov.blslocaldata.ui.area.fragments.HierarchyHeaderFragment
 import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListAdapter
 import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListCESAdapter
 import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListQCEWAdapter
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.*
 import kotlinx.android.synthetic.main.activity_hierarchy_results.*
+import kotlinx.android.synthetic.main.fragment_area_header.*
 import kotlinx.android.synthetic.main.fragment_hierarchy_header.*
 
 /**
@@ -87,7 +91,7 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
             }
 
         } else {
-
+            title = getString(R.string.occupation_title)
             adapter = HierarchyListAdapter(this)
             recyclerView.apply {
                 adapter = this@HierarchyResultsActivity.adapter
@@ -101,8 +105,8 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
             decorator.setDrawable(it) }
         recyclerView.addItemDecoration(decorator)
 
-        industrySeasonallyAdjustedSwitch.isChecked = if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED) true else false
-        industrySeasonallyAdjustedSwitch.setOnCheckedChangeListener{ _, isChecked ->
+        hierarchySeasonallyAdjustedSwitch.isChecked = if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED) true else false
+        hierarchySeasonallyAdjustedSwitch.setOnCheckedChangeListener{ _, isChecked ->
             ReportManager.adjustment =
                     if (isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
             viewModel.setAdjustment(ReportManager.adjustment)
@@ -110,7 +114,7 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_area, menu)
+        menuInflater.inflate(R.menu.menu_hierarchy, menu)
         return true
     }
 
@@ -135,6 +139,10 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
 
     private fun attachObserver() {
         viewModel.hierarchyRows?.observe(this, Observer<List<HierarchyRow>> {
+
+            var hierarchyHeaderFragment = supportFragmentManager.findFragmentById(R.id.headerFragment) as HierarchyHeaderFragment
+            hierarchyHeaderFragment.reportLoaded()
+
             if  (viewModel.isCountyArea()) {
                 qcewAdapter.setIndustryRows(it!!)
             } else if (viewModel.isIndustryReport()) {

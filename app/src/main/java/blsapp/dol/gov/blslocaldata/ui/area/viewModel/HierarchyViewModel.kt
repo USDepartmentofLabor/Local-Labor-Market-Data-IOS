@@ -48,8 +48,11 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
     var localAreaReports: MutableList<AreaReport>? = null
 
+    var periodName: String? = null
+    var year: String? = null
+
     var areaTitle: String? = null
-        get() = mArea.title
+        get() = if (mArea is NationalEntity) getApplication<BLSApplication>().getString(R.string.national) else mArea.title
 
     var detailTitle:String = getApplication<BLSApplication>().getString(R.string.industries_title)
     var regionTitle:String? = getApplication<BLSApplication>().getString(R.string.metro)
@@ -99,10 +102,11 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun getTimePeriodTitle(): String {
         var timeTitle = " "
-        val localAreaReport = localAreaReports?.filter { areaReport ->
-            areaReport.reportType == reportTypes?.first() }?.firstOrNull()
-        localAreaReport?.seriesReport?.latestData()?.let { localReport ->
-            timeTitle = localReport.periodName + " " + localReport.year
+        if (periodName != null) {
+            timeTitle = periodName!! + " "
+        }
+        if (year != null) {
+            timeTitle = timeTitle + year!!
         }
         return timeTitle
     }
@@ -186,18 +190,40 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         loadReportCategories()
     }
 
+    private fun resetSortStatuses() {
+        localValueSorted = SortStatus.NOT
+        nationalValueSorted = SortStatus.NOT
+        localOneMonthChangeSorted = SortStatus.NOT
+        nationalOneMonthChangeSorted = SortStatus.NOT
+        localTwelveMonthChangeSorted = SortStatus.NOT
+        nationalTwelveMonthChangeSorted = SortStatus.NOT
+    }
     private fun completeSort(tmpList: List<HierarchyRow>?, sortStatus: SortStatus):SortStatus {
-        var sortedTmpList = tmpList
-        if (sortStatus == SortStatus.DESCENDING) {
-            sortedTmpList = tmpList?.reversed()
+        val retSortStatusValue:SortStatus = if (sortStatus == SortStatus.ASCENDING) SortStatus.DESCENDING else SortStatus.ASCENDING
+        if (tmpList != null && tmpList?.count() > 1 && hierarchyRows.value != null &&  hierarchyRows.value!!.count() > 0) {
+            var sortedTmpList = tmpList?.toMutableList()
+            if (retSortStatusValue == SortStatus.DESCENDING) {
+                sortedTmpList = tmpList?.reversed()?.toMutableList()
+            }
+            sortedTmpList?.add(0,hierarchyRows.value!!.elementAt(0))
+            hierarchyRows.postValue(sortedTmpList)
         }
-        hierarchyRows.postValue(sortedTmpList)
-        val retValue:SortStatus = if (sortStatus == SortStatus.DESCENDING) SortStatus.ASCENDING else SortStatus.DESCENDING
-        return retValue
+        resetSortStatuses()
+        return retSortStatusValue
+    }
+
+    private fun prepSort(): List<HierarchyRow>? {
+
+        var tmpList: List<HierarchyRow>? = null
+        if (hierarchyRows.value != null && hierarchyRows.value!!.count() > 1) {
+            val count = hierarchyRows.value!!.count()
+            tmpList = hierarchyRows.value!!.subList(1, count)
+        }
+        return tmpList
     }
 
     fun sortByLocalOneMonthPercentChangeValue():SortStatus {
-        var tmpList = hierarchyRows.value
+        var tmpList= prepSort()
         tmpList = tmpList?.sortedWith(compareBy(
                 { it.oneMonthPercent?.length },
                 { it.oneMonthPercent }
@@ -207,7 +233,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun sortByNationalOneMonthPercentChangeValue():SortStatus {
-        var tmpList = hierarchyRows.value
+        var tmpList= prepSort()
         tmpList = tmpList?.sortedWith(compareBy(
                 { it.oneMonthNationalPercent?.length },
                 { it.oneMonthNationalPercent }
@@ -217,7 +243,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun sortByLocalTwelveMonthPercentChangeValue():SortStatus {
-        var tmpList = hierarchyRows.value
+        var tmpList= prepSort()
         tmpList = tmpList?.sortedWith(compareBy(
                 { it.twelveMonthPercent?.length },
                 { it.twelveMonthPercent }
@@ -226,7 +252,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         return localTwelveMonthChangeSorted
     }
     fun sortByNationalTwelveMonthPercentChangeValue():SortStatus {
-        var tmpList = hierarchyRows.value
+        var tmpList= prepSort()
         tmpList = tmpList?.sortedWith(compareBy(
                 { it.twelveMonthNationalPercent?.length },
                 { it.twelveMonthNationalPercent }
@@ -236,7 +262,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun sortByLocalValue():SortStatus {
-        var tmpList = hierarchyRows.value
+        var tmpList= prepSort()
         tmpList = tmpList?.sortedWith(compareBy(
                 { it.localValue?.length },
                 { it.localValue }
@@ -245,7 +271,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         return localValueSorted
     }
     fun sortByNationalValue():SortStatus {
-        var tmpList = hierarchyRows.value
+        var tmpList= prepSort()
         tmpList = tmpList?.sortedWith(compareBy(
                 { it.nationalValue?.length },
                 { it.nationalValue }
@@ -407,6 +433,10 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             val thisAreaRow = areaReport[i]
             val thisIndustryRow = hierarchyRows[i]
             if  (thisAreaRow.seriesReport != null && thisAreaRow.seriesReport!!.data.isNotEmpty()) {
+
+                periodName = thisAreaRow.seriesReport!!.data[0].periodName
+                year = thisAreaRow.seriesReport!!.data[0].year
+
                 if (wageVsLevelTypeOccupation == OESReport.DataTypeCode.ANNUALMEANWAGE ||
                         QCEWwageVsLevelTypeOccupation == QCEWReport.DataTypeCode.avgWeeklyWage) {
                     if (thisAreaRow.area is NationalEntity)
