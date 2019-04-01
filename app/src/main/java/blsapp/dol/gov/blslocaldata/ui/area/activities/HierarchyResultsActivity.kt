@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -22,6 +23,7 @@ import blsapp.dol.gov.blslocaldata.ui.info.InfoActivity
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import android.support.v7.app.AlertDialog
 import android.util.AttributeSet
+import blsapp.dol.gov.blslocaldata.model.HierarchyModel
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
 import blsapp.dol.gov.blslocaldata.ui.area.fragments.HierarchyHeaderFragment
 import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListAdapter
@@ -32,27 +34,39 @@ import kotlinx.android.synthetic.main.activity_hierarchy_results.*
 import kotlinx.android.synthetic.main.fragment_area_header.*
 import kotlinx.android.synthetic.main.fragment_hierarchy_header.*
 
+
+
 /**
  * HierarchyResultsActivity - Displays a list of industries and key values associated with them
  */
 class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnItemClickListener,
                                                         HierarchyListCESAdapter.OnItemClickListener,
-                                                        HierarchyListQCEWAdapter.OnItemClickListener{
+                                                        HierarchyListQCEWAdapter.OnItemClickListener,
+                                                        HierarchyHeaderFragment.OnFragmentInteractionListener{
+
     companion object {
         const val KEY_AREA = "Area"
         const val PARENT_ID = "ParentId"
+        const val PARENT_NAME = "ParentName"
+        const val HIERARCY_STRING = "HierarchyString"
+        const val HIERARCY_ARRAY = "HierarchyArray"
         const val KEY_REPORT_TYPE = "ReportType"
         const val KEY_REPORT_ROW_TYPE = "ReportRowType"
     }
 
     private lateinit var mArea: AreaEntity
     private var parentId: Long? = null
+    private var parentName: String? = null
     private lateinit var viewModel: HierarchyViewModel
     private lateinit var adapter: HierarchyListAdapter
     private lateinit var cesAdapter: HierarchyListCESAdapter
     private lateinit var qcewAdapter: HierarchyListQCEWAdapter
     private lateinit var reportType: ReportType
     private lateinit var industryType: ReportRowType
+    private lateinit var hierarchyHeaderFragment: HierarchyHeaderFragment
+
+    private var hierarchyString: String? = null
+    private var hierarchyIDArray: Array<Long>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,9 +76,15 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         mArea = intent.getSerializableExtra(KEY_AREA) as AreaEntity
+
         parentId = intent.getSerializableExtra(PARENT_ID) as Long?
+        parentName = intent.getSerializableExtra(PARENT_NAME) as String?
+
         reportType = intent.getSerializableExtra(KEY_REPORT_TYPE) as ReportType
         industryType = intent.getSerializableExtra(KEY_REPORT_ROW_TYPE) as ReportRowType
+
+        hierarchyString = intent.getSerializableExtra(HIERARCY_STRING) as String?
+        hierarchyIDArray = intent.getSerializableExtra(HIERARCY_ARRAY) as Array<Long>?
 
         viewModel = ViewModelProviders.of(this).get(HierarchyViewModel::class.java)
         viewModel.mAdjustment = ReportManager.adjustment
@@ -113,6 +133,10 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
         }
     }
 
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_hierarchy, menu)
         return true
@@ -140,7 +164,7 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
     private fun attachObserver() {
         viewModel.hierarchyRows?.observe(this, Observer<List<HierarchyRow>> {
 
-            var hierarchyHeaderFragment = supportFragmentManager.findFragmentById(R.id.headerFragment) as HierarchyHeaderFragment
+            hierarchyHeaderFragment = supportFragmentManager.findFragmentById(R.id.headerFragment) as HierarchyHeaderFragment
             hierarchyHeaderFragment.reportLoaded()
 
             if  (viewModel.isCountyArea()) {
@@ -150,6 +174,8 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
             } else {
                 adapter.setIndustryRows(it!!)
             }
+
+            hierarchyHeaderFragment.setupHiearcaryBreadCrumbs(hierarchyString, hierarchyIDArray)
         })
         viewModel.isLoading.observe(this, Observer<Boolean> {
             it?.let { showLoadingDialog(it) }
@@ -159,15 +185,42 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
         })
     }
 
-    fun displaySubIndustries(area: AreaEntity?, item: HierarchyRow) {
+
+    fun displaySubIndustriesWorker(selectedItemId:Long?, selectedItemTitle:String?, nHierarchyString:String?, nHierarchyArray: MutableList<Long>?) {
 
         intent = Intent(applicationContext, HierarchyResultsActivity::class.java)
         intent.putExtra(KEY_AREA, mArea)
-        intent.putExtra(PARENT_ID, item.itemId)
+        intent.putExtra(PARENT_ID, selectedItemId)
+        intent.putExtra(PARENT_NAME, selectedItemTitle)
+
+        intent.putExtra(HIERARCY_STRING, nHierarchyString)
+        intent.putExtra(HIERARCY_ARRAY, nHierarchyArray?.toTypedArray())
+
         intent.putExtra(KEY_REPORT_TYPE, reportType)
         intent.putExtra(KEY_REPORT_ROW_TYPE, industryType)
         startActivity(intent)
+    }
 
+    fun displaySubIndustries(area: AreaEntity?, item: HierarchyRow) {
+
+        val currItem = viewModel.hierarchyRows.value!!.elementAt(0)
+        val titleSplit = currItem.title!!.split("(")
+        var nHierarchyString:String? = hierarchyString
+        if (nHierarchyString == null) {
+            nHierarchyString = titleSplit[0]
+        } else {
+            nHierarchyString = nHierarchyString + " > " + titleSplit[0]
+        }
+
+        var nHierarchyArray: MutableList<Long>?
+        if (hierarchyIDArray == null) {
+            nHierarchyArray =  mutableListOf(currItem.itemId!!)
+        } else {
+            nHierarchyArray = hierarchyIDArray!!.toMutableList()
+            nHierarchyArray.add(currItem.itemId!!)
+        }
+
+        displaySubIndustriesWorker(item.itemId, item.title, nHierarchyString, nHierarchyArray)
     }
 
     private fun showLoadingDialog(show: Boolean) {
@@ -194,4 +247,21 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
         alert.show()
     }
 
+    override fun breadcrumbItemSelected(itemIndex: Int) {
+
+        val itemId = hierarchyIDArray!![itemIndex]
+        val hierarchyStrings = hierarchyString!!.split(">").toTypedArray()
+        val title = hierarchyStrings[itemIndex]
+
+        var nHierarchyString:String? = null
+        var nHierarchyArray: MutableList<Long>? = mutableListOf<Long>()
+        for (i in 0..itemIndex-1) {
+            if (i == 0) nHierarchyString =  hierarchyStrings[i]
+            else  nHierarchyString = nHierarchyString + " > " + hierarchyStrings[i]
+
+            nHierarchyArray?.add(hierarchyIDArray!![i])
+        }
+
+        displaySubIndustriesWorker(itemId, title, nHierarchyString, nHierarchyArray)
+    }
 }

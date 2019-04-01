@@ -66,17 +66,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <TextView
         android:id="@+id/hierarchyTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
-        android:text="Total Nonfarm -> Total Private -> Goods Producing -> Mining, Logging and Construction"
-        android:textAppearance="@style/hierarchyBreadCrumb"
         app:layout_constraintTop_toBottomOf="@+id/wageVsLevelSpinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/detailTitle"

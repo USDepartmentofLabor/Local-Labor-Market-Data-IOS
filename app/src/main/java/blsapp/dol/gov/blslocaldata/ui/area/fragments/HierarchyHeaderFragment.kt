@@ -18,10 +18,13 @@ import blsapp.dol.gov.blslocaldata.ui.viewmodel.HierarchyViewModel
 import kotlinx.android.synthetic.main.fragment_hierarchy_header.*
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
-import android.widget.Switch
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.SortStatus
-import kotlinx.android.synthetic.main.fragment_area_header.*
-
+import android.text.method.LinkMovementMethod
+import android.text.Spanned
+import android.text.SpannableString
+import android.text.style.ClickableSpan
+import android.util.Log
+import android.widget.TextView
 
 /**
  * AreaHeaderFragment - A simple [Fragment] subclass.
@@ -53,6 +56,7 @@ class HierarchyHeaderFragment : Fragment() {
         } else {
 //            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
         }
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -75,6 +79,47 @@ class HierarchyHeaderFragment : Fragment() {
     fun reportLoaded() {
         timePeriodTextView.text = hierarchyViewModel.getTimePeriodTitle()
     }
+
+
+    fun setupHiearcaryBreadCrumbs(hierarchyString: String?, hierarchyIds:Array<Long>?) {
+
+        if (hierarchyString == null || hierarchyIds == null) return
+        val hierarchyStrings = hierarchyString!!.split(">").toTypedArray()
+
+        var clickSpans : MutableList<ClickableSpan> = mutableListOf<ClickableSpan>()
+
+        for (i in hierarchyStrings.indices) {
+            val termsOfServicesClick = object : ClickableSpan() {
+                override fun onClick(p0: View?) {
+                    Log.d("GGG", "Hierarchy ID: " + hierarchyIds!![i])
+                    listener?.breadcrumbItemSelected(i)
+                }
+            }
+            clickSpans.add(termsOfServicesClick)
+        }
+
+        hierarchyTextView.text = hierarchyString
+        makeLinks(hierarchyTextView, hierarchyStrings, clickSpans.toTypedArray())
+    }
+
+    fun makeLinks(textView: TextView, links: Array<String>, clickableSpans: Array<ClickableSpan>) {
+        val spannableString = SpannableString(textView.text)
+
+        for (i in links.indices) {
+            val clickableSpan = clickableSpans[i]
+            val link = links[i]
+
+            val startIndexOfLink = textView.text.indexOf(link)
+
+            spannableString.setSpan(clickableSpan, startIndexOfLink, startIndexOfLink + link.length,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }
+
+        textView.movementMethod = LinkMovementMethod.getInstance()
+        textView.setText(spannableString, TextView.BufferType.SPANNABLE)
+    }
+
+
     private fun updateHeader() {
         industryAreaTextView.text = hierarchyViewModel.areaTitle
         industryAreaTextView.contentDescription = hierarchyViewModel.accessibilityStr
@@ -242,6 +287,7 @@ class HierarchyHeaderFragment : Fragment() {
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)
+        fun breadcrumbItemSelected(itemIndex: Int)
     }
 
 }
