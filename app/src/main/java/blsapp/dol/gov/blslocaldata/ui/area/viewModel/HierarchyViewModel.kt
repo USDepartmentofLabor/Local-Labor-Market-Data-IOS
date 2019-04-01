@@ -111,23 +111,6 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         return timeTitle
     }
 
-    fun getWageVsLevelTitles(): MutableList<String>? {
-        var retArray:MutableList<String>? = null
-        when (reportType) {
-            is OccupationalEmployment -> {
-                retArray = mutableListOf(
-                        getApplication<BLSApplication>().getString(R.string.employment_level),
-                        getApplication<BLSApplication>().getString(R.string.mean_annual_wage))
-            }
-            is ReportType.QuarterlyEmploymentWages -> {
-                retArray = mutableListOf(
-                        getApplication<BLSApplication>().getString(R.string.employment_level),
-                        getApplication<BLSApplication>().getString(R.string.average_weekly_wage))
-            }
-        }
-        return retArray
-    }
-
     fun setParentId(originalInput: Long) {
         parentId = originalInput
     }
@@ -162,6 +145,22 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             }
         }
     }
+    fun getWageVsLevelTitles(): MutableList<String>? {
+        var retArray:MutableList<String>? = null
+        when (reportType) {
+            is OccupationalEmployment -> {
+                retArray = mutableListOf(
+                        getApplication<BLSApplication>().getString(R.string.mean_annual_wage),
+                        getApplication<BLSApplication>().getString(R.string.employment_level))
+            }
+            is ReportType.QuarterlyEmploymentWages -> {
+                retArray = mutableListOf(
+                        getApplication<BLSApplication>().getString(R.string.employment_level),
+                        getApplication<BLSApplication>().getString(R.string.average_weekly_wage))
+            }
+        }
+        return retArray
+    }
 
     fun setWageVsLevelIndex(wageVsLevelType: Int) {
         when (wageVsLevelType) {
@@ -169,13 +168,13 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                 if (reportType is ReportType.QuarterlyEmploymentWages)
                     this.QCEWwageVsLevelTypeOccupation = QCEWReport.DataTypeCode.allEmployees
                 else
-                    this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.EMPLOYMENT
+                    this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.ANNUALMEANWAGE
             }
             1 -> {
                 if (reportType is ReportType.QuarterlyEmploymentWages)
                     this.QCEWwageVsLevelTypeOccupation = QCEWReport.DataTypeCode.avgWeeklyWage
                 else
-                    this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.ANNUALMEANWAGE
+                    this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.EMPLOYMENT
             }
         }
     }
