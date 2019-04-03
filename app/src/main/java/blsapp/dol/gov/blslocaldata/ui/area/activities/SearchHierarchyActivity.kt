@@ -111,7 +111,11 @@ class SearchHierarchyActivity: AppCompatActivity(), SearchHierarchyAdapter.OnIte
         intent.putExtra(HierarchyResultsActivity.PARENT_NAME, item.itemTitle)
 
         val tmpStringArray = item.hierarchyTitles.split("->")
-        val tmpString = item.hierarchyTitles.substringBeforeLast(tmpStringArray[tmpStringArray.count()-1])
+        var tmpString= item.hierarchyTitles
+        if (tmpStringArray.count() > 1) {
+            tmpString = item.hierarchyTitles.substringBeforeLast(tmpStringArray[tmpStringArray.count() - 1])
+            tmpString = tmpString.substring(0, tmpString.length - 3)
+        }
         intent.putExtra(HierarchyResultsActivity.HIERARCY_STRING, tmpString)
 
         item.hiearchyIds?.removeAt(tmpStringArray.count()-1)

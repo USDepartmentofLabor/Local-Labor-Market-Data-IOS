@@ -21,7 +21,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="false"
-            android:lines="2"
             android:gravity="center_vertical"
             android:text="Industry with a really long name to force a wrap"
             style="@style/hierarchyItemCellTitle"

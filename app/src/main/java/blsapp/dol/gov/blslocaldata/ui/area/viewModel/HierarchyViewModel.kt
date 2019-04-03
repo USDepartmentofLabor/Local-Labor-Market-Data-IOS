@@ -319,7 +319,12 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             var fetchedData = getChildren(parentIdLocal!!, industryType)
 
             fetchedData?.forEach{ industry ->
-                val mergeTitle = industry.title
+
+                var mergeTitle = industry.title
+                if (industry != null && !this.isCountyArea()) {
+                    mergeTitle = industry.title + " (" + industry.industryCode + ")"
+                }
+
                 rows.add(HierarchyRow(HierarchyRowType.ITEM,
                         industry,
                         industry.id,

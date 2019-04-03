@@ -119,6 +119,10 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
                 layoutManager = LinearLayoutManager(this@HierarchyResultsActivity)
             }
         }
+
+        if (parentName != null && parentName!!.length > 1) {
+            title = parentName
+        }
         attachObserver()
 
         val decorator = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
