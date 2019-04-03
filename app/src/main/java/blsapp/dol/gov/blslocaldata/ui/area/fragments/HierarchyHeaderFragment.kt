@@ -105,14 +105,17 @@ class HierarchyHeaderFragment : Fragment() {
     fun makeLinks(textView: TextView, links: Array<String>, clickableSpans: Array<ClickableSpan>) {
         val spannableString = SpannableString(textView.text)
 
+        var currentEndOfLinks:Int = 0
         for (i in links.indices) {
             val clickableSpan = clickableSpans[i]
             val link = links[i]
 
-            val startIndexOfLink = textView.text.indexOf(link)
+            val startIndexOfLink = textView.text.indexOf(link, currentEndOfLinks)
 
             spannableString.setSpan(clickableSpan, startIndexOfLink, startIndexOfLink + link.length,
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            currentEndOfLinks = startIndexOfLink + link.length
         }
 
         textView.movementMethod = LinkMovementMethod.getInstance()
@@ -132,13 +135,17 @@ class HierarchyHeaderFragment : Fragment() {
 
     private fun setupColumnHeaders() {
 
-
+        hierarchySeasonallyAdjustedSwitch.isChecked = true
         if (hierarchyViewModel.isCountyArea()) {
+            hierarchySeasonallyAdjustedSwitch.isChecked = false
             detailTitle.text = getString(R.string.industries_title)
             regionChangeView.visibility = View.GONE
             changeColumn1Title.text = getString(R.string.twelve_month_change)
 
         } else if (hierarchyViewModel.isIndustryReport()) {
+            if (hierarchyViewModel.isMetroArea()) {
+                hierarchySeasonallyAdjustedSwitch.isChecked = false
+            }
             detailTitle.text = getString(R.string.industries_title_code)
             regionSortButtonView.visibility = View.GONE
             nationalSortButtonView.visibility = View.GONE
@@ -244,7 +251,7 @@ class HierarchyHeaderFragment : Fragment() {
 
         wageVsLevelTitles = hierarchyViewModel.getWageVsLevelTitles()
         if (wageVsLevelTitles == null) {
-            hierarchyViewModel.setWageVsLevelIndex(0)
+            //hierarchyViewModel.setWageVsLevelIndex(0)
             hierarchyViewModel.getIndustryReports()
             wageVsLevelSpinner.visibility = View.INVISIBLE
         } else {
