@@ -48,6 +48,10 @@
             android:name=".ui.info.InfoActivity"
             android:label="@string/title_activity_info" />
 
+        <activity
+            android:name=".ui.area.activities.SearchHierarchyActivity"
+            android:label="@string/occupation_title" />
+
         <activity android:name=".ui.area.activities.AreaResultsActivity"></activity>
 
         <activity

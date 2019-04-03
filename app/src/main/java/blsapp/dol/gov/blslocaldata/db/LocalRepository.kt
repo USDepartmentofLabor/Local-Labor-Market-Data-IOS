@@ -45,6 +45,13 @@ class LocalRepository private constructor(private val mDatabase: BLSDatabase) {
         return mDatabase.countyDAO().findByTitle(search)
     }
 
+    fun searchHierarchies(search: String?, industryType:IndustryType): List<IndustryEntity> {
+        if (search == null || search.isEmpty()) {
+            return mDatabase.industryDAO().getAll()
+        }
+        return mDatabase.industryDAO().searchByNameAndCode(search, industryType.ordinal)
+    }
+
     fun getStateAreas(search: String?): List<StateEntity> {
         if (search == null || search.isEmpty()) {
             return mDatabase.stateDAO().getAll()

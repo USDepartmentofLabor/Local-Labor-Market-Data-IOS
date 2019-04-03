@@ -22,6 +22,7 @@ import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
 import blsapp.dol.gov.blslocaldata.ui.info.InfoActivity
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.SearchView
 import android.util.AttributeSet
 import blsapp.dol.gov.blslocaldata.model.HierarchyModel
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
@@ -143,8 +144,13 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_info -> {
-            val intent = Intent(applicationContext, InfoActivity::class.java)
+        R.id.action_search -> {
+            val intent = Intent(applicationContext, SearchHierarchyActivity::class.java)
+            intent.putExtra(KEY_AREA, mArea)
+            intent.putExtra(KEY_REPORT_TYPE, reportType)
+            intent.putExtra(KEY_REPORT_ROW_TYPE, industryType)
+            startActivity(intent)
+
             startActivity(intent)
             true
         }
@@ -209,7 +215,7 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
         if (nHierarchyString == null) {
             nHierarchyString = titleSplit[0]
         } else {
-            nHierarchyString = nHierarchyString + " > " + titleSplit[0]
+            nHierarchyString = nHierarchyString + " -> " + titleSplit[0]
         }
 
         var nHierarchyArray: MutableList<Long>?
@@ -250,14 +256,14 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
     override fun breadcrumbItemSelected(itemIndex: Int) {
 
         val itemId = hierarchyIDArray!![itemIndex]
-        val hierarchyStrings = hierarchyString!!.split(">").toTypedArray()
+        val hierarchyStrings = hierarchyString!!.split("->").toTypedArray()
         val title = hierarchyStrings[itemIndex]
 
         var nHierarchyString:String? = null
         var nHierarchyArray: MutableList<Long>? = mutableListOf<Long>()
         for (i in 0..itemIndex-1) {
             if (i == 0) nHierarchyString =  hierarchyStrings[i]
-            else  nHierarchyString = nHierarchyString + " > " + hierarchyStrings[i]
+            else  nHierarchyString = nHierarchyString + " -> " + hierarchyStrings[i]
 
             nHierarchyArray?.add(hierarchyIDArray!![i])
         }

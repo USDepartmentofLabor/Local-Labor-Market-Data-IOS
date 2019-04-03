@@ -18,6 +18,9 @@ interface IndustryDao {
     @Query("SELECT * from Industry where industryCode = (:code)")
     fun findByCode(code: String): List<IndustryEntity>
 
+    @Query("SELECT * from Industry where industryType = (:type) AND (title LIKE '%' || :search || '%') order by title")
+    fun searchByNameAndCode(search: String, type: Int): List<IndustryEntity>
+
     @Query("SELECT * from Industry where industryCode = (:code) AND industryType = (:type)")
     fun findByCodeAndType(code: String, type: Int): List<IndustryEntity>
 

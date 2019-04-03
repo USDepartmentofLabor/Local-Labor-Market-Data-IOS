@@ -84,7 +84,7 @@ class HierarchyHeaderFragment : Fragment() {
     fun setupHiearcaryBreadCrumbs(hierarchyString: String?, hierarchyIds:Array<Long>?) {
 
         if (hierarchyString == null || hierarchyIds == null) return
-        val hierarchyStrings = hierarchyString!!.split(">").toTypedArray()
+        val hierarchyStrings = hierarchyString!!.split("->").toTypedArray()
 
         var clickSpans : MutableList<ClickableSpan> = mutableListOf<ClickableSpan>()
 
