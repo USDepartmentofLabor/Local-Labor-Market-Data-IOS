@@ -40,26 +40,26 @@ class HierarchyListCESAdapter (private val mListener: OnItemClickListener?, val 
             if (position == 0) {
                 holder.oneMonthValueLabel.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
                 holder.oneMonthPercentLabel.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
-                holder.twelveMonthValueLabel?.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
-                holder.twelveMonthPercentLabel?.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
+                holder.twelveMonthValueLabel.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
+                holder.twelveMonthPercentLabel.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
             } else {
                 holder.oneMonthValueLabel.textColor = getColor(holder.itemView.context,android.R.color.black)
                 holder.oneMonthPercentLabel.textColor = getColor(holder.itemView.context, android.R.color.black)
-                holder.twelveMonthValueLabel?.textColor = getColor(holder.itemView.context, android.R.color.black)
-                holder.twelveMonthPercentLabel?.textColor = getColor(holder.itemView.context, android.R.color.black)
+                holder.twelveMonthValueLabel.textColor = getColor(holder.itemView.context, android.R.color.black)
+                holder.twelveMonthPercentLabel.textColor = getColor(holder.itemView.context, android.R.color.black)
             }
 
             if  (mArea is NationalEntity ) {
-                holder.mIndustryLocalValue?.text = areaRow.nationalValue!!
-                holder.oneMonthValueLabel.text = areaRow.oneMonthNationalValue!!
-                holder.twelveMonthValueLabel.text = areaRow.twelveMonthNationalValue!!
-                holder.oneMonthPercentLabel.text = areaRow.oneMonthNationalPercent!!
-                holder.twelveMonthPercentLabel.text = areaRow.twelveMonthNationalPercent!!
+                holder.mIndustryLocalValue.text = areaRow.nationalValue
+                holder.oneMonthValueLabel.text = areaRow.oneMonthNationalValue
+                holder.twelveMonthValueLabel.text = areaRow.twelveMonthNationalValue
+                holder.oneMonthPercentLabel.text = areaRow.oneMonthNationalPercent
+                holder.twelveMonthPercentLabel.text = areaRow.twelveMonthNationalPercent
             } else {
-                holder.oneMonthValueLabel.text = areaRow.oneMonthValue!!
-                holder.twelveMonthValueLabel.text = areaRow.twelveMonthValue!!
-                holder.oneMonthPercentLabel.text = areaRow.oneMonthPercent!!
-                holder.twelveMonthPercentLabel.text = areaRow.twelveMonthPercent!!
+                holder.oneMonthValueLabel.text = areaRow.oneMonthValue
+                holder.twelveMonthValueLabel.text = areaRow.twelveMonthValue
+                holder.oneMonthPercentLabel.text = areaRow.oneMonthPercent
+                holder.twelveMonthPercentLabel.text = areaRow.twelveMonthPercent
             }
 
         }

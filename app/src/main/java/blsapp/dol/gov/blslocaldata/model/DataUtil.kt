@@ -23,25 +23,25 @@ class DataUtil {
             return ReportManager.DATA_NOT_AVAILABLE_STR
         }
 
-        fun numberValue(valueStr: String): String? {
+        fun numberValue(valueStr: String): String {
             val decimalValue = valueStr.toDoubleOrNull()
             decimalValue?.let { value ->
                 return NumberFormat.getNumberInstance().format(value)
             }
-            return null
+            return ReportManager.DATA_NOT_AVAILABLE_STR
         }
 
-        fun numberValueByThousand(valueStr: String?): String? {
+        fun numberValueByThousand(valueStr: String?): String {
             valueStr?.let {
                 val decimalValue = valueStr.toDoubleOrNull()
                 decimalValue?.let { value ->
                     return NumberFormat.getNumberInstance().format(value * 1000)
                 }
             }
-            return null
+            return ReportManager.DATA_NOT_AVAILABLE_STR
         }
 
-        fun numberValueToThousand(valueStr: String?): String? {
+        fun numberValueToThousand(valueStr: String?): String {
             valueStr?.let {
                 val decimalValue = valueStr.toDoubleOrNull()
                 decimalValue?.let { value ->
@@ -50,10 +50,10 @@ class DataUtil {
                     return numberFormatter.format(value / 1000)
                 }
             }
-            return null
+            return ReportManager.DATA_NOT_AVAILABLE_STR
         }
 
-        fun changeValueByThousand(valueStr: String?): String? {
+        fun changeValueByThousand(valueStr: String?): String {
             valueStr?.let {
                 val decimalValue = valueStr.toDoubleOrNull()
                 decimalValue?.let { value ->
@@ -61,11 +61,11 @@ class DataUtil {
                     return prefix + NumberFormat.getNumberInstance().format(value * 1000)
                 }
             }
-            return null
+            return ReportManager.DATA_NOT_AVAILABLE_STR
         }
 
 
-        fun changeValueByPercent(valueStr: String?, percentStr: String): String? {
+        fun changeValueByPercent(valueStr: String?, percentStr: String): String {
             valueStr?.let {
                 val decimalValue = valueStr.toDoubleOrNull()
                 decimalValue?.let { value ->
@@ -73,10 +73,10 @@ class DataUtil {
                     return prefix + valueStr + percentStr
                 }
             }
-            return null
+            return ReportManager.DATA_NOT_AVAILABLE_STR
         }
 
-        fun changeValueStr(valueStr: String?): String? {
+        fun changeValueStr(valueStr: String?): String {
             valueStr?.let {
                 val decimalValue = valueStr.toDoubleOrNull()
                 decimalValue?.let { value ->
@@ -84,7 +84,7 @@ class DataUtil {
                     return prefix + NumberFormat.getNumberInstance().format(value)
                 }
             }
-            return null
+            return ReportManager.DATA_NOT_AVAILABLE_STR
         }
 
         // Convert MonthName to Quarter

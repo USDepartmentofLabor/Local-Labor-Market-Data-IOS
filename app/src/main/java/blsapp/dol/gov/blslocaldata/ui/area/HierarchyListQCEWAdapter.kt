@@ -46,18 +46,18 @@ class HierarchyListQCEWAdapter( private val mListener: OnItemClickListener?) : H
             if (position == 0) {
                 holder.nationalTwelveMonthValueLabel.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
                 holder.nationalTwelveMonthPercentLabel.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
-                holder.twelveMonthValueLabel?.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
-                holder.twelveMonthPercentLabel?.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
+                holder.twelveMonthValueLabel.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
+                holder.twelveMonthPercentLabel.textColor = getColor(holder.itemView.context, R.color.colorPrimaryText)
             } else {
                 holder.nationalTwelveMonthValueLabel.textColor = getColor(holder.itemView.context,android.R.color.black)
                 holder.nationalTwelveMonthPercentLabel.textColor = getColor(holder.itemView.context, android.R.color.black)
-                holder.twelveMonthValueLabel?.textColor = getColor(holder.itemView.context, android.R.color.black)
-                holder.twelveMonthPercentLabel?.textColor = getColor(holder.itemView.context, android.R.color.black)
+                holder.twelveMonthValueLabel.textColor = getColor(holder.itemView.context, android.R.color.black)
+                holder.twelveMonthPercentLabel.textColor = getColor(holder.itemView.context, android.R.color.black)
             }
-            holder.twelveMonthPercentLabel.text = areaRow.twelveMonthPercent!!
-            holder.twelveMonthValueLabel.text = areaRow.twelveMonthValue!!
-            holder.nationalTwelveMonthPercentLabel.text = areaRow.twelveMonthNationalPercent!!
-            holder.nationalTwelveMonthValueLabel.text = areaRow.twelveMonthNationalValue!!
+            holder.twelveMonthPercentLabel.text = areaRow.twelveMonthPercent
+            holder.twelveMonthValueLabel.text = areaRow.twelveMonthValue
+            holder.nationalTwelveMonthPercentLabel.text = areaRow.twelveMonthNationalPercent
+            holder.nationalTwelveMonthValueLabel.text = areaRow.twelveMonthNationalValue
         }
     }
 }

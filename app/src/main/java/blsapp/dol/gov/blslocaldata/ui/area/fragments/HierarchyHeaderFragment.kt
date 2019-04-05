@@ -71,7 +71,7 @@ class HierarchyHeaderFragment : Fragment() {
 
     }
     private fun attachObserver() {
-        hierarchyViewModel.hierarchyRows?.observe(this, Observer<List<HierarchyRow>> {
+        hierarchyViewModel.hierarchyRows.observe(this, Observer<List<HierarchyRow>> {
            // updateHeader()
         })
     }
@@ -84,14 +84,14 @@ class HierarchyHeaderFragment : Fragment() {
     fun setupHiearcaryBreadCrumbs(hierarchyString: String?, hierarchyIds:Array<Long>?) {
 
         if (hierarchyString == null || hierarchyIds == null) return
-        val hierarchyStrings = hierarchyString!!.split("->").toTypedArray()
+        val hierarchyStrings = hierarchyString.split("->").toTypedArray()
 
         var clickSpans : MutableList<ClickableSpan> = mutableListOf<ClickableSpan>()
 
         for (i in hierarchyStrings.indices) {
             val termsOfServicesClick = object : ClickableSpan() {
                 override fun onClick(p0: View?) {
-                    Log.d("GGG", "Hierarchy ID: " + hierarchyIds!![i])
+                    Log.d("GGG", "Hierarchy ID: " + hierarchyIds[i])
                     listener?.breadcrumbItemSelected(i)
                 }
             }

@@ -47,7 +47,7 @@ class ReportHeaderItemDecoration constructor(val mDivider: Drawable): RecyclerVi
         val right = view.right.toFloat()
 
         val params = view.layoutParams as RecyclerView.LayoutParams
-        val dividerTop = view.bottom + params.bottomMargin
+       // val dividerTop = view.bottom + params.bottomMargin
     //    val dividerBottom = dividerTop + mDivider.getIntrinsicHeight()
 
 

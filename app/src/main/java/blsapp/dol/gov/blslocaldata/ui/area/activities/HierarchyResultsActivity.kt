@@ -172,7 +172,7 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
     }
 
     private fun attachObserver() {
-        viewModel.hierarchyRows?.observe(this, Observer<List<HierarchyRow>> {
+        viewModel.hierarchyRows.observe(this, Observer<List<HierarchyRow>> {
 
             hierarchyHeaderFragment = supportFragmentManager.findFragmentById(R.id.headerFragment) as HierarchyHeaderFragment
             hierarchyHeaderFragment.reportLoaded()

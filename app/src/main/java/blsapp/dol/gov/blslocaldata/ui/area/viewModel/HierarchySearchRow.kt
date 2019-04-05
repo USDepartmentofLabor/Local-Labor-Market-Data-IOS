@@ -33,11 +33,9 @@ data class HierarchySearchRow(
             row.hiearchyIds?.add(0,currentEntity.id!!)
         }
 
-        if (currentEntity.parentId != null) {
-            val parentEntity = repository.getIndustry(currentEntity.parentId)
-            if (parentEntity != null)
-                buildHierarchy(row, parentEntity, repository)
-        }
+        val parentEntity = repository.getIndustry(currentEntity.parentId)
+        if (parentEntity != null)
+            buildHierarchy(row, parentEntity, repository)
         return
     }
 }

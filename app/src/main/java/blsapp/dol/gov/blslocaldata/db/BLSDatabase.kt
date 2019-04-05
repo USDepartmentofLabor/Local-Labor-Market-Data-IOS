@@ -50,10 +50,10 @@ abstract class BLSDatabase: RoomDatabase() {
 
             synchronized(this) {
 
-                val dbPath = context.getDatabasePath(DB_NAME)
+            //    val dbPath = context.getDatabasePath(DB_NAME)
             //    if (!dbPath.exists()) {
                     copyAttachedDatabase(context, DB_NAME)
-             //   }
+            //   }
                 val instance = Room.databaseBuilder(context.applicationContext,
                         BLSDatabase::class.java,
                         DB_NAME)

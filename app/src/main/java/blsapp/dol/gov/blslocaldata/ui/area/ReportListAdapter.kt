@@ -99,8 +99,8 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         if (reportRow.type == ReportRowType.HEADER &&
                 holder is ReportHeaderViewHolder) {
 
-            val manager = context
-                    .getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+          //  val manager = context
+          //          .getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
 
             ViewCompat.setAccessibilityDelegate(holder.mView, object : AccessibilityDelegateCompat() {
                 override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
@@ -196,10 +196,10 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
                 holder.mMonthYearTextView.text = it.periodName + " " + it.year
 
                 holder.mOneMonthChangeTextView.text =
-                        DataUtil.changeValueByPercent(it.calculations?.netChanges?.oneMonth, "") ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                        DataUtil.changeValueByPercent(it.calculations?.netChanges?.oneMonth, "")
 
                 holder.mTwelveMonthChangeTextView.text =
-                        DataUtil.changeValueByPercent(it.calculations?.netChanges?.twelveMonth, "") ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                        DataUtil.changeValueByPercent(it.calculations?.netChanges?.twelveMonth, "")
             } ?: run {
                 holder.mMonthYearTextView.text = ""
                 holder.mDataValueTextView.text = ReportManager.DATA_NOT_AVAILABLE_STR
@@ -224,19 +224,19 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
 
 
             seriesData?.let {
-                holder.mDataValueTextView.text = DataUtil.numberValueByThousand(it.value) ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                holder.mDataValueTextView.text = DataUtil.numberValueByThousand(it.value)
                 holder.mMonthYearTextView.text = it.periodName + " " + it.year
 
                 holder.mOneMonthChangeTextView.text =
-                            DataUtil.changeValueByThousand(it.calculations?.netChanges?.oneMonth) ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                            DataUtil.changeValueByThousand(it.calculations?.netChanges?.oneMonth)
 
                 holder.mTwelveMonthChangeTextView.text =
-                            DataUtil.changeValueByThousand(it.calculations?.netChanges?.twelveMonth) ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                            DataUtil.changeValueByThousand(it.calculations?.netChanges?.twelveMonth)
 
                 holder.mOneMonthRateChangeTextView.text =
-                        DataUtil.changeValueByPercent(it.calculations?.percentChanges?.oneMonth, "%") ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                        DataUtil.changeValueByPercent(it.calculations?.percentChanges?.oneMonth, "%")
                 holder.mTwelveMonthRateChangeTextView.text =
-                        DataUtil.changeValueByPercent(it.calculations?.percentChanges?.twelveMonth, "%") ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                        DataUtil.changeValueByPercent(it.calculations?.percentChanges?.twelveMonth, "%")
 
             } ?: run {
                 holder.mMonthYearTextView.text = ""
@@ -334,10 +334,10 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
                 holder.mMonthYearTextView.text = "Q" + quarterNumber + " " + it.periodName + " " + it.year
 
                 holder.mTwelveMonthChangeTextView.text =
-                        DataUtil.changeValueStr(it.calculations?.netChanges?.twelveMonth) ?:  ReportManager.DATA_NOT_AVAILABLE_STR
+                        DataUtil.changeValueStr(it.calculations?.netChanges?.twelveMonth)
 
                 holder.mTwelveMonthRateChangeTextView.text =
-                        DataUtil.changeValueByPercent(it.calculations?.percentChanges?.twelveMonth, "%") ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                        DataUtil.changeValueByPercent(it.calculations?.percentChanges?.twelveMonth, "%")
 
             } ?: run {
                 holder.mMonthYearTextView.text = ""
@@ -365,9 +365,9 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
             seriesData?.let {
                 holder.mWageDataValueTextView.text = DataUtil.currencyValue(it.value)
                 holder.mWageTwelveMonthChangeTextView.text =
-                        DataUtil.changeValueStr(it.calculations?.netChanges?.twelveMonth) ?:  ReportManager.DATA_NOT_AVAILABLE_STR
+                        DataUtil.changeValueStr(it.calculations?.netChanges?.twelveMonth)
                 holder.mWageTwelveMonthRateChangeTextView.text =
-                    DataUtil.changeValueByPercent(it.calculations?.percentChanges?.twelveMonth, "%") ?: ReportManager.DATA_NOT_AVAILABLE_STR
+                    DataUtil.changeValueByPercent(it.calculations?.percentChanges?.twelveMonth, "%")
 
             } ?: run {
                 holder.mWageDataValueTextView.text = ReportManager.DATA_NOT_AVAILABLE_STR

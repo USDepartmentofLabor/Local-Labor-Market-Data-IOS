@@ -58,7 +58,7 @@ class SearchHierarchyViewModel(application: Application) : AndroidViewModel(appl
     }
 
     init {
-        val db = BLSDatabase.getInstance(application)
+       // val db = BLSDatabase.getInstance(application)
     }
 
     fun loadHierarchies() {

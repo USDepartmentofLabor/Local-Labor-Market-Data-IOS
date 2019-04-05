@@ -47,10 +47,10 @@ open class HierarchyListAdapter(private val mListener: OnItemClickListener?) : R
             }
             holder.mIndustryTitle.text = areaRow.title
 
-            holder.mIndustryLocalValue.text = areaRow.localValue!!
-            holder.mIndustryNationalValue?.text = areaRow.nationalValue!!
+            holder.mIndustryLocalValue.text = areaRow.localValue
+            holder.mIndustryNationalValue?.text = areaRow.nationalValue
 
-            if (areaRow.superSector!!) {
+            if (areaRow.superSector) {
                 holder.mSubIndustryIndicator.visibility = View.VISIBLE
 
                 with(holder.mView) {
