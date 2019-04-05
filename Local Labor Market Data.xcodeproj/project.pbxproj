@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030E20C82253C16600CEAB18 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E20C72253C16600CEAB18 /* HistoryTableViewController.swift */; };
+		030E20CA2253D6B000CEAB18 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E20C92253D6B000CEAB18 /* HistoryTableViewCell.swift */; };
 		0321E89F221459A2000780A4 /* QCEWIndustryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0321E89E221459A2000780A4 /* QCEWIndustryViewModel.swift */; };
 		0322AE2D21B04AF200592970 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322AE2C21B04AF200592970 /* HistoryViewController.swift */; };
 		0322AE2F21B063A900592970 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322AE2E21B063A900592970 /* HistoryViewModel.swift */; };
@@ -18,6 +20,9 @@
 		0323B7B721AED22600A3E73C /* ZIP_COUNTY.csv in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F89320EAA6C200662446 /* ZIP_COUNTY.csv */; };
 		0323B7BB21AEE48000A3E73C /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */; };
 		0323B7BE21AEF1F300A3E73C /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */; };
+		032465E02254FF9900C143B7 /* HistoryBarGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032465DF2254FF9900C143B7 /* HistoryBarGraphViewController.swift */; };
+		032465E32255278800C143B7 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032465E22255278800C143B7 /* BalloonMarker.swift */; };
+		032465E622553D9E00C143B7 /* PeriodAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032465E522553D9E00C143B7 /* PeriodAxisValueFormatter.swift */; };
 		03248DE7220B72EB004E4916 /* industry_titles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03248DE6220B72EB004E4916 /* industry_titles.txt */; };
 		0324B00B221C84900066A8CD /* ItemCESTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0324B00A221C84900066A8CD /* ItemCESTableViewCell.swift */; };
 		03254927222451A700A51046 /* SearchItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03254926222451A700A51046 /* SearchItemViewController.swift */; };
@@ -140,12 +145,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		030E20C72253C16600CEAB18 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		030E20C92253D6B000CEAB18 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		0321E89E221459A2000780A4 /* QCEWIndustryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QCEWIndustryViewModel.swift; sourceTree = "<group>"; };
 		0322AE2C21B04AF200592970 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0322AE2E21B063A900592970 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		03238021220C73F5009275F6 /* OccupationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccupationViewModel.swift; sourceTree = "<group>"; };
 		0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		032465DF2254FF9900C143B7 /* HistoryBarGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryBarGraphViewController.swift; sourceTree = "<group>"; };
+		032465E22255278800C143B7 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
+		032465E522553D9E00C143B7 /* PeriodAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodAxisValueFormatter.swift; sourceTree = "<group>"; };
 		03248DE6220B72EB004E4916 /* industry_titles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = industry_titles.txt; sourceTree = "<group>"; };
 		0324B00A221C84900066A8CD /* ItemCESTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCESTableViewCell.swift; sourceTree = "<group>"; };
 		03254926222451A700A51046 /* SearchItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemViewController.swift; sourceTree = "<group>"; };
@@ -303,8 +313,20 @@
 			children = (
 				0322AE2C21B04AF200592970 /* HistoryViewController.swift */,
 				0322AE2E21B063A900592970 /* HistoryViewModel.swift */,
+				030E20C72253C16600CEAB18 /* HistoryTableViewController.swift */,
+				030E20C92253D6B000CEAB18 /* HistoryTableViewCell.swift */,
+				032465DF2254FF9900C143B7 /* HistoryBarGraphViewController.swift */,
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		032465E42255279400C143B7 /* ChartsComponents */ = {
+			isa = PBXGroup;
+			children = (
+				032465E22255278800C143B7 /* BalloonMarker.swift */,
+				032465E522553D9E00C143B7 /* PeriodAxisValueFormatter.swift */,
+			);
+			path = ChartsComponents;
 			sourceTree = "<group>";
 		};
 		032549252224518F00A51046 /* SearchItem */ = {
@@ -424,6 +446,7 @@
 		0396A05B21074DC000DBECBD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				032465E42255279400C143B7 /* ChartsComponents */,
 				03256381221DEE7B000F3778 /* AreaSectionFooterView.xib */,
 				0348FD1C211E0AB200155BE8 /* OwnershipDataTableViewCell.swift */,
 				0348FD1B211E0AB200155BE8 /* OwnershipDataTableViewCell.xib */,
@@ -643,6 +666,7 @@
 				03F1F85920EA622D00662446 /* Sources */,
 				03F1F85A20EA622D00662446 /* Frameworks */,
 				03F1F85B20EA622D00662446 /* Resources */,
+				C13C8C27B83525034BC43670 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -834,6 +858,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C13C8C27B83525034BC43670 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -860,6 +906,7 @@
 				59ED36C721ED16DD00C45797 /* SearchHistoryViewController.swift in Sources */,
 				03953C3221136F1900BED557 /* IndustryEmploymentTableViewCell.swift in Sources */,
 				035D971B2126267F005F1CA9 /* ActivityIndicatorView.swift in Sources */,
+				032465E622553D9E00C143B7 /* PeriodAxisValueFormatter.swift in Sources */,
 				032C16652138241E004C1B3F /* Util.swift in Sources */,
 				03953C19210F9F8C00BED557 /* Area+CoreDataClass.swift in Sources */,
 				036164C7210D2C310055708A /* County+CoreDataClass.swift in Sources */,
@@ -871,6 +918,7 @@
 				032C16672139918B004C1B3F /* Settings.swift in Sources */,
 				0321E89F221459A2000780A4 /* QCEWIndustryViewModel.swift in Sources */,
 				03AC614020EAFB660088E694 /* NSManagedObject+Extension.swift in Sources */,
+				030E20C82253C16600CEAB18 /* HistoryTableViewController.swift in Sources */,
 				0396A068210774E400DBECBD /* UIViewController+Extension.swift in Sources */,
 				03238022220C73F5009275F6 /* OccupationViewModel.swift in Sources */,
 				03F1F8A620EAD23C00662446 /* String+Extension.swift in Sources */,
@@ -878,7 +926,9 @@
 				03256380221DEE52000F3778 /* AreaSectionFooterView.swift in Sources */,
 				03953C212110EDB800BED557 /* AreaSectionHeaderView.swift in Sources */,
 				0322AE2D21B04AF200592970 /* HistoryViewController.swift in Sources */,
+				030E20CA2253D6B000CEAB18 /* HistoryTableViewCell.swift in Sources */,
 				03953C3D2114A02600BED557 /* CPSReport.swift in Sources */,
+				032465E02254FF9900C143B7 /* HistoryBarGraphViewController.swift in Sources */,
 				03B708882123026E00C370D7 /* OwnershipTableViewCell.swift in Sources */,
 				03953C15210F968100BED557 /* ReportManager.swift in Sources */,
 				0324B00B221C84900066A8CD /* ItemCESTableViewCell.swift in Sources */,
@@ -925,6 +975,7 @@
 				59E7A065219F69DF0060B7FF /* Industry+CoreDataClass.swift in Sources */,
 				033230C121DE63110051E783 /* SearchHistory.swift in Sources */,
 				03260D1322281E5D0001A9C5 /* SearchItemViewModel.swift in Sources */,
+				032465E32255278800C143B7 /* BalloonMarker.swift in Sources */,
 				03953C12210F83EF00BED557 /* SeriesReport.swift in Sources */,
 				03953C4B211B509D00BED557 /* AboutViewController.swift in Sources */,
 				0348FD0C211B9A7200155BE8 /* QCEWReport.swift in Sources */,

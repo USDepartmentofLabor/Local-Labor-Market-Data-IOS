@@ -100,8 +100,6 @@ class ItemViewController: UIViewController {
         dataTypeButton.layer.borderWidth = 1.0
         dataTypeButton.layer.cornerRadius = 10
         dataTypeButton.titleLabel?.scaleFont(forDataType: .itemDataType)
-        seasonallyAdjustedSwitch.tintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
-        seasonallyAdjustedSwitch.onTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
         seasonallyAdjustedTitle.scaleFont(forDataType: .seasonallyAdjustedSwitch, for: traitCollection)
 
         parentTitleLabel.scaleFont(forDataType: .itemParentTitle)

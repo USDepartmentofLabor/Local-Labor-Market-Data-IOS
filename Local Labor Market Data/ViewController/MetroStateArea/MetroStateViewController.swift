@@ -208,6 +208,7 @@ class MetroStateViewController: AreaViewController {
                 switch(reportType) {
                 case .unemployment (_):
                     title += "- Unemployment"
+                    
                 case .industryEmployment(_, _):
                     title += "- Industry"
                 default:
@@ -217,12 +218,12 @@ class MetroStateViewController: AreaViewController {
                     let nationalAreaReport = nationalAreaReportsDict[reportType]
                     let latestDate: Date
                     
-                    //        // If Latest SeriesReport is available, use that as End Year
+                    // If Latest SeriesReport is available, use that as End Year
                     let latestData = localAreaReport.seriesReport?.latestData()
                     if let latestData = latestData {
                         latestDate = DateFormatter.date(fromMonth: latestData.periodName, fromYear: latestData.year) ?? Date()
 
-                        let viewModel = HistoryViewModel(title: title, localSeriesId: localAreaReport.seriesId, nationalSeriedId: nationalAreaReport?.seriesId, latestDate: latestDate)
+                        let viewModel = HistoryViewModel(title: title, area: area, localAreaReport: localAreaReport, nationalAreaReport: nationalAreaReport)
                         destVC.viewModel = viewModel
                     }
                 }
@@ -326,9 +327,10 @@ extension MetroStateViewController {
             let period = areaReport.seriesReport?.latestDataPeriod()
             ReportManager.getReports(forArea: nationalArea,
                                      reportTypes: [areaReport.reportType],
-                                     seasonalAdjustment: seasonalAdjustment,
-                                     period: period,
-                                     year: reportYear) {[weak self] (apiResult) in
+                                     seasonalAdjustment: seasonalAdjustment)
+//                                     period: period,
+//                                     year: reportYear)
+            {[weak self] (apiResult) in
                 guard let strongSelf = self else {return}
                 switch apiResult {
                 case .success(let areaReportsDict):
@@ -430,7 +432,6 @@ extension MetroStateViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
         let currentSection = sections[section]
 
         guard currentSection.collapsed == false else { return nil }
@@ -449,7 +450,6 @@ extension MetroStateViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
         let currentSection = sections[section]
         
         guard currentSection.collapsed == false else { return 0 }

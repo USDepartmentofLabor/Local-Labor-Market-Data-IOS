@@ -172,7 +172,7 @@ class CountyViewController: AreaViewController {
                     if let latestData = latestData {
                         latestDate = DateFormatter.date(fromMonth: latestData.periodName, fromYear: latestData.year) ?? Date()
                         
-                        let viewModel = HistoryViewModel(title: title, localSeriesId: localAreaReport.seriesId, nationalSeriedId: nationalAreaReport?.seriesId, latestDate: latestDate)
+                        let viewModel = HistoryViewModel(title: title, area: area, localAreaReport: localAreaReport, nationalAreaReport: nationalAreaReport)
                         destVC.viewModel = viewModel
                     }
                 }

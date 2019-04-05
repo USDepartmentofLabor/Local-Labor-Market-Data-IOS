@@ -7,14 +7,28 @@
 //
 
 import UIKit
-//import Charts
+import Charts
+
+enum DisplayFormat: Int {
+    case barGraph = 0
+    case linearGraph
+    case tabular
+}
 
 class HistoryViewController: UIViewController {
 
     var viewModel: HistoryViewModel?
 //    @IBOutlet weak var chartView: BarChartView!
     
-//    var dataEntry: [BarChartDataEntry] = []
+    
+    @IBOutlet weak var containerDataView: UIView!
+    @IBOutlet weak var seasonallyAdjustedTitle: UILabel!
+    @IBOutlet weak var seasonallyAdjustedSwitch: UISwitch!
+
+    @IBOutlet weak var areaTitleLabel: UILabel!
+    @IBOutlet weak var displayFormatSegment: UISegmentedControl!
+    
+    var currentContentViewController: UIViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,52 +36,101 @@ class HistoryViewController: UIViewController {
         setupView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeLeft.rawValue), forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if (self.isMovingFromParent) {
+            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+        }
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.landscape
+    }
+    
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .landscapeLeft
+    }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+
     func setupView() {
         title = viewModel?.title ?? "History"
         
-        setupChartView()
-    }
-    
-    func setupChartView() {
-//        chartView.delegate = self
-/*
-        chartView.noDataTextColor = .black
-        chartView.noDataText = "No Data for Chart"
-        chartView.backgroundColor = .white
-        
-        chartView.drawBarShadowEnabled = false
-        chartView.drawValueAboveBarEnabled = false
-        
-        let xAxis = chartView.xAxis
-        xAxis.labelPosition = .bottom
-        xAxis.labelFont = .systemFont(ofSize: 10)
-        xAxis.granularity = 1
-        xAxis.labelCount = 24
-//        xAxis.valueFormatter = 
-        
-        xAxis.drawGridLinesEnabled = true
-        chartView.legend.enabled = true
-        chartView.rightAxis.enabled = false
+        areaTitleLabel.scaleFont(forDataType: .reportAreaTitle, for:traitCollection)
+        seasonallyAdjustedSwitch.onTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
+        seasonallyAdjustedTitle.scaleFont(forDataType: .seasonallyAdjustedSwitch, for: traitCollection)
 
-        chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
-        setBarChart(dataPoints: ["1", "2", "4"], values: ["0.2", "2.5", "3.7"])
+        areaTitleLabel.text = viewModel?.area.title
+        areaTitleLabel.accessibilityLabel = viewModel?.area.accessibilityStr
     }
     
-    func setBarChart(dataPoints: [String], values: [String]) {
+    @IBAction func displayTypeChanged(_ sender: Any) {
+        guard let format = DisplayFormat(rawValue: displayFormatSegment.selectedSegmentIndex) else { return }
         
-        for i in 0..<dataPoints.count {
-            let dataPoint =  BarChartDataEntry(x: Double(i), y: Double(values[i])!)
-            dataEntry.append(dataPoint)
+        switch format {
+        case .barGraph:
+            displayBarGraph()
+        case .linearGraph:
+            displayLinearGraph()
+        case .tabular:
+            displayTable()
+        }
+    }
+}
+
+//# MARK - Display Formats
+extension HistoryViewController {
+    func displayBarGraph() {
+        UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeLeft.rawValue), forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
+        
+        let barGraphVC = HistoryBarGraphViewController.instantiateFromStoryboard()
+        barGraphVC.viewModel = viewModel
+        displayContentController(contentVC: barGraphVC)
+    }
+    
+    func displayLinearGraph() {
+        UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeLeft.rawValue), forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
+    }
+    
+    func displayTable() {
+        UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
+        
+        let historyTableVC = HistoryTableViewController.instantiateFromStoryboard()
+        historyTableVC.viewModel = viewModel
+        displayContentController(contentVC: historyTableVC)
+    }
+    
+    
+    func displayContentController(contentVC: UIViewController) {
+        if let oldViewController = currentContentViewController {
+            hideContentController(contentVC: oldViewController)
         }
         
-        let chartDataSet = BarChartDataSet(values: dataEntry, label: "BPM")
-        chartDataSet.colors = [.blue]
-        let chartData = BarChartData(dataSet: chartDataSet)
-        chartData.setDrawValues(false)
-     
+        addChild(contentVC)
+        containerDataView.addSubview(contentVC.view)
         
-        chartView.data = chartData
-
- */
+        contentVC.view.translatesAutoresizingMaskIntoConstraints = false
+        containerDataView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[view]-0-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["view":contentVC.view]))
+        containerDataView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["view":contentVC.view]))
+        
+        contentVC.didMove(toParent: self)
+    }
+    
+    func hideContentController(contentVC: UIViewController) {
+        contentVC.willMove(toParent: nil)
+        contentVC.view.removeFromSuperview()
+        contentVC.removeFromParent()
     }
 }

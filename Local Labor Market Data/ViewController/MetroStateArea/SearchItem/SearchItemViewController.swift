@@ -34,9 +34,11 @@ class SearchItemViewController: UIViewController {
         searchController.searchBar.sizeToFit()
         searchController.searchBar.autocapitalizationType = .none
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.searchBarStyle = .default
+        searchController.searchBar.searchBarStyle = .minimal
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.showsCancelButton = false
+        searchController.delegate = self
         
         definesPresentationContext = true
         searchController.searchBar.tintColor = .white
@@ -81,6 +83,11 @@ extension SearchItemViewController: UISearchResultsUpdating {
     
 }
 
+extension SearchItemViewController: UISearchControllerDelegate {
+    func didPresentSearchController(_ searchController: UISearchController) {
+        searchController.searchBar.showsCancelButton = false
+    }
+}
 
 extension SearchItemViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {

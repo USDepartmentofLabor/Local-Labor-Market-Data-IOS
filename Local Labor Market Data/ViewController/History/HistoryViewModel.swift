@@ -12,20 +12,21 @@ import Foundation
 class HistoryViewModel {
     static var HISTORY_MONTHS = -24
 
-    var localSeriesId: String?
-    var nationalSeriesId: String?
-    var currentDate: Date!
+    var area: Area!
+    var localAreaReport: AreaReport
+    var nationalAreaReport: AreaReport?
     var title: String
     
-    init(title: String, localSeriesId: String?, nationalSeriedId: String?, latestDate: Date) {
+    init(title: String, area: Area, localAreaReport: AreaReport, nationalAreaReport: AreaReport?) {
         self.title = title
-        self.localSeriesId = localSeriesId
-        self.nationalSeriesId = nationalSeriedId
-        self.currentDate = latestDate
+        self.area = area
+        self.localAreaReport = localAreaReport
+        self.nationalAreaReport = nationalAreaReport
         loadHistory()
     }
     
     func loadHistory() {
+/*
         var seriesIds =  [String]()
         if let localSeriesId = localSeriesId {
             seriesIds.append(localSeriesId)
@@ -47,5 +48,7 @@ class HistoryViewModel {
                 print(error)
             }
         }
+ */
     }
+
 }
