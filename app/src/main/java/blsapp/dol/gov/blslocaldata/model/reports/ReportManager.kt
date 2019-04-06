@@ -31,6 +31,7 @@ class ReportManager {
                       startYear: String? = null,
                       endYear: String? = null,
                       adjustment: SeasonalAdjustment,
+                      annualAvg: Boolean = false,
                       successHandler: (List<AreaReport>) -> Unit,
                       failureHandler: (ReportError) -> Unit) {
 
@@ -48,6 +49,7 @@ class ReportManager {
             BlsAPI(BLSApplication.applicationContext()).getReports(seriesIds,
                     startYear = startYear,
                     endYear = endYear,
+                    annualAvg = annualAvg,
                     successHandler = {reportResponse ->
                         Log.w("Report", reportResponse.toString())
 

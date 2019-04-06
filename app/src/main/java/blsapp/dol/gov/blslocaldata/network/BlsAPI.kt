@@ -34,7 +34,7 @@ class BlsAPI constructor(val appContext: Context) {
                 }
     }
 
-    fun getReports(seriesIds: List<String>, startYear: String? = null, endYear: String? = null,
+    fun getReports(seriesIds: List<String>, startYear: String? = null, endYear: String? = null, annualAvg: Boolean = false,
                    successHandler: (BLSReportResponse) -> Unit, failureHandler: (ReportError) -> Unit) {
 
         val requestQueue = BLSRequestQueue.getInstance(appContext)
@@ -42,7 +42,7 @@ class BlsAPI constructor(val appContext: Context) {
         val apiKey = if (BuildConfig.DEBUG)  R.string.bls_api_key_debug else R.string.bls_api_key_production
 
         val reportRequest = BLSReportRequest(seriesIds = seriesIds, registrationKey = appContext.getString(apiKey),
-                startYear = startYear, endYear = endYear)
+                startYear = startYear, endYear = endYear, annualAvg = annualAvg)
 
 //        val gson = GsonBuilder()
 //                .registerTypeAdapter(BLSReportRequest::class.java, BLSReportRequestAdapter())

@@ -20,16 +20,17 @@ class BLSReportRequest(seriesIds: List<String>, registrationKey: String): JSONCo
     var endYear: String? = null
     val calculations: Boolean = true
     @SerializedName("annualaverage")
-    val annualAverage: Boolean? = false
+    var annualAverage: Boolean? = false
 
     init{
         this.seriesIds = seriesIds
         this.registrationKey = registrationKey
     }
 
-    constructor(seriesIds: List<String>, registrationKey: String, startYear: String?, endYear: String? = null) : this(seriesIds, registrationKey) {
+    constructor(seriesIds: List<String>, registrationKey: String, startYear: String?, endYear: String? = null, annualAvg: Boolean = false) : this(seriesIds, registrationKey) {
 
         this.startYear = startYear
+        this.annualAverage = annualAvg
 
         endYear?.let {
             this.endYear = it

@@ -38,4 +38,8 @@ data class SeriesReport (
         }
         return null
     }
+    fun latestAnnualData(): SeriesData? {
+        return data.sortedWith(compareByDescending<SeriesData> { it.period }
+                .thenByDescending { it.period == "M13"}).firstOrNull()
+    }
 }

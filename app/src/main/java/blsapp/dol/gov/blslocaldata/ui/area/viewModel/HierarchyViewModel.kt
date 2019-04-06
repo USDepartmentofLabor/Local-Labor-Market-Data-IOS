@@ -390,14 +390,15 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
         reportTypes = getReportTypesArray(hierarchyRows)
 
-        ReportManager.getReport(mArea, reportTypes!!, adjustment = mAdjustment,
+        ReportManager.getReport(mArea, reportTypes!!,
+                adjustment = mAdjustment,
+                annualAvg = true,
                 successHandler = {
                     isLoading.postValue(false)
                     localAreaReports = it.toMutableList()
                     updateIndustryRows(it, hierarchyRows)
 
                     getNationalReports(hierarchyRows)
-
                     this.hierarchyRows.postValue(hierarchyRows)
                 },
                 failureHandler = { it ->
@@ -416,12 +417,16 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         localAreaReport?.seriesReport?.latestData()?.let { localReport ->
             startYear = localReport.year
         }
+        if  (this.isCountyArea()) {
+            startYear = null
+        }
 
         ReportManager.getReport(nationalArea!!,
                 natReportTypes,
                 startYear = startYear,
                 endYear = startYear,
                 adjustment = mAdjustment,
+                annualAvg =  true,
                 successHandler = {
                     isLoading.postValue(false)
                     updateIndustryRows(it, hierarchyRows)
@@ -438,36 +443,46 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
         for (i in areaReport.indices) {
             val thisAreaRow = areaReport[i]
+
             val thisIndustryRow = hierarchyRows[i]
             if  (thisAreaRow.seriesReport != null && thisAreaRow.seriesReport!!.data.isNotEmpty()) {
 
-                periodName = thisAreaRow.seriesReport!!.data[0].periodName
-                year = thisAreaRow.seriesReport!!.data[0].year
+                var thisAreaRowData = thisAreaRow.seriesReport!!.data[0]
+                if (this.isCountyArea()) {
+                    thisAreaRow.seriesReport?.latestAnnualData()?.let { localReport ->
+
+                      //  if  (localReport.period != "M13") return
+                        thisAreaRowData = localReport
+                    }
+                }
+
+                periodName = thisAreaRowData.periodName
+                year = thisAreaRowData.year
 
                 if (wageVsLevelTypeOccupation == OESReport.DataTypeCode.ANNUALMEANWAGE ||
                         QCEWwageVsLevelTypeOccupation == QCEWReport.DataTypeCode.avgWeeklyWage) {
                     if (thisAreaRow.area is NationalEntity)
-                        thisIndustryRow.nationalValue = DataUtil.currencyValue(thisAreaRow.seriesReport!!.data[0].value)
+                        thisIndustryRow.nationalValue = DataUtil.currencyValue(thisAreaRowData.value)
                     else
-                        thisIndustryRow.localValue = DataUtil.currencyValue(thisAreaRow.seriesReport!!.data[0].value)
+                        thisIndustryRow.localValue = DataUtil.currencyValue(thisAreaRowData.value)
                 } else {
 
                     if (thisAreaRow.area is NationalEntity)
-                        thisIndustryRow.nationalValue = DataUtil.numberValue(thisAreaRow.seriesReport!!.data[0].value)
+                        thisIndustryRow.nationalValue = DataUtil.numberValue(thisAreaRowData.value)
                     else
-                        thisIndustryRow.localValue = DataUtil.numberValue(thisAreaRow.seriesReport!!.data[0].value)
+                        thisIndustryRow.localValue = DataUtil.numberValue(thisAreaRowData.value)
                 }
                 if (thisAreaRow.area is NationalEntity) {
-                    thisIndustryRow.oneMonthNationalValue = DataUtil.changeValueStr(thisAreaRow.seriesReport!!.data[0].calculations?.netChanges?.oneMonth)
-                    thisIndustryRow.twelveMonthNationalValue = DataUtil.changeValueStr(thisAreaRow.seriesReport!!.data[0].calculations?.netChanges?.twelveMonth)
-                    thisIndustryRow.oneMonthNationalPercent = DataUtil.changeValueByPercent(thisAreaRow.seriesReport!!.data[0].calculations?.percentChanges?.oneMonth, "%")
-                    thisIndustryRow.twelveMonthNationalPercent = DataUtil.changeValueByPercent(thisAreaRow.seriesReport!!.data[0].calculations?.percentChanges?.twelveMonth,"%")
+                    thisIndustryRow.oneMonthNationalValue = DataUtil.changeValueStr(thisAreaRowData.calculations?.netChanges?.oneMonth)
+                    thisIndustryRow.twelveMonthNationalValue = DataUtil.changeValueStr(thisAreaRowData.calculations?.netChanges?.twelveMonth)
+                    thisIndustryRow.oneMonthNationalPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.oneMonth, "%")
+                    thisIndustryRow.twelveMonthNationalPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.twelveMonth,"%")
 
                 } else {
-                    thisIndustryRow.oneMonthValue = DataUtil.changeValueStr(thisAreaRow.seriesReport!!.data[0].calculations?.netChanges?.oneMonth)
-                    thisIndustryRow.twelveMonthValue = DataUtil.changeValueStr(thisAreaRow.seriesReport!!.data[0].calculations?.netChanges?.twelveMonth)
-                    thisIndustryRow.oneMonthPercent = DataUtil.changeValueByPercent(thisAreaRow.seriesReport!!.data[0].calculations?.percentChanges?.oneMonth, "%")
-                    thisIndustryRow.twelveMonthPercent = DataUtil.changeValueByPercent(thisAreaRow.seriesReport!!.data[0].calculations?.percentChanges?.twelveMonth,"%")
+                    thisIndustryRow.oneMonthValue = DataUtil.changeValueStr(thisAreaRowData.calculations?.netChanges?.oneMonth)
+                    thisIndustryRow.twelveMonthValue = DataUtil.changeValueStr(thisAreaRowData.calculations?.netChanges?.twelveMonth)
+                    thisIndustryRow.oneMonthPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.oneMonth, "%")
+                    thisIndustryRow.twelveMonthPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.twelveMonth,"%")
 
                 }
                 if (mArea is NationalEntity)

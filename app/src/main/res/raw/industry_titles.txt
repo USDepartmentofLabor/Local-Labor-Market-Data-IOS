@@ -1,5 +1,5 @@
 industry_code	industry_title	parent
-10	10 Total, all hierarchies
+10	10 Total, all industries
 101	101 Goods-producing
 1011	1011 Natural resources and mining
 1012	1012 Construction	
