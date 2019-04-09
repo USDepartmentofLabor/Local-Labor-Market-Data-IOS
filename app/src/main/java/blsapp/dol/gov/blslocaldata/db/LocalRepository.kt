@@ -49,7 +49,12 @@ class LocalRepository private constructor(private val mDatabase: BLSDatabase) {
         if (search == null || search.isEmpty()) {
             return mDatabase.industryDAO().getAll()
         }
+        val searchTerms = search.split(" ")
+        if (searchTerms.count() > 1) {
+            return mDatabase.industryDAO().searchByTwoNamesAndCode(searchTerms[0], searchTerms[1], industryType.ordinal)
+        } else {
         return mDatabase.industryDAO().searchByNameAndCode(search, industryType.ordinal)
+        }
     }
 
     fun getStateAreas(search: String?): List<StateEntity> {
