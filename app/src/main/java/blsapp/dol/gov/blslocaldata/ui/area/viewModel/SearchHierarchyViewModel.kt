@@ -33,8 +33,9 @@ class SearchHierarchyViewModel(application: Application) : AndroidViewModel(appl
         if (input.count() < 3) {
             var hiearchyRows = ArrayList<HierarchySearchRow>()
             mHierarchies.postValue(hiearchyRows)
+        } else {
+            loadHierarchies()
         }
-        loadHierarchies()
     }
 
     fun setReportType(reportType: ReportType) {
