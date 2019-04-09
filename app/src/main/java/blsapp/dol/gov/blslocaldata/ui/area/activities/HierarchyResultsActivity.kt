@@ -30,6 +30,7 @@ import blsapp.dol.gov.blslocaldata.ui.area.fragments.HierarchyHeaderFragment
 import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListAdapter
 import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListCESAdapter
 import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListQCEWAdapter
+import blsapp.dol.gov.blslocaldata.ui.search.SearchActivity
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.*
 import kotlinx.android.synthetic.main.activity_hierarchy_results.*
 import kotlinx.android.synthetic.main.fragment_area_header.*
@@ -75,6 +76,8 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_home_24px)
+        supportActionBar?.setHomeActionContentDescription("Home")
 
         mArea = intent.getSerializableExtra(KEY_AREA) as AreaEntity
 
@@ -150,6 +153,7 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_search -> {
             val intent = Intent(applicationContext, SearchHierarchyActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra(KEY_AREA, mArea)
             intent.putExtra(KEY_REPORT_TYPE, reportType)
             intent.putExtra(KEY_REPORT_ROW_TYPE, industryType)
@@ -159,7 +163,9 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
             true
         }
         android.R.id.home -> {
-            finish()
+            val intent = Intent(applicationContext, SearchActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent);
             true
         }
         else -> {
