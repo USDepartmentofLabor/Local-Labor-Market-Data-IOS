@@ -25,6 +25,14 @@ sealed class ReportType : Serializable {
                                    val establishmentSize: QCEWReport.EstablishmentSize = QCEWReport.EstablishmentSize.ALL,
                                    val dataTypeCode: QCEWReport.DataTypeCode): ReportType()
 
+
+    fun getNormalizedCode(inputCode: String ):String {
+        var retCode = inputCode
+        if (this is OccupationalEmployment) {
+            retCode = inputCode.substring(0, 2) + "-" + inputCode.substring(2)
+        }
+        return retCode
+    }
     fun getSeriesId(area: AreaEntity, adjustment: SeasonalAdjustment): SeriesId {
         val seriesId: SeriesId
 
