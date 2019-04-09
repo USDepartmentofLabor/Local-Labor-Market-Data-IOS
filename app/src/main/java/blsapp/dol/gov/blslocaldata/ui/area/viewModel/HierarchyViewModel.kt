@@ -197,7 +197,18 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         localTwelveMonthChangeSorted = SortStatus.NOT
         nationalTwelveMonthChangeSorted = SortStatus.NOT
     }
-    private fun completeSort(tmpList: List<HierarchyRow>?, sortStatus: SortStatus):SortStatus {
+
+    private fun preSort(): List<HierarchyRow>? {
+
+        var tmpList: List<HierarchyRow>? = null
+        if (hierarchyRows.value != null && hierarchyRows.value!!.count() > 1) {
+            val count = hierarchyRows.value!!.count()
+            tmpList = hierarchyRows.value!!.subList(1, count)
+        }
+        return tmpList
+    }
+
+    private fun postSort(tmpList: List<HierarchyRow>?, sortStatus: SortStatus):SortStatus {
         val retSortStatusValue:SortStatus = if (sortStatus == SortStatus.ASCENDING) SortStatus.DESCENDING else SortStatus.ASCENDING
         if (tmpList != null && tmpList.count() > 1 && hierarchyRows.value != null &&  hierarchyRows.value!!.count() > 0) {
             var sortedTmpList = tmpList.toMutableList()
@@ -211,74 +222,69 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         return retSortStatusValue
     }
 
-    private fun prepSort(): List<HierarchyRow>? {
-
-        var tmpList: List<HierarchyRow>? = null
-        if (hierarchyRows.value != null && hierarchyRows.value!!.count() > 1) {
-            val count = hierarchyRows.value!!.count()
-            tmpList = hierarchyRows.value!!.subList(1, count)
-        }
-        return tmpList
-    }
-
-    fun convertToFloat(string: String):Float {
+    fun convertToFloat(string: String, sortStatus: SortStatus):Float {
+        val retSortStatusValue:SortStatus = if (sortStatus == SortStatus.ASCENDING) SortStatus.DESCENDING else SortStatus.ASCENDING
         var newString = string.replace("%","",true)
         newString =newString.replace("$","",true)
         newString =newString.replace("+","",true)
         newString =newString.replace(",","",true)
-        newString =newString.replace("N/A","0",true)
+        if (retSortStatusValue == SortStatus.DESCENDING) {
+            newString = newString.replace("N/A", "0", true)
+        } else {
+            newString = newString.replace("N/A", "1000000000", true)
+        }
         return newString.toFloat()
     }
 
     fun sortByLocalOneMonthPercentChangeValue():SortStatus {
-        var tmpList= prepSort()
+        var tmpList= preSort()
         tmpList = tmpList?.sortedWith(compareBy(
-                { convertToFloat(it.oneMonthPercent) }
+                { convertToFloat(it.oneMonthPercent, localOneMonthChangeSorted) }
         ))
-        localOneMonthChangeSorted = completeSort(tmpList, localOneMonthChangeSorted)
+        localOneMonthChangeSorted = postSort(tmpList, localOneMonthChangeSorted)
         return localOneMonthChangeSorted
     }
 
     fun sortByNationalOneMonthPercentChangeValue():SortStatus {
-        var tmpList= prepSort()
+        var tmpList= preSort()
         tmpList = tmpList?.sortedWith(compareBy(
-                { convertToFloat(it.oneMonthNationalPercent) }
+                { convertToFloat(it.oneMonthNationalPercent, nationalOneMonthChangeSorted) }
         ))
-        nationalOneMonthChangeSorted = completeSort(tmpList, nationalOneMonthChangeSorted)
+        nationalOneMonthChangeSorted = postSort(tmpList, nationalOneMonthChangeSorted)
         return nationalOneMonthChangeSorted
     }
 
     fun sortByLocalTwelveMonthPercentChangeValue():SortStatus {
-        var tmpList= prepSort()
+        var tmpList= preSort()
         tmpList = tmpList?.sortedWith(compareBy(
-                { convertToFloat(it.twelveMonthPercent) }
+                { convertToFloat(it.twelveMonthPercent,localTwelveMonthChangeSorted) }
         ))
-        localTwelveMonthChangeSorted = completeSort(tmpList, localTwelveMonthChangeSorted)
+        localTwelveMonthChangeSorted = postSort(tmpList, localTwelveMonthChangeSorted)
         return localTwelveMonthChangeSorted
     }
     fun sortByNationalTwelveMonthPercentChangeValue():SortStatus {
-        var tmpList= prepSort()
+        var tmpList= preSort()
         tmpList = tmpList?.sortedWith(compareBy(
-                { convertToFloat(it.twelveMonthNationalPercent) }
+                { convertToFloat(it.twelveMonthNationalPercent, nationalTwelveMonthChangeSorted) }
         ))
-        nationalTwelveMonthChangeSorted = completeSort(tmpList, nationalTwelveMonthChangeSorted)
+        nationalTwelveMonthChangeSorted = postSort(tmpList, nationalTwelveMonthChangeSorted)
         return nationalTwelveMonthChangeSorted
     }
 
     fun sortByLocalValue():SortStatus {
-        var tmpList= prepSort()
+        var tmpList= preSort()
         tmpList = tmpList?.sortedWith(compareBy(
-                { convertToFloat(it.localValue) }
+                { convertToFloat(it.localValue, localValueSorted) }
         ))
-        localValueSorted = completeSort(tmpList, localValueSorted)
+        localValueSorted = postSort(tmpList, localValueSorted)
         return localValueSorted
     }
     fun sortByNationalValue():SortStatus {
-        var tmpList= prepSort()
+        var tmpList= preSort()
         tmpList = tmpList?.sortedWith(compareBy(
-                { convertToFloat(it.nationalValue) }
+                { convertToFloat(it.nationalValue, nationalValueSorted) }
         ))
-        nationalValueSorted = completeSort(tmpList, nationalValueSorted)
+        nationalValueSorted = postSort(tmpList, nationalValueSorted)
         return nationalValueSorted
     }
 
@@ -305,7 +311,9 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             }
 
             if (parentIndustryData != null) {
-                val mergeTitle = parentIndustryData.title + " (" + parentIndustryData.industryCode + ")"
+                val mergeTitle = parentIndustryData.title + " (" + this.reportType.getNormalizedCode(parentIndustryData.industryCode) + ")"
+
+
                 rows.add(HierarchyRow(HierarchyRowType.ITEM,
                         parentIndustryData,
                         parentIndustryData.id,
@@ -325,7 +333,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
                 var mergeTitle = industry.title
                 if (!this.isCountyArea()) {
-                    mergeTitle = industry.title + " (" + industry.industryCode + ")"
+                    mergeTitle = industry.title + " (" + this.reportType.getNormalizedCode(industry.industryCode) + ")"
                 }
 
                 rows.add(HierarchyRow(HierarchyRowType.ITEM,
@@ -371,8 +379,9 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             when (reportType) {
                 is ReportType.IndustryEmployment ->
                     retReportTypes.add(ReportType.IndustryEmployment(it.industry!!.industryCode, CESReport.DataTypeCode.ALLEMPLOYEES))
-                is OccupationalEmployment ->
+                is OccupationalEmployment -> {
                     retReportTypes.add(OccupationalEmployment(it.industry!!.industryCode, wageVsLevelTypeOccupation))
+                }
                 is ReportType.QuarterlyEmploymentWages -> {
                     val reportTypeQCEW: ReportType.QuarterlyEmploymentWages = this.reportType as ReportType.QuarterlyEmploymentWages
                     retReportTypes.add(ReportType.OccupationalEmploymentQCEW(
