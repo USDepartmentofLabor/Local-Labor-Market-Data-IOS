@@ -44,6 +44,12 @@ class BlsAPI constructor(val appContext: Context) {
         val reportRequest = BLSReportRequest(seriesIds = seriesIds, registrationKey = appContext.getString(apiKey),
                 startYear = startYear, endYear = endYear, annualAvg = annualAvg)
 
+        val cachedResponse = CacheManager.get(reportRequest)
+        if (cachedResponse!= null) {
+            successHandler(cachedResponse)
+            return
+        }
+
 //        val gson = GsonBuilder()
 //                .registerTypeAdapter(BLSReportRequest::class.java, BLSReportRequestAdapter())
 //                .create()
@@ -54,6 +60,7 @@ class BlsAPI constructor(val appContext: Context) {
                 Response.Listener { response ->
                     print(response.toString())
                     val reportReponse = response.toString().toObject<BLSReportResponse>()
+                    CacheManager.put(reportReponse, reportRequest)
                     Log.w("ggg", "BLSAPI Response: " + response.toString())
 //                    Log.w("ggg", "BLSAPI Request: " + reportRequest.toString())
                     if (reportReponse.status == ReportStatus.REQUEST_SUCCEEDED) {
