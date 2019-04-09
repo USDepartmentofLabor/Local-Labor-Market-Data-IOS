@@ -7,13 +7,25 @@
     tools:context=".ui.area.activities.SearchHierarchyActivity">
 
     <SearchView
-        android:id="@+id/searchView"
+        android:id="@+id/searchHierarchyView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        android:queryHint="Enter Search Terms"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/noResultsFoundTextView"
+        style="@style/reportDataTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/no_results_found"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchHierarchyView" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -27,7 +39,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/searchHierarchyView" />
 
 </android.support.constraint.ConstraintLayout>
 

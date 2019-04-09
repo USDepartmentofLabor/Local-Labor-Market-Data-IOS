@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
+import android.view.MenuItem
+import android.view.View
 import android.widget.SearchView
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.BLSDatabase
@@ -16,6 +19,7 @@ import blsapp.dol.gov.blslocaldata.db.LocalRepository
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.IndustryEntity
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
+import blsapp.dol.gov.blslocaldata.services.FetchAddressIntentService
 import blsapp.dol.gov.blslocaldata.ui.area.SearchHierarchyAdapter
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.HierarchySearchRow
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.SearchHierarchyViewModel
@@ -25,7 +29,9 @@ import blsapp.dol.gov.blslocaldata.ui.viewmodel.HierarchyRow
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.SearchAreaViewModel
 import kotlinx.android.synthetic.main.activity_search.*
+import kotlinx.android.synthetic.main.activity_search_hierarchy.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.textView
 import org.jetbrains.anko.uiThread
 
 class SearchHierarchyActivity: AppCompatActivity(), SearchHierarchyAdapter.OnItemClickListener {
@@ -42,12 +48,26 @@ class SearchHierarchyActivity: AppCompatActivity(), SearchHierarchyAdapter.OnIte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_hierarchy)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title = getString(R.string.search)
 
         mArea = intent.getSerializableExtra(HierarchyResultsActivity.KEY_AREA) as AreaEntity
         reportType = intent.getSerializableExtra(HierarchyResultsActivity.KEY_REPORT_TYPE) as ReportType
         industryType = intent.getSerializableExtra(HierarchyResultsActivity.KEY_REPORT_ROW_TYPE) as ReportRowType
 
+        title = getString(R.string.search)
+        when (this.reportType) {
+            is ReportType.OccupationalEmployment -> {
+                title = getString(R.string.search_occupations)
+            }
+            is ReportType.IndustryEmployment -> {
+                title = getString(R.string.search_industries)
+            }
+            is ReportType.OccupationalEmploymentQCEW -> {
+                title = getString(R.string.search_occupations)
+            }
+            is ReportType.QuarterlyEmploymentWages -> {
+                title = getString(R.string.search_occupations)
+            }
+        }
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         adapter = SearchHierarchyAdapter(this)
         recyclerView.apply {
@@ -73,11 +93,16 @@ class SearchHierarchyActivity: AppCompatActivity(), SearchHierarchyAdapter.OnIte
             hierarchies?.let {
 
                 adapter.setIndustryRows(hierarchies)
+                if (hierarchies.count() == 0 && searchHierarchyView.query.count() > 2) {
+                    noResultsFoundTextView.visibility = View.VISIBLE
+                } else {
+                    noResultsFoundTextView.visibility = View.INVISIBLE
+                }
 
             }
         })
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchHierarchyView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 val textLength = if (newText != null) newText.length else 0
@@ -89,7 +114,7 @@ class SearchHierarchyActivity: AppCompatActivity(), SearchHierarchyAdapter.OnIte
                 if (newText.isEmpty()) {
                     doAsync {
                         uiThread {
-                            searchView.clearFocus()
+                            searchHierarchyView.clearFocus()
                         }
                     }
                 }
@@ -97,12 +122,24 @@ class SearchHierarchyActivity: AppCompatActivity(), SearchHierarchyAdapter.OnIte
             }
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-                searchView.clearFocus()
+                searchHierarchyView.clearFocus()
                 return true
             }
         })
+
+        searchHierarchyView.setIconified(false)
+        searchHierarchyView.requestFocus()
+        noResultsFoundTextView.visibility = View.INVISIBLE
     }
 
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        android.R.id.home -> { finish()
+            true
+        }
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
+    }
     override fun onItemClick(item: HierarchySearchRow) {
 
         intent = Intent(applicationContext, HierarchyResultsActivity::class.java)
@@ -118,8 +155,13 @@ class SearchHierarchyActivity: AppCompatActivity(), SearchHierarchyAdapter.OnIte
         }
         intent.putExtra(HierarchyResultsActivity.HIERARCY_STRING, tmpString)
 
-        item.hiearchyIds?.removeAt(tmpStringArray.count()-1)
-        intent.putExtra(HierarchyResultsActivity.HIERARCY_ARRAY, item.hiearchyIds?.toTypedArray())
+        if (item.hiearchyIds != null) {
+            if (item.hiearchyIds?.count() != tmpStringArray.count()) {
+                Log.wtf("GGG", "Mismatch id vs title string counts")
+            }
+            item.hiearchyIds?.removeAt(item.hiearchyIds!!.count()-1)
+            intent.putExtra(HierarchyResultsActivity.HIERARCY_ARRAY, item.hiearchyIds?.toTypedArray())
+        }
 
         intent.putExtra(HierarchyResultsActivity.KEY_REPORT_TYPE, reportType)
         intent.putExtra(HierarchyResultsActivity.KEY_REPORT_ROW_TYPE, industryType)
