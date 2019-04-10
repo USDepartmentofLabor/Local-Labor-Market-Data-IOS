@@ -198,14 +198,14 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                             header = null))
 
                 }
-                if (rowType == ReportRowType.INDUSTRY_EMPLOYMENT_ITEM && !(mArea is NationalEntity)) {
-                    rows.add(AreaReportRow(ReportRowType.HISTORY_ITEM, null, null,
-                            header = "History",
-                            reportType = reportType,
-                            headerCollapsed = reportSection.collapsed,
-                            subIndustries = reportSection.subIndustries,
-                            headerType = rowType))
-                }
+//                if (rowType == ReportRowType.INDUSTRY_EMPLOYMENT_ITEM && !(mArea is NationalEntity)) {
+//                    rows.add(AreaReportRow(ReportRowType.HISTORY_ITEM, null, null,
+//                            header = "History",
+//                            reportType = reportType,
+//                            headerCollapsed = reportSection.collapsed,
+//                            subIndustries = reportSection.subIndustries,
+//                            headerType = rowType))
+//                }
             }
         }
 
