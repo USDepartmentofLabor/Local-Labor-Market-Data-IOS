@@ -14,4 +14,6 @@
     <dimen name="item_heading_three_of_three_end_margin">0dp</dimen>
     <dimen name="item_heading_one_of_two_end_margin">95dp</dimen>
     <dimen name="item_heading_two_of_two_end_margin">5dp</dimen>
+
+    <dimen name="item_heading_two_line_sort_option_top_margin">5dp</dimen>
 </resources>

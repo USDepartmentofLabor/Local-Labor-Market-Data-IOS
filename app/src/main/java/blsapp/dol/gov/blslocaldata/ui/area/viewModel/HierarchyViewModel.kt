@@ -39,6 +39,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         loadReportCategories()
     }
 
+    private var codeSorted:SortStatus = SortStatus.NOT
     private var localValueSorted:SortStatus = SortStatus.NOT
     private var nationalValueSorted:SortStatus = SortStatus.NOT
     private var localOneMonthChangeSorted:SortStatus = SortStatus.NOT
@@ -190,6 +191,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     private fun resetSortStatuses() {
+        codeSorted = SortStatus.NOT
         localValueSorted = SortStatus.NOT
         nationalValueSorted = SortStatus.NOT
         localOneMonthChangeSorted = SortStatus.NOT
@@ -269,6 +271,15 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         ))
         nationalTwelveMonthChangeSorted = postSort(tmpList, nationalTwelveMonthChangeSorted)
         return nationalTwelveMonthChangeSorted
+    }
+
+    fun sortByCode():SortStatus {
+        var tmpList= preSort()
+        tmpList = tmpList?.sortedWith(compareBy(
+                { convertToFloat(it.industry!!.industryCode, codeSorted) }
+        ))
+        codeSorted = postSort(tmpList, codeSorted)
+        return codeSorted
     }
 
     fun sortByLocalValue():SortStatus {

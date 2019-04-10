@@ -25,6 +25,9 @@ import android.text.SpannableString
 import android.text.style.ClickableSpan
 import android.util.Log
 import android.widget.TextView
+import org.jetbrains.anko.support.v4.dimen
+import android.view.ViewGroup.MarginLayoutParams
+
 
 /**
  * AreaHeaderFragment - A simple [Fragment] subclass.
@@ -135,29 +138,6 @@ class HierarchyHeaderFragment : Fragment() {
 
     private fun setupColumnHeaders() {
 
-        hierarchySeasonallyAdjustedSwitch.isChecked = true
-        if (hierarchyViewModel.isCountyArea()) {
-            hierarchySeasonallyAdjustedSwitch.isChecked = false
-            detailTitle.text = getString(R.string.industries_title)
-            regionChangeView.visibility = View.GONE
-            changeColumn1Title.text = getString(R.string.twelve_month_change)
-
-        } else if (hierarchyViewModel.isIndustryReport()) {
-            if (hierarchyViewModel.isMetroArea()) {
-                hierarchySeasonallyAdjustedSwitch.isChecked = false
-            }
-            detailTitle.text = getString(R.string.industries_title_code)
-            regionSortButtonView.visibility = View.GONE
-            nationalSortButtonView.visibility = View.GONE
-
-        } else {
-            hierarchySeasonallyAdjustedSwitch.visibility = View.GONE
-            detailTitle.text = getString(R.string.occupation_title_code)
-            regionChangeView.visibility = View.GONE
-            oneMonthChangeView.visibility = View.GONE
-            twelveMonthChangeView.visibility = View.GONE
-        }
-
         if  (hierarchyViewModel.regionTitle == null) {
             regionSortButtonView.visibility = View.GONE
             if (hierarchyViewModel.isNationalArea()) {
@@ -168,10 +148,62 @@ class HierarchyHeaderFragment : Fragment() {
             regionChangeTitle.text = hierarchyViewModel.regionTitle
         }
 
+        dataTitle2.visibility = View.INVISIBLE
+        hierarchySeasonallyAdjustedSwitch.isChecked = true
+        dataTitle.text = getString(R.string.employment_level)
+        nationalSortButtonTitle.text = getString(R.string.national)
+
+        if (hierarchyViewModel.isCountyArea()) {
+            hierarchySeasonallyAdjustedSwitch.isChecked = false
+            detailTitle.text = getString(R.string.industries_title)
+            regionChangeView.visibility = View.GONE
+            changeColumn1Title.text = getString(R.string.twelve_month_change)
+            dataTitle2.visibility = View.VISIBLE
+            dataTitle.text = getString(R.string.national)
+
+            nationalSortButtonTitle.text = getString(R.string.employment_level_000s)
+            var params = nationalSortButtonTitle.getLayoutParams() as MarginLayoutParams
+            params.topMargin = dimen(R.dimen.item_heading_two_line_sort_option_top_margin)
+            nationalSortButtonTitle.layoutParams = params
+
+            regionSortButtonTitle.text = getString(R.string.employment_level_000s)
+            params = regionSortButtonTitle.getLayoutParams() as MarginLayoutParams
+            params.topMargin = dimen(R.dimen.item_heading_two_line_sort_option_top_margin)
+            regionSortButtonTitle.layoutParams = params
+
+            params = oneMonthChangeView.getLayoutParams() as MarginLayoutParams
+            val headingParms  = regionSortButtonView.getLayoutParams() as MarginLayoutParams
+            params.marginEnd = headingParms.marginEnd
+            oneMonthChangeView.layoutParams = params
+
+        } else if (hierarchyViewModel.isIndustryReport()) {
+            if (hierarchyViewModel.isMetroArea()) {
+                hierarchySeasonallyAdjustedSwitch.isChecked = false
+            }
+            detailTitle.text = getString(R.string.industries_title)
+            regionSortButtonView.visibility = View.GONE
+            nationalSortButtonView.visibility = View.GONE
+
+        } else {
+            hierarchySeasonallyAdjustedSwitch.visibility = View.GONE
+            detailTitle.text = getString(R.string.occupation_title)
+            regionChangeView.visibility = View.GONE
+            oneMonthChangeView.visibility = View.GONE
+            twelveMonthChangeView.visibility = View.GONE
+        }
+
+
         val clickListener = View.OnClickListener {view ->
 
             turnOffArrows()
             when (view.getId()) {
+
+                R.id.codeSortButtonView -> {
+                    if (hierarchyViewModel.sortByCode() == SortStatus.ASCENDING)
+                        DrawableCompat.setTint(codeSortButtonUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                    else
+                        DrawableCompat.setTint(codeSortButtonDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                }
                 R.id.regionSortButtonView -> {
                     if (hierarchyViewModel.sortByLocalValue() == SortStatus.ASCENDING)
                         DrawableCompat.setTint(regionSortButtonUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
@@ -227,6 +259,7 @@ class HierarchyHeaderFragment : Fragment() {
                 }
             }
         }
+        codeSortButtonView.setOnClickListener(clickListener)
         regionSortButtonView.setOnClickListener(clickListener)
         nationalSortButtonView.setOnClickListener(clickListener)
         regionChangeView.setOnClickListener(clickListener)
@@ -235,6 +268,8 @@ class HierarchyHeaderFragment : Fragment() {
     }
 
     private fun turnOffArrows() {
+        DrawableCompat.setTint(codeSortButtonUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
+        DrawableCompat.setTint(codeSortButtonDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
         DrawableCompat.setTint(regionSortButtonUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
         DrawableCompat.setTint(regionSortButtonDownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
         DrawableCompat.setTint(nationalSortButtonUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorUnSelectedArrow))
@@ -264,7 +299,17 @@ class HierarchyHeaderFragment : Fragment() {
                     hierarchyViewModel.getIndustryReports()
 
                     wageVsLevelTitles?.let {
-                        dataTitle.text = it[pos]
+                        if (hierarchyViewModel.isCountyArea()) {
+                            if (pos == 0) {
+                                nationalSortButtonTitle.text = getString(R.string.employment_level_000s)
+                                regionSortButtonTitle.text = getString(R.string.employment_level_000s)
+                            } else {
+                                nationalSortButtonTitle.text = getString(R.string.average_weekly_wage_accessible)
+                                regionSortButtonTitle.text = getString(R.string.average_weekly_wage_accessible)
+                            }
+                        } else {
+                            dataTitle.text = it[pos]
+                        }
                     }
                 }
             }
