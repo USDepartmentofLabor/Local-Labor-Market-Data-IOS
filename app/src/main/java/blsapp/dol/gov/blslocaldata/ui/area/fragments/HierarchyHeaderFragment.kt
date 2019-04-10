@@ -27,6 +27,7 @@ import android.util.Log
 import android.widget.TextView
 import org.jetbrains.anko.support.v4.dimen
 import android.view.ViewGroup.MarginLayoutParams
+import kotlinx.android.synthetic.main.industry_employment.*
 
 
 /**
@@ -134,6 +135,23 @@ class HierarchyHeaderFragment : Fragment() {
         setupLevelVsWageSpinner()
         setupColumnHeaders()
         turnOffArrows()
+    }
+
+    private fun updateAccessiblitiyHint(view:View, textView: TextView) {
+
+        if (view == null || textView == null) return
+        val regex = "(000s)".toRegex()
+        var hintText = textView.text.replace(regex, " values in thousands")
+        hintText = "Sort by " + hintText
+        view.contentDescription = hintText
+    }
+
+    private fun updateAccessibilityHints() {
+        updateAccessiblitiyHint(regionSortButtonView, regionSortButtonTitle)
+        updateAccessiblitiyHint(nationalSortButtonView, nationalSortButtonTitle)
+        updateAccessiblitiyHint(regionChangeView, regionChangeTitle)
+        updateAccessiblitiyHint(oneMonthChangeView, changeColumn1Title)
+        updateAccessiblitiyHint(twelveMonthChangeView, changeColumn2Title)
     }
 
     private fun setupColumnHeaders() {
@@ -265,6 +283,7 @@ class HierarchyHeaderFragment : Fragment() {
         regionChangeView.setOnClickListener(clickListener)
         oneMonthChangeView.setOnClickListener(clickListener)
         twelveMonthChangeView.setOnClickListener(clickListener)
+        updateAccessibilityHints()
     }
 
     private fun turnOffArrows() {
@@ -310,6 +329,7 @@ class HierarchyHeaderFragment : Fragment() {
                         } else {
                             dataTitle.text = it[pos]
                         }
+                        updateAccessibilityHints()
                     }
                 }
             }
