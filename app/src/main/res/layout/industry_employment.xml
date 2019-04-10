@@ -84,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@id/lineView">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/oneMonthChangeView"
+            android:id="@+id/oneMonthIndustryChangeView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -139,7 +139,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/twelveMonthChangeView"
+            android:id="@+id/twelveMonthIndustryChangeView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
