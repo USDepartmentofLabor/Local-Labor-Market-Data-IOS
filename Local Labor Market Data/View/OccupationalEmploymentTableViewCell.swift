@@ -60,7 +60,7 @@ class OccupationalEmploymentTableViewCell: UITableViewCell {
     
     func setupAccessibility() {
         isAccessibilityElement = false
-        accessibilityElements = [areaLabel, yearLabel, dataTitleLabel, dataValueLabel]
+        accessibilityElements = [areaLabel as Any, yearLabel as Any, dataTitleLabel as Any, dataValueLabel as Any]
     }
 }
 
@@ -91,11 +91,11 @@ extension OccupationalEmploymentTableViewCell: ReportTableViewCell {
             dataValueLabel.text = ReportManager.dataNotAvailableStr
             dataValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             yearLabel.text = ""
-            accessibilityElements = [areaLabel, dataTitleLabel, dataValueLabel]
+            accessibilityElements = [areaLabel as Any, dataTitleLabel as Any, dataValueLabel as Any]
             return
         }
         
-        accessibilityElements = [areaLabel, yearLabel, dataTitleLabel, dataValueLabel]
+        accessibilityElements = [areaLabel as Any, yearLabel as Any, dataTitleLabel as Any, dataValueLabel as Any]
         yearLabel.text = seriesData.year
 
         if let doubleValue = Double(seriesData.value) {

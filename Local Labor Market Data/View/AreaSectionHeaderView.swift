@@ -79,9 +79,10 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
     }
     
     func applyAccessibility() {
-        isAccessibilityElement = true
-        accessibilityLabel = titleLabel.text
-        accessibilityTraits = UIAccessibilityTraits.header
+//        isAccessibilityElement = true
+        titleView.isAccessibilityElement = true
+        titleView.accessibilityLabel = titleLabel.text
+        titleView.accessibilityTraits = UIAccessibilityTraits.header
         titleLabel.isAccessibilityElement = false
         expandCollapseImageView.isAccessibilityElement = false
         
@@ -110,5 +111,4 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
             expandCollapseImageView.image = #imageLiteral(resourceName: "expand")
         }
     }
-    
 }

@@ -58,9 +58,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func displaySearch() {
+    func displayHome() {
         let searchVC = SearchViewController.instantiateFromStoryboard()
-        window?.rootViewController = UINavigationController(rootViewController: searchVC)
+        let navVC = UINavigationController(rootViewController: searchVC)
+        let splitVC = UISplitViewController()
+        splitVC.viewControllers = [navVC]
+        splitVC.delegate = searchVC
+        window?.rootViewController = splitVC
         window?.makeKeyAndVisible()
     }
     

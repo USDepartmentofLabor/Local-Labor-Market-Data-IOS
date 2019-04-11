@@ -22,11 +22,13 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var anscestorsLabel: UILabel!
     
     @IBOutlet weak var itemTitleLabel: UILabel!
+    @IBOutlet weak var itemCodeButton: UIButton!
     @IBOutlet weak var parentTitleLabel: UILabel!
     @IBOutlet weak var dataTypeButton: UIButton!
 
     @IBOutlet weak var tableView: UITableView!
 
+    @IBOutlet weak var parentView: UIView!
     // Occupation
         // Title View
     @IBOutlet weak var occupationalTitleStackView: UIStackView!
@@ -90,12 +92,27 @@ class ItemViewController: UIViewController {
     }
     
     func setupView() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(displaySearchBar(sender:)))
+        let searchBtn = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(displaySearchBar(sender:)))
+        
+        let infoItem = UIBarButtonItem.infoButton(target: self, action: #selector(infoClicked(sender:)))
+        navigationItem.rightBarButtonItems = [infoItem, searchBtn]
+
+        searchBtn.accessibilityLabel = "Search"
+
+        if splitViewController?.isCollapsed ?? true {
+            let homeItem = UIBarButtonItem(title: "Home", style: .plain,
+                                           target: self, action: #selector(homeClicked(sender:)))
+            navigationItem.leftBarButtonItem = homeItem
+        }
+
+        navigationItem.leftItemsSupplementBackButton = true
         
         areaTitleLabel.scaleFont(forDataType: .reportAreaTitle, for:traitCollection)
         ownershipLabel.scaleFont(forDataType: .itemPeriodName, for:traitCollection)
         reportPeriodLabel.scaleFont(forDataType: .itemPeriodName, for:traitCollection)
         itemTitleLabel.scaleFont(forDataType: .itemColumnTitle)
+        itemCodeButton.titleLabel?.scaleFont(forDataType: .itemColumnTitle)
+        
         dataTypeButton.layer.borderColor = UIColor(named: "borderColor")?.cgColor
         dataTypeButton.layer.borderWidth = 1.0
         dataTypeButton.layer.cornerRadius = 10
@@ -105,7 +122,7 @@ class ItemViewController: UIViewController {
         seasonallyAdjustedTitle.scaleFont(forDataType: .seasonallyAdjustedSwitch, for: traitCollection)
 
         parentTitleLabel.scaleFont(forDataType: .itemParentTitle)
-        
+        anscestorsLabel.scaleFont(forDataType: .itemAnscestorsList)
         itemTitleLabel.text = viewModel.dataTitle
         areaTitleLabel.text = viewModel.area.title
         setupAccessbility()
@@ -119,12 +136,15 @@ class ItemViewController: UIViewController {
         
         if viewModel is OccupationViewModel {
             setupOccupationView()
+            searchBtn.accessibilityHint = "Tap to Search for Occupations"
         }
         else if viewModel is QCEWIndustryViewModel {
             setupQCEWView()
+            searchBtn.accessibilityHint = "Tap to Search for Industries"
         }
         else {
             setupCESView()
+            searchBtn.accessibilityHint = "Tap to Search for Industries"
         }
 
         displayAnscestors()
@@ -132,6 +152,9 @@ class ItemViewController: UIViewController {
         let title: String
         if viewModel is QCEWIndustryViewModel {
             title = viewModel.parentItem.title ?? ""
+        }
+        else if viewModel is OccupationViewModel {
+            title = "\(viewModel.parentItem.title ?? "") (\(viewModel.parentItem.displayCode ?? ""))"
         }
         else {
             title = "\(viewModel.parentItem.title ?? "") (\(viewModel.parentItem.code ?? ""))"
@@ -160,6 +183,7 @@ class ItemViewController: UIViewController {
         }
 
         seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
+        displaySort()
     }
     
     func setupOccupationView() {
@@ -174,7 +198,11 @@ class ItemViewController: UIViewController {
 
         occupationDataTypeTitleLabel.scaleFont(forDataType: .itemColumnTitle)
         occupationLocalTitleButton.titleLabel?.scaleFont(forDataType: .itemColumnTitle)
+        occupationLocalTitleButton.accessibilityHint = "Tap to sort"
+        
         occupationNationalTitleButton.titleLabel?.scaleFont(forDataType: .itemColumnTitle)
+        occupationNationalTitleButton.accessibilityHint = "Tap to sort"
+        
         occupationParentValueLabel.scaleFont(forDataType: .itemParentValue)
         occupationParentNationalValueLabel.scaleFont(forDataType: .itemParentValue)
 
@@ -195,16 +223,24 @@ class ItemViewController: UIViewController {
         qcewParentStackView.removeFromSuperview()
         ownershipLabel.removeFromSuperview()
 
-
         cesDataTypeTitleLabel.scaleFont(forDataType: .itemColumnTitle)
         cesLocalTitleButton.titleLabel?.scaleFont(forDataType: .itemColumnTitle)
         cesOneMonthChangeTitleButton.titleLabel?.scaleFont(forDataType: .itemSubColumnTitle)
         cesTwelveMonthChangeTitleButton.titleLabel?.scaleFont(forDataType: .itemSubColumnTitle)
         
         cesParentValueLabel.scaleFont(forDataType: .itemParentValue)
+        cesParentOneMonthValueLabel.scaleFont(forDataType: .itemChangeValue)
+        cesParentOneMonthPercentLabel.scaleFont(forDataType: .itemChangeValue)
+        cesParentTwelveMonthValueLabel.scaleFont(forDataType: .itemChangeValue)
+        cesParentTwelveMonthPercentLabel.scaleFont(forDataType: .itemChangeValue)
         
         cesLocalTitleButton.setTitle(viewModel.area.displayType, for: .normal)
         cesParentValueLabel.text = ""
+        
+        cesOneMonthChangeTitleButton.titleLabel?.numberOfLines = 0
+        cesTwelveMonthChangeTitleButton.titleLabel?.numberOfLines = 0
+        parentView.isAccessibilityElement = false
+        parentView.accessibilityElements = [parentTitleLabel as Any, cesParentValueLabel as Any, cesParentOneMonthValueLabel as Any, cesParentOneMonthPercentLabel as Any, cesParentTwelveMonthValueLabel as Any, cesParentTwelveMonthPercentLabel as Any]
     }
     
     func setupQCEWView() {
@@ -224,6 +260,14 @@ class ItemViewController: UIViewController {
         qcewLocalTwelveMonthChangeTitleButton.titleLabel?.scaleFont(forDataType: .itemSubColumnTitle)
         qcewNationalTwelveMonthChangeTitleButton.titleLabel?.scaleFont(forDataType: .itemSubColumnTitle)
         
+        qcewParentValueLabel.scaleFont(forDataType: .itemValue)
+        qcewParentTwelveMonthValueLabel.scaleFont(forDataType: .itemChangeValue)
+        qcewParentTwelveMonthPercentLabel.scaleFont(forDataType: .itemChangeValue)
+        qcewParentNationalValueLabel.scaleFont(forDataType: .itemValue)
+        qcewParentNationalTwelveMonthValueLabel.scaleFont(forDataType: .itemChangeValue)
+        qcewParentNationalTwelveMonthPercentLabel.scaleFont(forDataType: .itemChangeValue)
+        
+        qcewParentNationalValueLabel.scaleFont(forDataType: .itemValue)
         if viewModel.isNationalReport {
             qcewNationalTitleStackView.removeFromSuperview()
             qcewNationalParentStackView.removeFromSuperview()
@@ -232,6 +276,9 @@ class ItemViewController: UIViewController {
         ownershipLabel.isHidden = false
         ownershipLabel.text = "\(vm.ownershipCode.title)"
         qcewLocalTitleButton.setTitle(viewModel.area.displayType, for: .normal)
+        
+        parentView.isAccessibilityElement = false
+        parentView.accessibilityElements = [parentTitleLabel as Any ,qcewParentValueLabel as Any, qcewParentTwelveMonthValueLabel as Any, qcewParentTwelveMonthPercentLabel as Any, qcewParentNationalValueLabel as Any, qcewParentNationalTwelveMonthValueLabel as Any, qcewParentNationalTwelveMonthPercentLabel as Any]
     }
     
     func setupAccessbility() {
@@ -296,6 +343,15 @@ class ItemViewController: UIViewController {
         return true
     }
     
+    @objc func homeClicked(sender: Any) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.displayHome()
+    }
+
+    @IBAction func infoClicked(sender: Any) {
+        performSegue(withIdentifier: "showInfo", sender: nil)
+    }
+    
     @IBAction func displaySearchBar(sender: Any) {
         if let searchController = navigationController?.containsViewController(ofKind: SearchItemViewController.self) {
             navigationController?.popToViewController(searchController, animated: false)
@@ -308,6 +364,18 @@ class ItemViewController: UIViewController {
     
     @IBAction func seasonallyAdjustClick(_ sender: Any) {
         seasonalAdjustment = seasonallyAdjustedSwitch.isOn ? .adjusted : .notAdjusted
+    }
+    
+    @IBAction func itemCodeBtnClick(_ sender: Any) {
+        
+        if case .code(let asc) = viewModel.dataSort {
+            viewModel.dataSort = .code(ascending: !asc)
+        }
+        else {
+            viewModel.dataSort = .code(ascending: true)
+        }
+        
+        reloadData()
     }
     
     @IBAction func localBtnClick(_ sender: Any) {
@@ -387,6 +455,7 @@ class ItemViewController: UIViewController {
     }
     
     func displaySort() {
+        var codeSortImage = #imageLiteral(resourceName: "noSort")
         var localSortImage = #imageLiteral(resourceName: "noSort")
         var nationalSortImage = #imageLiteral(resourceName: "noSort")
         var localOneMonthChangeSortImage = #imageLiteral(resourceName: "noSort")
@@ -394,6 +463,8 @@ class ItemViewController: UIViewController {
         var nationalTwelveMonthChangeSortImage = #imageLiteral(resourceName: "noSort")
         
         switch viewModel.dataSort {
+        case .code(let asc):
+            codeSortImage = (asc == true) ? #imageLiteral(resourceName: "ascSort") : #imageLiteral(resourceName: "descSort")
         case .local(let asc):
             localSortImage = (asc == true) ? #imageLiteral(resourceName: "ascSort") : #imageLiteral(resourceName: "descSort")
         case .national(let asc):
@@ -408,9 +479,13 @@ class ItemViewController: UIViewController {
             
         }
         
+        itemCodeButton.setImage(codeSortImage, for: .normal)
+        
         if viewModel is OccupationViewModel {
             occupationLocalTitleButton.setImage(localSortImage, for: .normal)
-            occupationNationalTitleButton.setImage(nationalSortImage, for: .normal)
+            if !viewModel.isNationalReport {
+                occupationNationalTitleButton.setImage(nationalSortImage, for: .normal)
+            }
         }
         else if viewModel is QCEWIndustryViewModel {
             qcewLocalTitleButton.setImage(localSortImage, for: .normal)
@@ -459,15 +534,10 @@ extension ItemViewController: UITableViewDataSource {
     
     func configureCell(cell: ItemTableViewCell, indexPath: IndexPath) {
         if let item = viewModel.items?[indexPath.row] {
-            let title = (item.title ?? "") + "(" + (item.code ?? "") + ")"
+            let title = (item.title ?? "") + "(" + (item.displayCode ?? "") + ")"
             cell.titleLabel?.text = title
 
-            if (item.children?.count ?? 0) > 0 {
-                cell.nextImageView.isHidden = false
-            }
-            else {
-                cell.nextImageView.isHidden = true
-            }
+            cell.hasChildren = (item.children?.count ?? 0) > 0
 
             guard viewModel.isDataDownloaded else {
                 cell.valueLabel.text = ""
@@ -494,12 +564,7 @@ extension ItemViewController: UITableViewDataSource {
         if let item = viewModel.items?[indexPath.row] {
             let title = (item.title ?? "") + "(" + (item.code ?? "") + ")"
             cell.titleLabel?.text = title
-            if (item.children?.count ?? 0) > 0 {
-                cell.nextImageView.isHidden = false
-            }
-            else {
-                cell.nextImageView.isHidden = true
-            }
+            cell.hasChildren = (item.children?.count ?? 0) > 0
 
             guard viewModel.isDataDownloaded else {
                 cell.valueLabel.text = ""
@@ -552,13 +617,8 @@ extension ItemViewController: UITableViewDataSource {
     func configureCell(cell: ItemQCEWTableViewCell, indexPath: IndexPath) {
         if let item = viewModel.items?[indexPath.row] {
             cell.titleLabel?.text = item.title
-            if (item.children?.count ?? 0) > 0 {
-                cell.nextImageView.isHidden = false
-            }
-            else {
-                cell.nextImageView.isHidden = true
-            }
-
+            cell.hasChildren = (item.children?.count ?? 0) > 0
+            
             guard viewModel.isDataDownloaded else {
                 cell.valueLabel.text = ""
                 cell.twelveMonthValueLabel.text = ""
@@ -664,6 +724,12 @@ extension ItemViewController {
             cesDataTypeTitleLabel.text = title
         }
         
+        
+        let seasonalAdjustedTitle = (seasonalAdjustment == .adjusted) ?
+                                    "Seasonally Adjusted" : " Not Seasonally Adjusted"
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement,
+                                 argument: "Loading \(seasonalAdjustedTitle) \(title) Reports")
+
         activityIndicator.startAnimating(disableUI: true)
         viewModel.loadReport(seasonalAdjustment: seasonalAdjustment) { [weak self] (reportError) in
             guard let strongSelf = self else {return}
@@ -673,6 +739,9 @@ extension ItemViewController {
                 strongSelf.handleError(error: error)
             }
             else {
+                let announcementStr = "Loaded  Report"
+                UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: announcementStr)
+
                 strongSelf.tableView.reloadData()
                 strongSelf.displayParentReport()
                 strongSelf.reportPeriodLabel.text = strongSelf.viewModel.getReportPeriod()

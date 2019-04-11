@@ -65,6 +65,8 @@ class UnEmploymentRateTableViewCell: UITableViewCell {
         
         areaLabel.scaleFont(forDataType: .reportAreaDataTitle, for:traitCollection)
         monthYearLabel.scaleFont(forDataType: .reportPeriodName, for:traitCollection)
+        seasonallyAdjustedLabel.scaleFont(forDataType: .seasonalAdjustmentValue, for:traitCollection)
+        
         dataTitleLabel.scaleFont(forDataType: .reportDataTitle, for: traitCollection)
         valueLabel.scaleFont(forDataType: .reportData, for: traitCollection)
         
@@ -80,7 +82,7 @@ class UnEmploymentRateTableViewCell: UITableViewCell {
     
     func setupAccessibility() {
         isAccessibilityElement = false
-        accessibilityElements = [areaLabel, monthYearLabel, valueView, percentPointTitle, oneMonthChangeView, twelveMonthChangeView]
+        accessibilityElements = [areaLabel as Any, monthYearLabel as Any, seasonallyAdjustedLabel as Any, valueView as Any, percentPointTitle as Any, oneMonthChangeView as Any, twelveMonthChangeView as Any]
     }
 }
 
@@ -141,11 +143,11 @@ extension UnEmploymentRateTableViewCell: ReportTableViewCell {
         var valueAccessibilityStr = "Unemployment Level,"
         if valueLabel.text == ReportManager.dataNotAvailableStr {
             valueAccessibilityStr += ReportManager.dataNotAvailableAccessibilityStr
-            accessibilityElements = [areaView, valueView, percentPointTitle, oneMonthChangeView, twelveMonthChangeView]
+            accessibilityElements = [areaView as Any, valueView as Any, percentPointTitle as Any, oneMonthChangeView as Any, twelveMonthChangeView as Any]
         }
         else {
             valueAccessibilityStr += valueLabel.text ?? ""
-            accessibilityElements = [areaView, monthYearLabel, valueView, percentPointTitle, oneMonthChangeView, twelveMonthChangeView]
+            accessibilityElements = [areaView as Any, monthYearLabel as Any, valueView as Any, percentPointTitle as Any, oneMonthChangeView as Any, twelveMonthChangeView as Any]
         }
         
         valueView.accessibilityLabel = valueAccessibilityStr

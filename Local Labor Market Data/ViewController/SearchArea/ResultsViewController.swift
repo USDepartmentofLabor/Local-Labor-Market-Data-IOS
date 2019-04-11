@@ -59,7 +59,8 @@ class ResultsViewController: UIViewController {
             title = resultArea.areaType + " Results"
         }
         
-        tableView.sectionIndexColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)  
+        tableView.sectionIndexColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
+        titleLabel.scaleFont(forDataType: .reportAreaTitle, for:traitCollection)
     }
     /*
     // MARK: - Navigation
@@ -88,7 +89,7 @@ extension ResultsViewController: UITableViewDataSource {
         let resultArea = resultAreas?[indexPath.row]
         cell.textLabel?.text = resultArea?.title
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
+        cell.textLabel?.scaleFont(forDataType: .areaNameList, for: traitCollection)
         cell.indentationLevel = 4
         cell.accessibilityLabel = resultArea?.accessibilityStr
         return cell
@@ -146,7 +147,7 @@ extension ResultsViewController: UITableViewDelegate {
         
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.textColor = .black
-        header.textLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        header.textLabel?.scaleFont(forDataType: .reportSectionTitle, for: traitCollection)
     }
 }
 

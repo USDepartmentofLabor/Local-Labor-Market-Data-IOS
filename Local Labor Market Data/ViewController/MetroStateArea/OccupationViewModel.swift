@@ -17,7 +17,7 @@ class OccupationViewModel: ItemViewModel {
         itemDataTypes = [ItemDataType(title: "Mean Annual Wage", reportType: ReportType.occupationEmployment(occupationalCode: OESReport.ALL_OCCUPATIONS_CODE, .annualMeanWage)),
         ItemDataType(title: "Employment Level", reportType: ReportType.occupationEmployment(occupationalCode: OESReport.ALL_OCCUPATIONS_CODE, .employment))]
         
-        dataTitle = "Occupation (Code)"
+        dataTitle = "Occupation"
         currentDataType = itemDataTypes[0]
     }
     
@@ -58,17 +58,17 @@ class OccupationViewModel: ItemViewModel {
                 if let doubleValue = Double(seriesData.value) {
                     reportValueStr = NumberFormatter.localizedString(from: NSNumber(value: doubleValue), number: NumberFormatter.Style.decimal)
                 }
-                else {
-                    reportValueStr = seriesData.value
-                }
+//                else {
+//                    reportValueStr = seriesData.value
+//                }
             }
             else if value == .annualMeanWage {
                 if let doubleValue = Double(seriesData.value) {
                     reportValueStr = NumberFormatter.localisedCurrencyStrWithoutFraction(from: NSNumber(value: doubleValue))
                 }
-                else {
-                    reportValueStr = seriesData.value
-                }
+//                else {
+//                    reportValueStr = seriesData.value
+//                }
             }
         }
         

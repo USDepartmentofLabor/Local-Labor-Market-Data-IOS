@@ -24,7 +24,7 @@ extension UITapGestureRecognizer {
         
         let mutableAttribString = NSMutableAttributedString(attributedString: attributedString)
         // Add font so the correct range is returned for multi-line labels
-        mutableAttribString.addAttributes([NSAttributedString.Key.font: label.font], range: NSRange(location: 0, length: attributedString.length))
+        mutableAttribString.addAttributes([NSAttributedString.Key.font: label.font as Any], range: NSRange(location: 0, length: attributedString.length))
         
         let textStorage = NSTextStorage(attributedString: mutableAttribString)
         

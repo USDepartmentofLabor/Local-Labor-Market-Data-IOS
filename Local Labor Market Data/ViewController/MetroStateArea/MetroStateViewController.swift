@@ -22,12 +22,8 @@ class MetroStateViewController: AreaViewController {
         static let OccupationEmploymentTitle = "Occupational Employment & Wages"
     }
 
-    var seasonalAdjustment: SeasonalAdjustment {
-        get {
-            return ReportManager.seasonalAdjustment
-        }
-        set(newValue) {
-            ReportManager.seasonalAdjustment = newValue
+    var seasonalAdjustment: SeasonalAdjustment = .notAdjusted {
+        didSet {
             localAreaReportsDict.removeAll()
             nationalAreaReportsDict.removeAll()
             tableView.reloadData()
@@ -98,8 +94,9 @@ class MetroStateViewController: AreaViewController {
         tableView.sectionFooterHeight = UITableView.automaticDimension
         tableView.estimatedSectionFooterHeight = 44
         setupAccessbility()
-
-        if  area is Metro {
+        
+        
+        if area is Metro {
             seasonalAdjustment = .notAdjusted
         }
         else {
@@ -257,6 +254,13 @@ class MetroStateViewController: AreaViewController {
                 destVC.title = "Occupations"
             }
         }
+        
+        if let splitVC = splitViewController {
+            let vc = segue.destination
+            vc.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem
+            vc.navigationItem.leftItemsSupplementBackButton = true
+        }
+
     }
 }
 
@@ -423,6 +427,18 @@ extension MetroStateViewController: UITableViewDelegate {
         }
         else {
             sectionHeaderView.infoButton.isHidden = true
+            let accessibilityHint: String
+            let accessibilityStr: String
+            if currentSection.title == Section.OccupationEmploymentTitle {
+                accessibilityHint = "Tap to View Occupation hierarchy"
+                accessibilityStr = "Occupation Hierarchy"
+            }
+            else {
+                accessibilityHint = "Tap to View Industry hierarchy"
+                accessibilityStr = "Industry Hierarchy"
+            }
+            sectionHeaderView.infoButton.accessibilityHint = accessibilityHint
+            sectionHeaderView.infoButton.accessibilityLabel = accessibilityStr
         }
         
         sectionHeaderView.delegate = self
@@ -431,6 +447,7 @@ extension MetroStateViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return nil
+/*      // Will be used for History Footer
         let currentSection = sections[section]
 
         guard currentSection.collapsed == false else { return nil }
@@ -445,16 +462,18 @@ extension MetroStateViewController: UITableViewDelegate {
         sectionFooterView.section = section
         sectionFooterView.delegate = self
         return sectionFooterView
-
+ */
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
+/*      // Will be used for Histroy Footer
         let currentSection = sections[section]
         
         guard currentSection.collapsed == false else { return 0 }
         
         return 44
+ */
     }
 }
 

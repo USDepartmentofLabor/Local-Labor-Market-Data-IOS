@@ -9,8 +9,6 @@
 import UIKit
 
 class ItemQCEWTableViewCell: UITableViewCell {
-
-    
     @IBOutlet weak var dataView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
@@ -23,6 +21,19 @@ class ItemQCEWTableViewCell: UITableViewCell {
     @IBOutlet weak var nationalTwelveMonthValueLabel: UILabel!
     @IBOutlet weak var nationalTwelveMonthPercentLabel: UILabel!
     @IBOutlet weak var nextImageView: UIImageView!
+
+    var hasChildren: Bool = false {
+        didSet {
+            if hasChildren {
+                nextImageView.isHidden = false
+                accessibilityTraits = UIAccessibilityTraits.button
+            }
+            else {
+                nextImageView.isHidden = true
+                accessibilityTraits = UIAccessibilityTraits.none
+            }
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,7 +48,14 @@ class ItemQCEWTableViewCell: UITableViewCell {
 
         titleLabel.scaleFont(forDataType: .itemTitle)
         valueLabel.scaleFont(forDataType: .itemValue)
+        twelveMonthValueLabel.scaleFont(forDataType: .itemChangeValue)
+        twelveMonthPercentLabel.scaleFont(forDataType: .itemChangeValue)
+        
         nationalValueLabel.scaleFont(forDataType: .itemValue)
+        nationalTwelveMonthValueLabel.scaleFont(forDataType: .itemChangeValue)
+        nationalTwelveMonthPercentLabel.scaleFont(forDataType: .itemChangeValue)
+        
+        setupAccessibility()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -46,4 +64,8 @@ class ItemQCEWTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func setupAccessibility() {
+        isAccessibilityElement = false
+        accessibilityElements = [titleLabel as Any, valueLabel as Any, twelveMonthValueLabel as Any, twelveMonthPercentLabel as Any, nationalValueLabel as Any, nationalTwelveMonthValueLabel as Any, nationalTwelveMonthPercentLabel as Any]
+    }
 }

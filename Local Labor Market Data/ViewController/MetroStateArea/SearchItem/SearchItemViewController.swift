@@ -15,15 +15,27 @@ class SearchItemViewController: UIViewController {
 
     var viewModel: SearchItemViewModel!
     
+    @IBOutlet weak var noResultsView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
     }
     
+    
     func setupView() {
-        title = "Search"
+        let itemType = type(of: viewModel.itemViewModel.parentItem)
         
+        let subTitle: String
+        if itemType == OE_Occupation.self {
+            subTitle = "Occupations"
+        }
+        else {
+            subTitle = "Industries"
+        }
+        
+        title = "Search \(subTitle)"
+
         setupSearch()
         extendedLayoutIncludesOpaqueBars = true
     }
@@ -35,11 +47,24 @@ class SearchItemViewController: UIViewController {
         searchController.searchBar.autocapitalizationType = .none
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.searchBarStyle = .default
+        searchController.delegate = self
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
-        definesPresentationContext = true
+        let searchPlaceholderStr: String
+        let itemType = type(of: viewModel.itemViewModel.parentItem)
+        if itemType == OE_Occupation.self {
+            searchPlaceholderStr = "Type occupation"
+        }
+        else {
+            searchPlaceholderStr = "Type Industries"
+        }
+        
+        searchController.searchBar.placeholder = searchPlaceholderStr
+        
+        navigationController?.definesPresentationContext = true
         searchController.searchBar.tintColor = .white
+        searchController.searchBar.delegate = self
         if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
             textfield.textColor = UIColor(hex: 0x979797)
             textfield.tintColor = UIColor(hex: 0x979797)
@@ -74,13 +99,29 @@ extension SearchItemViewController: UISearchResultsUpdating {
         if searchText.count > 2 {
             let itemType = type(of: viewModel.itemViewModel.parentItem) 
             viewModel.searchResults = itemType.searchItem(context: CoreDataManager.shared().viewManagedContext, searchStr: searchText)
+            
+            noResultsView.isHidden = viewModel.hasSearchResults
+        }
+        else {
+            noResultsView.isHidden = true
         }
         
         tableView.reloadData()
     }
-    
 }
 
+extension SearchItemViewController: UISearchControllerDelegate {
+    func didPresentSearchController(_ searchController: UISearchController) {
+//        searchController.searchBar.showsCancelButton = false
+    }
+}
+
+extension SearchItemViewController: UISearchBarDelegate {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        let announcementStr = "Found \(viewModel.searchResults?.count ?? 0) results"
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: announcementStr)
+    }
+}
 
 extension SearchItemViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -99,6 +140,43 @@ extension SearchItemViewController: UITableViewDataSource {
         
         return cell
     }
+}
+
+extension SearchItemViewController: UITableViewDelegate {
+//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//        searchController.searchBar.resignFirstResponder()
+//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(actionKeyboardDidShow(with:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(actionKeyboardWillHide(with:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        searchController.searchBar.resignFirstResponder()
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func actionKeyboardDidShow(with notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: AnyObject],
+            let keyboardFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+            else { return }
+        
+        var contentInset = self.tableView.contentInset
+        contentInset.bottom += keyboardFrame.height
+        
+        self.tableView.contentInset = contentInset
+        self.tableView.scrollIndicatorInsets = contentInset
+    }
+    
+    @objc private func actionKeyboardWillHide(with notification: Notification) {
+        let contentInset = UIEdgeInsets.zero
+        self.tableView.contentInset = contentInset
+        self.tableView.scrollIndicatorInsets = contentInset
+    }
+
 }
 
 

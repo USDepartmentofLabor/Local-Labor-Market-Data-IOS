@@ -120,7 +120,7 @@ class ReportManager {
     static let dataNotAvailableStr = "N/A"
     static let dataNotDisclosable = "ND"
     static let dataNotAvailableAccessibilityStr = "Data Not Available"
-    static var seasonalAdjustment: SeasonalAdjustment = .notAdjusted
+//    static var seasonalAdjustment: SeasonalAdjustment = .notAdjusted
 
     class func getReports(forArea area: Area, reportTypes: [ReportType],
                           seasonalAdjustment: SeasonalAdjustment = .notAdjusted,
@@ -276,7 +276,20 @@ extension ReportType: Hashable, Equatable {
         }
     }
     
-    public static func ==(lhs: ReportType, rhs: ReportType) -> Bool {
-        return lhs.hashValue == rhs.hashValue
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .unemployment(let measureCode):
+            hasher.combine("unemploymennt \(measureCode)")
+        case .industryEmployment(let industryCode, let dataType):
+            hasher.combine("industryEmployment \(industryCode) \(dataType)")
+        case .occupationEmployment(let occupationalCode, let dataType):
+            hasher.combine("occupationEmployment \(occupationalCode) \(dataType)")
+        case .quarterlyEmploymentWage(let ownershipCode, let industryCode, let establishmentSize, let dataType):
+            hasher.combine("quarterlyEmploymentWage \(ownershipCode) \(industryCode), \(establishmentSize) \(dataType)")
+        }
     }
+    
+//    public static func ==(lhs: ReportType, rhs: ReportType) -> Bool {
+//        return lhs.hashValue == rhs.hashValue
+//    }
 }

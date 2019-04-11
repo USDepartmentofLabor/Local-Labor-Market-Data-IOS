@@ -74,7 +74,7 @@ class OwnershipDataTableViewCell: UITableViewCell {
     func setupAccessibility() {
         isAccessibilityElement = false
         wageTitleLabel.accessibilityLabel = "Average Weekly Wage"
-        accessibilityElements = [areaLabel, qtrYearLabel, employmentView, wageView]
+        accessibilityElements = [areaLabel as Any, qtrYearLabel as Any, seasonalAdjustmentLabel as Any, employmentView as Any, wageView as Any]
     }
 }
     

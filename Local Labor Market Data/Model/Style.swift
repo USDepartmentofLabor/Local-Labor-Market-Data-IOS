@@ -20,6 +20,7 @@ struct Style {
         case reportSectionTitle
         case reportPeriodName
         case reportAreaDataTitle
+        case seasonalAdjustmentValue
         case reportDataTitle
         case reportData
         case reportSubData
@@ -31,11 +32,13 @@ struct Style {
         case itemDataType
         case itemColumnTitle
         case itemSubColumnTitle
+        case itemAnscestorsList
         case itemParentTitle
         case itemParentValue
         case itemTitle
         case itemValue
         case itemChangeValue
+        case searchAreaSegment
     }
     
     fileprivate static let styleMap: [DataType: (String?, CGFloat, UIFont.Weight, UIFont.TextStyle?, CGFloat?)] =
@@ -46,6 +49,7 @@ struct Style {
         .seasonallyAdjustedSwitch: (nil, 12, .medium, .caption1, nil),
         .reportSubAreaTitle: (nil, 17, .regular, .body, nil),
         .reportPeriodName: (nil, 12, .bold, .caption1, nil),
+        .seasonalAdjustmentValue: (nil, 12, .regular, .caption1, nil),
         .reportAreaDataTitle: (nil, 14, .medium, .subheadline, nil),
         .reportDataTitle: (nil, 16, .regular, nil, nil),
         .reportData: (nil, 30, .medium, nil, 64),
@@ -57,12 +61,14 @@ struct Style {
         .itemPeriodName: (nil, 16, .medium, .title1, nil),
         .itemDataType: (nil, 15, .medium, .subheadline, nil),
         .itemColumnTitle: (nil, 15, .medium, .subheadline, nil),
-        .itemSubColumnTitle: (nil, 13, .regular, .subheadline, nil),
+        .itemSubColumnTitle: (nil, 12, .regular, .subheadline, nil),
+        .itemAnscestorsList: (nil, 13, .regular, .body, nil),
         .itemParentTitle: (nil, 15, .medium, .body, nil),
         .itemParentValue: (nil, 14, .regular, .body, nil),
         .itemTitle: (nil, 15, .regular, .body, nil),
         .itemValue: (nil, 14, .regular, .body, nil),
-        .itemChangeValue: (nil, 15, .medium, .subheadline, nil)]
+        .itemChangeValue: (nil, 12, .regular, .subheadline, nil),
+        .searchAreaSegment: (nil, 15, .medium, .subheadline, nil)]
     
     static func scaledFont(forDataType type: DataType, for traitCollection: UITraitCollection? = nil) -> UIFont {
         let (fontName, fontSize, fontWeight, textStyle, maximumPointSize) = styleMap[type]!

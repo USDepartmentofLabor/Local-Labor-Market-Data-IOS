@@ -14,10 +14,22 @@ class ItemTableViewCell: UITableViewCell {
     @IBOutlet weak var dataView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
-    
     @IBOutlet weak var nationalValueLabel: UILabel!
     
     @IBOutlet weak var nextImageView: UIImageView!
+    
+    var hasChildren: Bool = false {
+        didSet {
+            if hasChildren {
+                nextImageView.isHidden = false
+                accessibilityTraits = UIAccessibilityTraits.button
+            }
+            else {
+                nextImageView.isHidden = true
+                accessibilityTraits = UIAccessibilityTraits.none
+            }
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
@@ -30,10 +42,16 @@ class ItemTableViewCell: UITableViewCell {
         titleLabel.scaleFont(forDataType: .itemTitle)
         valueLabel.scaleFont(forDataType: .itemValue)
         nationalValueLabel.scaleFont(forDataType: .itemValue)
+        
+        setupAccessibility()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 
+    func setupAccessibility() {
+        isAccessibilityElement = false
+        accessibilityElements = [titleLabel as Any, valueLabel as Any, nationalValueLabel as Any]
+    }
 }

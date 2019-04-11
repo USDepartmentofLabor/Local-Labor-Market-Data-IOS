@@ -23,6 +23,14 @@ class DataTypeViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let height = tableView.contentSize.height
+        let size =  CGSize(width: super.preferredContentSize.width, height: height)
+        preferredContentSize = size
+    }
 }
 
 extension DataTypeViewController: UITableViewDataSource {

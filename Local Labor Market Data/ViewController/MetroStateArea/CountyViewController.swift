@@ -181,11 +181,11 @@ class CountyViewController: AreaViewController {
         else if segue.identifier == "showIndustries" {
             if let destVC = segue.destination as? ItemViewController,
                 let reportType = sender as? ReportType {
-                var latestYear: String = ""
-                let localAreaReport = localAreaReportsDict[reportType]
-                if let latestData = localAreaReport?.seriesReport?.latestData() {
-                    latestYear = latestData.year
-                }
+//                var latestYear: String = ""
+//                let localAreaReport = localAreaReportsDict[reportType]
+//                if let latestData = localAreaReport?.seriesReport?.latestData() {
+//                    latestYear = latestData.year
+//                }
                 var ownershipCode = QCEWReport.OwnershipCode.privateOwnership
                 if case .quarterlyEmploymentWage(let ownership, _, _, _) = reportType {
                     ownershipCode = ownership
@@ -393,6 +393,7 @@ extension CountyViewController: UITableViewDataSource {
                 let ownershipCell = tableView.dequeueReusableCell(withIdentifier: OwnershipTableViewCell.reuseIdentifier, for:indexPath) as? OwnershipTableViewCell
                 let sectionReportTypes = reportSection.allReportTypes()
                 ownershipCell?.area = area
+                ownershipCell?.seasonalAdjustment = seasonalAdjustment
                 ownershipCell!.localAreaReportsDict = localAreaReportsDict.filter {sectionReportTypes?.contains($0.key) ?? false}
                 ownershipCell!.nationalAreaReportsDict = nationalAreaReportsDict.filter {sectionReportTypes?.contains($0.key) ?? false}
                 ownershipCell!.reportSections = reportSection.children
@@ -529,6 +530,7 @@ extension CountyViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return nil
+/*      // Will be used for History Footer
         let currentSection = reportSections[section]
         
         guard currentSection.collapsed == false else { return nil }
@@ -542,15 +544,18 @@ extension CountyViewController: UITableViewDelegate {
         sectionFooterView.section = section
         sectionFooterView.delegate = self
         return sectionFooterView
+ */
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
+/*      // Will be used for History in Footer
         let currentSection = reportSections[section]
         
         guard currentSection.collapsed == false else { return 0 }
         
         return 44
+*/
     }
 }
 

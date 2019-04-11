@@ -34,8 +34,8 @@ class HistoryViewModel {
             seriesIds.append(nationalSeriesId)
         }
         ReportManager.getHistory(seriesIds: seriesIds,
-                                 monthsHistory: HistoryViewModel.HISTORY_MONTHS) {
-                                    [weak self] (apiResult) in
+                                 monthsHistory: HistoryViewModel.HISTORY_MONTHS) {(apiResult) in
+/*                                    [weak self]
 
             guard let strongSelf = self else {return}
 
@@ -46,6 +46,6 @@ class HistoryViewModel {
             case .failure(let error):
                 print(error)
             }
-        }
+*/        }
     }
 }

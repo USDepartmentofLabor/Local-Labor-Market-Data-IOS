@@ -35,7 +35,8 @@ class OwnershipTableViewCell: UITableViewCell {
     var area: Area?
     var localAreaReportsDict: [ReportType: AreaReport]?
     var nationalAreaReportsDict: [ReportType: AreaReport]?
-    let seasonalAdjustment: SeasonalAdjustment = ReportManager.seasonalAdjustment
+    
+    var seasonalAdjustment: SeasonalAdjustment = .notAdjusted
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -62,7 +63,7 @@ class OwnershipTableViewCell: UITableViewCell {
     func setupAccessibility() {
         tableView.isAccessibilityElement = false
         isAccessibilityElement = false
-        accessibilityElements = [tableView]
+        accessibilityElements = [tableView!]
     }
     
     func contentHeight() -> CGFloat {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,14 +43,14 @@
                                             <constraint firstItem="OZM-60-XvS" firstAttribute="centerX" secondItem="TX1-Ih-dUe" secondAttribute="centerX" id="npB-hF-ed6"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="July 2018" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYs-ug-fsN" userLabel="quarterYearLabel">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="July 2018" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYs-ug-fsN" userLabel="quarterYearLabel">
                                         <rect key="frame" x="235" y="5" width="59" height="14.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksL-j8-6pC" userLabel="seasonalAdjustmentLabel">
-                                        <rect key="frame" x="265.5" y="21.5" width="28.5" height="13.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksL-j8-6pC" userLabel="seasonalAdjustmentLabel">
+                                        <rect key="frame" x="140.5" y="21.5" width="153.5" height="13.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -129,17 +129,19 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="RYs-ug-fsN" firstAttribute="trailing" secondItem="ksL-j8-6pC" secondAttribute="trailing" id="9cA-Hg-qtm"/>
+                                    <constraint firstItem="D4K-tm-Rvw" firstAttribute="top" secondItem="ksL-j8-6pC" secondAttribute="bottom" constant="9.5" id="J3Z-qK-FrF"/>
                                     <constraint firstAttribute="trailing" secondItem="D4K-tm-Rvw" secondAttribute="trailing" constant="5" id="Lec-aa-tos"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="RYs-ug-fsN" secondAttribute="trailing" constant="5" id="Mrl-SU-qQR"/>
                                     <constraint firstAttribute="bottom" secondItem="D4K-tm-Rvw" secondAttribute="bottom" constant="5" id="R7R-TA-xqh"/>
-                                    <constraint firstItem="D4K-tm-Rvw" firstAttribute="top" secondItem="TX1-Ih-dUe" secondAttribute="bottom" constant="12" id="XCF-rJ-8Xs"/>
-                                    <constraint firstItem="RYs-ug-fsN" firstAttribute="width" relation="lessThanOrEqual" secondItem="jZh-L0-fpR" secondAttribute="width" id="XIc-i2-TrG"/>
+                                    <constraint firstItem="D4K-tm-Rvw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="TX1-Ih-dUe" secondAttribute="bottom" constant="12" id="XCF-rJ-8Xs"/>
+                                    <constraint firstItem="RYs-ug-fsN" firstAttribute="width" relation="lessThanOrEqual" secondItem="jZh-L0-fpR" secondAttribute="width" multiplier="0.5" id="XIc-i2-TrG"/>
                                     <constraint firstItem="D4K-tm-Rvw" firstAttribute="leading" secondItem="jZh-L0-fpR" secondAttribute="leading" constant="5" id="bqr-Pc-cJq"/>
                                     <constraint firstItem="TX1-Ih-dUe" firstAttribute="width" relation="lessThanOrEqual" secondItem="jZh-L0-fpR" secondAttribute="width" multiplier="0.5" id="eFS-id-WId"/>
                                     <constraint firstItem="TX1-Ih-dUe" firstAttribute="top" secondItem="jZh-L0-fpR" secondAttribute="top" constant="5" id="jMx-cD-GjR"/>
                                     <constraint firstItem="ksL-j8-6pC" firstAttribute="top" secondItem="RYs-ug-fsN" secondAttribute="bottom" constant="2" id="nQL-6q-TIz"/>
                                     <constraint firstItem="TX1-Ih-dUe" firstAttribute="leading" secondItem="jZh-L0-fpR" secondAttribute="leading" constant="5" id="u8q-43-wOr"/>
                                     <constraint firstItem="RYs-ug-fsN" firstAttribute="top" secondItem="TX1-Ih-dUe" secondAttribute="top" id="xHY-rt-6UG"/>
+                                    <constraint firstItem="ksL-j8-6pC" firstAttribute="width" secondItem="jZh-L0-fpR" secondAttribute="width" multiplier="0.5" id="yc5-Oh-gCJ"/>
                                 </constraints>
                             </view>
                         </subviews>

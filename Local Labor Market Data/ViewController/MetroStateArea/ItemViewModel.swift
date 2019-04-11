@@ -22,6 +22,7 @@ class ItemDataType {
 
 enum DataSort {
     case none
+    case code(ascending: Bool)
     case local(ascending: Bool)
     case national(ascending: Bool)
     case localOneMonthChange(ascending: Bool)
@@ -36,8 +37,8 @@ class ItemViewModel: NSObject {
     var itemDataTypes: [ItemDataType] = [ItemDataType(title: "Employment Level", reportType: ReportType.industryEmployment(industryCode: "00000000", CESReport.DataTypeCode.allEmployees))]
     
     var currentDataType: ItemDataType
-    var dataTitle = "Industry (Code)"
-    var dataSort = DataSort.none
+    var dataTitle = "Industry"
+    var dataSort = DataSort.code(ascending: true)
     var annualAverage = false
     
     var isNationalReport: Bool {
@@ -53,69 +54,6 @@ class ItemViewModel: NSObject {
     }
     
     var _items: [Item]?
-    var items: [Item]? {
-        get {
-            switch dataSort {
-            case .none:
-                return _items
-            case .local(let ascending):
-                return _items?.sorted {
-                    let firstValueStr = getReportData(item: $0)?.value ?? ""
-                    let secondValueStr = getReportData(item: $1)?.value ?? ""
-                    let firstValue = Double(firstValueStr) ?? 0
-                    let secondValue = Double(secondValueStr) ?? 0
-                    if ascending {
-                        return firstValue < secondValue
-                    }
-                    return firstValue > secondValue
-                }
-            case .national(let ascending):
-                return _items?.sorted {
-                    let firstValueStr = getNationalReportData(item: $0)?.value ?? ""
-                    let secondValueStr = getNationalReportData(item: $1)?.value ?? ""
-                    let firstValue = Double(firstValueStr) ?? 0
-                    let secondValue = Double(secondValueStr) ?? 0
-                    if ascending {
-                        return firstValue < secondValue
-                    }
-                    return firstValue > secondValue
-                }
-            case .localOneMonthChange(let ascending):
-                return _items?.sorted {
-                    let firstValueStr = getReportData(item: $0)?.calculations?.percentChanges?.oneMonth ?? ""
-                    let secondValueStr = getReportData(item: $1)?.calculations?.percentChanges?.oneMonth ?? ""
-                    let firstValue = Double(firstValueStr) ?? 0
-                    let secondValue = Double(secondValueStr) ?? 0
-                    if ascending {
-                        return firstValue < secondValue
-                    }
-                    return firstValue > secondValue
-                }
-            case .localTwelveMonthChange(let ascending):
-                return _items?.sorted {
-                    let firstValueStr = getReportData(item: $0)?.calculations?.percentChanges?.twelveMonth ?? ""
-                    let secondValueStr = getReportData(item: $1)?.calculations?.percentChanges?.twelveMonth ?? ""
-                    let firstValue = Double(firstValueStr) ?? 0
-                    let secondValue = Double(secondValueStr) ?? 0
-                    if ascending {
-                        return firstValue < secondValue
-                    }
-                    return firstValue > secondValue
-                }
-            case .nationalTwelveMonthChange(let ascending):
-                return _items?.sorted {
-                    let firstValueStr = getNationalReportData(item: $0)?.calculations?.percentChanges?.twelveMonth ?? ""
-                    let secondValueStr = getNationalReportData(item: $1)?.calculations?.percentChanges?.twelveMonth ?? ""
-                    let firstValue = Double(firstValueStr) ?? 0
-                    let secondValue = Double(secondValueStr) ?? 0
-                    if ascending {
-                        return firstValue < secondValue
-                    }
-                    return firstValue > secondValue
-                }
-            }
-        }
-    }
     private var _displayLeaf: Bool
     
     var displayLeaf: Bool {
@@ -350,4 +288,64 @@ extension ItemViewModel {
         }
     }
     
+}
+
+extension ItemViewModel {
+    var items: [Item]? {
+        get {
+            switch dataSort {
+            case .none:
+                return _items
+            case .code(let ascending):
+                return _items?.sorted {
+                    return compareValues(firstValueStr: $0.code, secondValueStr: $1.code, ascending: ascending)
+                }
+            case .local(let ascending):
+                return _items?.sorted {
+                    return compareValues(firstValueStr: getReportData(item: $0)?.value,
+                                         secondValueStr: getReportData(item: $1)?.value,
+                                         ascending: ascending)
+                }
+            case .national(let ascending):
+                return _items?.sorted {
+                    return compareValues(firstValueStr: getNationalReportData(item: $0)?.value,
+                                         secondValueStr: getNationalReportData(item: $1)?.value,
+                                         ascending: ascending)
+                }
+            case .localOneMonthChange(let ascending):
+                return _items?.sorted {
+                    return compareValues(firstValueStr: getReportData(item: $0)?.calculations?.percentChanges?.oneMonth,
+                    secondValueStr: getReportData(item: $1)?.calculations?.percentChanges?.oneMonth,
+                    ascending: ascending)
+                }
+            case .localTwelveMonthChange(let ascending):
+                return _items?.sorted {
+                    return compareValues(firstValueStr: getReportData(item: $0)?.calculations?.percentChanges?.twelveMonth,
+                            secondValueStr: getReportData(item: $1)?.calculations?.percentChanges?.twelveMonth,
+                            ascending: ascending)
+                }
+            case .nationalTwelveMonthChange(let ascending):
+                return _items?.sorted {
+                    return compareValues(firstValueStr: getNationalReportData(item: $0)?.calculations?.percentChanges?.twelveMonth,
+                                         secondValueStr: getNationalReportData(item: $1)?.calculations?.percentChanges?.twelveMonth, ascending: ascending)
+                }
+            }
+        }
+    }
+    
+    fileprivate func compareValues(firstValueStr: String?,
+                                   secondValueStr: String?,
+                                   ascending: Bool) -> Bool {
+        
+        guard let firstValueStr = firstValueStr else {return false}
+        guard let secondValueStr = secondValueStr else {return true}
+        
+        let firstValue = Double(firstValueStr) ?? 0
+        let secondValue = Double(secondValueStr) ?? 0
+        
+        if ascending {
+            return firstValue < secondValue
+        }
+        return firstValue > secondValue
+    }
 }

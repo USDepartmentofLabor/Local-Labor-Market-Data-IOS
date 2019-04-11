@@ -44,7 +44,7 @@ class AreaViewController: UIViewController {
         
         if splitViewController?.isCollapsed ?? true {
             let homeItem = UIBarButtonItem(title: "Home", style: .plain,
-                                       target: self, action: #selector(searchClicked(sender:)))
+                                       target: self, action: #selector(homeClicked(sender:)))
             navigationItem.leftBarButtonItem = homeItem
         }
         
@@ -60,9 +60,9 @@ class AreaViewController: UIViewController {
         areaTitleLabel.accessibilityLabel = area.accessibilityStr
     }
 
-    @objc func searchClicked(sender: Any) {
+    @objc func homeClicked(sender: Any) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        appDelegate.displaySearch()
+        appDelegate.displayHome()
     }
     
     @objc func infoClicked(sender: Any) {

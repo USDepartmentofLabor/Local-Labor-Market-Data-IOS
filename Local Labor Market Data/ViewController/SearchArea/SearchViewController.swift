@@ -150,6 +150,8 @@ class SearchViewController: UIViewController {
     
     func setupAccessibility() {
         tableView.isAccessibilityElement = false
+        let font = Style.scaledFont(forDataType: .searchAreaSegment, for: traitCollection)
+        areaSegment.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
     }
     
     func checkCurrentLocation() {
@@ -168,9 +170,9 @@ class SearchViewController: UIViewController {
             let navVC = segue.destination as? UINavigationController,
                 let detailVC = navVC.topViewController {
             detailVC.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem
-            if detailVC is AboutViewController {
+//            if detailVC is AboutViewController {
                 detailVC.navigationItem.leftItemsSupplementBackButton = true
-            }
+//            }
         }
     }
 }

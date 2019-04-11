@@ -18,4 +18,8 @@ class SearchItemViewModel {
     init(itemViewModel: ItemViewModel) {
         self.itemViewModel = itemViewModel
     }
+    
+    var hasSearchResults: Bool {
+        return (searchResults?.count ?? 0) > 0
+    }
 }

@@ -64,6 +64,7 @@ class IndustryEmploymentTableViewCell: UITableViewCell {
         
         areaLabel.scaleFont(forDataType: .reportAreaDataTitle, for:traitCollection)
         monthYearLabel.scaleFont(forDataType: .reportPeriodName, for:traitCollection)
+        seasonalAdjustmentLabel.scaleFont(forDataType: .seasonalAdjustmentValue, for:traitCollection)
         dataTitleLabel.scaleFont(forDataType: .reportDataTitle, for: traitCollection)
         valueLabel.scaleFont(forDataType: .reportData, for: traitCollection)
         
@@ -80,7 +81,7 @@ class IndustryEmploymentTableViewCell: UITableViewCell {
     
     func setupAccessibility() {
         isAccessibilityElement = false
-        accessibilityElements = [areaLabel, monthYearLabel, dataTitleLabel, valueLabel, oneMonthChangeTitleLabel, oneMonthNetChangeLabel, oneMonthRateChangeLabel, twelveMonthChangeTitleLabel, twelveMonthNetChangeLabel, twelveMonthRateChangeLabel]
+        accessibilityElements = [areaLabel as Any, monthYearLabel as Any, seasonalAdjustmentLabel as Any, dataTitleLabel as Any, valueLabel as Any, oneMonthChangeTitleLabel as Any, oneMonthNetChangeLabel as Any, oneMonthRateChangeLabel as Any, twelveMonthChangeTitleLabel as Any, twelveMonthNetChangeLabel as Any, twelveMonthRateChangeLabel as Any]
     }
 }
 
@@ -166,11 +167,11 @@ extension IndustryEmploymentTableViewCell: ReportTableViewCell {
         
         if valueLabel.text == ReportManager.dataNotAvailableStr {
             valueAccessibilityStr += ReportManager.dataNotAvailableAccessibilityStr
-            accessibilityElements = [areaView, valueView, oneMonthChangeView, twelveMonthChangeView]
+            accessibilityElements = [areaView as Any, valueView as Any, oneMonthChangeView as Any, twelveMonthChangeView as Any]
         }
         else {
             valueAccessibilityStr += valueLabel.text ?? ""
-            accessibilityElements = [areaView, monthYearLabel, valueView, oneMonthChangeView, twelveMonthChangeView]
+            accessibilityElements = [areaView as Any, monthYearLabel as Any, valueView as Any, oneMonthChangeView as Any, twelveMonthChangeView as Any]
         }
         var oneMonthChangeStr = "One month change,"
         if oneMonthNetChangeLabel.text == ReportManager.dataNotAvailableStr {

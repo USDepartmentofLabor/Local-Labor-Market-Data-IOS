@@ -69,6 +69,15 @@ public class Item: NSManagedObject {
         return results.sorted()
     }
     
+    var displayCode: String? {
+        guard var displayCode = code else { return nil }
+        
+        if displayCode.count > 2 {
+            displayCode.insert("-", at: displayCode.index(displayCode.startIndex, offsetBy: 2))
+        }
+        return displayCode
+    }
+    
     var isLeaf: Bool {
         var isLeaf = true
         if let children = children, children.count > 0 {
@@ -115,8 +124,16 @@ extension Item {
     class func searchItem<T: Item>(context: NSManagedObjectContext, searchStr: String) -> [T]? {
         let results: [T]?
         
+        let searchStrArray = searchStr.split(separator: " ")
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = self.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "title CONTAINS[c] %@", searchStr)
+        var predicateList = [NSPredicate]()
+        
+        searchStrArray.forEach { (subStr) in
+            let predicate = NSPredicate(format: "title CONTAINS[c] %@", String(subStr))
+            predicateList.append(predicate)
+        }
+        
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicateList)
         fetchRequest.entity = self.entity()
         do {
             results = try context.fetch(fetchRequest) as? [T]

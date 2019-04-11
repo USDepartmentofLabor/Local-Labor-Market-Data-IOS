@@ -51,19 +51,19 @@ class Local_Labor_Market_DataTests: XCTestCase {
     
     func testSearchMetroForZipCode() {
         let context = CoreDataManager.shared().viewManagedContext
-        let results = DataUtil(managedContext: context).searchMetroAreas(forZipCode: "34135")
+        let results = DataUtil(managedContext: context).searchArea(forArea: .metro, forZipCode: "34135")
         assert(results?.count == 2)
         assert(results?[0].title == "Cape Coral-Fort Myers, FL")
     }
     func testSearchStateZipCode() {
         let context = CoreDataManager.shared().viewManagedContext
-        let results = DataUtil(managedContext: context).searchState(forZipCode: "34135")
+        let results = DataUtil(managedContext: context).searchArea(forArea: .state, forZipCode: "34135")
         assert(results?.count == 1)
         assert(results?[0].title == "Florida")
     }
     func testSearchCountyForZipCode() {
         let context = CoreDataManager.shared().viewManagedContext
-        let results = DataUtil(managedContext: context).searchCounties(forZipCode: "34135")
+        let results = DataUtil(managedContext: context).searchArea(forArea: .county, forZipCode: "34135")
         assert(results?.count == 2)
         assert(results?[0].title == "Collier County, FL")
     }

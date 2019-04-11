@@ -70,6 +70,8 @@ class EmploymentWageTableViewCell: UITableViewCell {
         
         areaLabel.scaleFont(forDataType: .reportAreaDataTitle, for:traitCollection)
         qtrYearLabel.scaleFont(forDataType: .reportPeriodName, for:traitCollection)
+        seasonalAdjustmentLabel.scaleFont(forDataType: .seasonalAdjustmentValue, for:traitCollection)
+    
         
         employmentTitleLabel.scaleFont(forDataType: .reportDataTitle, for: traitCollection)
         employmentValueLabel.scaleFont(forDataType: .reportSubData, for: traitCollection)
@@ -92,12 +94,12 @@ class EmploymentWageTableViewCell: UITableViewCell {
         isAccessibilityElement = false
         employmentView.isAccessibilityElement = false
         employmentView.shouldGroupAccessibilityChildren = true
-        employmentView.accessibilityElements = [employmentTitleLabel, employmentValueLabel, employmentChangeTitleLabel, employmentLevelNetChangeLabel, employmentLevelRateChangeLabel]
+        employmentView.accessibilityElements = [employmentTitleLabel as Any, employmentValueLabel as Any, employmentChangeTitleLabel as Any, employmentLevelNetChangeLabel as Any, employmentLevelRateChangeLabel as Any]
         wageView.isAccessibilityElement = false
         wageView.shouldGroupAccessibilityChildren = true
         wageTitleLabel.accessibilityLabel = "Average Weekly Wage"
-        wageView.accessibilityElements = [wageTitleLabel, wageValueLabel, wageChangeTitleLabel, wageChangeLabel, wageRateChangeLabel]
-        accessibilityElements = [areaLabel, qtrYearLabel, employmentView, wageView]
+        wageView.accessibilityElements = [wageTitleLabel as Any, wageValueLabel as Any, wageChangeTitleLabel as Any, wageChangeLabel as Any, wageRateChangeLabel as Any]
+        accessibilityElements = [areaLabel as Any, qtrYearLabel as Any, seasonalAdjustmentLabel as Any, employmentView as Any, wageView as Any]
     }
 }
 
@@ -182,27 +184,27 @@ extension EmploymentWageTableViewCell {
     func applyEmploymentAccessibility() {
         
         if employmentValueLabel.text != ReportManager.dataNotAvailableStr {
-           accessibilityElements = [areaLabel, qtrYearLabel, employmentView, wageView]
+           accessibilityElements = [areaLabel as Any, qtrYearLabel as Any, seasonalAdjustmentLabel as Any, employmentView as Any, wageView as Any]
         }
         else {
-            accessibilityElements = [areaLabel, employmentView, wageView]
+            accessibilityElements = [areaLabel as Any, employmentView as Any, wageView as Any]
         }
         
         
         if employmentLevelNetChangeLabel.text != ReportManager.dataNotAvailableStr {
-            employmentView.accessibilityElements = [employmentTitleLabel, employmentValueLabel, employmentChangeTitleLabel, employmentLevelNetChangeLabel, employmentLevelRateChangeLabel]
+            employmentView.accessibilityElements = [employmentTitleLabel as Any, employmentValueLabel as Any, employmentChangeTitleLabel as Any, employmentLevelNetChangeLabel as Any, employmentLevelRateChangeLabel as Any]
         }
         else {
-            employmentView.accessibilityElements = [employmentTitleLabel, employmentValueLabel, employmentChangeTitleLabel, employmentLevelNetChangeLabel]
+            employmentView.accessibilityElements = [employmentTitleLabel as Any, employmentValueLabel as Any, employmentChangeTitleLabel as Any, employmentLevelNetChangeLabel as Any]
         }
     }
     func applyWageAccessibility() {
         
         if wageChangeLabel.text != ReportManager.dataNotAvailableStr {
-            wageView.accessibilityElements = [wageTitleLabel, wageValueLabel, wageChangeTitleLabel, wageChangeLabel, wageRateChangeLabel]            
+            wageView.accessibilityElements = [wageTitleLabel as Any, wageValueLabel as Any, wageChangeTitleLabel as Any, wageChangeLabel as Any, wageRateChangeLabel as Any]
         }
         else {
-            wageView.accessibilityElements = [wageTitleLabel, wageValueLabel, wageChangeTitleLabel, wageChangeLabel]
+            wageView.accessibilityElements = [wageTitleLabel as Any, wageValueLabel as Any, wageChangeTitleLabel as Any, wageChangeLabel as Any]
         }
     }
 

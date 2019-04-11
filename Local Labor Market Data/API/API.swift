@@ -34,7 +34,7 @@ class API {
 
         return postReport1(seriesIds: requestIds, startYear: startYear, endYear: endYear, annualAverage:annualAverage, completion: { (apiResult) in
             switch apiResult {
-            case .success(let report):
+            case .success( _):
                 if seriesIdsCopy.count > 0 {
                     if reportResponse == nil {
                         reportResponse = apiResult
