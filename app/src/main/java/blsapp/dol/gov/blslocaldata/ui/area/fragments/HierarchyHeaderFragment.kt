@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
+import android.support.constraint.ConstraintSet
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +29,7 @@ import android.util.Log
 import android.widget.TextView
 import org.jetbrains.anko.support.v4.dimen
 import android.view.ViewGroup.MarginLayoutParams
+import kotlinx.android.synthetic.main.fragment_hierarchy_header.view.*
 import kotlinx.android.synthetic.main.industry_employment.*
 
 
@@ -87,7 +90,10 @@ class HierarchyHeaderFragment : Fragment() {
 
     fun setupHiearcaryBreadCrumbs(hierarchyString: String?, hierarchyIds:Array<Long>?) {
 
-        if (hierarchyString == null || hierarchyIds == null) return
+        if (hierarchyString == null || hierarchyIds == null) {
+            hierarchyTextView.visibility = View.GONE
+            return
+        }
         val hierarchyStrings = hierarchyString.split("->").toTypedArray()
 
         var clickSpans : MutableList<ClickableSpan> = mutableListOf<ClickableSpan>()
@@ -104,6 +110,8 @@ class HierarchyHeaderFragment : Fragment() {
 
         hierarchyTextView.text = hierarchyString
         makeLinks(hierarchyTextView, hierarchyStrings, clickSpans.toTypedArray())
+
+        hierarchyTextView.visibility = View.VISIBLE
     }
 
     fun makeLinks(textView: TextView, links: Array<String>, clickableSpans: Array<ClickableSpan>) {
@@ -307,7 +315,13 @@ class HierarchyHeaderFragment : Fragment() {
         if (wageVsLevelTitles == null) {
             //hierarchyViewModel.setWageVsLevelIndex(0)
             hierarchyViewModel.getIndustryReports()
-            wageVsLevelSpinner.visibility = View.INVISIBLE
+            wageVsLevelSpinner.visibility = View.GONE
+
+            val params = hierarchyTextView.layoutParams as ConstraintLayout.LayoutParams
+            params.topToBottom = timePeriodTextView.id
+            hierarchyTextView.layoutParams = params
+            hierarchyTextView.requestLayout()
+
         } else {
             wageVsLevelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
