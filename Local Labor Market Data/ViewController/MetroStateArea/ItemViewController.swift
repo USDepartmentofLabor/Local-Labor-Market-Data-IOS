@@ -100,8 +100,7 @@ class ItemViewController: UIViewController {
         searchBtn.accessibilityLabel = "Search"
 
         if splitViewController?.isCollapsed ?? true {
-            let homeItem = UIBarButtonItem(title: "Home", style: .plain,
-                                           target: self, action: #selector(homeClicked(sender:)))
+            let homeItem = UIBarButtonItem(image: #imageLiteral(resourceName: "home"), style: .plain, target: self, action: #selector(homeClicked(sender:)))
             navigationItem.leftBarButtonItem = homeItem
         }
 
@@ -455,48 +454,74 @@ class ItemViewController: UIViewController {
     }
     
     func displaySort() {
-        var codeSortImage = #imageLiteral(resourceName: "noSort")
-        var localSortImage = #imageLiteral(resourceName: "noSort")
-        var nationalSortImage = #imageLiteral(resourceName: "noSort")
-        var localOneMonthChangeSortImage = #imageLiteral(resourceName: "noSort")
-        var localTwelveMonthChangeSortImage = #imageLiteral(resourceName: "noSort")
-        var nationalTwelveMonthChangeSortImage = #imageLiteral(resourceName: "noSort")
+        let noSortImage = #imageLiteral(resourceName: "noSort")
+        let ascSort = #imageLiteral(resourceName: "ascSort")
+        let descSort = #imageLiteral(resourceName: "descSort")
+        var codeSortImage = noSortImage
+        var localSortImage = noSortImage
+        var nationalSortImage = noSortImage
+        var localOneMonthChangeSortImage = noSortImage
+        var localTwelveMonthChangeSortImage = noSortImage
+        var nationalTwelveMonthChangeSortImage = noSortImage
+        
+        var codeSortHint = "Tap to Sort ascending"
+        var localSortHint = "Tap to Sort ascending"
+        var nationalSortHint = "Tap to Sort ascending"
+        var localOneMonthSortHint = "Tap to Sort ascending"
+        var localTwelveMonthSortHint = "Tap to Sort ascending"
+        var nationalTwelveMonthSortHint = "Tap to Sort ascending"
         
         switch viewModel.dataSort {
         case .code(let asc):
-            codeSortImage = (asc == true) ? #imageLiteral(resourceName: "ascSort") : #imageLiteral(resourceName: "descSort")
+            codeSortImage = (asc == true) ? ascSort : descSort
+            codeSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
         case .local(let asc):
-            localSortImage = (asc == true) ? #imageLiteral(resourceName: "ascSort") : #imageLiteral(resourceName: "descSort")
+            localSortImage = (asc == true) ? ascSort : descSort
+            localSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
         case .national(let asc):
-            nationalSortImage = (asc == true) ? #imageLiteral(resourceName: "ascSort") : #imageLiteral(resourceName: "descSort")
+            nationalSortImage = (asc == true) ? ascSort : descSort
+            nationalSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
         case .localOneMonthChange(let asc):
-            localOneMonthChangeSortImage = (asc == true) ? #imageLiteral(resourceName: "ascSort") : #imageLiteral(resourceName: "descSort")
+            localOneMonthChangeSortImage = (asc == true) ? ascSort : descSort
+            localOneMonthSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
         case .localTwelveMonthChange(let asc):
-            localTwelveMonthChangeSortImage = (asc == true) ? #imageLiteral(resourceName: "ascSort") : #imageLiteral(resourceName: "descSort")
+            localTwelveMonthChangeSortImage = (asc == true) ? ascSort : descSort
+            localTwelveMonthSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
         case .nationalTwelveMonthChange(let asc):
-            nationalTwelveMonthChangeSortImage = (asc == true) ? #imageLiteral(resourceName: "ascSort") : #imageLiteral(resourceName: "descSort")
+            nationalTwelveMonthChangeSortImage = (asc == true) ? ascSort : descSort
+            nationalTwelveMonthSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
         case .none: break
             
         }
         
         itemCodeButton.setImage(codeSortImage, for: .normal)
+        itemCodeButton.accessibilityHint = codeSortHint
         
         if viewModel is OccupationViewModel {
             occupationLocalTitleButton.setImage(localSortImage, for: .normal)
+            occupationLocalTitleButton.accessibilityHint = localSortHint
             if !viewModel.isNationalReport {
                 occupationNationalTitleButton.setImage(nationalSortImage, for: .normal)
+                occupationNationalTitleButton.accessibilityHint = nationalSortHint
             }
         }
         else if viewModel is QCEWIndustryViewModel {
             qcewLocalTitleButton.setImage(localSortImage, for: .normal)
+            qcewLocalTitleButton.accessibilityHint = localSortHint
             qcewLocalTwelveMonthChangeTitleButton.setImage(localTwelveMonthChangeSortImage, for: .normal)
+            qcewLocalTwelveMonthChangeTitleButton.accessibilityHint = localOneMonthSortHint
             qcewNationalTitleButton.setImage(nationalSortImage, for: .normal)
+            qcewNationalTitleButton.accessibilityHint = nationalSortHint
             qcewNationalTwelveMonthChangeTitleButton.setImage(nationalTwelveMonthChangeSortImage, for: .normal)
+            qcewNationalTwelveMonthChangeTitleButton.accessibilityHint = nationalTwelveMonthSortHint
         }
         else {
             cesLocalTitleButton.setImage(localSortImage, for: .normal)
+            cesLocalTitleButton.accessibilityHint = localSortHint
             cesOneMonthChangeTitleButton.setImage(localOneMonthChangeSortImage, for: .normal)
+            cesOneMonthChangeTitleButton.accessibilityHint = localOneMonthSortHint
             cesTwelveMonthChangeTitleButton.setImage(localTwelveMonthChangeSortImage, for: .normal)
+            cesTwelveMonthChangeTitleButton.accessibilityHint = localTwelveMonthSortHint
         }
     }
 }

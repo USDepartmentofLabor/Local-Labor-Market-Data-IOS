@@ -87,6 +87,11 @@ class SearchViewController: UIViewController {
         setupView()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchController.isActive = false
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let titleStr = "\(Bundle.main.appName)"
@@ -343,9 +348,9 @@ extension SearchViewController: UITableViewDelegate {
         else {
             sectionHeaderView.imageView.image = #imageLiteral(resourceName: "globe")
             sectionHeaderView.isAccessibilityElement = true
+            sectionHeaderView.accessibilityTraits = UIAccessibilityTraits.header
         }
-//        sectionHeaderView.accessibilityTraits |= UIAccessibilityTraits.header
-        sectionHeaderView.accessibilityTraits = UIAccessibilityTraits.header
+//        sectionHeaderView.accessibilityTraits = UIAccessibilityTraits.header
         sectionHeaderView.accessibilityLabel = sectionTitle
         sectionHeaderView.section = section
         sectionHeaderView.delegate = self
@@ -369,6 +374,7 @@ extension SearchViewController: SearchSectionHeaderDelegate {
         else {
             getCurrentLocation()
             searchController.searchBar.text = currentLocationTitle
+            searchController.isActive = true
         }
     }
 }
@@ -391,6 +397,7 @@ extension SearchViewController: UISearchResultsUpdating {
 
         areas = dataUtil.searchArea(forArea: type, forText: searchText)
         
+        UIAccessibility.post(notification: .screenChanged, argument: areaSegment)
         // If search results returned 0 for Metro
         if (areas == nil || areas!.count == 0) &&
             !userAction && type == .metro {
@@ -430,6 +437,7 @@ extension SearchViewController: UISearchBarDelegate {
         let announcementStr = "Found \(areas?.count ?? 0) results"
         UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: announcementStr)
 //        historyContainerView.isHidden = true
+        UIAccessibility.post(notification: .screenChanged, argument: areaSegment)
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {

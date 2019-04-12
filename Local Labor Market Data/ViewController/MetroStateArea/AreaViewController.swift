@@ -43,8 +43,7 @@ class AreaViewController: UIViewController {
         navigationItem.rightBarButtonItems = [infoItem]
         
         if splitViewController?.isCollapsed ?? true {
-            let homeItem = UIBarButtonItem(title: "Home", style: .plain,
-                                       target: self, action: #selector(homeClicked(sender:)))
+            let homeItem = UIBarButtonItem(image: #imageLiteral(resourceName: "home"), style: .plain, target: self, action: #selector(homeClicked(sender:)))
             navigationItem.leftBarButtonItem = homeItem
         }
         
