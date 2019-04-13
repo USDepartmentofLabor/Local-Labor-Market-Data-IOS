@@ -1,6 +1,7 @@
 package blsapp.dol.gov.blslocaldata.network
 
 import android.content.Context
+import android.util.Log
 import blsapp.dol.gov.blslocaldata.model.BLSReportRequest
 import blsapp.dol.gov.blslocaldata.model.BLSReportResponse
 import blsapp.dol.gov.blslocaldata.model.SeriesReport
@@ -24,13 +25,16 @@ class CacheManager {
         fun get(request: BLSReportRequest):BLSReportResponse? {
 
             val keyRequest = key(request)
+            Log.d("GGG", "Cache Request:" + keyRequest)
             var cacheResult = cache[keyRequest]
             if ( cacheResult != null){
+                Log.d("GGG", "Cache Result Found:")
                 val timeSinceCached = System.currentTimeMillis() - cacheResult.created
                 if (timeSinceCached > expirationTime) {
                     cache.remove(keyRequest)
                     cacheResult = null
                 }
+                Log.w("GGG", "Cache Response: " + cacheResult?.seriesReport.toString())
             }
             return cacheResult?.seriesReport
         }
