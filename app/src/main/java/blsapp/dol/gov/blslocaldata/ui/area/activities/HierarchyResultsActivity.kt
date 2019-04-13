@@ -27,6 +27,7 @@ import android.util.AttributeSet
 import blsapp.dol.gov.blslocaldata.model.HierarchyModel
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
 import blsapp.dol.gov.blslocaldata.ui.area.fragments.HierarchyHeaderFragment
+import blsapp.dol.gov.blslocaldata.ui.info.AboutActivity
 import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListAdapter
 import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListCESAdapter
 import blsapp.dol.gov.blslocaldata.ui.search.HierarchyListQCEWAdapter
@@ -166,6 +167,11 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
             val intent = Intent(applicationContext, SearchActivity::class.java)
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent);
+            true
+        }
+        R.id.action_info -> {
+            val intent = Intent(applicationContext, InfoActivity::class.java)
+            startActivity(intent)
             true
         }
         else -> {
