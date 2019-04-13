@@ -1,6 +1,9 @@
 package blsapp.dol.gov.blslocaldata.ui.search
 
 import android.support.v4.content.ContextCompat.getColor
+import android.support.v4.view.AccessibilityDelegateCompat
+import android.support.v4.view.ViewCompat
+import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -62,6 +65,13 @@ open class HierarchyListAdapter(private val mListener: OnItemClickListener?) : R
             } else {
                 holder.mSubIndustryIndicator.visibility = View.GONE
             }
+
+            ViewCompat.setAccessibilityDelegate(holder.mView, object : AccessibilityDelegateCompat() {
+                override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                    //        super.onInitializeAccessibilityNodeInfo(host, info)
+                    info.addAction(AccessibilityNodeInfoCompat.ACTION_FOCUS)
+                }
+            })
         }
     }
     override fun getItemCount(): Int = mIndustries.size
