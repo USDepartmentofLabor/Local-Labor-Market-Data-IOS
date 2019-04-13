@@ -476,7 +476,9 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                     }
                 }
 
-                periodName = thisAreaRowData.periodName
+                if (periodName == null) {
+                    periodName = thisAreaRowData.periodName
+                }
                 year = thisAreaRowData.year
 
                 if (wageVsLevelTypeOccupation == OESReport.DataTypeCode.ANNUALMEANWAGE ||
