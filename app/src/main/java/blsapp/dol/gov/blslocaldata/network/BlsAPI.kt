@@ -14,6 +14,8 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import org.json.JSONObject
 import blsapp.dol.gov.blslocaldata.R
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 /**
  * BlsAPI - Makes requests to the BLS API
@@ -46,7 +48,11 @@ class BlsAPI constructor(val appContext: Context) {
 
         val cachedResponse = CacheManager.get(reportRequest)
         if (cachedResponse!= null) {
-            successHandler(cachedResponse)
+            doAsync {
+                uiThread {
+                    successHandler(cachedResponse)
+                }
+            }
             return
         }
 
@@ -61,7 +67,7 @@ class BlsAPI constructor(val appContext: Context) {
                     print(response.toString())
                     val reportReponse = response.toString().toObject<BLSReportResponse>()
                     CacheManager.put(reportReponse, reportRequest)
-                    Log.w("ggg", "BLSAPI Response: " + response.toString())
+                    Log.w("GGG", "BLSAPI Response: " + reportReponse.toString())
 //                    Log.w("ggg", "BLSAPI Request: " + reportRequest.toString())
                     if (reportReponse.status == ReportStatus.REQUEST_SUCCEEDED) {
                         successHandler(reportReponse)
