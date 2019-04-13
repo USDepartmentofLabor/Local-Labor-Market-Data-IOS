@@ -176,7 +176,7 @@ class HierarchyHeaderFragment : Fragment() {
 
         dataTitle2.visibility = View.INVISIBLE
         hierarchySeasonallyAdjustedSwitch.isChecked = true
-        dataTitle.text = getString(R.string.employment_level)
+        dataTitle.text = getString(R.string.employment_level_000s)
         nationalSortButtonTitle.text = getString(R.string.national)
 
         if (hierarchyViewModel.isCountyArea()) {
