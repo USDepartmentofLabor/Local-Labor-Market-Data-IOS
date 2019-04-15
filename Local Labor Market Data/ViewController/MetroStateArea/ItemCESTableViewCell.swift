@@ -20,6 +20,69 @@ class ItemCESTableViewCell: UITableViewCell {
     @IBOutlet weak var oneMonthValueLabel: UILabel!
     @IBOutlet weak var nextImageView: UIImageView!
 
+    var value: String = "" {
+        didSet {
+            valueLabel.text = value
+            
+            if value == ReportManager.dataNotAvailableStr {
+                valueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            }
+            else {
+                valueLabel.accessibilityLabel = value
+            }
+        }
+    }
+    var twelveMonthPercent: String = "" {
+        didSet {
+            twelveMonthPercentLabel.text = twelveMonthPercent
+            
+            if twelveMonthPercent == ReportManager.dataNotAvailableStr {
+                twelveMonthPercentLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            }
+            else {
+                twelveMonthPercentLabel.accessibilityLabel = twelveMonthPercent
+            }
+        }
+    }
+    var twelveMonthValue: String = "" {
+        didSet {
+            twelveMonthValueLabel.text = twelveMonthValue
+            
+            if twelveMonthValue == ReportManager.dataNotAvailableStr {
+                twelveMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            }
+            else {
+                twelveMonthValueLabel.accessibilityLabel = twelveMonthValue
+            }
+        }
+    }
+    var oneMonthPercent: String = "" {
+        didSet {
+            oneMonthPercentLabel.text = oneMonthPercent
+            
+            if oneMonthPercent == ReportManager.dataNotAvailableStr {
+                oneMonthPercentLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            }
+            else {
+                oneMonthPercentLabel.accessibilityLabel = oneMonthPercent
+            }
+        }
+    }
+    var oneMonthValue: String = "" {
+        didSet {
+            oneMonthValueLabel.text = oneMonthValue
+            
+            if oneMonthValue == ReportManager.dataNotAvailableStr {
+                oneMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            }
+            else {
+                oneMonthValueLabel.accessibilityLabel = oneMonthValue
+            }
+        }
+    }
+
+
+
     var hasChildren: Bool = false {
         didSet {
             if hasChildren {

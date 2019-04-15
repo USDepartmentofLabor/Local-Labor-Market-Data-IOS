@@ -565,14 +565,12 @@ extension ItemViewController: UITableViewDataSource {
             cell.hasChildren = (item.children?.count ?? 0) > 0
 
             guard viewModel.isDataDownloaded else {
-                cell.valueLabel.text = ""
-                if cell.nationalValueLabel != nil {
-                    cell.nationalValueLabel.text = ""
-                }
+                cell.value = ""
+                cell.nationalValue = ""
                 return
             }
             
-             cell.valueLabel.text = viewModel.getReportValue(item: item) ?? ReportManager.dataNotAvailableStr
+            cell.value = viewModel.getReportValue(item: item) ?? ReportManager.dataNotAvailableStr
             
             if viewModel.isNationalReport {
                 if let nationalValueLabel = cell.nationalValueLabel {
@@ -580,7 +578,7 @@ extension ItemViewController: UITableViewDataSource {
                 }
             }
             else {
-                cell.nationalValueLabel.text = viewModel.getNationalReportValue(item: item) ?? ReportManager.dataNotAvailableStr
+                cell.nationalValue = viewModel.getNationalReportValue(item: item) ?? ReportManager.dataNotAvailableStr
             }
         }
     }
@@ -592,49 +590,49 @@ extension ItemViewController: UITableViewDataSource {
             cell.hasChildren = (item.children?.count ?? 0) > 0
 
             guard viewModel.isDataDownloaded else {
-                cell.valueLabel.text = ""
-                cell.oneMonthValueLabel.text = ""
-                cell.oneMonthPercentLabel.text = ""
-                cell.twelveMonthValueLabel.text = ""
-                cell.twelveMonthPercentLabel.text = ""
+                cell.value = ""
+                cell.oneMonthValue = ""
+                cell.oneMonthPercent = ""
+                cell.twelveMonthValue = ""
+                cell.twelveMonthPercent = ""
                 return
             }
             
             if let seriesData = viewModel.getReportData(item: item) {
-                cell.valueLabel.text = viewModel.getReportValue(from: seriesData) ?? ReportManager.dataNotAvailableStr
+                cell.value = viewModel.getReportValue(from: seriesData) ?? ReportManager.dataNotAvailableStr
                 
                 // Display Percent Change
                 if let percentChange = seriesData.calculations?.percentChanges {
-                    cell.oneMonthPercentLabel.text =
+                    cell.oneMonthPercent =
                         NumberFormatter.localisedPercentStr(from: percentChange.oneMonth) ??  ReportManager.dataNotAvailableStr
-                    cell.twelveMonthPercentLabel.text = NumberFormatter.localisedPercentStr(from: percentChange.twelveMonth) ?? ReportManager.dataNotAvailableStr
+                    cell.twelveMonthPercent = NumberFormatter.localisedPercentStr(from: percentChange.twelveMonth) ?? ReportManager.dataNotAvailableStr
                 }
                 if let netChange = seriesData.calculations?.netChanges {
                     if let oneMonthChange = netChange.oneMonth, let doubleValue = Double(oneMonthChange) {
-                        cell.oneMonthValueLabel.text = NumberFormatter.localisedDecimalStr(from: doubleValue)
+                        cell.oneMonthValue = NumberFormatter.localisedDecimalStr(from: doubleValue) ?? ""
                     }
                     else {
-                        cell.oneMonthValueLabel.text = ReportManager.dataNotAvailableStr
+                        cell.oneMonthValue = ReportManager.dataNotAvailableStr
                     }
                     
                     if let twelveMonthChange = netChange.twelveMonth, let doubleValue = Double(twelveMonthChange) {
-                        cell.twelveMonthValueLabel.text = NumberFormatter.localisedDecimalStr(from: doubleValue)
+                        cell.twelveMonthValue = NumberFormatter.localisedDecimalStr(from: doubleValue) ?? ""
                     }
                     else {
-                        cell.twelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
+                        cell.twelveMonthValue = ReportManager.dataNotAvailableStr
                     }
                 }
                 else {
-                    cell.oneMonthValueLabel.text = ReportManager.dataNotAvailableStr
-                    cell.twelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
+                    cell.oneMonthValue = ReportManager.dataNotAvailableStr
+                    cell.twelveMonthValue = ReportManager.dataNotAvailableStr
                 }
             }
             else {
-                cell.valueLabel.text = ReportManager.dataNotAvailableStr
-                cell.oneMonthValueLabel.text = ""
-                cell.oneMonthPercentLabel.text = ""
-                cell.twelveMonthValueLabel.text = ""
-                cell.twelveMonthPercentLabel.text = ""
+                cell.value = ReportManager.dataNotAvailableStr
+                cell.oneMonthValue = ""
+                cell.oneMonthPercent = ""
+                cell.twelveMonthValue = ""
+                cell.twelveMonthPercent = ""
             }
         }
     }
@@ -645,26 +643,26 @@ extension ItemViewController: UITableViewDataSource {
             cell.hasChildren = (item.children?.count ?? 0) > 0
             
             guard viewModel.isDataDownloaded else {
-                cell.valueLabel.text = ""
-                cell.twelveMonthValueLabel.text = ""
-                cell.twelveMonthPercentLabel.text = ""
-                cell.nationalValueLabel.text = ""
-                cell.nationalTwelveMonthValueLabel.text = ""
-                cell.nationalTwelveMonthPercentLabel.text = ""
+                cell.value = ""
+                cell.twelveMonthValue = ""
+                cell.twelveMonthPercent = ""
+                cell.nationalValue = ""
+                cell.nationalTwelveMonthValue = ""
+                cell.nationalTwelveMonthPercent = ""
                 return
             }
             
             if let seriesData = viewModel.getReportData(item: item) {
-                cell.valueLabel.text = viewModel.getReportValue(from: seriesData) ?? ReportManager.dataNotAvailableStr
+                cell.value = viewModel.getReportValue(from: seriesData) ?? ReportManager.dataNotAvailableStr
                 
                 // Display Percent Change
                 if seriesData.isNotDisclosable {
-                    cell.twelveMonthPercentLabel.text = ""
-                    cell.twelveMonthValueLabel.text = ""
+                    cell.twelveMonthPercent = ""
+                    cell.twelveMonthValue = ""
                 }
                 else {
                     if let percentChange = seriesData.calculations?.percentChanges {
-                        cell.twelveMonthPercentLabel.text = NumberFormatter.localisedPercentStr(from: percentChange.twelveMonth) ?? ReportManager.dataNotAvailableStr
+                        cell.twelveMonthPercent = NumberFormatter.localisedPercentStr(from: percentChange.twelveMonth) ?? ReportManager.dataNotAvailableStr
                     }
                     else {
                         cell.twelveMonthPercentLabel.text = ReportManager.dataNotAvailableStr
@@ -672,55 +670,55 @@ extension ItemViewController: UITableViewDataSource {
 
                     if let netChange = seriesData.calculations?.netChanges {
                         if let twelveMonthChange = netChange.twelveMonth, let doubleValue = Double(twelveMonthChange) {
-                        cell.twelveMonthValueLabel.text = NumberFormatter.localisedDecimalStr(from: doubleValue)
+                            cell.twelveMonthValue = NumberFormatter.localisedDecimalStr(from: doubleValue) ?? ""
                         }
                         else {
-                            cell.twelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
+                            cell.twelveMonthValue = ReportManager.dataNotAvailableStr
                         }
                     }
                     else {
-                        cell.twelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
+                        cell.twelveMonthValue = ReportManager.dataNotAvailableStr
                     }
                 }
             }
             else {
-                cell.valueLabel.text = ReportManager.dataNotAvailableStr
-                cell.twelveMonthValueLabel.text = ""
-                cell.twelveMonthPercentLabel.text = ""
+                cell.value = ReportManager.dataNotAvailableStr
+                cell.twelveMonthValue = ""
+                cell.twelveMonthPercent = ""
             }
             
             if let seriesData = viewModel.getNationalReportData(item: item) {
-                cell.nationalValueLabel.text = viewModel.getReportValue(from: seriesData) ?? ReportManager.dataNotAvailableStr
+                cell.nationalValue = viewModel.getReportValue(from: seriesData) ?? ReportManager.dataNotAvailableStr
                 
                 // Display Percent Change
                 if seriesData.isNotDisclosable {
-                    cell.nationalTwelveMonthPercentLabel.text = ""
-                    cell.nationalTwelveMonthValueLabel.text = ""
+                    cell.nationalTwelveMonthPercent = ""
+                    cell.nationalTwelveMonthValue = ""
                 }
                 else {
                     if let percentChange = seriesData.calculations?.percentChanges {
-                        cell.nationalTwelveMonthPercentLabel.text = NumberFormatter.localisedPercentStr(from: percentChange.twelveMonth) ?? ReportManager.dataNotAvailableStr
+                        cell.nationalTwelveMonthPercent = NumberFormatter.localisedPercentStr(from: percentChange.twelveMonth) ?? ReportManager.dataNotAvailableStr
                     }
                     else {
-                        cell.nationalTwelveMonthPercentLabel.text = ReportManager.dataNotAvailableStr
+                        cell.nationalTwelveMonthPercent = ReportManager.dataNotAvailableStr
                     }
                     if let netChange = seriesData.calculations?.netChanges {
                         if let twelveMonthChange = netChange.twelveMonth, let doubleValue = Double(twelveMonthChange) {
-                            cell.nationalTwelveMonthValueLabel.text = NumberFormatter.localisedDecimalStr(from: doubleValue)
+                            cell.nationalTwelveMonthValue = NumberFormatter.localisedDecimalStr(from: doubleValue) ?? ""
                         }
                         else {
-                            cell.nationalTwelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
+                            cell.nationalTwelveMonthValue = ReportManager.dataNotAvailableStr
                         }
                     }
                     else {
-                        cell.nationalTwelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
+                        cell.nationalTwelveMonthValue = ReportManager.dataNotAvailableStr
                     }
                 }
             }
             else {
-                cell.nationalValueLabel.text = ReportManager.dataNotAvailableStr
-                cell.nationalTwelveMonthValueLabel.text = ""
-                cell.nationalTwelveMonthPercentLabel.text = ""
+                cell.nationalValue = ReportManager.dataNotAvailableStr
+                cell.nationalTwelveMonthValue = ""
+                cell.nationalTwelveMonthPercent = ""
             }
         }
     }
@@ -796,6 +794,7 @@ extension ItemViewController {
     func displayCESParentReport() {
         guard let seriesData = viewModel.getReportData(item: viewModel.parentItem) else {
             cesParentValueLabel.text = ReportManager.dataNotAvailableStr
+            cesParentValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             cesParentOneMonthValueLabel.text = ""
             cesParentOneMonthPercentLabel.text = ""
             cesParentTwelveMonthValueLabel.text = ""
@@ -956,3 +955,5 @@ extension ItemViewController {
     }
 
 }
+
+

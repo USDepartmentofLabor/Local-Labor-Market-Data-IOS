@@ -120,6 +120,7 @@ class ReportManager {
     static let dataNotAvailableStr = "N/A"
     static let dataNotDisclosable = "ND"
     static let dataNotAvailableAccessibilityStr = "Data Not Available"
+    static let dataNotDisclosableAccessibilityStr = "Data Not Disclosable"
 //    static var seasonalAdjustment: SeasonalAdjustment = .notAdjusted
 
     class func getReports(forArea area: Area, reportTypes: [ReportType],

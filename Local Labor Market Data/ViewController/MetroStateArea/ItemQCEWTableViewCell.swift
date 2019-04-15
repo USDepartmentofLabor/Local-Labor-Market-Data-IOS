@@ -34,7 +34,85 @@ class ItemQCEWTableViewCell: UITableViewCell {
             }
         }
     }
-
+    var value: String = "" {
+        didSet {
+            valueLabel.text = value
+            
+            if value == ReportManager.dataNotAvailableStr {
+                valueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            }
+            else if value == ReportManager.dataNotDisclosable {
+                valueLabel.accessibilityLabel = ReportManager.dataNotDisclosableAccessibilityStr
+            }
+            else {
+                valueLabel.accessibilityLabel = value
+            }
+        }
+    }
+    var twelveMonthValue: String = "" {
+        didSet {
+            twelveMonthValueLabel.text = twelveMonthValue
+            
+            if twelveMonthValue == ReportManager.dataNotAvailableStr {
+                twelveMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            }
+            else {
+                twelveMonthValueLabel.accessibilityLabel = twelveMonthValue
+            }
+        }
+    }
+    var twelveMonthPercent: String = "" {
+        didSet {
+            twelveMonthPercentLabel.text = twelveMonthPercent
+            
+            if twelveMonthPercent == ReportManager.dataNotAvailableStr {
+                twelveMonthPercentLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            }
+            else {
+                twelveMonthPercentLabel.accessibilityLabel = twelveMonthPercent
+            }
+        }
+    }
+    var nationalValue: String = "" {
+        didSet {
+            nationalValueLabel.text = nationalValue
+            
+            if nationalValue == ReportManager.dataNotAvailableStr {
+                nationalValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            }
+            else if nationalValue == ReportManager.dataNotDisclosable {
+                nationalValueLabel.accessibilityLabel = ReportManager.dataNotDisclosableAccessibilityStr
+            }
+            else {
+                nationalValueLabel.accessibilityLabel = nationalValue
+            }
+        }
+    }
+    var nationalTwelveMonthValue: String = "" {
+        didSet {
+            nationalTwelveMonthValueLabel.text = nationalTwelveMonthValue
+            
+            if nationalTwelveMonthValue == ReportManager.dataNotAvailableStr {
+                nationalTwelveMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            }
+            else {
+                nationalTwelveMonthValueLabel.accessibilityLabel = nationalTwelveMonthValue
+            }
+        }
+    }
+    var nationalTwelveMonthPercent: String = "" {
+        didSet {
+            nationalTwelveMonthPercentLabel.text = nationalTwelveMonthPercent
+            
+            if nationalTwelveMonthPercent == ReportManager.dataNotAvailableStr {
+                nationalTwelveMonthPercentLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            }
+            else {
+                nationalTwelveMonthPercentLabel.accessibilityLabel = nationalTwelveMonthPercent
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 

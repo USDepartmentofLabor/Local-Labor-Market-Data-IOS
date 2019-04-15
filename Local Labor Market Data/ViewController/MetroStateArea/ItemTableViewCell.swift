@@ -18,6 +18,34 @@ class ItemTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nextImageView: UIImageView!
     
+    var value: String = "" {
+        didSet {
+            valueLabel.text = value
+            
+            if value == ReportManager.dataNotAvailableStr {
+                valueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            }
+            else {
+                valueLabel.accessibilityLabel = value
+            }
+        }
+    }
+    
+    var nationalValue: String = "" {
+        didSet {
+            guard nationalValueLabel != nil else {return}
+            
+            nationalValueLabel.text = nationalValue
+            
+            if nationalValue == ReportManager.dataNotAvailableStr {
+                nationalValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+            }
+            else {
+                nationalValueLabel.accessibilityLabel = nationalValue
+            }
+        }
+    }
+
     var hasChildren: Bool = false {
         didSet {
             if hasChildren {
@@ -53,5 +81,7 @@ class ItemTableViewCell: UITableViewCell {
     func setupAccessibility() {
         isAccessibilityElement = false
         accessibilityElements = [titleLabel as Any, valueLabel as Any, nationalValueLabel as Any]
+        
+        valueLabel.addObserver(self, forKeyPath: "text", options: [.old, .new], context: nil)
     }
 }
