@@ -176,14 +176,17 @@ extension OwnershipTableViewCell: UITableViewDelegate {
             tableView.dequeueReusableHeaderFooterView(withIdentifier: "OwnershipHeader") as? AreaSectionHeaderView
             else { return nil }
 
-        sectionHeaderView.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
-        sectionHeaderView.section = section
         sectionHeaderView.titleLabel.textAlignment = .left
         sectionHeaderView.titleLabel.scaleFont(forDataType: .reportOwnershipTitle, for: traitCollection)
-        sectionHeaderView.collapseSection(collapse: reportSections?[section].collapsed ?? true)
         sectionHeaderView.delegate = self
         sectionHeaderView.infoButton.isHidden = false
         sectionHeaderView.sectionBackgroundColor = UIColor(hex: 0xEFEFEF)
+        
+        let title = self.tableView(tableView, titleForHeaderInSection: section) ?? ""
+        sectionHeaderView.configure(title: title, section: section,
+                                    collapse: reportSections?[section].collapsed ?? true)
+
+        sectionHeaderView.accessibilityHint = "Tap to view Industry hierarchy"
         return sectionHeaderView
     }
     

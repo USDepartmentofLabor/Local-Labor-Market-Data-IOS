@@ -88,10 +88,13 @@ class ItemCESTableViewCell: UITableViewCell {
             if hasChildren {
                 nextImageView.isHidden = false
                 accessibilityTraits = UIAccessibilityTraits.button
+                nextImageView.isAccessibilityElement = true
+                nextImageView.accessibilityTraits = .button
             }
             else {
                 nextImageView.isHidden = true
                 accessibilityTraits = UIAccessibilityTraits.none
+                nextImageView.isAccessibilityElement = false
             }
         }
     }
@@ -125,6 +128,7 @@ class ItemCESTableViewCell: UITableViewCell {
 
     func setupAccessibility() {
         isAccessibilityElement = false
-        accessibilityElements = [titleLabel as Any, valueLabel as Any, oneMonthValueLabel as Any, oneMonthPercentLabel as Any, twelveMonthValueLabel as Any, twelveMonthPercentLabel as Any]
+        nextImageView.accessibilityHint = "Tap to view sub industries"
+        accessibilityElements = [titleLabel as Any, valueLabel as Any, oneMonthValueLabel as Any, oneMonthPercentLabel as Any, twelveMonthValueLabel as Any, twelveMonthPercentLabel as Any, nextImageView as Any]
     }
 }

@@ -79,11 +79,12 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
     }
     
     func applyAccessibility() {
-//        isAccessibilityElement = true
+        isAccessibilityElement = false
         titleView.isAccessibilityElement = true
         titleView.accessibilityLabel = titleLabel.text
+        
         titleView.accessibilityTraits = UIAccessibilityTraits.header
-        titleLabel.isAccessibilityElement = false
+        infoButton.accessibilityTraits = .button
         expandCollapseImageView.isAccessibilityElement = false
         
         if Util.isVoiceOverRunning {
@@ -92,6 +93,9 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
         else {
             expandCollapseImageView.isHidden = false
         }
+        
+        accessibilityElements = [titleView as Any, infoButton as Any]
+
     }
 
     

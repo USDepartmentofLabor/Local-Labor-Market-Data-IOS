@@ -548,13 +548,13 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEX-eU-anc" userLabel="DataTypeTitleLabel">
-                                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="36.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="14.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(in thousands)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhy-S4-DXD" userLabel="SubTitleLabel">
-                                                                <rect key="frame" x="56" y="36.5" width="76" height="13.5"/>
+                                                                <rect key="frame" x="56" y="14.5" width="76" height="35.5"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -957,7 +957,7 @@
                                         <rect key="frame" x="0.0" y="115" width="375" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VRl-6o-JFz" id="kk6-IY-OdN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNw-rF-m6Q" userLabel="DataView">

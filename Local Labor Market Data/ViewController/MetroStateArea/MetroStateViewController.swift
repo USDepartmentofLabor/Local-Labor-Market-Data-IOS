@@ -312,7 +312,7 @@ extension MetroStateViewController {
         else {
             announcementStr = "Loaded Local Report"
         }
-        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: announcementStr)
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: announcementStr)
 
         // If current Area is National, no need to load National Report
         if (area is National) == false {
@@ -424,21 +424,21 @@ extension MetroStateViewController: UITableViewDelegate {
         
         if currentSection.title != Section.UnemploymentRateTitle {
             sectionHeaderView.infoButton.isHidden = false
-        }
-        else {
-            sectionHeaderView.infoButton.isHidden = true
             let accessibilityHint: String
             let accessibilityStr: String
             if currentSection.title == Section.OccupationEmploymentTitle {
                 accessibilityHint = "Tap to View Occupation hierarchy"
-                accessibilityStr = "Occupation Hierarchy"
+//                accessibilityStr = "Occupation Hierarchy"
             }
             else {
                 accessibilityHint = "Tap to View Industry hierarchy"
-                accessibilityStr = "Industry Hierarchy"
+//                accessibilityStr = "Industry Hierarchy"
             }
             sectionHeaderView.infoButton.accessibilityHint = accessibilityHint
-            sectionHeaderView.infoButton.accessibilityLabel = accessibilityStr
+//            sectionHeaderView.infoButton.accessibilityLabel = accessibilityStr
+        }
+        else {
+            sectionHeaderView.infoButton.isHidden = true
         }
         
         sectionHeaderView.delegate = self

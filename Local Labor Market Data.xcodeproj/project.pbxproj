@@ -11,14 +11,8 @@
 		0322AE2D21B04AF200592970 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322AE2C21B04AF200592970 /* HistoryViewController.swift */; };
 		0322AE2F21B063A900592970 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322AE2E21B063A900592970 /* HistoryViewModel.swift */; };
 		03238022220C73F5009275F6 /* OccupationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03238021220C73F5009275F6 /* OccupationViewModel.swift */; };
-		0323B7B321AED22600A3E73C /* ZIP_NECTA.csv in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */; };
-		0323B7B421AED22600A3E73C /* CBSA_COUNTY.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03287A7C2187665A0067686A /* CBSA_COUNTY.txt */; };
-		0323B7B521AED22600A3E73C /* LAUS in Resources */ = {isa = PBXBuildFile; fileRef = 0396A05521061D1300DBECBD /* LAUS */; };
-		0323B7B621AED22600A3E73C /* ZIP_CBSA.csv in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F89220EAA6C200662446 /* ZIP_CBSA.csv */; };
-		0323B7B721AED22600A3E73C /* ZIP_COUNTY.csv in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F89320EAA6C200662446 /* ZIP_COUNTY.csv */; };
 		0323B7BB21AEE48000A3E73C /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323B7BA21AEE48000A3E73C /* ItemViewModel.swift */; };
 		0323B7BE21AEF1F300A3E73C /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0323B7BC21AEF1F300A3E73C /* Item+CoreDataClass.swift */; };
-		03248DE7220B72EB004E4916 /* industry_titles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03248DE6220B72EB004E4916 /* industry_titles.txt */; };
 		0324B00B221C84900066A8CD /* ItemCESTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0324B00A221C84900066A8CD /* ItemCESTableViewCell.swift */; };
 		03254927222451A700A51046 /* SearchItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03254926222451A700A51046 /* SearchItemViewController.swift */; };
 		03256380221DEE52000F3778 /* AreaSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0325637F221DEE52000F3778 /* AreaSectionFooterView.swift */; };
@@ -27,8 +21,6 @@
 		03260D1322281E5D0001A9C5 /* SearchItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03260D1222281E5D0001A9C5 /* SearchItemViewModel.swift */; };
 		03260D1522284C2D0001A9C5 /* UITapGestrure+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03260D1422284C2D0001A9C5 /* UITapGestrure+Extension.swift */; };
 		03265FDC2233107C000DFD71 /* ItemQCEWTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03265FDB2233107C000DFD71 /* ItemQCEWTableViewCell.swift */; };
-		03287A7F2187665A0067686A /* NECTACBSA_COUNTY.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */; };
-		032B242021AC8C8B0029AC90 /* oe.occupation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 032B241F21AC8C8B0029AC90 /* oe.occupation.txt */; };
 		032C16652138241E004C1B3F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16642138241E004C1B3F /* Util.swift */; };
 		032C16672139918B004C1B3F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16662139918B004C1B3F /* Settings.swift */; };
 		032C16692139927F004C1B3F /* UICustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16682139927F004C1B3F /* UICustomSwitch.swift */; };
@@ -114,8 +106,6 @@
 		101BA052906435C0F5634D7D /* Pods_Local_Labor_Market_Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5AB87D9078368A6696D4D4F /* Pods_Local_Labor_Market_Data.framework */; };
 		13F69C4C74B3CE64A313C4E7 /* Pods_Local_Labor_Market_DataUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB30557B868A6C1C804C809 /* Pods_Local_Labor_Market_DataUITests.framework */; };
 		597EE8F32188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597EE8F12188A20000C8DAED /* CbsaCountyMap+CoreDataClass.swift */; };
-		59E7A05D219F45C30060B7FF /* sm.industry.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A059219F45C20060B7FF /* sm.industry.txt */; };
-		59E7A05F219F45C30060B7FF /* ce.industry.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A05B219F45C30060B7FF /* ce.industry.txt */; };
 		59E7A065219F69DF0060B7FF /* Industry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E7A063219F69DF0060B7FF /* Industry+CoreDataClass.swift */; };
 		59ECE38D21ADC2F000EE06BE /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ECE38C21ADC2F000EE06BE /* ItemViewController.swift */; };
 		59ED36C721ED16DD00C45797 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED36C621ED16DD00C45797 /* SearchHistoryViewController.swift */; };
@@ -730,11 +720,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0323B7B321AED22600A3E73C /* ZIP_NECTA.csv in Resources */,
-				0323B7B421AED22600A3E73C /* CBSA_COUNTY.txt in Resources */,
-				0323B7B521AED22600A3E73C /* LAUS in Resources */,
-				0323B7B621AED22600A3E73C /* ZIP_CBSA.csv in Resources */,
-				0323B7B721AED22600A3E73C /* ZIP_COUNTY.csv in Resources */,
 				03B708892123026E00C370D7 /* OwnershipTableViewCell.xib in Resources */,
 				03953C3321136F1900BED557 /* IndustryEmploymentTableViewCell.xib in Resources */,
 				03F1F86E20EA623000662446 /* LaunchScreen.storyboard in Resources */,
@@ -744,16 +729,11 @@
 				03953C2B21122FDB00BED557 /* AreaSectionHeaderView.xib in Resources */,
 				03E35086213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm in Resources */,
 				0396A05F2107581400DBECBD /* SearchSectionTableHeaderView.xib in Resources */,
-				59E7A05F219F45C30060B7FF /* ce.industry.txt in Resources */,
-				03248DE7220B72EB004E4916 /* industry_titles.txt in Resources */,
 				03F1F86B20EA623000662446 /* Assets.xcassets in Resources */,
 				03F1F86620EA622D00662446 /* Main.storyboard in Resources */,
 				03E35085213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal in Resources */,
 				03256382221DEE7B000F3778 /* AreaSectionFooterView.xib in Resources */,
 				0348FD1A211DD64800155BE8 /* EmploymentWageTableViewCell.xib in Resources */,
-				59E7A05D219F45C30060B7FF /* sm.industry.txt in Resources */,
-				03287A7F2187665A0067686A /* NECTACBSA_COUNTY.txt in Resources */,
-				032B242021AC8C8B0029AC90 /* oe.occupation.txt in Resources */,
 				0348FD1D211E0AB200155BE8 /* OwnershipDataTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -51,9 +51,12 @@ class ItemTableViewCell: UITableViewCell {
             if hasChildren {
                 nextImageView.isHidden = false
                 accessibilityTraits = UIAccessibilityTraits.button
+                nextImageView.isAccessibilityElement = true
+                nextImageView.accessibilityTraits = .button
             }
             else {
                 nextImageView.isHidden = true
+                nextImageView.isAccessibilityElement = false
                 accessibilityTraits = UIAccessibilityTraits.none
             }
         }
@@ -80,8 +83,9 @@ class ItemTableViewCell: UITableViewCell {
 
     func setupAccessibility() {
         isAccessibilityElement = false
-        accessibilityElements = [titleLabel as Any, valueLabel as Any, nationalValueLabel as Any]
-        
-        valueLabel.addObserver(self, forKeyPath: "text", options: [.old, .new], context: nil)
+        nextImageView.isAccessibilityElement = true
+        nextImageView.accessibilityTraits = .button
+        nextImageView.accessibilityHint = "Tap to view sub occupations"
+        accessibilityElements = [titleLabel as Any, valueLabel as Any, nationalValueLabel as Any, nextImageView as Any]        
     }
 }

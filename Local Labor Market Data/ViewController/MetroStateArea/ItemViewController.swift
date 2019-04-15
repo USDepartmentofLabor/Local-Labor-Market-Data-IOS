@@ -91,6 +91,11 @@ class ItemViewController: UIViewController {
         setupView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: view)
+    }
+    
     func setupView() {
         let searchBtn = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(displaySearchBar(sender:)))
         
@@ -763,7 +768,7 @@ extension ItemViewController {
             }
             else {
                 let announcementStr = "Loaded  Report"
-                UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: announcementStr)
+                UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: announcementStr)
 
                 strongSelf.tableView.reloadData()
                 strongSelf.displayParentReport()
