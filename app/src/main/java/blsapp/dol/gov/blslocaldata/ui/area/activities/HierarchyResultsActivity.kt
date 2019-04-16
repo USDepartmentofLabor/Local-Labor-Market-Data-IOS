@@ -55,6 +55,7 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
         const val HIERARCY_ARRAY = "HierarchyArray"
         const val KEY_REPORT_TYPE = "ReportType"
         const val KEY_REPORT_ROW_TYPE = "ReportRowType"
+        const val INITIAL_WAGE_VS_LEVEL_INDEX = "InitialWageVsLevelIndex"
     }
 
     private lateinit var mArea: AreaEntity
@@ -67,6 +68,7 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
     private lateinit var reportType: ReportType
     private lateinit var industryType: ReportRowType
     private lateinit var hierarchyHeaderFragment: HierarchyHeaderFragment
+    private var initialWageVsLevelIndex:Int? = null
 
     private var hierarchyString: String? = null
     private var hierarchyIDArray: Array<Long>? = null
@@ -90,6 +92,8 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
 
         hierarchyString = intent.getSerializableExtra(HIERARCY_STRING) as String?
         hierarchyIDArray = intent.getSerializableExtra(HIERARCY_ARRAY) as Array<Long>?
+
+        initialWageVsLevelIndex = intent.getSerializableExtra(INITIAL_WAGE_VS_LEVEL_INDEX) as Int?
 
         viewModel = ViewModelProviders.of(this).get(HierarchyViewModel::class.java)
         viewModel.mAdjustment = ReportManager.adjustment
@@ -128,6 +132,11 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
             title = parentName
         }
         attachObserver()
+
+        hierarchyHeaderFragment = supportFragmentManager.findFragmentById(R.id.headerFragment) as HierarchyHeaderFragment
+        if (initialWageVsLevelIndex != null) {
+            hierarchyHeaderFragment.selectedWageVsLevelIndex = initialWageVsLevelIndex!!
+        }
 
         val decorator = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         ContextCompat.getDrawable(this,R.drawable.divider)?.let {
@@ -198,6 +207,7 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
             }
 
             hierarchyHeaderFragment.setupHiearcaryBreadCrumbs(hierarchyString, hierarchyIDArray)
+
         })
         viewModel.isLoading.observe(this, Observer<Boolean> {
             it?.let { showLoadingDialog(it) }
@@ -220,6 +230,8 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
 
         intent.putExtra(KEY_REPORT_TYPE, reportType)
         intent.putExtra(KEY_REPORT_ROW_TYPE, industryType)
+
+        intent.putExtra(INITIAL_WAGE_VS_LEVEL_INDEX, hierarchyHeaderFragment.wageVsLevelSpinner.selectedItemPosition)
         startActivity(intent)
     }
 

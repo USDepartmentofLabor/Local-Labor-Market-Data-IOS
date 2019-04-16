@@ -41,6 +41,8 @@ import kotlinx.android.synthetic.main.industry_employment.*
  *
  */
 class HierarchyHeaderFragment : Fragment() {
+
+    var selectedWageVsLevelIndex:Int = 0
     private var listener: OnFragmentInteractionListener? = null
     private lateinit var hierarchyViewModel: HierarchyViewModel
     private var wageVsLevelTitles:MutableList<String>? = null
@@ -75,6 +77,7 @@ class HierarchyHeaderFragment : Fragment() {
         }
         attachObserver()
         updateHeader()
+        DrawableCompat.setTint(codeSortButtonUpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
 
     }
     private fun attachObserver() {
@@ -218,7 +221,6 @@ class HierarchyHeaderFragment : Fragment() {
             twelveMonthChangeView.visibility = View.GONE
         }
 
-
         val clickListener = View.OnClickListener {view ->
 
             turnOffArrows()
@@ -260,6 +262,12 @@ class HierarchyHeaderFragment : Fragment() {
                 R.id.oneMonthChangeView -> {
                     if (hierarchyViewModel.isCountyArea()) {
                         if (hierarchyViewModel.sortByLocalTwelveMonthPercentChangeValue()== SortStatus.ASCENDING)
+                            DrawableCompat.setTint(sortByColumn1UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+                        else
+                            DrawableCompat.setTint(sortByColumn1DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
+
+                    } else if (hierarchyViewModel.isNationalArea()) {
+                        if (hierarchyViewModel.sortByNationalOneMonthPercentChangeValue()== SortStatus.ASCENDING)
                             DrawableCompat.setTint(sortByColumn1UpArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
                         else
                             DrawableCompat.setTint(sortByColumn1DownArrow.getDrawable(), ContextCompat.getColor(activity!!, R.color.colorSelectedArrow))
@@ -351,6 +359,8 @@ class HierarchyHeaderFragment : Fragment() {
             val aa = ArrayAdapter(activity, android.R.layout.simple_spinner_item, hierarchyViewModel.getWageVsLevelTitles())
             aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             wageVsLevelSpinner!!.adapter = aa
+
+            wageVsLevelSpinner.setSelection(selectedWageVsLevelIndex)
         }
     }
 
