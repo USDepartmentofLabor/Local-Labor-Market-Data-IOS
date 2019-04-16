@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#293683</color>
     <color name="colorAccent">#293683</color>
     <color name="colorPrimaryText">#FFFFFF</color>
+    <color name="colorWhiteBackground">#FFFFFF</color>
     <color name="colorReportHeader">#D4D4D4</color>
     <color name="colorHierarchyCell">#D4D4D4</color>
     <color name="colorItemBorder">#D4D4D4</color>

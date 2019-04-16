@@ -59,6 +59,13 @@
         <item name="android:layout_marginTop">8dp</item>
     </style>
 
+    <style name="AreaSegmentRadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:background">@drawable/segment_button_text_selector</item>
+        <item name="android:textColor">@drawable/segment_button_background_selector</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_margin">1dp</item>
+    </style>
+
     <style name="SegmentRadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
         <item name="android:background">@drawable/segment_button_background_selector</item>
         <item name="android:textColor">@drawable/segment_button_text_selector</item>
