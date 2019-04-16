@@ -157,7 +157,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             is ReportType.QuarterlyEmploymentWages -> {
                 retArray = mutableListOf(
                         getApplication<BLSApplication>().getString(R.string.employment_level),
-                        getApplication<BLSApplication>().getString(R.string.average_weekly_wage))
+                        getApplication<BLSApplication>().getString(R.string.average_weekly_wage_accessible))
             }
         }
         return retArray
