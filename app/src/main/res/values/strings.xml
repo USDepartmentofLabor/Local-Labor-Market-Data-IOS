@@ -96,5 +96,5 @@
     <string name="no_results_found">No Results Found</string>
     <string name="code">Code</string>
     <string name="code_paren">(Code)</string>
-    <string name="employment_level_000s">Employment Level (000s)</string>
+    <string name="employment_level_000s">Employment Level (in thousands)</string>
 </resources>
