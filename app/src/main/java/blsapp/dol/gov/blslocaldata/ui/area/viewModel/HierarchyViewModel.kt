@@ -39,7 +39,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         loadReportCategories()
     }
 
-    private var codeSorted:SortStatus = SortStatus.NOT
+    private var codeSorted:SortStatus = SortStatus.ASCENDING
     private var localValueSorted:SortStatus = SortStatus.NOT
     private var nationalValueSorted:SortStatus = SortStatus.NOT
     private var localOneMonthChangeSorted:SortStatus = SortStatus.NOT
@@ -198,6 +198,45 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         nationalOneMonthChangeSorted = SortStatus.NOT
         localTwelveMonthChangeSorted = SortStatus.NOT
         nationalTwelveMonthChangeSorted = SortStatus.NOT
+    }
+
+    private fun toggleSortStatus(status:SortStatus):SortStatus {
+        var retStatus = status
+        if (retStatus != SortStatus.NOT) {
+            retStatus = if (retStatus == SortStatus.ASCENDING) SortStatus.DESCENDING else SortStatus.ASCENDING
+        }
+        return retStatus
+    }
+
+    private fun sortByCurrentStatus() {
+        if (codeSorted != SortStatus.NOT) {
+            codeSorted = toggleSortStatus(codeSorted)
+            sortByCode()
+
+        } else if (localValueSorted != SortStatus.NOT) {
+            localValueSorted = toggleSortStatus(localValueSorted)
+            sortByLocalValue()
+
+        }else if (nationalValueSorted != SortStatus.NOT) {
+            nationalValueSorted = toggleSortStatus(nationalValueSorted)
+            sortByNationalValue()
+
+        }else if (localOneMonthChangeSorted != SortStatus.NOT) {
+            localOneMonthChangeSorted = toggleSortStatus(localOneMonthChangeSorted)
+            sortByLocalOneMonthPercentChangeValue()
+
+        }else if (nationalOneMonthChangeSorted != SortStatus.NOT) {
+            nationalOneMonthChangeSorted = toggleSortStatus(nationalOneMonthChangeSorted)
+            sortByNationalOneMonthPercentChangeValue()
+
+        }else if (localTwelveMonthChangeSorted != SortStatus.NOT) {
+            localTwelveMonthChangeSorted = toggleSortStatus(localTwelveMonthChangeSorted)
+            sortByLocalTwelveMonthPercentChangeValue()
+
+        }else if (nationalTwelveMonthChangeSorted != SortStatus.NOT) {
+            nationalTwelveMonthChangeSorted = toggleSortStatus(nationalTwelveMonthChangeSorted)
+            sortByNationalTwelveMonthPercentChangeValue()
+        }
     }
 
     private fun preSort(): List<HierarchyRow>? {
@@ -419,7 +458,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                     updateIndustryRows(it, hierarchyRows)
 
                     getNationalReports(hierarchyRows)
-                    this.hierarchyRows.postValue(hierarchyRows)
+                    //this.hierarchyRows.postValue(hierarchyRows)
                 },
                 failureHandler = { it ->
                     isLoading.postValue(false)
@@ -450,8 +489,8 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                 successHandler = {
                     isLoading.postValue(false)
                     updateIndustryRows(it, hierarchyRows)
-
-                    this.hierarchyRows.postValue(hierarchyRows)
+                    sortByCurrentStatus()
+                    //this.hierarchyRows.postValue(hierarchyRows)
                 },
                 failureHandler = { it ->
                     isLoading.postValue(false)
