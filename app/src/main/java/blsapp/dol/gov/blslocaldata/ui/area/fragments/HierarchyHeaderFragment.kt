@@ -148,7 +148,7 @@ class HierarchyHeaderFragment : Fragment() {
         turnOffArrows()
     }
 
-    private fun updateAccessiblitiyHint(view:View, textView: TextView) {
+    private fun updateAccessiblitiyHintForSort(view:View, textView: TextView) {
 
         if (view == null || textView == null) return
         val regex = "(000s)".toRegex()
@@ -157,12 +157,21 @@ class HierarchyHeaderFragment : Fragment() {
         view.contentDescription = hintText
     }
 
+    private fun updateAccessiblitiyHint(view:View, textView: TextView) {
+
+        if (view == null || textView == null) return
+        val regex = "(000s)".toRegex()
+        var hintText = textView.text.replace(regex, " values in thousands")
+        view.contentDescription = hintText
+    }
+
     private fun updateAccessibilityHints() {
-        updateAccessiblitiyHint(regionSortButtonView, regionSortButtonTitle)
-        updateAccessiblitiyHint(nationalSortButtonView, nationalSortButtonTitle)
-        updateAccessiblitiyHint(regionChangeView, regionChangeTitle)
-        updateAccessiblitiyHint(oneMonthChangeView, changeColumn1Title)
-        updateAccessiblitiyHint(twelveMonthChangeView, changeColumn2Title)
+        updateAccessiblitiyHintForSort(regionSortButtonView, regionSortButtonTitle)
+        updateAccessiblitiyHintForSort(nationalSortButtonView, nationalSortButtonTitle)
+        updateAccessiblitiyHintForSort(regionChangeView, regionChangeTitle)
+        updateAccessiblitiyHintForSort(oneMonthChangeView, changeColumn1Title)
+        updateAccessiblitiyHintForSort(twelveMonthChangeView, changeColumn2Title)
+        updateAccessiblitiyHint(dataTitle, dataTitle)
     }
 
     private fun setupColumnHeaders() {
@@ -190,12 +199,12 @@ class HierarchyHeaderFragment : Fragment() {
             dataTitle2.visibility = View.VISIBLE
             dataTitle.text = getString(R.string.national)
 
-            nationalSortButtonTitle.text = getString(R.string.employment_level_000s)
+            nationalSortButtonTitle.text = getString(R.string.employment_level)
             var params = nationalSortButtonTitle.getLayoutParams() as MarginLayoutParams
             params.topMargin = dimen(R.dimen.item_heading_two_line_sort_option_top_margin)
             nationalSortButtonTitle.layoutParams = params
 
-            regionSortButtonTitle.text = getString(R.string.employment_level_000s)
+            regionSortButtonTitle.text = getString(R.string.employment_level)
             params = regionSortButtonTitle.getLayoutParams() as MarginLayoutParams
             params.topMargin = dimen(R.dimen.item_heading_two_line_sort_option_top_margin)
             regionSortButtonTitle.layoutParams = params
@@ -220,6 +229,8 @@ class HierarchyHeaderFragment : Fragment() {
             oneMonthChangeView.visibility = View.GONE
             twelveMonthChangeView.visibility = View.GONE
         }
+
+        codeSortButtonTitle.contentDescription = "Sort by " + detailTitle.text + " code"
 
         val clickListener = View.OnClickListener {view ->
 
@@ -342,8 +353,8 @@ class HierarchyHeaderFragment : Fragment() {
                     wageVsLevelTitles?.let {
                         if (hierarchyViewModel.isCountyArea()) {
                             if (pos == 0) {
-                                nationalSortButtonTitle.text = getString(R.string.employment_level_000s)
-                                regionSortButtonTitle.text = getString(R.string.employment_level_000s)
+                                nationalSortButtonTitle.text = getString(R.string.employment_level)
+                                regionSortButtonTitle.text = getString(R.string.employment_level)
                             } else {
                                 nationalSortButtonTitle.text = getString(R.string.average_weekly_wage_accessible)
                                 regionSortButtonTitle.text = getString(R.string.average_weekly_wage_accessible)
