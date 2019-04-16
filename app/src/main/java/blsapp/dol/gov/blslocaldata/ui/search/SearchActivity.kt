@@ -34,6 +34,10 @@ import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.BuildConfig
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
+import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
+import blsapp.dol.gov.blslocaldata.db.entity.StateEntity
+import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
+import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
 import blsapp.dol.gov.blslocaldata.services.Constants
 import blsapp.dol.gov.blslocaldata.services.FetchAddressIntentService
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
@@ -246,6 +250,11 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
     private fun displayReport(area: AreaEntity) {
         val intent = Intent(applicationContext,
                 AreaReportActivity::class.java)
+        when (area) {
+            is NationalEntity -> ReportManager.adjustment = SeasonalAdjustment.ADJUSTED
+            is StateEntity -> ReportManager.adjustment = SeasonalAdjustment.ADJUSTED
+            else -> ReportManager.adjustment = SeasonalAdjustment.NOT_ADJUSTED
+        }
         intent.putExtra(AreaReportActivity.KEY_AREA, area)
         startActivity(intent)
     }
