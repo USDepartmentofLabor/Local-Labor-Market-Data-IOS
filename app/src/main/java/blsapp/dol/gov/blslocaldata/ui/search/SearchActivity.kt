@@ -29,6 +29,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import android.widget.SearchView
+import androidx.core.view.isVisible
 import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.BuildConfig
 import blsapp.dol.gov.blslocaldata.R
@@ -144,6 +145,9 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
     private fun setupAlphabetScroller () {
         fastScrollerView = findViewById(R.id.fastscroller)
+        fastScrollerView.visibility = View.GONE
+        return
+
         fastScrollerView.apply {
             setupWithRecyclerView(
                     recyclerView,
@@ -274,7 +278,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
             }
         } else {
             if (searchAnnounce) {
-                UIUtil.accessibilityAnnounce(applicationContext, String.format(getString(R.string.found_n_results), itemRows.size))
+              //  UIUtil.accessibilityAnnounce(applicationContext, String.format(getString(R.string.found_n_results), itemRows.size))
                 searchAnnounce = false
             }
         }
