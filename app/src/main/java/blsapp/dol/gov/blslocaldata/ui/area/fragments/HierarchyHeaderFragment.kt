@@ -183,7 +183,7 @@ class HierarchyHeaderFragment : Fragment() {
             }
         } else {
             regionSortButtonTitle.text = hierarchyViewModel.regionTitle
-            regionChangeTitle.text = hierarchyViewModel.regionTitle
+            regionChangeTitle.text = getString(R.string.level)
         }
 
         dataTitle2.visibility = View.INVISIBLE
