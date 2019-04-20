@@ -1,6 +1,7 @@
 package blsapp.dol.gov.blslocaldata.ui.area
 
 import android.content.Context
+import android.provider.Settings.Global.getString
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -111,9 +112,10 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
 
             holder.mHeaderTextView.text = reportRow.header
 
-            if (reportRow.subIndustries)
+            if (reportRow.subIndustries) {
                 holder.mHeaderSubIndustriesIndicator.visibility = View.VISIBLE
-            else
+                holder.mHeaderSubIndustriesIndicator.contentDescription = reportRow.header + " more details"
+            } else
                 holder.mHeaderSubIndustriesIndicator.visibility = View.GONE
 
             holder.collapse = reportRow.headerCollapsed
