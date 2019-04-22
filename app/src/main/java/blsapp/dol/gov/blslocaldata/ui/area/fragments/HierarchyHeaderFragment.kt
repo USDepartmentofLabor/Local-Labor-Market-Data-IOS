@@ -193,23 +193,15 @@ class HierarchyHeaderFragment : Fragment() {
             detailTitle.text = getString(R.string.industries_title)
             regionChangeView.visibility = View.GONE
             changeColumn1Title.text = getString(R.string.twelve_month_change)
-            dataTitle2.visibility = View.VISIBLE
-            dataTitle.text = getString(R.string.national)
+            dataTitle.text = getString(R.string.employment_level)
 
-            nationalSortButtonTitle.text = getString(R.string.employment_level)
-            var params = nationalSortButtonTitle.getLayoutParams() as MarginLayoutParams
-            params.topMargin = dimen(R.dimen.item_heading_two_line_sort_option_top_margin)
-            nationalSortButtonTitle.layoutParams = params
-
-            regionSortButtonTitle.text = getString(R.string.employment_level)
-            params = regionSortButtonTitle.getLayoutParams() as MarginLayoutParams
-            params.topMargin = dimen(R.dimen.item_heading_two_line_sort_option_top_margin)
-            regionSortButtonTitle.layoutParams = params
-
-            params = oneMonthChangeView.getLayoutParams() as MarginLayoutParams
+            var params = oneMonthChangeView.getLayoutParams() as MarginLayoutParams
             val headingParms  = regionSortButtonView.getLayoutParams() as MarginLayoutParams
             params.marginEnd = headingParms.marginEnd
             oneMonthChangeView.layoutParams = params
+
+            regionSortButtonTitle.text = getString(R.string.county)
+            nationalSortButtonTitle.text = getString(R.string.national)
 
         } else if (hierarchyViewModel.isIndustryReport()) {
             if (hierarchyViewModel.isMetroArea()) {
@@ -350,11 +342,9 @@ class HierarchyHeaderFragment : Fragment() {
                     wageVsLevelTitles?.let {
                         if (hierarchyViewModel.isCountyArea()) {
                             if (pos == 0) {
-                                nationalSortButtonTitle.text = getString(R.string.employment_level)
-                                regionSortButtonTitle.text = getString(R.string.employment_level)
+                                dataTitle.text = getString(R.string.employment_level)
                             } else {
-                                nationalSortButtonTitle.text = getString(R.string.average_weekly_wage_accessible)
-                                regionSortButtonTitle.text = getString(R.string.average_weekly_wage_accessible)
+                                dataTitle.text = getString(R.string.average_weekly_wage_accessible)
                             }
                         } else {
                             dataTitle.text = it[pos]
