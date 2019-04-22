@@ -13,6 +13,7 @@ class IndustryEmploymentHolder(val mView: View) : RecyclerView.ViewHolder(mView)
     val mDataValueTextView: TextView = mView.dataValueTextView
     val mAreaTitleTextView: TextView = mView.areaTextView
     val mMonthYearTextView: TextView = mView.monthYearTextView
+    val mSeasonalAdjustmentTextView: TextView = mView.seasonallyAdjustedTextView
     val mOneMonthChangeTextView: TextView = mView.oneMonthChangeValueTextView
     val mOneMonthRateChangeTextView: TextView = mView.oneMonthRateChangeTextView
     val mTwelveMonthChangeTextView: TextView = mView.twelveMonthChangeValueTextView

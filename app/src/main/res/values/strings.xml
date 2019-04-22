@@ -64,6 +64,7 @@
     <string name="metro_area">Metro Data</string>
     <string name="county_area">County Data</string>
     <string name="seasonally_adjusted">Seasonally Adjusted</string>
+    <string name="not_seasonally_adjusted">Not Seasonally Adjusted</string>
 
     <string name="unemployment_rate">Unemployment Rate</string>
     <string name="industry_employment">Industry Employment</string>

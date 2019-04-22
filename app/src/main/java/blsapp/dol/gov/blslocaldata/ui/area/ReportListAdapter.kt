@@ -16,10 +16,6 @@ import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.model.DataUtil
 import blsapp.dol.gov.blslocaldata.model.SeriesData
 import blsapp.dol.gov.blslocaldata.model.SeriesReport
-import blsapp.dol.gov.blslocaldata.model.reports.AreaReport
-import blsapp.dol.gov.blslocaldata.model.reports.QCEWReport
-import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
-import blsapp.dol.gov.blslocaldata.model.reports.ReportType
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.ReportRowType
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.*
@@ -30,7 +26,8 @@ import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
 import android.support.v4.view.ViewCompat.onInitializeAccessibilityNodeInfo
 import android.support.v4.view.AccessibilityDelegateCompat
 import android.support.v4.view.ViewCompat
-
+import blsapp.dol.gov.blslocaldata.BLSApplication
+import blsapp.dol.gov.blslocaldata.model.reports.*
 
 
 /**
@@ -196,6 +193,10 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
             seriesData?.let {
                 holder.mDataValueTextView.text = it.value + "%"
                 holder.mMonthYearTextView.text = it.periodName + " " + it.year
+                if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED)
+                    holder.mSeasonalAdjustmentTextView.text = context.getString(R.string.seasonally_adjusted)
+                else
+                    holder.mSeasonalAdjustmentTextView.text = context.getString(R.string.not_seasonally_adjusted)
 
                 holder.mOneMonthChangeTextView.text =
                         DataUtil.changeValueByPercent(it.calculations?.netChanges?.oneMonth, "")
@@ -228,6 +229,11 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
             seriesData?.let {
                 holder.mDataValueTextView.text = DataUtil.numberValueByThousand(it.value)
                 holder.mMonthYearTextView.text = it.periodName + " " + it.year
+
+                if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED)
+                    holder.mSeasonalAdjustmentTextView.text = context.getString(R.string.seasonally_adjusted)
+                else
+                    holder.mSeasonalAdjustmentTextView.text = context.getString(R.string.not_seasonally_adjusted)
 
                 holder.mOneMonthChangeTextView.text =
                             DataUtil.changeValueByThousand(it.calculations?.netChanges?.oneMonth)
@@ -283,6 +289,11 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
         reportRow.areaReports?.forEach { areaReport ->
             when (areaReport.reportType) {
                 is ReportType.QuarterlyEmploymentWages -> {
+                    if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED)
+                        holder.mSeasonalAdjustmentTextView.text = context.getString(R.string.seasonally_adjusted)
+                    else
+                        holder.mSeasonalAdjustmentTextView.text = context.getString(R.string.not_seasonally_adjusted)
+
                     if (areaReport.reportType.dataTypeCode == QCEWReport.DataTypeCode.allEmployees) {
                         displayQuaterlyEmployment(holder, areaReport.seriesReport, year, period)
                     }

@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.employment_wages.view.*
 class EmploymentWagesHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
     val mAreaTitleTextView: TextView = mView.areaTextView
     val mMonthYearTextView: TextView = mView.monthYearTextView
+    val mSeasonalAdjustmentTextView: TextView = mView.seasonallyAdjustedTextView
 
     // Employment Level
     val mDataValueTextView: TextView = mView.dataValueTextView

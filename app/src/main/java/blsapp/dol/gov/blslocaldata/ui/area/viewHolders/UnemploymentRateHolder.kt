@@ -11,6 +11,8 @@ import kotlinx.android.synthetic.main.unemployment_rate.view.*
 
 class UnemploymentRateHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
     val mDataValueTextView: TextView = mView.dataValueTextView
+    val mSeasonalAdjustmentTextView: TextView = mView.seasonallyAdjustedTextView
+
     val mAreaTitleTextView: TextView = mView.areaTextView
     val mMonthYearTextView: TextView = mView.monthYearTextView
     val mOneMonthChangeTextView: TextView = mView.oneMonthChangeValueTextView
