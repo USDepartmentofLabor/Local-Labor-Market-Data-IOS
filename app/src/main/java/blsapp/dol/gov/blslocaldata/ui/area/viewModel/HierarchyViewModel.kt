@@ -137,11 +137,11 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             }
             is OccupationalEmployment -> {
                 industryType = IndustryType.OE_OCCUPATION
-                detailTitle = getApplication<BLSApplication>().getString(R.string.occupation_title)
+                detailTitle = getApplication<BLSApplication>().getString(R.string.occupations_title)
             }
             is ReportType.QuarterlyEmploymentWages -> {
                 industryType = IndustryType.QCEW_INDUSTRY
-                detailTitle = getApplication<BLSApplication>().getString(R.string.occupation_title)
+                detailTitle = getApplication<BLSApplication>().getString(R.string.occupations_title)
                 regionTitle = getApplication<BLSApplication>().getString(R.string.county)
             }
         }

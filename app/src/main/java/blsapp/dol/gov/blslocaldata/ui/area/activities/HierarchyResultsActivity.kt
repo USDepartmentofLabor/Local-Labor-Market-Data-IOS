@@ -120,7 +120,7 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
             }
 
         } else {
-            title = getString(R.string.occupation_title)
+            title = getString(R.string.occupations_title)
             adapter = HierarchyListAdapter(this)
             recyclerView.apply {
                 adapter = this@HierarchyResultsActivity.adapter

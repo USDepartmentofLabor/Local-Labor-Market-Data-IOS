@@ -77,7 +77,8 @@
     <string name="ownership_total_covered">Total</string>
     <string name="industries_title">Industry</string>
     <string name="industries_title_code">Industry (Code)</string>
-    <string name="occupation_title">Occupations</string>
+    <string name="occupation_title">Occupation</string>
+    <string name="occupations_title">Occupations</string>
     <string name="occupation_title_code">Occupation (Code)</string>
 
     <string name="employment_level">Employment Level</string>

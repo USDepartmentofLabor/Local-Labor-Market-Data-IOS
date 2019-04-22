@@ -178,13 +178,10 @@ class HierarchyHeaderFragment : Fragment() {
 
         if  (hierarchyViewModel.regionTitle == null) {
             regionSortButtonView.visibility = View.GONE
-            if (hierarchyViewModel.isNationalArea()) {
-                regionChangeTitle.text = getString(R.string.national)
-            }
         } else {
             regionSortButtonTitle.text = hierarchyViewModel.regionTitle
-            regionChangeTitle.text = getString(R.string.level)
         }
+        regionChangeTitle.text = getString(R.string.level)
 
         dataTitle2.visibility = View.INVISIBLE
         hierarchySeasonallyAdjustedSwitch.isChecked = true

@@ -50,7 +50,7 @@
 
         <activity
             android:name=".ui.area.activities.SearchHierarchyActivity"
-            android:label="@string/occupation_title" />
+            android:label="@string/occupations_title" />
 
         <activity android:name=".ui.area.activities.AreaResultsActivity"></activity>
 
