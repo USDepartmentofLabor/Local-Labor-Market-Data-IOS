@@ -211,12 +211,29 @@ class HierarchyHeaderFragment : Fragment() {
             regionSortButtonView.visibility = View.GONE
             nationalSortButtonView.visibility = View.GONE
 
+            val params = dataTitle.layoutParams as ConstraintLayout.LayoutParams
+            params.startToStart = oneMonthChangeView.id
+            dataTitle.requestLayout()
+
+
         } else {
             hierarchySeasonallyAdjustedSwitch.visibility = View.GONE
             detailTitle.text = getString(R.string.occupation_title)
             regionChangeView.visibility = View.GONE
             oneMonthChangeView.visibility = View.GONE
             twelveMonthChangeView.visibility = View.GONE
+
+            val params = dataTitle.layoutParams as ConstraintLayout.LayoutParams
+            if (hierarchyViewModel.isNationalArea())
+                params.startToStart = nationalSortButtonView.id
+            else {
+                params.startToStart = regionSortButtonView.id
+
+                var params = dataTitle.getLayoutParams() as MarginLayoutParams
+                params.marginStart = 150
+                dataTitle.layoutParams = params
+            }
+            dataTitle.requestLayout()
         }
 
         codeSortButtonTitle.contentDescription = "Sort by " + detailTitle.text + " code"

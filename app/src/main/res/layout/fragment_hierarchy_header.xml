@@ -99,9 +99,9 @@
         android:layout_marginEnd="8dp"
         android:text="Employment Level \n(in thousands)"
         android:gravity="center_horizontal"
-        android:textAlignment="viewEnd"
         android:textAppearance="@style/tableHeadingTitle"
         app:layout_constraintTop_toBottomOf="@+id/hierarchyTextView"
+        app:layout_constraintStart_toStartOf="@+id/regionSortButtonView"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
