@@ -424,21 +424,19 @@ extension MetroStateViewController: UITableViewDelegate {
         
         if currentSection.title != Section.UnemploymentRateTitle {
             sectionHeaderView.infoButton.isHidden = false
-            let accessibilityHint: String
-            let accessibilityStr: String
-            if currentSection.title == Section.OccupationEmploymentTitle {
-                accessibilityHint = "Tap to View Occupation hierarchy"
-//                accessibilityStr = "Occupation Hierarchy"
-            }
-            else {
-                accessibilityHint = "Tap to View Industry hierarchy"
-//                accessibilityStr = "Industry Hierarchy"
-            }
-            sectionHeaderView.infoButton.accessibilityHint = accessibilityHint
-//            sectionHeaderView.infoButton.accessibilityLabel = accessibilityStr
+//            let accessibilityHint: String
+//            if currentSection.title == Section.OccupationEmploymentTitle {
+//                accessibilityHint = "Tap to View Occupation hierarchy"
+//            }
+//            else {
+//                accessibilityHint = "Tap to View Industry hierarchy"
+//            }
+//            sectionHeaderView.accessibilityTraits = .button
+//            sectionHeaderView.accessibilityHint = accessibilityHint
         }
         else {
             sectionHeaderView.infoButton.isHidden = true
+//            sectionHeaderView.accessibilityTraits = .header
         }
         
         sectionHeaderView.delegate = self

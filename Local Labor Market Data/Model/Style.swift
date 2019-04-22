@@ -60,7 +60,7 @@ struct Style {
         .reportOwnershipTitle: (nil, 16, .regular, nil, nil),
         .itemPeriodName: (nil, 16, .medium, .title1, nil),
         .itemDataType: (nil, 15, .medium, .subheadline, nil),
-        .itemColumnTitle: (nil, 15, .medium, .subheadline, nil),
+        .itemColumnTitle: (nil, 14, .regular, .subheadline, nil),
         .itemSubColumnTitle: (nil, 12, .regular, .subheadline, nil),
         .itemAnscestorsList: (nil, 13, .regular, .body, nil),
         .itemParentTitle: (nil, 15, .medium, .body, nil),

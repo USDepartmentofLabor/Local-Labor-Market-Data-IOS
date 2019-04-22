@@ -44,11 +44,11 @@ class ResultsViewController: UIViewController {
         setupView()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: titleLabel)
-        
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: titleLabel)
+//        
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -97,6 +97,7 @@ extension UnEmploymentRateTableViewCell: ReportTableViewCell {
         guard let seriesReport = seriesReport else {
             monthYearLabel.text = ""
             valueLabel.text = ""
+            seasonallyAdjustedLabel.text = ""
             oneMonthNetChangeLabel.text = ""
             twelveMonthNetChangeLabel.text = ""
             seasonallyAdjustedLabel.text = ""

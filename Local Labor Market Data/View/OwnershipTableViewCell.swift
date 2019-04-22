@@ -186,7 +186,8 @@ extension OwnershipTableViewCell: UITableViewDelegate {
         sectionHeaderView.configure(title: title, section: section,
                                     collapse: reportSections?[section].collapsed ?? true)
 
-        sectionHeaderView.accessibilityHint = "Tap to view Industry hierarchy"
+//        sectionHeaderView.accessibilityHint = "Tap to view Industry hierarchy"
+//        sectionHeaderView.accessibilityTraits = .button
         return sectionHeaderView
     }
     

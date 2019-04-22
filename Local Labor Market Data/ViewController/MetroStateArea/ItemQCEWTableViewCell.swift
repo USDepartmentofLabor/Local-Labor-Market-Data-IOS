@@ -147,7 +147,9 @@ class ItemQCEWTableViewCell: UITableViewCell {
 
     func setupAccessibility() {
         isAccessibilityElement = false
-        nextImageView.accessibilityHint = "Tap to view sub industries"
+        nextImageView.isAccessibilityElement = true
+        nextImageView.accessibilityLabel = "Details"
+        nextImageView.accessibilityHint = "Tap to view details"
         accessibilityElements = [titleLabel as Any, valueLabel as Any, twelveMonthValueLabel as Any, twelveMonthPercentLabel as Any, nationalValueLabel as Any, nationalTwelveMonthValueLabel as Any, nationalTwelveMonthPercentLabel as Any, nextImageView as Any]
     }
 }

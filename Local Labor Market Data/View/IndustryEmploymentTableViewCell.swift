@@ -116,6 +116,7 @@ extension IndustryEmploymentTableViewCell: ReportTableViewCell {
         guard let seriesData = data else {
             monthYearLabel.text = ""
             oneMonthRateChangeLabel.text = ""
+            seasonalAdjustmentLabel.text = ""
             oneMonthNetChangeLabel.text = ReportManager.dataNotAvailableStr
             twelveMonthRateChangeLabel.text = ""
             twelveMonthNetChangeLabel.text = ReportManager.dataNotAvailableStr

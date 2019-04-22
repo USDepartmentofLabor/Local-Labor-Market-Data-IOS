@@ -84,8 +84,9 @@ class ItemTableViewCell: UITableViewCell {
     func setupAccessibility() {
         isAccessibilityElement = false
         nextImageView.isAccessibilityElement = true
+        nextImageView.accessibilityLabel = "Details"
         nextImageView.accessibilityTraits = .button
-        nextImageView.accessibilityHint = "Tap to view sub occupations"
+        nextImageView.accessibilityHint = "Tap to view details"
         accessibilityElements = [titleLabel as Any, valueLabel as Any, nationalValueLabel as Any, nextImageView as Any]        
     }
 }

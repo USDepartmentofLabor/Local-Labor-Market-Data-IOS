@@ -68,6 +68,8 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
     }
     
     @IBAction func displayDetails(_ sender: Any) {
+        guard infoButton.isHidden == false else {return}
+        
         delegate?.sectionHeader(self, displayDetails: section)
     }
     
@@ -75,16 +77,19 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
         titleLabel.text = title
         self.section = section
         collapseSection(collapse: collapse)
-        applyAccessibility()
+        applyAccessibility(title: title)
     }
     
-    func applyAccessibility() {
+    func applyAccessibility(title: String) {
         isAccessibilityElement = false
         titleView.isAccessibilityElement = true
         titleView.accessibilityLabel = titleLabel.text
-        
         titleView.accessibilityTraits = UIAccessibilityTraits.header
+        
         infoButton.accessibilityTraits = .button
+        infoButton.accessibilityLabel = "\(title) more Details"
+        infoButton.accessibilityHint = "Tap to view details"
+        
         expandCollapseImageView.isAccessibilityElement = false
         
         if Util.isVoiceOverRunning {
@@ -95,7 +100,6 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
         }
         
         accessibilityElements = [titleView as Any, infoButton as Any]
-
     }
 
     

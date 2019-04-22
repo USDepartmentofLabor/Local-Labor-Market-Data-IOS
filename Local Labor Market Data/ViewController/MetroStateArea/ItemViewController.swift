@@ -17,6 +17,7 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var seasonallyAdjustedSwitch: UICustomSwitch!
     @IBOutlet weak var seasonallyAdjustedTitle: UILabel!
     
+    @IBOutlet weak var periodOwnershipStackView: UIStackView!
     @IBOutlet weak var reportPeriodLabel: UILabel!
     
     @IBOutlet weak var anscestorsLabel: UILabel!
@@ -26,6 +27,7 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var parentTitleLabel: UILabel!
     @IBOutlet weak var dataTypeButton: UIButton!
 
+    @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var tableView: UITableView!
 
     @IBOutlet weak var parentView: UIView!
@@ -91,10 +93,10 @@ class ItemViewController: UIViewController {
         setupView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: view)
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: view)
+//    }
     
     func setupView() {
         let searchBtn = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(displaySearchBar(sender:)))
@@ -210,9 +212,14 @@ class ItemViewController: UIViewController {
         occupationParentValueLabel.scaleFont(forDataType: .itemParentValue)
         occupationParentNationalValueLabel.scaleFont(forDataType: .itemParentValue)
 
+        titleView.isAccessibilityElement = false
         if viewModel.isNationalReport {
             occupationNationalTitleButton.removeFromSuperview()
             occupationParentNationalValueLabel.removeFromSuperview()
+            titleView.accessibilityElements = [itemTitleLabel as Any, itemCodeButton as Any, occupationDataTypeTitleLabel as Any, occupationLocalTitleButton as Any]
+        }
+        else {
+            titleView.accessibilityElements = [itemTitleLabel as Any, itemCodeButton as Any, occupationDataTypeTitleLabel as Any, occupationLocalTitleButton as Any, occupationNationalTitleButton as Any]
         }
         
         occupationLocalTitleButton.setTitle(viewModel.area.displayType, for: .normal)
@@ -238,11 +245,14 @@ class ItemViewController: UIViewController {
         cesParentTwelveMonthValueLabel.scaleFont(forDataType: .itemChangeValue)
         cesParentTwelveMonthPercentLabel.scaleFont(forDataType: .itemChangeValue)
         
-        cesLocalTitleButton.setTitle(viewModel.area.displayType, for: .normal)
+//        cesLocalTitleButton.setTitle(viewModel.area.displayType, for: .normal)
         cesParentValueLabel.text = ""
         
         cesOneMonthChangeTitleButton.titleLabel?.numberOfLines = 0
         cesTwelveMonthChangeTitleButton.titleLabel?.numberOfLines = 0
+        titleView.isAccessibilityElement = false
+        titleView.accessibilityElements = [itemTitleLabel as Any, itemCodeButton as Any, cesDataTypeTitleLabel as Any, cesLocalTitleButton as Any, cesOneMonthChangeTitleButton as Any, cesTwelveMonthChangeTitleButton as Any]
+
         parentView.isAccessibilityElement = false
         parentView.accessibilityElements = [parentTitleLabel as Any, cesParentValueLabel as Any, cesParentOneMonthValueLabel as Any, cesParentOneMonthPercentLabel as Any, cesParentTwelveMonthValueLabel as Any, cesParentTwelveMonthPercentLabel as Any]
     }
@@ -277,6 +287,11 @@ class ItemViewController: UIViewController {
             qcewNationalParentStackView.removeFromSuperview()
         }
 
+        periodOwnershipStackView.isAccessibilityElement = false
+        periodOwnershipStackView.accessibilityElements = [ownershipLabel as Any, reportPeriodLabel as Any]
+        titleView.isAccessibilityElement = false
+        titleView.accessibilityElements = [itemTitleLabel as Any, itemCodeButton as Any, qcewDataTypeTitleLabel as Any, qcewLocalTitleButton as Any, qcewLocalTwelveMonthChangeTitleButton as Any, qcewNationalTitleButton as Any, qcewNationalTwelveMonthChangeTitleButton as Any]
+                                           
         ownershipLabel.isHidden = false
         ownershipLabel.text = "\(vm.ownershipCode.title)"
         qcewLocalTitleButton.setTitle(viewModel.area.displayType, for: .normal)
@@ -564,7 +579,8 @@ extension ItemViewController: UITableViewDataSource {
     
     func configureCell(cell: ItemTableViewCell, indexPath: IndexPath) {
         if let item = viewModel.items?[indexPath.row] {
-            let title = (item.title ?? "") + "(" + (item.displayCode ?? "") + ")"
+            let title = (item.title ?? "") + " (" + (item.displayCode ?? "") + ")"
+            cell.nextImageView.accessibilityLabel = "\(item.title ?? "") more details"
             cell.titleLabel?.text = title
 
             cell.hasChildren = (item.children?.count ?? 0) > 0
@@ -590,8 +606,9 @@ extension ItemViewController: UITableViewDataSource {
     
     func configureCell(cell: ItemCESTableViewCell, indexPath: IndexPath) {
         if let item = viewModel.items?[indexPath.row] {
-            let title = (item.title ?? "") + "(" + (item.code ?? "") + ")"
+            let title = (item.title ?? "") + " (" + (item.code ?? "") + ")"
             cell.titleLabel?.text = title
+            cell.nextImageView.accessibilityLabel = "\(item.title ?? "") more details"
             cell.hasChildren = (item.children?.count ?? 0) > 0
 
             guard viewModel.isDataDownloaded else {
@@ -645,6 +662,7 @@ extension ItemViewController: UITableViewDataSource {
     func configureCell(cell: ItemQCEWTableViewCell, indexPath: IndexPath) {
         if let item = viewModel.items?[indexPath.row] {
             cell.titleLabel?.text = item.title
+            cell.nextImageView.accessibilityLabel = "\(item.title ?? "") more details"
             cell.hasChildren = (item.children?.count ?? 0) > 0
             
             guard viewModel.isDataDownloaded else {
@@ -750,6 +768,7 @@ extension ItemViewController {
         }
         else {
             cesDataTypeTitleLabel.text = title
+            cesDataTypeTitleLabel.accessibilityLabel = "\(title) in thousands"
         }
         
         
@@ -897,6 +916,7 @@ extension ItemViewController {
     }
 }
 
+//MARK: UIPopoverPresentationController Delegate
 extension ItemViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none

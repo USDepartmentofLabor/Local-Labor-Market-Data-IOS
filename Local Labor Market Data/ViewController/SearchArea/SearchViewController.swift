@@ -177,6 +177,7 @@ class SearchViewController: UIViewController {
             detailVC.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem
 //            if detailVC is AboutViewController {
                 detailVC.navigationItem.leftItemsSupplementBackButton = true
+            splitVC.preferredDisplayMode = .primaryHidden
 //            }
         }
     }

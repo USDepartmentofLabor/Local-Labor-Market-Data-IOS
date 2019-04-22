@@ -128,7 +128,8 @@ class ItemCESTableViewCell: UITableViewCell {
 
     func setupAccessibility() {
         isAccessibilityElement = false
-        nextImageView.accessibilityHint = "Tap to view sub industries"
+        nextImageView.accessibilityLabel = "Details"
+        nextImageView.accessibilityHint = "Tap to view details"
         accessibilityElements = [titleLabel as Any, valueLabel as Any, oneMonthValueLabel as Any, oneMonthPercentLabel as Any, twelveMonthValueLabel as Any, twelveMonthPercentLabel as Any, nextImageView as Any]
     }
 }

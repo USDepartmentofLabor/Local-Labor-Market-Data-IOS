@@ -269,13 +269,13 @@ extension CountyViewController {
         loadNationalReport(areaReportsDict: areaReportsDict)
         
         tableView.reloadData()
-        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: "Loaded Local Report")
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: "Loaded Local Report")
     }
     
     func displayNationsReportResults(areaReportsDict: [ReportType: AreaReport]) {
         nationalAreaReportsDict = nationalAreaReportsDict + areaReportsDict
         tableView.reloadData()
-        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: "Loaded National Report")
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: "Loaded National Report")
     }
     
     func loadNationalReport(areaReportsDict: [ReportType: AreaReport]) {
