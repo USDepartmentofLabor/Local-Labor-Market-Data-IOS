@@ -116,6 +116,20 @@
                 android:layout_height="wrap_content"
                 android:text="@string/glossary6" />
 
+            <TextView
+                android:id="@+id/title7"
+                style="@style/infoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossaryTitle6" />
+
+            <TextView
+                android:id="@+id/line7"
+                style="@style/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/glossary6" />
+
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

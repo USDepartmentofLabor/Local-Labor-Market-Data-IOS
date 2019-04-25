@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import blsapp.dol.gov.blslocaldata.R
+import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.HierarchyEntryHolder
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.HierarchyRow
 
@@ -52,6 +53,12 @@ open class HierarchyListAdapter(private val mListener: OnItemClickListener?) : R
 
             holder.mIndustryLocalValue.text = areaRow.localValue
             holder.mIndustryNationalValue?.text = areaRow.nationalValue
+
+            if  (holder.mIndustryLocalValue.text == "N/A")
+                holder.mIndustryLocalValue.contentDescription = UIUtil.getString(R.string.naAccessible)
+
+            if  (holder.mIndustryNationalValue?.text != null && holder.mIndustryNationalValue?.text!! == "N/A")
+                holder.mIndustryNationalValue?.contentDescription = UIUtil.getString(R.string.naAccessible)
 
             if (areaRow.superSector) {
                 holder.mSubIndustryIndicator.visibility = View.VISIBLE

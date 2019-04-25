@@ -1,5 +1,6 @@
 package blsapp.dol.gov.blslocaldata.ui.search
 
+import android.content.res.Resources
 import android.support.v4.content.ContextCompat.getColor
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
+import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.HierarchyEntryCESHolder
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.HierarchyEntryHolder
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.HierarchyEntryQCEWHolder
@@ -54,10 +56,27 @@ class HierarchyListQCEWAdapter( private val mListener: OnItemClickListener?) : H
                 holder.twelveMonthValueLabel.textColor = getColor(holder.itemView.context, android.R.color.black)
                 holder.twelveMonthPercentLabel.textColor = getColor(holder.itemView.context, android.R.color.black)
             }
+
             holder.twelveMonthPercentLabel.text = areaRow.twelveMonthPercent
             holder.twelveMonthValueLabel.text = areaRow.twelveMonthValue
             holder.nationalTwelveMonthPercentLabel.text = areaRow.twelveMonthNationalPercent
             holder.nationalTwelveMonthValueLabel.text = areaRow.twelveMonthNationalValue
+
+            if  (areaRow.twelveMonthValue =="ND" || areaRow.twelveMonthValue == "N/A") {
+                holder.mIndustryLocalValue.text = ""
+                holder.twelveMonthPercentLabel.text = ""
+                holder.twelveMonthValueLabel.text = areaRow.twelveMonthValue
+                if  (areaRow.twelveMonthValue == "ND")
+                    holder.twelveMonthValueLabel.contentDescription = UIUtil.getString(R.string.ndAccessible)
+                else
+                    holder.twelveMonthValueLabel.contentDescription = UIUtil.getString(R.string.naAccessible)
+            }
+
+            if  (areaRow.twelveMonthNationalValue == "ND" || areaRow.twelveMonthNationalValue == "N/A") {
+                holder.mIndustryNationalValue?.text = ""
+                holder.nationalTwelveMonthPercentLabel.text = ""
+                holder.nationalTwelveMonthValueLabel.text = areaRow.twelveMonthNationalValue
+            }
         }
     }
 }

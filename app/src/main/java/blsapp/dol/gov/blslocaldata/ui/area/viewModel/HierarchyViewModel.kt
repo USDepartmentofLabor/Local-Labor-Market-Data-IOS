@@ -271,8 +271,10 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         newString =newString.replace(",","",true)
         if (retSortStatusValue == SortStatus.DESCENDING) {
             newString = newString.replace("N/A", "0", true)
+            newString = newString.replace("ND", "0", true)
         } else {
             newString = newString.replace("N/A", "1000000000", true)
+            newString = newString.replace("ND", "1000000000", true)
         }
         return newString.toFloat()
     }
@@ -510,7 +512,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                 if (this.isCountyArea()) {
                     thisAreaRow.seriesReport?.latestAnnualData()?.let { localReport ->
 
-                      //  if  (localReport.period != "M13") return
+                        //  if  (localReport.period != "M13") return
                         thisAreaRowData = localReport
                     }
                 }
@@ -533,23 +535,36 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                     else
                         thisIndustryRow.localValue = DataUtil.numberValue(thisAreaRowData.value)
                 }
+
                 if (thisAreaRow.area is NationalEntity) {
                     thisIndustryRow.oneMonthNationalValue = DataUtil.changeValueStr(thisAreaRowData.calculations?.netChanges?.oneMonth)
                     thisIndustryRow.twelveMonthNationalValue = DataUtil.changeValueStr(thisAreaRowData.calculations?.netChanges?.twelveMonth)
                     thisIndustryRow.oneMonthNationalPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.oneMonth, "%")
-                    thisIndustryRow.twelveMonthNationalPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.twelveMonth,"%")
+                    thisIndustryRow.twelveMonthNationalPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.twelveMonth, "%")
 
                 } else {
                     thisIndustryRow.oneMonthValue = DataUtil.changeValueStr(thisAreaRowData.calculations?.netChanges?.oneMonth)
                     thisIndustryRow.twelveMonthValue = DataUtil.changeValueStr(thisAreaRowData.calculations?.netChanges?.twelveMonth)
                     thisIndustryRow.oneMonthPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.oneMonth, "%")
-                    thisIndustryRow.twelveMonthPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.twelveMonth,"%")
+                    thisIndustryRow.twelveMonthPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.twelveMonth, "%")
 
                 }
                 if (mArea is NationalEntity)
                     thisIndustryRow.localValue = " "
+
+                if (thisAreaRowData.footnotes != null && thisAreaRowData.footnotes!![0].code.equals("ND")) {
+                    thisIndustryRow.localValue = "ND"
+                    thisIndustryRow.nationalValue = "ND"
+                    thisIndustryRow.oneMonthValue = "ND"
+                    thisIndustryRow.twelveMonthValue = "ND"
+                    thisIndustryRow.oneMonthPercent = "ND"
+                    thisIndustryRow.twelveMonthPercent = "ND"
+                    thisIndustryRow.oneMonthNationalValue = "ND"
+                    thisIndustryRow.twelveMonthNationalValue ="ND"
+                    thisIndustryRow.oneMonthNationalPercent = "ND"
+                    thisIndustryRow.twelveMonthNationalPercent = "ND"
                 }
             }
         }
-
     }
+}

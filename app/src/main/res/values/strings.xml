@@ -53,10 +53,12 @@
     <string name="glossary3">A large population nucleus, together with adjacent communities which have a high degree of economic and social integration with that nucleus. These communities are defined by the Office of Management and Budget as a standard for federal agencies in the preparation and publication of statistics relating to metropolitan areas.</string>
     <string name="glossaryTitle4">N/A</string>
     <string name="glossary4">Data not available.  This may result when data cannot be released due to data confidentiality or quality concerns or when a data element is not produced, due to changes in classifications or other survey changes.  Data are also not available on a seasonally adjusted basis for some data elements.</string>
-    <string name="glossaryTitle5">Seasonally adjusted</string>
-    <string name="glossary5">Seasonal adjustment removes the effects of events that follow a more or less regular pattern each year. These adjustments make it easier to observe the cyclical and other nonseasonal movements in a data series.  Only certain data elements are available on a seasonally adjusted basis; when only not seasonally adjusted data are available, the app will display N/A for a data value when seasonally adjusted is selected.</string>
-    <string name="glossaryTitle6">Unemployment rate</string>
-    <string name="glossary6">The unemployment rate represents the number of unemployed (persons who had no employment, were available for work, and had made specific efforts to find employment) as a percent of the labor force (all persons employed and unemployed).</string>
+    <string name="glossaryTitle5">ND</string>
+    <string name="glossary5">Non-disclosed. Data do not meet BLS or State agency disclosure standards</string>
+    <string name="glossaryTitle6">Seasonally adjusted</string>
+    <string name="glossary6">Seasonal adjustment removes the effects of events that follow a more or less regular pattern each year. These adjustments make it easier to observe the cyclical and other nonseasonal movements in a data series.  Only certain data elements are available on a seasonally adjusted basis; when only not seasonally adjusted data are available, the app will display N/A for a data value when seasonally adjusted is selected.</string>
+    <string name="glossaryTitle7">Unemployment rate</string>
+    <string name="glossary7">The unemployment rate represents the number of unemployed (persons who had no employment, were available for work, and had made specific efforts to find employment) as a percent of the labor force (all persons employed and unemployed).</string>
 
     <string name="local_area">Local Data</string>
     <string name="national_area">National Data</string>
@@ -100,5 +102,8 @@
     <string name="code_paren">(Code)</string>
     <string name="employment_level_000s">Employment Level \n(in thousands)</string>
     <string name="more_details"> more details</string>
+    <string name="ndValue">ND</string>
+    <string name="ndAccessible">Data Not Disclosable</string>
+    <string name="naAccessible">Data Not Available</string>
     <string name="level">Level</string>
 </resources>

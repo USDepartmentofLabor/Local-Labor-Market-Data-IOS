@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
+import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.area.viewHolders.HierarchyEntryCESHolder
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.HierarchyRow
 
@@ -61,6 +62,21 @@ class HierarchyListCESAdapter (private val mListener: OnItemClickListener?, val 
                 holder.oneMonthPercentLabel.text = areaRow.oneMonthPercent
                 holder.twelveMonthPercentLabel.text = areaRow.twelveMonthPercent
             }
+
+            if  (holder.mIndustryLocalValue.text == "N/A")
+                holder.mIndustryLocalValue.contentDescription = UIUtil.getString(R.string.naAccessible)
+
+            if  (holder.oneMonthValueLabel.text == "N/A")
+                holder.oneMonthValueLabel.contentDescription = UIUtil.getString(R.string.naAccessible)
+
+            if  (holder.twelveMonthValueLabel.text == "N/A")
+                holder.twelveMonthValueLabel.contentDescription = UIUtil.getString(R.string.naAccessible)
+
+            if  (holder.mIndustryLocalValue.text == "N/A")
+                holder.mIndustryLocalValue.contentDescription = UIUtil.getString(R.string.naAccessible)
+
+            if  (holder.twelveMonthPercentLabel.text == "N/A")
+                holder.twelveMonthPercentLabel.contentDescription = UIUtil.getString(R.string.naAccessible)
 
         }
     }

@@ -1,7 +1,9 @@
 package blsapp.dol.gov.blslocaldata.ui
 
 import android.accessibilityservice.AccessibilityServiceInfo
+import android.app.Application
 import android.content.Context
+import android.content.res.Resources
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityManager
 import blsapp.dol.gov.blslocaldata.BLSApplication
@@ -42,6 +44,10 @@ class UIUtil {
             }
 
             return false
+        }
+
+        fun getString(strId: Int):String {
+            return BLSApplication.applicationContext().getString(strId)
         }
     }
 }
