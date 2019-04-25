@@ -259,6 +259,8 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             }
             sortedTmpList.add(0,hierarchyRows.value!!.elementAt(0))
             hierarchyRows.postValue(sortedTmpList)
+        } else {
+            hierarchyRows.postValue(hierarchyRows.value)
         }
         resetSortStatuses()
         return retSortStatusValue
