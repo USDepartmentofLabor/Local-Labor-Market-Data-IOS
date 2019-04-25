@@ -12,9 +12,9 @@ class QCEWIndustryViewModel: ItemViewModel {
     
     var ownershipCode: QCEWReport.OwnershipCode
     
-    init(area: Area, parent: Item? = nil, ownershipCode: QCEWReport.OwnershipCode, dataYear: String?) {
+    init(area: Area, parent: Item? = nil, ownershipCode: QCEWReport.OwnershipCode, dataYear: String? = nil, periodName: String? = nil, seasonalAdjustment: SeasonalAdjustment? = nil) {
         self.ownershipCode = ownershipCode
-        super.init(area: area, parent:parent, itemType: QCEW_Industry.self, dataYear: dataYear)
+        super.init(area: area, parent:parent, itemType: QCEW_Industry.self, dataYear: dataYear, periodName: periodName)
         
         itemDataTypes = [ItemDataType(title: "Employment Level", reportType:        ReportType.quarterlyEmploymentWageFrom(ownershipCode: ownershipCode, dataType: .allEmployees)),
             ItemDataType(title: "Avg Weekly Wage", reportType: .quarterlyEmploymentWageFrom(ownershipCode: ownershipCode, dataType: .avgWeeklyWage))]
@@ -23,10 +23,17 @@ class QCEWIndustryViewModel: ItemViewModel {
         dataTitle = "Industry"
         
         annualAverage = true
+        
+        if let adjustment = seasonalAdjustment {
+            self.seasonalAdjustment = adjustment
+        }
+        else {
+            self.seasonalAdjustment = .notAdjusted
+        }
     }
     
     override func createInstance(forParent parent: Item) -> ItemViewModel {
-        let viewModel = QCEWIndustryViewModel(area: area, parent: parent, ownershipCode: ownershipCode, dataYear: dataYear)
+        let viewModel = QCEWIndustryViewModel(area: area, parent: parent, ownershipCode: ownershipCode, dataYear: currentYear, periodName: currentPeriodName, seasonalAdjustment: seasonalAdjustment)
         
         viewModel.setCurrentDataType(dataType: currentDataType)
         return viewModel
@@ -50,7 +57,7 @@ class QCEWIndustryViewModel: ItemViewModel {
         guard let reportType = getReportType(for: item) else { return nil }
         
         // For QCEW drilldown, get Annual Data
-        return currentDataType.localReport?[reportType]?.seriesReport?.latestAnnualData()
+        return currentDataType.localReport?[reportType]?.seriesReport?.latestAnnualData(year: currentYear)
     }
 
     override func getReportValue(from seriesData: SeriesData) -> String? {

@@ -65,8 +65,11 @@ struct SeriesReport : Decodable {
     }
     
     // get Latest Annual Data if Available
-    func latestAnnualData() -> SeriesData? {
+    func latestAnnualData(year: String? = nil) -> SeriesData? {
 //        return data.filter{$0.period == "M13"}.sorted {
+        if let year = year {
+            return data.filter{$0.periodName == "Annual" && $0.year == year}.first
+        }
         return data.filter{$0.periodName == "Annual"}.sorted {
                 return $0.year > $1.year
             }.first

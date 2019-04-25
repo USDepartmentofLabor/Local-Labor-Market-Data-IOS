@@ -11,18 +11,20 @@ import Foundation
 
 class OccupationViewModel: ItemViewModel {
     
-    init(area: Area, parent: Item? = nil, dataYear: String?) {
-        super.init(area: area, parent:parent, itemType: OE_Occupation.self, dataYear: dataYear)
+    init(area: Area, parent: Item? = nil, dataYear: String? = nil, periodName: String? = nil) {
+        super.init(area: area, parent:parent, itemType: OE_Occupation.self, dataYear: dataYear, periodName: periodName)
         
         itemDataTypes = [ItemDataType(title: "Mean Annual Wage", reportType: ReportType.occupationEmployment(occupationalCode: OESReport.ALL_OCCUPATIONS_CODE, .annualMeanWage)),
         ItemDataType(title: "Employment Level", reportType: ReportType.occupationEmployment(occupationalCode: OESReport.ALL_OCCUPATIONS_CODE, .employment))]
         
         dataTitle = "Occupation"
         currentDataType = itemDataTypes[0]
+        self.seasonalAdjustment = .notAdjusted
     }
     
     override func createInstance(forParent parent: Item) -> ItemViewModel {
-        let viewModel = OccupationViewModel(area: area, parent: parent, dataYear: dataYear)
+        
+        let viewModel = OccupationViewModel(area: area, parent: parent, dataYear: currentYear, periodName: currentPeriodName)
         
         viewModel.setCurrentDataType(dataType: currentDataType)
         return viewModel

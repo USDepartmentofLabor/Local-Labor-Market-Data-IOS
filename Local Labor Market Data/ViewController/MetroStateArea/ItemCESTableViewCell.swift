@@ -36,6 +36,7 @@ class ItemCESTableViewCell: UITableViewCell {
         didSet {
             twelveMonthPercentLabel.text = twelveMonthPercent
             
+            twelveMonthPercentLabel.isHidden = (twelveMonthPercent == "")
             if twelveMonthPercent == ReportManager.dataNotAvailableStr {
                 twelveMonthPercentLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             }
@@ -59,6 +60,7 @@ class ItemCESTableViewCell: UITableViewCell {
     var oneMonthPercent: String = "" {
         didSet {
             oneMonthPercentLabel.text = oneMonthPercent
+            oneMonthPercentLabel.isHidden = (oneMonthPercent == "")
             
             if oneMonthPercent == ReportManager.dataNotAvailableStr {
                 oneMonthPercentLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr

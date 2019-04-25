@@ -84,6 +84,7 @@ class ItemViewController: UIViewController {
     
     var seasonalAdjustment: SeasonalAdjustment = .notAdjusted {
         didSet {
+            viewModel.seasonalAdjustment = seasonalAdjustment
             loadReports()
         }
     }
@@ -130,6 +131,7 @@ class ItemViewController: UIViewController {
         parentTitleLabel.scaleFont(forDataType: .itemParentTitle)
         anscestorsLabel.scaleFont(forDataType: .itemAnscestorsList)
         itemTitleLabel.text = viewModel.dataTitle
+        itemCodeButton.accessibilityLabel = "\(viewModel.dataTitle) Code"
         areaTitleLabel.text = viewModel.area.title
         setupAccessbility()
 
@@ -176,18 +178,7 @@ class ItemViewController: UIViewController {
             dataTypeButton.removeFromSuperview()
         }
 
-        if viewModel is OccupationViewModel || viewModel is QCEWIndustryViewModel {
-            seasonalAdjustment = .notAdjusted
-        }
-        else {
-            if viewModel.area is National || viewModel.area is State {
-                seasonalAdjustment = .adjusted
-            }
-            else {
-                seasonalAdjustment = .notAdjusted
-            }
-        }
-
+        seasonalAdjustment = viewModel.seasonalAdjustment
         seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
         displaySort()
     }
@@ -216,10 +207,10 @@ class ItemViewController: UIViewController {
         if viewModel.isNationalReport {
             occupationNationalTitleButton.removeFromSuperview()
             occupationParentNationalValueLabel.removeFromSuperview()
-            titleView.accessibilityElements = [itemTitleLabel as Any, itemCodeButton as Any, occupationDataTypeTitleLabel as Any, occupationLocalTitleButton as Any]
+            titleView.accessibilityElements = [itemCodeButton as Any, occupationDataTypeTitleLabel as Any, occupationLocalTitleButton as Any]
         }
         else {
-            titleView.accessibilityElements = [itemTitleLabel as Any, itemCodeButton as Any, occupationDataTypeTitleLabel as Any, occupationLocalTitleButton as Any, occupationNationalTitleButton as Any]
+            titleView.accessibilityElements = [itemCodeButton as Any, occupationDataTypeTitleLabel as Any, occupationLocalTitleButton as Any, occupationNationalTitleButton as Any]
         }
         
         occupationLocalTitleButton.setTitle(viewModel.area.displayType, for: .normal)
@@ -251,7 +242,7 @@ class ItemViewController: UIViewController {
         cesOneMonthChangeTitleButton.titleLabel?.numberOfLines = 0
         cesTwelveMonthChangeTitleButton.titleLabel?.numberOfLines = 0
         titleView.isAccessibilityElement = false
-        titleView.accessibilityElements = [itemTitleLabel as Any, itemCodeButton as Any, cesDataTypeTitleLabel as Any, cesLocalTitleButton as Any, cesOneMonthChangeTitleButton as Any, cesTwelveMonthChangeTitleButton as Any]
+        titleView.accessibilityElements = [itemCodeButton as Any, cesDataTypeTitleLabel as Any, cesLocalTitleButton as Any, cesOneMonthChangeTitleButton as Any, cesTwelveMonthChangeTitleButton as Any]
 
         parentView.isAccessibilityElement = false
         parentView.accessibilityElements = [parentTitleLabel as Any, cesParentValueLabel as Any, cesParentOneMonthValueLabel as Any, cesParentOneMonthPercentLabel as Any, cesParentTwelveMonthValueLabel as Any, cesParentTwelveMonthPercentLabel as Any]
@@ -290,7 +281,7 @@ class ItemViewController: UIViewController {
         periodOwnershipStackView.isAccessibilityElement = false
         periodOwnershipStackView.accessibilityElements = [ownershipLabel as Any, reportPeriodLabel as Any]
         titleView.isAccessibilityElement = false
-        titleView.accessibilityElements = [itemTitleLabel as Any, itemCodeButton as Any, qcewDataTypeTitleLabel as Any, qcewLocalTitleButton as Any, qcewLocalTwelveMonthChangeTitleButton as Any, qcewNationalTitleButton as Any, qcewNationalTwelveMonthChangeTitleButton as Any]
+        titleView.accessibilityElements = [itemCodeButton as Any, qcewDataTypeTitleLabel as Any, qcewLocalTitleButton as Any, qcewLocalTwelveMonthChangeTitleButton as Any, qcewNationalTitleButton as Any, qcewNationalTwelveMonthChangeTitleButton as Any]
                                            
         ownershipLabel.isHidden = false
         ownershipLabel.text = "\(vm.ownershipCode.title)"
@@ -306,6 +297,7 @@ class ItemViewController: UIViewController {
         tableView.isAccessibilityElement = false
         areaTitleLabel.accessibilityTraits = UIAccessibilityTraits.header
         areaTitleLabel.accessibilityLabel = viewModel.area.accessibilityStr
+        anscestorsLabel.accessibilityTraits = .link
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -577,6 +569,7 @@ extension ItemViewController: UITableViewDataSource {
         return cell
     }
     
+    // OES Occupation
     func configureCell(cell: ItemTableViewCell, indexPath: IndexPath) {
         if let item = viewModel.items?[indexPath.row] {
             let title = (item.title ?? "") + " (" + (item.displayCode ?? "") + ")"
@@ -604,6 +597,7 @@ extension ItemViewController: UITableViewDataSource {
         }
     }
     
+    // CES Industry
     func configureCell(cell: ItemCESTableViewCell, indexPath: IndexPath) {
         if let item = viewModel.items?[indexPath.row] {
             let title = (item.title ?? "") + " (" + (item.code ?? "") + ")"
@@ -651,14 +645,15 @@ extension ItemViewController: UITableViewDataSource {
             }
             else {
                 cell.value = ReportManager.dataNotAvailableStr
-                cell.oneMonthValue = ""
+                cell.oneMonthValue = ReportManager.dataNotAvailableStr
                 cell.oneMonthPercent = ""
-                cell.twelveMonthValue = ""
+                cell.twelveMonthValue = ReportManager.dataNotAvailableStr
                 cell.twelveMonthPercent = ""
             }
         }
     }
     
+    // QCEW Industry
     func configureCell(cell: ItemQCEWTableViewCell, indexPath: IndexPath) {
         if let item = viewModel.items?[indexPath.row] {
             cell.titleLabel?.text = item.title
@@ -819,10 +814,14 @@ extension ItemViewController {
         guard let seriesData = viewModel.getReportData(item: viewModel.parentItem) else {
             cesParentValueLabel.text = ReportManager.dataNotAvailableStr
             cesParentValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
-            cesParentOneMonthValueLabel.text = ""
+            cesParentOneMonthValueLabel.text = ReportManager.dataNotAvailableStr
+            cesParentOneMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             cesParentOneMonthPercentLabel.text = ""
-            cesParentTwelveMonthValueLabel.text = ""
+            cesParentOneMonthPercentLabel.isHidden = true
+            cesParentTwelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
+            cesParentTwelveMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             cesParentTwelveMonthPercentLabel.text = ""
+            cesParentTwelveMonthPercentLabel.isHidden = true
             return
         }
         
@@ -851,14 +850,27 @@ extension ItemViewController {
         }
         else {
             cesParentOneMonthValueLabel.text = ReportManager.dataNotAvailableStr
+            cesParentOneMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             cesParentTwelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
+            cesParentTwelveMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
         }
     }
     
     func displayQCEWParentReport() {
         if let seriesData = viewModel.getReportData(item: viewModel.parentItem) {
-            qcewParentValueLabel.text = viewModel.getReportValue(from: seriesData) ?? ReportManager.dataNotAvailableStr
-
+            let value = viewModel.getReportValue(from: seriesData) ?? ReportManager.dataNotAvailableStr
+            qcewParentValueLabel.text = value
+            
+            if value == ReportManager.dataNotDisclosable {
+                qcewParentValueLabel.accessibilityLabel = ReportManager.dataNotDisclosableAccessibilityStr
+                qcewParentTwelveMonthValueLabel.text = ""
+                qcewParentTwelveMonthPercentLabel.text = ""
+            }
+            else if value == ReportManager.dataNotAvailableStr {
+                qcewParentValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+                qcewParentTwelveMonthValueLabel.text = ""
+                qcewParentTwelveMonthPercentLabel.text = ""
+            }
             // Display Percent Change
             if let percentChange = seriesData.calculations?.percentChanges {
                 qcewParentTwelveMonthPercentLabel.text = NumberFormatter.localisedPercentStr(from: percentChange.twelveMonth) ?? ReportManager.dataNotAvailableStr
@@ -869,18 +881,21 @@ extension ItemViewController {
                 }
                 else {
                     qcewParentTwelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
+                    qcewParentTwelveMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
                 }
             }
             else {
                 qcewParentTwelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
+                qcewParentTwelveMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             }
         }
         else {
             qcewParentValueLabel.text = ReportManager.dataNotAvailableStr
+            qcewParentValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             qcewParentTwelveMonthValueLabel.text = ""
             qcewParentTwelveMonthPercentLabel.text = ""
         }
-        
+    
         
         // National
         if !viewModel.isNationalReport, let seriesData = viewModel.getParentNationalReportData() {
@@ -904,6 +919,7 @@ extension ItemViewController {
         }
         else {
             qcewParentNationalValueLabel.text = ReportManager.dataNotAvailableStr
+            qcewParentNationalValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             qcewParentNationalTwelveMonthValueLabel.text = ""
             qcewParentNationalTwelveMonthPercentLabel.text = ""
         }

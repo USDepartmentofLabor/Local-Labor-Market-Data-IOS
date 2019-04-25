@@ -516,7 +516,8 @@ extension SearchViewController: UISplitViewControllerDelegate {
         
         if svc.displayMode == UISplitViewController.DisplayMode.primaryOverlay ||
             svc.displayMode == UISplitViewController.DisplayMode.primaryHidden {
-            return UISplitViewController.DisplayMode.allVisible
+//            return UISplitViewController.DisplayMode.allVisible
+            return UISplitViewController.DisplayMode.primaryOverlay
         }
         
         return UISplitViewController.DisplayMode.primaryHidden

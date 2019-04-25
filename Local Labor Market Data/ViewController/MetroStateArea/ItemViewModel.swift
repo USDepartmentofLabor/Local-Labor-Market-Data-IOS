@@ -33,7 +33,10 @@ enum DataSort {
 class ItemViewModel: NSObject {
     var area: Area
     var parentItem: Item
-    var dataYear: String?
+    var currentYear: String?
+    var currentPeriodName: String?
+    var seasonalAdjustment: SeasonalAdjustment
+    
     var itemDataTypes: [ItemDataType] = [ItemDataType(title: "Employment Level", reportType: ReportType.industryEmployment(industryCode: "00000000", CESReport.DataTypeCode.allEmployees))]
     
     var currentDataType: ItemDataType
@@ -71,9 +74,11 @@ class ItemViewModel: NSObject {
         }
     }
     
-    init(area: Area, parent: Item? = nil, itemType: Item.Type, dataYear: String?) {
+    init(area: Area, parent: Item? = nil, itemType: Item.Type, dataYear: String? = nil, periodName: String? = nil, seasonalAdjustment: SeasonalAdjustment? = nil) {
         self.area = area
-        self.dataYear = dataYear
+        self.currentYear = dataYear
+        self.currentPeriodName = periodName
+        
         if parent == nil {
             parentItem = itemType.getSuperParents(context:
                 CoreDataManager.shared().viewManagedContext)!.first!
@@ -96,10 +101,20 @@ class ItemViewModel: NSObject {
         }
     
         currentDataType = itemDataTypes[0]
+        
+        if let adjustment = seasonalAdjustment {
+            self.seasonalAdjustment = adjustment
+        }
+        else if area is National || area is State {
+            self.seasonalAdjustment = .adjusted
+        }
+        else {
+            self.seasonalAdjustment = .notAdjusted
+        }
     }
 
     func createInstance(forParent parent: Item) -> ItemViewModel {
-        let vm = ItemViewModel(area: area, parent: parent, itemType: type(of: parent), dataYear: dataYear)
+        let vm = ItemViewModel(area: area, parent: parent, itemType: type(of: parent), dataYear: currentYear, periodName: currentPeriodName, seasonalAdjustment: seasonalAdjustment)
         
         vm.setCurrentDataType(dataType: currentDataType)
         return vm
@@ -116,7 +131,7 @@ class ItemViewModel: NSObject {
             return "\(latestData.periodName) \(latestData.year)"
         }
         
-        return ""
+        return "\(currentPeriodName ?? "") \(currentYear ?? "")"
     }
     
     func getReportValue(item: Item) -> String? {
@@ -127,6 +142,10 @@ class ItemViewModel: NSObject {
     
     func getReportData(item: Item) -> SeriesData? {
         guard let reportType = getReportType(for: item) else { return nil }
+        
+        if let year = currentYear, let periodName = currentPeriodName {
+            return currentDataType.localReport?[reportType]?.seriesReport?.data(forPeriodName: periodName, forYear: year)
+        }
         
         return currentDataType.localReport?[reportType]?.seriesReport?.latestData()
     }
@@ -148,15 +167,16 @@ class ItemViewModel: NSObject {
     
     
     func getNationalReportData(item: Item) -> SeriesData? {
-        let latestData = getReportData(item: parentItem)
-        return getNationalReportData(item: item, period: latestData?.period, year: latestData?.year)
+//        let latestData = getReportData(item: parentItem)
+//        return getNationalReportData(item: item, period: latestData?.period, year: latestData?.year)
+        return getNationalReportData(item: item, periodName: currentPeriodName, year: currentYear)
     }
     
-    func getNationalReportData(item: Item, period: String?, year: String?) -> SeriesData? {
+    func getNationalReportData(item: Item, periodName: String?, year: String?) -> SeriesData? {
         guard let reportType = getReportType(for: item) else { return nil }
         
-        if let period = period, let year = year {
-            return currentDataType.nationalReport?[reportType]?.seriesReport?.data(forPeriod: period,
+        if let periodName = periodName, let year = year {
+            return currentDataType.nationalReport?[reportType]?.seriesReport?.data(forPeriodName: periodName,
                                                                                    forYear: year)
         }
         return nil
@@ -267,6 +287,11 @@ extension ItemViewModel {
                 
                 if area == strongSelf.area {
                     strongSelf.currentDataType.localReport = areaReportsDict
+                    if strongSelf.currentYear == nil, let seriesData = strongSelf.getReportData(item: strongSelf.parentItem) {
+                        strongSelf.currentYear = seriesData.year
+                        strongSelf.currentPeriodName = seriesData.periodName
+                    }
+
                 }
                 else {
                     strongSelf.currentDataType.nationalReport = areaReportsDict
@@ -283,7 +308,7 @@ extension ItemViewModel {
                            completion: ((APIResult<[ReportType: AreaReport], ReportError>) -> Void)?) {
         if let reportTypes = getReportTypes() {
             ReportManager.getReports(forArea: area, reportTypes: reportTypes,
-                                     seasonalAdjustment: seasonalAdjustment, year:dataYear,
+                                     seasonalAdjustment: seasonalAdjustment, year:currentYear,
                                      annualAverage: annualAverage, completion: completion)
         }
     }

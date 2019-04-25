@@ -190,7 +190,7 @@ class CountyViewController: AreaViewController {
                 if case .quarterlyEmploymentWage(let ownership, _, _, _) = reportType {
                     ownershipCode = ownership
                 }
-                let viewModel = QCEWIndustryViewModel(area: area, parent: nil, ownershipCode: ownershipCode, dataYear: nil)
+                let viewModel = QCEWIndustryViewModel(area: area, parent: nil, ownershipCode: ownershipCode)
                 destVC.viewModel = viewModel
                 destVC.title = "Industry - Sectors"
             }

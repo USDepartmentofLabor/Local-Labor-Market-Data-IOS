@@ -236,20 +236,21 @@ class MetroStateViewController: AreaViewController {
                     type = SM_Industry.self
                 }
                 var latestYear: String = ""
+                var latestPeriod: String = ""
                 if let localAreaReport = localAreaReportsDict[reportType] {
                     if let latestData = localAreaReport.seriesReport?.latestData() {
                         latestYear = latestData.year
+                        latestPeriod = latestData.periodName
                     }
                 }
-                let viewModel = ItemViewModel(area: area, parent: nil, itemType: type, dataYear: latestYear)
+                let viewModel = ItemViewModel(area: area, parent: nil, itemType: type)
                 destVC.viewModel = viewModel
                 destVC.title = "Industry - Sectors"
             }
         }
         else if segue.identifier == "showOccupations" {
             if let destVC = segue.destination as? ItemViewController {
-                let viewModel = OccupationViewModel(area: area, parent: nil,
-                                              dataYear: "")
+                let viewModel = OccupationViewModel(area: area, parent: nil)
                 destVC.viewModel = viewModel
                 destVC.title = "Occupations"
             }
