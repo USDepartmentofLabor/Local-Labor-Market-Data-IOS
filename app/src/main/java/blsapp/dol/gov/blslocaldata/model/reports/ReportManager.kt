@@ -1,5 +1,6 @@
 package blsapp.dol.gov.blslocaldata.model.reports
 
+import android.os.Looper
 import android.util.Log
 import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
@@ -45,7 +46,10 @@ class ReportManager {
                 val areaReport = AreaReport(seriesId, it, area)
                 areaReports += areaReport
             }
-
+            if(Looper.myLooper() == Looper.getMainLooper()) {
+                // Current Thread is Main Thread.
+                assert(Looper.myLooper() != Looper.getMainLooper())
+            }
             BlsAPI(BLSApplication.applicationContext()).getReports(seriesIds,
                     startYear = startYear,
                     endYear = endYear,

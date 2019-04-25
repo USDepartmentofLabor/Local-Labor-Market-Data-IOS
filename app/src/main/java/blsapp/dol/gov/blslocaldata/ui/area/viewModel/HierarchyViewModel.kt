@@ -15,6 +15,7 @@ import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType.OccupationalEmployment
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.HierarchyBaseViewModel
+import org.jetbrains.anko.doAsync
 
 /**
  * HierarchyViewModel - View Model for Industry Comparison View
@@ -449,23 +450,24 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
     private fun getLocalReports(hierarchyRows: ArrayList<HierarchyRow>) {
 
-        reportTypes = getReportTypesArray(hierarchyRows)
+        doAsync {
+            reportTypes = getReportTypesArray(hierarchyRows)
 
-        ReportManager.getReport(mArea, reportTypes!!,
-                adjustment = mAdjustment,
-                annualAvg = true,
-                successHandler = {
-                    isLoading.postValue(false)
-                    localAreaReports = it.toMutableList()
-                    updateIndustryRows(it, hierarchyRows)
+            ReportManager.getReport(mArea, reportTypes!!,
+                    adjustment = mAdjustment,
+                    annualAvg = true,
+                    successHandler = {
+                        localAreaReports = it.toMutableList()
+                        updateIndustryRows(it, hierarchyRows)
 
-                    getNationalReports(hierarchyRows)
-                    //this.hierarchyRows.postValue(hierarchyRows)
-                },
-                failureHandler = { it ->
-                    isLoading.postValue(false)
-                    reportError.value = it
-                })
+                        getNationalReports(hierarchyRows)
+                        //this.hierarchyRows.postValue(hierarchyRows)
+                    },
+                    failureHandler = { it ->
+                        isLoading.postValue(false)
+                        reportError.value = it
+                    })
+        }
     }
 
     private fun getNationalReports(hierarchyRows: ArrayList<HierarchyRow>) {
@@ -482,22 +484,25 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             startYear = null
         }
 
-        ReportManager.getReport(nationalArea!!,
-                natReportTypes,
-                startYear = startYear,
-                endYear = startYear,
-                adjustment = mAdjustment,
-                annualAvg =  true,
-                successHandler = {
-                    isLoading.postValue(false)
-                    updateIndustryRows(it, hierarchyRows)
-                    sortByCurrentStatus()
-                    //this.hierarchyRows.postValue(hierarchyRows)
-                },
-                failureHandler = { it ->
-                    isLoading.postValue(false)
-                    reportError.value = it
-                })
+        doAsync {
+            ReportManager.getReport(nationalArea!!,
+                    natReportTypes,
+                    startYear = startYear,
+                    endYear = startYear,
+                    adjustment = mAdjustment,
+                    annualAvg =  true,
+                    successHandler = {
+                        isLoading.postValue(false)
+                        updateIndustryRows(it, hierarchyRows)
+                        sortByCurrentStatus()
+                        //this.hierarchyRows.postValue(hierarchyRows)
+                    },
+                    failureHandler = { it ->
+                        isLoading.postValue(false)
+                        reportError.value = it
+                    })
+
+        }
     }
 
     private fun updateIndustryRows(areaReport: List<AreaReport>, hierarchyRows: ArrayList<HierarchyRow>) {

@@ -15,6 +15,7 @@ import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 /**
  * CountyAreaViewModel - Subclass of AreaViewModel for County Areas
@@ -91,38 +92,47 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     private fun getLocalReports() {
-        var reportTypes = ArrayList<ReportType>()
 
-        reportSections.forEach { reportSection ->
-            reportSection.reportTypes?.let {
-                reportTypes.addAll(it)
-            }
+        doAsync{
+            var reportTypes = ArrayList<ReportType>()
 
-            reportSection.subSections?.forEach {  subSection ->
-                subSection.reportTypes?.let {
+            reportSections.forEach { reportSection ->
+                reportSection.reportTypes?.let {
                     reportTypes.addAll(it)
                 }
+
+                reportSection.subSections?.forEach {  subSection ->
+                    subSection.reportTypes?.let {
+                        reportTypes.addAll(it)
+                    }
+                }
+
             }
 
+            uiThread {
+                isLoading.value = true
+            }
+            ReportManager.getReport(mArea, reportTypes, adjustment = mAdjustment,
+                    successHandler = {
+                        localAreaReports = it.toMutableList()
+                        updateReportRows()
+
+                        // If current Area is not National, get National Data for comparison
+                        if (mArea !is NationalEntity) {
+                            getNationalReports()
+                        } else {
+                            uiThread {
+                                isLoading.value = false
+                            }
+                        }
+                    },
+                    failureHandler = {
+                        isLoading.value = false
+                        reportError.value = it
+                    })
+            updateReportRows()
+
         }
-
-        isLoading.value = true
-        ReportManager.getReport(mArea, reportTypes, adjustment = mAdjustment,
-                successHandler = {
-                    isLoading.value = false
-                    localAreaReports = it.toMutableList()
-                    updateReportRows()
-
-                    // If current Area is not National, get National Data for comparison
-                    if (mArea !is NationalEntity) {
-                        getNationalReports()
-                    }
-                },
-                failureHandler = {
-                    isLoading.value = false
-                    reportError.value = it
-                })
-        updateReportRows()
     }
 
     private fun getNationalReports() {
@@ -155,6 +165,9 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
                             successHandler = { areaReport ->
                                 nationalAreaReports.addAll(areaReport)
                                 updateReportRows()
+                                uiThread {
+                                    isLoading.value = false
+                                }
                             },
                             failureHandler = {
 

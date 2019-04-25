@@ -17,6 +17,7 @@ import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 /**
  * ReportSection - Grouping of elements that make up a section of the Area Report
@@ -85,34 +86,39 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     private fun getLocalReports() {
-        var reportTypes = mutableListOf<ReportType>()
 
-        reportSections.forEach {
-            it.reportTypes?.let {  reportTypes.addAll(it)}
-        }
+        isLoading.value = true
+
+        doAsync{
+            var reportTypes = mutableListOf<ReportType>()
+
+            reportSections.forEach {
+                it.reportTypes?.let {  reportTypes.addAll(it)}
+            }
 
 //        val reportTypes = reportSections.flatMap? {reportSection ->
 //            reportSection.reportTypes
 //        }
+            ReportManager.getReport(mArea, reportTypes, adjustment = mAdjustment,
+                    successHandler = {
+                        localAreaReports = it.toMutableList()
+                        updateReportRows()
 
-        isLoading.value = true
-        ReportManager.getReport(mArea, reportTypes, adjustment = mAdjustment,
-                successHandler = {
-                    isLoading.value = false
-                    localAreaReports = it.toMutableList()
-                    updateReportRows()
-
-                    // If current Area is not National, get National Data for comparison
-                    if (mArea !is NationalEntity) {
-                        getNationalReports()
-                    }
-                },
-                failureHandler = { it ->
-                    isLoading.value = false
-                    reportError.value = it
-                })
-        updateReportRows()
-
+                        // If current Area is not National, get National Data for comparison
+                        if (mArea !is NationalEntity) {
+                            getNationalReports()
+                        } else {
+                            uiThread {
+                                isLoading.value = false
+                            }
+                        }
+                    },
+                    failureHandler = { it ->
+                        isLoading.value = false
+                        reportError.value = it
+                    })
+            updateReportRows()
+        }
     }
 
     private fun getNationalReports() {
@@ -136,6 +142,9 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                             successHandler = { areaReport ->
                                 nationalAreaReports.addAll(areaReport)
                                 updateReportRows()
+                                uiThread {
+                                    isLoading.value = false
+                                }
                             },
                             failureHandler = {
 
