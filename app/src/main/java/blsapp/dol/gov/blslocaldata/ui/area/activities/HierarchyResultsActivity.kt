@@ -49,6 +49,7 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
 
     companion object {
         const val KEY_AREA = "Area"
+        const val REPORT_YEAR = "Year"
         const val PARENT_ID = "ParentId"
         const val PARENT_NAME = "ParentName"
         const val HIERARCY_STRING = "HierarchyString"
@@ -61,6 +62,7 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
     private lateinit var mArea: AreaEntity
     private var parentId: Long? = null
     private var parentName: String? = null
+    private var year: String? = null
     private lateinit var viewModel: HierarchyViewModel
     private lateinit var adapter: HierarchyListAdapter
     private lateinit var cesAdapter: HierarchyListCESAdapter
@@ -93,10 +95,13 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
         hierarchyString = intent.getSerializableExtra(HIERARCY_STRING) as String?
         hierarchyIDArray = intent.getSerializableExtra(HIERARCY_ARRAY) as Array<Long>?
 
+        year = intent.getSerializableExtra(REPORT_YEAR) as String?
+
         initialWageVsLevelIndex = intent.getSerializableExtra(INITIAL_WAGE_VS_LEVEL_INDEX) as Int?
 
         viewModel = ViewModelProviders.of(this).get(HierarchyViewModel::class.java)
         viewModel.mAdjustment = ReportManager.adjustment
+        viewModel.year = year
         if (parentId != null) viewModel.setParentId(parentId!!)
         mArea.let {
             viewModel.mArea = it
@@ -230,6 +235,8 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
 
         intent.putExtra(KEY_REPORT_TYPE, reportType)
         intent.putExtra(KEY_REPORT_ROW_TYPE, industryType)
+
+        intent.putExtra(REPORT_YEAR, viewModel.year)
 
         intent.putExtra(INITIAL_WAGE_VS_LEVEL_INDEX, hierarchyHeaderFragment.wageVsLevelSpinner.selectedItemPosition)
         startActivity(intent)

@@ -452,10 +452,16 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
     private fun getLocalReports(hierarchyRows: ArrayList<HierarchyRow>) {
 
+        var startYear: String? = null
+        if  (this.year != null) {
+            startYear = this.year
+        }
         doAsync {
             reportTypes = getReportTypesArray(hierarchyRows)
 
             ReportManager.getReport(mArea, reportTypes!!,
+                    startYear = startYear,
+                    endYear = startYear,
                     adjustment = mAdjustment,
                     annualAvg = true,
                     successHandler = {
@@ -479,11 +485,15 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         val localAreaReport = localAreaReports?.filter { areaReport ->
             areaReport.reportType == reportTypes?.first() }?.firstOrNull()
         var startYear: String? = null
-        localAreaReport?.seriesReport?.latestData()?.let { localReport ->
+
+        localAreaReport?.seriesReport?.latestAnnualData()?.let { localReport ->
             startYear = localReport.year
         }
         if  (this.isCountyArea()) {
             startYear = null
+        }
+        if  (this.year != null) {
+            startYear = this.year
         }
 
         doAsync {
