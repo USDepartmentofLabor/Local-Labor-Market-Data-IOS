@@ -5,7 +5,8 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/report_header_back">
+    android:background="@drawable/report_header_back"
+    android:importantForAccessibility="no">
 
     <ImageView
         android:id="@+id/showImageView"
