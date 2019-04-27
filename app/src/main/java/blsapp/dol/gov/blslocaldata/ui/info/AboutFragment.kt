@@ -3,6 +3,9 @@ package blsapp.dol.gov.blslocaldata.ui.info
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.view.AccessibilityDelegateCompat
+import android.support.v4.view.ViewCompat
+import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +34,14 @@ class AboutFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        ViewCompat.setAccessibilityDelegate(aboutHeading, object : AccessibilityDelegateCompat() {
+            override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                super.onInitializeAccessibilityNodeInfo(host, info)
+                info.addAction(AccessibilityNodeInfoCompat.ACTION_FOCUS)
+                info.isHeading = true
+            }
+        })
 
         line1.text = getString(R.string.about1)
         line2.text = getString(R.string.about2)
