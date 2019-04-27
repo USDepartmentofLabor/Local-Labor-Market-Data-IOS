@@ -287,7 +287,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
             }
         } else {
             if (searchAnnounce) {
-              //  UIUtil.accessibilityAnnounce(applicationContext, String.format(getString(R.string.found_n_results), itemRows.size))
+                UIUtil.accessibilityAnnounce(applicationContext, String.format(getString(R.string.found_n_results), itemRows.size))
                 searchAnnounce = false
             }
         }

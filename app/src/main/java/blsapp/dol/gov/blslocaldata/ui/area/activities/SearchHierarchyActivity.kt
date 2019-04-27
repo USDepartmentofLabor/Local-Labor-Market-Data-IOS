@@ -20,6 +20,7 @@ import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.IndustryEntity
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType
 import blsapp.dol.gov.blslocaldata.services.FetchAddressIntentService
+import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.area.SearchHierarchyAdapter
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.HierarchySearchRow
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.SearchHierarchyViewModel
@@ -97,6 +98,7 @@ class SearchHierarchyActivity: AppCompatActivity(), SearchHierarchyAdapter.OnIte
                     noResultsFoundTextView.visibility = View.VISIBLE
                 } else {
                     noResultsFoundTextView.visibility = View.INVISIBLE
+                    UIUtil.accessibilityAnnounce(applicationContext, String.format(getString(R.string.found_n_results), hierarchies.size))
                 }
 
             }
