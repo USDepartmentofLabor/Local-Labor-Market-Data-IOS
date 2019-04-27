@@ -32,6 +32,12 @@ import android.support.v7.app.AlertDialog
 import blsapp.dol.gov.blslocaldata.ui.area.ReportListAdapter
 import blsapp.dol.gov.blslocaldata.ui.area.activities.HierarchyResultsActivity.Companion.KEY_REPORT_TYPE
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.AreaReportRow
+import android.view.accessibility.AccessibilityNodeInfo
+import android.support.v4.view.ViewCompat.setAccessibilityDelegate
+import android.support.v4.view.AccessibilityDelegateCompat
+import android.support.v4.view.ViewCompat
+import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
+
 
 /**
  * AreaReportActivity - Main Report Displaying Activity
@@ -95,6 +101,14 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
         rightAreaImage?.let {
             rightButton.setCompoundDrawablesWithIntrinsicBounds(null, null, it, null)
         }
+
+        ViewCompat.setAccessibilityDelegate(areaTitleTextView, object : AccessibilityDelegateCompat() {
+            override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                super.onInitializeAccessibilityNodeInfo(host, info)
+                info.addAction(AccessibilityNodeInfoCompat.ACTION_FOCUS)
+                info.isHeading = true
+            }
+        })
 
         areaTitleTextView.text = mArea.title
         areaTitleTextView.contentDescription = mArea.accessibilityStr
