@@ -267,10 +267,14 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
     private fun showLoadingDialog(show: Boolean) {
         if (show) {
             industryProgressBar.visibility = View.VISIBLE
-            if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED)
-                UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_seasonally_adjusted_reports))
-            else
-                UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_not_seasonally_adjusted_reports))
+            if  (hierarchyHeaderFragment.hierarchySeasonallyAdjustedSwitch.visibility == View.VISIBLE) {
+                if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED)
+                    UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_seasonally_adjusted_reports))
+                else
+                    UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_not_seasonally_adjusted_reports))
+            } else {
+                UIUtil.accessibilityAnnounce(applicationContext, getString(R.string.loading_reports))
+            }
         } else industryProgressBar.visibility = View.GONE
     }
 
