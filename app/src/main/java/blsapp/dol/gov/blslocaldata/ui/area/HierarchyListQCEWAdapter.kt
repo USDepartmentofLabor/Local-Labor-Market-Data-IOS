@@ -2,6 +2,9 @@ package blsapp.dol.gov.blslocaldata.ui.search
 
 import android.content.res.Resources
 import android.support.v4.content.ContextCompat.getColor
+import android.support.v4.view.AccessibilityDelegateCompat
+import android.support.v4.view.ViewCompat
+import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -77,6 +80,21 @@ class HierarchyListQCEWAdapter( private val mListener: OnItemClickListener?) : H
                 holder.nationalTwelveMonthPercentLabel.text = ""
                 holder.nationalTwelveMonthValueLabel.text = areaRow.twelveMonthNationalValue
             }
+
+            var superSectorAccessibilityText = " "
+            if  (areaRow.superSector) {
+                superSectorAccessibilityText = UIUtil.getString(R.string.more_details_available)
+            }
+            holder.itemView.contentDescription = String.format(UIUtil.getString(R.string.qcew_item_accessibility),
+                    holder.mIndustryTitle.text,
+                    holder.mIndustryLocalValue.text,
+                    holder.twelveMonthValueLabel.text,
+                    holder.twelveMonthPercentLabel.text,
+                    holder.mIndustryNationalValue?.text,
+                    holder.nationalTwelveMonthValueLabel.text,
+                    holder.nationalTwelveMonthPercentLabel.text,
+                    superSectorAccessibilityText
+                    )
         }
     }
 }

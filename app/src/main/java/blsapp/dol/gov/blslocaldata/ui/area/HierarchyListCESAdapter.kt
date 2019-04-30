@@ -1,8 +1,12 @@
 package blsapp.dol.gov.blslocaldata.ui.search
 
 import android.support.v4.content.ContextCompat.getColor
+import android.support.v4.view.AccessibilityDelegateCompat
+import android.support.v4.view.ViewCompat
+import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
@@ -77,6 +81,21 @@ class HierarchyListCESAdapter (private val mListener: OnItemClickListener?, val 
 
             if  (holder.twelveMonthPercentLabel.text == "N/A")
                 holder.twelveMonthPercentLabel.contentDescription = UIUtil.getString(R.string.naAccessible)
+
+
+            var superSectorAccessibilityText = " "
+            if  (areaRow.superSector) {
+                superSectorAccessibilityText = UIUtil.getString(R.string.more_details_available)
+            }
+            holder.itemView.contentDescription = String.format(UIUtil.getString(R.string.ces_item_accessibility),
+                    holder.mIndustryTitle.text,
+                    holder.mIndustryLocalValue.text,
+                    holder.oneMonthValueLabel.text,
+                    holder.oneMonthPercentLabel.text,
+                    holder.twelveMonthValueLabel?.text,
+                    holder.twelveMonthPercentLabel.text,
+                    superSectorAccessibilityText
+            )
 
         }
     }

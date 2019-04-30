@@ -77,7 +77,7 @@ data class BLSReportResponse(
         val message: List<String>,
         @SerializedName("Results")
         @JsonAdapter(SeriesReportAdapter::class)
-        val series: List<SeriesReport>): JSONConvertable {
+        var series: MutableList<SeriesReport>): JSONConvertable {
 }
 
 class SeriesReportAdapter: TypeAdapter<List<SeriesReport>>() {

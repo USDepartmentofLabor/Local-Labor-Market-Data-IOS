@@ -49,17 +49,8 @@ open class HierarchyListAdapter(private val mListener: OnItemClickListener?) : R
                 holder.mIndustryLocalValue.textColor = getColor(holder.itemView.context, android.R.color.black)
                 holder.mIndustryNationalValue?.textColor = getColor(holder.itemView.context, android.R.color.black)
             }
-            holder.mIndustryTitle.text = areaRow.title
 
-            holder.mIndustryLocalValue.text = areaRow.localValue
-            holder.mIndustryNationalValue?.text = areaRow.nationalValue
-
-            if  (holder.mIndustryLocalValue.text == "N/A")
-                holder.mIndustryLocalValue.contentDescription = UIUtil.getString(R.string.naAccessible)
-
-            if  (holder.mIndustryNationalValue?.text != null && holder.mIndustryNationalValue?.text!! == "N/A")
-                holder.mIndustryNationalValue?.contentDescription = UIUtil.getString(R.string.naAccessible)
-
+            var superSectorAccessibilityText = UIUtil.getString(R.string.more_details_available)
             if (areaRow.superSector) {
                 holder.mSubIndustryIndicator.visibility = View.VISIBLE
 
@@ -71,14 +62,40 @@ open class HierarchyListAdapter(private val mListener: OnItemClickListener?) : R
                 }
             } else {
                 holder.mSubIndustryIndicator.visibility = View.GONE
+                superSectorAccessibilityText = " "
             }
 
-            ViewCompat.setAccessibilityDelegate(holder.mView, object : AccessibilityDelegateCompat() {
-                override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
-                    //        super.onInitializeAccessibilityNodeInfo(host, info)
-                    info.addAction(AccessibilityNodeInfoCompat.ACTION_FOCUS)
-                }
-            })
+            holder.mIndustryTitle.text = areaRow.title
+
+            holder.mIndustryLocalValue.text = areaRow.localValue
+            holder.mIndustryNationalValue?.text = areaRow.nationalValue
+
+            if  (holder.mIndustryNationalValue?.text != null &&
+                    (holder.mIndustryNationalValue?.text!! == "N/A" || holder.mIndustryNationalValue.text.length < 2))
+                holder.mIndustryNationalValue?.contentDescription = UIUtil.getString(R.string.naAccessible)
+            else
+                holder.mIndustryNationalValue?.contentDescription = areaRow.nationalValue
+
+            if  (holder.mIndustryLocalValue.text == "N/A")
+                holder.mIndustryLocalValue.contentDescription = UIUtil.getString(R.string.naAccessible)
+            else
+                holder.mIndustryLocalValue.contentDescription = areaRow.localValue
+
+
+            if (holder.mIndustryLocalValue.text.length < 2) {
+                holder.itemView.contentDescription = String.format(UIUtil.getString(R.string.base_no_region_item_accessibility),
+                        holder.mIndustryTitle.text,
+                        holder.mIndustryNationalValue?.contentDescription,
+                        superSectorAccessibilityText
+                )
+            } else {
+                holder.itemView.contentDescription = String.format(UIUtil.getString(R.string.base_item_accessibility),
+                        holder.mIndustryTitle.text,
+                        holder.mIndustryLocalValue.contentDescription,
+                        holder.mIndustryNationalValue?.contentDescription,
+                        superSectorAccessibilityText
+                )
+            }
         }
     }
     override fun getItemCount(): Int = mIndustries.size

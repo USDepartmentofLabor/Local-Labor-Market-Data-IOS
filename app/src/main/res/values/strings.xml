@@ -106,4 +106,12 @@
     <string name="ndAccessible">Data Not Disclosable</string>
     <string name="naAccessible">Data Not Available</string>
     <string name="level">Level</string>
+    <string name="qcew_item_accessibility">%s . Value for Region %s a change over 12 months of %s which is %s.  Value for National %s a change over 12 months of %s which is %s. %s</string>
+    <string name="ces_item_accessibility">%s . Value was %s . A change over 1 month of %s which is %s.  Over 12 months there was a change of %s which is %s. %s</string>
+    <string name="base_item_accessibility">%s . Value for region was %s . Value nationally was %s. %s</string>
+    <string name="base_no_region_item_accessibility">%s . Value nationally was %s. %s</string>
+    <string name="s_qcew_item_accessibility">Industry Code %s . Employment Level for County %s a change over 12 months of %s which is %s changed.  Employment Level for National %s a change over 12 months of %s which is %s changed.</string>
+    <string name="s_ces_item_accessibility">Industry Code %s . Employment Level in thousands was %s . A change over 1 month of %s in thousands which is %s changed.  Over 12 months there was a change of %s in thousands which is %s changed.</string>
+    <string name="s_base_item_accessibility">Industry Code %s . Employment Level in region was %s . Employment Level nationally was %s.</string>
+    <string name="more_details_available">More Details Available</string>
 </resources>

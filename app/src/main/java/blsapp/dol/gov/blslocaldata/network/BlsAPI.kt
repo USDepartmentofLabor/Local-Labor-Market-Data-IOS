@@ -43,7 +43,13 @@ class BlsAPI constructor(val appContext: Context) {
 
         val apiKey = if (BuildConfig.DEBUG)  R.string.bls_api_key_debug else R.string.bls_api_key_production
 
-        val reportRequest = BLSReportRequest(seriesIds = seriesIds, registrationKey = appContext.getString(apiKey),
+        var requestIds = seriesIds
+        var seriesIdsCopy:List<String>? = null
+        if  (seriesIds.count() > 50) {
+            requestIds = seriesIds.subList(0, 50)
+            seriesIdsCopy = seriesIds.subList(50, seriesIds.size)
+        }
+        val reportRequest = BLSReportRequest(seriesIds = requestIds, registrationKey = appContext.getString(apiKey),
                 startYear = startYear, endYear = endYear, annualAvg = annualAvg)
 
         val cachedResponse = CacheManager.get(reportRequest)
@@ -56,30 +62,33 @@ class BlsAPI constructor(val appContext: Context) {
             return
         }
 
-//        val gson = GsonBuilder()
-//                .registerTypeAdapter(BLSReportRequest::class.java, BLSReportRequestAdapter())
-//                .create()
-//        gson.toJson(reportRequest)
-
         Log.w("ggg", "BLSAPI Request: " + reportRequest.toJSON())
         val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, BLS_API_URL, JSONObject(reportRequest.toJSON()),
                 Response.Listener { response ->
-                    print(response.toString())
                     val reportReponse = response.toString().toObject<BLSReportResponse>()
-                    CacheManager.put(reportReponse, reportRequest)
-                    Log.w("GGG", "BLSAPI Response: " + reportReponse.toString())
-//                    Log.w("ggg", "BLSAPI Request: " + reportRequest.toString())
+
                     if (reportReponse.status == ReportStatus.REQUEST_SUCCEEDED) {
-                        successHandler(reportReponse)
+                        if (seriesIdsCopy != null) {
+                            getReports(seriesIdsCopy, startYear, endYear, annualAvg, {nextResponse ->
+                                Log.w("Nested Report", nextResponse.toString())
+                                reportReponse.series.addAll(nextResponse.series)
+                                successHandler(reportReponse)
+
+                            }, failureHandler = {
+                                Log.w("Nested Failure", it.toString())
+                                failureHandler(it)
+                            })
+
+                        } else {
+                            CacheManager.put(reportReponse, reportRequest)
+                            successHandler(reportReponse)
+                        }
                     }
                     else {
                         failureHandler(ReportError(ReportError.ErrorCode.APIError, ""))
                     }
-
                 },
                 Response.ErrorListener { error ->
-                    print(error.toString())
-                    Log.w("Nidhi", error.toString())
                     failureHandler(ReportError(error))
                 })
         requestQueue.addToRequestQueue(jsonObjectRequest)
