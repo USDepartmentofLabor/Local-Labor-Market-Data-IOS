@@ -29,6 +29,7 @@ import android.util.Log
 import android.widget.TextView
 import org.jetbrains.anko.support.v4.dimen
 import android.view.ViewGroup.MarginLayoutParams
+import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import kotlinx.android.synthetic.main.fragment_hierarchy_header.view.*
 import kotlinx.android.synthetic.main.industry_employment.*
 
@@ -127,8 +128,10 @@ class HierarchyHeaderFragment : Fragment() {
 
             val startIndexOfLink = textView.text.indexOf(link, currentEndOfLinks)
 
-            spannableString.setSpan(clickableSpan, startIndexOfLink, startIndexOfLink + link.length,
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            if  (!UIUtil.isTalkBackActive()) {
+                spannableString.setSpan(clickableSpan, startIndexOfLink, startIndexOfLink + link.length,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
 
             currentEndOfLinks = startIndexOfLink + link.length
         }
