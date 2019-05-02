@@ -71,6 +71,32 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
     private var wageVsLevelTypeOccupation: OESReport.DataTypeCode = OESReport.DataTypeCode.EMPLOYMENT
     private var QCEWwageVsLevelTypeOccupation: QCEWReport.DataTypeCode = QCEWReport.DataTypeCode.allEmployees
 
+    private fun getDirectionMessage(sortStatus: SortStatus) : String {
+        if (sortStatus == SortStatus.ASCENDING)
+            return getApplication<BLSApplication>().getString(R.string.ascending)
+        else
+            return getApplication<BLSApplication>().getString(R.string.descending)
+    }
+    fun getSortedByMessage () : String{
+
+        if (codeSorted != SortStatus.NOT)
+            return getDirectionMessage(codeSorted)
+        else if (localValueSorted != SortStatus.NOT)
+            return getDirectionMessage(localValueSorted)
+        else if (nationalValueSorted != SortStatus.NOT)
+            return getDirectionMessage(nationalValueSorted)
+        else if (localOneMonthChangeSorted != SortStatus.NOT)
+            return getDirectionMessage(localOneMonthChangeSorted)
+        else if (nationalOneMonthChangeSorted != SortStatus.NOT)
+            return getDirectionMessage(nationalOneMonthChangeSorted)
+        else if (localTwelveMonthChangeSorted != SortStatus.NOT)
+            return getDirectionMessage(localTwelveMonthChangeSorted)
+        else if (nationalTwelveMonthChangeSorted != SortStatus.NOT)
+            return getDirectionMessage(nationalTwelveMonthChangeSorted)
+        else
+            return " "
+    }
+
     fun isIndustryReport(): Boolean {
         var retValue = false
         when (reportType) {

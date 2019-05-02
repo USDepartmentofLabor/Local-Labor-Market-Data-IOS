@@ -312,6 +312,7 @@ class HierarchyHeaderFragment : Fragment() {
                     }
                 }
             }
+            UIUtil.accessibilityAnnounce(context!!, String.format(UIUtil.getString(R.string.results_sorted), hierarchyViewModel.getSortedByMessage()))
         }
         codeSortButtonView.setOnClickListener(clickListener)
         regionSortButtonView.setOnClickListener(clickListener)
