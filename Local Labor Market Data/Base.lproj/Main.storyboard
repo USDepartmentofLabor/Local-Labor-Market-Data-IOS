@@ -369,7 +369,7 @@
         <!--Item View Controller-->
         <scene sceneID="tG5-4i-qd7">
             <objects>
-                <viewController id="QuN-hg-S9u" customClass="ItemViewController" customModule="Local_Labor_Market_Data" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="QuN-hg-S9u" customClass="ItemViewController" customModule="Local_Labor_Market_Data" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y32-qV-eJu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -879,9 +879,9 @@
                                     <constraint firstItem="NHh-Ct-vb5" firstAttribute="leading" secondItem="yiR-g3-xSF" secondAttribute="leading" id="ygJ-Rj-nFq"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ngo-Gu-xgj">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ngo-Gu-xgj">
                                 <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ItemCellId" rowHeight="87" id="5AN-qh-SIU" customClass="ItemTableViewCell" customModule="Local_Labor_Market_Data" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="87"/>
@@ -947,6 +947,7 @@
                                                 <constraint firstItem="ht6-sb-cnJ" firstAttribute="leading" secondItem="AYJ-LW-Wbk" secondAttribute="leading" id="sZC-eK-BVs"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dataView" destination="ht6-sb-cnJ" id="4tK-1g-d8e"/>
                                             <outlet property="nationalValueLabel" destination="Fw1-Km-eqI" id="U1w-Vg-ogE"/>

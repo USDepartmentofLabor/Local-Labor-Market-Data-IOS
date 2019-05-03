@@ -297,7 +297,6 @@ class ItemViewController: UIViewController {
         tableView.isAccessibilityElement = false
         areaTitleLabel.accessibilityTraits = UIAccessibilityTraits.header
         areaTitleLabel.accessibilityLabel = viewModel.area.accessibilityStr
-        anscestorsLabel.accessibilityTraits = .link
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -386,7 +385,7 @@ class ItemViewController: UIViewController {
             viewModel.dataSort = .code(ascending: true)
         }
         
-        reloadData()
+        reloadData(sender: sender)
     }
     
     @IBAction func localBtnClick(_ sender: Any) {
@@ -400,7 +399,7 @@ class ItemViewController: UIViewController {
             viewModel.dataSort = .local(ascending: true)
         }
         
-        reloadData()
+        reloadData(sender: sender)
     }
     
     @IBAction func nationalBtnClick(_ sender: Any) {
@@ -414,7 +413,7 @@ class ItemViewController: UIViewController {
         else {
             viewModel.dataSort = .national(ascending: true)
         }
-        reloadData()
+        reloadData(sender: sender)
     }
     
     @IBAction func oneMonthBtnClick(_ sender: Any) {
@@ -429,7 +428,7 @@ class ItemViewController: UIViewController {
             viewModel.dataSort = .localOneMonthChange(ascending: true)
         }
         
-        reloadData()
+        reloadData(sender: sender)
     }
     @IBAction func twelveMonthBtnClick(_ sender: Any) {
         guard viewModel.currentDataType.localReport != nil else {
@@ -443,7 +442,7 @@ class ItemViewController: UIViewController {
             viewModel.dataSort = .localTwelveMonthChange(ascending: true)
         }
         
-        reloadData()
+        reloadData(sender: sender)
     }
     @IBAction func natioanlTwelveMonthBtnClick(_ sender: Any) {
         guard viewModel.currentDataType.nationalReport != nil else {
@@ -457,15 +456,15 @@ class ItemViewController: UIViewController {
             viewModel.dataSort = .nationalTwelveMonthChange(ascending: true)
         }
         
-        reloadData()
+        reloadData(sender: sender)
     }
 
-    func reloadData() {
-        displaySort()
+    func reloadData(sender: Any? = nil) {
+        displaySort(sender: sender)
         tableView.reloadData()
     }
     
-    func displaySort() {
+    func displaySort(sender: Any? = nil) {
         let noSortImage = #imageLiteral(resourceName: "noSort")
         let ascSort = #imageLiteral(resourceName: "ascSort")
         let descSort = #imageLiteral(resourceName: "descSort")
@@ -483,25 +482,33 @@ class ItemViewController: UIViewController {
         var localTwelveMonthSortHint = "Tap to Sort ascending"
         var nationalTwelveMonthSortHint = "Tap to Sort ascending"
         
+        var announcementStr = ""
+        
         switch viewModel.dataSort {
         case .code(let asc):
             codeSortImage = (asc == true) ? ascSort : descSort
             codeSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
+            announcementStr = (asc == true) ? "Sorted ascending" : "Sorted descending"
         case .local(let asc):
             localSortImage = (asc == true) ? ascSort : descSort
             localSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
+            announcementStr = (asc == true) ? "Sorted ascending" : "Sorted descending"
         case .national(let asc):
             nationalSortImage = (asc == true) ? ascSort : descSort
             nationalSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
+            announcementStr = (asc == true) ? "Sorted ascending" : "Sorted descending"
         case .localOneMonthChange(let asc):
             localOneMonthChangeSortImage = (asc == true) ? ascSort : descSort
             localOneMonthSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
+            announcementStr = (asc == true) ? "Sorted ascending" : "Sorted descending"
         case .localTwelveMonthChange(let asc):
             localTwelveMonthChangeSortImage = (asc == true) ? ascSort : descSort
             localTwelveMonthSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
+            announcementStr = (asc == true) ? "Sorted ascending" : "Sorted descending"
         case .nationalTwelveMonthChange(let asc):
             nationalTwelveMonthChangeSortImage = (asc == true) ? ascSort : descSort
             nationalTwelveMonthSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
+            announcementStr = (asc == true) ? "Sorted ascending" : "Sorted descending"
         case .none: break
             
         }
@@ -520,20 +527,32 @@ class ItemViewController: UIViewController {
         else if viewModel is QCEWIndustryViewModel {
             qcewLocalTitleButton.setImage(localSortImage, for: .normal)
             qcewLocalTitleButton.accessibilityHint = localSortHint
+            qcewLocalTitleButton.accessibilityValue = ""
             qcewLocalTwelveMonthChangeTitleButton.setImage(localTwelveMonthChangeSortImage, for: .normal)
             qcewLocalTwelveMonthChangeTitleButton.accessibilityHint = localOneMonthSortHint
+            qcewLocalTwelveMonthChangeTitleButton.accessibilityValue = ""
             qcewNationalTitleButton.setImage(nationalSortImage, for: .normal)
             qcewNationalTitleButton.accessibilityHint = nationalSortHint
-            qcewNationalTwelveMonthChangeTitleButton.setImage(nationalTwelveMonthChangeSortImage, for: .normal)
+            qcewNationalTitleButton.accessibilityValue = ""
+            qcewNationalTwelveMonthChangeTitleButton
+                .setImage(nationalTwelveMonthChangeSortImage, for: .normal)
             qcewNationalTwelveMonthChangeTitleButton.accessibilityHint = nationalTwelveMonthSortHint
+            qcewNationalTwelveMonthChangeTitleButton.accessibilityValue = ""
         }
         else {
             cesLocalTitleButton.setImage(localSortImage, for: .normal)
             cesLocalTitleButton.accessibilityHint = localSortHint
+            cesLocalTitleButton.accessibilityValue = ""
             cesOneMonthChangeTitleButton.setImage(localOneMonthChangeSortImage, for: .normal)
             cesOneMonthChangeTitleButton.accessibilityHint = localOneMonthSortHint
+            cesOneMonthChangeTitleButton.accessibilityValue = ""
             cesTwelveMonthChangeTitleButton.setImage(localTwelveMonthChangeSortImage, for: .normal)
             cesTwelveMonthChangeTitleButton.accessibilityHint = localTwelveMonthSortHint
+            cesTwelveMonthChangeTitleButton.accessibilityValue = ""
+        }
+        
+        if let btn = sender as? UIButton {
+            btn.accessibilityValue = announcementStr
         }
     }
 }
@@ -871,22 +890,24 @@ extension ItemViewController {
                 qcewParentTwelveMonthValueLabel.text = ""
                 qcewParentTwelveMonthPercentLabel.text = ""
             }
-            // Display Percent Change
-            if let percentChange = seriesData.calculations?.percentChanges {
-                qcewParentTwelveMonthPercentLabel.text = NumberFormatter.localisedPercentStr(from: percentChange.twelveMonth) ?? ReportManager.dataNotAvailableStr
-            }
-            if let netChange = seriesData.calculations?.netChanges {
-                if let twelveMonthChange = netChange.twelveMonth, let doubleValue = Double(twelveMonthChange) {
-                    qcewParentTwelveMonthValueLabel.text = NumberFormatter.localisedDecimalStr(from: doubleValue)
+            else {
+                // Display Percent Change
+                if let percentChange = seriesData.calculations?.percentChanges {
+                    qcewParentTwelveMonthPercentLabel.text = NumberFormatter.localisedPercentStr(from: percentChange.twelveMonth) ?? ReportManager.dataNotAvailableStr
+                }
+                if let netChange = seriesData.calculations?.netChanges {
+                    if let twelveMonthChange = netChange.twelveMonth, let doubleValue = Double(twelveMonthChange) {
+                        qcewParentTwelveMonthValueLabel.text = NumberFormatter.localisedDecimalStr(from: doubleValue)
+                    }
+                    else {
+                        qcewParentTwelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
+                        qcewParentTwelveMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+                    }
                 }
                 else {
                     qcewParentTwelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
                     qcewParentTwelveMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
                 }
-            }
-            else {
-                qcewParentTwelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
-                qcewParentTwelveMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
             }
         }
         else {
@@ -899,22 +920,36 @@ extension ItemViewController {
         
         // National
         if !viewModel.isNationalReport, let seriesData = viewModel.getParentNationalReportData() {
-            qcewParentNationalValueLabel.text = viewModel.getReportValue(from: seriesData) ?? ReportManager.dataNotAvailableStr
-        
-            // Display Twelve Month Change
-            if let percentChange = seriesData.calculations?.percentChanges {
-                qcewParentNationalTwelveMonthPercentLabel.text = NumberFormatter.localisedPercentStr(from: percentChange.twelveMonth) ?? ReportManager.dataNotAvailableStr
+            let nationalValue = viewModel.getReportValue(from: seriesData) ?? ReportManager.dataNotAvailableStr
+            qcewParentNationalValueLabel.text = nationalValue
+            if nationalValue == ReportManager.dataNotAvailableStr {
+                qcewParentNationalValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+                qcewParentNationalTwelveMonthValueLabel.text = ""
+                qcewParentNationalTwelveMonthPercentLabel.text = ""
             }
-            if let netChange = seriesData.calculations?.netChanges {
-                if let twelveMonthChange = netChange.twelveMonth, let doubleValue = Double(twelveMonthChange) {
-                    qcewParentNationalTwelveMonthValueLabel.text = NumberFormatter.localisedDecimalStr(from: doubleValue)
+            else if nationalValue == ReportManager.dataNotDisclosable {
+                qcewParentNationalValueLabel.accessibilityLabel = ReportManager.dataNotDisclosable
+                qcewParentNationalTwelveMonthValueLabel.text = ""
+                qcewParentNationalTwelveMonthPercentLabel.text = ""
+            }
+            else {
+                // Display Twelve Month Change
+                if let percentChange = seriesData.calculations?.percentChanges {
+                    qcewParentNationalTwelveMonthPercentLabel.text = NumberFormatter.localisedPercentStr(from: percentChange.twelveMonth) ?? ReportManager.dataNotAvailableStr
+                }
+                if let netChange = seriesData.calculations?.netChanges {
+                    if let twelveMonthChange = netChange.twelveMonth, let doubleValue = Double(twelveMonthChange) {
+                        qcewParentNationalTwelveMonthValueLabel.text = NumberFormatter.localisedDecimalStr(from: doubleValue)
+                    }
+                    else {
+                        qcewParentNationalTwelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
+                        qcewParentNationalTwelveMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
+                    }
                 }
                 else {
                     qcewParentNationalTwelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
+                    qcewParentNationalTwelveMonthValueLabel.accessibilityLabel = ReportManager.dataNotAvailableAccessibilityStr
                 }
-            }
-            else {
-                qcewParentNationalTwelveMonthValueLabel.text = ReportManager.dataNotAvailableStr
             }
         }
         else {
@@ -961,6 +996,12 @@ extension ItemViewController {
             return
         }
         let parentStr = viewModel.parentItem.allParents
+        
+        if Util.isVoiceOverRunning {
+            anscestorsLabel.text = parentStr
+            return
+        }
+        
         let parents = parentStr.components(separatedBy: ">")
         let underlineAttriString = NSMutableAttributedString(string: parentStr)
         
