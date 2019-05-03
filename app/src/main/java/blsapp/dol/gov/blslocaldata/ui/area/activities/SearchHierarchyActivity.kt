@@ -95,6 +95,7 @@ class SearchHierarchyActivity: AppCompatActivity(), SearchHierarchyAdapter.OnIte
 
                 adapter.setIndustryRows(hierarchies)
                 if (hierarchies.count() == 0 && searchHierarchyView.query.count() > 2) {
+                    noResultsFoundTextView.bringToFront()
                     noResultsFoundTextView.visibility = View.VISIBLE
                 } else {
                     noResultsFoundTextView.visibility = View.INVISIBLE
