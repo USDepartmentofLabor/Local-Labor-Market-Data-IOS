@@ -114,13 +114,6 @@ class SearchHierarchyActivity: AppCompatActivity(), SearchHierarchyAdapter.OnIte
                     return true
                 }
                 searchViewModel.setQuery(newText!!)
-                if (newText.isEmpty()) {
-                    doAsync {
-                        uiThread {
-                            searchHierarchyView.clearFocus()
-                        }
-                    }
-                }
                 return true
             }
 
