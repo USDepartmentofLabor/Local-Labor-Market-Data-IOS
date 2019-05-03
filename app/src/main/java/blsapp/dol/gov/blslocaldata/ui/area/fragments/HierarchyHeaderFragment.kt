@@ -88,7 +88,7 @@ class HierarchyHeaderFragment : Fragment() {
     }
 
     fun reportLoaded() {
-        timePeriodTextView.text = hierarchyViewModel.getTimePeriodTitle()
+        timePeriodTextView.text = hierarchyViewModel.getTimePeriodTitle().replace("Annual","")
     }
 
 
