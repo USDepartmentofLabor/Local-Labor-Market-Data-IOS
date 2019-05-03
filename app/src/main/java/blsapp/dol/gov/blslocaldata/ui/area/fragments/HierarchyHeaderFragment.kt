@@ -90,7 +90,11 @@ class HierarchyHeaderFragment : Fragment() {
     }
 
     fun reportLoaded() {
-        timePeriodTextView.text = hierarchyViewModel.getTimePeriodTitle().replace("Annual","")
+        if (hierarchyViewModel.isCountyArea()) {
+            timePeriodTextView.text = hierarchyViewModel.getTimePeriodTitle()
+        } else {
+            timePeriodTextView.text = hierarchyViewModel.getTimePeriodTitle().replace("Annual","")
+        }
     }
 
 
