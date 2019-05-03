@@ -122,6 +122,8 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
             areaViewModel.setAreaType(areaType)
         }
 
+        searchView.setIconifiedByDefault(false)
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String?): Boolean {
