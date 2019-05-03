@@ -29,6 +29,8 @@ import android.util.Log
 import android.widget.TextView
 import org.jetbrains.anko.support.v4.dimen
 import android.view.ViewGroup.MarginLayoutParams
+import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
+import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import kotlinx.android.synthetic.main.fragment_hierarchy_header.view.*
 import kotlinx.android.synthetic.main.industry_employment.*
@@ -321,6 +323,15 @@ class HierarchyHeaderFragment : Fragment() {
         oneMonthChangeView.setOnClickListener(clickListener)
         twelveMonthChangeView.setOnClickListener(clickListener)
         updateAccessibilityHints()
+
+        hierarchySeasonallyAdjustedSwitch.setOnCheckedChangeListener{ _, isChecked ->
+            ReportManager.adjustment =
+                    if (isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
+            hierarchyViewModel.setAdjustment(ReportManager.adjustment)
+            hierarchyViewModel.getIndustryReports()
+        }
+
+        hierarchyViewModel.getIndustryReports()
     }
 
     private fun turnOffArrows() {
@@ -343,7 +354,6 @@ class HierarchyHeaderFragment : Fragment() {
         wageVsLevelTitles = hierarchyViewModel.getWageVsLevelTitles()
         if (wageVsLevelTitles == null) {
             //hierarchyViewModel.setWageVsLevelIndex(0)
-            hierarchyViewModel.getIndustryReports()
             wageVsLevelSpinner.visibility = View.GONE
 
             val params = hierarchyTextView.layoutParams as ConstraintLayout.LayoutParams
@@ -352,34 +362,44 @@ class HierarchyHeaderFragment : Fragment() {
             hierarchyTextView.requestLayout()
 
         } else {
-            wageVsLevelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    hierarchyViewModel.setWageVsLevelIndex(0)
-                }
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                    hierarchyViewModel.setWageVsLevelIndex(pos)
-                    hierarchyViewModel.getIndustryReports()
-
-                    wageVsLevelTitles?.let {
-                        if (hierarchyViewModel.isCountyArea()) {
-                            if (pos == 0) {
-                                dataTitle.text = getString(R.string.employment_level)
-                            } else {
-                                dataTitle.text = getString(R.string.average_weekly_wage_accessible)
-                            }
-                        } else {
-                            dataTitle.text = it[pos]
-                        }
-                        updateAccessibilityHints()
-                    }
-                }
-            }
 
             val aa = ArrayAdapter(activity, android.R.layout.simple_spinner_item, hierarchyViewModel.getWageVsLevelTitles())
             aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             wageVsLevelSpinner!!.adapter = aa
 
+            wageVsLevelSpinner.onItemSelectedListener = null
             wageVsLevelSpinner.setSelection(selectedWageVsLevelIndex)
+
+            wageVsLevelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    hierarchyViewModel.setWageVsLevelIndex(0)
+                }
+
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                    if (hierarchyViewModel.wageVsLevelTypeSelected  != pos) {
+                        handleOnWageVsLevelSpinnerSelection(pos)
+                        hierarchyViewModel.getIndustryReports()
+                    }
+                }
+            }
+            handleOnWageVsLevelSpinnerSelection(selectedWageVsLevelIndex)
+        }
+    }
+
+
+    private fun handleOnWageVsLevelSpinnerSelection(pos: Int) {
+        hierarchyViewModel.setWageVsLevelIndex(pos)
+        wageVsLevelTitles?.let {
+            if (hierarchyViewModel.isCountyArea()) {
+                if (pos == 0) {
+                    dataTitle.text = getString(R.string.employment_level)
+                } else {
+                    dataTitle.text = getString(R.string.average_weekly_wage_accessible)
+                }
+            } else {
+                dataTitle.text = it[pos]
+            }
+            updateAccessibilityHints()
         }
     }
 

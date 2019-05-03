@@ -62,7 +62,7 @@ class BlsAPI constructor(val appContext: Context) {
             return
         }
 
-        Log.w("ggg", "BLSAPI Request: " + reportRequest.toJSON())
+        Log.w("gggAPI", "BLSAPI API Request: " + reportRequest.toJSON())
         val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, BLS_API_URL, JSONObject(reportRequest.toJSON()),
                 Response.Listener { response ->
                     val reportReponse = response.toString().toObject<BLSReportResponse>()

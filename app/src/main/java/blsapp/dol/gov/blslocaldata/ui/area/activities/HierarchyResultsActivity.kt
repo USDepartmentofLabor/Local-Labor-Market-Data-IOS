@@ -148,12 +148,6 @@ class HierarchyResultsActivity : AppCompatActivity(), HierarchyListAdapter.OnIte
             decorator.setDrawable(it) }
         recyclerView.addItemDecoration(decorator)
 
-        hierarchySeasonallyAdjustedSwitch.isChecked = if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED) true else false
-        hierarchySeasonallyAdjustedSwitch.setOnCheckedChangeListener{ _, isChecked ->
-            ReportManager.adjustment =
-                    if (isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
-            viewModel.setAdjustment(ReportManager.adjustment)
-        }
     }
 
     override fun onFragmentInteraction(uri: Uri) {

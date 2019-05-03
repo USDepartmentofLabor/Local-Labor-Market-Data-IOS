@@ -16,6 +16,8 @@ import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.model.reports.ReportType.OccupationalEmployment
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.HierarchyBaseViewModel
 import org.jetbrains.anko.doAsync
+import java.util.concurrent.Semaphore
+
 
 /**
  * HierarchyViewModel - View Model for Industry Comparison View
@@ -31,13 +33,13 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
     override lateinit var mArea: AreaEntity
     override lateinit var mAdjustment: SeasonalAdjustment
+    private val isLoadingSemaphore = Semaphore(1, true)
 
     override var isLoading = MutableLiveData<Boolean>()
     override var reportError = MutableLiveData<ReportError>()
     override var hierarchyRows = MutableLiveData<List<HierarchyRow>>()
     override fun setAdjustment(adjustment: SeasonalAdjustment) {
         mAdjustment = adjustment
-        loadReportCategories()
     }
 
     private var codeSorted:SortStatus = SortStatus.ASCENDING
@@ -47,6 +49,8 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
     private var nationalOneMonthChangeSorted:SortStatus = SortStatus.NOT
     private var localTwelveMonthChangeSorted:SortStatus = SortStatus.NOT
     private var nationalTwelveMonthChangeSorted:SortStatus = SortStatus.NOT
+
+    var wageVsLevelTypeSelected: Int = 0
 
     var localAreaReports: MutableList<AreaReport>? = null
 
@@ -205,6 +209,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                     this.wageVsLevelTypeOccupation = OESReport.DataTypeCode.EMPLOYMENT
             }
         }
+        wageVsLevelTypeSelected = wageVsLevelType
     }
 
     override fun toggleSection(reportRow: HierarchyRow) {
@@ -370,6 +375,9 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     private fun loadReportCategories() {
+        if (!isLoadingSemaphore.tryAcquire())
+            return
+
         ioThread {
 
             nationalArea = repository.getNationalArea()
@@ -435,6 +443,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             else
                 getLocalReports(rows)
 
+            isLoadingSemaphore.release()
         }
     }
 
