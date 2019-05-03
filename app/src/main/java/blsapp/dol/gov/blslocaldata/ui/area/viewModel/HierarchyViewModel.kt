@@ -399,11 +399,11 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                         parentIndustryData,
                         parentIndustryData.id,
                         mergeTitle,
-                        "N/A", "N/A",
-                        "N/A", "N/A",
-                        "N/A", "N/A",
-                        "N/A", "N/A",
-                        "N/A", "N/A",
+                        " ", " ",
+                        " ", " ",
+                        " ", " ",
+                        " ", " ",
+                        " ", " ",
                         false))
             }
 
@@ -421,11 +421,11 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                         industry,
                         industry.id,
                         mergeTitle,
-                        "N/A", "N/A",
-                        "N/A", "N/A",
-                        "N/A", "N/A",
-                        "N/A", "N/A",
-                        "N/A", "N/A",
+                        " ", " ",
+                        " ", " ",
+                        " ", " ",
+                        " ", " ",
+                        " ", " ",
                         industry.superSector))
             }
             hierarchyRows.postValue(rows)
@@ -549,7 +549,10 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             val thisAreaRow = areaReport[i]
 
             val thisIndustryRow = hierarchyRows[i]
+
             if  (thisAreaRow.seriesReport != null && thisAreaRow.seriesReport!!.data.isNotEmpty()) {
+
+                setDefaultNAs(thisIndustryRow)
 
                 var thisAreaRowData = thisAreaRow.seriesReport!!.data[0]
                 if (this.isCountyArea()) {
@@ -609,5 +612,18 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                 }
             }
         }
+    }
+
+    private fun setDefaultNAs(thisRow: HierarchyRow) {
+        thisRow.localValue = if (thisRow.localValue == " ") "N/A" else thisRow.localValue
+        thisRow.nationalValue =  if (thisRow.nationalValue == " ") "N/A" else thisRow.nationalValue
+        thisRow.oneMonthValue =  if (thisRow.oneMonthValue == " ") "N/A" else thisRow.oneMonthValue
+        thisRow.twelveMonthValue =  if (thisRow.twelveMonthValue == " ") "N/A" else thisRow.twelveMonthValue
+        thisRow.oneMonthPercent =  if (thisRow.oneMonthPercent == " ") "N/A" else thisRow.oneMonthPercent
+        thisRow.twelveMonthPercent =  if (thisRow.twelveMonthPercent == " ") "N/A" else thisRow.twelveMonthPercent
+        thisRow.oneMonthNationalValue =  if (thisRow.oneMonthNationalValue == " ") "N/A" else thisRow.oneMonthNationalValue
+        thisRow.twelveMonthNationalValue = if (thisRow.twelveMonthNationalValue == " ") "N/A" else thisRow.twelveMonthNationalValue
+        thisRow.oneMonthNationalPercent =  if (thisRow.oneMonthNationalPercent == " ") "N/A" else thisRow.oneMonthNationalPercent
+        thisRow.twelveMonthNationalPercent =  if (thisRow.twelveMonthNationalPercent == " ") "N/A" else thisRow.twelveMonthNationalPercent
     }
 }
