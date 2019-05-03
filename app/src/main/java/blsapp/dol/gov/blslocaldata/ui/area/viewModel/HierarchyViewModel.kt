@@ -550,9 +550,8 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
             val thisIndustryRow = hierarchyRows[i]
 
+            setDefaultNAs(thisIndustryRow)
             if  (thisAreaRow.seriesReport != null && thisAreaRow.seriesReport!!.data.isNotEmpty()) {
-
-                setDefaultNAs(thisIndustryRow)
 
                 var thisAreaRowData = thisAreaRow.seriesReport!!.data[0]
                 if (this.isCountyArea()) {
