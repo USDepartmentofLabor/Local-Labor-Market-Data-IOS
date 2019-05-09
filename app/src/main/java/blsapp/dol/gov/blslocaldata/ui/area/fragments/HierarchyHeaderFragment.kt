@@ -76,7 +76,7 @@ class HierarchyHeaderFragment : Fragment() {
 
         hierarchyViewModel = ViewModelProviders.of(activity!!).get(HierarchyViewModel::class.java)
         if (!hierarchyViewModel.isCountyArea()) {
-            ownershipTextView.visibility = View.GONE
+            ownershipTextView.visibility = View.INVISIBLE
         }
         attachObserver()
         updateHeader()
@@ -101,7 +101,7 @@ class HierarchyHeaderFragment : Fragment() {
     fun setupHiearcaryBreadCrumbs(hierarchyString: String?, hierarchyIds:Array<Long>?) {
 
         if (hierarchyString == null || hierarchyIds == null) {
-            hierarchyTextView.visibility = View.INVISIBLE
+            hierarchyTextView.visibility = View.GONE
             return
         }
         val hierarchyStrings = hierarchyString.split("->").toTypedArray()
@@ -358,12 +358,12 @@ class HierarchyHeaderFragment : Fragment() {
         wageVsLevelTitles = hierarchyViewModel.getWageVsLevelTitles()
         if (wageVsLevelTitles == null) {
             //hierarchyViewModel.setWageVsLevelIndex(0)
-            wageVsLevelSpinner.visibility = View.GONE
+            wageVsLevelSpinner.visibility = View.INVISIBLE
 
-            val params = hierarchyTextView.layoutParams as ConstraintLayout.LayoutParams
-            params.topToBottom = timePeriodTextView.id
-            hierarchyTextView.layoutParams = params
-            hierarchyTextView.requestLayout()
+//            val params = hierarchyTextView.layoutParams as ConstraintLayout.LayoutParams
+//            params.topToBottom = timePeriodTextView.id
+//            hierarchyTextView.layoutParams = params
+//            hierarchyTextView.requestLayout()
 
         } else {
 
