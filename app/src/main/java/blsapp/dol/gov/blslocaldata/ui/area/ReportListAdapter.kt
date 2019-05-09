@@ -102,8 +102,9 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
 
             ViewCompat.setAccessibilityDelegate(holder.mView, object : AccessibilityDelegateCompat() {
                 override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
-            //        super.onInitializeAccessibilityNodeInfo(host, info)
+                    super.onInitializeAccessibilityNodeInfo(host, info)
                     info.addAction(AccessibilityNodeInfoCompat.ACTION_FOCUS)
+                    info.isHeading = true
                 }
             })
 
