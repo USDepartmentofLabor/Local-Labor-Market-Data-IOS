@@ -152,8 +152,8 @@ class HierarchyHeaderFragment : Fragment() {
         industryAreaTextView.contentDescription = hierarchyViewModel.accessibilityStr
         ownershipTextView.text = hierarchyViewModel.getOwnershipTitle()
         timePeriodTextView.text = hierarchyViewModel.getTimePeriodTitle()
-        setupLevelVsWageSpinner()
         setupColumnHeaders()
+        setupLevelVsWageSpinner()
         turnOffArrows()
     }
 
