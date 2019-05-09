@@ -39,13 +39,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
         android:gravity="end"
         android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/areaTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/areaTextView"
-        app:layout_constraintTop_toTopOf="@+id/monthYearTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/monthYearTextView" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/valueView"
@@ -53,7 +51,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/areaTextView">
+        app:layout_constraintTop_toBottomOf="@id/seasonallyAdjustedTextView">
 
         <TextView
             android:id="@+id/dataTitleTextView"
