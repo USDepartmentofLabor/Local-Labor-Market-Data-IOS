@@ -8,6 +8,7 @@ import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import blsapp.dol.gov.blslocaldata.R
 import kotlinx.android.synthetic.main.fragment_glossary.*
 import kotlinx.android.synthetic.main.fragment_glossary.view.*
@@ -22,13 +23,26 @@ class GlossaryFragment : Fragment() {
 
         val glossaryView = inflater.inflate(R.layout.fragment_glossary, container, false)
 
-        ViewCompat.setAccessibilityDelegate(glossaryView.glossaryHeading, object : AccessibilityDelegateCompat() {
+        setupAccessibilityDelegate(glossaryView.glossaryHeading)
+        setupAccessibilityDelegate(glossaryView.title1)
+        setupAccessibilityDelegate(glossaryView.title2)
+        setupAccessibilityDelegate(glossaryView.title3)
+        setupAccessibilityDelegate(glossaryView.title4)
+        setupAccessibilityDelegate(glossaryView.title5)
+        setupAccessibilityDelegate(glossaryView.title6)
+        setupAccessibilityDelegate(glossaryView.title7)
+
+        return glossaryView
+    }
+
+    fun setupAccessibilityDelegate(textView: TextView) {
+
+        ViewCompat.setAccessibilityDelegate(textView, object : AccessibilityDelegateCompat() {
             override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
                 super.onInitializeAccessibilityNodeInfo(host, info)
                 info.addAction(AccessibilityNodeInfoCompat.ACTION_FOCUS)
                 info.isHeading = true
             }
         })
-        return glossaryView
     }
 }

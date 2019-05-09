@@ -34,6 +34,7 @@
             <TextView
                 android:id="@+id/title1"
                 style="@style/infoTitle"
+                android:accessibilityHeading="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/glossaryTitle1" />
@@ -48,6 +49,7 @@
             <TextView
                 android:id="@+id/title2"
                 style="@style/infoTitle"
+                android:accessibilityHeading="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/glossaryTitle2" />
@@ -63,6 +65,7 @@
             <TextView
                 android:id="@+id/title3"
                 style="@style/infoTitle"
+                android:accessibilityHeading="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/glossaryTitle3" />
@@ -77,6 +80,7 @@
             <TextView
                 android:id="@+id/title4"
                 style="@style/infoTitle"
+                android:accessibilityHeading="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/glossaryTitle4" />
@@ -91,6 +95,7 @@
             <TextView
                 android:id="@+id/title5"
                 style="@style/infoTitle"
+                android:accessibilityHeading="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/glossaryTitle5" />
@@ -105,6 +110,7 @@
             <TextView
                 android:id="@+id/title6"
                 style="@style/infoTitle"
+                android:accessibilityHeading="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/glossaryTitle6" />
@@ -119,16 +125,17 @@
             <TextView
                 android:id="@+id/title7"
                 style="@style/infoTitle"
+                android:accessibilityHeading="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/glossaryTitle6" />
+                android:text="@string/glossaryTitle7" />
 
             <TextView
                 android:id="@+id/line7"
                 style="@style/info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/glossary6" />
+                android:text="@string/glossary7" />
 
         </LinearLayout>
     </ScrollView>
