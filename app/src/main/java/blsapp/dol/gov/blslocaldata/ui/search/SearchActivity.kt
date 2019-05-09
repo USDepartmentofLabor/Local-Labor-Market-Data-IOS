@@ -122,7 +122,8 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
             areaViewModel.setAreaType(areaType)
         }
 
-        searchView.setIconifiedByDefault(false)
+        if  (!UIUtil.isTalkBackActive())
+            searchView.setIconifiedByDefault(false)
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
