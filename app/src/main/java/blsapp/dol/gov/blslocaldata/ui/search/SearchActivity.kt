@@ -2,6 +2,7 @@ package blsapp.dol.gov.blslocaldata.ui.search
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
@@ -28,6 +29,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.accessibility.AccessibilityEvent
+import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.core.view.isVisible
 import blsapp.dol.gov.blslocaldata.BLSApplication
@@ -113,6 +115,9 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
             var areaType = AreaType.METRO
+
+            this.dismissKeyboard()
+
             when(checkedId) {
                 R.id.metroRadioButton -> { areaType = AreaType.METRO }
                 R.id.stateRadioButton -> { areaType = AreaType.STATE }
@@ -191,8 +196,9 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
         fastScrollerThumbView.setupWithFastScroller(fastScrollerView)
     }
 
-    public override fun onStart() {
-        super.onStart()
+    public override fun onResume() {
+        super.onResume()
+        this.dismissKeyboard()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -202,6 +208,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_info -> {
+            this.dismissKeyboard()
             val intent = Intent(applicationContext, AboutActivity::class.java)
             startActivity(intent)
             true
@@ -258,6 +265,7 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
             is StateEntity -> ReportManager.adjustment = SeasonalAdjustment.ADJUSTED
             else -> ReportManager.adjustment = SeasonalAdjustment.NOT_ADJUSTED
         }
+        this.dismissKeyboard()
         intent.putExtra(AreaReportActivity.KEY_AREA, area)
         startActivity(intent)
     }
@@ -459,5 +467,10 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
 
     }
 
+    fun Activity.dismissKeyboard() {
+        val inputMethodManager = getSystemService( Context.INPUT_METHOD_SERVICE ) as InputMethodManager
+        if( inputMethodManager.isAcceptingText )
+            inputMethodManager.hideSoftInputFromWindow( this.currentFocus.windowToken, /*flags:*/ 0)
+    }
 }
 
