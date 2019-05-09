@@ -101,7 +101,7 @@ class HierarchyHeaderFragment : Fragment() {
     fun setupHiearcaryBreadCrumbs(hierarchyString: String?, hierarchyIds:Array<Long>?) {
 
         if (hierarchyString == null || hierarchyIds == null) {
-            hierarchyTextView.visibility = View.GONE
+            hierarchyTextView.visibility = View.INVISIBLE
             return
         }
         val hierarchyStrings = hierarchyString.split("->").toTypedArray()
