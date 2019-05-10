@@ -26,6 +26,7 @@
         <activity
             android:name=".ui.search.SearchActivity"
             android:label="@string/main_title"
+            android:windowSoftInputMode="stateHidden"
             />
         <activity
             android:name=".ui.info.AboutActivity"
