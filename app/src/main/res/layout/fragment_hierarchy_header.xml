@@ -304,6 +304,7 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="@dimen/item_heading_two_of_three_end_margin"
         android:layout_marginStart="8dp"
+        android:accessibilityTraversalAfter="@id/regionSortButtonView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nationalSortButtonView">
 
@@ -349,6 +350,7 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="@dimen/item_heading_three_of_three_end_margin"
         android:layout_marginStart="8dp"
+        android:accessibilityTraversalAfter="@id/nationalSortButtonView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nationalSortButtonView">
 
