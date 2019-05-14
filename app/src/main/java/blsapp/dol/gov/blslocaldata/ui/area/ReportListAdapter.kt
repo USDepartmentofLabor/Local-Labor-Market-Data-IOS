@@ -100,15 +100,15 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
           //  val manager = context
           //          .getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
 
-            ViewCompat.setAccessibilityDelegate(holder.mView, object : AccessibilityDelegateCompat() {
+            holder.mHeaderTextView.text = reportRow.header
+
+            ViewCompat.setAccessibilityDelegate(holder.mHeaderTextView, object : AccessibilityDelegateCompat() {
                 override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
                     super.onInitializeAccessibilityNodeInfo(host, info)
                     info.addAction(AccessibilityNodeInfoCompat.ACTION_FOCUS)
                     info.isHeading = true
                 }
             })
-
-            holder.mHeaderTextView.text = reportRow.header
 
             if (reportRow.subIndustries) {
                 holder.mHeaderSubIndustriesIndicator.visibility = View.VISIBLE
