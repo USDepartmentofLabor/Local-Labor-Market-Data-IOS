@@ -54,14 +54,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         style="@style/hierarchyItemCellValue" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/subIndustriesIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="@null"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/colorHierarchyCell"
+        android:tooltipText="@string/more_details"
+        android:contentDescription="@string/more_details"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_chevron_right_24px" />
