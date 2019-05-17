@@ -74,10 +74,18 @@ open class HierarchyListAdapter(private val mListener: OnItemClickListener?) : R
                         mListener?.onItemClick(areaRow)
                     }
                 }
+
+                with(holder.mSubIndustryIndicator) {
+                    tag = areaRow.industry
+                    setOnClickListener {
+                        mListener?.onItemClick(areaRow)
+                    }
+                }
             } else {
                 holder.mSubIndustryIndicator.visibility = View.GONE
                 superSectorAccessibilityText = " "
             }
+
 
             holder.mIndustryTitle.text = areaRow.title
 
