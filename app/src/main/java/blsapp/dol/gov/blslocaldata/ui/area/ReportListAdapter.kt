@@ -101,6 +101,7 @@ class ReportListAdapter(private val context: Context, private val mListener: Rep
           //          .getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
 
             holder.mHeaderTextView.text = reportRow.header
+            holder.mHeaderTextView.contentDescription = reportRow.header
 
             ViewCompat.setAccessibilityDelegate(holder.mHeaderTextView, object : AccessibilityDelegateCompat() {
                 override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
