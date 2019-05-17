@@ -50,9 +50,10 @@ open class HierarchyListAdapter(private val mListener: OnItemClickListener?) : R
                 holder.mIndustryNationalValue?.textColor = getColor(holder.itemView.context, android.R.color.black)
             }
 
-            var superSectorAccessibilityText = UIUtil.getString(R.string.more_details_available)
+            var superSectorAccessibilityText = areaRow.title + UIUtil.getString(R.string.more_details_available)
             if (areaRow.superSector) {
                 holder.mSubIndustryIndicator.visibility = View.VISIBLE
+                holder.mSubIndustryIndicator.contentDescription = superSectorAccessibilityText
 
                 with(holder.mView) {
                     tag = areaRow.industry
