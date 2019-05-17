@@ -50,7 +50,12 @@ open class HierarchyListAdapter(private val mListener: OnItemClickListener?) : R
                 holder.mIndustryNationalValue?.textColor = getColor(holder.itemView.context, android.R.color.black)
             }
 
-            var superSectorAccessibilityText = areaRow.title + UIUtil.getString(R.string.more_details_available)
+            var adjustedTitle = areaRow.title
+            val splitTitles = areaRow.title?.split("(")
+            if (splitTitles!= null && splitTitles?.count() > 1)
+                adjustedTitle = splitTitles[0]
+
+            var superSectorAccessibilityText = adjustedTitle + UIUtil.getString(R.string.more_details_available)
             if (areaRow.superSector) {
                 holder.mSubIndustryIndicator.visibility = View.VISIBLE
                 holder.mSubIndustryIndicator.contentDescription = superSectorAccessibilityText
