@@ -22,6 +22,7 @@ android {
     buildToolsVersion '28.0.3'
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
+        buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
     }
     packagingOptions {
         exclude 'META-INF/proguard/androidx-annotations.pro'

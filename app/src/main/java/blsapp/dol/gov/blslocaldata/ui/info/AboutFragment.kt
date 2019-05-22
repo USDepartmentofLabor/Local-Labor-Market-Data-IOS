@@ -13,6 +13,9 @@ import blsapp.dol.gov.blslocaldata.BuildConfig
 
 import blsapp.dol.gov.blslocaldata.R
 import kotlinx.android.synthetic.main.fragment_about.*
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 /**
@@ -58,6 +61,8 @@ class AboutFragment : Fragment() {
     }
 
     companion object {
-        val releaseDate = "November 5, 2018"
+        var buildDate = Date(BuildConfig.TIMESTAMP)
+        var formatter = SimpleDateFormat("MMMM dd, yyyy", Locale.ENGLISH)
+        val releaseDate = formatter.format(buildDate)
     }
 }

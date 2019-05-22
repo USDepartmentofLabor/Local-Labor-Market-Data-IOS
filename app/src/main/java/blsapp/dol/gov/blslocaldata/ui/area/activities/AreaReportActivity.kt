@@ -185,6 +185,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
     private fun attachObserver() {
         viewModel.reportRows.observe(this, Observer<List<AreaReportRow>> {
             adapter.setReportRows(it!!)
+           // recyclerView.smoothScrollToPosition(adapter.itemCount -1)
         })
         viewModel.isLoading.observe(this, Observer<Boolean> {
             it?.let { showLoadingDialog(it) }
