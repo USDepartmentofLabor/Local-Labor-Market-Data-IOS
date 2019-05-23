@@ -483,32 +483,34 @@ class ItemViewController: UIViewController {
         var nationalTwelveMonthSortHint = "Tap to Sort ascending"
         
         var announcementStr = ""
-        
+        itemCodeButton.accessibilityValue = ""
+
         switch viewModel.dataSort {
         case .code(let asc):
             codeSortImage = (asc == true) ? ascSort : descSort
             codeSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
-            announcementStr = (asc == true) ? "Sorted ascending" : "Sorted descending"
+            announcementStr = (asc == true) ? "ascending" : "descending"
+            itemCodeButton.accessibilityValue = announcementStr
         case .local(let asc):
             localSortImage = (asc == true) ? ascSort : descSort
             localSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
-            announcementStr = (asc == true) ? "Sorted ascending" : "Sorted descending"
+            announcementStr = (asc == true) ? "ascending" : "descending"
         case .national(let asc):
             nationalSortImage = (asc == true) ? ascSort : descSort
             nationalSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
-            announcementStr = (asc == true) ? "Sorted ascending" : "Sorted descending"
+            announcementStr = (asc == true) ? "ascending" : "descending"
         case .localOneMonthChange(let asc):
             localOneMonthChangeSortImage = (asc == true) ? ascSort : descSort
             localOneMonthSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
-            announcementStr = (asc == true) ? "Sorted ascending" : "Sorted descending"
+            announcementStr = (asc == true) ? "ascending" : "descending"
         case .localTwelveMonthChange(let asc):
             localTwelveMonthChangeSortImage = (asc == true) ? ascSort : descSort
             localTwelveMonthSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
-            announcementStr = (asc == true) ? "Sorted ascending" : "Sorted descending"
+            announcementStr = (asc == true) ? "ascending" : "descending"
         case .nationalTwelveMonthChange(let asc):
             nationalTwelveMonthChangeSortImage = (asc == true) ? ascSort : descSort
             nationalTwelveMonthSortHint = (asc == true) ? "Tap to sort descending": "Tap to sort ascending"
-            announcementStr = (asc == true) ? "Sorted ascending" : "Sorted descending"
+            announcementStr = (asc == true) ? "ascending" : "descending"
         case .none: break
             
         }
@@ -519,9 +521,11 @@ class ItemViewController: UIViewController {
         if viewModel is OccupationViewModel {
             occupationLocalTitleButton.setImage(localSortImage, for: .normal)
             occupationLocalTitleButton.accessibilityHint = localSortHint
+            occupationLocalTitleButton.accessibilityValue = ""
             if !viewModel.isNationalReport {
                 occupationNationalTitleButton.setImage(nationalSortImage, for: .normal)
                 occupationNationalTitleButton.accessibilityHint = nationalSortHint
+                occupationNationalTitleButton.accessibilityValue = ""
             }
         }
         else if viewModel is QCEWIndustryViewModel {
