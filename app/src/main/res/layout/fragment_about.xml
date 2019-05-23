@@ -138,6 +138,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/version_title"
                     android:textColor="@android:color/black"
+                    style="@style/info"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
@@ -148,6 +149,7 @@
                     android:layout_marginLeft="16dp"
                     android:text=""
                     android:textColor="@android:color/black"
+                    style="@style/info"
                     app:layout_constraintStart_toEndOf="@+id/versionTitle"
                     app:layout_constraintTop_toTopOf="@+id/versionTitle" />
 
@@ -157,6 +159,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/release_date_title"
                     android:textColor="@android:color/black"
+                    style="@style/info"
                     app:layout_constraintStart_toStartOf="@+id/versionTitle"
                     app:layout_constraintTop_toBottomOf="@+id/versionTitle" />
 
@@ -166,6 +169,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="@android:color/black"
+                    style="@style/info"
                     app:layout_constraintStart_toStartOf="@+id/versionValue"
                     app:layout_constraintTop_toTopOf="@+id/releaseDateTitle" />
 
