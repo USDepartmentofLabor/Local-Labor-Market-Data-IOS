@@ -310,6 +310,9 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             newString = newString.replace("N/A", "1000000000", true)
             newString = newString.replace("ND", "1000000000", true)
         }
+        newString =newString.replace(" ","",true)
+        if (newString == null || newString.length < 1)
+            newString = "0"
         return newString.toFloat()
     }
 
