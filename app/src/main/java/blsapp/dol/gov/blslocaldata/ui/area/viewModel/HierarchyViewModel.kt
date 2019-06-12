@@ -301,6 +301,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         val retSortStatusValue:SortStatus = if (sortStatus == SortStatus.ASCENDING) SortStatus.DESCENDING else SortStatus.ASCENDING
         var newString = string.replace("%","",true)
         newString =newString.replace("$","",true)
+        newString =newString.replace("£","",true)
         newString =newString.replace("+","",true)
         newString =newString.replace(",","",true)
         if (retSortStatusValue == SortStatus.DESCENDING) {
