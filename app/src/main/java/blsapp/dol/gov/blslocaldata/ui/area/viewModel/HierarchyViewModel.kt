@@ -298,12 +298,9 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun convertToFloat(string: String, sortStatus: SortStatus):Float {
+
+        var newString = string
         val retSortStatusValue:SortStatus = if (sortStatus == SortStatus.ASCENDING) SortStatus.DESCENDING else SortStatus.ASCENDING
-        var newString = string.replace("%","",true)
-        newString =newString.replace("$","",true)
-        newString =newString.replace("£","",true)
-        newString =newString.replace("+","",true)
-        newString =newString.replace(",","",true)
         if (retSortStatusValue == SortStatus.DESCENDING) {
             newString = newString.replace("N/A", "0", true)
             newString = newString.replace("ND", "0", true)
@@ -311,6 +308,9 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             newString = newString.replace("N/A", "1000000000", true)
             newString = newString.replace("ND", "1000000000", true)
         }
+        val re = Regex("[^0-9. ]")
+        newString = re.replace(newString, "")
+
         newString =newString.replace(" ","",true)
         if (newString == null || newString.length < 1)
             newString = "0"
