@@ -468,9 +468,11 @@ class SearchActivity : AppCompatActivity(), AreaListAdapter.OnItemClickListener 
     }
 
     fun Activity.dismissKeyboard() {
-        val inputMethodManager = getSystemService( Context.INPUT_METHOD_SERVICE ) as InputMethodManager
-        if( inputMethodManager.isAcceptingText )
-            inputMethodManager.hideSoftInputFromWindow( this.currentFocus.windowToken, /*flags:*/ 0)
+        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        if (inputMethodManager.isAcceptingText) {
+            if (this.currentFocus != null)
+                inputMethodManager.hideSoftInputFromWindow(this.currentFocus.windowToken, /*flags:*/ 0)
+        }
     }
 }
 
