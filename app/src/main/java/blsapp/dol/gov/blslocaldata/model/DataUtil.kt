@@ -6,6 +6,7 @@ import android.content.Context
 import android.view.accessibility.AccessibilityManager
 import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
+import java.util.*
 
 /**
  * DataUtil - Utility class for manipulating numeric strings
@@ -14,7 +15,7 @@ class DataUtil {
     companion object {
         fun currencyValue(valueStr: String): String {
 
-            val currencyFormatter = NumberFormat.getCurrencyInstance()
+            val currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US)
             currencyFormatter.setMaximumFractionDigits(0)
             val decimalValue = valueStr.toBigDecimalOrNull()
             decimalValue?.let {
