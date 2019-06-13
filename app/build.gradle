@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "blsapp.dol.gov.blslocaldatatest"
+        applicationId "blsapp.dol.gov.blslocaldata"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 5
