@@ -34,11 +34,13 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.github.mikephil.charting.interfaces.datasets.IDataSet
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.model.GradientColor
+import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 
 import java.util.ArrayList
@@ -62,6 +64,7 @@ private val onValueSelectedRectF = RectF()
          setTitle("History - Unemployment")
 
          chart = findViewById(R.id.chart)
+
          chart!!.setOnChartValueSelectedListener(this)
 
          chart!!.setDrawBarShadow(false)
@@ -168,7 +171,7 @@ private val onValueSelectedRectF = RectF()
 
              val data = BarData(dataSets)
              data.barWidth = 0.2f
-             data.groupBars(2.0f,0.3f,0.02f)
+             data.groupBars(0.6f,0.55f,0.02f)
              data.setValueTextSize(10f)
              data.setDrawValues(false)
 //             data.setValueTypeface(tfLight)
