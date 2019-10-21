@@ -18,6 +18,6 @@ class DayAxisValueFormatter(private val chart: BarLineChartBase<*>) : IAxisValue
     fun getFormattedValue(value: Float): String {
 
         val intValue : Int = value.toInt()
-        return mMonths[intValue]
+        return mMonths[intValue-1]
     }
 }
