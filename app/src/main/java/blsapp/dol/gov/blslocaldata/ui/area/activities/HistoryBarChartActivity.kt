@@ -228,75 +228,70 @@ import java.util.ArrayList
 
      private fun setData(count:Int, range:Float, areaReportRows:List<AreaReportRow>?) {
 
-         var values1 = mutableListOf<BarEntry>()
+         var valueLists = mutableListOf<MutableList<BarEntry>>()
+         var titleList = mutableListOf<String>()
          if (areaReportRows == null) return
          var items: SeriesReport? = null
-         loop@for (areaReportRow in areaReportRows!!) {
+         for (areaReportRow in areaReportRows!!) {
              if (areaReportRow.areaReports != null) {
-                 for (areaReport in areaReportRow.areaReports) {
-                     if (areaReport.seriesReport != null) {
-                         items = areaReport.seriesReport
-                         break@loop
+                 val retList =  processSeriesData(areaReportRow.areaReports)
+                 retList.let {
+                     valueLists.add(it)
+                     areaReportRow.areaType?.let {
+                         titleList.add(it)
                      }
                  }
              }
          }
 
-         xAxisLabel.text = "2019"
-         val yearToMatch = 2019
-         var nextItem = 0
-         for (i in 12 downTo 1) {
-             val nextMonthDataItem = items!!.data[nextItem].period.replace("M","")
-             if (i == nextMonthDataItem.toInt()) {
-                 Log.i("GGG", "Graph Item :" + i +" - " + items!!.data[nextItem].value.toFloat())
-                 values1.add(BarEntry(i.toFloat(), items!!.data[nextItem].value.toFloat()))
-                 nextItem++
-             } else {
-                 Log.i("GGG", "Graph Item :" + i + " - 0.0")
-                 values1.add(BarEntry(i.toFloat(), 0.0f))
-             }
-         }
-
-         values1.reverse()
-
          val set1:BarDataSet
          val set2:BarDataSet
 
-         if (chart!!.data != null && chart!!.data.dataSetCount > 0)
+         if (chart!!.data != null && chart!!.data.dataSetCount > 0 && false)
          {
-             set1 = chart!!.data.getDataSetByIndex(0) as BarDataSet
-             set1.values = values1
+             if (valueLists.count() > 0) {
+                 set1 = chart!!.data.getDataSetByIndex(0) as BarDataSet
+                 set1.values = valueLists[0]
 
-             set2 = chart!!.data.getDataSetByIndex(0) as BarDataSet
-             set2.values = values1
+                 if (valueLists.count() > 1) {
+                     set2 = chart!!.data.getDataSetByIndex(0) as BarDataSet
+                     set2.values = valueLists[1]
+                 }
 
-             chart!!.data.notifyDataChanged()
-             chart!!.notifyDataSetChanged()
-
+                 chart!!.data.notifyDataChanged()
+                 chart!!.notifyDataSetChanged()
+             }
          }
          else
          {
-             set1 = BarDataSet(values1, "National")
-             set1.setDrawIcons(false)
-             set1.color = ContextCompat.getColor(this, R.color.colorPrimary)
+             if (valueLists.count() > 0) {
 
-             set2 = BarDataSet(values1, "County")
-             set2.setDrawIcons(false)
-             set2.color = ContextCompat.getColor(this, R.color.colorHistoryButton)
+                 val dataSets = ArrayList<IBarDataSet>()
 
-             val dataSets = ArrayList<IBarDataSet>()
-             dataSets.add(set1)
-             dataSets.add(set2)
+                 set1 = BarDataSet(valueLists[0], titleList[0])
+                 set1.setDrawIcons(false)
+                 set1.color = ContextCompat.getColor(this, R.color.colorPrimary)
+                 dataSets.add(set1)
 
-             val data = BarData(dataSets)
-             data.barWidth = 0.2f
-             data.groupBars(0.6f,0.55f,0.02f)
-             data.setValueTextSize(10f)
-             data.setDrawValues(false)
+                 if (valueLists.count() > 1) {
+                     set2 = BarDataSet(valueLists[1], titleList[1])
+                     set2.setDrawIcons(false)
+                     set2.color = ContextCompat.getColor(this, R.color.colorHistoryButton)
+                     dataSets.add(set2)
+                 }
+
+                 val data = BarData(dataSets)
+                 data.barWidth = 0.2f
+                 if (valueLists.count() > 1) {
+                     data.groupBars(0.6f, 0.55f, 0.02f)
+                 }
+                 data.setValueTextSize(10f)
+                 data.setDrawValues(false)
 //             data.setValueTypeface(tfLight)
 
-             chart!!.data = data
-             data.notifyDataChanged()
+                 chart!!.data = data
+                 data.notifyDataChanged()
+             }
          }
      }
 

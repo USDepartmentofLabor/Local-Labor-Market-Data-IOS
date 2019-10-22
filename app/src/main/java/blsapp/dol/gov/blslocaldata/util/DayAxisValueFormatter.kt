@@ -13,7 +13,7 @@ class DayAxisValueFormatter(private val chart: BarLineChartBase<*>) : IAxisValue
         return getFormattedValue(value)
     }
 
-    private val mMonths = arrayOf("Jan", "Feb", "Mar", "Apr", "May", "Jun 2018", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+    private val mMonths = arrayOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 
     fun getFormattedValue(value: Float): String {
 
