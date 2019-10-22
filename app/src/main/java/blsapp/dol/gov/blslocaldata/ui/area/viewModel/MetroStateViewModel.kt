@@ -101,6 +101,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
 //        }
             ReportManager.getReport(mArea, reportTypes, adjustment = mAdjustment,
                     successHandler = {
+                        //GGG-HISTORY
                         localAreaReports = it.toMutableList()
                         updateReportRows()
 

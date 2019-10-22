@@ -1,6 +1,8 @@
 package blsapp.dol.gov.blslocaldata.ui.area.activities
 
 import android.Manifest
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
@@ -13,11 +15,22 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.WindowManager
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.TextView
 import blsapp.dol.gov.blslocaldata.R
+import blsapp.dol.gov.blslocaldata.db.entity.*
+import blsapp.dol.gov.blslocaldata.model.ReportError
+import blsapp.dol.gov.blslocaldata.model.SeriesReport
+import blsapp.dol.gov.blslocaldata.model.reports.AreaReport
+import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
+import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
+import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.AreaReportRow
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.CountyAreaViewModel
+import blsapp.dol.gov.blslocaldata.ui.viewmodel.MetroStateViewModel
 import blsapp.dol.gov.blslocaldata.util.DayAxisValueFormatter
 import blsapp.dol.gov.blslocaldata.util.XYMarkerView
 
@@ -42,14 +55,19 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.model.GradientColor
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
+import kotlinx.android.synthetic.main.activity_barchart.*
+import kotlinx.android.synthetic.main.fragment_area_header.*
 
 import java.util.ArrayList
 
  class HistoryBarChartActivity: AppCompatActivity(), OnSeekBarChangeListener, OnChartValueSelectedListener {
 
-private var chart:BarChart? = null
+    private var chart:BarChart? = null
 
-private val onValueSelectedRectF = RectF()
+    private val onValueSelectedRectF = RectF()
+
+     lateinit var mArea: AreaEntity
+     private lateinit var viewModel: AreaViewModel
 
      override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
@@ -57,16 +75,56 @@ private val onValueSelectedRectF = RectF()
                  WindowManager.LayoutParams.FLAG_FULLSCREEN)
          setContentView(R.layout.activity_barchart)
 
+         mArea = intent.getSerializableExtra(AreaReportActivity.KEY_AREA) as AreaEntity
+         viewModel = createViewModel(mArea)
+         viewModel.mAdjustment = ReportManager.adjustment
+         mArea.let {
+             areaTitle.text = it.title
+             viewModel.mArea = it
+         }
+         chartSeasonallyAdjustedSwitch.isChecked = if (ReportManager.adjustment == SeasonalAdjustment.ADJUSTED) true else false
+         chartSeasonallyAdjustedSwitch.setOnCheckedChangeListener{ _, isChecked ->
+             ReportManager.adjustment =
+                     if (isChecked) SeasonalAdjustment.ADJUSTED else SeasonalAdjustment.NOT_ADJUSTED
+             viewModel.setAdjustment(ReportManager.adjustment)
+         }
+         attachObserver()
+         viewModel.getAreaReports()
+
+
          requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
-
          supportActionBar?.setHomeActionContentDescription("Back")
+         title = "History - Unemployment"
 
-         setTitle("History - Unemployment")
+     }
+
+     private fun createViewModel(area: AreaEntity): AreaViewModel {
+         when(area) {
+             is CountyEntity -> return ViewModelProviders.of(this).get(CountyAreaViewModel::class.java)
+         }
+
+         return ViewModelProviders.of(this).get(MetroStateViewModel::class.java)
+     }
+
+     private fun attachObserver() {
+         viewModel.reportRows.observe(this, Observer<List<AreaReportRow>> {
+
+             setupChart(it)
+             //adapter.setReportRows(it!!)
+             // recyclerView.smoothScrollToPosition(adapter.itemCount -1)
+         })
+         viewModel.isLoading.observe(this, Observer<Boolean> {
+            // it?.let { showLoadingDialog(it) }
+         })
+         viewModel.reportError.observe(this, Observer<ReportError> {
+           //  it?.let { showError(it) }
+         })
+     }
+
+     private fun setupChart(areaReportRows: List <AreaReportRow>?) {
 
          chart = findViewById(R.id.chart)
-
          chart!!.setOnChartValueSelectedListener(this)
-
          chart!!.setDrawBarShadow(false)
          chart!!.setDrawValueAboveBar(true)
 
@@ -109,9 +167,8 @@ private val onValueSelectedRectF = RectF()
          l.textSize = 11f
          l.xEntrySpace = 4f
 
-         setData(12, 5f)
+         setData(12, 5f, areaReportRows)
          chart!!.invalidate()
-
      }
 
      private fun getValues(count: Int, range:Float) : ArrayList<BarEntry> {
@@ -134,11 +191,73 @@ private val onValueSelectedRectF = RectF()
          }
          return values
      }
-     private fun setData(count:Int, range:Float) {
+
+     fun processSeriesData(areaReportRows: List<AreaReport>):MutableList<BarEntry> {
+
+         var values = mutableListOf<BarEntry>()
+         var items: SeriesReport? = null
+
+         for (areaReport in areaReportRows) {
+             if (areaReport.seriesReport != null) {
+                 items = areaReport.seriesReport
+                 break
+             }
+         }
+
+         xAxisLabel.text = "2019"
+         val yearToMatch = 2019
+         var nextItem = 0
+         for (i in 12 downTo 1) {
+             val nextMonthDataItem = items!!.data[nextItem].period.replace("M","")
+             if (i == nextMonthDataItem.toInt()) {
+                 Log.i("GGG", "Graph Item :" + i +" - " + items!!.data[nextItem].value.toFloat())
+                 values.add(BarEntry(i.toFloat(), items!!.data[nextItem].value.toFloat()))
+                 nextItem++
+             } else {
+                 Log.i("GGG", "Graph Item :" + i + " - 0.0")
+                 values.add(BarEntry(i.toFloat(), 0.0f))
+             }
+         }
+
+         values.reverse()
+
+         return values
+
+     }
 
 
-         val values1 = getValues(count, range)
-         val values2 = getValues(count, range)
+     private fun setData(count:Int, range:Float, areaReportRows:List<AreaReportRow>?) {
+
+         var values1 = mutableListOf<BarEntry>()
+         if (areaReportRows == null) return
+         var items: SeriesReport? = null
+         loop@for (areaReportRow in areaReportRows!!) {
+             if (areaReportRow.areaReports != null) {
+                 for (areaReport in areaReportRow.areaReports) {
+                     if (areaReport.seriesReport != null) {
+                         items = areaReport.seriesReport
+                         break@loop
+                     }
+                 }
+             }
+         }
+
+         xAxisLabel.text = "2019"
+         val yearToMatch = 2019
+         var nextItem = 0
+         for (i in 12 downTo 1) {
+             val nextMonthDataItem = items!!.data[nextItem].period.replace("M","")
+             if (i == nextMonthDataItem.toInt()) {
+                 Log.i("GGG", "Graph Item :" + i +" - " + items!!.data[nextItem].value.toFloat())
+                 values1.add(BarEntry(i.toFloat(), items!!.data[nextItem].value.toFloat()))
+                 nextItem++
+             } else {
+                 Log.i("GGG", "Graph Item :" + i + " - 0.0")
+                 values1.add(BarEntry(i.toFloat(), 0.0f))
+             }
+         }
+
+         values1.reverse()
 
          val set1:BarDataSet
          val set2:BarDataSet
@@ -149,7 +268,7 @@ private val onValueSelectedRectF = RectF()
              set1.values = values1
 
              set2 = chart!!.data.getDataSetByIndex(0) as BarDataSet
-             set2.values = values2
+             set2.values = values1
 
              chart!!.data.notifyDataChanged()
              chart!!.notifyDataSetChanged()
@@ -161,7 +280,7 @@ private val onValueSelectedRectF = RectF()
              set1.setDrawIcons(false)
              set1.color = ContextCompat.getColor(this, R.color.colorPrimary)
 
-             set2 = BarDataSet(values2, "County")
+             set2 = BarDataSet(values1, "County")
              set2.setDrawIcons(false)
              set2.color = ContextCompat.getColor(this, R.color.colorHistoryButton)
 

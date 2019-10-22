@@ -66,7 +66,7 @@ class BlsAPI constructor(val appContext: Context) {
         val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, BLS_API_URL, JSONObject(reportRequest.toJSON()),
                 Response.Listener { response ->
                     val reportReponse = response.toString().toObject<BLSReportResponse>()
-
+                    Log.w("gggAPI", "BLSAPI API Response: " + response.toString())
                     if (reportReponse.status == ReportStatus.REQUEST_SUCCEEDED) {
                         if (seriesIdsCopy != null) {
                             getReports(seriesIdsCopy, startYear, endYear, annualAvg, {nextResponse ->

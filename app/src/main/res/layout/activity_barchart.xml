@@ -14,11 +14,11 @@
         android:text="Title"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/industrySeasonallyAdjustedSwitch"
+        app:layout_constraintEnd_toStartOf="@+id/chartSeasonallyAdjustedSwitch"
         app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.v7.widget.SwitchCompat
-        android:id="@+id/industrySeasonallyAdjustedSwitch"
+        android:id="@+id/chartSeasonallyAdjustedSwitch"
         style="@style/SwitchCompatTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         android:checkedButton="@+id/metroRadioButton"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/industrySeasonallyAdjustedSwitch">
+        app:layout_constraintTop_toBottomOf="@+id/chartSeasonallyAdjustedSwitch">
 
         <RadioButton
             android:id="@+id/metroRadioButton"
