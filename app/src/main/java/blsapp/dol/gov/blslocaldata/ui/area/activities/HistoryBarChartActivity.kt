@@ -44,6 +44,8 @@ import kotlinx.android.synthetic.main.activity_barchart.*
 
 import java.util.ArrayList
 
+const val X_ITEM_COUNT = 12
+
  class HistoryBarChartActivity: AppCompatActivity(), OnSeekBarChangeListener, OnChartValueSelectedListener {
 
     private var chart:BarChart? = null
@@ -55,6 +57,7 @@ import java.util.ArrayList
 
      private var valueLists = mutableListOf<MutableList<BarEntry>>()
      private var titleList = mutableListOf<String>()
+     private var xAxisLabels = mutableListOf<String>()
 
      override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
@@ -116,7 +119,36 @@ import java.util.ArrayList
 
          setChartLayout()
 
-         loadDataIntoChart()
+         val startIndex = 0
+         val endIndex = X_ITEM_COUNT
+         val titles = titleList
+         var xAxisFormatter:IAxisValueFormatter? = null
+
+         if (xAxisLabels.count() > X_ITEM_COUNT) {
+             val xAxisLabelsSub = xAxisLabels.subList(startIndex, endIndex)
+             xAxisLabelsSub.reverse()
+             chart?.let {
+                 xAxisFormatter = DayAxisValueFormatter(it, xAxisLabelsSub.toTypedArray())
+             }
+         } else {
+             chart?.let {
+                 xAxisFormatter = DayAxisValueFormatter(it, arrayOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
+             }
+         }
+         chart!!.xAxis.valueFormatter = xAxisFormatter
+
+         if (valueLists[0].count() < X_ITEM_COUNT) return
+
+         val values1 = valueLists[0].subList(startIndex, endIndex)
+
+         if (valueLists.count() > 1 && valueLists[1].count() > X_ITEM_COUNT) {
+             val values2 = valueLists[1].subList(startIndex, endIndex)
+             val values: MutableList<MutableList<BarEntry>> = mutableListOf(values1, values2)
+             loadDataIntoChart(titles, values)
+         } else {
+             val values: MutableList<MutableList<BarEntry>> = mutableListOf(values1)
+             loadDataIntoChart(titles, values)
+         }
 
          chart!!.invalidate()
      }
@@ -136,16 +168,14 @@ import java.util.ArrayList
          chart!!.setDrawGridBackground(false)
 
          var xAxisFormatter:IAxisValueFormatter? = null
-         chart?.let {
-             xAxisFormatter = DayAxisValueFormatter(it)
-         }
 
          val xAxis = chart!!.xAxis
          xAxis.position = XAxisPosition.BOTTOM
          xAxis.setDrawGridLines(false)
          xAxis.granularity = 1f // only intervals of 1 day
-         xAxis.labelCount = 12
+         xAxis.labelCount = X_ITEM_COUNT
          xAxis.valueFormatter = xAxisFormatter
+         xAxisLabel.text = "Month and Year"
 
          val leftAxis = chart!!.axisLeft
          leftAxis.setLabelCount(6, false)
@@ -167,20 +197,21 @@ import java.util.ArrayList
          l.xEntrySpace = 4f
      }
 
-     private fun loadDataIntoChart() {
+     private fun loadDataIntoChart(titles:MutableList<String>,
+                                   values:MutableList<MutableList<BarEntry>>) {
 
          val set1:BarDataSet
          val set2:BarDataSet
 
          if (chart!!.data != null && chart!!.data.dataSetCount > 0 && false)
          {
-             if (valueLists.count() > 0) {
+             if (values.count() > 0) {
                  set1 = chart!!.data.getDataSetByIndex(0) as BarDataSet
-                 set1.values = valueLists[0]
+                 set1.values = values[0]
 
-                 if (valueLists.count() > 1) {
+                 if (values.count() > 1) {
                      set2 = chart!!.data.getDataSetByIndex(0) as BarDataSet
-                     set2.values = valueLists[1]
+                     set2.values = values[1]
                  }
 
                  chart!!.data.notifyDataChanged()
@@ -189,17 +220,17 @@ import java.util.ArrayList
          }
          else
          {
-             if (valueLists.count() > 0) {
+             if (values.count() > 0) {
 
                  val dataSets = ArrayList<IBarDataSet>()
 
-                 set1 = BarDataSet(valueLists[0], titleList[0])
+                 set1 = BarDataSet(values[0], titles[0])
                  set1.setDrawIcons(false)
                  set1.color = ContextCompat.getColor(this, R.color.colorPrimary)
                  dataSets.add(set1)
 
-                 if (valueLists.count() > 1) {
-                     set2 = BarDataSet(valueLists[1], titleList[1])
+                 if (values.count() > 1) {
+                     set2 = BarDataSet(values[1], titles[1])
                      set2.setDrawIcons(false)
                      set2.color = ContextCompat.getColor(this, R.color.colorHistoryButton)
                      dataSets.add(set2)
@@ -207,7 +238,7 @@ import java.util.ArrayList
 
                  val data = BarData(dataSets)
                  data.barWidth = 0.2f
-                 if (valueLists.count() > 1) {
+                 if (values.count() > 1) {
                      data.groupBars(0.6f, 0.55f, 0.02f)
                  }
                  data.setValueTextSize(10f)
@@ -229,12 +260,15 @@ import java.util.ArrayList
          var items: SeriesReport? = null
          for (areaReportRow in areaReportRows!!) {
              if (areaReportRow.areaReports != null) {
+                 areaReportRow.areaType?.let {
+                     Log.i("GGG", "Processing: " + it)
+                 }
                  val retList =  processSeriesData(areaReportRow.areaReports)
                  retList.let {
-                     valueLists.add(it)
                      areaReportRow.areaType?.let {
                          titleList.add(it)
                      }
+                     valueLists.add(it)
                  }
              }
          }
@@ -245,29 +279,24 @@ import java.util.ArrayList
          var values = mutableListOf<BarEntry>()
          var items: SeriesReport? = null
 
+         xAxisLabels = mutableListOf<String>()
+
          for (areaReport in areaReportRows) {
              if (areaReport.seriesReport != null) {
                  items = areaReport.seriesReport
                  break
              }
          }
-
-         xAxisLabel.text = "2019"
-         val yearToMatch = 2019
-         var nextItem = 0
-         for (i in 12 downTo 1) {
-             val nextMonthDataItem = items!!.data[nextItem].period.replace("M","")
-             if (i == nextMonthDataItem.toInt()) {
-                 Log.i("GGG", "Graph Item :" + i +" - " + items!!.data[nextItem].value.toFloat())
-                 values.add(BarEntry(i.toFloat(), items!!.data[nextItem].value.toFloat()))
-                 nextItem++
-             } else {
-                 Log.i("GGG", "Graph Item :" + i + " - 0.0")
-                 values.add(BarEntry(i.toFloat(), 0.0f))
-             }
+         var nextIndex = X_ITEM_COUNT
+         for (nextItem in items!!.data) {
+             val nextMonthDataItem = nextItem.period.replace("M","")
+             values.add(BarEntry(nextIndex.toFloat(), nextItem.value.toFloat()))
+             val nextXlabel = nextItem.periodName.substring(0,3) + " " + nextItem.year.substring(2,4)
+             Log.i("GGG", "Graph Item :" + nextXlabel + " - " + nextItem.value.toFloat())
+             xAxisLabels.add(nextXlabel)
+             nextIndex--
+             if (nextIndex == 0) nextIndex = X_ITEM_COUNT
          }
-
-         values.reverse()
 
          return values
 

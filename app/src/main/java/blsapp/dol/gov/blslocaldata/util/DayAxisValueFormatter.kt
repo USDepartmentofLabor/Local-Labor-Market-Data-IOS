@@ -7,13 +7,13 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter
 /**
  * Created by philipp on 02/06/16.
  */
-class DayAxisValueFormatter(private val chart: BarLineChartBase<*>) : IAxisValueFormatter {
+class DayAxisValueFormatter(private val chart: BarLineChartBase<*>, private val mMonths: Array<String>) : IAxisValueFormatter {
 
     override fun getFormattedValue(value: Float, axis: AxisBase?): String {
         return getFormattedValue(value)
     }
 
-    private val mMonths = arrayOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+  //  private val mMonths = arrayOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 
     fun getFormattedValue(value: Float): String {
 

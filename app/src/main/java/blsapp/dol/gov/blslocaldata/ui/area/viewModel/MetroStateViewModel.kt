@@ -133,6 +133,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                 localAreaReport?.seriesReport?.latestData()?.let { localReport ->
                     startYear = localReport.year
                 }
+                startYear = null
 
                 reportSection.reportTypes?.let { reportTypes ->
                     ReportManager.getReport(nationalArea,
