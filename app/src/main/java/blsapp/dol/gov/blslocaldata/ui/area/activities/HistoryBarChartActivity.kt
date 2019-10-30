@@ -1,25 +1,17 @@
 package blsapp.dol.gov.blslocaldata.ui.area.activities
 
-import android.Manifest
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.RectF
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
 import android.view.WindowManager
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
-import android.widget.TextView
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.*
 import blsapp.dol.gov.blslocaldata.model.ReportError
@@ -32,14 +24,11 @@ import blsapp.dol.gov.blslocaldata.ui.viewmodel.AreaReportRow
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.CountyAreaViewModel
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.MetroStateViewModel
 import blsapp.dol.gov.blslocaldata.util.DayAxisValueFormatter
-import blsapp.dol.gov.blslocaldata.util.XYMarkerView
 
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.Legend.LegendForm
-import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.components.YAxis.AxisDependency
 import com.github.mikephil.charting.components.YAxis.YAxisLabelPosition
 import com.github.mikephil.charting.data.BarData
@@ -47,16 +36,11 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
-import com.github.mikephil.charting.interfaces.datasets.IDataSet
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import com.github.mikephil.charting.model.GradientColor
-import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 import kotlinx.android.synthetic.main.activity_barchart.*
-import kotlinx.android.synthetic.main.fragment_area_header.*
 
 import java.util.ArrayList
 
@@ -68,6 +52,9 @@ import java.util.ArrayList
 
      lateinit var mArea: AreaEntity
      private lateinit var viewModel: AreaViewModel
+
+     private var valueLists = mutableListOf<MutableList<BarEntry>>()
+     private var titleList = mutableListOf<String>()
 
      override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
@@ -109,7 +96,7 @@ import java.util.ArrayList
      private fun attachObserver() {
          viewModel.reportRows.observe(this, Observer<List<AreaReportRow>> {
 
-             setupChart(it)
+             displayChart(it)
              //adapter.setReportRows(it!!)
              // recyclerView.smoothScrollToPosition(adapter.itemCount -1)
          })
@@ -121,9 +108,21 @@ import java.util.ArrayList
          })
      }
 
-     private fun setupChart(areaReportRows: List <AreaReportRow>?) {
+     private fun displayChart(areaReportRows: List <AreaReportRow>?) {
 
          chart = findViewById(R.id.chart)
+
+         buildChartData(areaReportRows)
+
+         setChartLayout()
+
+         loadDataIntoChart()
+
+         chart!!.invalidate()
+     }
+
+     private fun setChartLayout() {
+
          chart!!.setOnChartValueSelectedListener(this)
          chart!!.setDrawBarShadow(false)
          chart!!.setDrawValueAboveBar(true)
@@ -166,83 +165,9 @@ import java.util.ArrayList
          l.formSize = 9f
          l.textSize = 11f
          l.xEntrySpace = 4f
-
-         setData(12, 5f, areaReportRows)
-         chart!!.invalidate()
      }
 
-     private fun getValues(count: Int, range:Float) : ArrayList<BarEntry> {
-         val values = ArrayList<BarEntry>()
-         val start = 1f
-         var i = start.toInt()
-         while (i < start + count)
-         {
-             val value = (Math.random() * (range + 1)).toFloat()
-
-             if (Math.random() * 100 < 25)
-             {
-                 values.add(BarEntry(i.toFloat(), value, getResources().getDrawable(R.mipmap.star)))
-             }
-             else
-             {
-                 values.add(BarEntry(i.toFloat(), value))
-             }
-             i++
-         }
-         return values
-     }
-
-     fun processSeriesData(areaReportRows: List<AreaReport>):MutableList<BarEntry> {
-
-         var values = mutableListOf<BarEntry>()
-         var items: SeriesReport? = null
-
-         for (areaReport in areaReportRows) {
-             if (areaReport.seriesReport != null) {
-                 items = areaReport.seriesReport
-                 break
-             }
-         }
-
-         xAxisLabel.text = "2019"
-         val yearToMatch = 2019
-         var nextItem = 0
-         for (i in 12 downTo 1) {
-             val nextMonthDataItem = items!!.data[nextItem].period.replace("M","")
-             if (i == nextMonthDataItem.toInt()) {
-                 Log.i("GGG", "Graph Item :" + i +" - " + items!!.data[nextItem].value.toFloat())
-                 values.add(BarEntry(i.toFloat(), items!!.data[nextItem].value.toFloat()))
-                 nextItem++
-             } else {
-                 Log.i("GGG", "Graph Item :" + i + " - 0.0")
-                 values.add(BarEntry(i.toFloat(), 0.0f))
-             }
-         }
-
-         values.reverse()
-
-         return values
-
-     }
-
-
-     private fun setData(count:Int, range:Float, areaReportRows:List<AreaReportRow>?) {
-
-         var valueLists = mutableListOf<MutableList<BarEntry>>()
-         var titleList = mutableListOf<String>()
-         if (areaReportRows == null) return
-         var items: SeriesReport? = null
-         for (areaReportRow in areaReportRows!!) {
-             if (areaReportRow.areaReports != null) {
-                 val retList =  processSeriesData(areaReportRow.areaReports)
-                 retList.let {
-                     valueLists.add(it)
-                     areaReportRow.areaType?.let {
-                         titleList.add(it)
-                     }
-                 }
-             }
-         }
+     private fun loadDataIntoChart() {
 
          val set1:BarDataSet
          val set2:BarDataSet
@@ -293,6 +218,59 @@ import java.util.ArrayList
                  data.notifyDataChanged()
              }
          }
+     }
+
+     fun buildChartData(areaReportRows:List<AreaReportRow>?) {
+
+         valueLists = mutableListOf<MutableList<BarEntry>>()
+         titleList = mutableListOf<String>()
+
+         if (areaReportRows == null) return
+         var items: SeriesReport? = null
+         for (areaReportRow in areaReportRows!!) {
+             if (areaReportRow.areaReports != null) {
+                 val retList =  processSeriesData(areaReportRow.areaReports)
+                 retList.let {
+                     valueLists.add(it)
+                     areaReportRow.areaType?.let {
+                         titleList.add(it)
+                     }
+                 }
+             }
+         }
+     }
+
+     fun processSeriesData(areaReportRows: List<AreaReport>):MutableList<BarEntry> {
+
+         var values = mutableListOf<BarEntry>()
+         var items: SeriesReport? = null
+
+         for (areaReport in areaReportRows) {
+             if (areaReport.seriesReport != null) {
+                 items = areaReport.seriesReport
+                 break
+             }
+         }
+
+         xAxisLabel.text = "2019"
+         val yearToMatch = 2019
+         var nextItem = 0
+         for (i in 12 downTo 1) {
+             val nextMonthDataItem = items!!.data[nextItem].period.replace("M","")
+             if (i == nextMonthDataItem.toInt()) {
+                 Log.i("GGG", "Graph Item :" + i +" - " + items!!.data[nextItem].value.toFloat())
+                 values.add(BarEntry(i.toFloat(), items!!.data[nextItem].value.toFloat()))
+                 nextItem++
+             } else {
+                 Log.i("GGG", "Graph Item :" + i + " - 0.0")
+                 values.add(BarEntry(i.toFloat(), 0.0f))
+             }
+         }
+
+         values.reverse()
+
+         return values
+
      }
 
      override fun onProgressChanged(seekBar:SeekBar, progress:Int, fromUser:Boolean) {
