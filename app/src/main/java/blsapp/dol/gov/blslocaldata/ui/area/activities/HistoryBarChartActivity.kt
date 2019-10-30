@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
@@ -26,8 +27,6 @@ import blsapp.dol.gov.blslocaldata.ui.viewmodel.MetroStateViewModel
 import blsapp.dol.gov.blslocaldata.util.DayAxisValueFormatter
 
 import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.components.Legend.LegendForm
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.components.YAxis.AxisDependency
 import com.github.mikephil.charting.components.YAxis.YAxisLabelPosition
@@ -44,7 +43,7 @@ import kotlinx.android.synthetic.main.activity_barchart.*
 
 import java.util.ArrayList
 
-const val X_ITEM_COUNT = 12
+const val X_ITEM_COUNT = 13
 
  class HistoryBarChartActivity: AppCompatActivity(), OnSeekBarChangeListener, OnChartValueSelectedListener {
 
@@ -55,9 +54,12 @@ const val X_ITEM_COUNT = 12
      lateinit var mArea: AreaEntity
      private lateinit var viewModel: AreaViewModel
 
-     private var valueLists = mutableListOf<MutableList<BarEntry>>()
-     private var titleList = mutableListOf<String>()
-     private var xAxisLabels = mutableListOf<String>()
+     private var graphValuesLists = mutableListOf<MutableList<BarEntry>>()
+     private var graphTitleList = mutableListOf<String>()
+     private var graphXAxisLabels = mutableListOf<String>()
+
+     private var graphStartingIndex = 0
+     private var graphEndingIndex = X_ITEM_COUNT
 
      override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
@@ -81,7 +83,27 @@ const val X_ITEM_COUNT = 12
          attachObserver()
          viewModel.getAreaReports()
 
+         nextButton.visibility = View.GONE
 
+         previousButton.setOnClickListener {
+
+             if (graphValuesLists[0].count() > 0 && (graphEndingIndex + X_ITEM_COUNT) < graphValuesLists[0].count()) {
+                 graphStartingIndex += X_ITEM_COUNT
+                 graphEndingIndex += X_ITEM_COUNT
+                 previousButton.visibility = View.GONE
+                 displayChart()
+             }
+             nextButton.visibility = View.VISIBLE
+         }
+         nextButton.setOnClickListener {
+             if (graphStartingIndex > 0) {
+                 graphStartingIndex -= X_ITEM_COUNT
+                 graphEndingIndex -= X_ITEM_COUNT
+                 nextButton.visibility = View.GONE
+                 displayChart()
+             }
+             previousButton.visibility = View.VISIBLE
+         }
          requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
          supportActionBar?.setHomeActionContentDescription("Back")
          title = "History - Unemployment"
@@ -98,10 +120,7 @@ const val X_ITEM_COUNT = 12
 
      private fun attachObserver() {
          viewModel.reportRows.observe(this, Observer<List<AreaReportRow>> {
-
-             displayChart(it)
-             //adapter.setReportRows(it!!)
-             // recyclerView.smoothScrollToPosition(adapter.itemCount -1)
+             setupChart(it)
          })
          viewModel.isLoading.observe(this, Observer<Boolean> {
             // it?.let { showLoadingDialog(it) }
@@ -111,43 +130,40 @@ const val X_ITEM_COUNT = 12
          })
      }
 
-     private fun displayChart(areaReportRows: List <AreaReportRow>?) {
-
+     private fun setupChart(areaReportRows: List <AreaReportRow>?) {
          chart = findViewById(R.id.chart)
 
          buildChartData(areaReportRows)
 
          setChartLayout()
 
-         val startIndex = 0
-         val endIndex = X_ITEM_COUNT
-         val titles = titleList
-         var xAxisFormatter:IAxisValueFormatter? = null
+         displayChart()
 
-         if (xAxisLabels.count() > X_ITEM_COUNT) {
-             val xAxisLabelsSub = xAxisLabels.subList(startIndex, endIndex)
+     }
+
+     private fun displayChart() {
+
+         var xAxisFormatter:IAxisValueFormatter? = null
+         if (graphXAxisLabels.count() > X_ITEM_COUNT) {
+             val xAxisLabelsSub = graphXAxisLabels.subList(graphStartingIndex, graphEndingIndex)
              xAxisLabelsSub.reverse()
              chart?.let {
                  xAxisFormatter = DayAxisValueFormatter(it, xAxisLabelsSub.toTypedArray())
              }
-         } else {
-             chart?.let {
-                 xAxisFormatter = DayAxisValueFormatter(it, arrayOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
-             }
          }
          chart!!.xAxis.valueFormatter = xAxisFormatter
 
-         if (valueLists[0].count() < X_ITEM_COUNT) return
+         if (graphValuesLists[0].count() < X_ITEM_COUNT) return
 
-         val values1 = valueLists[0].subList(startIndex, endIndex)
+         val values1 = graphValuesLists[0].subList(graphStartingIndex, graphEndingIndex)
 
-         if (valueLists.count() > 1 && valueLists[1].count() > X_ITEM_COUNT) {
-             val values2 = valueLists[1].subList(startIndex, endIndex)
+         if (graphValuesLists.count() > 1 && graphValuesLists[1].count() > X_ITEM_COUNT) {
+             val values2 = graphValuesLists[1].subList(graphStartingIndex, graphEndingIndex)
              val values: MutableList<MutableList<BarEntry>> = mutableListOf(values1, values2)
-             loadDataIntoChart(titles, values)
+             loadDataIntoChart(graphTitleList, values)
          } else {
              val values: MutableList<MutableList<BarEntry>> = mutableListOf(values1)
-             loadDataIntoChart(titles, values)
+             loadDataIntoChart(graphTitleList, values)
          }
 
          chart!!.invalidate()
@@ -157,7 +173,7 @@ const val X_ITEM_COUNT = 12
 
          chart!!.setOnChartValueSelectedListener(this)
          chart!!.setDrawBarShadow(false)
-         chart!!.setDrawValueAboveBar(true)
+         chart!!.setDrawValueAboveBar(false)
 
          chart!!.description.isEnabled = false
 
@@ -187,14 +203,16 @@ const val X_ITEM_COUNT = 12
          chart!!.axisRight.setEnabled(false);
 
          val l = chart!!.legend
-         l.verticalAlignment = Legend.LegendVerticalAlignment.TOP
-         l.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
-         l.orientation = Legend.LegendOrientation.VERTICAL
-         l.setDrawInside(false)
-         l.form = LegendForm.SQUARE
-         l.formSize = 9f
-         l.textSize = 11f
-         l.xEntrySpace = 4f
+         l.isEnabled = false
+
+//         l.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+//         l.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+//         l.orientation = Legend.LegendOrientation.VERTICAL
+//         l.setDrawInside(false)
+//         l.form = LegendForm.SQUARE
+//         l.formSize = 9f
+//         l.textSize = 11f
+//         l.xEntrySpace = 4f
      }
 
      private fun loadDataIntoChart(titles:MutableList<String>,
@@ -253,8 +271,8 @@ const val X_ITEM_COUNT = 12
 
      fun buildChartData(areaReportRows:List<AreaReportRow>?) {
 
-         valueLists = mutableListOf<MutableList<BarEntry>>()
-         titleList = mutableListOf<String>()
+         graphValuesLists = mutableListOf<MutableList<BarEntry>>()
+         graphTitleList = mutableListOf<String>()
 
          if (areaReportRows == null) return
          var items: SeriesReport? = null
@@ -266,9 +284,9 @@ const val X_ITEM_COUNT = 12
                  val retList =  processSeriesData(areaReportRow.areaReports)
                  retList.let {
                      areaReportRow.areaType?.let {
-                         titleList.add(it)
+                         graphTitleList.add(it)
                      }
-                     valueLists.add(it)
+                     graphValuesLists.add(it)
                  }
              }
          }
@@ -279,7 +297,7 @@ const val X_ITEM_COUNT = 12
          var values = mutableListOf<BarEntry>()
          var items: SeriesReport? = null
 
-         xAxisLabels = mutableListOf<String>()
+         graphXAxisLabels = mutableListOf<String>()
 
          for (areaReport in areaReportRows) {
              if (areaReport.seriesReport != null) {
@@ -293,7 +311,7 @@ const val X_ITEM_COUNT = 12
              values.add(BarEntry(nextIndex.toFloat(), nextItem.value.toFloat()))
              val nextXlabel = nextItem.periodName.substring(0,3) + " " + nextItem.year.substring(2,4)
              Log.i("GGG", "Graph Item :" + nextXlabel + " - " + nextItem.value.toFloat())
-             xAxisLabels.add(nextXlabel)
+             graphXAxisLabels.add(nextXlabel)
              nextIndex--
              if (nextIndex == 0) nextIndex = X_ITEM_COUNT
          }
@@ -320,10 +338,10 @@ const val X_ITEM_COUNT = 12
          chart!!.getBarBounds(e as BarEntry?, bounds)
          val position = chart!!.getPosition(e, AxisDependency.LEFT)
 
-         Log.i("bounds", bounds.toString())
-         Log.i("position", position.toString())
+         Log.i("GGG", "bounds:" + bounds.toString())
+         Log.i("GGG","position:" + position.toString())
 
-         Log.i("x-index",
+         Log.i("GGG" ,"x-index " +
                  "low: " + chart!!.lowestVisibleX + ", high: "
                          + chart!!.highestVisibleX)
 

@@ -29,6 +29,51 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <View
+        android:id="@+id/localLegendColor"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="120dp"
+        android:background="@color/colorLocalGraphBar"
+        app:layout_constraintTop_toBottomOf="@+id/chartSeasonallyAdjustedSwitch"
+        app:layout_constraintEnd_toStartOf="@+id/graphTypeRadioGroup" />
+
+    <TextView
+        android:id="@+id/localLegendName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="County Data"
+        android:textColor="@android:color/black"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintTop_toBottomOf="@+id/chartSeasonallyAdjustedSwitch"
+        app:layout_constraintStart_toEndOf="@+id/localLegendColor" />
+
+    <View
+        android:id="@+id/nationalLegendColor"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="120dp"
+        android:background="@color/colorNationalGraphBar"
+        app:layout_constraintTop_toBottomOf="@+id/chartSeasonallyAdjustedSwitch"
+        app:layout_constraintEnd_toStartOf="@+id/graphTypeRadioGroup" />
+
+    <TextView
+        android:id="@+id/nationalLegendName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="38dp"
+        android:text="National Data"
+        android:textColor="@android:color/black"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintTop_toBottomOf="@+id/chartSeasonallyAdjustedSwitch"
+        app:layout_constraintStart_toEndOf="@+id/localLegendColor" />
+
     <RadioGroup
         android:id="@+id/graphTypeRadioGroup"
         android:layout_width="0dp"
@@ -89,7 +134,7 @@
         android:id="@+id/chart"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,14 +142,15 @@
         app:layout_constraintBottom_toTopOf="@id/xAxisLabel"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <ImageView
-        android:id="@+id/backGraph"
+    <ImageButton
+        android:id="@+id/previousButton"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="10dp"
         android:contentDescription="@null"
+        android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="@+id/chart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/ic_baseline_chevron_left_24px" />
@@ -124,14 +170,15 @@
         app:layout_constraintStart_toEndOf="@+id/yAxisLabel"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <ImageView
-        android:id="@+id/forwardGraph"
+    <ImageButton
+        android:id="@+id/nextButton"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="10dp"
         android:contentDescription="@null"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="@+id/chart"
         app:srcCompat="@drawable/ic_baseline_chevron_right_24px" />
 </android.support.constraint.ConstraintLayout>
