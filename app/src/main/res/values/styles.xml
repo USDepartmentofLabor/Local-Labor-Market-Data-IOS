@@ -173,4 +173,9 @@
         <item name="android:background">@color/colorSortButtonBackground</item>
     </style>
 
+    <style name="graphLabel">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

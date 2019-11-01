@@ -295,7 +295,7 @@ class AreaReportActivity : AppCompatActivity(), ReportListAdapter.OnReportItemCl
 
     private fun displayIndustriesCharts(area: AreaEntity?, item: AreaReportRow) {
 
-        val intent = Intent(applicationContext, HistoryBarChartActivity::class.java)
+        val intent = Intent(applicationContext, HistoryActivity::class.java)
 
         intent.putExtra(KEY_AREA, mArea)
         intent.putExtra(KEY_REPORT_TYPE, item.reportType)

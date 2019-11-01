@@ -3,6 +3,7 @@ package blsapp.dol.gov.blslocaldata.ui.viewmodel
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
+import android.util.Log
 
 import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.R
@@ -13,9 +14,12 @@ import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
 import blsapp.dol.gov.blslocaldata.db.entity.StateEntity
 import blsapp.dol.gov.blslocaldata.model.DataUtil
 import blsapp.dol.gov.blslocaldata.model.ReportError
+import blsapp.dol.gov.blslocaldata.model.SeriesReport
 import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
+import blsapp.dol.gov.blslocaldata.ui.area.fragments.X_ITEM_COUNT
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
+import com.github.mikephil.charting.data.BarEntry
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -54,6 +58,10 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
 
     override var isLoading = MutableLiveData<Boolean>()
     override var reportError = MutableLiveData<ReportError>()
+
+    override var historyValuesLists= mutableListOf<MutableList<BarEntry>>()
+    override var historyTitleList= mutableListOf<String>()
+    override var historyXAxisLabels= mutableListOf<String>()
 
     var localAreaReports: MutableList<AreaReport>? = null
     var nationalAreaReports = mutableListOf<AreaReport>()
@@ -219,8 +227,60 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                 }
             }
         }
-
+        buildChartData(rows)
         reportRows.value = rows
+    }
+
+
+    fun buildChartData(areaReportRows:List<AreaReportRow>?) {
+
+        historyValuesLists = mutableListOf<MutableList<BarEntry>>()
+        historyTitleList = mutableListOf<String>()
+
+        if (areaReportRows == null) return
+        var items: SeriesReport? = null
+        for (areaReportRow in areaReportRows!!) {
+            if (areaReportRow.areaReports != null) {
+                areaReportRow.areaType?.let {
+                    Log.i("GGG", "Processing: " + it)
+                }
+                val retList =  processSeriesData(areaReportRow.areaReports)
+                retList.let {
+                    areaReportRow.areaType?.let {
+                        historyTitleList.add(it)
+                    }
+                    historyValuesLists.add(it)
+                }
+            }
+        }
+    }
+
+    fun processSeriesData(areaReportRows: List<AreaReport>):MutableList<BarEntry> {
+
+        var values = mutableListOf<BarEntry>()
+        var items: SeriesReport? = null
+
+        historyXAxisLabels = mutableListOf<String>()
+
+        for (areaReport in areaReportRows) {
+            if (areaReport.seriesReport != null) {
+                items = areaReport.seriesReport
+                break
+            }
+        }
+        var nextIndex = X_ITEM_COUNT
+        for (nextItem in items!!.data) {
+            val nextMonthDataItem = nextItem.period.replace("M","")
+            values.add(BarEntry(nextIndex.toFloat(), nextItem.value.toFloat()))
+            val nextXlabel = nextItem.periodName.substring(0,3) + " " + nextItem.year.substring(2,4)
+            Log.i("GGG", "Graph Item :" + nextXlabel + " - " + nextItem.value.toFloat())
+            historyXAxisLabels.add(nextXlabel)
+            nextIndex--
+            if (nextIndex == 0) nextIndex = X_ITEM_COUNT
+        }
+
+        return values
+
     }
 
     private fun getRowType(reportSection: ReportSection): ReportRowType {

@@ -14,6 +14,7 @@ import blsapp.dol.gov.blslocaldata.db.entity.StateEntity
 import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
+import com.github.mikephil.charting.data.BarEntry
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -30,6 +31,10 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
 
     var localAreaReports: MutableList<AreaReport>? = null
     var nationalAreaReports = mutableListOf<AreaReport>()
+
+    override var historyValuesLists= mutableListOf<MutableList<BarEntry>>()
+    override var historyTitleList= mutableListOf<String>()
+    override var historyXAxisLabels= mutableListOf<String>()
 
     val repository: LocalRepository
     override var reportRows = MutableLiveData<List<AreaReportRow>>()
