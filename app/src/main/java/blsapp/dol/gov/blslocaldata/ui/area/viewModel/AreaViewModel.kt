@@ -21,6 +21,7 @@ interface AreaViewModel {
     var historyValuesLists: MutableList<MutableList<BarEntry>>
     var historyTitleList: MutableList<String>
     var historyXAxisLabels: MutableList<String>
+    var historyTableLabels: MutableList<String>
 
     fun setAdjustment(adjustment: SeasonalAdjustment)
     fun getAreaReports()

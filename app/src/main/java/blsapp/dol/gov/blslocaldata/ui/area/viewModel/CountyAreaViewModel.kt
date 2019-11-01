@@ -35,6 +35,7 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
     override var historyValuesLists= mutableListOf<MutableList<BarEntry>>()
     override var historyTitleList= mutableListOf<String>()
     override var historyXAxisLabels= mutableListOf<String>()
+    override var historyTableLabels= mutableListOf<String>()
 
     val repository: LocalRepository
     override var reportRows = MutableLiveData<List<AreaReportRow>>()

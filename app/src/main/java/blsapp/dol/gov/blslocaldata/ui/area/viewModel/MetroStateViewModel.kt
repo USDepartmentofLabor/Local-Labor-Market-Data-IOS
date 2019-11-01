@@ -62,6 +62,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
     override var historyValuesLists= mutableListOf<MutableList<BarEntry>>()
     override var historyTitleList= mutableListOf<String>()
     override var historyXAxisLabels= mutableListOf<String>()
+    override var historyTableLabels= mutableListOf<String>()
 
     var localAreaReports: MutableList<AreaReport>? = null
     var nationalAreaReports = mutableListOf<AreaReport>()
@@ -261,6 +262,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
         var items: SeriesReport? = null
 
         historyXAxisLabels = mutableListOf<String>()
+        historyTableLabels = mutableListOf<String>()
 
         for (areaReport in areaReportRows) {
             if (areaReport.seriesReport != null) {
@@ -275,6 +277,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
             val nextXlabel = nextItem.periodName.substring(0,3) + " " + nextItem.year.substring(2,4)
             Log.i("GGG", "Graph Item :" + nextXlabel + " - " + nextItem.value.toFloat())
             historyXAxisLabels.add(nextXlabel)
+            historyTableLabels.add( nextItem.periodName + " " + nextItem.year)
             nextIndex--
             if (nextIndex == 0) nextIndex = X_ITEM_COUNT
         }

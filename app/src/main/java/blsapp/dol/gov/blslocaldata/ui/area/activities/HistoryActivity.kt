@@ -42,14 +42,14 @@ import kotlinx.android.synthetic.main.activity_history.*
          viewModel = createViewModel(mArea)
          viewModel.mAdjustment = ReportManager.adjustment
          mArea.let {
-             areaTitle.text = it.title
+             graphAreaTitle.text = it.title
+             tableAreaTitle.text = it.title
              viewModel.mArea = it
          }
          viewModel.getAreaReports()
 
          setupClickListeners()
 
-         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
          supportActionBar?.setHomeActionContentDescription("Back")
          title = "History - Unemployment"
 
@@ -78,24 +78,41 @@ import kotlinx.android.synthetic.main.activity_history.*
                      if (lineGraphFragment == null) {
                          lineGraphFragment = HistoryLineGraphFragment()
                      }
+                     requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                     setGraphLegendVisibilty(View.VISIBLE)
+                     tableAreaTitle.visibility = View.INVISIBLE
                      displayFragment(lineGraphFragment as HistoryLineGraphFragment)
                  }
                  R.id.barChartRadioButton -> {
                     if (barChartFragment == null) {
                         barChartFragment = HistoryBarChartFragment.newInstance(mArea)
                     }
+                     requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                     setGraphLegendVisibilty(View.VISIBLE)
+                     tableAreaTitle.visibility = View.INVISIBLE
                     displayFragment(barChartFragment as HistoryBarChartFragment)
                  }
                  R.id.tableViewRadioButton -> {
                      if (tableFragment == null) {
-                         tableFragment = HistoryTableFragment()
+                         tableFragment = HistoryTableFragment.newInstance(mArea)
                      }
+                     requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                     setGraphLegendVisibilty(View.INVISIBLE)
+                     tableAreaTitle.visibility = View.VISIBLE
                      displayFragment(tableFragment as HistoryTableFragment)
                  }
              }
 
          }
          attachObserver()
+     }
+
+     fun setGraphLegendVisibilty(visibiltiy: Int) {
+         localLegendName.visibility = visibiltiy
+         localLegendColor.visibility= visibiltiy
+         nationalLegendColor.visibility = visibiltiy
+         nationalLegendName.visibility = visibiltiy
+         graphAreaTitle.visibility = visibiltiy
      }
 
      fun displayFragment(targetFragment: Fragment) {
