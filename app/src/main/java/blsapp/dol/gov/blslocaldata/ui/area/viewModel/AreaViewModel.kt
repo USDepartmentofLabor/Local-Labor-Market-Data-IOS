@@ -6,6 +6,7 @@ import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.AreaReportRow
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
 
 /**
  * AreaViewModel - Base ViewModel for Areas (Metro/State/National, County)
@@ -18,7 +19,8 @@ interface AreaViewModel {
     var isLoading: MutableLiveData<Boolean>
     var reportError: MutableLiveData<ReportError>
 
-    var historyValuesLists: MutableList<MutableList<BarEntry>>
+    var historyLineGraphValues:MutableList<MutableList<Entry>>
+    var historyBarGraphValues: MutableList<MutableList<BarEntry>>
     var historyTitleList: MutableList<String>
     var historyXAxisLabels: MutableList<String>
     var historyTableLabels: MutableList<String>

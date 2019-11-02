@@ -3,7 +3,6 @@ package blsapp.dol.gov.blslocaldata.ui.area.fragments
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -26,19 +25,6 @@ import blsapp.dol.gov.blslocaldata.ui.viewmodel.CountyAreaViewModel
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.MetroStateViewModel
 import java.io.Serializable
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [HistoryTableFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [HistoryTableFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HistoryTableFragment : Fragment() {
 
     lateinit var mArea: AreaEntity
@@ -58,13 +44,9 @@ class HistoryTableFragment : Fragment() {
         }
         viewModel = createViewModel(mArea)
         viewModel.mAdjustment = ReportManager.adjustment
-        mArea.let {
-            viewModel.mArea = it
-        }
         viewModel.reportRows.observe(this, Observer<List<AreaReportRow>> {
-            historyAdapter.setHistoryData(viewModel.historyValuesLists, viewModel.historyTableLabels)
+            historyAdapter.setHistoryData(viewModel.historyBarGraphValues, viewModel.historyTableLabels)
         })
-        viewModel.getAreaReports()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -93,16 +75,16 @@ class HistoryTableFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (viewModel.historyValuesLists.count() > 0) {
-            historyAdapter.setHistoryData(viewModel.historyValuesLists, viewModel.historyXAxisLabels)
+        if (viewModel.historyBarGraphValues.count() > 0) {
+            historyAdapter.setHistoryData(viewModel.historyBarGraphValues, viewModel.historyXAxisLabels)
         }
     }
 
     private fun createViewModel(area: AreaEntity): AreaViewModel {
         when(area) {
-            is CountyEntity -> return ViewModelProviders.of(this).get(CountyAreaViewModel::class.java)
+            is CountyEntity -> return ViewModelProviders.of(historyActivity).get(CountyAreaViewModel::class.java)
         }
-        return ViewModelProviders.of(this).get(MetroStateViewModel::class.java)
+        return ViewModelProviders.of(historyActivity).get(MetroStateViewModel::class.java)
     }
 
     companion object {

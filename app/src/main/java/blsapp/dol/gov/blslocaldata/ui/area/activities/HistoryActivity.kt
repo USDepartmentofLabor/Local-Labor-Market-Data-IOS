@@ -53,6 +53,9 @@ import kotlinx.android.synthetic.main.activity_history.*
          supportActionBar?.setHomeActionContentDescription("Back")
          title = "History - Unemployment"
 
+         graphTypeRadioGroup.check(R.id.lineGraphRadioButton)
+        // showLineGraph()
+
      }
 
      private fun createViewModel(area: AreaEntity): AreaViewModel {
@@ -75,13 +78,7 @@ import kotlinx.android.synthetic.main.activity_history.*
          graphTypeRadioGroup.setOnCheckedChangeListener { _, checkedId ->
              when (checkedId) {
                  R.id.lineGraphRadioButton -> {
-                     if (lineGraphFragment == null) {
-                         lineGraphFragment = HistoryLineGraphFragment()
-                     }
-                     requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-                     setGraphLegendVisibilty(View.VISIBLE)
-                     tableAreaTitle.visibility = View.INVISIBLE
-                     displayFragment(lineGraphFragment as HistoryLineGraphFragment)
+                     showLineGraph()
                  }
                  R.id.barChartRadioButton -> {
                     if (barChartFragment == null) {
@@ -105,6 +102,16 @@ import kotlinx.android.synthetic.main.activity_history.*
 
          }
          attachObserver()
+     }
+
+     fun showLineGraph() {
+         if (lineGraphFragment == null) {
+             lineGraphFragment = HistoryLineGraphFragment.newInstance(mArea)
+         }
+         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+         setGraphLegendVisibilty(View.VISIBLE)
+         tableAreaTitle.visibility = View.INVISIBLE
+         displayFragment(lineGraphFragment as HistoryLineGraphFragment)
      }
 
      fun setGraphLegendVisibilty(visibiltiy: Int) {

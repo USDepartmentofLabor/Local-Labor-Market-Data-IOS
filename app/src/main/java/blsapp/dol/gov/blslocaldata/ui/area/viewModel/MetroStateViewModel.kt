@@ -12,7 +12,6 @@ import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.CountyEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
 import blsapp.dol.gov.blslocaldata.db.entity.StateEntity
-import blsapp.dol.gov.blslocaldata.model.DataUtil
 import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.SeriesReport
 import blsapp.dol.gov.blslocaldata.model.reports.*
@@ -20,6 +19,7 @@ import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.area.fragments.X_ITEM_COUNT
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -59,7 +59,8 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
     override var isLoading = MutableLiveData<Boolean>()
     override var reportError = MutableLiveData<ReportError>()
 
-    override var historyValuesLists= mutableListOf<MutableList<BarEntry>>()
+    override var historyLineGraphValues= mutableListOf<MutableList<Entry>>()
+    override var historyBarGraphValues= mutableListOf<MutableList<BarEntry>>()
     override var historyTitleList= mutableListOf<String>()
     override var historyXAxisLabels= mutableListOf<String>()
     override var historyTableLabels= mutableListOf<String>()
@@ -228,14 +229,15 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                 }
             }
         }
-        buildChartData(rows)
+        buildHistoryData(rows)
         reportRows.value = rows
     }
 
 
-    fun buildChartData(areaReportRows:List<AreaReportRow>?) {
+    private fun buildHistoryData(areaReportRows:List<AreaReportRow>?) {
 
-        historyValuesLists = mutableListOf<MutableList<BarEntry>>()
+        historyLineGraphValues = mutableListOf<MutableList<Entry>>()
+        historyBarGraphValues = mutableListOf<MutableList<BarEntry>>()
         historyTitleList = mutableListOf<String>()
 
         if (areaReportRows == null) return
@@ -245,20 +247,21 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                 areaReportRow.areaType?.let {
                     Log.i("GGG", "Processing: " + it)
                 }
-                val retList =  processSeriesData(areaReportRow.areaReports)
+                val retList =  processSeriesDataForHistory(areaReportRow.areaReports)
                 retList.let {
                     areaReportRow.areaType?.let {
                         historyTitleList.add(it)
                     }
-                    historyValuesLists.add(it)
+                   // historyBarGraphValues.add(it)
                 }
             }
         }
     }
 
-    fun processSeriesData(areaReportRows: List<AreaReport>):MutableList<BarEntry> {
+    private fun processSeriesDataForHistory(areaReportRows: List<AreaReport>):MutableList<BarEntry> {
 
-        var values = mutableListOf<BarEntry>()
+        var barGraphValues = mutableListOf<BarEntry>()
+        var lineGraphValues = mutableListOf<Entry>()
         var items: SeriesReport? = null
 
         historyXAxisLabels = mutableListOf<String>()
@@ -273,7 +276,8 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
         var nextIndex = X_ITEM_COUNT
         for (nextItem in items!!.data) {
             val nextMonthDataItem = nextItem.period.replace("M","")
-            values.add(BarEntry(nextIndex.toFloat(), nextItem.value.toFloat()))
+            barGraphValues.add(BarEntry(nextIndex.toFloat(), nextItem.value.toFloat()))
+            lineGraphValues.add(Entry(nextIndex.toFloat(), nextItem.value.toFloat()))
             val nextXlabel = nextItem.periodName.substring(0,3) + " " + nextItem.year.substring(2,4)
             Log.i("GGG", "Graph Item :" + nextXlabel + " - " + nextItem.value.toFloat())
             historyXAxisLabels.add(nextXlabel)
@@ -282,7 +286,10 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
             if (nextIndex == 0) nextIndex = X_ITEM_COUNT
         }
 
-        return values
+        historyLineGraphValues.add(lineGraphValues)
+        historyBarGraphValues.add(barGraphValues)
+
+        return barGraphValues
 
     }
 

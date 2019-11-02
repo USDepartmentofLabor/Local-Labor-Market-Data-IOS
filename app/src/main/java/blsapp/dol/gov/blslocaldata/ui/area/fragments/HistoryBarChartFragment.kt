@@ -1,12 +1,10 @@
 package blsapp.dol.gov.blslocaldata.ui.area.fragments
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.RectF
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -14,16 +12,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SeekBar
 
 import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.AreaEntity
 import blsapp.dol.gov.blslocaldata.db.entity.CountyEntity
-import blsapp.dol.gov.blslocaldata.model.ReportError
-import blsapp.dol.gov.blslocaldata.model.SeriesReport
-import blsapp.dol.gov.blslocaldata.model.reports.AreaReport
 import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
-import blsapp.dol.gov.blslocaldata.ui.area.activities.AreaReportActivity
 import blsapp.dol.gov.blslocaldata.ui.area.activities.HistoryActivity
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.AreaReportRow
@@ -43,7 +36,6 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.MPPointF
-import kotlinx.android.synthetic.main.activity_history.*
 import kotlinx.android.synthetic.main.fragment_history_bar_chart.*
 import java.util.ArrayList
 import java.io.Serializable
@@ -64,6 +56,7 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
     private lateinit var rootView:View
     private lateinit var historyActivity: HistoryActivity
     private var maxYaxis = 0.0f
+    private var minYaxis = 0.0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,13 +68,9 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
         }
         viewModel = createViewModel(mArea)
         viewModel.mAdjustment = ReportManager.adjustment
-        mArea.let {
-            viewModel.mArea = it
-        }
         viewModel.reportRows.observe(this, Observer<List<AreaReportRow>> {
             setupChart()
         })
-        viewModel.getAreaReports()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -94,7 +83,7 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
 
     override fun onResume() {
         super.onResume()
-        if (viewModel.historyValuesLists.count() > 0) {
+        if (viewModel.historyBarGraphValues.count() > 0) {
             setupChart()
         }
     }
@@ -111,9 +100,9 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
     }
     private fun createViewModel(area: AreaEntity): AreaViewModel {
         when(area) {
-            is CountyEntity -> return ViewModelProviders.of(this).get(CountyAreaViewModel::class.java)
+            is CountyEntity -> return ViewModelProviders.of(historyActivity).get(CountyAreaViewModel::class.java)
         }
-        return ViewModelProviders.of(this).get(MetroStateViewModel::class.java)
+        return ViewModelProviders.of(historyActivity).get(MetroStateViewModel::class.java)
     }
     private fun setupChart() {
         calcMaxYaxisValue()
@@ -123,19 +112,24 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
 
     private fun calcMaxYaxisValue() {
         maxYaxis = 0.0f
-        for (nextValuesList in viewModel.historyValuesLists) {
+        minYaxis = 100.0f
+        for (nextValuesList in viewModel.historyBarGraphValues) {
             for (nextValue in nextValuesList){
                 if (nextValue.y > maxYaxis) {
                     maxYaxis = nextValue.y
                 }
+                if (nextValue.y < minYaxis) {
+                    minYaxis = nextValue.y
+                }
             }
         }
+        minYaxis -= 0.5f
     }
 
     private fun setupClickListeners() {
         previousButton.setOnClickListener {
 
-            if (viewModel.historyValuesLists[0].count() > 0 && graphEndingIndex < viewModel.historyValuesLists[0].count()) {
+            if (viewModel.historyBarGraphValues[0].count() > 0 && graphEndingIndex < viewModel.historyBarGraphValues[0].count()) {
                 graphStartingIndex += 1
                 graphEndingIndex += 1
                 setupChart()
@@ -157,13 +151,13 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
         nextButton.visibility = if (graphStartingIndex <= 0) View.GONE
                                     else View.VISIBLE
 
-        previousButton.visibility = if (graphEndingIndex >= viewModel.historyValuesLists[0].count()) View.GONE
+        previousButton.visibility = if (graphEndingIndex >= viewModel.historyBarGraphValues[0].count()) View.GONE
                                 else View.VISIBLE
     }
 
     private fun displayChart() {
 
-        if (viewModel.historyValuesLists.count() < 2 || viewModel.historyValuesLists[1].count() < X_ITEM_COUNT) {
+        if (viewModel.historyBarGraphValues.count() < 2 || viewModel.historyBarGraphValues[1].count() < X_ITEM_COUNT) {
             return
         }
         var xAxisFormatter:IAxisValueFormatter? = null
@@ -183,12 +177,12 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
 
         chart!!.xAxis.valueFormatter = xAxisFormatter
 
-        if (viewModel.historyValuesLists[0].count() < X_ITEM_COUNT) return
+        if (viewModel.historyBarGraphValues[0].count() < X_ITEM_COUNT) return
 
-        val values1 = viewModel.historyValuesLists[0].subList(graphStartingIndex, graphEndingIndex)
+        val values1 = viewModel.historyBarGraphValues[0].subList(graphStartingIndex, graphEndingIndex)
 
-        if (viewModel.historyValuesLists.count() > 1 && viewModel.historyValuesLists[1].count() > X_ITEM_COUNT) {
-            val values2 = viewModel.historyValuesLists[1].subList(graphStartingIndex, graphEndingIndex)
+        if (viewModel.historyBarGraphValues.count() > 1 && viewModel.historyBarGraphValues[1].count() > X_ITEM_COUNT) {
+            val values2 = viewModel.historyBarGraphValues[1].subList(graphStartingIndex, graphEndingIndex)
             val values: MutableList<MutableList<BarEntry>> = mutableListOf(values1, values2)
             loadDataIntoChart(viewModel.historyTitleList, values)
         } else {
@@ -228,7 +222,7 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
         leftAxis.setDrawGridLines(false)
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
         leftAxis.spaceTop = 15f
-        leftAxis.axisMinimum = 0f // this replaces setStartAtZero(true)
+        leftAxis.axisMinimum = minYaxis
         leftAxis.axisMaximum = maxYaxis
 
         chart!!.axisRight.setEnabled(false);
