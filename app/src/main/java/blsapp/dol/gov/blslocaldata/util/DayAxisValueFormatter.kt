@@ -18,6 +18,9 @@ class DayAxisValueFormatter(private val chart: BarLineChartBase<*>, private val 
     fun getFormattedValue(value: Float): String {
 
         val intValue : Int = value.toInt()
-        return mMonths[intValue-1]
+        if  (intValue >= mMonths.count() || intValue < 0)
+            return " "
+        else
+            return mMonths[intValue]
     }
 }

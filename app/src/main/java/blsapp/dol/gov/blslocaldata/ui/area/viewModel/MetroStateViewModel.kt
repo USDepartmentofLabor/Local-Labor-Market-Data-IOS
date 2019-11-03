@@ -16,6 +16,7 @@ import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.SeriesReport
 import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.ui.UIUtil
+import blsapp.dol.gov.blslocaldata.ui.area.fragments.LINE_X_ITEM_COUNT
 import blsapp.dol.gov.blslocaldata.ui.area.fragments.X_ITEM_COUNT
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
 import com.github.mikephil.charting.data.BarEntry
@@ -256,6 +257,13 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                 }
             }
         }
+        if (historyLineGraphValues.count() > 1) {
+            if (historyLineGraphValues[0].count() > historyLineGraphValues[1].count()) {
+                historyLineGraphValues[0].removeAt(0)
+            } else if (historyLineGraphValues[0].count() < historyLineGraphValues[1].count()) {
+                historyLineGraphValues[1].removeAt(0)
+            }
+        }
     }
 
     private fun processSeriesDataForHistory(areaReportRows: List<AreaReport>):MutableList<BarEntry> {
@@ -274,16 +282,20 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
             }
         }
         var nextIndex = X_ITEM_COUNT
+        var nextLineIndex = items!!.data.count()-1
+
         for (nextItem in items!!.data) {
             val nextMonthDataItem = nextItem.period.replace("M","")
             barGraphValues.add(BarEntry(nextIndex.toFloat(), nextItem.value.toFloat()))
-            lineGraphValues.add(Entry(nextIndex.toFloat(), nextItem.value.toFloat()))
+            lineGraphValues.add(Entry(nextLineIndex.toFloat(), nextItem.value.toFloat()))
             val nextXlabel = nextItem.periodName.substring(0,3) + " " + nextItem.year.substring(2,4)
             Log.i("GGG", "Graph Item :" + nextXlabel + " - " + nextItem.value.toFloat())
             historyXAxisLabels.add(nextXlabel)
             historyTableLabels.add( nextItem.periodName + " " + nextItem.year)
             nextIndex--
             if (nextIndex == 0) nextIndex = X_ITEM_COUNT
+            nextLineIndex--
+         //   if (nextLineIndex == 0) nextLineIndex = LINE_X_ITEM_COUNT
         }
 
         historyLineGraphValues.add(lineGraphValues)

@@ -38,6 +38,8 @@ import kotlinx.android.synthetic.main.fragment_history_bar_chart.*
 import java.io.Serializable
 import java.util.ArrayList
 
+const val LINE_X_ITEM_COUNT = 25
+
 class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
 
     private var chart: LineChart? = null
@@ -47,11 +49,12 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
     private lateinit var viewModel: AreaViewModel
 
     private var graphStartingIndex = 0
-    private var graphEndingIndex = X_ITEM_COUNT
+    private var graphEndingIndex = LINE_X_ITEM_COUNT
 
     private lateinit var rootView:View
     private lateinit var historyActivity: HistoryActivity
     private var maxYaxis = 0.0f
+    private var minYaxis = 0.0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +81,7 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
 
     override fun onResume() {
         super.onResume()
-        if (viewModel.historyBarGraphValues.count() > 0) {
+        if (viewModel.historyLineGraphValues.count() > 0) {
             setupChart()
         }
     }
@@ -107,10 +110,14 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
 
     private fun calcMaxYaxisValue() {
         maxYaxis = 0.0f
-        for (nextValuesList in viewModel.historyBarGraphValues) {
+        minYaxis = 100.0f
+        for (nextValuesList in viewModel.historyLineGraphValues) {
             for (nextValue in nextValuesList){
                 if (nextValue.y > maxYaxis) {
                     maxYaxis = nextValue.y
+                }
+                if (nextValue.y < minYaxis) {
+                    minYaxis = nextValue.y
                 }
             }
         }
@@ -119,7 +126,7 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
     private fun setupClickListeners() {
         previousButton.setOnClickListener {
 
-            if (viewModel.historyBarGraphValues[0].count() > 0 && graphEndingIndex < viewModel.historyBarGraphValues[0].count()) {
+            if (viewModel.historyLineGraphValues[0].count() > 0 && graphEndingIndex < viewModel.historyLineGraphValues[0].count()) {
                 graphStartingIndex += 1
                 graphEndingIndex += 1
                 setupChart()
@@ -141,20 +148,25 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
         nextButton.visibility = if (graphStartingIndex <= 0) View.GONE
         else View.VISIBLE
 
-        previousButton.visibility = if (graphEndingIndex >= viewModel.historyBarGraphValues[0].count()) View.GONE
+        previousButton.visibility = if (graphEndingIndex >= viewModel.historyLineGraphValues[0].count()) View.GONE
         else View.VISIBLE
     }
 
     private fun displayChart() {
 
-        if (viewModel.historyBarGraphValues.count() < 2 || viewModel.historyBarGraphValues[1].count() < X_ITEM_COUNT) {
+        if (viewModel.historyLineGraphValues.count() < 2 || viewModel.historyLineGraphValues[1].count() < LINE_X_ITEM_COUNT) {
             return
         }
         var xAxisFormatter: IAxisValueFormatter? = null
-        if (viewModel.historyXAxisLabels.count() > X_ITEM_COUNT) {
-            val xAxisLabelsSub = viewModel.historyXAxisLabels.subList(graphStartingIndex, graphEndingIndex).toMutableList()
-            xAxisLabelsSub.reverse()
+        if (viewModel.historyXAxisLabels.count() > LINE_X_ITEM_COUNT) {
+//            val xAxisLabelsSub = viewModel.historyXAxisLabels.subList(graphStartingIndex, graphEndingIndex).toMutableList()
+////            xAxisLabelsSub.reverse()
+////            chart?.let {
+////                xAxisFormatter = DayAxisValueFormatter(it, xAxisLabelsSub.toTypedArray())
+////            }
             chart?.let {
+                val xAxisLabelsSub = viewModel.historyXAxisLabels.toMutableList()
+                xAxisLabelsSub.reverse()
                 xAxisFormatter = DayAxisValueFormatter(it, xAxisLabelsSub.toTypedArray())
             }
         }
@@ -167,11 +179,11 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
 
         chart!!.xAxis.valueFormatter = xAxisFormatter
 
-        if (viewModel.historyLineGraphValues[0].count() < X_ITEM_COUNT) return
+        if (viewModel.historyLineGraphValues[0].count() < LINE_X_ITEM_COUNT) return
 
         val values1 = viewModel.historyLineGraphValues[0].subList(graphStartingIndex, graphEndingIndex)
 
-        if (viewModel.historyLineGraphValues.count() > 1 && viewModel.historyLineGraphValues[1].count() > X_ITEM_COUNT) {
+        if (viewModel.historyLineGraphValues.count() > 1 && viewModel.historyLineGraphValues[1].count() > LINE_X_ITEM_COUNT) {
             val values2 = viewModel.historyLineGraphValues[1].subList(graphStartingIndex, graphEndingIndex)
             val values: MutableList<MutableList<Entry>> = mutableListOf(values1, values2)
             loadDataIntoChart(viewModel.historyTitleList, values)
@@ -200,8 +212,8 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
         val xAxis = chart!!.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setDrawGridLines(false)
-        xAxis.granularity = 1f // only intervals of 1 day
-        xAxis.labelCount = X_ITEM_COUNT
+        xAxis.granularity = 0.5f // only intervals of 1 day
+        xAxis.labelCount = 12
         xAxis.valueFormatter = xAxisFormatter
         xAxisLabel.text = "Month and Year"
 
@@ -210,7 +222,7 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
         leftAxis.setDrawGridLines(false)
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
         leftAxis.spaceTop = 15f
-        leftAxis.axisMinimum = 0f // this replaces setStartAtZero(true)
+        leftAxis.axisMinimum = minYaxis // this replaces setStartAtZero(true)
         leftAxis.axisMaximum = maxYaxis
 
         chart!!.axisRight.setEnabled(false);
