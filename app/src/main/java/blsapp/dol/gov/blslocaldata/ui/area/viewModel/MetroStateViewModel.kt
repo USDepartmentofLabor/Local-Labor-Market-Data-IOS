@@ -235,6 +235,10 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
     }
 
 
+    override fun extractHistoryData() {
+        buildHistoryData(reportRows.value)
+    }
+
     private fun buildHistoryData(areaReportRows:List<AreaReportRow>?) {
 
         historyLineGraphValues = mutableListOf<MutableList<Entry>>()
@@ -253,15 +257,23 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                     areaReportRow.areaType?.let {
                         historyTitleList.add(it)
                     }
-                   // historyBarGraphValues.add(it)
                 }
             }
         }
         if (historyLineGraphValues.count() > 1) {
             if (historyLineGraphValues[0].count() > historyLineGraphValues[1].count()) {
+
                 historyLineGraphValues[0].removeAt(0)
+                historyBarGraphValues[0].removeAt(0)
+                historyTableLabels.removeAt(0)
+                historyXAxisLabels.removeAt(0)
+
             } else if (historyLineGraphValues[0].count() < historyLineGraphValues[1].count()) {
+
                 historyLineGraphValues[1].removeAt(0)
+                historyBarGraphValues[1].removeAt(0)
+                historyTableLabels.removeAt(0)
+                historyXAxisLabels.removeAt(0)
             }
         }
     }
@@ -281,21 +293,18 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                 break
             }
         }
-        var nextIndex = X_ITEM_COUNT
-        var nextLineIndex = items!!.data.count()-1
+        var nextIndex = items!!.data.count()-1
 
         for (nextItem in items!!.data) {
-            val nextMonthDataItem = nextItem.period.replace("M","")
+
             barGraphValues.add(BarEntry(nextIndex.toFloat(), nextItem.value.toFloat()))
-            lineGraphValues.add(Entry(nextLineIndex.toFloat(), nextItem.value.toFloat()))
+            lineGraphValues.add(Entry(nextIndex.toFloat(), nextItem.value.toFloat()))
+
             val nextXlabel = nextItem.periodName.substring(0,3) + " " + nextItem.year.substring(2,4)
-            Log.i("GGG", "Graph Item :" + nextXlabel + " - " + nextItem.value.toFloat())
+            Log.i("GGG", "Adding History Entry " + nextXlabel + " with value " + nextItem.value)
             historyXAxisLabels.add(nextXlabel)
             historyTableLabels.add( nextItem.periodName + " " + nextItem.year)
             nextIndex--
-            if (nextIndex == 0) nextIndex = X_ITEM_COUNT
-            nextLineIndex--
-         //   if (nextLineIndex == 0) nextLineIndex = LINE_X_ITEM_COUNT
         }
 
         historyLineGraphValues.add(lineGraphValues)

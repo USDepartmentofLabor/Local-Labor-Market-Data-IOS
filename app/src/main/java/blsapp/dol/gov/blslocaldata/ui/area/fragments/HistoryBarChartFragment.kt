@@ -104,27 +104,6 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
         }
         return ViewModelProviders.of(historyActivity).get(MetroStateViewModel::class.java)
     }
-    private fun setupChart() {
-        calcMaxYaxisValue()
-        setChartLayout()
-        displayChart()
-    }
-
-    private fun calcMaxYaxisValue() {
-        maxYaxis = 0.0f
-        minYaxis = 100.0f
-        for (nextValuesList in viewModel.historyBarGraphValues) {
-            for (nextValue in nextValuesList){
-                if (nextValue.y > maxYaxis) {
-                    maxYaxis = nextValue.y
-                }
-                if (nextValue.y < minYaxis) {
-                    minYaxis = nextValue.y
-                }
-            }
-        }
-        minYaxis -= 0.5f
-    }
 
     private fun setupClickListeners() {
         previousButton.setOnClickListener {
@@ -149,48 +128,33 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
     private fun setDirectionButtonVisibility() {
 
         nextButton.visibility = if (graphStartingIndex <= 0) View.GONE
-                                    else View.VISIBLE
+        else View.VISIBLE
 
         previousButton.visibility = if (graphEndingIndex >= viewModel.historyBarGraphValues[0].count()) View.GONE
-                                else View.VISIBLE
+        else View.VISIBLE
     }
 
-    private fun displayChart() {
+    private fun setupChart() {
+        viewModel.extractHistoryData()
+        calcMaxYaxisValue()
+        setChartLayout()
+        displayChart()
+    }
 
-        if (viewModel.historyBarGraphValues.count() < 2 || viewModel.historyBarGraphValues[1].count() < X_ITEM_COUNT) {
-            return
-        }
-        var xAxisFormatter:IAxisValueFormatter? = null
-        if (viewModel.historyXAxisLabels.count() > X_ITEM_COUNT) {
-            val xAxisLabelsSub = viewModel.historyXAxisLabels.subList(graphStartingIndex, graphEndingIndex).toMutableList()
-            xAxisLabelsSub.reverse()
-            chart?.let {
-                xAxisFormatter = DayAxisValueFormatter(it, xAxisLabelsSub.toTypedArray())
+    private fun calcMaxYaxisValue() {
+        maxYaxis = 0.0f
+        minYaxis = 100.0f
+        for (nextValuesList in viewModel.historyBarGraphValues) {
+            for (nextValue in nextValuesList){
+                if (nextValue.y > maxYaxis) {
+                    maxYaxis = nextValue.y
+                }
+                if (nextValue.y < minYaxis) {
+                    minYaxis = nextValue.y
+                }
             }
         }
-
-        xAxisFormatter?.let {
-            val mv = XYMarkerView(historyActivity, it)
-            mv.setChartView(chart) // For bounds control
-            chart!!.setMarker(mv) // Set the marker to the chart
-        }
-
-        chart!!.xAxis.valueFormatter = xAxisFormatter
-
-        if (viewModel.historyBarGraphValues[0].count() < X_ITEM_COUNT) return
-
-        val values1 = viewModel.historyBarGraphValues[0].subList(graphStartingIndex, graphEndingIndex)
-
-        if (viewModel.historyBarGraphValues.count() > 1 && viewModel.historyBarGraphValues[1].count() > X_ITEM_COUNT) {
-            val values2 = viewModel.historyBarGraphValues[1].subList(graphStartingIndex, graphEndingIndex)
-            val values: MutableList<MutableList<BarEntry>> = mutableListOf(values1, values2)
-            loadDataIntoChart(viewModel.historyTitleList, values)
-        } else {
-            val values: MutableList<MutableList<BarEntry>> = mutableListOf(values1)
-            loadDataIntoChart(viewModel.historyTitleList, values)
-        }
-
-        chart!!.invalidate()
+        minYaxis -= 0.5f
     }
 
     private fun setChartLayout() {
@@ -203,7 +167,7 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
 
         // if more than 60 entries are displayed in the chart, no values will be
         // drawn
-        chart!!.setMaxVisibleValueCount(60)
+        //chart!!.setMaxVisibleValueCount(60)
         chart!!.setPinchZoom(false)
         chart!!.setDrawGridBackground(false)
 
@@ -230,6 +194,55 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
         val l = chart!!.legend
         l.isEnabled = false
 
+    }
+    private fun displayChart() {
+
+        if (viewModel.historyBarGraphValues.count() < 2 || viewModel.historyBarGraphValues[1].count() < X_ITEM_COUNT) {
+            return
+        }
+        var xAxisFormatter:IAxisValueFormatter? = null
+        if (viewModel.historyXAxisLabels.count() > X_ITEM_COUNT) {
+            val xAxisLabelsSub = viewModel.historyXAxisLabels.subList(graphStartingIndex, graphEndingIndex).toMutableList()
+            xAxisLabelsSub.reverse()
+            xAxisLabelsSub.add(0, " ")
+            chart?.let {
+                xAxisFormatter = DayAxisValueFormatter(it, xAxisLabelsSub.toTypedArray())
+            }
+//            chart?.let {
+//                val xAxisLabelsSub = viewModel.historyXAxisLabels.toMutableList()
+//                xAxisLabelsSub.reverse()
+//                xAxisFormatter = DayAxisValueFormatter(it, xAxisLabelsSub.toTypedArray())
+//            }
+        }
+
+        xAxisFormatter?.let {
+            val mv = XYMarkerView(historyActivity, it)
+            mv.setChartView(chart) // For bounds control
+            chart!!.setMarker(mv) // Set the marker to the chart
+        }
+
+        chart!!.xAxis.valueFormatter = xAxisFormatter
+
+        if (viewModel.historyBarGraphValues[0].count() < X_ITEM_COUNT) return
+
+        val values1 = viewModel.historyBarGraphValues[0].subList(graphStartingIndex, graphEndingIndex)
+
+        if (viewModel.historyBarGraphValues.count() > 1 && viewModel.historyBarGraphValues[1].count() > X_ITEM_COUNT) {
+            val values2 = viewModel.historyBarGraphValues[1].subList(graphStartingIndex, graphEndingIndex)
+            val values: MutableList<MutableList<BarEntry>> = mutableListOf(values1, values2)
+            loadDataIntoChart(viewModel.historyTitleList, values)
+        } else {
+            val values: MutableList<MutableList<BarEntry>> = mutableListOf(values1)
+            loadDataIntoChart(viewModel.historyTitleList, values)
+        }
+
+        chart!!.invalidate()
+    }
+
+    private fun adjustBarEntrysForVisibleChart (inList: MutableList<BarEntry>):MutableList<BarEntry> {
+        val retValues = inList.subList(graphStartingIndex, graphEndingIndex)
+
+        return retValues
     }
 
     private fun loadDataIntoChart(titles:MutableList<String>,
@@ -258,17 +271,29 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
         }
         else
         {
-            if (values.count() > 0) {
+            if (values.count() > 1) {
 
                 val dataSets = ArrayList<IBarDataSet>()
 
-                set1 = BarDataSet(values[0], titles[0])
+                var tmpSet = values[0].sortedBy { it.x }
+                var nextIndex: Int = 1
+                for (nextItem in tmpSet) {
+                    nextItem.x = nextIndex.toFloat()
+                    nextIndex++
+                }
+                set1 = BarDataSet(tmpSet, titles[0])
                 set1.setDrawIcons(false)
                 set1.color = ContextCompat.getColor(historyActivity, R.color.colorNationalGraphBar)
                 dataSets.add(set1)
 
                 if (values.count() > 1) {
-                    set2 = BarDataSet(values[1], titles[1])
+                    tmpSet = values[1].sortedBy { it.x }
+                    nextIndex = 1
+                    for (nextItem in tmpSet) {
+                        nextItem.x = nextIndex.toFloat()
+                        nextIndex++
+                    }
+                    set2 = BarDataSet(tmpSet, titles[1])
                     set2.setDrawIcons(false)
                     set2.color = ContextCompat.getColor(historyActivity, R.color.colorLocalGraphBar)
                     dataSets.add(set2)
@@ -278,12 +303,15 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
                 data.barWidth = 0.2f
                 if (values.count() > 1) {
                     data.groupBars(0.6f, 0.55f, 0.02f)
+                    data.notifyDataChanged()
+                    chart!!.notifyDataSetChanged()
                 }
                 data.setValueTextSize(10f)
-                data.setDrawValues(false)
+                data.setDrawValues(true)
 
                 chart!!.data = data
                 data.notifyDataChanged()
+                chart!!.notifyDataSetChanged()
             }
         }
     }

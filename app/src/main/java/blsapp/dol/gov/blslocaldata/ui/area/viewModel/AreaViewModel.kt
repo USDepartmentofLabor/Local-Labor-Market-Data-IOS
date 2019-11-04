@@ -28,4 +28,5 @@ interface AreaViewModel {
     fun setAdjustment(adjustment: SeasonalAdjustment)
     fun getAreaReports()
     fun toggleSection(reportRow: AreaReportRow)
+    fun extractHistoryData()
 }

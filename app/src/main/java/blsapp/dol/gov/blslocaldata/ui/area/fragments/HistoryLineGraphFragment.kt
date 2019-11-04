@@ -277,15 +277,11 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
                 }
 
                 val data = LineData(dataSets)
-//                data.barWidth = 0.2f
-//                if (values.count() > 1) {
-//                    data.groupBars(0.6f, 0.55f, 0.02f)
-//                }
+
                 data.setValueTextSize(10f)
                 data.setDrawValues(false)
 
                 chart!!.data = data
-               // chart!!.animateX(5000)
             }
         }
     }

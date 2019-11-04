@@ -143,6 +143,10 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
+    override fun extractHistoryData() {
+
+    }
+
     private fun getNationalReports() {
         reportSections.forEach { reportSection ->
             val localAreaReport = localAreaReports?.filter { areaReport -> areaReport.reportType == reportSection.reportTypes?.first() }?.firstOrNull()

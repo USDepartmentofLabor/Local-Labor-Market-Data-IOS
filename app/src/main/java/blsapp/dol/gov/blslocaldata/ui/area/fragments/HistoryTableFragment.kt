@@ -76,7 +76,7 @@ class HistoryTableFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         if (viewModel.historyBarGraphValues.count() > 0) {
-            historyAdapter.setHistoryData(viewModel.historyBarGraphValues, viewModel.historyXAxisLabels)
+            historyAdapter.setHistoryData(viewModel.historyBarGraphValues, viewModel.historyTableLabels)
         }
     }
 
