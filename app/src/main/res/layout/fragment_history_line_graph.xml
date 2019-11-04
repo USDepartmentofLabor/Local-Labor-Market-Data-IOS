@@ -11,10 +11,10 @@
         android:id="@+id/yAxisLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Unemployment \nRate"
+        android:text="Rate"
         style="@style/graphLabel"
         app:layout_constraintTop_toBottomOf="@+id/graphTypeRadioGroup"
         app:layout_constraintStart_toStartOf="parent" />

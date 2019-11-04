@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import blsapp.dol.gov.blslocaldata.R
@@ -45,13 +46,24 @@ import kotlinx.android.synthetic.main.activity_history.*
              graphAreaTitle.text = it.title
              tableAreaTitle.text = it.title
              viewModel.mArea = it
+             when (mArea) {
+                 is MetroEntity -> {
+                     localLegendName.text = getString(R.string.metro_data)
+                 }
+                 is StateEntity -> {
+                     localLegendName.text = getString(R.string.state_data)
+                 }
+                 is CountyEntity -> {
+                     localLegendName.text = getString(R.string.county_data)
+                 }
+             }
          }
          viewModel.getAreaReports()
 
          setupClickListeners()
 
          supportActionBar?.setHomeActionContentDescription("Back")
-         title = "History - Unemployment"
+         title = getString(R.string.history_unemployment_rate)
 
          graphTypeRadioGroup.check(R.id.lineGraphRadioButton)
         // showLineGraph()
@@ -102,6 +114,16 @@ import kotlinx.android.synthetic.main.activity_history.*
 
          }
          attachObserver()
+     }
+
+     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+         android.R.id.home -> {
+             finish()
+             true
+         }
+         else -> {
+             super.onOptionsItemSelected(item)
+         }
      }
 
      fun showLineGraph() {

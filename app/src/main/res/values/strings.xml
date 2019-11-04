@@ -120,4 +120,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="county_data">County Data"</string>
+    <string name="state_data">State Data</string>
+    <string name="metro_data">Metro Data</string>
+    <string name="history_unemployment_rate">"History - Unemployment Rate"</string>
 </resources>

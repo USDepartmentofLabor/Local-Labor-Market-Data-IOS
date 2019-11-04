@@ -220,7 +220,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                             header = null))
 
                 }
-                if (rowType == ReportRowType.INDUSTRY_EMPLOYMENT_ITEM && !(mArea is NationalEntity)) {
+                if (rowType == ReportRowType.UNEMPLOYMENAT_RATE_ITEM && !(mArea is NationalEntity)) {
                     rows.add(AreaReportRow(ReportRowType.HISTORY_ITEM, null, null,
                             header = "History",
                             reportType = reportType,

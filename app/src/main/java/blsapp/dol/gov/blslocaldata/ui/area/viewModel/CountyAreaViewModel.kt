@@ -3,6 +3,7 @@ package blsapp.dol.gov.blslocaldata.ui.viewmodel
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
+import android.util.Log
 
 import blsapp.dol.gov.blslocaldata.BLSApplication
 import blsapp.dol.gov.blslocaldata.R
@@ -12,6 +13,7 @@ import blsapp.dol.gov.blslocaldata.db.entity.CountyEntity
 import blsapp.dol.gov.blslocaldata.db.entity.NationalEntity
 import blsapp.dol.gov.blslocaldata.db.entity.StateEntity
 import blsapp.dol.gov.blslocaldata.model.ReportError
+import blsapp.dol.gov.blslocaldata.model.SeriesReport
 import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
 import com.github.mikephil.charting.data.BarEntry
@@ -143,10 +145,6 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
-    override fun extractHistoryData() {
-
-    }
-
     private fun getNationalReports() {
         reportSections.forEach { reportSection ->
             val localAreaReport = localAreaReports?.filter { areaReport -> areaReport.reportType == reportSection.reportTypes?.first() }?.firstOrNull()
@@ -171,8 +169,8 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
             val nationalArea = repository.getNationalArea()
                     ReportManager.getReport(nationalArea,
                             reportTypes,
-                            startYear = year,
-                            endYear = year,
+                            startYear = null,
+                            endYear = null,
                             adjustment = mAdjustment,
                             successHandler = { areaReport ->
                                 nationalAreaReports.addAll(areaReport)
@@ -190,6 +188,7 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
 
     private fun updateReportRows() {
         val rows = updateReportRows(reportSections)
+        buildHistoryData(rows)
         reportRows.value = rows
 
     }
@@ -236,6 +235,14 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
                     val subRows = updateReportRows(it)
                     rows.add(AreaReportRow(ReportRowType.SUB_HEADER, areaType = null,
                             areaReports = null, header = null, subReportRows = subRows))
+                }
+
+                if (rowType == ReportRowType.UNEMPLOYMENAT_RATE_ITEM && !(mArea is NationalEntity)) {
+                    rows.add(AreaReportRow(ReportRowType.HISTORY_ITEM, null, null,
+                            header = "History",
+                            headerCollapsed = reportSection.collapsed,
+                            subIndustries = reportSection.subIndustries,
+                            headerType = rowType))
                 }
             }
         }
@@ -290,5 +297,84 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
                 toggleSection(reportRow, it.subSections!!)
             }
         }
+    }
+
+    override fun extractHistoryData() {
+        buildHistoryData(reportRows.value)
+    }
+
+    private fun buildHistoryData(areaReportRows:List<AreaReportRow>?) {
+
+        historyLineGraphValues = mutableListOf<MutableList<Entry>>()
+        historyBarGraphValues = mutableListOf<MutableList<BarEntry>>()
+        historyTitleList = mutableListOf<String>()
+
+        if (areaReportRows == null) return
+        var items: SeriesReport? = null
+        for (areaReportRow in areaReportRows!!) {
+            if (areaReportRow.areaReports != null) {
+                areaReportRow.areaType?.let {
+                    Log.i("GGG", "Processing: " + it)
+                }
+                val retList =  processSeriesDataForHistory(areaReportRow.areaReports)
+                retList.let {
+                    areaReportRow.areaType?.let {
+                        historyTitleList.add(it)
+                    }
+                }
+            }
+        }
+        if (historyLineGraphValues.count() > 1) {
+            if (historyLineGraphValues[0].count() > historyLineGraphValues[1].count()) {
+
+                historyLineGraphValues[0].removeAt(0)
+                historyBarGraphValues[0].removeAt(0)
+                historyTableLabels.removeAt(0)
+                historyXAxisLabels.removeAt(0)
+
+            } else if (historyLineGraphValues[0].count() < historyLineGraphValues[1].count()) {
+
+                historyLineGraphValues[1].removeAt(0)
+                historyBarGraphValues[1].removeAt(0)
+                historyTableLabels.removeAt(0)
+                historyXAxisLabels.removeAt(0)
+            }
+        }
+    }
+
+    private fun processSeriesDataForHistory(areaReportRows: List<AreaReport>):MutableList<BarEntry> {
+
+        var barGraphValues = mutableListOf<BarEntry>()
+        var lineGraphValues = mutableListOf<Entry>()
+        var items: SeriesReport? = null
+
+        historyXAxisLabels = mutableListOf<String>()
+        historyTableLabels = mutableListOf<String>()
+
+        for (areaReport in areaReportRows) {
+            if (areaReport.seriesReport != null) {
+                items = areaReport.seriesReport
+                break
+            }
+        }
+        var nextIndex = items!!.data.count()-1
+
+        for (nextItem in items!!.data) {
+
+            barGraphValues.add(BarEntry(nextIndex.toFloat(), nextItem.value.toFloat()))
+            lineGraphValues.add(Entry(nextIndex.toFloat(), nextItem.value.toFloat()))
+
+            val nextXlabel = nextItem.periodName.substring(0,3) + " " + nextItem.year.substring(2,4)
+            Log.i("GGG", "Adding History Entry " + nextXlabel + " with value " + nextItem.value)
+            historyXAxisLabels.add(nextXlabel)
+            historyTableLabels.add( nextItem.periodName + " " + nextItem.year)
+            nextIndex--
+        }
+
+        historyLineGraphValues.add(lineGraphValues)
+        historyBarGraphValues.add(barGraphValues)
+
+        return barGraphValues
+
     }
 }
