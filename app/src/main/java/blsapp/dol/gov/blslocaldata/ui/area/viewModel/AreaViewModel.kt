@@ -19,11 +19,7 @@ interface AreaViewModel {
     var isLoading: MutableLiveData<Boolean>
     var reportError: MutableLiveData<ReportError>
 
-    var historyLineGraphValues:MutableList<MutableList<Entry>>
-    var historyBarGraphValues: MutableList<MutableList<BarEntry>>
-    var historyTitleList: MutableList<String>
-    var historyXAxisLabels: MutableList<String>
-    var historyTableLabels: MutableList<String>
+    var history:HistoryModel
 
     fun setAdjustment(adjustment: SeasonalAdjustment)
     fun getAreaReports()

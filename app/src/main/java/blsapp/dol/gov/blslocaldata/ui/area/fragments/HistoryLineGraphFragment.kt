@@ -42,7 +42,7 @@ const val LINE_X_ITEM_COUNT = 25
 
 class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
 
-    private var chart: LineChart? = null
+    private lateinit var chart: LineChart
     private val onValueSelectedRectF = RectF()
 
     lateinit var mArea: AreaEntity
@@ -81,7 +81,7 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
 
     override fun onResume() {
         super.onResume()
-        if (viewModel.historyLineGraphValues.count() > 0) {
+        if (viewModel.history.lineGraphValues.count() > 0) {
             setupChart()
         }
     }
@@ -111,7 +111,7 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
     private fun calcMaxYaxisValue() {
         maxYaxis = 0.0f
         minYaxis = 100.0f
-        for (nextValuesList in viewModel.historyLineGraphValues) {
+        for (nextValuesList in viewModel.history.lineGraphValues) {
             for (nextValue in nextValuesList){
                 if (nextValue.y > maxYaxis) {
                     maxYaxis = nextValue.y
@@ -126,7 +126,7 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
     private fun setupClickListeners() {
         previousButton.setOnClickListener {
 
-            if (viewModel.historyLineGraphValues[0].count() > 0 && graphEndingIndex < viewModel.historyLineGraphValues[0].count()) {
+            if (viewModel.history.lineGraphValues[0].count() > 0 && graphEndingIndex < viewModel.history.lineGraphValues[0].count()) {
                 graphStartingIndex += 1
                 graphEndingIndex += 1
                 setupChart()
@@ -148,24 +148,55 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
         nextButton.visibility = if (graphStartingIndex <= 0) View.GONE
         else View.VISIBLE
 
-        previousButton.visibility = if (graphEndingIndex >= viewModel.historyLineGraphValues[0].count()) View.GONE
+        previousButton.visibility = if (graphEndingIndex >= viewModel.history.lineGraphValues[0].count()) View.GONE
         else View.VISIBLE
     }
 
-    private fun displayChart() {
+    private fun setChartLayout() {
 
-        if (viewModel.historyLineGraphValues.count() < 2 || viewModel.historyLineGraphValues[1].count() < LINE_X_ITEM_COUNT) {
-            return
-        }
+        chart.setOnChartValueSelectedListener(this)
+
+        chart.description.isEnabled = false
+
+        // if more than 60 entries are displayed in the chart, no values will be
+        // drawn
+        // chart.setMaxVisibleValueCount(60)
+        chart.setPinchZoom(false)
+        chart.setDrawGridBackground(false)
+
         var xAxisFormatter: IAxisValueFormatter? = null
-        if (viewModel.historyXAxisLabels.count() > LINE_X_ITEM_COUNT) {
-//            val xAxisLabelsSub = viewModel.historyXAxisLabels.subList(graphStartingIndex, graphEndingIndex).toMutableList()
-////            xAxisLabelsSub.reverse()
-////            chart?.let {
-////                xAxisFormatter = DayAxisValueFormatter(it, xAxisLabelsSub.toTypedArray())
-////            }
+
+        val xAxis = chart.xAxis
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.setDrawGridLines(false)
+        xAxis.granularity = 0.5f // only intervals of 1 day
+        xAxis.labelCount = 12
+        xAxis.valueFormatter = xAxisFormatter
+        xAxisLabel.text = "Month and Year"
+
+        val leftAxis = chart.axisLeft
+        leftAxis.setLabelCount(6, false)
+        leftAxis.setDrawGridLines(false)
+        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
+        leftAxis.spaceTop = 15f
+        leftAxis.axisMinimum = minYaxis // this replaces setStartAtZero(true)
+        leftAxis.axisMaximum = maxYaxis
+
+        chart.axisRight.setEnabled(false);
+
+        val l = chart.legend
+        // l.form = Legend.LegendForm.LINE
+        l.isEnabled = false
+    }
+    private fun displayChart() {
+//
+//        if (viewModel.history.lineGraphValues.count() < 2 || viewModel.history.lineGraphValues[1].count() < LINE_X_ITEM_COUNT) {
+//            return
+//        }
+        var xAxisFormatter: IAxisValueFormatter? = null
+        if (viewModel.history.xAxisLabels.count() > LINE_X_ITEM_COUNT) {
             chart?.let {
-                val xAxisLabelsSub = viewModel.historyXAxisLabels.toMutableList()
+                val xAxisLabelsSub = viewModel.history.xAxisLabels.toMutableList()
                 xAxisLabelsSub.reverse()
                 xAxisFormatter = DayAxisValueFormatter(it, xAxisLabelsSub.toTypedArray())
             }
@@ -174,62 +205,27 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
         xAxisFormatter?.let {
             val mv = XYMarkerView(historyActivity, it)
             mv.setChartView(chart) // For bounds control
-            chart!!.setMarker(mv) // Set the marker to the chart
+            chart.setMarker(mv) // Set the marker to the chart
         }
 
-        chart!!.xAxis.valueFormatter = xAxisFormatter
+        chart.xAxis.valueFormatter = xAxisFormatter
 
-        if (viewModel.historyLineGraphValues[0].count() < LINE_X_ITEM_COUNT) return
+        var values1 = mutableListOf<Entry>()
 
-        val values1 = viewModel.historyLineGraphValues[0].subList(graphStartingIndex, graphEndingIndex)
+        if (viewModel.history.lineGraphValues[0].count()>= X_ITEM_COUNT) {
+            values1 = viewModel.history.lineGraphValues[0].subList(graphStartingIndex, graphEndingIndex)
+        }
 
-        if (viewModel.historyLineGraphValues.count() > 1 && viewModel.historyLineGraphValues[1].count() > LINE_X_ITEM_COUNT) {
-            val values2 = viewModel.historyLineGraphValues[1].subList(graphStartingIndex, graphEndingIndex)
+        if (viewModel.history.lineGraphValues.count() > 1 && viewModel.history.lineGraphValues[1].count() > LINE_X_ITEM_COUNT) {
+            val values2 = viewModel.history.lineGraphValues[1].subList(graphStartingIndex, graphEndingIndex)
             val values: MutableList<MutableList<Entry>> = mutableListOf(values1, values2)
-            loadDataIntoChart(viewModel.historyTitleList, values)
+            loadDataIntoChart(viewModel.history.titleList, values)
         } else {
             val values: MutableList<MutableList<Entry>> = mutableListOf(values1)
-            loadDataIntoChart(viewModel.historyTitleList, values)
+            loadDataIntoChart(viewModel.history.titleList, values)
         }
 
-        chart!!.invalidate()
-    }
-
-    private fun setChartLayout() {
-
-        chart!!.setOnChartValueSelectedListener(this)
-
-        chart!!.description.isEnabled = false
-
-        // if more than 60 entries are displayed in the chart, no values will be
-        // drawn
-       // chart!!.setMaxVisibleValueCount(60)
-        chart!!.setPinchZoom(false)
-        chart!!.setDrawGridBackground(false)
-
-        var xAxisFormatter: IAxisValueFormatter? = null
-
-        val xAxis = chart!!.xAxis
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.setDrawGridLines(false)
-        xAxis.granularity = 0.5f // only intervals of 1 day
-        xAxis.labelCount = 12
-        xAxis.valueFormatter = xAxisFormatter
-        xAxisLabel.text = "Month and Year"
-
-        val leftAxis = chart!!.axisLeft
-        leftAxis.setLabelCount(6, false)
-        leftAxis.setDrawGridLines(false)
-        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
-        leftAxis.spaceTop = 15f
-        leftAxis.axisMinimum = minYaxis // this replaces setStartAtZero(true)
-        leftAxis.axisMaximum = maxYaxis
-
-        chart!!.axisRight.setEnabled(false);
-
-        val l = chart!!.legend
-       // l.form = Legend.LegendForm.LINE
-        l.isEnabled = false
+        chart.invalidate()
     }
 
     private fun loadDataIntoChart(titles:MutableList<String>,
@@ -238,51 +234,32 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
         val set1: LineDataSet
         val set2: LineDataSet
 
-        if (chart!!.data != null && chart!!.data.dataSetCount > 1 && false)
-        {
+        if (values.count() > 0) {
+
+            val dataSets = ArrayList<ILineDataSet>()
+
+            set1 = LineDataSet(values[0].sortedBy { it.x }, titles[0])
+            set1.setLineWidth(2.5f)
+            set1.setCircleRadius(4f)
+            set1.setDrawIcons(false)
+            set1.color = ContextCompat.getColor(historyActivity, R.color.colorLocalGraphBar)
+            dataSets.add(set1)
+
             if (values.count() > 1) {
-                set1 = chart!!.data.getDataSetByIndex(0) as LineDataSet
-                set1.values = values[0]
-
-                set2 = chart!!.data.getDataSetByIndex(1) as LineDataSet
-                set2.values = values[1]
-
-                chart!!.data.setValueTextSize(10f)
-                chart!!.data.setDrawValues(false)
-
-                chart!!.data.notifyDataChanged()
-                chart!!.notifyDataSetChanged()
+                set2 = LineDataSet(values[1].sortedBy { it.x }, titles[1])
+                set2.setLineWidth(2.5f)
+                set2.setCircleRadius(4f)
+                set2.setDrawIcons(false)
+                set2.color = ContextCompat.getColor(historyActivity, R.color.colorNationalGraphBar)
+                dataSets.add(set2)
             }
-        }
-        else
-        {
-            if (values.count() > 0) {
 
-                val dataSets = ArrayList<ILineDataSet>()
+            val data = LineData(dataSets)
 
-                set1 = LineDataSet(values[0].sortedBy { it.x }, titles[0])
-                set1.setLineWidth(2.5f)
-                set1.setCircleRadius(4f)
-                set1.setDrawIcons(false)
-                set1.color = ContextCompat.getColor(historyActivity, R.color.colorNationalGraphBar)
-                dataSets.add(set1)
+            data.setValueTextSize(10f)
+            data.setDrawValues(false)
 
-                if (values.count() > 1) {
-                    set2 = LineDataSet(values[1].sortedBy { it.x }, titles[1])
-                    set2.setLineWidth(2.5f)
-                    set2.setCircleRadius(4f)
-                    set2.setDrawIcons(false)
-                    set2.color = ContextCompat.getColor(historyActivity, R.color.colorLocalGraphBar)
-                    dataSets.add(set2)
-                }
-
-                val data = LineData(dataSets)
-
-                data.setValueTextSize(10f)
-                data.setDrawValues(false)
-
-                chart!!.data = data
-            }
+            chart.data = data
         }
     }
 
@@ -292,15 +269,15 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
             return
 
         val bounds = onValueSelectedRectF
-//        chart!!.getBarBounds(e as BarEntry?, bounds)
-        val position = chart!!.getPosition(e, YAxis.AxisDependency.LEFT)
+//        chart.getBarBounds(e as BarEntry?, bounds)
+        val position = chart.getPosition(e, YAxis.AxisDependency.LEFT)
 
         Log.i("GGG", "bounds:" + bounds.toString())
         Log.i("GGG","position:" + position.toString())
 
         Log.i("GGG" ,"x-index " +
-                "low: " + chart!!.lowestVisibleX + ", high: "
-                + chart!!.highestVisibleX)
+                "low: " + chart.lowestVisibleX + ", high: "
+                + chart.highestVisibleX)
 
         MPPointF.recycleInstance(position)
     }

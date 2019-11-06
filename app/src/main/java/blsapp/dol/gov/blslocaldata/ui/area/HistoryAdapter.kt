@@ -23,9 +23,13 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.ViewHolder>()  {
     }
 
     override fun getItemCount(): Int {
-        if (historyItems.count() < 2)
+        if (historyItems.count() < 1)
             return 0
-        return historyItems[0].size
+        else if (historyItems.count() < 2)
+            return historyItems[0].size
+        else {
+            return if (historyItems[0].size != 0) historyItems[0].size else historyItems[1].size
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,10 +40,21 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.ViewHolder>()  {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val localData = historyItems[0]
-        val nationalData = historyItems[1]
+        if (localData.count() > position) {
+            holder.localValue.text = localData[position].y.toString() + "%"
+        } else {
+            holder.localValue.text = " "
+        }
+
+        if (historyItems.count() > 1) {
+            val nationalData = historyItems[1]
+            if (nationalData.count() > position) {
+                holder.nationalValue.text = nationalData[position].y.toString() + "%"
+            } else {
+                holder.nationalValue.text = " "
+            }
+        }
         holder.monthYear.text = historyMonthYears[position]
-        holder.localValue.text = localData[position].y.toString() + "%"
-        holder.nationalValue.text = nationalData[position].y.toString() + "%"
     }
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {

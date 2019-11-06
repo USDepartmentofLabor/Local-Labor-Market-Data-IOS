@@ -23,6 +23,7 @@ import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.AreaReportRow
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.CountyAreaViewModel
 import blsapp.dol.gov.blslocaldata.ui.viewmodel.MetroStateViewModel
+import kotlinx.android.synthetic.main.fragment_history_table.*
 import java.io.Serializable
 
 class HistoryTableFragment : Fragment() {
@@ -45,7 +46,12 @@ class HistoryTableFragment : Fragment() {
         viewModel = createViewModel(mArea)
         viewModel.mAdjustment = ReportManager.adjustment
         viewModel.reportRows.observe(this, Observer<List<AreaReportRow>> {
-            historyAdapter.setHistoryData(viewModel.historyBarGraphValues, viewModel.historyTableLabels)
+            if (viewModel.history.barGraphValues.count() < 1 || viewModel.history.barGraphValues[0].count() == 0) {
+                localHeading.visibility = View.GONE
+            } else {
+                localHeading.visibility = View.VISIBLE
+            }
+            historyAdapter.setHistoryData(viewModel.history.barGraphValues, viewModel.history.tableLabels)
         })
     }
 
@@ -75,8 +81,13 @@ class HistoryTableFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (viewModel.historyBarGraphValues.count() > 0) {
-            historyAdapter.setHistoryData(viewModel.historyBarGraphValues, viewModel.historyTableLabels)
+        if (viewModel.history.barGraphValues.count() > 0) {
+            if (viewModel.history.barGraphValues[0].count() == 0) {
+                localHeading.visibility = View.GONE
+            } else {
+                localHeading.visibility = View.VISIBLE
+            }
+            historyAdapter.setHistoryData(viewModel.history.barGraphValues, viewModel.history.tableLabels)
         }
     }
 

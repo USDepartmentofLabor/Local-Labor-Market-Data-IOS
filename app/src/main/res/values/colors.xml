@@ -15,6 +15,6 @@
     <color name="colorLinkButton">#0000EE</color>
     <color name="colorSortButtonBackground">#D4D4D4</color>
 
-    <color name="colorLocalGraphBar">#BE323A</color>
+    <color name="colorLocalGraphBar">#df1936</color>
     <color name="colorNationalGraphBar">#293683</color>
 </resources>

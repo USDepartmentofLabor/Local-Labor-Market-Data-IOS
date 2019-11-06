@@ -19,6 +19,7 @@ import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.area.fragments.LINE_X_ITEM_COUNT
 import blsapp.dol.gov.blslocaldata.ui.area.fragments.X_ITEM_COUNT
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
+import blsapp.dol.gov.blslocaldata.ui.area.viewModel.HistoryModel
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import org.jetbrains.anko.doAsync
@@ -60,11 +61,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
     override var isLoading = MutableLiveData<Boolean>()
     override var reportError = MutableLiveData<ReportError>()
 
-    override var historyLineGraphValues= mutableListOf<MutableList<Entry>>()
-    override var historyBarGraphValues= mutableListOf<MutableList<BarEntry>>()
-    override var historyTitleList= mutableListOf<String>()
-    override var historyXAxisLabels= mutableListOf<String>()
-    override var historyTableLabels= mutableListOf<String>()
+    lateinit override var history:HistoryModel
 
     var localAreaReports: MutableList<AreaReport>? = null
     var nationalAreaReports = mutableListOf<AreaReport>()
@@ -99,6 +96,7 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
     private fun getLocalReports() {
 
         isLoading.value = true
+        history = HistoryModel(null)
 
         doAsync{
             var reportTypes = mutableListOf<ReportType>()
@@ -230,88 +228,14 @@ class MetroStateViewModel(application: Application) : AndroidViewModel(applicati
                 }
             }
         }
-        buildHistoryData(rows)
+
+        history = HistoryModel(rows)
         reportRows.value = rows
     }
 
 
     override fun extractHistoryData() {
-        buildHistoryData(reportRows.value)
-    }
-
-    private fun buildHistoryData(areaReportRows:List<AreaReportRow>?) {
-
-        historyLineGraphValues = mutableListOf<MutableList<Entry>>()
-        historyBarGraphValues = mutableListOf<MutableList<BarEntry>>()
-        historyTitleList = mutableListOf<String>()
-
-        if (areaReportRows == null) return
-        var items: SeriesReport? = null
-        for (areaReportRow in areaReportRows!!) {
-            if (areaReportRow.areaReports != null) {
-                areaReportRow.areaType?.let {
-                    Log.i("GGG", "Processing: " + it)
-                }
-                val retList =  processSeriesDataForHistory(areaReportRow.areaReports)
-                retList.let {
-                    areaReportRow.areaType?.let {
-                        historyTitleList.add(it)
-                    }
-                }
-            }
-        }
-        if (historyLineGraphValues.count() > 1) {
-            if (historyLineGraphValues[0].count() > historyLineGraphValues[1].count()) {
-
-                historyLineGraphValues[0].removeAt(0)
-                historyBarGraphValues[0].removeAt(0)
-                historyTableLabels.removeAt(0)
-                historyXAxisLabels.removeAt(0)
-
-            } else if (historyLineGraphValues[0].count() < historyLineGraphValues[1].count()) {
-
-                historyLineGraphValues[1].removeAt(0)
-                historyBarGraphValues[1].removeAt(0)
-                historyTableLabels.removeAt(0)
-                historyXAxisLabels.removeAt(0)
-            }
-        }
-    }
-
-    private fun processSeriesDataForHistory(areaReportRows: List<AreaReport>):MutableList<BarEntry> {
-
-        var barGraphValues = mutableListOf<BarEntry>()
-        var lineGraphValues = mutableListOf<Entry>()
-        var items: SeriesReport? = null
-
-        historyXAxisLabels = mutableListOf<String>()
-        historyTableLabels = mutableListOf<String>()
-
-        for (areaReport in areaReportRows) {
-            if (areaReport.seriesReport != null) {
-                items = areaReport.seriesReport
-                break
-            }
-        }
-        var nextIndex = items!!.data.count()-1
-
-        for (nextItem in items!!.data) {
-
-            barGraphValues.add(BarEntry(nextIndex.toFloat(), nextItem.value.toFloat()))
-            lineGraphValues.add(Entry(nextIndex.toFloat(), nextItem.value.toFloat()))
-
-            val nextXlabel = nextItem.periodName.substring(0,3) + " " + nextItem.year.substring(2,4)
-            Log.i("GGG", "Adding History Entry " + nextXlabel + " with value " + nextItem.value)
-            historyXAxisLabels.add(nextXlabel)
-            historyTableLabels.add( nextItem.periodName + " " + nextItem.year)
-            nextIndex--
-        }
-
-        historyLineGraphValues.add(lineGraphValues)
-        historyBarGraphValues.add(barGraphValues)
-
-        return barGraphValues
-
+        history = HistoryModel(reportRows.value)
     }
 
     private fun getRowType(reportSection: ReportSection): ReportRowType {

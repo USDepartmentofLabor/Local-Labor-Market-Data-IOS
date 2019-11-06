@@ -16,6 +16,7 @@ import blsapp.dol.gov.blslocaldata.model.ReportError
 import blsapp.dol.gov.blslocaldata.model.SeriesReport
 import blsapp.dol.gov.blslocaldata.model.reports.*
 import blsapp.dol.gov.blslocaldata.ui.area.viewModel.AreaViewModel
+import blsapp.dol.gov.blslocaldata.ui.area.viewModel.HistoryModel
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import org.jetbrains.anko.doAsync
@@ -35,54 +36,50 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
     var localAreaReports: MutableList<AreaReport>? = null
     var nationalAreaReports = mutableListOf<AreaReport>()
 
-    override var historyLineGraphValues= mutableListOf<MutableList<Entry>>()
-    override var historyBarGraphValues= mutableListOf<MutableList<BarEntry>>()
-    override var historyTitleList= mutableListOf<String>()
-    override var historyXAxisLabels= mutableListOf<String>()
-    override var historyTableLabels= mutableListOf<String>()
+    lateinit override var history: HistoryModel
 
     val repository: LocalRepository
     override var reportRows = MutableLiveData<List<AreaReportRow>>()
 
     var reportSections = listOf<ReportSection>(
-            ReportSection( application.getString(R.string.unemployment_rate), false, false,
+            ReportSection(application.getString(R.string.unemployment_rate), false, false,
                     listOf(ReportType.Unemployment(LAUSReport.MeasureCode.UNEMPLOYMENT_RATE))),
 
             ReportSection(application.getString(R.string.employment_wages), true, false,
                     listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.TOTAL_COVERED,
-                                    dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
+                            dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
                             ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.TOTAL_COVERED,
                                     dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage)),
 
                     subSections =
-                        listOf(
-                                ReportSection(title = application.getString(R.string.ownership_private),
-                        _collapsed = true, subIndustries = true, reportTypes =
+                    listOf(
+                            ReportSection(title = application.getString(R.string.ownership_private),
+                                    _collapsed = true, subIndustries = true, reportTypes =
                             listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.PRIVATE_OWNERSHIP,
                                     dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
-                            ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.PRIVATE_OWNERSHIP,
-                                    dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
+                                    ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.PRIVATE_OWNERSHIP,
+                                            dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
 
-                                ReportSection(title = application.getString(R.string.ownership_federal_govt),
-                                _collapsed = true, subIndustries = true, reportTypes =
-                        listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.FEDERAL_GOVT,
-                                dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
-                                ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.FEDERAL_GOVT,
-                                        dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
+                            ReportSection(title = application.getString(R.string.ownership_federal_govt),
+                                    _collapsed = true, subIndustries = true, reportTypes =
+                            listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.FEDERAL_GOVT,
+                                    dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
+                                    ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.FEDERAL_GOVT,
+                                            dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
 
-                                ReportSection(title = application.getString(R.string.ownership_state_govt),
-                                _collapsed = true, subIndustries = true, reportTypes =
-                        listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.STATE_GOVT,
-                                dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
-                                ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.STATE_GOVT,
-                                        dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
+                            ReportSection(title = application.getString(R.string.ownership_state_govt),
+                                    _collapsed = true, subIndustries = true, reportTypes =
+                            listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.STATE_GOVT,
+                                    dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
+                                    ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.STATE_GOVT,
+                                            dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage))),
 
-                                ReportSection(title = application.getString(R.string.ownership_local_govt),
-                                _collapsed = true, subIndustries = true, reportTypes =
-                        listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.LOCAL_GOVT,
-                                dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
-                                ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.LOCAL_GOVT,
-                                        dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage)))
+                            ReportSection(title = application.getString(R.string.ownership_local_govt),
+                                    _collapsed = true, subIndustries = true, reportTypes =
+                            listOf(ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.LOCAL_GOVT,
+                                    dataTypeCode = QCEWReport.DataTypeCode.allEmployees),
+                                    ReportType.QuarterlyEmploymentWages(QCEWReport.OwnershipCode.LOCAL_GOVT,
+                                            dataTypeCode = QCEWReport.DataTypeCode.avgWeeklyWage)))
                     )))
 
     init {
@@ -103,7 +100,8 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
 
     private fun getLocalReports() {
 
-        doAsync{
+        history = HistoryModel(null)
+        doAsync {
             var reportTypes = ArrayList<ReportType>()
 
             reportSections.forEach { reportSection ->
@@ -111,7 +109,7 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
                     reportTypes.addAll(it)
                 }
 
-                reportSection.subSections?.forEach {  subSection ->
+                reportSection.subSections?.forEach { subSection ->
                     subSection.reportTypes?.let {
                         reportTypes.addAll(it)
                     }
@@ -165,30 +163,30 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     private fun getNationalReports(reportTypes: List<ReportType>, year: String?) {
-        doAsync{
+        doAsync {
             val nationalArea = repository.getNationalArea()
-                    ReportManager.getReport(nationalArea,
-                            reportTypes,
-                            startYear = null,
-                            endYear = null,
-                            adjustment = mAdjustment,
-                            successHandler = { areaReport ->
-                                nationalAreaReports.addAll(areaReport)
-                                updateReportRows()
-                                uiThread {
-                                    isLoading.value = false
-                                }
-                            },
-                            failureHandler = {
+            ReportManager.getReport(nationalArea,
+                    reportTypes,
+                    startYear = null,
+                    endYear = null,
+                    adjustment = mAdjustment,
+                    successHandler = { areaReport ->
+                        nationalAreaReports.addAll(areaReport)
+                        updateReportRows()
+                        uiThread {
+                            isLoading.value = false
+                        }
+                    },
+                    failureHandler = {
 
-                            })
+                    })
         }
 
     }
 
     private fun updateReportRows() {
         val rows = updateReportRows(reportSections)
-        buildHistoryData(rows)
+        history = HistoryModel(rows)
         reportRows.value = rows
 
     }
@@ -207,7 +205,7 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
                     reportType = reportSection.reportTypes!![0]
                 }
 
-                rows.add(AreaReportRow(ReportRowType.HEADER,null, null,
+                rows.add(AreaReportRow(ReportRowType.HEADER, null, null,
                         header = title, reportType = reportType, headerCollapsed = reportSection.collapsed,
                         subIndustries = reportSection.subIndustries, headerType = rowType))
             }
@@ -292,89 +290,13 @@ class CountyAreaViewModel(application: Application) : AndroidViewModel(applicati
                 }
                 it.collapsed = !it.collapsed
                 return
-            }
-            else if(it.subSections != null) {
+            } else if (it.subSections != null) {
                 toggleSection(reportRow, it.subSections!!)
             }
         }
     }
 
     override fun extractHistoryData() {
-        buildHistoryData(reportRows.value)
-    }
-
-    private fun buildHistoryData(areaReportRows:List<AreaReportRow>?) {
-
-        historyLineGraphValues = mutableListOf<MutableList<Entry>>()
-        historyBarGraphValues = mutableListOf<MutableList<BarEntry>>()
-        historyTitleList = mutableListOf<String>()
-
-        if (areaReportRows == null) return
-        var items: SeriesReport? = null
-        for (areaReportRow in areaReportRows!!) {
-            if (areaReportRow.areaReports != null) {
-                areaReportRow.areaType?.let {
-                    Log.i("GGG", "Processing: " + it)
-                }
-                val retList =  processSeriesDataForHistory(areaReportRow.areaReports)
-                retList.let {
-                    areaReportRow.areaType?.let {
-                        historyTitleList.add(it)
-                    }
-                }
-            }
-        }
-        if (historyLineGraphValues.count() > 1) {
-            if (historyLineGraphValues[0].count() > historyLineGraphValues[1].count()) {
-
-                historyLineGraphValues[0].removeAt(0)
-                historyBarGraphValues[0].removeAt(0)
-                historyTableLabels.removeAt(0)
-                historyXAxisLabels.removeAt(0)
-
-            } else if (historyLineGraphValues[0].count() < historyLineGraphValues[1].count()) {
-
-                historyLineGraphValues[1].removeAt(0)
-                historyBarGraphValues[1].removeAt(0)
-                historyTableLabels.removeAt(0)
-                historyXAxisLabels.removeAt(0)
-            }
-        }
-    }
-
-    private fun processSeriesDataForHistory(areaReportRows: List<AreaReport>):MutableList<BarEntry> {
-
-        var barGraphValues = mutableListOf<BarEntry>()
-        var lineGraphValues = mutableListOf<Entry>()
-        var items: SeriesReport? = null
-
-        historyXAxisLabels = mutableListOf<String>()
-        historyTableLabels = mutableListOf<String>()
-
-        for (areaReport in areaReportRows) {
-            if (areaReport.seriesReport != null) {
-                items = areaReport.seriesReport
-                break
-            }
-        }
-        var nextIndex = items!!.data.count()-1
-
-        for (nextItem in items!!.data) {
-
-            barGraphValues.add(BarEntry(nextIndex.toFloat(), nextItem.value.toFloat()))
-            lineGraphValues.add(Entry(nextIndex.toFloat(), nextItem.value.toFloat()))
-
-            val nextXlabel = nextItem.periodName.substring(0,3) + " " + nextItem.year.substring(2,4)
-            Log.i("GGG", "Adding History Entry " + nextXlabel + " with value " + nextItem.value)
-            historyXAxisLabels.add(nextXlabel)
-            historyTableLabels.add( nextItem.periodName + " " + nextItem.year)
-            nextIndex--
-        }
-
-        historyLineGraphValues.add(lineGraphValues)
-        historyBarGraphValues.add(barGraphValues)
-
-        return barGraphValues
-
+        history = HistoryModel(reportRows.value)
     }
 }
