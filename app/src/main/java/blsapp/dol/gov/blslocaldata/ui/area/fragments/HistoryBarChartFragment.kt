@@ -110,6 +110,7 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
         calcMaxYaxisValue()
         setChartLayout()
         displayChart()
+        setDirectionButtonVisibility()
     }
     private fun calcMaxYaxisValue() {
         maxYaxis = 0.0f

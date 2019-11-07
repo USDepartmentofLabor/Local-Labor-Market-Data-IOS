@@ -106,6 +106,7 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
         calcMaxYaxisValue()
         setChartLayout()
         displayChart()
+        setDirectionButtonVisibility()
     }
 
     private fun calcMaxYaxisValue() {
