@@ -36,7 +36,7 @@
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:layout_marginTop="18dp"
-        android:layout_marginEnd="120dp"
+        android:layout_marginEnd="140dp"
         android:background="@color/colorLocalGraphBar"
         app:layout_constraintTop_toBottomOf="@+id/chartSeasonallyAdjustedSwitch"
         app:layout_constraintEnd_toStartOf="@+id/graphTypeRadioGroup" />
@@ -57,8 +57,8 @@
         android:id="@+id/nationalLegendColor"
         android:layout_width="10dp"
         android:layout_height="10dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="120dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="140dp"
         android:background="@color/colorNationalGraphBar"
         app:layout_constraintTop_toBottomOf="@+id/chartSeasonallyAdjustedSwitch"
         app:layout_constraintEnd_toStartOf="@+id/graphTypeRadioGroup" />
@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="35dp"
         android:text="National Data"
         android:textColor="@android:color/black"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -119,27 +119,28 @@
             android:textAlignment="center" />
     </RadioGroup>
 
+    <TextView
+        android:id="@+id/tableAreaTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:accessibilityTraversalAfter="@+id/tableViewRadioButton"
+        android:layout_marginTop="8dp"
+        android:text="Title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:layout_constraintTop_toBottomOf="@+id/graphTypeRadioGroup"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="0dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="45dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@+id/graphTypeRadioGroup">
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/tableAreaTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintTop_toBottomOf="@+id/graphTypeRadioGroup"
-        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

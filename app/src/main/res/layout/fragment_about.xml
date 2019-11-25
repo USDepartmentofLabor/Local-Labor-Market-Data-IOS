@@ -60,7 +60,7 @@
                 style="@style/info"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:text=""
                 app:layout_constraintBottom_toTopOf="@+id/line3"
                 app:layout_constraintEnd_toEndOf="@+id/line1"
@@ -72,7 +72,7 @@
                 style="@style/info"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:text=""
                 app:layout_constraintBottom_toTopOf="@+id/line4"
                 app:layout_constraintEnd_toEndOf="@+id/line1"
@@ -84,7 +84,7 @@
                 style="@style/info"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:text=""
                 app:layout_constraintBottom_toTopOf="@+id/line5"
                 app:layout_constraintEnd_toEndOf="@+id/line1"
@@ -96,7 +96,7 @@
                 style="@style/info"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:text=""
                 app:layout_constraintBottom_toTopOf="@+id/line6"
                 app:layout_constraintEnd_toEndOf="@+id/line1"
@@ -109,6 +109,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="@+id/line1"
                 app:layout_constraintStart_toStartOf="@+id/line1"
                 app:layout_constraintTop_toBottomOf="@+id/line5" />
@@ -119,9 +120,30 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="@+id/line1"
                 app:layout_constraintStart_toStartOf="@+id/line1"
                 app:layout_constraintTop_toBottomOf="@+id/line6" />
+
+            <TextView
+                android:id="@+id/line8"
+                style="@style/info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/line1"
+                app:layout_constraintStart_toStartOf="@+id/line1"
+                app:layout_constraintTop_toBottomOf="@+id/line7" />
+            <TextView
+                android:id="@+id/line9"
+                style="@style/info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/line1"
+                app:layout_constraintStart_toStartOf="@+id/line1"
+                app:layout_constraintTop_toBottomOf="@+id/line8" />
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="0dp"
@@ -130,7 +152,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/line1"
-                app:layout_constraintTop_toBottomOf="@+id/line7">
+                app:layout_constraintTop_toBottomOf="@+id/line9">
 
                 <TextView
                     android:id="@+id/versionTitle"
@@ -172,17 +194,6 @@
                     style="@style/info"
                     app:layout_constraintStart_toStartOf="@+id/versionValue"
                     app:layout_constraintTop_toTopOf="@+id/releaseDateTitle" />
-
-                <TextView
-                    android:id="@+id/moreInfo"
-                    style="@style/info"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text=""
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/releaseDateTitle" />
 
             </android.support.constraint.ConstraintLayout>
 

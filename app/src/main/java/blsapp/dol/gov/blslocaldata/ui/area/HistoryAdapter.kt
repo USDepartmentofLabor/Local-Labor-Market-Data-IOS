@@ -54,7 +54,9 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.ViewHolder>()  {
                 holder.nationalValue.text = " "
             }
         }
-        holder.monthYear.text = historyMonthYears[position]
+        if (historyMonthYears.count() > position) {
+            holder.monthYear.text = historyMonthYears[position]
+        }
     }
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {

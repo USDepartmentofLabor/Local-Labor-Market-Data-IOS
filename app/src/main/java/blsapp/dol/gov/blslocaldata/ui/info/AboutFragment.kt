@@ -6,9 +6,13 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.AccessibilityDelegateCompat
 import android.support.v4.view.ViewCompat
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
+import android.text.Html
+import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import blsapp.dol.gov.blslocaldata.BuildConfig
 
 import blsapp.dol.gov.blslocaldata.R
@@ -32,7 +36,19 @@ class AboutFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        val retView= inflater.inflate(R.layout.fragment_about, container, false)
+
+        val line9 = retView.findViewById<TextView>(R.id.line9)
+        line9.text = Html.fromHtml(getString(R.string.about9_1) +
+                "<a href=\"http://play.google.com/store/apps/details?id=gov.dol.ooh_occupational_handbook\">" +
+                getString(R.string.about9_2) +
+                "</a>")
+
+//        line9.text = Html.fromHtml("Find detail information from BLS about the duties, education and training, pay, job outlook, and more for\n" +
+//                "    hundreds of occupations through the CareerInfo app, available on the <a href=\"http://play.google.com/store/apps/details?id=gov.dol.ooh_occupational_handbook\">Google Play Store</a>")
+        line9.movementMethod = LinkMovementMethod.getInstance()
+
+        return retView
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -53,11 +69,11 @@ class AboutFragment : Fragment() {
         line5.text = getString(R.string.about5)
         line6.text = getString(R.string.about6)
         line7.text = getString(R.string.about7)
+        line8.text = getString(R.string.about8)
 
         versionValue.text = BuildConfig.VERSION_NAME
         releaseDateValue.text = AboutFragment.releaseDate
 
-        moreInfo.text = getString(R.string.more_info)
     }
 
     companion object {
