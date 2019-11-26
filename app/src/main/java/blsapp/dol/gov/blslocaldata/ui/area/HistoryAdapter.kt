@@ -39,20 +39,22 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.ViewHolder>()  {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val localData = historyItems[0]
-        if (localData.count() > position) {
-            holder.localValue.text = localData[position].y.toString() + "%"
-        } else {
-            holder.localValue.text = " "
-        }
 
-        if (historyItems.count() > 1) {
-            val nationalData = historyItems[1]
-            if (nationalData.count() > position) {
-                holder.nationalValue.text = nationalData[position].y.toString() + "%"
-            } else {
-                holder.nationalValue.text = " "
+        holder.localValue.text = " "
+        val nationalData :MutableList<BarEntry>
+        if (historyItems.count() == 2) {
+            val localData = historyItems[0]
+            if (localData.count() > position) {
+                holder.localValue.text = localData[position].y.toString() + "%"
             }
+            nationalData =  historyItems[1]
+        } else {
+            nationalData = historyItems[0]
+        }
+        if (nationalData.count() > position) {
+            holder.nationalValue.text = nationalData[position].y.toString() + "%"
+        } else {
+            holder.nationalValue.text = " "
         }
         if (historyMonthYears.count() > position) {
             holder.monthYear.text = historyMonthYears[position]

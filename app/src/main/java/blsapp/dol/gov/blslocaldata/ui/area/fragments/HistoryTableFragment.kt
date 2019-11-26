@@ -46,11 +46,7 @@ class HistoryTableFragment : Fragment() {
         viewModel = createViewModel(mArea)
         viewModel.mAdjustment = ReportManager.adjustment
         viewModel.reportRows.observe(this, Observer<List<AreaReportRow>> {
-            if (viewModel.history.barGraphValues.count() < 1 || viewModel.history.barGraphValues[0].count() == 0) {
-                localHeading.visibility = View.GONE
-            } else {
-                localHeading.visibility = View.VISIBLE
-            }
+            setLocalHeadingVisibility()
             historyAdapter.setHistoryData(viewModel.history.barGraphValues, viewModel.history.tableLabels)
         })
     }
@@ -82,12 +78,16 @@ class HistoryTableFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         if (viewModel.history.barGraphValues.count() > 0) {
-            if (viewModel.history.barGraphValues[0].count() == 0) {
-                localHeading.visibility = View.GONE
-            } else {
-                localHeading.visibility = View.VISIBLE
-            }
+            setLocalHeadingVisibility()
             historyAdapter.setHistoryData(viewModel.history.barGraphValues, viewModel.history.tableLabels)
+        }
+    }
+
+    private fun setLocalHeadingVisibility() {
+        if (viewModel.history.titleList.count() == 1) {
+            localHeading.visibility = View.GONE
+        } else {
+            localHeading.visibility = View.VISIBLE
         }
     }
 

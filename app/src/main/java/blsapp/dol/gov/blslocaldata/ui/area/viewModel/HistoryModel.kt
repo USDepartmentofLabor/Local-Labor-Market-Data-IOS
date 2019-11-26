@@ -29,11 +29,8 @@ data class HistoryModel(
         var items: SeriesReport? = null
         for (areaReportRow in areaReportRows!!) {
             if (areaReportRow.areaReports != null  && areaReportRow.type == ReportRowType.UNEMPLOYMENAT_RATE_ITEM) {
-                areaReportRow.areaType?.let {
-                    Log.i("GGG", "Processing: " + it)
-                }
                 val retList =  processSeriesDataForHistory(areaReportRow.areaReports)
-                retList.let {
+                retList?.let {
                     areaReportRow.areaType?.let {
                         this.titleList.add(it)
                     }
@@ -85,7 +82,7 @@ data class HistoryModel(
             lineGraphValues.add(Entry(nextIndex.toFloat(), nextItem.value.toFloat()))
 
             val nextXlabel = nextItem.periodName.substring(0,3) + " " + nextItem.year.substring(2,4)
-            Log.i("GGG", "Adding History Entry " + nextXlabel + " with value " + nextItem.value)
+           // Log.i("GGG", "Adding History Entry " + nextXlabel + " with value " + nextItem.value)
             this.xAxisLabels.add(nextXlabel)
             this.tableLabels.add( nextItem.periodName + " " + nextItem.year)
             nextIndex--

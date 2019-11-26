@@ -103,6 +103,9 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
         return ViewModelProviders.of(historyActivity).get(MetroStateViewModel::class.java)
     }
     private fun setupChart() {
+        if (viewModel.history.lineGraphValues.count() == 0) {
+            return
+        }
         calcMaxYaxisValue()
         setChartLayout()
         displayChart()
@@ -194,6 +197,7 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
 //        if (viewModel.history.lineGraphValues.count() < 2 || viewModel.history.lineGraphValues[1].count() < LINE_X_ITEM_COUNT) {
 //            return
 //        }
+
         var xAxisFormatter: IAxisValueFormatter? = null
         if (viewModel.history.xAxisLabels.count() > LINE_X_ITEM_COUNT) {
             chart?.let {
@@ -243,7 +247,8 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
             set1.setLineWidth(2.5f)
             set1.setCircleRadius(4f)
             set1.setDrawIcons(false)
-            set1.color = ContextCompat.getColor(historyActivity, R.color.colorLocalGraphBar)
+
+            set1.color = getLineColor(viewModel.history.titleList[0])
             dataSets.add(set1)
 
             if (values.count() > 1) {
@@ -251,7 +256,7 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
                 set2.setLineWidth(2.5f)
                 set2.setCircleRadius(4f)
                 set2.setDrawIcons(false)
-                set2.color = ContextCompat.getColor(historyActivity, R.color.colorNationalGraphBar)
+                set2.color = getLineColor(viewModel.history.titleList[1])
                 dataSets.add(set2)
             }
 
@@ -261,6 +266,14 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
             data.setDrawValues(false)
 
             chart.data = data
+        }
+    }
+
+    private fun getLineColor(type:String):Int {
+        if  (type == getString(R.string.national_area)) {
+            return ContextCompat.getColor(historyActivity, R.color.colorNationalGraphBar)
+        } else {
+            return ContextCompat.getColor(historyActivity, R.color.colorLocalGraphBar)
         }
     }
 

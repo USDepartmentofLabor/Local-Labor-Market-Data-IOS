@@ -91,6 +91,7 @@ import kotlinx.android.synthetic.main.activity_history.*
              when (checkedId) {
                  R.id.lineGraphRadioButton -> {
                      showLineGraph()
+                     setAreaLegendVisibiity()
                  }
                  R.id.barChartRadioButton -> {
                     if (barChartFragment == null) {
@@ -98,6 +99,7 @@ import kotlinx.android.synthetic.main.activity_history.*
                     }
                      requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
                      setGraphLegendVisibilty(View.VISIBLE)
+                     setAreaLegendVisibiity()
                      tableAreaTitle.visibility = View.INVISIBLE
                     displayFragment(barChartFragment as HistoryBarChartFragment)
                  }
@@ -154,26 +156,27 @@ import kotlinx.android.synthetic.main.activity_history.*
      }
      private fun attachObserver() {
          viewModel.reportRows.observe(this, Observer<List<AreaReportRow>> {
+            setAreaLegendVisibiity()
+         })
+     }
 
-             if (graphTypeRadioGroup.checkedRadioButtonId != R.id.tableViewRadioButton) {
-                 if (viewModel.history.barGraphValues.count() > 1) {
-                     if (viewModel.history.barGraphValues[0].count() == 0){
-                         localLegendName.visibility = View.GONE
-                         localLegendColor.visibility = View.GONE
-                     } else {
-                         localLegendName.visibility = View.VISIBLE
-                         localLegendColor.visibility = View.VISIBLE
-                     }
-                     if (viewModel.history.barGraphValues[1].count() == 0){
-                         nationalLegendName.visibility = View.GONE
-                         nationalLegendColor.visibility = View.GONE
-                     } else {
-                         nationalLegendName.visibility = View.VISIBLE
-                         nationalLegendColor.visibility = View.VISIBLE
-                     }
+     private fun setAreaLegendVisibiity() {
+
+         if (graphTypeRadioGroup.checkedRadioButtonId != R.id.tableViewRadioButton) {
+             localLegendName.visibility = View.GONE
+             localLegendColor.visibility = View.GONE
+             nationalLegendName.visibility = View.GONE
+             nationalLegendColor.visibility = View.GONE
+             for (nextTitle in viewModel.history.titleList) {
+                 if (nextTitle == getString(R.string.national_area)) {
+                     nationalLegendName.visibility = View.VISIBLE
+                     nationalLegendColor.visibility = View.VISIBLE
+                 } else {
+                     localLegendName.visibility = View.VISIBLE
+                     localLegendColor.visibility = View.VISIBLE
                  }
              }
-         })
+         }
      }
 
      override fun onBackPressed() {

@@ -107,6 +107,9 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
 
     private fun setupChart() {
         viewModel.extractHistoryData()
+        if (viewModel.history.lineGraphValues.count() == 0) {
+            return
+        }
         calcMaxYaxisValue()
         setChartLayout()
         displayChart()
@@ -253,12 +256,12 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
             val dataSets = ArrayList<IBarDataSet>()
 
             set1 = BarDataSet(values[0], titles[0])
-            set1.color = ContextCompat.getColor(historyActivity, R.color.colorLocalGraphBar)
+            set1.color =  getLineColor(viewModel.history.titleList[0])
             dataSets.add(set1)
 
             if (values.count() > 1) {
                 set2 = BarDataSet(values[1], titles[1])
-                set2.color = ContextCompat.getColor(historyActivity, R.color.colorNationalGraphBar)
+                set2.color =  getLineColor(viewModel.history.titleList[1])
                 dataSets.add(set2)
             }
 
@@ -273,6 +276,14 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
 
             data.notifyDataChanged()
             chart.notifyDataSetChanged()
+        }
+    }
+
+    private fun getLineColor(type:String):Int {
+        if  (type == getString(R.string.national_area)) {
+            return ContextCompat.getColor(historyActivity, R.color.colorNationalGraphBar)
+        } else {
+            return ContextCompat.getColor(historyActivity, R.color.colorLocalGraphBar)
         }
     }
 

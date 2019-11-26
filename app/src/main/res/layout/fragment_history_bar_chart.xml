@@ -17,7 +17,7 @@
         android:contentDescription="@string/rate_axis_label"
         android:text="Rate"
         style="@style/graphLabel"
-        app:layout_constraintTop_toBottomOf="@+id/graphTypeRadioGroup"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.github.mikephil.charting.charts.BarChart
