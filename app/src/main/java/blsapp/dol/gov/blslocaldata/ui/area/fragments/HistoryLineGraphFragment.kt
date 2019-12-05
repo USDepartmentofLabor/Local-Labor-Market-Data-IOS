@@ -186,7 +186,16 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
         leftAxis.axisMinimum = minYaxis // this replaces setStartAtZero(true)
         leftAxis.axisMaximum = maxYaxis
 
-        chart.axisRight.setEnabled(false);
+
+        val rightAxis = chart.axisRight
+        rightAxis.setLabelCount(6, false)
+        rightAxis.setDrawGridLines(false)
+        rightAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
+        rightAxis.spaceTop = 15f
+        rightAxis.axisMinimum = minYaxis // this replaces setStartAtZero(true)
+        rightAxis.axisMaximum = maxYaxis
+        rightAxis.setDrawGridLines(true)
+       // chart.axisRight.setEnabled(false);
 
         val l = chart.legend
         // l.form = Legend.LegendForm.LINE
