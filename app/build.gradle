@@ -9,8 +9,8 @@ android {
         applicationId "blsapp.dol.gov.blslocaldata.history"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 7
-        versionName "1.1"
+        versionCode 8
+        versionName "2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
