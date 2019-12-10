@@ -14,6 +14,7 @@ import blsapp.dol.gov.blslocaldata.R
 import blsapp.dol.gov.blslocaldata.db.entity.*
 import blsapp.dol.gov.blslocaldata.model.reports.ReportManager
 import blsapp.dol.gov.blslocaldata.model.reports.SeasonalAdjustment
+import blsapp.dol.gov.blslocaldata.ui.UIUtil
 import blsapp.dol.gov.blslocaldata.ui.area.fragments.HistoryBarChartFragment
 import blsapp.dol.gov.blslocaldata.ui.area.fragments.HistoryLineGraphFragment
 import blsapp.dol.gov.blslocaldata.ui.area.fragments.HistoryTableFragment
@@ -65,7 +66,11 @@ import kotlinx.android.synthetic.main.activity_history.*
          supportActionBar?.setHomeActionContentDescription("Back")
          title = getString(R.string.history_unemployment_rate)
 
-         graphTypeRadioGroup.check(R.id.lineGraphRadioButton)
+         if (UIUtil.isTalkBackActive()) {
+             graphTypeRadioGroup.check(R.id.tableViewRadioButton)
+         } else {
+             graphTypeRadioGroup.check(R.id.lineGraphRadioButton)
+         }
         // showLineGraph()
 
      }

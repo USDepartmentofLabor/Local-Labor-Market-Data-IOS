@@ -280,7 +280,7 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
                 data.groupBars(0.6f, 0.55f, 0.02f)
             }
             data.setValueTextSize(10f)
-            data.setDrawValues(true)
+            data.setDrawValues(false)
             chart.data = data
 
             data.notifyDataChanged()

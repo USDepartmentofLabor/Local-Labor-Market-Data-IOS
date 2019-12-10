@@ -174,7 +174,7 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setDrawGridLines(false)
         xAxis.granularity = 0.5f // only intervals of 1 day
-        xAxis.labelCount = 12
+        xAxis.setLabelCount(13, true)
         xAxis.valueFormatter = xAxisFormatter
         xAxisLabel.text = "Month and Year"
 
