@@ -23,7 +23,21 @@ extension DateFormatter {
         
         return nil
     }
-    
+
+    class func shortYear(fromYear year: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale.current
+        
+        dateFormatter.dateFormat = "yyyy"
+        
+        if let date = dateFormatter.date(from: year) {
+            dateFormatter.dateFormat = "yy"
+            return dateFormatter.string(from: date)
+        }
+        
+        return year
+    }
+
     class func quarter(fromMonth name: String) -> Int? {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = NSLocale.current

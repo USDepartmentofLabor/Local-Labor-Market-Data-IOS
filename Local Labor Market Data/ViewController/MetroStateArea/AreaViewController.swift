@@ -52,8 +52,8 @@ class AreaViewController: UIViewController {
             navigationItem.leftBarButtonItem = homeItem
         }
         
-        seasonallyAdjustedSwitch.tintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
-        seasonallyAdjustedSwitch.onTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
+        seasonallyAdjustedSwitch.tintColor = UIColor(named: "AppBlue")
+        seasonallyAdjustedSwitch.onTintColor = UIColor(named: "AppBlue")
         
         seasonallyAdjustedTitle.scaleFont(forDataType: .seasonallyAdjustedSwitch, for: traitCollection)
         leftSubArea.titleLabel?.scaleFont(forDataType: .reportSubAreaTitle, for: traitCollection)

@@ -49,9 +49,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CoreDataManager.shared().saveContext()
     }
 
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        if let rootViewController = self.topViewControllerWithRootViewController(rootViewController: window?.rootViewController) {
+            if let orientationProtocol = rootViewController as? OrientationProtocol {
+                return orientationProtocol.orientation
+            }
+        }
+
+        // Only allow portrait (standard behaviour)
+        return .portrait;
+    }
+
+    private func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController? {
+        if (rootViewController == nil) { return nil }
+        if (rootViewController is UITabBarController) {
+            return topViewControllerWithRootViewController(rootViewController: (rootViewController as! UITabBarController).selectedViewController)
+        } else if (rootViewController is UINavigationController) {
+            return topViewControllerWithRootViewController(rootViewController: (rootViewController as! UINavigationController).visibleViewController)
+        } else if (rootViewController.presentedViewController != nil) {
+            return topViewControllerWithRootViewController(rootViewController: rootViewController.presentedViewController)
+        } else if let splitViewController = rootViewController as? UISplitViewController {
+            return topViewControllerWithRootViewController(rootViewController: splitViewController.viewControllers.last)
+        }
+        
+        return rootViewController
+    }
+    
     func setupApprearance() {
 //        UIApplication.shared.statusBarStyle = .lightContent
-        UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
+        UINavigationBar.appearance().barTintColor = UIColor(named: "AppColor")
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]

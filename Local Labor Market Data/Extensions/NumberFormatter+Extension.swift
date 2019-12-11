@@ -13,7 +13,7 @@ extension NumberFormatter {
         get {
             let formatter = NumberFormatter()
             formatter.numberStyle = .currency
-            formatter.locale = NSLocale.current
+            formatter.locale = Locale(identifier: "en_US")
             formatter.maximumFractionDigits = 0
             return formatter
         }

@@ -65,19 +65,9 @@ class ResultsViewController: UIViewController {
             title = resultArea.areaType + " Results"
         }
         
-        tableView.sectionIndexColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
+        tableView.sectionIndexColor = UIColor(named: "AppBlue")
         titleLabel.scaleFont(forDataType: .reportAreaTitle, for:traitCollection)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 // MARK: TableView Datasource
@@ -152,7 +142,12 @@ extension ResultsViewController: UITableViewDelegate {
                    forSection section: Int) {
         
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.textColor = .black
+        header.textLabel?.textColor = .darkText
+        
+        if #available(iOS 13.0, *) {
+            header.backgroundColor = .systemBackground
+            header.textLabel?.textColor = .label
+        }
         header.textLabel?.scaleFont(forDataType: .reportSectionTitle, for: traitCollection)
     }
 }

@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "flag.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "flag_dark.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {

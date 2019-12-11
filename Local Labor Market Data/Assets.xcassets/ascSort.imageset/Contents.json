@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "uparrow.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "uparrow-1.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {

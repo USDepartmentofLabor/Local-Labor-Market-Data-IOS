@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "fa-level-down-right.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "fa-level-down-right_dark.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {

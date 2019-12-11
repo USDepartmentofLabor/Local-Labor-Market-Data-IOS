@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "currentlocation.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "currentlocation_dark2.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {

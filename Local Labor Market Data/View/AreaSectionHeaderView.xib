@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -56,7 +54,7 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <inset key="imageEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
-                                    <state key="normal" image="rightChevron"/>
+                                    <state key="normal" image="rightArrow"/>
                                     <connections>
                                         <action selector="displayDetails:" destination="-2" eventType="touchUpInside" id="If8-WK-KSR"/>
                                     </connections>
@@ -73,7 +71,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstItem="qUt-JP-IXs" firstAttribute="leading" secondItem="K1K-Li-i6e" secondAttribute="leading" priority="999" id="TZM-TR-exC"/>
                         <constraint firstItem="qUt-JP-IXs" firstAttribute="centerX" secondItem="K1K-Li-i6e" secondAttribute="centerX" id="UBq-Qa-rWP"/>
@@ -103,6 +101,6 @@
     </objects>
     <resources>
         <image name="expand" width="21" height="16"/>
-        <image name="rightChevron" width="327" height="327"/>
+        <image name="rightArrow" width="327" height="327"/>
     </resources>
 </document>

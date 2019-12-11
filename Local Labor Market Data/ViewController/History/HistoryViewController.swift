@@ -7,14 +7,43 @@
 //
 
 import UIKit
-//import Charts
 
-class HistoryViewController: UIViewController {
+enum HistoryFormat: Int {
+    case lineChart = 0
+    case barChart
+    case table
+}
 
+protocol HistoryViewProtocol {
+    var viewModel: HistoryViewModel? {get set}
+    func displayHistoryData()
+}
+
+protocol OrientationProtocol {
+    var orientation: UIInterfaceOrientationMask {get}
+}
+
+class HistoryViewController: UIViewController, OrientationProtocol {
+
+    @IBOutlet weak var areaTitleLabel: UILabel!
+    @IBOutlet weak var formatSegmentController: UISegmentedControl!
+    @IBOutlet weak var seasonallyAdjustedView: UIView!
+    @IBOutlet weak var seasonallyAdjustedSwitch: UICustomSwitch!
+    @IBOutlet weak var seasonallyAdjustedTitle: UILabel!
+
+    @IBOutlet weak var historyContainerView: UIView!
     var viewModel: HistoryViewModel?
-//    @IBOutlet weak var chartView: BarChartView!
+    weak var currentHistoryViewController: UIViewController? = nil
     
-//    var dataEntry: [BarChartDataEntry] = []
+    var currentHistoryFormat: HistoryFormat = .table
+    
+    lazy var activityIndicator = ActivityIndicatorView(text: "Loading", inView: view)
+    var seasonalAdjustment: SeasonalAdjustment = .notAdjusted {
+        didSet {
+            viewModel?.seasonalAdjustment = seasonalAdjustment
+            loadReports()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,50 +53,165 @@ class HistoryViewController: UIViewController {
     
     func setupView() {
         title = viewModel?.title ?? "History"
+        areaTitleLabel.text = viewModel?.area.title
         
-        setupChartView()
-    }
-    
-    func setupChartView() {
-//        chartView.delegate = self
-/*
-        chartView.noDataTextColor = .black
-        chartView.noDataText = "No Data for Chart"
-        chartView.backgroundColor = .white
+        areaTitleLabel.scaleFont(forDataType: .reportAreaTitle, for:traitCollection)
         
-        chartView.drawBarShadowEnabled = false
-        chartView.drawValueAboveBarEnabled = false
+        seasonallyAdjustedSwitch.tintColor = UIColor(named: "AppBlue")
+        seasonallyAdjustedSwitch.onTintColor = UIColor(named: "AppBlue")
+        seasonallyAdjustedTitle.scaleFont(forDataType: .seasonallyAdjustedSwitch, for: traitCollection)
         
-        let xAxis = chartView.xAxis
-        xAxis.labelPosition = .bottom
-        xAxis.labelFont = .systemFont(ofSize: 10)
-        xAxis.granularity = 1
-        xAxis.labelCount = 24
-//        xAxis.valueFormatter = 
-        
-        xAxis.drawGridLinesEnabled = true
-        chartView.legend.enabled = true
-        chartView.rightAxis.enabled = false
-
-        chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
-        setBarChart(dataPoints: ["1", "2", "4"], values: ["0.2", "2.5", "3.7"])
-    }
-    
-    func setBarChart(dataPoints: [String], values: [String]) {
-        
-        for i in 0..<dataPoints.count {
-            let dataPoint =  BarChartDataEntry(x: Double(i), y: Double(values[i])!)
-            dataEntry.append(dataPoint)
+        if Util.isVoiceOverRunning {
+            showHistoryController(format: .table)
+        }
+        else {
+            showHistoryController(format: .lineChart)
         }
         
-        let chartDataSet = BarChartDataSet(values: dataEntry, label: "BPM")
-        chartDataSet.colors = [.blue]
-        let chartData = BarChartData(dataSet: chartDataSet)
-        chartData.setDrawValues(false)
-     
+        let seasonalAdjustment: SeasonalAdjustment = viewModel?.seasonalAdjustment ?? .adjusted
+        seasonallyAdjustedSwitch.isOn = (seasonalAdjustment == .adjusted) ? true:false
         
-        chartView.data = chartData
+        setupAccessibility()
+    }
+    
+    func setupAccessibility() {
+        areaTitleLabel.accessibilityTraits = UIAccessibilityTraits.header
+        areaTitleLabel.accessibilityLabel = viewModel?.area.accessibilityStr
+        seasonallyAdjustedSwitch.accessibilityLabel = "Seasonally Adjusted"
+        seasonallyAdjustedTitle.isAccessibilityElement = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if (self.isMovingFromParent) {
+            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+        }
+    }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
 
- */
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if currentHistoryFormat == .table {
+            return .portrait
+        }
+        else {
+            return UIInterfaceOrientationMask.landscapeLeft
+        }
+    }
+
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        if currentHistoryFormat == .table {
+            return .portrait
+        }
+        else {
+            return .landscapeLeft
+        }
+    }
+    
+    var orientation: UIInterfaceOrientationMask {
+        return supportedInterfaceOrientations
+    }
+    
+    @IBAction func seasonallyAdjustClick(_ sender: Any) {
+        seasonalAdjustment = seasonallyAdjustedSwitch.isOn ? .adjusted : .notAdjusted
+    }
+
+    @IBAction func didChangeFormat(_ sender: Any) {
+        if let format = HistoryFormat.init(rawValue: formatSegmentController.selectedSegmentIndex) {
+            showHistoryController(format: format)
+        }
+    }
+    
+    func showHistoryController(format: HistoryFormat) {
+        if format == currentHistoryFormat {
+            return
+        }
+        
+        if let controller = currentHistoryViewController {
+            hideContentController(controller: controller)
+            currentHistoryViewController = nil
+        }
+        
+        currentHistoryFormat = format
+        let viewController: UIViewController
+        let orientation: UIInterfaceOrientation
+        switch currentHistoryFormat {
+        case .table:
+            viewController = HistoryTabularViewController.instantiateFromStoryboard()
+             orientation = UIInterfaceOrientation.portrait
+        case .barChart:
+            viewController = HistoryBarChartViewController.instantiateFromStoryboard()
+            orientation = UIInterfaceOrientation.landscapeLeft
+        case .lineChart:
+            viewController = HistoryLineChartViewController.instantiateFromStoryboard()
+            orientation = UIInterfaceOrientation.landscapeLeft
+        }
+        
+        if var historyView = viewController as? HistoryViewProtocol {
+            historyView.viewModel = viewModel
+        }
+
+        UIDevice.current.setValue(Int(orientation.rawValue), forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
+
+        currentHistoryViewController = viewController
+        addChild(viewController)
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        historyContainerView.addSubview(viewController.view)
+        NSLayoutConstraint.activate([
+            viewController.view.leadingAnchor.constraint(equalTo: historyContainerView.leadingAnchor),
+            viewController.view.trailingAnchor.constraint(equalTo: historyContainerView.trailingAnchor),
+            viewController.view.topAnchor.constraint(equalTo: historyContainerView.topAnchor),
+            viewController.view.bottomAnchor.constraint(equalTo: historyContainerView.bottomAnchor)
+            ])
+        
+        viewController.didMove(toParent: self)
+    }
+    
+    func hideContentController(controller: UIViewController) {
+        controller.willMove(toParent: nil)
+        controller.view.removeFromSuperview()
+        controller.removeFromParent()
+    }
+}
+
+extension HistoryViewController {
+    func loadReports() {
+        let seasonalAdjustedTitle = (seasonalAdjustment == .adjusted) ?
+                                "Seasonally Adjusted" : " Not Seasonally Adjusted"
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement,
+                             argument: "Loading \(seasonalAdjustedTitle) \(title) Reports")
+
+        loadHistoryReport()
+    }
+    
+    func loadHistoryReport() {
+        activityIndicator.startAnimating(disableUI: true)
+        
+        viewModel?.loadHistory { [weak self] (apiResult) in
+
+            guard let strongSelf = self else {return}
+            strongSelf.activityIndicator.stopAnimating()
+
+            switch(apiResult) {
+            case .success( _):
+                let announcementStr = "Loaded  Report"
+                UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: announcementStr)
+                
+            case .failure(let error):
+                strongSelf.handleError(error: error)
+            }
+            
+            if let historyView = strongSelf.currentHistoryViewController as? HistoryViewProtocol {
+                historyView.displayHistoryData()
+            }
+        }
     }
 }

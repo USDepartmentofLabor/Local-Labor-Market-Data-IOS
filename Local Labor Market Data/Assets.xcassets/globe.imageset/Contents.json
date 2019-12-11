@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "globe.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "globe_dark.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {

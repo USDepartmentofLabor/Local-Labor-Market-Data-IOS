@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "downarrow.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "downarrow-1.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {

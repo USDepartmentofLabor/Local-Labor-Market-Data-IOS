@@ -201,27 +201,14 @@ class MetroStateViewController: AreaViewController {
             if let destVC = segue.destination as? HistoryViewController,
                 let reportType = sender as? ReportType {
 
-                var title = "History"
-                switch(reportType) {
-                case .unemployment (_):
-                    title += "- Unemployment"
-                case .industryEmployment(_, _):
-                    title += "- Industry"
-                default:
-                    title = "History"
-                }
                 if let localAreaReport = localAreaReportsDict[reportType] {
                     let nationalAreaReport = nationalAreaReportsDict[reportType]
-                    let latestDate: Date
-                    
-                    //        // If Latest SeriesReport is available, use that as End Year
-                    let latestData = localAreaReport.seriesReport?.latestData()
-                    if let latestData = latestData {
-                        latestDate = DateFormatter.date(fromMonth: latestData.periodName, fromYear: latestData.year) ?? Date()
 
-                        let viewModel = HistoryViewModel(title: title, localSeriesId: localAreaReport.seriesId, nationalSeriedId: nationalAreaReport?.seriesId, latestDate: latestDate)
-                        destVC.viewModel = viewModel
-                    }
+                    let viewModel = HistoryViewModel(area: area,
+                                                    localAreaReport: localAreaReport,
+                                                    nationalAreaReport: nationalAreaReport,
+                                                    seasonalAdjustment: seasonalAdjustment)
+                    destVC.viewModel = viewModel
                 }
             }
         }
@@ -258,7 +245,7 @@ class MetroStateViewController: AreaViewController {
         
         if let splitVC = splitViewController {
             let vc = segue.destination
-            vc.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem
+//            vc.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem
             vc.navigationItem.leftItemsSupplementBackButton = true
         }
 
@@ -331,9 +318,10 @@ extension MetroStateViewController {
             let period = areaReport.seriesReport?.latestDataPeriod()
             ReportManager.getReports(forArea: nationalArea,
                                      reportTypes: [areaReport.reportType],
-                                     seasonalAdjustment: seasonalAdjustment,
-                                     period: period,
-                                     year: reportYear) {[weak self] (apiResult) in
+                                     seasonalAdjustment: seasonalAdjustment
+            ) {[weak self] (apiResult) in
+//                period: period,
+//                year: reportYear) {[weak self] (apiResult) in
                 guard let strongSelf = self else {return}
                 switch apiResult {
                 case .success(let areaReportsDict):
@@ -445,14 +433,15 @@ extension MetroStateViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
-/*      // Will be used for History Footer
+        
+      // Used for History Footer
         let currentSection = sections[section]
 
         guard currentSection.collapsed == false else { return nil }
         
-        guard currentSection.title == Section.UnemploymentRateTitle ||
-            currentSection.title == Section.IndustryEmploymentTitle else { return nil }
+        guard currentSection.title == Section.UnemploymentRateTitle
+//            || currentSection.title == Section.IndustryEmploymentTitle
+            else { return nil }
         
         guard let sectionFooterView =
             tableView.dequeueReusableHeaderFooterView(withIdentifier: AreaSectionFooterView.reuseIdentifier) as? AreaSectionFooterView
@@ -461,18 +450,14 @@ extension MetroStateViewController: UITableViewDelegate {
         sectionFooterView.section = section
         sectionFooterView.delegate = self
         return sectionFooterView
- */
+ 
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-/*      // Will be used for Histroy Footer
         let currentSection = sections[section]
+        guard currentSection.title == Section.UnemploymentRateTitle, currentSection.collapsed == false else { return 0}
         
-        guard currentSection.collapsed == false else { return 0 }
-        
-        return 44
- */
+        return UITableView.automaticDimension
     }
 }
 

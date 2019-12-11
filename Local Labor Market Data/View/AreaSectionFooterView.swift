@@ -16,6 +16,9 @@ class AreaSectionFooterView: UITableViewHeaderFooterView {
 
     class var nibName: String { return "AreaSectionFooterView" }
     class var reuseIdentifier: String { return "AreaSectionFooterView" }
+
+    @IBOutlet weak var titleLabel: UILabel!
+    
     weak var delegate: AreaSectionFooterDelegate?
 
     var section: Int = 0
@@ -34,6 +37,8 @@ class AreaSectionFooterView: UITableViewHeaderFooterView {
     
     
     func setupView() {
+        titleLabel.scaleFont(forDataType: .reportSectionTitle)
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(sectionClick(_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         historyView.addGestureRecognizer(tapGestureRecognizer)

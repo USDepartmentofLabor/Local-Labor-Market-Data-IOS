@@ -124,8 +124,8 @@ class ItemViewController: UIViewController {
         dataTypeButton.layer.borderWidth = 1.0
         dataTypeButton.layer.cornerRadius = 10
         dataTypeButton.titleLabel?.scaleFont(forDataType: .itemDataType)
-        seasonallyAdjustedSwitch.tintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
-        seasonallyAdjustedSwitch.onTintColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
+        seasonallyAdjustedSwitch.tintColor = UIColor(named: "AppBlue")
+        seasonallyAdjustedSwitch.onTintColor = UIColor(named: "AppBlue")
         seasonallyAdjustedTitle.scaleFont(forDataType: .seasonallyAdjustedSwitch, for: traitCollection)
 
         parentTitleLabel.scaleFont(forDataType: .itemParentTitle)
@@ -1013,7 +1013,7 @@ extension ItemViewController {
             let range = parentStr.range(of: str)!
             let nsRange = NSRange(range, in: parentStr)
             underlineAttriString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: nsRange)
-            underlineAttriString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.blue, range: nsRange)
+            underlineAttriString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemBlue, range: nsRange)
             
         }
         

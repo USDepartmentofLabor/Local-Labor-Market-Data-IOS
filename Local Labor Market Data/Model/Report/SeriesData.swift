@@ -62,8 +62,20 @@ extension SeriesData {
             return false
         }
     }
-
 }
+
+extension SeriesData {
+    var periodYearStr: String {
+        return "\(periodName) \(year)"
+    }
+    
+    var shortPeriodYearStr: String {
+        let shortMonthName = DateFormatter.shortMonthName(fromMonth: periodName) ?? periodName
+        let shortYear = DateFormatter.shortYear(fromYear: year) ?? year
+        return "\(shortMonthName) \(shortYear)"
+    }
+}
+
 
 struct FootNote : Decodable {
     var code: String?

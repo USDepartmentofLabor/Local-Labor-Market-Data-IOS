@@ -154,27 +154,12 @@ class CountyViewController: AreaViewController {
             if let destVC = segue.destination as? HistoryViewController,
                 let reportType = sender as? ReportType {
                 
-                var title = "History"
-                switch(reportType) {
-                case .unemployment (_):
-                    title += "- Unemployment"
-                case .industryEmployment(_, _):
-                    title += "- Industry"
-                default:
-                    title = "History"
-                }
                 if let localAreaReport = localAreaReportsDict[reportType] {
                     let nationalAreaReport = nationalAreaReportsDict[reportType]
-                    let latestDate: Date
-                    
-                    //        // If Latest SeriesReport is available, use that as End Year
-                    let latestData = localAreaReport.seriesReport?.latestData()
-                    if let latestData = latestData {
-                        latestDate = DateFormatter.date(fromMonth: latestData.periodName, fromYear: latestData.year) ?? Date()
                         
-                        let viewModel = HistoryViewModel(title: title, localSeriesId: localAreaReport.seriesId, nationalSeriedId: nationalAreaReport?.seriesId, latestDate: latestDate)
-                        destVC.viewModel = viewModel
-                    }
+                    let viewModel = HistoryViewModel(area: county,
+                                                     localAreaReport: localAreaReport, nationalAreaReport: nationalAreaReport, seasonalAdjustment: seasonalAdjustment)
+                    destVC.viewModel = viewModel
                 }
             }
         }
@@ -314,8 +299,10 @@ extension CountyViewController {
         if nationalReportTypes.count > 0 {
             let startYear = (reportStartYear != 9999) ? String(reportStartYear) : nil
             let endYear = (reportEndYear != -1) ?  String(reportEndYear) : nil
-            loadNationalReports(reportTypes: nationalReportTypes, startYear: startYear,
-                                endYear: endYear)
+//            loadNationalReports(reportTypes: nationalReportTypes, startYear: startYear,
+//                                endYear: endYear)
+            loadNationalReports(reportTypes: nationalReportTypes, startYear: nil,
+                                endYear: nil)
         }
     }
     
@@ -399,9 +386,9 @@ extension CountyViewController: UITableViewDataSource {
                 ownershipCell!.reportSections = reportSection.children
                 ownershipCell!.delegate = self
 //                ownershipCell?.tableView.reloadData()
-                ownershipCell?.setNeedsUpdateConstraints()
-                ownershipCell?.setNeedsLayout()
-                ownershipCell?.layoutIfNeeded()
+//                ownershipCell?.setNeedsUpdateConstraints()
+//                ownershipCell?.setNeedsLayout()
+//                ownershipCell?.layoutIfNeeded()
                 cell = ownershipCell!
             }
             else {
@@ -529,8 +516,6 @@ extension CountyViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
-/*      // Will be used for History Footer
         let currentSection = reportSections[section]
         
         guard currentSection.collapsed == false else { return nil }
@@ -544,19 +529,16 @@ extension CountyViewController: UITableViewDelegate {
         sectionFooterView.section = section
         sectionFooterView.delegate = self
         return sectionFooterView
- */
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-/*      // Will be used for History in Footer
         let currentSection = reportSections[section]
+        guard currentSection.title == CountyReport.unemploymentRate,
+            currentSection.collapsed == false else { return 0}
         
-        guard currentSection.collapsed == false else { return 0 }
-        
-        return 44
-*/
+        return UITableView.automaticDimension
     }
+
 }
 
 extension CountyViewController: AreaSectionHeaderDelegate {

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,22 +20,28 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qUt-JP-IXs">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="39"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tvh-za-BIv">
-                                    <rect key="frame" x="166" y="9" width="61" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="History" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tvh-za-BIv">
+                                    <rect key="frame" x="10" y="10" width="355" height="19"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.40000000000000002" green="0.61176470589999998" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.066666666666666666" green="0.44313725490196076" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Tvh-za-BIv" secondAttribute="bottom" constant="10" id="20h-Pw-Vh4"/>
+                                <constraint firstItem="Tvh-za-BIv" firstAttribute="top" secondItem="qUt-JP-IXs" secondAttribute="top" constant="10" id="Cyp-G2-2Qt"/>
+                                <constraint firstAttribute="trailing" secondItem="Tvh-za-BIv" secondAttribute="trailing" constant="10" id="Q9q-HR-38l"/>
+                                <constraint firstItem="Tvh-za-BIv" firstAttribute="leading" secondItem="qUt-JP-IXs" secondAttribute="leading" constant="10" id="ro7-b1-AWD"/>
+                                <constraint firstItem="Tvh-za-BIv" firstAttribute="centerX" secondItem="qUt-JP-IXs" secondAttribute="centerX" id="y15-15-fBQ"/>
+                            </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="qUt-JP-IXs" firstAttribute="leading" secondItem="K1K-Li-i6e" secondAttribute="leading" id="TZM-TR-exC"/>
                         <constraint firstItem="qUt-JP-IXs" firstAttribute="centerX" secondItem="K1K-Li-i6e" secondAttribute="centerX" id="UBq-Qa-rWP"/>
-                        <constraint firstAttribute="bottom" secondItem="qUt-JP-IXs" secondAttribute="bottom" priority="999" constant="5" id="e4I-1d-5wQ"/>
+                        <constraint firstAttribute="bottom" secondItem="qUt-JP-IXs" secondAttribute="bottom" constant="5" id="e4I-1d-5wQ"/>
                         <constraint firstAttribute="trailing" secondItem="qUt-JP-IXs" secondAttribute="trailing" id="o6T-TC-f5u"/>
                         <constraint firstItem="qUt-JP-IXs" firstAttribute="top" secondItem="K1K-Li-i6e" secondAttribute="top" id="qj4-Rr-WAB"/>
                     </constraints>
@@ -53,6 +57,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="historyView" destination="qUt-JP-IXs" id="p5J-XJ-biZ"/>
+                <outlet property="titleLabel" destination="Tvh-za-BIv" id="ClN-zA-cNq"/>
             </connections>
             <point key="canvasLocation" x="32.799999999999997" y="80.959520239880064"/>
         </view>

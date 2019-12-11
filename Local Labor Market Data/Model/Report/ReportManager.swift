@@ -206,44 +206,67 @@ class ReportManager {
 // Mark: History
 extension ReportManager {
     // Get
-    class func getHistory(seriesIds: [String], seasonalAdjustment: SeasonalAdjustment? = nil,
-                          currentDate : Date = Date(),
-                          monthsHistory: Int,
-                          completion: ((APIResult<[SeriesReport]?, ReportError>) -> Void)?) {
-        guard seriesIds.count > 0 else { return }
+    class func getHistory(forArea area: Area, reportType: ReportType,
+                          seasonalAdjustment: SeasonalAdjustment = .adjusted,
+//                          currentDate : Date = Date(),
+//                          monthsHistory: Int,
+                          completion: ((APIResult<[AreaReport]?, ReportError>) -> Void)?) {
         
-        // Get Month and Year of SeriesReport
-        // If SeriesReport doesn't have Year/Month then use today.
-        let calendar = Calendar.current
-//        let latestDate: Date
-        
-//        // If Latest SeriesReport is available, use that as End Year
-//        let latestData = areaReport.seriesReport?.latestData()
-//        if let latestData = latestData {
-//            latestDate = DateFormatter.date(fromMonth: latestData.periodName, fromYear: latestData.year)
-//                ?? Date()
-//        }
-//        else {
-//            latestDate = Date()
-//        }
+        guard let context = area.managedObjectContext,
+            let nationalArea = DataUtil(managedContext: context).nationalArea()
+            else {return }
 
-        let startDate = calendar.date(byAdding: .month, value: monthsHistory, to: currentDate)
-        let endYear = calendar.component(.year, from: currentDate)
-        let startYear: Int? = (startDate != nil) ? calendar.component(.year, from: startDate!) : nil
-        
-        if let startYear = startYear {
-            getHistory(seriesIds: seriesIds,
-                       startYear: String(startYear),
-                        endYear:String(endYear),
-                        completion: completion)
+        var areaReports = [AreaReport]()
+        var seriesIds = [SeriesId]()
+        guard let localSeriesId = reportType.seriesId(forArea: area, adjustment: seasonalAdjustment) else {
+            return
         }
+        
+        seriesIds.append(localSeriesId)
+        var localAreaReport = AreaReport(reportType: reportType, area: area)
+        localAreaReport.seriesId = localSeriesId
+        areaReports.append(localAreaReport)
+
+        // If area is not national, add National seriesIds also
+        if !(area is National), let nationalSeriesId =
+            reportType.seriesId(forArea: nationalArea, adjustment: seasonalAdjustment) {
+            seriesIds.append(nationalSeriesId)
+            
+            var nationalAreaReport = AreaReport(reportType: reportType, area: nationalArea)
+            nationalAreaReport.seriesId = nationalSeriesId
+            areaReports.append(nationalAreaReport)
+        }
+        
+        _ = API().getReports(seriesIds: seriesIds,
+                             annualAverage: false,
+                             completion: { response in
+                switch response {
+                    case .success(let reportResponse):
+                    // Map the series from response to request
+                    if reportResponse.status == .REQUEST_SUCCEEDED {
+                        reportResponse.series?.forEach { (seriesReport) in
+                            if let index = areaReports.firstIndex(where: { $0.seriesId == seriesReport.seriesID}) {
+                                areaReports[index].seriesReport = seriesReport
+                            }
+                        }
+                        
+                        completion?(.success(areaReports))
+                    }
+                case .failure(let error):
+                    os_log("Report Error: %@", error.localizedDescription)
+
+                    completion?(.failure(error))
+            }
+        })
     }
     
     class func getHistory(seriesIds: [String], seasonalAdjustment: SeasonalAdjustment? = nil,
                           startYear: String, endYear: String,
                           completion: ((APIResult<[SeriesReport]?, ReportError>) -> Void)?) {
         
-        _ = API().getReports(seriesIds: seriesIds, startYear: startYear, endYear: endYear, annualAverage: false,
+        _ = API().getReports(seriesIds: seriesIds,
+//                             startYear: startYear, endYear: endYear,
+                             annualAverage: false,
                              completion: { response in
                                 switch response {
                                 case .success(let reportResponse):

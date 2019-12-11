@@ -119,7 +119,8 @@ class SearchViewController: UIViewController {
         tableView.register(UINib(nibName: SearchSectionTableHeaderView.nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: SearchSectionTableHeaderView.reuseIdentifier)
         tableView.sectionHeaderHeight = UITableView.automaticDimension;
         tableView.estimatedSectionHeaderHeight = 50
-        tableView.sectionIndexColor = #colorLiteral(red: 0.1607843137, green: 0.2117647059, blue: 0.5137254902, alpha: 1)
+        tableView.sectionIndexColor = UIColor(named: "AppBlue")
+        areaSegment.setios12Style()
         
         checkCurrentLocation()
         areas = dataUtil.searchArea(forArea: .metro)
@@ -134,22 +135,31 @@ class SearchViewController: UIViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
         searchController.searchBar.searchBarStyle = .default
-        searchController.searchBar.tintColor = .white
-        navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        
-        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            textfield.textColor = UIColor(hex: 0x979797)
-            textfield.tintColor = UIColor(hex: 0x979797)
-            if let backgroundview = textfield.subviews.first {
-                
-                backgroundview.backgroundColor = UIColor.white
-                // Rounded corner
-                backgroundview.layer.cornerRadius = 10;
-                backgroundview.clipsToBounds = true;
-            }
+        if #available(iOS 13.0, *) {
+            searchController.searchBar.searchTextField.backgroundColor = .systemBackground
+        } else {
+            searchController.searchBar.searchTextField.backgroundColor = .white
         }
+        if #available(iOS 13.0, *) {
+            searchController.searchBar.searchTextField.textColor = .placeholderText
+        }
+        else {
+            searchController.searchBar.searchTextField.textColor = UIColor(hex: 0x979797)
+        }
+//        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+//            textfield.textColor = UIColor(hex: 0x979797)
+//            textfield.tintColor = UIColor(hex: 0x979797)
+//            if let backgroundview = textfield.subviews.first {
+//
+//                backgroundview.backgroundColor = UIColor.white
+//                // Rounded corner
+//                backgroundview.layer.cornerRadius = 10;
+//                backgroundview.clipsToBounds = true;
+//            }
+//        }
         
+        navigationItem.searchController = searchController
         setupAccessibility()
     }
     

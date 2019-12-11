@@ -180,7 +180,14 @@ extension OwnershipTableViewCell: UITableViewDelegate {
         sectionHeaderView.titleLabel.scaleFont(forDataType: .reportOwnershipTitle, for: traitCollection)
         sectionHeaderView.delegate = self
         sectionHeaderView.infoButton.isHidden = false
-        sectionHeaderView.sectionBackgroundColor = UIColor(hex: 0xEFEFEF)
+        
+        
+        if #available(iOS 13.0, *) {
+            sectionHeaderView.sectionBackgroundColor = .secondarySystemFill
+        }
+        else {
+            sectionHeaderView.sectionBackgroundColor = UIColor(hex: 0xEFEFEF)
+        }
         
         let title = self.tableView(tableView, titleForHeaderInSection: section) ?? ""
         sectionHeaderView.configure(title: title, section: section,

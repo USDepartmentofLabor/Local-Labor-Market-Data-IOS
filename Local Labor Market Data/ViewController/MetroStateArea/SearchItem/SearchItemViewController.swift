@@ -48,6 +48,7 @@ class SearchItemViewController: UIViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.searchBarStyle = .default
         searchController.delegate = self
+
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
@@ -63,19 +64,30 @@ class SearchItemViewController: UIViewController {
         searchController.searchBar.placeholder = searchPlaceholderStr
         
         navigationController?.definesPresentationContext = true
-        searchController.searchBar.tintColor = .white
-        searchController.searchBar.delegate = self
-        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            textfield.textColor = UIColor(hex: 0x979797)
-            textfield.tintColor = UIColor(hex: 0x979797)
-            if let backgroundview = textfield.subviews.first {
-
-                backgroundview.backgroundColor = UIColor.white
-                // Rounded corner
-                backgroundview.layer.cornerRadius = 10;
-                backgroundview.clipsToBounds = true;
-            }
+        if #available(iOS 13.0, *) {
+            searchController.searchBar.searchTextField.backgroundColor = .systemBackground
+        } else {
+            searchController.searchBar.searchTextField.backgroundColor = .white
         }
+        if #available(iOS 13.0, *) {
+            searchController.searchBar.searchTextField.textColor = .label
+        }
+        else {
+            searchController.searchBar.searchTextField.textColor = UIColor(hex: 0x979797)
+        }
+//        searchController.searchBar.tintColor = .white
+        searchController.searchBar.delegate = self
+//        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+//            textfield.textColor = UIColor(hex: 0x979797)
+//            textfield.tintColor = UIColor(hex: 0x979797)
+//            if let backgroundview = textfield.subviews.first {
+//
+//                backgroundview.backgroundColor = UIColor.white
+//                // Rounded corner
+//                backgroundview.layer.cornerRadius = 10;
+//                backgroundview.clipsToBounds = true;
+//            }
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

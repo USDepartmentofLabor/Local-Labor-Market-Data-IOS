@@ -54,7 +54,9 @@ class AreaSectionHeaderView: UITableViewHeaderFooterView {
     func setupView() {
         dataView.layer.borderWidth = 1
         dataView.layer.borderColor = UIColor(hex: 0x969696).cgColor
-        
+        if #available(iOS 13.0, *) {
+            dataView.backgroundColor = .systemGray5
+        }
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleOpen(_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         titleView.addGestureRecognizer(tapGestureRecognizer)

@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "cleararrow.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "cleararrow_dark.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {

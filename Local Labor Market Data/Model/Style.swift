@@ -39,6 +39,10 @@ struct Style {
         case itemValue
         case itemChangeValue
         case searchAreaSegment
+        case graphAxisLabel
+        case graphLegendLabel
+        case graphValueLabel
+        case infoLabel
     }
     
     fileprivate static let styleMap: [DataType: (String?, CGFloat, UIFont.Weight, UIFont.TextStyle?, CGFloat?)] =
@@ -68,7 +72,11 @@ struct Style {
         .itemTitle: (nil, 15, .regular, .body, nil),
         .itemValue: (nil, 14, .regular, .body, nil),
         .itemChangeValue: (nil, 12, .regular, .subheadline, nil),
-        .searchAreaSegment: (nil, 15, .medium, .subheadline, nil)]
+        .searchAreaSegment: (nil, 15, .medium, .subheadline, nil),
+        .graphAxisLabel: (nil, 11, .regular, .body, nil),
+        .graphLegendLabel: (nil, 12, .regular, .body, nil),
+        .graphValueLabel: (nil, 10, .regular, .body, nil),
+        .infoLabel: (nil, 15, .regular, .subheadline, nil)]
     
     static func scaledFont(forDataType type: DataType, for traitCollection: UITraitCollection? = nil) -> UIFont {
         let (fontName, fontSize, fontWeight, textStyle, maximumPointSize) = styleMap[type]!

@@ -21,6 +21,10 @@
 		03260D1322281E5D0001A9C5 /* SearchItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03260D1222281E5D0001A9C5 /* SearchItemViewModel.swift */; };
 		03260D1522284C2D0001A9C5 /* UITapGestrure+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03260D1422284C2D0001A9C5 /* UITapGestrure+Extension.swift */; };
 		03265FDC2233107C000DFD71 /* ItemQCEWTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03265FDB2233107C000DFD71 /* ItemQCEWTableViewCell.swift */; };
+		03285B32239AEAA10008CB8A /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03285B31239AEAA10008CB8A /* NSAttributedString+Extension.swift */; };
+		03298D16238F1B9200246452 /* HistoryLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03298D15238F1B9200246452 /* HistoryLineChartView.swift */; };
+		032A9F1723917BE600B45848 /* HistoryBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032A9F1623917BE600B45848 /* HistoryBarChartView.swift */; };
+		032BEA4F2383210400C4FF01 /* HistoryUnemploymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032BEA4E2383210400C4FF01 /* HistoryUnemploymentTableViewCell.swift */; };
 		032C16652138241E004C1B3F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16642138241E004C1B3F /* Util.swift */; };
 		032C16672139918B004C1B3F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16662139918B004C1B3F /* Settings.swift */; };
 		032C16692139927F004C1B3F /* UICustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C16682139927F004C1B3F /* UICustomSwitch.swift */; };
@@ -28,6 +32,11 @@
 		033230BC21DE4AC80051E783 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230BB21DE4AC80051E783 /* ItemTableViewCell.swift */; };
 		033230BF21DE62D70051E783 /* SearchHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230BE21DE62D70051E783 /* SearchHistoryManager.swift */; };
 		033230C121DE63110051E783 /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033230C021DE63110051E783 /* SearchHistory.swift */; };
+		033750CC2369C3B900402D4A /* UISegmentControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033750CB2369C3B900402D4A /* UISegmentControl+Extension.swift */; };
+		033750CE2369CC8B00402D4A /* HistoryTabularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033750CD2369CC8B00402D4A /* HistoryTabularViewController.swift */; };
+		033750D02369CCB900402D4A /* HistoryBarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033750CF2369CCB900402D4A /* HistoryBarChartViewController.swift */; };
+		033750D22369CCCA00402D4A /* HistoryLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033750D12369CCCA00402D4A /* HistoryLineChartViewController.swift */; };
+		0342C309238D841E004A5158 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0342C308238D841E004A5158 /* Charts.framework */; };
 		0348FD0C211B9A7200155BE8 /* QCEWReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD0B211B9A7200155BE8 /* QCEWReport.swift */; };
 		0348FD19211DD64800155BE8 /* EmploymentWageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348FD17211DD64800155BE8 /* EmploymentWageTableViewCell.swift */; };
 		0348FD1A211DD64800155BE8 /* EmploymentWageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0348FD18211DD64800155BE8 /* EmploymentWageTableViewCell.xib */; };
@@ -89,8 +98,6 @@
 		03CB7D092130470C001C1570 /* NationalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB7D082130470C001C1570 /* NationalViewController.swift */; };
 		03CB7D0B2130A1B1001C1570 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB7D0A2130A1B1001C1570 /* CacheManager.swift */; };
 		03E35084213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */; };
-		03E35085213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */; };
-		03E35086213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */; };
 		03E3508E213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3508D213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift */; };
 		03E35096213EFC1A00AC7383 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */; };
 		03F1F86120EA622D00662446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86020EA622D00662446 /* AppDelegate.swift */; };
@@ -129,6 +136,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0342C30B238D841E004A5158 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0321E89E221459A2000780A4 /* QCEWIndustryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QCEWIndustryViewModel.swift; sourceTree = "<group>"; };
 		0322AE2C21B04AF200592970 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -145,10 +165,14 @@
 		03260D1222281E5D0001A9C5 /* SearchItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemViewModel.swift; sourceTree = "<group>"; };
 		03260D1422284C2D0001A9C5 /* UITapGestrure+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITapGestrure+Extension.swift"; sourceTree = "<group>"; };
 		03265FDB2233107C000DFD71 /* ItemQCEWTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemQCEWTableViewCell.swift; sourceTree = "<group>"; };
+		03285B31239AEAA10008CB8A /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		03287A7B2187640B0067686A /* BLSApp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BLSApp 2.xcdatamodel"; sourceTree = "<group>"; };
 		03287A7C2187665A0067686A /* CBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CBSA_COUNTY.txt; sourceTree = "<group>"; };
 		03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NECTACBSA_COUNTY.txt; sourceTree = "<group>"; };
+		03298D15238F1B9200246452 /* HistoryLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryLineChartView.swift; sourceTree = "<group>"; };
+		032A9F1623917BE600B45848 /* HistoryBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryBarChartView.swift; sourceTree = "<group>"; };
 		032B241F21AC8C8B0029AC90 /* oe.occupation.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oe.occupation.txt; sourceTree = "<group>"; };
+		032BEA4E2383210400C4FF01 /* HistoryUnemploymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryUnemploymentTableViewCell.swift; path = History/HistoryUnemploymentTableViewCell.swift; sourceTree = "<group>"; };
 		032C16642138241E004C1B3F /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		032C16662139918B004C1B3F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		032C16682139927F004C1B3F /* UICustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomSwitch.swift; sourceTree = "<group>"; };
@@ -156,6 +180,13 @@
 		033230BB21DE4AC80051E783 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		033230BE21DE62D70051E783 /* SearchHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryManager.swift; sourceTree = "<group>"; };
 		033230C021DE63110051E783 /* SearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistory.swift; sourceTree = "<group>"; };
+		033750CB2369C3B900402D4A /* UISegmentControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentControl+Extension.swift"; sourceTree = "<group>"; };
+		033750CD2369CC8B00402D4A /* HistoryTabularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabularViewController.swift; sourceTree = "<group>"; };
+		033750CF2369CCB900402D4A /* HistoryBarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryBarChartViewController.swift; sourceTree = "<group>"; };
+		033750D12369CCCA00402D4A /* HistoryLineChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryLineChartViewController.swift; sourceTree = "<group>"; };
+		0342C2FF238D7F25004A5158 /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0342C303238D8049004A5158 /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0342C308238D841E004A5158 /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0348FD0B211B9A7200155BE8 /* QCEWReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QCEWReport.swift; sourceTree = "<group>"; };
 		0348FD17211DD64800155BE8 /* EmploymentWageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmploymentWageTableViewCell.swift; sourceTree = "<group>"; };
 		0348FD18211DD64800155BE8 /* EmploymentWageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmploymentWageTableViewCell.xib; sourceTree = "<group>"; };
@@ -272,6 +303,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0342C309238D841E004A5158 /* Charts.framework in Frameworks */,
 				036164C0210B5DB70055708A /* CoreLocation.framework in Frameworks */,
 				101BA052906435C0F5634D7D /* Pods_Local_Labor_Market_Data.framework in Frameworks */,
 			);
@@ -293,6 +325,9 @@
 			children = (
 				0322AE2C21B04AF200592970 /* HistoryViewController.swift */,
 				0322AE2E21B063A900592970 /* HistoryViewModel.swift */,
+				033750CD2369CC8B00402D4A /* HistoryTabularViewController.swift */,
+				033750CF2369CCB900402D4A /* HistoryBarChartViewController.swift */,
+				033750D12369CCCA00402D4A /* HistoryLineChartViewController.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -357,6 +392,9 @@
 		036164BE210B5DB60055708A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0342C308238D841E004A5158 /* Charts.framework */,
+				0342C303238D8049004A5158 /* Charts.framework */,
+				0342C2FF238D7F25004A5158 /* Charts.framework */,
 				036164BF210B5DB70055708A /* CoreLocation.framework */,
 				E5AB87D9078368A6696D4D4F /* Pods_Local_Labor_Market_Data.framework */,
 				B9A14D7D86491DEBEF52401E /* Pods_Local_Labor_Market_DataTests.framework */,
@@ -435,6 +473,9 @@
 				035D971A2126267F005F1CA9 /* ActivityIndicatorView.swift */,
 				0325637F221DEE52000F3778 /* AreaSectionFooterView.swift */,
 				034F90AE2225D205002909F6 /* SearchItemTableViewCell.swift */,
+				032BEA4E2383210400C4FF01 /* HistoryUnemploymentTableViewCell.swift */,
+				03298D15238F1B9200246452 /* HistoryLineChartView.swift */,
+				032A9F1623917BE600B45848 /* HistoryBarChartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -577,6 +618,8 @@
 				03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */,
 				032C1D2B21E4F1C4007EEFF5 /* UINavigationController+Extension.swift */,
 				03260D1422284C2D0001A9C5 /* UITapGestrure+Extension.swift */,
+				033750CB2369C3B900402D4A /* UISegmentControl+Extension.swift */,
+				03285B31239AEAA10008CB8A /* NSAttributedString+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -633,6 +676,8 @@
 				03F1F85920EA622D00662446 /* Sources */,
 				03F1F85A20EA622D00662446 /* Frameworks */,
 				03F1F85B20EA622D00662446 /* Resources */,
+				0342C30B238D841E004A5158 /* Embed Frameworks */,
+				37C916B620750C3D04E987A8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -727,11 +772,9 @@
 				03953C3B211393D900BED557 /* OccupationalEmploymentTableViewCell.xib in Resources */,
 				03953C2F2112360A00BED557 /* UnEmploymentRateTableViewCell.xib in Resources */,
 				03953C2B21122FDB00BED557 /* AreaSectionHeaderView.xib in Resources */,
-				03E35086213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm in Resources */,
 				0396A05F2107581400DBECBD /* SearchSectionTableHeaderView.xib in Resources */,
 				03F1F86B20EA623000662446 /* Assets.xcassets in Resources */,
 				03F1F86620EA622D00662446 /* Main.storyboard in Resources */,
-				03E35085213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal in Resources */,
 				03256382221DEE7B000F3778 /* AreaSectionFooterView.xib in Resources */,
 				0348FD1A211DD64800155BE8 /* EmploymentWageTableViewCell.xib in Resources */,
 				0348FD1D211E0AB200155BE8 /* OwnershipDataTableViewCell.xib in Resources */,
@@ -768,6 +811,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		37C916B620750C3D04E987A8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6EE7311C2117B1F9B545BB0D /* [CP] Check Pods Manifest.lock */ = {
@@ -834,6 +899,8 @@
 				03953C1F2110AE0100BED557 /* OESReport.swift in Sources */,
 				03953C43211A2A1500BED557 /* UIView+Extension.swift in Sources */,
 				59ECE38D21ADC2F000EE06BE /* ItemViewController.swift in Sources */,
+				033750CE2369CC8B00402D4A /* HistoryTabularViewController.swift in Sources */,
+				03285B32239AEAA10008CB8A /* NSAttributedString+Extension.swift in Sources */,
 				03254927222451A700A51046 /* SearchItemViewController.swift in Sources */,
 				03953C412119C3D300BED557 /* UIColor+Extension.swift in Sources */,
 				0396A013210268FF00DBECBD /* SearchViewController.swift in Sources */,
@@ -847,6 +914,7 @@
 				035D9725212C7DF9005F1CA9 /* UILabel+Extension.swift in Sources */,
 				032C16692139927F004C1B3F /* UICustomSwitch.swift in Sources */,
 				03953C3A211393D900BED557 /* OccupationalEmploymentTableViewCell.swift in Sources */,
+				032BEA4F2383210400C4FF01 /* HistoryUnemploymentTableViewCell.swift in Sources */,
 				03953C2E2112360A00BED557 /* UnEmploymentRateTableViewCell.swift in Sources */,
 				032C16672139918B004C1B3F /* Settings.swift in Sources */,
 				0321E89F221459A2000780A4 /* QCEWIndustryViewModel.swift in Sources */,
@@ -863,6 +931,7 @@
 				03953C15210F968100BED557 /* ReportManager.swift in Sources */,
 				0324B00B221C84900066A8CD /* ItemCESTableViewCell.swift in Sources */,
 				03953C47211B297C00BED557 /* UIBarButtonItem+Extension.swift in Sources */,
+				033750D02369CCB900402D4A /* HistoryBarChartViewController.swift in Sources */,
 				0396A00120FFC3BD00DBECBD /* ZipCBSAMap+CoreDataClass.swift in Sources */,
 				03953C45211B23A300BED557 /* InfoViewController.swift in Sources */,
 				036164C4210BA5AE0055708A /* ResultsViewController.swift in Sources */,
@@ -874,9 +943,12 @@
 				0396A05D21074E5400DBECBD /* SearchSectionTableHeaderView.swift in Sources */,
 				0348FD19211DD64800155BE8 /* EmploymentWageTableViewCell.swift in Sources */,
 				03953C13210F83EF00BED557 /* APIReportResponse.swift in Sources */,
+				032A9F1723917BE600B45848 /* HistoryBarChartView.swift in Sources */,
 				0348FD24211FB03D00155BE8 /* Dictionary+Extension.swift in Sources */,
 				033230BC21DE4AC80051E783 /* ItemTableViewCell.swift in Sources */,
 				03F1F8A220EAC99700662446 /* ZipCountyMap+CoreDataClass.swift in Sources */,
+				033750D22369CCCA00402D4A /* HistoryLineChartViewController.swift in Sources */,
+				03298D16238F1B9200246452 /* HistoryLineChartView.swift in Sources */,
 				0396A05A21061F2900DBECBD /* Bundle+Extension.swift in Sources */,
 				03953C3F2118D28400BED557 /* CountyViewController.swift in Sources */,
 				036164C2210B869B0055708A /* MetroStateViewController.swift in Sources */,
@@ -890,6 +962,7 @@
 				034F90AF2225D205002909F6 /* SearchItemTableViewCell.swift in Sources */,
 				0323B7BB21AEE48000A3E73C /* ItemViewModel.swift in Sources */,
 				03953C49211B49E500BED557 /* GlossaryViewController.swift in Sources */,
+				033750CC2369C3B900402D4A /* UISegmentControl+Extension.swift in Sources */,
 				0322AE2F21B063A900592970 /* HistoryViewModel.swift in Sources */,
 				03CB7D092130470C001C1570 /* NationalViewController.swift in Sources */,
 				035D971F21270782005F1CA9 /* NumberFormatter+Extension.swift in Sources */,
@@ -1120,17 +1193,19 @@
 			baseConfigurationReference = E48D8C4DF2105E5CC3C73D26 /* Pods-Local Labor Market Data.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = FRPCGFXS7Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.BlsLocalData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = BlsLocalData;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1141,17 +1216,19 @@
 			baseConfigurationReference = EA7CB4E8B74C84B3038D6C93 /* Pods-Local Labor Market Data.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = FRPCGFXS7Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.BlsLocalData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = BlsLocalData;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
