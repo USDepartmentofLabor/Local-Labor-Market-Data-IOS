@@ -35,6 +35,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.MPPointF
 import kotlinx.android.synthetic.main.fragment_history_bar_chart.*
+import org.jetbrains.anko.support.v4.intentFor
 import java.io.Serializable
 import java.util.ArrayList
 
@@ -125,6 +126,10 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
                 }
             }
         }
+        val rounded = minYaxis.toInt()
+        val roundedUp5 = rounded + 0.5f
+        minYaxis = if (roundedUp5 > minYaxis) rounded.toFloat() else roundedUp5
+        minYaxis += 0.01f   // This has the effect of hiding the bottom label on the y-axis
     }
 
     private fun setupClickListeners() {
@@ -172,7 +177,7 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
 
         val xAxis = chart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.setDrawGridLines(false)
+        xAxis.setDrawGridLines(true)
         xAxis.granularity = 0.5f // only intervals of 1 day
         xAxis.setLabelCount(13, true)
         xAxis.valueFormatter = xAxisFormatter

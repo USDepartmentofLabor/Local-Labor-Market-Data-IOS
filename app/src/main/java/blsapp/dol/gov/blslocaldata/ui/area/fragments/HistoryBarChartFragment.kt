@@ -128,7 +128,9 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
                 }
             }
         }
-        minYaxis -= 0.5f
+        val rounded = minYaxis.toInt()
+        val roundedUp5 = rounded + 0.5f
+        minYaxis = if (roundedUp5 > minYaxis) rounded.toFloat() else roundedUp5
     }
 
     private fun setupClickListeners() {
