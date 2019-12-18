@@ -32,6 +32,7 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
@@ -171,7 +172,7 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
         chart.setPinchZoom(false)
         chart.setDrawGridBackground(false)
 
-        var xAxisFormatter:IAxisValueFormatter? = null
+        var xAxisFormatter:ValueFormatter? = null
 
         val xAxis = chart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -210,7 +211,7 @@ class HistoryBarChartFragment : Fragment(), OnChartValueSelectedListener {
 //        if (viewModel.history.barGraphValues.count() < 1 || viewModel.history.barGraphValues[0].count() < X_ITEM_COUNT) {
 //            return
 //        }
-        var xAxisFormatter:IAxisValueFormatter? = null
+        var xAxisFormatter:ValueFormatter? = null
         if (viewModel.history.xAxisLabels.count() > X_ITEM_COUNT) {
             val xAxisLabelsSub = viewModel.history.xAxisLabels.subList(graphStartingIndex, graphEndingIndex).toMutableList()
             xAxisLabelsSub.reverse()

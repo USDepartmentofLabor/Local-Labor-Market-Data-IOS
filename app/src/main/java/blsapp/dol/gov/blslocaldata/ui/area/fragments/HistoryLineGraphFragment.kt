@@ -30,6 +30,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
@@ -173,7 +174,7 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
         chart.setPinchZoom(false)
         chart.setDrawGridBackground(false)
 
-        var xAxisFormatter: IAxisValueFormatter? = null
+        var xAxisFormatter: ValueFormatter? = null
 
         val xAxis = chart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -212,7 +213,7 @@ class HistoryLineGraphFragment : Fragment(), OnChartValueSelectedListener {
 //            return
 //        }
 
-        var xAxisFormatter: IAxisValueFormatter? = null
+        var xAxisFormatter: ValueFormatter? = null
         if (viewModel.history.xAxisLabels.count() > LINE_X_ITEM_COUNT) {
             chart?.let {
                 val xAxisLabelsSub = viewModel.history.xAxisLabels.toMutableList()
