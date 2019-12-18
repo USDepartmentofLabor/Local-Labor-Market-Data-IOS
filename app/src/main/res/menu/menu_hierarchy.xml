@@ -5,7 +5,7 @@
     <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
-        android:contentDescription = "@string/action_search"
+        android:contentDescription = "Search Button"
         android:title="@string/action_search"
         app:showAsAction="ifRoom" />
 
@@ -13,6 +13,7 @@
         android:id="@+id/action_info"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/action_info"
+        android:contentDescription="Info Button"
         app:showAsAction="ifRoom" />
 
 </menu>

@@ -17,6 +17,7 @@ android:background="@color/colorHistoryButton">
     android:layout_marginBottom="8dp"
     android:gravity="center"
     android:text="History"
+    android:contentDescription="History Button"
     android:textColor="@color/colorPrimaryText"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
