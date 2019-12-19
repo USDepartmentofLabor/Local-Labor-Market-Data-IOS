@@ -138,26 +138,19 @@ class SearchViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         if #available(iOS 13.0, *) {
             searchController.searchBar.searchTextField.backgroundColor = .systemBackground
-        } else {
-            searchController.searchBar.searchTextField.backgroundColor = .white
-        }
-        if #available(iOS 13.0, *) {
             searchController.searchBar.searchTextField.textColor = .placeholderText
         }
-        else {
-            searchController.searchBar.searchTextField.textColor = UIColor(hex: 0x979797)
+        else if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textfield.textColor = UIColor(hex: 0x979797)
+            textfield.tintColor = UIColor(hex: 0x979797)
+            if let backgroundview = textfield.subviews.first {
+
+                backgroundview.backgroundColor = UIColor.white
+                // Rounded corner
+                backgroundview.layer.cornerRadius = 10;
+                backgroundview.clipsToBounds = true;
+            }
         }
-//        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-//            textfield.textColor = UIColor(hex: 0x979797)
-//            textfield.tintColor = UIColor(hex: 0x979797)
-//            if let backgroundview = textfield.subviews.first {
-//
-//                backgroundview.backgroundColor = UIColor.white
-//                // Rounded corner
-//                backgroundview.layer.cornerRadius = 10;
-//                backgroundview.clipsToBounds = true;
-//            }
-//        }
         
         navigationItem.searchController = searchController
         setupAccessibility()

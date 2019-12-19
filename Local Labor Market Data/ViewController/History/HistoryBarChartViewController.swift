@@ -208,7 +208,7 @@ class HistoryBarChartViewController: UIViewController, HistoryViewProtocol {
 
         if let nationalDataEntry = chartDataEntry.nationalDataEntry, nationalDataEntry.count > 0 {
             let nationalChartDataSet = BarChartDataSet(entries: chartDataEntry.nationalDataEntry, label: "National")
-            nationalChartDataSet.colors = [UIColor(named: "graphColorNational")!]
+            nationalChartDataSet.colors = [UIColor(named: "AppBlue")!]
             chartData.addDataSet(nationalChartDataSet)
         }
 

@@ -35,7 +35,7 @@ class HistoryViewController: UIViewController, OrientationProtocol {
     var viewModel: HistoryViewModel?
     weak var currentHistoryViewController: UIViewController? = nil
     
-    var currentHistoryFormat: HistoryFormat = .table
+    var currentHistoryFormat: HistoryFormat = .barChart
     
     lazy var activityIndicator = ActivityIndicatorView(text: "Loading", inView: view)
     var seasonalAdjustment: SeasonalAdjustment = .notAdjusted {
@@ -61,10 +61,13 @@ class HistoryViewController: UIViewController, OrientationProtocol {
         seasonallyAdjustedSwitch.onTintColor = UIColor(named: "AppBlue")
         seasonallyAdjustedTitle.scaleFont(forDataType: .seasonallyAdjustedSwitch, for: traitCollection)
         
+        formatSegmentController.setios12Style()
         if Util.isVoiceOverRunning {
+            formatSegmentController.selectedSegmentIndex = HistoryFormat.table.rawValue
             showHistoryController(format: .table)
         }
         else {
+            formatSegmentController.selectedSegmentIndex = HistoryFormat.lineChart.rawValue
             showHistoryController(format: .lineChart)
         }
         
@@ -83,13 +86,20 @@ class HistoryViewController: UIViewController, OrientationProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         if (self.isMovingFromParent) {
             UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+            UIViewController.attemptRotationToDeviceOrientation()
         }
     }
     
@@ -173,6 +183,7 @@ class HistoryViewController: UIViewController, OrientationProtocol {
             ])
         
         viewController.didMove(toParent: self)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     func hideContentController(controller: UIViewController) {

@@ -204,7 +204,7 @@ class HistoryLineChartViewController: UIViewController, HistoryViewProtocol {
 
         if let nationalDataEntry = chartDataEntry.nationalDataEntry, nationalDataEntry.count > 0 {
             let nationalChartDataSet = LineChartDataSet(entries: nationalDataEntry, label: "National")
-            nationalChartDataSet.colors = [UIColor(named: "graphColorNational")!]
+            nationalChartDataSet.colors = [UIColor(named: "AppBlue")!]
             nationalChartDataSet.lineWidth = 2.5
             nationalChartDataSet.circleRadius = 4.0
         

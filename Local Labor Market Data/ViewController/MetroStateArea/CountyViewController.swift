@@ -528,6 +528,7 @@ extension CountyViewController: UITableViewDelegate {
         
         sectionFooterView.section = section
         sectionFooterView.delegate = self
+        sectionFooterView.historyView.accessibilityHint = "Tap to display \(currentSection.title) history"
         return sectionFooterView
     }
     

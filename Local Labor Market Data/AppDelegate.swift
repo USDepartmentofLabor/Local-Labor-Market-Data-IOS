@@ -90,6 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let splitVC = UISplitViewController()
         splitVC.viewControllers = [navVC]
         splitVC.delegate = searchVC
+        splitVC.presentsWithGesture = false
         window?.rootViewController = splitVC
         window?.makeKeyAndVisible()
     }

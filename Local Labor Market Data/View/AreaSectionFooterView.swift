@@ -42,6 +42,10 @@ class AreaSectionFooterView: UITableViewHeaderFooterView {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(sectionClick(_:)))
         tapGestureRecognizer.cancelsTouchesInView = false
         historyView.addGestureRecognizer(tapGestureRecognizer)
+        
+        historyView.isAccessibilityElement = true
+        historyView.accessibilityTraits = .button
+        historyView.accessibilityLabel = "History"
     }
     
     @objc private func sectionClick(_ sender: UITapGestureRecognizer) {

@@ -35,11 +35,11 @@ class InfoViewController: UIViewController {
 
     func setupView() {
         title = "Info"
+        infoSection.setios12Style()
         displaySection(section: InfoSection.glossary)
     }
 
     // Actions
-    
     @IBAction func infoSectionChanged(_ sender: Any) {
         guard let section = InfoSection(rawValue: infoSection.selectedSegmentIndex) else { return }
         displaySection(section: section)
