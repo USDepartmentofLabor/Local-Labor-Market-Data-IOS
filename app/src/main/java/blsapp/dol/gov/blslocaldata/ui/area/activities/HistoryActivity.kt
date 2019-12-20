@@ -45,7 +45,9 @@ import kotlinx.android.synthetic.main.activity_history.*
          viewModel.mAdjustment = ReportManager.adjustment
          mArea.let {
              graphAreaTitle.text = it.title
+             graphAreaTitle.contentDescription = it.accessibilityStr
              tableAreaTitle.text = it.title
+             tableAreaTitle.contentDescription = it.accessibilityStr
              viewModel.mArea = it
              when (mArea) {
                  is MetroEntity -> {

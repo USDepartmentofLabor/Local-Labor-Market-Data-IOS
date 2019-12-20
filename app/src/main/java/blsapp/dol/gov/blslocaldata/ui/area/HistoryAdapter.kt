@@ -56,6 +56,8 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.ViewHolder>()  {
         } else {
             holder.nationalValue.text = " N/A "
         }
+        holder.nationalValue.contentDescription = "National ${holder.nationalValue.text}"
+        holder.localValue.contentDescription = "Local ${holder.localValue.text}"
         if (historyMonthYears.count() > position) {
             holder.monthYear.text = historyMonthYears[position]
         }
