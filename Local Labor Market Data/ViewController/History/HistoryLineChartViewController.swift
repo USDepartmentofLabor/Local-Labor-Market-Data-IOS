@@ -80,7 +80,7 @@ class HistoryLineChartViewController: UIViewController, HistoryViewProtocol {
             leftNavBtn.isHidden = true
         }
         
-        if chartView.highestVisibleX < chartView.chartXMax {
+        if chartView.highestVisibleX.rounded() < chartView.chartXMax {
             rightNavBtn.isHidden = false
         }
         else {
@@ -175,7 +175,7 @@ class HistoryLineChartViewController: UIViewController, HistoryViewProtocol {
         chartView.xAxis.axisMinimum = 0.0
         chartView.setVisibleXRange(minXRange: 5, maxXRange: Double(HistoryLineChartViewController.ITEM_COUNT))
         if let seriesDataArr = seriesDataArr {
-            chartView.xAxis.valueFormatter = DayAxisValueFormatter(chart: chartView, seriesDataArr: seriesDataArr)
+            chartView.xAxis.valueFormatter = LineDayAxisValueFormatter(chart: chartView, seriesDataArr: seriesDataArr)
         }
 
         if let entriesCount = chartView.data?.dataSets[0].entryCount {
@@ -225,5 +225,27 @@ class HistoryLineChartViewController: UIViewController, HistoryViewProtocol {
 extension HistoryLineChartViewController: HistoryChartViewDelegate {
     func didUpdateView() {
         refreshNavigation()
+    }
+}
+
+public class LineDayAxisValueFormatter: NSObject, IAxisValueFormatter {
+    weak var chart: BarLineChartViewBase?
+    var seriesDataArr: [SeriesData]?
+    
+    init(chart: BarLineChartViewBase, seriesDataArr: [SeriesData]) {
+        self.chart = chart
+        self.seriesDataArr = seriesDataArr
+    }
+    
+    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        guard value >= 0, value.rounded() < Double(seriesDataArr!.count) else {
+            return ""
+        }
+
+        guard let seriesData = seriesDataArr?[Int(value.rounded())] else {
+            return ""
+        }
+        
+        return seriesData.shortPeriodYearStr
     }
 }

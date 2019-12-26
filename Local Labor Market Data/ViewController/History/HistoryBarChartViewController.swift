@@ -130,7 +130,7 @@ class HistoryBarChartViewController: UIViewController, HistoryViewProtocol {
         }
 
         if let seriesDataArr = seriesDataArr {
-            xAxis.valueFormatter = DayAxisValueFormatter(chart: chartView, seriesDataArr: seriesDataArr)
+            xAxis.valueFormatter = BarDayAxisValueFormatter(chart: chartView, seriesDataArr: seriesDataArr)
         }
         
         let leftAxis = chartView.leftAxis
@@ -252,7 +252,7 @@ extension HistoryBarChartViewController: HistoryChartViewDelegate {
     }
 }
 
-public class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
+public class BarDayAxisValueFormatter: NSObject, IAxisValueFormatter {
     weak var chart: BarLineChartViewBase?
     var seriesDataArr: [SeriesData]?
     
@@ -262,11 +262,11 @@ public class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
     }
     
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        guard value >= 0, value.rounded() < Double(seriesDataArr!.count) else {
+        guard value >= 0, value.rounded(.down) < Double(seriesDataArr!.count) else {
             return ""
         }
 
-        guard let seriesData = seriesDataArr?[Int(value.rounded())] else {
+        guard let seriesData = seriesDataArr?[Int(value.rounded(.down))] else {
             return ""
         }
         

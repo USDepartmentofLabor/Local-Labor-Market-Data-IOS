@@ -10,7 +10,7 @@ import UIKit
 
 class AboutViewController: UIViewController {
 
-    let releaseDate = "Dec 15, 2019"
+    let releaseDate = "Dec 20, 2019"
     
     let about1Str = """
     The Bureau of Labor Statistics (BLS) Local Labor Market Data app presents data on unemployment rates and employment by industry and occupation for states, metro areas, and counties. The most recent figures are presented, although the latest available data will vary by data type and geography.

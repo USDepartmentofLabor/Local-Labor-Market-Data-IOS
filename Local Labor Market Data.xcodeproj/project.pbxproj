@@ -55,6 +55,7 @@
 		036164C7210D2C310055708A /* County+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164C5210D2C310055708A /* County+CoreDataClass.swift */; };
 		036164CD210D2C660055708A /* Metro+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164C9210D2C660055708A /* Metro+CoreDataClass.swift */; };
 		036164CF210D2C660055708A /* State+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036164CB210D2C660055708A /* State+CoreDataClass.swift */; };
+		0367C70623AD4DFD004A6DEE /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0367C70523AD4DFD004A6DEE /* SplitViewController.swift */; };
 		03953C01210F50B200BED557 /* APIReportRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C00210F50B200BED557 /* APIReportRequest.swift */; };
 		03953C04210F528E00BED557 /* LAUSReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C03210F528E00BED557 /* LAUSReport.swift */; };
 		03953C0A210F631000BED557 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03953C08210F631000BED557 /* Network.swift */; };
@@ -205,6 +206,7 @@
 		036164C5210D2C310055708A /* County+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "County+CoreDataClass.swift"; sourceTree = "<group>"; };
 		036164C9210D2C660055708A /* Metro+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metro+CoreDataClass.swift"; sourceTree = "<group>"; };
 		036164CB210D2C660055708A /* State+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "State+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0367C70523AD4DFD004A6DEE /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		03953C00210F50B200BED557 /* APIReportRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIReportRequest.swift; sourceTree = "<group>"; };
 		03953C03210F528E00BED557 /* LAUSReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LAUSReport.swift; sourceTree = "<group>"; };
 		03953C08210F631000BED557 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -620,6 +622,7 @@
 				03260D1422284C2D0001A9C5 /* UITapGestrure+Extension.swift */,
 				033750CB2369C3B900402D4A /* UISegmentControl+Extension.swift */,
 				03285B31239AEAA10008CB8A /* NSAttributedString+Extension.swift */,
+				0367C70523AD4DFD004A6DEE /* SplitViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -916,6 +919,7 @@
 				03953C3A211393D900BED557 /* OccupationalEmploymentTableViewCell.swift in Sources */,
 				032BEA4F2383210400C4FF01 /* HistoryUnemploymentTableViewCell.swift in Sources */,
 				03953C2E2112360A00BED557 /* UnEmploymentRateTableViewCell.swift in Sources */,
+				0367C70623AD4DFD004A6DEE /* SplitViewController.swift in Sources */,
 				032C16672139918B004C1B3F /* Settings.swift in Sources */,
 				0321E89F221459A2000780A4 /* QCEWIndustryViewModel.swift in Sources */,
 				03AC614020EAFB660088E694 /* NSManagedObject+Extension.swift in Sources */,
@@ -1195,7 +1199,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = FRPCGFXS7Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1218,7 +1222,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = FRPCGFXS7Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
