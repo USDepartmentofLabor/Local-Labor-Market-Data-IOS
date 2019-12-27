@@ -69,9 +69,11 @@ import kotlinx.android.synthetic.main.activity_history.*
          title = getString(R.string.history_unemployment_rate)
 
          if (UIUtil.isTalkBackActive()) {
+             graphTypeRadioGroup.visibility = View.GONE
              graphTypeRadioGroup.check(R.id.tableViewRadioButton)
          } else {
              graphTypeRadioGroup.check(R.id.lineGraphRadioButton)
+             graphTypeRadioGroup.visibility = View.VISIBLE
          }
         // showLineGraph()
 
