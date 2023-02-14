@@ -98,12 +98,10 @@
 		03B7088B2123211700C370D7 /* ReportViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B7088A2123211700C370D7 /* ReportViewCell.swift */; };
 		03CB7D092130470C001C1570 /* NationalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB7D082130470C001C1570 /* NationalViewController.swift */; };
 		03CB7D0B2130A1B1001C1570 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CB7D0A2130A1B1001C1570 /* CacheManager.swift */; };
-		03E35084213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */; };
 		03E3508E213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3508D213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift */; };
 		03E35096213EFC1A00AC7383 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E35095213EFC1A00AC7383 /* DateFormatter+Extension.swift */; };
 		03F1F86120EA622D00662446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86020EA622D00662446 /* AppDelegate.swift */; };
 		03F1F86620EA622D00662446 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86420EA622D00662446 /* Main.storyboard */; };
-		03F1F86920EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86720EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld */; };
 		03F1F86B20EA623000662446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86A20EA623000662446 /* Assets.xcassets */; };
 		03F1F86E20EA623000662446 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F86C20EA623000662446 /* LaunchScreen.storyboard */; };
 		03F1F87920EA623000662446 /* Local_Labor_Market_DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F87820EA623000662446 /* Local_Labor_Market_DataTests.swift */; };
@@ -117,6 +115,10 @@
 		59E7A065219F69DF0060B7FF /* Industry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E7A063219F69DF0060B7FF /* Industry+CoreDataClass.swift */; };
 		59ECE38D21ADC2F000EE06BE /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ECE38C21ADC2F000EE06BE /* ItemViewController.swift */; };
 		59ED36C721ED16DD00C45797 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED36C621ED16DD00C45797 /* SearchHistoryViewController.swift */; };
+		6906F133298B388B00FD45AF /* Local_Labor_Market_Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86720EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld */; };
+		6906F134298B38A300FD45AF /* Local_Labor_Market_Data.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */; };
+		6906F135298B38A600FD45AF /* Local_Labor_Market_Data.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */; };
+		6906F13E298B53ED00FD45AF /* Local_Labor_Market_Data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */; };
 		9C6ECE10018322AD100C417F /* Pods_Local_Labor_Market_DataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A14D7D86491DEBEF52401E /* Pods_Local_Labor_Market_DataTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -769,9 +771,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				03B708892123026E00C370D7 /* OwnershipTableViewCell.xib in Resources */,
+				6906F13E298B53ED00FD45AF /* Local_Labor_Market_Data.sqlite in Resources */,
+				6906F135298B38A600FD45AF /* Local_Labor_Market_Data.sqlite-shm in Resources */,
 				03953C3321136F1900BED557 /* IndustryEmploymentTableViewCell.xib in Resources */,
 				03F1F86E20EA623000662446 /* LaunchScreen.storyboard in Resources */,
-				03E35084213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite in Resources */,
+				6906F134298B38A300FD45AF /* Local_Labor_Market_Data.sqlite-wal in Resources */,
 				03953C3B211393D900BED557 /* OccupationalEmploymentTableViewCell.xib in Resources */,
 				03953C2F2112360A00BED557 /* UnEmploymentRateTableViewCell.xib in Resources */,
 				03953C2B21122FDB00BED557 /* AreaSectionHeaderView.xib in Resources */,
@@ -947,6 +951,7 @@
 				0396A05D21074E5400DBECBD /* SearchSectionTableHeaderView.swift in Sources */,
 				0348FD19211DD64800155BE8 /* EmploymentWageTableViewCell.swift in Sources */,
 				03953C13210F83EF00BED557 /* APIReportResponse.swift in Sources */,
+				6906F133298B388B00FD45AF /* Local_Labor_Market_Data.xcdatamodeld in Sources */,
 				032A9F1723917BE600B45848 /* HistoryBarChartView.swift in Sources */,
 				0348FD24211FB03D00155BE8 /* Dictionary+Extension.swift in Sources */,
 				033230BC21DE4AC80051E783 /* ItemTableViewCell.swift in Sources */,
@@ -986,7 +991,6 @@
 				03953C4B211B509D00BED557 /* AboutViewController.swift in Sources */,
 				0348FD0C211B9A7200155BE8 /* QCEWReport.swift in Sources */,
 				0396A0162106090800DBECBD /* LAUS_Area+CoreDataClass.swift in Sources */,
-				03F1F86920EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld in Sources */,
 				036164CD210D2C660055708A /* Metro+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1199,14 +1203,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = FRPCGFXS7Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.BlsLocalData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1222,14 +1227,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = FRPCGFXS7Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = gov.dol.BlsLocalData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
