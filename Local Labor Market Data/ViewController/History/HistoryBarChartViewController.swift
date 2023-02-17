@@ -130,7 +130,7 @@ class HistoryBarChartViewController: UIViewController, HistoryViewProtocol {
         }
 
         if let seriesDataArr = seriesDataArr {
-            xAxis.valueFormatter = BarDayAxisValueFormatter(chart: chartView, seriesDataArr: seriesDataArr)
+            xAxis.valueFormatter = BarDayAxisValueFormatter(chart: chartView, seriesDataArr: seriesDataArr) as! any AxisValueFormatter
         }
         
         let leftAxis = chartView.leftAxis
@@ -203,13 +203,14 @@ class HistoryBarChartViewController: UIViewController, HistoryViewProtocol {
         if let localDataEntry = chartDataEntry.localDataEntry, localDataEntry.count > 0 {
             let localChartDataSet = BarChartDataSet(entries: localDataEntry, label: viewModel?.area.displayType ?? "")
             localChartDataSet.colors = [UIColor(named: "graphColorLocal")!]
-            chartData.addDataSet(localChartDataSet)
+            chartData.append(localChartDataSet)
         }
 
-        if let nationalDataEntry = chartDataEntry.nationalDataEntry, nationalDataEntry.count > 0 {
-            let nationalChartDataSet = BarChartDataSet(entries: chartDataEntry.nationalDataEntry, label: "National")
+        if let nationalDataEntry = chartDataEntry.nationalDataEntry, nationalDataEntry.count > 0,
+           let nationalDataEntry = chartDataEntry.nationalDataEntry{
+            let nationalChartDataSet = BarChartDataSet(entries: nationalDataEntry, label: "National")
             nationalChartDataSet.colors = [UIColor(named: "AppBlue")!]
-            chartData.addDataSet(nationalChartDataSet)
+            chartData.append(nationalChartDataSet)
         }
 
         if chartData.dataSets.count > 1 {
@@ -252,7 +253,7 @@ extension HistoryBarChartViewController: HistoryChartViewDelegate {
     }
 }
 
-public class BarDayAxisValueFormatter: NSObject, IAxisValueFormatter {
+public class BarDayAxisValueFormatter: NSObject, AxisValueFormatter {
     weak var chart: BarLineChartViewBase?
     var seriesDataArr: [SeriesData]?
     

@@ -198,7 +198,7 @@ class HistoryLineChartViewController: UIViewController, HistoryViewProtocol {
             localChartDataSet.lineWidth = 2.5
             localChartDataSet.circleRadius = 4.0
             localChartDataSet.drawIconsEnabled = false
-            lineChartData.addDataSet(localChartDataSet)
+            lineChartData.append(localChartDataSet)
         }
         
 
@@ -208,7 +208,7 @@ class HistoryLineChartViewController: UIViewController, HistoryViewProtocol {
             nationalChartDataSet.lineWidth = 2.5
             nationalChartDataSet.circleRadius = 4.0
         
-            lineChartData.addDataSet(nationalChartDataSet)
+            lineChartData.append(nationalChartDataSet)
         }
 
         lineChartData.setDrawValues(false)
@@ -228,7 +228,7 @@ extension HistoryLineChartViewController: HistoryChartViewDelegate {
     }
 }
 
-public class LineDayAxisValueFormatter: NSObject, IAxisValueFormatter {
+public class LineDayAxisValueFormatter: NSObject, AxisValueFormatter {
     weak var chart: BarLineChartViewBase?
     var seriesDataArr: [SeriesData]?
     

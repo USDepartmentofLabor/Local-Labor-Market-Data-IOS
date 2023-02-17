@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -116,9 +116,16 @@
 		59ECE38D21ADC2F000EE06BE /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ECE38C21ADC2F000EE06BE /* ItemViewController.swift */; };
 		59ED36C721ED16DD00C45797 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED36C621ED16DD00C45797 /* SearchHistoryViewController.swift */; };
 		6906F133298B388B00FD45AF /* Local_Labor_Market_Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F86720EA622D00662446 /* Local_Labor_Market_Data.xcdatamodeld */; };
-		6906F134298B38A300FD45AF /* Local_Labor_Market_Data.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */; };
-		6906F135298B38A600FD45AF /* Local_Labor_Market_Data.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */; };
 		6906F13E298B53ED00FD45AF /* Local_Labor_Market_Data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */; };
+		69C13EFA299DDA6F007611CF /* ce.industry.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A05B219F45C30060B7FF /* ce.industry.txt */; };
+		69C13EFB299DDA74007611CF /* sm.industry.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A059219F45C20060B7FF /* sm.industry.txt */; };
+		69C13EFC299DDA78007611CF /* oe.occupation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 032B241F21AC8C8B0029AC90 /* oe.occupation.txt */; };
+		69C13EFD299DDA81007611CF /* ZIP_NECTA.csv in Resources */ = {isa = PBXBuildFile; fileRef = 59E7A0482195FB0F0060B7FF /* ZIP_NECTA.csv */; };
+		69C13EFE299DDA81007611CF /* CBSA_COUNTY.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03287A7C2187665A0067686A /* CBSA_COUNTY.txt */; };
+		69C13EFF299DDA81007611CF /* NECTACBSA_COUNTY.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */; };
+		69C13F00299DDA87007611CF /* ZIP_COUNTY.csv in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F89320EAA6C200662446 /* ZIP_COUNTY.csv */; };
+		69C13F01299DDA87007611CF /* ZIP_CBSA.csv in Resources */ = {isa = PBXBuildFile; fileRef = 03F1F89220EAA6C200662446 /* ZIP_CBSA.csv */; };
+		69C13F02299DDA95007611CF /* industry_titles.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03248DE6220B72EB004E4916 /* industry_titles.txt */; };
 		9C6ECE10018322AD100C417F /* Pods_Local_Labor_Market_DataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A14D7D86491DEBEF52401E /* Pods_Local_Labor_Market_DataTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -253,8 +260,6 @@
 		03CB7D082130470C001C1570 /* NationalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalViewController.swift; sourceTree = "<group>"; };
 		03CB7D0A2130A1B1001C1570 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Local_Labor_Market_Data.sqlite; sourceTree = "<group>"; };
-		03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Local_Labor_Market_Data.sqlite-wal"; sourceTree = "<group>"; };
-		03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Local_Labor_Market_Data.sqlite-shm"; sourceTree = "<group>"; };
 		03E3508B213ED85900AC7383 /* Local Labor Market DataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Local Labor Market DataUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E3508D213ED85900AC7383 /* Local_Labor_Market_DataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Local_Labor_Market_DataUITests.swift; sourceTree = "<group>"; };
 		03E3508F213ED85900AC7383 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -563,8 +568,6 @@
 				03287A7C2187665A0067686A /* CBSA_COUNTY.txt */,
 				03287A7D2187665A0067686A /* NECTACBSA_COUNTY.txt */,
 				03E35081213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite */,
-				03E35083213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-shm */,
-				03E35082213ED6F200AC7383 /* Local_Labor_Market_Data.sqlite-wal */,
 				0396A05521061D1300DBECBD /* LAUS */,
 				03F1F89220EAA6C200662446 /* ZIP_CBSA.csv */,
 				03F1F89320EAA6C200662446 /* ZIP_COUNTY.csv */,
@@ -770,17 +773,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69C13EFD299DDA81007611CF /* ZIP_NECTA.csv in Resources */,
+				69C13F02299DDA95007611CF /* industry_titles.txt in Resources */,
 				03B708892123026E00C370D7 /* OwnershipTableViewCell.xib in Resources */,
 				6906F13E298B53ED00FD45AF /* Local_Labor_Market_Data.sqlite in Resources */,
-				6906F135298B38A600FD45AF /* Local_Labor_Market_Data.sqlite-shm in Resources */,
 				03953C3321136F1900BED557 /* IndustryEmploymentTableViewCell.xib in Resources */,
 				03F1F86E20EA623000662446 /* LaunchScreen.storyboard in Resources */,
-				6906F134298B38A300FD45AF /* Local_Labor_Market_Data.sqlite-wal in Resources */,
+				69C13F01299DDA87007611CF /* ZIP_CBSA.csv in Resources */,
 				03953C3B211393D900BED557 /* OccupationalEmploymentTableViewCell.xib in Resources */,
+				69C13EFA299DDA6F007611CF /* ce.industry.txt in Resources */,
+				69C13EFF299DDA81007611CF /* NECTACBSA_COUNTY.txt in Resources */,
+				69C13F00299DDA87007611CF /* ZIP_COUNTY.csv in Resources */,
+				69C13EFC299DDA78007611CF /* oe.occupation.txt in Resources */,
 				03953C2F2112360A00BED557 /* UnEmploymentRateTableViewCell.xib in Resources */,
+				69C13EFE299DDA81007611CF /* CBSA_COUNTY.txt in Resources */,
 				03953C2B21122FDB00BED557 /* AreaSectionHeaderView.xib in Resources */,
 				0396A05F2107581400DBECBD /* SearchSectionTableHeaderView.xib in Resources */,
 				03F1F86B20EA623000662446 /* Assets.xcassets in Resources */,
+				69C13EFB299DDA74007611CF /* sm.industry.txt in Resources */,
 				03F1F86620EA622D00662446 /* Main.storyboard in Resources */,
 				03256382221DEE7B000F3778 /* AreaSectionFooterView.xib in Resources */,
 				0348FD1A211DD64800155BE8 /* EmploymentWageTableViewCell.xib in Resources */,
@@ -826,20 +836,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Local Labor Market Data/Pods-Local Labor Market Data-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6EE7311C2117B1F9B545BB0D /* [CP] Check Pods Manifest.lock */ = {
@@ -1203,10 +1208,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = FRPCGFXS7Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1227,10 +1232,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = FRPCGFXS7Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Local Labor Market Data/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,18 +1,31 @@
 PODS:
-  - Charts (3.4.0):
-    - Charts/Core (= 3.4.0)
-  - Charts/Core (3.4.0)
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
+  - SwiftAlgorithms (1.0.0)
 
 DEPENDENCIES:
-  - Charts
+  - Charts (from `https://github.com/danielgindi/Charts.git`, branch `master`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Charts
+  trunk:
+    - SwiftAlgorithms
+
+EXTERNAL SOURCES:
+  Charts:
+    :branch: master
+    :git: https://github.com/danielgindi/Charts.git
+
+CHECKOUT OPTIONS:
+  Charts:
+    :commit: 203700608a6e956e591e7387d77423fa3fea6947
+    :git: https://github.com/danielgindi/Charts.git
 
 SPEC CHECKSUMS:
-  Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
+  Charts: 354f86803d11d9c35de280587fef50d1af063978
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: d48da8c3d7f48740f190e0ae7d3121643be635fe
+PODFILE CHECKSUM: 41c9d136275a0fb6c061afba9cebe112101f92fa
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.11.3

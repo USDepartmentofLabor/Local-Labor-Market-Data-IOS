@@ -167,6 +167,7 @@ class ItemViewController: UIViewController {
         else {
             title = "\(viewModel.parentItem.title ?? "") (\(viewModel.parentItem.code ?? ""))"
         }
+        print ("GGG: Title: \(title)")
         parentTitleLabel.text = title
         reportPeriodLabel.text = ""
         
