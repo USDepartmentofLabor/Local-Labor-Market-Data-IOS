@@ -111,7 +111,19 @@ class AboutViewController: UIViewController {
         description8TextView.delegate = self
         
         versionValueLabel.text = Bundle.main.versionNumber  + "." + Bundle.main.buildNumber
-        releaseDateLabel.text = releaseDate
+        
+        let dateFormatter = DateFormatter();
+        dateFormatter.dateStyle = .long
+        releaseDateLabel.text = dateFormatter.string(from: buildDate)
+    }
+    
+    var buildDate: Date {
+        if let infoPath = Bundle.main.path(forResource: "Info", ofType: "plist"),
+            let infoAttr = try? FileManager.default.attributesOfItem(atPath: infoPath),
+            let infoDate = infoAttr[.modificationDate] as? Date {
+            return infoDate
+        }
+        return Date()
     }
     
     func openCareerInfo() {
