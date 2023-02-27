@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(NSHomeDirectory())
 #if false
         loadData()
+        print ("GGG: Load Data Done")
 #endif
         
         setupApprearance()
