@@ -1,11 +1,11 @@
 industry_code	industry_title	parent
-10	10 Total, all industries
+10	"10 Total, all industries"
 101	101 Goods-producing
 1011	1011 Natural resources and mining
-1012	1012 Construction	
+1012	1012 Construction
 1013	1013 Manufacturing
 102	102 Service-providing
-1021	1021 Trade, transportation, and utilities
+1021	"1021 Trade, transportation, and utilities"
 1022	1022 Information
 1023	1023 Financial activities
 1024	1024 Professional and business services
@@ -14,13 +14,13 @@ industry_code	industry_title	parent
 1027	1027 Other services
 1028	1028 Public administration
 1029	1029 Unclassified
-11	NAICS 11 Agriculture, forestry, fishing and hunting	1011
+11	"NAICS 11 Agriculture, forestry, fishing and hunting"	1011
 111	NAICS 111 Crop production
 1111	NAICS 1111 Oilseed and grain farming
 11111	NAICS 11111 Soybean farming
 111110	NAICS 111110 Soybean farming
-11112	NAICS 11112 Oilseed, except soybean, farming
-111120	NAICS 111120 Oilseed, except soybean, farming
+11112	"NAICS 11112 Oilseed, except soybean, farming"
+111120	"NAICS 111120 Oilseed, except soybean, farming"
 11113	NAICS 11113 Dry pea and bean farming
 111130	NAICS 111130 Dry pea and bean farming
 11114	NAICS 11114 Wheat farming
@@ -39,13 +39,13 @@ industry_code	industry_title	parent
 1113	NAICS 1113 Fruit and tree nut farming
 11131	NAICS 11131 Orange groves
 111310	NAICS 111310 Orange groves
-11132	NAICS 11132 Citrus, except orange, groves
-111320	NAICS 111320 Citrus, except orange, groves
+11132	"NAICS 11132 Citrus, except orange, groves"
+111320	"NAICS 111320 Citrus, except orange, groves"
 11133	NAICS 11133 Noncitrus fruit and tree nut farming
 111331	NAICS 111331 Apple orchards
 111332	NAICS 111332 Grape vineyards
 111333	NAICS 111333 Strawberry farming
-111334	NAICS 111334 Berry, except strawberry, farming
+111334	"NAICS 111334 Berry, except strawberry, farming"
 111335	NAICS 111335 Tree nut farming
 111336	NAICS 111336 Fruit and tree nut combination farming
 111339	NAICS 111339 Other noncitrus fruit farming
@@ -71,7 +71,7 @@ industry_code	industry_title	parent
 111998	NAICS 111998 All other miscellaneous crop farming
 112	NAICS 112 Animal production and aquaculture
 1121	NAICS 1121 Cattle ranching and farming
-11211	NAICS 11211 Beef cattle ranching, farming, and feedlots
+11211	"NAICS 11211 Beef cattle ranching, farming, and feedlots"
 112111	NAICS 112111 Beef cattle ranching and farming
 112112	NAICS 112112 Cattle feedlots
 11212	NAICS 11212 Dairy cattle and milk production
@@ -119,7 +119,7 @@ industry_code	industry_title	parent
 1133	NAICS 1133 Logging
 11331	NAICS 11331 Logging
 113310	NAICS 113310 Logging
-114	NAICS 114 Fishing, hunting and trapping
+114	"NAICS 114 Fishing, hunting and trapping"
 1141	NAICS 1141 Fishing
 11411	NAICS 11411 Fishing
 114111	NAICS 114111 Finfish fishing
@@ -132,8 +132,8 @@ industry_code	industry_title	parent
 1151	NAICS 1151 Support activities for crop production
 11511	NAICS 11511 Support activities for crop production
 115111	NAICS 115111 Cotton ginning
-115112	NAICS 115112 Soil preparation, planting, and cultivating
-115113	NAICS 115113 Crop harvesting, primarily by machine
+115112	"NAICS 115112 Soil preparation, planting, and cultivating"
+115113	"NAICS 115113 Crop harvesting, primarily by machine"
 115114	NAICS 115114 Other postharvest crop activities
 115115	NAICS 115115 Farm labor contractors and crew leaders
 115116	NAICS 115116 Farm management services
@@ -143,7 +143,7 @@ industry_code	industry_title	parent
 1153	NAICS 1153 Support activities for forestry
 11531	NAICS 11531 Support activities for forestry
 115310	NAICS 115310 Support activities for forestry
-21	NAICS 21 Mining, quarrying, and oil and gas extraction	1011
+21	"NAICS 21 Mining, quarrying, and oil and gas extraction"	1011
 211	NAICS 211 Oil and gas extraction
 2111	NAICS 2111 Oil and gas extraction
 21111	NAICS12 21111 Oil and gas extraction
@@ -153,7 +153,7 @@ industry_code	industry_title	parent
 211120	NAICS 211120 Crude petroleum extraction
 21113	NAICS 21113 Natural gas extraction
 211130	NAICS 211130 Natural gas extraction
-212	NAICS 212 Mining, except oil and gas
+212	"NAICS 212 Mining, except oil and gas"
 2121	NAICS 2121 Coal mining
 21211	NAICS 21211 Coal mining
 212111	NAICS 212111 Bituminous coal and lignite surface mining
@@ -165,8 +165,8 @@ industry_code	industry_title	parent
 21222	NAICS 21222 Gold ore and silver ore mining
 212221	NAICS 212221 Gold ore mining
 212222	NAICS 212222 Silver ore mining
-21223	NAICS 21223 Copper, nickel, lead, and zinc mining
-212230	NAICS 212230 Copper, nickel, lead, and zinc mining
+21223	"NAICS 21223 Copper, nickel, lead, and zinc mining"
+212230	"NAICS 212230 Copper, nickel, lead, and zinc mining"
 212231	NAICS12 212231 Lead ore and zinc ore mining
 212234	NAICS12 212234 Copper ore and nickel ore mining
 21229	NAICS 21229 Other metal ore mining
@@ -178,13 +178,13 @@ industry_code	industry_title	parent
 212312	NAICS 212312 Crushed and broken limestone mining
 212313	NAICS 212313 Crushed and broken granite mining
 212319	NAICS 212319 Other crushed and broken stone mining
-21232	NAICS 21232 Sand, gravel, clay, and refractory mining
+21232	"NAICS 21232 Sand, gravel, clay, and refractory mining"
 212321	NAICS 212321 Construction sand and gravel mining
 212322	NAICS 212322 Industrial sand mining
 212324	NAICS 212324 Kaolin and ball clay mining
-212325	NAICS 212325 Clay, ceramic, and refractory minerals mining
+212325	"NAICS 212325 Clay, ceramic, and refractory minerals mining"
 21239	NAICS 21239 Other nonmetallic mineral mining
-212391	NAICS 212391 Potash, soda, and borate mineral mining
+212391	"NAICS 212391 Potash, soda, and borate mineral mining"
 212392	NAICS 212392 Phosphate rock mining
 212393	NAICS 212393 Other chemical and fertilizer mineral mining
 212399	NAICS 212399 All other nonmetallic mineral mining
@@ -215,7 +215,7 @@ industry_code	industry_title	parent
 2212	NAICS 2212 Natural gas distribution
 22121	NAICS 22121 Natural gas distribution
 221210	NAICS 221210 Natural gas distribution
-2213	NAICS 2213 Water, sewage and other systems
+2213	"NAICS 2213 Water, sewage and other systems"
 22131	NAICS 22131 Water supply and irrigation systems
 221310	NAICS 221310 Water supply and irrigation systems
 22132	NAICS 22132 Sewage treatment facilities
@@ -246,9 +246,9 @@ industry_code	industry_title	parent
 2372	NAICS 2372 Land subdivision
 23721	NAICS 23721 Land subdivision
 237210	NAICS 237210 Land subdivision
-2373	NAICS 2373 Highway, street, and bridge construction
-23731	NAICS 23731 Highway, street, and bridge construction
-237310	NAICS 237310 Highway, street, and bridge construction
+2373	"NAICS 2373 Highway, street, and bridge construction"
+23731	"NAICS 23731 Highway, street, and bridge construction"
+237310	"NAICS 237310 Highway, street, and bridge construction"
 2379	NAICS 2379 Other heavy construction
 23799	NAICS 23799 Other heavy construction
 237990	NAICS 237990 Other heavy construction
@@ -357,16 +357,16 @@ industry_code	industry_title	parent
 311422	NAICS 311422 Specialty canning
 311423	NAICS 311423 Dried and dehydrated food manufacturing
 3115	NAICS 3115 Dairy product manufacturing
-31151	NAICS 31151 Dairy product, except frozen, manufacturing
+31151	"NAICS 31151 Dairy product, except frozen, manufacturing"
 311511	NAICS 311511 Fluid milk manufacturing
 311512	NAICS 311512 Creamery butter manufacturing
 311513	NAICS 311513 Cheese manufacturing
-311514	NAICS 311514 Dry, condensed, and evaporated dairy products
+311514	"NAICS 311514 Dry, condensed, and evaporated dairy products"
 31152	NAICS 31152 Ice cream and frozen dessert manufacturing
 311520	NAICS 311520 Ice cream and frozen dessert manufacturing
 3116	NAICS 3116 Animal slaughtering and processing
 31161	NAICS 31161 Animal slaughtering and processing
-311611	NAICS 311611 Animal, except poultry, slaughtering
+311611	"NAICS 311611 Animal, except poultry, slaughtering"
 311612	NAICS 311612 Meat processed from carcasses
 311613	NAICS 311613 Rendering and meat byproduct processing
 311615	NAICS 311615 Poultry processing
@@ -380,11 +380,11 @@ industry_code	industry_title	parent
 311811	NAICS 311811 Retail bakeries
 311812	NAICS 311812 Commercial bakeries
 311813	NAICS 311813 Frozen cakes and other pastries manufacturing
-31182	NAICS 31182 Cookie, cracker, and pasta manufacturing
+31182	"NAICS 31182 Cookie, cracker, and pasta manufacturing"
 311821	NAICS 311821 Cookie and cracker manufacturing
 311822	NAICS07 311822 Mixes and dough made from purchased flour
 311823	NAICS07 311823 Dry pasta manufacturing
-311824	NAICS 311824 Pasta, dough and mixes from purchased flour
+311824	"NAICS 311824 Pasta, dough and mixes from purchased flour"
 31183	NAICS 31183 Tortilla manufacturing
 311830	NAICS 311830 Tortilla manufacturing
 3119	NAICS 3119 Other food manufacturing
@@ -396,7 +396,7 @@ industry_code	industry_title	parent
 31193	NAICS 31193 Flavoring syrup and concentrate manufacturing
 311930	NAICS 311930 Flavoring syrup and concentrate manufacturing
 31194	NAICS 31194 Seasoning and dressing manufacturing
-311941	NAICS 311941 Mayonnaise, dressing, and sauce manufacturing
+311941	"NAICS 311941 Mayonnaise, dressing, and sauce manufacturing"
 311942	NAICS 311942 Spice and extract manufacturing
 31199	NAICS 31199 All other food manufacturing
 311991	NAICS 311991 Perishable prepared food manufacturing
@@ -422,9 +422,9 @@ industry_code	industry_title	parent
 31223	NAICS 31223 Tobacco manufacturing
 312230	NAICS 312230 Tobacco manufacturing
 313	NAICS 313 Textile mills	31-33
-3131	NAICS 3131 Fiber, yarn, and thread mills
-31311	NAICS 31311 Fiber, yarn, and thread mills
-313110	NAICS 313110 Fiber, yarn, and thread mills
+3131	"NAICS 3131 Fiber, yarn, and thread mills"
+31311	"NAICS 31311 Fiber, yarn, and thread mills"
+313110	"NAICS 313110 Fiber, yarn, and thread mills"
 313111	NAICS07 313111 Yarn spinning mills
 313112	NAICS07 313112 Yarn texturizing and twisting mills
 313113	NAICS07 313113 Thread mills
@@ -462,9 +462,9 @@ industry_code	industry_title	parent
 314911	NAICS07 314911 Textile bag mills
 314912	NAICS07 314912 Canvas and related product mills
 31499	NAICS 31499 All other textile product mills
-314991	NAICS07 314991 Rope, cordage, and twine mills
+314991	"NAICS07 314991 Rope, cordage, and twine mills"
 314992	NAICS07 314992 Tire cord and tire fabric mills
-314994	NAICS 314994 Rope, twine, tire cord and tire fabric mills
+314994	"NAICS 314994 Rope, twine, tire cord and tire fabric mills"
 314999	NAICS 314999 All other miscellaneous textile product mills
 315	NAICS 315 Apparel manufacturing	31-33
 3151	NAICS 3151 Apparel knitting mills
@@ -480,23 +480,23 @@ industry_code	industry_title	parent
 31521	NAICS 31521 Cut and sew apparel contractors
 315210	NAICS 315210 Cut and sew apparel contractors
 315211	NAICS07 315211 Men's and boys' apparel contractors
-315212	NAICS07 315212 Women's, girls', infants' apparel contractors
+315212	"NAICS07 315212 Women's, girls', infants' apparel contractors"
 31522	NAICS 31522 Men's and boys' cut and sew apparel mfg
 315220	NAICS 315220 Men's and boys' cut and sew apparel mfg
 315221	NAICS07 315221 Men's and boys' underwear and nightwear mfg
-315222	NAICS07 315222 Men's and boys' suit, coat, and overcoat mfg
-315223	NAICS07 315223 Men's and boys' shirt, except work shirt, mfg
-315224	NAICS07 315224 Men's and boys' pants, except work pants, mfg
+315222	"NAICS07 315222 Men's and boys' suit, coat, and overcoat mfg"
+315223	"NAICS07 315223 Men's and boys' shirt, except work shirt, mfg"
+315224	"NAICS07 315224 Men's and boys' pants, except work pants, mfg"
 315225	NAICS07 315225 Men's and boys' work clothing manufacturing
 315228	NAICS07 315228 Other men's and boys' outerwear manufacturing
 31523	NAICS07 31523 Women's and girls' cut and sew apparel mfg
 315231	NAICS07 315231 Women's and girls' lingerie and nightwear mfg
 315232	NAICS07 315232 Women's and girls' blouse and shirt mfg
 315233	NAICS07 315233 Women's and girls' dress manufacturing
-315234	NAICS07 315234 Women's and girls' suit, coat, and skirt mfg
+315234	"NAICS07 315234 Women's and girls' suit, coat, and skirt mfg"
 315239	NAICS07 315239 Other women's and girls' outerwear mfg
-31524	NAICS 31524 Women's, girls', infants' cut-sew apparel mfg
-315240	NAICS 315240 Women's, girls', infants' cut-sew apparel mfg
+31524	"NAICS 31524 Women's, girls', infants' cut-sew apparel mfg"
+315240	"NAICS 315240 Women's, girls', infants' cut-sew apparel mfg"
 31528	NAICS 31528 Other cut and sew apparel manufacturing
 315280	NAICS 315280 Other cut and sew apparel manufacturing
 31529	NAICS07 31529 Other cut and sew apparel manufacturing
@@ -506,7 +506,7 @@ industry_code	industry_title	parent
 3159	NAICS 3159 Accessories and other apparel manufacturing
 31599	NAICS 31599 Accessories and other apparel manufacturing
 315990	NAICS 315990 Accessories and other apparel manufacturing
-315991	NAICS07 315991 Hat, cap, and millinery manufacturing
+315991	"NAICS07 315991 Hat, cap, and millinery manufacturing"
 315992	NAICS07 315992 Glove and mitten manufacturing
 315993	NAICS07 315993 Men's and boys' neckwear manufacturing
 315999	NAICS07 315999 All other accessory and apparel manufacturing
@@ -544,20 +544,20 @@ industry_code	industry_title	parent
 3219	NAICS 3219 Other wood product manufacturing
 32191	NAICS 32191 Millwork
 321911	NAICS 321911 Wood window and door manufacturing
-321912	NAICS 321912 Cut stock, resawing lumber, and planing
-321918	NAICS 321918 Other millwork, including flooring
+321912	"NAICS 321912 Cut stock, resawing lumber, and planing"
+321918	"NAICS 321918 Other millwork, including flooring"
 32192	NAICS 32192 Wood container and pallet manufacturing
 321920	NAICS 321920 Wood container and pallet manufacturing
 32199	NAICS 32199 All other wood product manufacturing
-321991	NAICS 321991 Manufactured home, mobile home, manufacturing
+321991	"NAICS 321991 Manufactured home, mobile home, manufacturing"
 321992	NAICS 321992 Prefabricated wood building manufacturing
 321999	NAICS 321999 Miscellaneous wood product manufacturing
 322	NAICS 322 Paper manufacturing	31-33
-3221	NAICS 3221 Pulp, paper, and paperboard mills
+3221	"NAICS 3221 Pulp, paper, and paperboard mills"
 32211	NAICS 32211 Pulp mills
 322110	NAICS 322110 Pulp mills
 32212	NAICS 32212 Paper mills
-322121	NAICS 322121 Paper, except newsprint, mills
+322121	"NAICS 322121 Paper, except newsprint, mills"
 322122	NAICS 322122 Newsprint mills
 32213	NAICS 32213 Paperboard mills
 322130	NAICS 322130 Paperboard mills
@@ -566,7 +566,7 @@ industry_code	industry_title	parent
 322211	NAICS 322211 Corrugated and solid fiber box manufacturing
 322212	NAICS 322212 Folding paperboard box manufacturing
 322213	NAICS07 322213 Setup paperboard box manufacturing
-322214	NAICS07 322214 Fiber can, tube, and drum manufacturing
+322214	"NAICS07 322214 Fiber can, tube, and drum manufacturing"
 322215	NAICS07 322215 Nonfolding sanitary food container mfg.
 322219	NAICS 322219 Other paperboard container manufacturing
 32222	NAICS 32222 Paper bag and coated and treated paper mfg.
@@ -589,7 +589,7 @@ industry_code	industry_title	parent
 3231	NAICS 3231 Printing and related support activities
 32311	NAICS 32311 Printing
 323110	NAICS07 323110 Commercial lithographic printing
-323111	NAICS 323111 Commercial printing, except screen and books
+323111	"NAICS 323111 Commercial printing, except screen and books"
 323112	NAICS07 323112 Commercial flexographic printing
 323113	NAICS 323113 Commercial screen printing
 323114	NAICS07 323114 Quick printing
@@ -631,9 +631,9 @@ industry_code	industry_title	parent
 325191	NAICS07 325191 Gum and wood chemical manufacturing
 325192	NAICS07 325192 Cyclic crude and intermediate manufacturing
 325193	NAICS 325193 Ethyl alcohol manufacturing
-325194	NAICS 325194 Cyclic crude, intermediate, wood chemical mfg
+325194	"NAICS 325194 Cyclic crude, intermediate, wood chemical mfg"
 325199	NAICS 325199 All other basic organic chemical mfg.
-3252	NAICS 3252 Resin, rubber, and artificial fibers mfg.
+3252	"NAICS 3252 Resin, rubber, and artificial fibers mfg."
 32521	NAICS 32521 Resin and synthetic rubber manufacturing
 325211	NAICS 325211 Plastics material and resin manufacturing
 325212	NAICS 325212 Synthetic rubber manufacturing
@@ -645,7 +645,7 @@ industry_code	industry_title	parent
 32531	NAICS 32531 Fertilizer manufacturing
 325311	NAICS 325311 Nitrogenous fertilizer manufacturing
 325312	NAICS 325312 Phosphatic fertilizer manufacturing
-325314	NAICS 325314 Fertilizer, mixing only, manufacturing
+325314	"NAICS 325314 Fertilizer, mixing only, manufacturing"
 32532	NAICS 32532 Pesticide and other ag. chemical mfg.
 325320	NAICS 325320 Pesticide and other ag. chemical mfg.
 3254	NAICS 3254 Pharmaceutical and medicine manufacturing
@@ -654,12 +654,12 @@ industry_code	industry_title	parent
 325412	NAICS 325412 Pharmaceutical preparation manufacturing
 325413	NAICS 325413 In-vitro diagnostic substance manufacturing
 325414	NAICS 325414 Other biological product manufacturing
-3255	NAICS 3255 Paint, coating, and adhesive manufacturing
+3255	"NAICS 3255 Paint, coating, and adhesive manufacturing"
 32551	NAICS 32551 Paint and coating manufacturing
 325510	NAICS 325510 Paint and coating manufacturing
 32552	NAICS 32552 Adhesive manufacturing
 325520	NAICS 325520 Adhesive manufacturing
-3256	NAICS 3256 Soap, cleaning compound, and toiletry mfg.
+3256	"NAICS 3256 Soap, cleaning compound, and toiletry mfg."
 32561	NAICS 32561 Soap and cleaning compound manufacturing
 325611	NAICS 325611 Soap and other detergent manufacturing
 325612	NAICS 325612 Polish and other sanitation good mfg.
@@ -677,15 +677,15 @@ industry_code	industry_title	parent
 325998	NAICS 325998 Other miscellaneous chemical product mfg.
 326	NAICS 326 Plastics and rubber products manufacturing	31-33
 3261	NAICS 3261 Plastics product manufacturing
-32611	NAICS 32611 Plastics packaging materials, film and sheet
+32611	"NAICS 32611 Plastics packaging materials, film and sheet"
 326111	NAICS 326111 Plastics bag and pouch manufacturing
 326112	NAICS 326112 Plastics packaging film and sheet mfg.
 326113	NAICS 326113 Nonpackaging plastics film and sheet mfg.
-32612	NAICS 32612 Plastics pipe, fittings, and profile shapes
+32612	"NAICS 32612 Plastics pipe, fittings, and profile shapes"
 326121	NAICS 326121 Unlaminated plastics profile shape mfg.
 326122	NAICS 326122 Plastics pipe and pipe fitting manufacturing
-32613	NAICS 32613 Laminated plastics plate, sheet, and shapes
-326130	NAICS 326130 Laminated plastics plate, sheet, and shapes
+32613	"NAICS 32613 Laminated plastics plate, sheet, and shapes"
+326130	"NAICS 326130 Laminated plastics plate, sheet, and shapes"
 32614	NAICS 32614 Polystyrene foam product manufacturing
 326140	NAICS 326140 Polystyrene foam product manufacturing
 32615	NAICS 32615 Urethane and other foam product manufacturing
@@ -698,7 +698,7 @@ industry_code	industry_title	parent
 326199	NAICS 326199 All other plastics product manufacturing
 3262	NAICS 3262 Rubber product manufacturing
 32621	NAICS 32621 Tire manufacturing
-326211	NAICS 326211 Tire manufacturing, except retreading
+326211	"NAICS 326211 Tire manufacturing, except retreading"
 326212	NAICS 326212 Tire retreading
 32622	NAICS 32622 Rubber and plastics hose and belting mfg.
 326220	NAICS 326220 Rubber and plastics hose and belting mfg.
@@ -707,8 +707,8 @@ industry_code	industry_title	parent
 326299	NAICS 326299 All other rubber product manufacturing
 327	NAICS 327 Nonmetallic mineral product manufacturing	31-33
 3271	NAICS 3271 Clay product and refractory manufacturing
-32711	NAICS 32711 Pottery, ceramics, and plumbing fixture mfg
-327110	NAICS 327110 Pottery, ceramics, and plumbing fixture mfg
+32711	"NAICS 32711 Pottery, ceramics, and plumbing fixture mfg"
+327110	"NAICS 327110 Pottery, ceramics, and plumbing fixture mfg"
 327111	NAICS07 327111 Vitreous china plumbing fixture manufacturing
 327112	NAICS07 327112 Vitreous china and earthenware articles mfg.
 327113	NAICS07 327113 Porcelain electrical supply manufacturing
@@ -730,7 +730,7 @@ industry_code	industry_title	parent
 327310	NAICS 327310 Cement manufacturing
 32732	NAICS 32732 Ready-mix concrete manufacturing
 327320	NAICS 327320 Ready-mix concrete manufacturing
-32733	NAICS 32733 Concrete pipe, brick, and block manufacturing
+32733	"NAICS 32733 Concrete pipe, brick, and block manufacturing"
 327331	NAICS 327331 Concrete block and brick manufacturing
 327332	NAICS 327332 Concrete pipe manufacturing
 32739	NAICS 32739 Other concrete product manufacturing
@@ -755,8 +755,8 @@ industry_code	industry_title	parent
 331111	NAICS07 331111 Iron and steel mills
 331112	NAICS07 331112 Ferroalloy and related product manufacturing
 3312	NAICS 3312 Steel product mfg. from purchased steel
-33121	NAICS 33121 Iron, steel pipe and tube from purchase steel
-331210	NAICS 331210 Iron, steel pipe and tube from purchase steel
+33121	"NAICS 33121 Iron, steel pipe and tube from purchase steel"
+331210	"NAICS 331210 Iron, steel pipe and tube from purchase steel"
 33122	NAICS 33122 Rolling and drawing of purchased steel
 331221	NAICS 331221 Rolled steel shape manufacturing
 331222	NAICS 331222 Steel wire drawing
@@ -764,38 +764,38 @@ industry_code	industry_title	parent
 33131	NAICS 33131 Alumina and aluminum production
 331311	NAICS07 331311 Alumina refining
 331312	NAICS07 331312 Primary aluminum production
-331313	NAICS 331313 Alumina refining, primary aluminum production
+331313	"NAICS 331313 Alumina refining, primary aluminum production"
 331314	NAICS 331314 Secondary smelting and alloying of aluminum
-331315	NAICS 331315 Aluminum sheet, plate, and foil manufacturing
+331315	"NAICS 331315 Aluminum sheet, plate, and foil manufacturing"
 331316	NAICS07 331316 Aluminum extruded product manufacturing
-331318	NAICS 331318 Other aluminum rolling, drawing and extruding
+331318	"NAICS 331318 Other aluminum rolling, drawing and extruding"
 331319	NAICS07 331319 Other aluminum rolling and drawing
 3314	NAICS 3314 Other nonferrous metal production
 33141	NAICS 33141 Other nonferrous metal production
 331410	NAICS 331410 Other nonferrous metal production
 331411	NAICS07 331411 Primary smelting and refining of copper
-331419	NAICS07 331419 Primary nonferrous metal, except cu and al
-33142	NAICS 33142 Rolled, drawn, extruded, and alloyed copper
-331420	NAICS 331420 Rolled, drawn, extruded, and alloyed copper
-331421	NAICS07 331421 Copper rolling, drawing, and extruding
-331422	NAICS07 331422 Copper wire, except mechanical, drawing
+331419	"NAICS07 331419 Primary nonferrous metal, except cu and al"
+33142	"NAICS 33142 Rolled, drawn, extruded, and alloyed copper"
+331420	"NAICS 331420 Rolled, drawn, extruded, and alloyed copper"
+331421	"NAICS07 331421 Copper rolling, drawing, and extruding"
+331422	"NAICS07 331422 Copper wire, except mechanical, drawing"
 331423	NAICS07 331423 Secondary processing of copper
-33149	NAICS 33149 Nonferrous metal, except cu and al, shaping
-331491	NAICS 331491 Nonferrous metal, except cu and al, shaping
+33149	"NAICS 33149 Nonferrous metal, except cu and al, shaping"
+331491	"NAICS 331491 Nonferrous metal, except cu and al, shaping"
 331492	NAICS 331492 Secondary processing of other nonferrous
 3315	NAICS 3315 Foundries
 33151	NAICS 33151 Ferrous metal foundries
 331511	NAICS 331511 Iron foundries
 331512	NAICS 331512 Steel investment foundries
-331513	NAICS 331513 Steel foundries, except investment
+331513	"NAICS 331513 Steel foundries, except investment"
 33152	NAICS 33152 Nonferrous metal foundries
 331521	NAICS07 331521 Aluminum die-casting foundries
-331522	NAICS07 331522 Nonferrous, except al, die-casting foundries
+331522	"NAICS07 331522 Nonferrous, except al, die-casting foundries"
 331523	NAICS 331523 Nonferrous metal die-casting foundries
-331524	NAICS 331524 Aluminum foundries, except die-casting
-331525	NAICS07 331525 Copper foundries, except die-casting
-331528	NAICS07 331528 Other nonferrous foundries, exc. die-casting
-331529	NAICS 331529 Other nonferrous foundries, exc. die-casting
+331524	"NAICS 331524 Aluminum foundries, except die-casting"
+331525	"NAICS07 331525 Copper foundries, except die-casting"
+331528	"NAICS07 331528 Other nonferrous foundries, exc. die-casting"
+331529	"NAICS 331529 Other nonferrous foundries, exc. die-casting"
 332	NAICS 332 Fabricated metal product manufacturing	31-33
 3321	NAICS 3321 Forging and stamping
 33211	NAICS 33211 Forging and stamping
@@ -805,14 +805,14 @@ industry_code	industry_title	parent
 332115	NAICS07 332115 Crown and closure manufacturing
 332116	NAICS07 332116 Metal stamping
 332117	NAICS 332117 Powder metallurgy part manufacturing
-332119	NAICS 332119 Other metal stamping, except automotive
+332119	"NAICS 332119 Other metal stamping, except automotive"
 3322	NAICS 3322 Cutlery and handtool manufacturing
 33221	NAICS 33221 Cutlery and handtool manufacturing
-332211	NAICS07 332211 Cutlery and flatware, except precious, mfg.
+332211	"NAICS07 332211 Cutlery and flatware, except precious, mfg."
 332212	NAICS07 332212 Hand and edge tool manufacturing
 332213	NAICS07 332213 Saw blade and handsaw manufacturing
-332214	NAICS07 332214 Kitchen utensil, pot, and pan manufacturing
-332215	NAICS 332215 Metal cookware, cutlery and flatware mfg
+332214	"NAICS07 332214 Kitchen utensil, pot, and pan manufacturing"
+332215	"NAICS 332215 Metal cookware, cutlery and flatware mfg"
 332216	NAICS 332216 Saw blade and handtool manufacturing
 3323	NAICS 3323 Architectural and structural metals mfg.
 33231	NAICS 33231 Plate work and fabricated structural products
@@ -823,12 +823,12 @@ industry_code	industry_title	parent
 332321	NAICS 332321 Metal window and door manufacturing
 332322	NAICS 332322 Sheet metal work manufacturing
 332323	NAICS 332323 Ornamental and architectural metal work mfg.
-3324	NAICS 3324 Boiler, tank, and shipping container mfg.
+3324	"NAICS 3324 Boiler, tank, and shipping container mfg."
 33241	NAICS 33241 Power boiler and heat exchanger manufacturing
 332410	NAICS 332410 Power boiler and heat exchanger manufacturing
-33242	NAICS 33242 Metal tank, heavy gauge, manufacturing
-332420	NAICS 332420 Metal tank, heavy gauge, manufacturing
-33243	NAICS 33243 Metal can, box, and other container mfg.
+33242	"NAICS 33242 Metal tank, heavy gauge, manufacturing"
+332420	"NAICS 332420 Metal tank, heavy gauge, manufacturing"
+33243	"NAICS 33243 Metal can, box, and other container mfg."
 332431	NAICS 332431 Metal can manufacturing
 332439	NAICS 332439 Other metal container manufacturing
 3325	NAICS 3325 Hardware manufacturing
@@ -836,21 +836,21 @@ industry_code	industry_title	parent
 332510	NAICS 332510 Hardware manufacturing
 3326	NAICS 3326 Spring and wire product manufacturing
 33261	NAICS 33261 Spring and wire product manufacturing
-332611	NAICS07 332611 Spring, heavy gauge, manufacturing
-332612	NAICS07 332612 Spring, light gauge, manufacturing
+332611	"NAICS07 332611 Spring, heavy gauge, manufacturing"
+332612	"NAICS07 332612 Spring, light gauge, manufacturing"
 332613	NAICS 332613 Spring manufacturing
 332618	NAICS 332618 Other fabricated wire product manufacturing
 3327	NAICS 3327 Machine shops and threaded product mfg.
 33271	NAICS 33271 Machine shops
 332710	NAICS 332710 Machine shops
-33272	NAICS 33272 Turned product and screw, nut, and bolt mfg.
+33272	"NAICS 33272 Turned product and screw, nut, and bolt mfg."
 332721	NAICS 332721 Precision turned product manufacturing
-332722	NAICS 332722 Bolt, nut, screw, rivet, and washer mfg.
-3328	NAICS 3328 Coating, engraving, and heat treating metals
-33281	NAICS 33281 Coating, engraving, and heat treating metals
+332722	"NAICS 332722 Bolt, nut, screw, rivet, and washer mfg."
+3328	"NAICS 3328 Coating, engraving, and heat treating metals"
+33281	"NAICS 33281 Coating, engraving, and heat treating metals"
 332811	NAICS 332811 Metal heat treating
 332812	NAICS 332812 Metal coating and nonprecious engraving
-332813	NAICS 332813 Electroplating, anodizing, and coloring metal
+332813	"NAICS 332813 Electroplating, anodizing, and coloring metal"
 3329	NAICS 3329 Other fabricated metal product manufacturing
 33291	NAICS 33291 Metal valve manufacturing
 332911	NAICS 332911 Industrial valve manufacturing
@@ -860,7 +860,7 @@ industry_code	industry_title	parent
 33299	NAICS 33299 All other fabricated metal product mfg.
 332991	NAICS 332991 Ball and roller bearing manufacturing
 332992	NAICS 332992 Small arms ammunition manufacturing
-332993	NAICS 332993 Ammunition, except small arms, manufacturing
+332993	"NAICS 332993 Ammunition, except small arms, manufacturing"
 332994	NAICS 332994 Small arms and ordnance manufacturing
 332995	NAICS07 332995 Other ordnance and accessories manufacturing
 332996	NAICS 332996 Fabricated pipe and pipe fitting mfg.
@@ -868,7 +868,7 @@ industry_code	industry_title	parent
 332998	NAICS07 332998 Enameled iron and metal sanitary ware mfg.
 332999	NAICS 332999 Miscellaneous fabricated metal product mfg.
 333	NAICS 333 Machinery manufacturing	31-33
-3331	NAICS 3331 Ag., construction, and mining machinery mfg.
+3331	"NAICS 3331 Ag., construction, and mining machinery mfg."
 33311	NAICS 33311 Agricultural implement manufacturing
 333111	NAICS 333111 Farm machinery and equipment manufacturing
 333112	NAICS 333112 Lawn and garden equipment manufacturing
@@ -885,7 +885,7 @@ industry_code	industry_title	parent
 33324	NAICS 33324 Industrial machinery manufacturing
 333241	NAICS 333241 Food product machinery manufacturing
 333242	NAICS 333242 Semiconductor machinery manufacturing
-333243	NAICS 333243 Sawmill, woodworking, and paper machinery mfg
+333243	"NAICS 333243 Sawmill, woodworking, and paper machinery mfg"
 333244	NAICS 333244 Printing machinery and equipment mfg.
 333249	NAICS 333249 Other industrial machinery manufacturing
 33329	NAICS07 33329 Other industrial machinery manufacturing
@@ -909,15 +909,15 @@ industry_code	industry_title	parent
 33341	NAICS 33341 Hvac and commercial refrigeration equipment
 333411	NAICS07 333411 Air purification equipment manufacturing
 333412	NAICS07 333412 Industrial and commercial fan and blower mfg.
-333413	NAICS 333413 Fan, blower, air purification equipment mfg.
-333414	NAICS 333414 Heating equipment, except warm air furnaces
-333415	NAICS 333415 Ac, refrigeration, and forced air heating
+333413	"NAICS 333413 Fan, blower, air purification equipment mfg."
+333414	"NAICS 333414 Heating equipment, except warm air furnaces"
+333415	"NAICS 333415 Ac, refrigeration, and forced air heating"
 3335	NAICS 3335 Metalworking machinery manufacturing
 33351	NAICS 33351 Metalworking machinery manufacturing
 333511	NAICS 333511 Industrial mold manufacturing
 333512	NAICS07 333512 Metal cutting machine tool manufacturing
 333513	NAICS07 333513 Metal forming machine tool manufacturing
-333514	NAICS 333514 Special tool, die, jig, and fixture mfg.
+333514	"NAICS 333514 Special tool, die, jig, and fixture mfg."
 333515	NAICS 333515 Cutting tool and machine tool accessory mfg.
 333516	NAICS07 333516 Rolling mill machinery and equipment mfg.
 333517	NAICS 333517 Machine tool manufacturing
@@ -926,7 +926,7 @@ industry_code	industry_title	parent
 3336	NAICS 3336 Turbine and power transmission equipment mfg.
 33361	NAICS 33361 Turbine and power transmission equipment mfg.
 333611	NAICS 333611 Turbine and turbine generator set units mfg.
-333612	NAICS 333612 Speed changer, drive, and gear manufacturing
+333612	"NAICS 333612 Speed changer, drive, and gear manufacturing"
 333613	NAICS 333613 Mechanical power transmission equipment mfg.
 333618	NAICS 333618 Other engine equipment manufacturing
 3339	NAICS 3339 Other general purpose machinery manufacturing
@@ -934,12 +934,12 @@ industry_code	industry_title	parent
 333911	NAICS12 333911 Pump and pumping equipment manufacturing
 333912	NAICS 333912 Air and gas compressor manufacturing
 333913	NAICS12 333913 Measuring and dispensing pump manufacturing
-333914	NAICS 333914 Measuring, dispensing, and other pumping equipment manufacturing
+333914	"NAICS 333914 Measuring, dispensing, and other pumping equipment manufacturing"
 33392	NAICS 33392 Material handling equipment manufacturing
 333921	NAICS 333921 Elevator and moving stairway manufacturing
 333922	NAICS 333922 Conveyor and conveying equipment mfg.
-333923	NAICS 333923 Overhead cranes, hoists, and monorail systems
-333924	NAICS 333924 Industrial truck, trailer, and stacker mfg.
+333923	"NAICS 333923 Overhead cranes, hoists, and monorail systems"
+333924	"NAICS 333924 Industrial truck, trailer, and stacker mfg."
 33399	NAICS 33399 All other general purpose machinery mfg.
 333991	NAICS 333991 Power-driven handtool manufacturing
 333992	NAICS 333992 Welding and soldering equipment manufacturing
@@ -974,21 +974,21 @@ industry_code	industry_title	parent
 334413	NAICS 334413 Semiconductors and related device mfg.
 334414	NAICS07 334414 Electronic capacitor manufacturing
 334415	NAICS07 334415 Electronic resistor manufacturing
-334416	NAICS 334416 Capacitor, resistor, and inductor mfg.
+334416	"NAICS 334416 Capacitor, resistor, and inductor mfg."
 334417	NAICS 334417 Electronic connector manufacturing
 334418	NAICS 334418 Printed circuit assembly manufacturing
 334419	NAICS 334419 Other electronic component manufacturing
 3345	NAICS 3345 Electronic instrument manufacturing
 33451	NAICS 33451 Electronic instrument manufacturing
 334510	NAICS 334510 Electromedical apparatus manufacturing
-334511	NAICS 334511 Search, detection, and navigation instruments
+334511	"NAICS 334511 Search, detection, and navigation instruments"
 334512	NAICS 334512 Automatic environmental control manufacturing
 334513	NAICS 334513 Industrial process variable instruments
 334514	NAICS 334514 Totalizing fluid meters and counting devices
 334515	NAICS 334515 Electricity and signal testing instruments
 334516	NAICS 334516 Analytical laboratory instrument mfg.
 334517	NAICS 334517 Irradiation apparatus manufacturing
-334518	NAICS07 334518 Watch, clock, and part manufacturing
+334518	"NAICS07 334518 Watch, clock, and part manufacturing"
 334519	NAICS 334519 Other measuring and controlling device mfg.
 3346	NAICS 3346 Magnetic media manufacturing and reproducing
 33461	NAICS 33461 Magnetic media manufacturing and reproducing
@@ -1050,7 +1050,7 @@ industry_code	industry_title	parent
 3363	NAICS 3363 Motor vehicle parts manufacturing
 33631	NAICS 33631 Motor vehicle gasoline engine and parts mfg.
 336310	NAICS 336310 Motor vehicle gasoline engine and parts mfg.
-336311	NAICS07 336311 Carburetor, piston, ring, and valve mfg.
+336311	"NAICS07 336311 Carburetor, piston, ring, and valve mfg."
 336312	NAICS07 336312 Gasoline engine and engine parts mfg.
 33632	NAICS 33632 Motor vehicle electric equipment mfg.
 336320	NAICS 336320 Motor vehicle electric equipment mfg.
@@ -1087,7 +1087,7 @@ industry_code	industry_title	parent
 336612	NAICS 336612 Boat building
 3369	NAICS 3369 Other transportation equipment manufacturing
 33699	NAICS 33699 Other transportation equipment manufacturing
-336991	NAICS 336991 Motorcycle, bicycle, and parts manufacturing
+336991	"NAICS 336991 Motorcycle, bicycle, and parts manufacturing"
 336992	NAICS 336992 Military armored vehicles and tank parts mfg.
 336999	NAICS 336999 All other transportation equipment mfg.
 337	NAICS 337 Furniture and related product manufacturing	31-33
@@ -1098,15 +1098,15 @@ industry_code	industry_title	parent
 337121	NAICS 337121 Upholstered household furniture manufacturing
 337122	NAICS 337122 Nonupholstered wood household furniture mfg.
 337124	NAICS 337124 Metal household furniture manufacturing
-337125	NAICS 337125 Household furniture, exc. wood or metal, mfg.
+337125	"NAICS 337125 Household furniture, exc. wood or metal, mfg."
 337127	NAICS 337127 Institutional furniture manufacturing
-337129	NAICS07 337129 Wood tv, radio, and sewing machine housings
+337129	"NAICS07 337129 Wood tv, radio, and sewing machine housings"
 3372	NAICS 3372 Office furniture and fixtures manufacturing
 33721	NAICS 33721 Office furniture and fixtures manufacturing
 337211	NAICS 337211 Wood office furniture manufacturing
 337212	NAICS 337212 Custom architectural woodwork and millwork
-337214	NAICS 337214 Office furniture, except wood, manufacturing
-337215	NAICS 337215 Showcases, partitions, shelving, and lockers
+337214	"NAICS 337214 Office furniture, except wood, manufacturing"
+337215	"NAICS 337215 Showcases, partitions, shelving, and lockers"
 3379	NAICS 3379 Other furniture related product manufacturing
 33791	NAICS 33791 Mattress manufacturing
 337910	NAICS 337910 Mattress manufacturing
@@ -1124,18 +1124,18 @@ industry_code	industry_title	parent
 3399	NAICS 3399 Other miscellaneous manufacturing
 33991	NAICS 33991 Jewelry and silverware manufacturing
 339910	NAICS 339910 Jewelry and silverware manufacturing
-339911	NAICS07 339911 Jewelry, except costume, manufacturing
+339911	"NAICS07 339911 Jewelry, except costume, manufacturing"
 339912	NAICS07 339912 Silverware and hollowware manufacturing
 339913	NAICS07 339913 Jewelers' material and lapidary work mfg.
 339914	NAICS07 339914 Costume jewelry and novelty manufacturing
 33992	NAICS 33992 Sporting and athletic goods manufacturing
 339920	NAICS 339920 Sporting and athletic goods manufacturing
-33993	NAICS 33993 Doll, toy, and game manufacturing
-339930	NAICS 339930 Doll, toy, and game manufacturing
+33993	"NAICS 33993 Doll, toy, and game manufacturing"
+339930	"NAICS 339930 Doll, toy, and game manufacturing"
 339931	NAICS07 339931 Doll and stuffed toy manufacturing
-339932	NAICS07 339932 Game, toy, and children's vehicle mfg.
-33994	NAICS 33994 Office supplies, except paper, manufacturing
-339940	NAICS 339940 Office supplies, except paper, manufacturing
+339932	"NAICS07 339932 Game, toy, and children's vehicle mfg."
+33994	"NAICS 33994 Office supplies, except paper, manufacturing"
+339940	"NAICS 339940 Office supplies, except paper, manufacturing"
 339941	NAICS07 339941 Pen and mechanical pencil manufacturing
 339942	NAICS07 339942 Lead pencil and art good manufacturing
 339943	NAICS07 339943 Marking device manufacturing
@@ -1143,14 +1143,14 @@ industry_code	industry_title	parent
 33995	NAICS 33995 Sign manufacturing
 339950	NAICS 339950 Sign manufacturing
 33999	NAICS 33999 All other miscellaneous manufacturing
-339991	NAICS 339991 Gasket, packing, and sealing device mfg.
+339991	"NAICS 339991 Gasket, packing, and sealing device mfg."
 339992	NAICS 339992 Musical instrument manufacturing
-339993	NAICS 339993 Fastener, button, needle, and pin mfg.
-339994	NAICS 339994 Broom, brush, and mop manufacturing
+339993	"NAICS 339993 Fastener, button, needle, and pin mfg."
+339994	"NAICS 339994 Broom, brush, and mop manufacturing"
 339995	NAICS 339995 Burial casket manufacturing
 339999	NAICS 339999 All other miscellaneous manufacturing
 42	NAICS 42 Wholesale trade	1021
-423	NAICS 423 Merchant wholesalers, durable goods
+423	"NAICS 423 Merchant wholesalers, durable goods"
 4231	NAICS 4231 Motor vehicle and parts merchant wholesalers
 42311	NAICS 42311 Motor vehicle merchant wholesalers
 423110	NAICS 423110 Motor vehicle merchant wholesalers
@@ -1234,7 +1234,7 @@ industry_code	industry_title	parent
 423940	NAICS 423940 Jewelry merchant wholesalers
 42399	NAICS 42399 Other durable goods merchant wholesalers
 423990	NAICS 423990 Other durable goods merchant wholesalers
-424	NAICS 424 Merchant wholesalers, nondurable goods
+424	"NAICS 424 Merchant wholesalers, nondurable goods"
 4241	NAICS 4241 Paper and paper product merchant wholesalers
 42411	NAICS 42411 Printing and writing paper merch. whls.
 424110	NAICS 424110 Printing and writing paper merch. whls.
@@ -1324,12 +1324,12 @@ industry_code	industry_title	parent
 4412	NAICS 4412 Other motor vehicle dealers
 44121	NAICS 44121 Recreational vehicle dealers
 441210	NAICS 441210 Recreational vehicle dealers
-44122	NAICS 44122 Motorcycle, boat, and other vehicle dealers
-441221	NAICS07 441221 Motorcycle, atv, personal watercraft dealers
+44122	"NAICS 44122 Motorcycle, boat, and other vehicle dealers"
+441221	"NAICS07 441221 Motorcycle, atv, personal watercraft dealers"
 441222	NAICS 441222 Boat dealers
-441228	NAICS 441228 Motorcycle, atv, and other vehicle dealers
+441228	"NAICS 441228 Motorcycle, atv, and other vehicle dealers"
 441229	NAICS07 441229 All other motor vehicle dealers
-4413	NAICS 4413 Auto parts, accessories, and tire stores
+4413	"NAICS 4413 Auto parts, accessories, and tire stores"
 44131	NAICS 44131 Automotive parts and accessories stores
 441310	NAICS 441310 Automotive parts and accessories stores
 44132	NAICS 44132 Tire dealers
@@ -1346,9 +1346,9 @@ industry_code	industry_title	parent
 442299	NAICS 442299 All other home furnishings stores
 443	NAICS 443 Electronics and appliance stores	44-45
 4431	NAICS 4431 Electronics and appliance stores
-44311	NAICS07 44311 Appliance, tv, and other electronics stores
+44311	"NAICS07 44311 Appliance, tv, and other electronics stores"
 443111	NAICS07 443111 Household appliance stores
-443112	NAICS07 443112 Radio, tv, and other electronics stores
+443112	"NAICS07 443112 Radio, tv, and other electronics stores"
 44312	NAICS07 44312 Computer and software stores
 443120	NAICS07 443120 Computer and software stores
 44313	NAICS07 44313 Camera and photographic supplies stores
@@ -1369,8 +1369,8 @@ industry_code	industry_title	parent
 4442	NAICS 4442 Lawn and garden equipment and supplies stores
 44421	NAICS 44421 Outdoor power equipment stores
 444210	NAICS 444210 Outdoor power equipment stores
-44422	NAICS 44422 Nursery, garden, and farm supply stores
-444220	NAICS 444220 Nursery, garden, and farm supply stores
+44422	"NAICS 44422 Nursery, garden, and farm supply stores"
+444220	"NAICS 444220 Nursery, garden, and farm supply stores"
 445	NAICS 445 Food and beverage stores	44-45
 4451	NAICS 4451 Grocery stores
 44511	NAICS 44511 Supermarkets and other grocery stores
@@ -1388,9 +1388,9 @@ industry_code	industry_title	parent
 445291	NAICS 445291 Baked goods stores
 445292	NAICS 445292 Confectionery and nut stores
 445299	NAICS 445299 All other specialty food stores
-4453	NAICS 4453 Beer, wine, and liquor stores
-44531	NAICS 44531 Beer, wine, and liquor stores
-445310	NAICS 445310 Beer, wine, and liquor stores
+4453	"NAICS 4453 Beer, wine, and liquor stores"
+44531	"NAICS 44531 Beer, wine, and liquor stores"
+445310	"NAICS 445310 Beer, wine, and liquor stores"
 446	NAICS 446 Health and personal care stores	44-45
 4461	NAICS 4461 Health and personal care stores
 44611	NAICS 44611 Pharmacies and drug stores
@@ -1400,7 +1400,7 @@ industry_code	industry_title	parent
 44613	NAICS 44613 Optical goods stores
 446130	NAICS 446130 Optical goods stores
 44619	NAICS 44619 Other health and personal care stores
-446191	NAICS 446191 Food, health, supplement stores
+446191	"NAICS 446191 Food, health, supplement stores"
 446199	NAICS 446199 All other health and personal care stores
 447	NAICS 447 Gasoline stations	44-45
 4471	NAICS 4471 Gasoline stations
@@ -1425,37 +1425,37 @@ industry_code	industry_title	parent
 4482	NAICS 4482 Shoe stores
 44821	NAICS 44821 Shoe stores
 448210	NAICS 448210 Shoe stores
-4483	NAICS 4483 Jewelry, luggage, and leather goods stores
+4483	"NAICS 4483 Jewelry, luggage, and leather goods stores"
 44831	NAICS 44831 Jewelry stores
 448310	NAICS 448310 Jewelry stores
 44832	NAICS 44832 Luggage and leather goods stores
 448320	NAICS 448320 Luggage and leather goods stores
-451	NAICS 451 Sports, hobby, music instrument, book stores	44-45
+451	"NAICS 451 Sports, hobby, music instrument, book stores"	44-45
 4511	NAICS 4511 Sporting goods and musical instrument stores
 45111	NAICS 45111 Sporting goods stores
 451110	NAICS 451110 Sporting goods stores
-45112	NAICS 45112 Hobby, toy, and game stores
-451120	NAICS 451120 Hobby, toy, and game stores
-45113	NAICS 45113 Sewing, needlework, and piece goods stores
-451130	NAICS 451130 Sewing, needlework, and piece goods stores
+45112	"NAICS 45112 Hobby, toy, and game stores"
+451120	"NAICS 451120 Hobby, toy, and game stores"
+45113	"NAICS 45113 Sewing, needlework, and piece goods stores"
+451130	"NAICS 451130 Sewing, needlework, and piece goods stores"
 45114	NAICS 45114 Musical instrument and supplies stores
 451140	NAICS 451140 Musical instrument and supplies stores
 4512	NAICS 4512 Book stores and news dealers
 45121	NAICS 45121 Book stores and news dealers
 451211	NAICS 451211 Book stores
 451212	NAICS 451212 News dealers and newsstands
-45122	NAICS07 45122 Precorded tape, cd, and record stores
-451220	NAICS07 451220 Precorded tape, cd, and record stores
+45122	"NAICS07 45122 Precorded tape, cd, and record stores"
+451220	"NAICS07 451220 Precorded tape, cd, and record stores"
 452	NAICS 452 General merchandise stores	44-45
 4521	NAICS12 4521 Department stores
 45211	NAICS12 45211 Department stores
-452111	NAICS12 452111 Department stores, except discount
+452111	"NAICS12 452111 Department stores, except discount"
 452112	NAICS12 452112 Discount department stores
 4522	NAICS 4522 Department stores
 45221	NAICS 45221 Department stores
 452210	NAICS 452210 Department stores
-4523	NAICS 4523 General merchandise stores, including warehouse clubs and supercenters
-45231	NAICS 45231 General merchandise stores, including warehouse clubs and supercenters
+4523	"NAICS 4523 General merchandise stores, including warehouse clubs and supercenters"
+45231	"NAICS 45231 General merchandise stores, including warehouse clubs and supercenters"
 452311	NAICS 452311 Warehouse clubs and supercenters
 452319	NAICS 452319 All other general merchandise stores
 4529	NAICS12 4529 Other general merchandise stores
@@ -1467,11 +1467,11 @@ industry_code	industry_title	parent
 4531	NAICS 4531 Florists
 45311	NAICS 45311 Florists
 453110	NAICS 453110 Florists
-4532	NAICS 4532 Office supplies, stationery, and gift stores
+4532	"NAICS 4532 Office supplies, stationery, and gift stores"
 45321	NAICS 45321 Office supplies and stationery stores
 453210	NAICS 453210 Office supplies and stationery stores
-45322	NAICS 45322 Gift, novelty, and souvenir stores
-453220	NAICS 453220 Gift, novelty, and souvenir stores
+45322	"NAICS 45322 Gift, novelty, and souvenir stores"
+453220	"NAICS 453220 Gift, novelty, and souvenir stores"
 4533	NAICS 4533 Used merchandise stores
 45331	NAICS 45331 Used merchandise stores
 453310	NAICS 453310 Used merchandise stores
@@ -1480,8 +1480,8 @@ industry_code	industry_title	parent
 453910	NAICS 453910 Pet and pet supplies stores
 45392	NAICS 45392 Art dealers
 453920	NAICS 453920 Art dealers
-45393	NAICS 45393 Manufactured, mobile, home dealers
-453930	NAICS 453930 Manufactured, mobile, home dealers
+45393	"NAICS 45393 Manufactured, mobile, home dealers"
+453930	"NAICS 453930 Manufactured, mobile, home dealers"
 45399	NAICS 45399 All other miscellaneous store retailers
 453991	NAICS 453991 Tobacco stores
 453998	NAICS 453998 Store retailers not specified elsewhere
@@ -1499,7 +1499,7 @@ industry_code	industry_title	parent
 45431	NAICS 45431 Fuel dealers
 454310	NAICS 454310 Fuel dealers
 454311	NAICS07 454311 Heating oil dealers
-454312	NAICS07 454312 Liquefied petroleum gas, bottled gas, dealers
+454312	"NAICS07 454312 Liquefied petroleum gas, bottled gas, dealers"
 454319	NAICS07 454319 Other fuel dealers
 45439	NAICS 45439 Other direct selling establishments
 454390	NAICS 454390 Other direct selling establishments
@@ -1520,8 +1520,8 @@ industry_code	industry_title	parent
 482111	NAICS 482111 Line-haul railroads
 482112	NAICS 482112 Short line railroads
 483	NAICS 483 Water transportation	48-49
-4831	NAICS 4831 Sea, coastal, and great lakes transportation
-48311	NAICS 48311 Sea, coastal, and great lakes transportation
+4831	"NAICS 4831 Sea, coastal, and great lakes transportation"
+48311	"NAICS 48311 Sea, coastal, and great lakes transportation"
 483111	NAICS 483111 Deep sea freight transportation
 483112	NAICS 483112 Deep sea passenger transportation
 483113	NAICS 483113 Coastal and great lakes freight transport.
@@ -1532,18 +1532,18 @@ industry_code	industry_title	parent
 483212	NAICS 483212 Inland water passenger transportation
 484	NAICS 484 Truck transportation	48-49
 4841	NAICS 4841 General freight trucking
-48411	NAICS 48411 General freight trucking, local
-484110	NAICS 484110 General freight trucking, local
-48412	NAICS 48412 General freight trucking, long-distance
-484121	NAICS 484121 General freight trucking, long-distance tl
-484122	NAICS 484122 General freight trucking, long-distance ltl
+48411	"NAICS 48411 General freight trucking, local"
+484110	"NAICS 484110 General freight trucking, local"
+48412	"NAICS 48412 General freight trucking, long-distance"
+484121	"NAICS 484121 General freight trucking, long-distance tl"
+484122	"NAICS 484122 General freight trucking, long-distance ltl"
 4842	NAICS 4842 Specialized freight trucking
 48421	NAICS 48421 Used household and office goods moving
 484210	NAICS 484210 Used household and office goods moving
-48422	NAICS 48422 Other specialized trucking, local
-484220	NAICS 484220 Other specialized trucking, local
-48423	NAICS 48423 Other specialized trucking, long-distance
-484230	NAICS 484230 Other specialized trucking, long-distance
+48422	"NAICS 48422 Other specialized trucking, local"
+484220	"NAICS 484220 Other specialized trucking, local"
+48423	"NAICS 48423 Other specialized trucking, long-distance"
+484230	"NAICS 484230 Other specialized trucking, long-distance"
 485	NAICS 485 Transit and ground passenger transportation	48-49
 4851	NAICS 4851 Urban transit systems
 48511	NAICS 48511 Urban transit systems
@@ -1582,15 +1582,15 @@ industry_code	industry_title	parent
 48699	NAICS 48699 All other pipeline transportation
 486990	NAICS 486990 All other pipeline transportation
 487	NAICS 487 Scenic and sightseeing transportation	48-49
-4871	NAICS 4871 Scenic and sightseeing transportation, land
-48711	NAICS 48711 Scenic and sightseeing transportation, land
-487110	NAICS 487110 Scenic and sightseeing transportation, land
-4872	NAICS 4872 Scenic and sightseeing transportation, water
-48721	NAICS 48721 Scenic and sightseeing transportation, water
-487210	NAICS 487210 Scenic and sightseeing transportation, water
-4879	NAICS 4879 Scenic and sightseeing transportation, other
-48799	NAICS 48799 Scenic and sightseeing transportation, other
-487990	NAICS 487990 Scenic and sightseeing transportation, other
+4871	"NAICS 4871 Scenic and sightseeing transportation, land"
+48711	"NAICS 48711 Scenic and sightseeing transportation, land"
+487110	"NAICS 487110 Scenic and sightseeing transportation, land"
+4872	"NAICS 4872 Scenic and sightseeing transportation, water"
+48721	"NAICS 48721 Scenic and sightseeing transportation, water"
+487210	"NAICS 487210 Scenic and sightseeing transportation, water"
+4879	"NAICS 4879 Scenic and sightseeing transportation, other"
+48799	"NAICS 48799 Scenic and sightseeing transportation, other"
+487990	"NAICS 487990 Scenic and sightseeing transportation, other"
 488	NAICS 488 Support activities for transportation	48-49
 4881	NAICS 4881 Support activities for air transportation
 48811	NAICS 48811 Airport operations
@@ -1644,8 +1644,8 @@ industry_code	industry_title	parent
 49319	NAICS 49319 Other warehousing and storage
 493190	NAICS 493190 Other warehousing and storage
 51	NAICS 51 Information	1022
-511	NAICS 511 Publishing hierarchies, except internet
-5111	NAICS 5111 Newspaper, book, and directory publishers
+511	"NAICS 511 Publishing industries, except internet"
+5111	"NAICS 5111 Newspaper, book, and directory publishers"
 51111	NAICS 51111 Newspaper publishers
 511110	NAICS 511110 Newspaper publishers
 51112	NAICS 51112 Periodical publishers
@@ -1660,19 +1660,19 @@ industry_code	industry_title	parent
 5112	NAICS 5112 Software publishers
 51121	NAICS 51121 Software publishers
 511210	NAICS 511210 Software publishers
-512	NAICS 512 Motion picture and sound recording hierarchies
-5121	NAICS 5121 Motion picture and video hierarchies
+512	NAICS 512 Motion picture and sound recording industries
+5121	NAICS 5121 Motion picture and video industries
 51211	NAICS 51211 Motion picture and video production
 512110	NAICS 512110 Motion picture and video production
 51212	NAICS 51212 Motion picture and video distribution
 512120	NAICS 512120 Motion picture and video distribution
 51213	NAICS 51213 Motion picture and video exhibition
-512131	NAICS 512131 Motion picture theaters, except drive-ins
+512131	"NAICS 512131 Motion picture theaters, except drive-ins"
 512132	NAICS 512132 Drive-in motion picture theaters
-51219	NAICS 51219 Postproduction and other related hierarchies
+51219	NAICS 51219 Postproduction and other related industries
 512191	NAICS 512191 Teleproduction and postproduction services
-512199	NAICS 512199 Other motion picture and video hierarchies
-5122	NAICS 5122 Sound recording hierarchies
+512199	NAICS 512199 Other motion picture and video industries
+5122	NAICS 5122 Sound recording industries
 51221	NAICS12 51221 Record production
 512210	NAICS12 512210 Record production
 51222	NAICS 51222 Integrated record production and distribution
@@ -1683,9 +1683,9 @@ industry_code	industry_title	parent
 512240	NAICS 512240 Sound recording studios
 51225	NAICS 51225 Record production and distribution
 512250	NAICS 512250 Record production and distribution
-51229	NAICS 51229 Other sound recording hierarchies
-512290	NAICS 512290 Other sound recording hierarchies
-515	NAICS 515 Broadcasting, except internet
+51229	NAICS 51229 Other sound recording industries
+512290	NAICS 512290 Other sound recording industries
+515	"NAICS 515 Broadcasting, except internet"
 5151	NAICS 5151 Radio and television broadcasting
 51511	NAICS 51511 Radio broadcasting
 515111	NAICS 515111 Radio networks
@@ -1724,14 +1724,14 @@ industry_code	industry_title	parent
 517910	NAICS02 517910 Other telecommunications
 517911	NAICS 517911 Telecommunications resellers
 517919	NAICS 517919 All other telecommunications
-518	NAICS 518 Data processing, hosting and related services
+518	"NAICS 518 Data processing, hosting and related services"
 5181	NAICS02 5181 Isps and web search portals
 51811	NAICS02 51811 Isps and web search portals
 518111	NAICS02 518111 Internet service providers
 518112	NAICS02 518112 Web search portals
-5182	NAICS 5182 Data processing, hosting and related services
-51821	NAICS 51821 Data processing, hosting and related services
-518210	NAICS 518210 Data processing, hosting and related services
+5182	"NAICS 5182 Data processing, hosting and related services"
+51821	"NAICS 51821 Data processing, hosting and related services"
+518210	"NAICS 518210 Data processing, hosting and related services"
 519	NAICS 519 Other information services
 5191	NAICS 5191 Other information services
 51911	NAICS 51911 News syndicates
@@ -1775,7 +1775,7 @@ industry_code	industry_title	parent
 522320	NAICS 522320 Financial transaction processing and clearing
 52239	NAICS 52239 Other credit intermediation activities
 522390	NAICS 522390 Other credit intermediation activities
-523	NAICS 523 Securities, commodity contracts, investments
+523	"NAICS 523 Securities, commodity contracts, investments"
 5231	NAICS 5231 Securities and commodity contracts brokerage
 52311	NAICS 52311 Investment banking and securities dealing
 523110	NAICS 523110 Investment banking and securities dealing
@@ -1796,14 +1796,14 @@ industry_code	industry_title	parent
 52393	NAICS 52393 Investment advice
 523930	NAICS 523930 Investment advice
 52399	NAICS 52399 All other financial investment activities
-523991	NAICS 523991 Trust, fiduciary, and custody activities
+523991	"NAICS 523991 Trust, fiduciary, and custody activities"
 523999	NAICS 523999 Miscellaneous financial investment activities
 524	NAICS 524 Insurance carriers and related activities
 5241	NAICS 5241 Insurance carriers
 52411	NAICS 52411 Direct life and health insurance carriers
 524113	NAICS 524113 Direct life insurance carriers
 524114	NAICS 524114 Direct health and medical insurance carriers
-52412	NAICS 52412 Direct insurers, except life and health
+52412	"NAICS 52412 Direct insurers, except life and health"
 524126	NAICS 524126 Direct property and casualty insurers
 524127	NAICS 524127 Direct title insurance carriers
 524128	NAICS 524128 Other direct insurance carriers
@@ -1816,7 +1816,7 @@ industry_code	industry_title	parent
 524291	NAICS 524291 Claims adjusting
 524292	NAICS 524292 Third party administration of insurance funds
 524298	NAICS 524298 All other insurance related activities
-525	NAICS 525 Funds, trusts, and other financial vehicles
+525	"NAICS 525 Funds, trusts, and other financial vehicles"
 5251	NAICS 5251 Insurance and employee benefit funds
 52511	NAICS 52511 Pension funds
 525110	NAICS 525110 Pension funds
@@ -1827,8 +1827,8 @@ industry_code	industry_title	parent
 5259	NAICS 5259 Other investment pools and funds
 52591	NAICS 52591 Open-end investment funds
 525910	NAICS 525910 Open-end investment funds
-52592	NAICS 52592 Trusts, estates, and agency accounts
-525920	NAICS 525920 Trusts, estates, and agency accounts
+52592	"NAICS 52592 Trusts, estates, and agency accounts"
+525920	"NAICS 525920 Trusts, estates, and agency accounts"
 52593	NAICS02 52593 Real estate investment trusts
 525930	NAICS02 525930 Real estate investment trusts
 52599	NAICS 52599 Other financial vehicles
@@ -1860,8 +1860,8 @@ industry_code	industry_title	parent
 53211	NAICS 53211 Passenger car rental and leasing
 532111	NAICS 532111 Passenger car rental
 532112	NAICS 532112 Passenger car leasing
-53212	NAICS 53212 Truck, trailer, and rv rental and leasing
-532120	NAICS 532120 Truck, trailer, and rv rental and leasing
+53212	"NAICS 53212 Truck, trailer, and rv rental and leasing"
+532120	"NAICS 532120 Truck, trailer, and rv rental and leasing"
 5322	NAICS 5322 Consumer goods rental
 53221	NAICS 53221 Consumer electronics and appliances rental
 532210	NAICS 532210 Consumer electronics and appliances rental
@@ -1952,16 +1952,16 @@ industry_code	industry_title	parent
 54169	NAICS 54169 Other technical consulting services
 541690	NAICS 541690 Other technical consulting services
 5417	NAICS 5417 Scientific research and development services
-54171	NAICS 54171 Research and development in the physical, engineering, and life sciences
-541710	NAICS02 541710 Physical, engineering and biological research
+54171	"NAICS 54171 Research and development in the physical, engineering, and life sciences"
+541710	"NAICS02 541710 Physical, engineering and biological research"
 541711	NAICS12 541711 Research and development in biotechnology
 541712	NAICS12 541712 Other physical and biological research
 541713	NAICS 541713 Research and development in nanotechnology
 541714	NAICS 541714 Research and development in biotechnology (except nanobiotechnology)
-541715	NAICS 541715 Research and development in the physical, engineering, and life sciences (except nanotechnology and biotechnology)
+541715	"NAICS 541715 Research and development in the physical, engineering, and life sciences (except nanotechnology and biotechnology)"
 54172	NAICS 54172 Social science and humanities research
 541720	NAICS 541720 Social science and humanities research
-5418	NAICS 5418 Advertising, pr, and related services
+5418	"NAICS 5418 Advertising, pr, and related services"
 54181	NAICS 54181 Advertising agencies
 541810	NAICS 541810 Advertising agencies
 54182	NAICS 54182 Public relations agencies
@@ -1982,7 +1982,7 @@ industry_code	industry_title	parent
 54191	NAICS 54191 Marketing research and public opinion polling
 541910	NAICS 541910 Marketing research and public opinion polling
 54192	NAICS 54192 Photographic services
-541921	NAICS 541921 Photography studios, portrait
+541921	"NAICS 541921 Photography studios, portrait"
 541922	NAICS 541922 Commercial photography
 54193	NAICS 54193 Translation and interpretation services
 541930	NAICS 541930 Translation and interpretation services
@@ -2045,7 +2045,7 @@ industry_code	industry_title	parent
 561612	NAICS 561612 Security guards and patrol services
 561613	NAICS 561613 Armored car services
 56162	NAICS 56162 Security systems services
-561621	NAICS 561621 Security systems services, except locksmiths
+561621	"NAICS 561621 Security systems services, except locksmiths"
 561622	NAICS 561622 Locksmiths
 5617	NAICS 5617 Services to buildings and dwellings
 56171	NAICS 56171 Exterminating and pest control services
@@ -2096,7 +2096,7 @@ industry_code	industry_title	parent
 6113	NAICS 6113 Colleges and universities
 61131	NAICS 61131 Colleges and universities
 611310	NAICS 611310 Colleges and universities
-6114	NAICS 6114 Business, computer and management training
+6114	"NAICS 6114 Business, computer and management training"
 61141	NAICS 61141 Business and secretarial schools
 611410	NAICS 611410 Business and secretarial schools
 61142	NAICS 61142 Computer training
@@ -2127,7 +2127,7 @@ industry_code	industry_title	parent
 621	NAICS 621 Ambulatory health care services
 6211	NAICS 6211 Offices of physicians
 62111	NAICS 62111 Offices of physicians
-621111	NAICS 621111 Offices of physicians, except mental health
+621111	"NAICS 621111 Offices of physicians, except mental health"
 621112	NAICS 621112 Offices of mental health physicians
 6212	NAICS 6212 Offices of dentists
 62121	NAICS 62121 Offices of dentists
@@ -2178,16 +2178,16 @@ industry_code	industry_title	parent
 62231	NAICS 62231 Other hospitals
 622310	NAICS 622310 Other hospitals
 623	NAICS 623 Nursing and residential care facilities
-6231	NAICS 6231 Nursing care facilities, skilled nursing
-62311	NAICS 62311 Nursing care facilities, skilled nursing
-623110	NAICS 623110 Nursing care facilities, skilled nursing
+6231	"NAICS 6231 Nursing care facilities, skilled nursing"
+62311	"NAICS 62311 Nursing care facilities, skilled nursing"
+623110	"NAICS 623110 Nursing care facilities, skilled nursing"
 6232	NAICS 6232 Residential mental health facilities
 62321	NAICS 62321 Residential developmental disability homes
 623210	NAICS 623210 Residential developmental disability homes
 62322	NAICS 62322 Residential mental and substance abuse care
 623220	NAICS 623220 Residential mental and substance abuse care
-6233	NAICS 6233 Continuing care, assisted living facilities
-62331	NAICS 62331 Continuing care, assisted living facilities
+6233	"NAICS 6233 Continuing care, assisted living facilities"
+62331	"NAICS 62331 Continuing care, assisted living facilities"
 623311	NAICS 623311 Continuing care retirement communities
 623312	NAICS 623312 Assisted living facilities for the elderly
 6239	NAICS 6239 Other residential care facilities
@@ -2215,7 +2215,7 @@ industry_code	industry_title	parent
 6244	NAICS 6244 Child day care services
 62441	NAICS 62441 Child day care services
 624410	NAICS 624410 Child day care services
-71	NAICS 71 Arts, entertainment, and recreation	1026
+71	"NAICS 71 Arts, entertainment, and recreation"	1026
 711	NAICS 711 Performing arts and spectator sports
 7111	NAICS 7111 Performing arts companies
 71111	NAICS 71111 Theater companies and dinner theaters
@@ -2239,11 +2239,11 @@ industry_code	industry_title	parent
 7114	NAICS 7114 Agents and managers for public figures
 71141	NAICS 71141 Agents and managers for public figures
 711410	NAICS 711410 Agents and managers for public figures
-7115	NAICS 7115 Independent artists, writers, and performers
-71151	NAICS 71151 Independent artists, writers, and performers
-711510	NAICS 711510 Independent artists, writers, and performers
-712	NAICS 712 Museums, historical sites, zoos, and parks
-7121	NAICS 7121 Museums, historical sites, zoos, and parks
+7115	"NAICS 7115 Independent artists, writers, and performers"
+71151	"NAICS 71151 Independent artists, writers, and performers"
+711510	"NAICS 711510 Independent artists, writers, and performers"
+712	"NAICS 712 Museums, historical sites, zoos, and parks"
+7121	"NAICS 7121 Museums, historical sites, zoos, and parks"
 71211	NAICS 71211 Museums
 712110	NAICS 712110 Museums
 71212	NAICS 71212 Historical sites
@@ -2252,18 +2252,18 @@ industry_code	industry_title	parent
 712130	NAICS 712130 Zoos and botanical gardens
 71219	NAICS 71219 Nature parks and other similar institutions
 712190	NAICS 712190 Nature parks and other similar institutions
-713	NAICS 713 Amusements, gambling, and recreation
+713	"NAICS 713 Amusements, gambling, and recreation"
 7131	NAICS 7131 Amusement parks and arcades
 71311	NAICS 71311 Amusement and theme parks
 713110	NAICS 713110 Amusement and theme parks
 71312	NAICS 71312 Amusement arcades
 713120	NAICS 713120 Amusement arcades
-7132	NAICS 7132 Gambling hierarchies
-71321	NAICS 71321 Casinos, except casino hotels
-713210	NAICS 713210 Casinos, except casino hotels
-71329	NAICS 71329 Other gambling hierarchies
-713290	NAICS 713290 Other gambling hierarchies
-7139	NAICS 7139 Other amusement and recreation hierarchies
+7132	NAICS 7132 Gambling industries
+71321	"NAICS 71321 Casinos, except casino hotels"
+713210	"NAICS 713210 Casinos, except casino hotels"
+71329	NAICS 71329 Other gambling industries
+713290	NAICS 713290 Other gambling industries
+7139	NAICS 7139 Other amusement and recreation industries
 71391	NAICS 71391 Golf courses and country clubs
 713910	NAICS 713910 Golf courses and country clubs
 71392	NAICS 71392 Skiing facilities
@@ -2274,13 +2274,13 @@ industry_code	industry_title	parent
 713940	NAICS 713940 Fitness and recreational sports centers
 71395	NAICS 71395 Bowling centers
 713950	NAICS 713950 Bowling centers
-71399	NAICS 71399 All other amusement and recreation hierarchies
-713990	NAICS 713990 All other amusement and recreation hierarchies
+71399	NAICS 71399 All other amusement and recreation industries
+713990	NAICS 713990 All other amusement and recreation industries
 72	NAICS 72 Accommodation and food services	1026
 721	NAICS 721 Accommodation
 7211	NAICS 7211 Traveler accommodation
-72111	NAICS 72111 Hotels and motels, except casino hotels
-721110	NAICS 721110 Hotels and motels, except casino hotels
+72111	"NAICS 72111 Hotels and motels, except casino hotels"
+721110	"NAICS 721110 Hotels and motels, except casino hotels"
 72112	NAICS 72112 Casino hotels
 721120	NAICS 721120 Casino hotels
 72119	NAICS 72119 Other traveler accommodation
@@ -2300,7 +2300,7 @@ industry_code	industry_title	parent
 7222	NAICS07 7222 Limited-service eating places
 72221	NAICS07 72221 Limited-service eating places
 722211	NAICS07 722211 Limited-service restaurants
-722212	NAICS07 722212 Cafeterias, grill buffets, and buffets
+722212	"NAICS07 722212 Cafeterias, grill buffets, and buffets"
 722213	NAICS07 722213 Snack and nonalcoholic beverage bars
 7223	NAICS 7223 Special food services
 72231	NAICS 72231 Food service contractors
@@ -2309,16 +2309,16 @@ industry_code	industry_title	parent
 722320	NAICS 722320 Caterers
 72233	NAICS 72233 Mobile food services
 722330	NAICS 722330 Mobile food services
-7224	NAICS 7224 Drinking places, alcoholic beverages
-72241	NAICS 72241 Drinking places, alcoholic beverages
-722410	NAICS 722410 Drinking places, alcoholic beverages
+7224	"NAICS 7224 Drinking places, alcoholic beverages"
+72241	"NAICS 72241 Drinking places, alcoholic beverages"
+722410	"NAICS 722410 Drinking places, alcoholic beverages"
 7225	NAICS 7225 Restaurants and other eating places
 72251	NAICS 72251 Restaurants and other eating places
 722511	NAICS 722511 Full-service restaurants
 722513	NAICS 722513 Limited-service restaurants
-722514	NAICS 722514 Cafeterias, grill buffets, and buffets
+722514	"NAICS 722514 Cafeterias, grill buffets, and buffets"
 722515	NAICS 722515 Snack and nonalcoholic beverage bars
-81	NAICS 81 Other services, except public administration	1027
+81	"NAICS 81 Other services, except public administration"	1027
 811	NAICS 811 Repair and maintenance
 8111	NAICS 8111 Automotive repair and maintenance
 81111	NAICS 81111 Automotive mechanical and electrical repair
@@ -2326,7 +2326,7 @@ industry_code	industry_title	parent
 811112	NAICS 811112 Automotive exhaust system repair
 811113	NAICS 811113 Automotive transmission repair
 811118	NAICS 811118 Other automotive mechanical and elec. repair
-81112	NAICS 81112 Automotive body, interior, and glass repair
+81112	"NAICS 81112 Automotive body, interior, and glass repair"
 811121	NAICS 811121 Automotive body and interior repair
 811122	NAICS 811122 Automotive glass replacement shops
 81119	NAICS 81119 Other automotive repair and maintenance
@@ -2354,7 +2354,7 @@ industry_code	industry_title	parent
 811490	NAICS 811490 Other household goods repair and maintenance
 812	NAICS 812 Personal and laundry services
 8121	NAICS 8121 Personal care services
-81211	NAICS 81211 Hair, nail, and skin care services
+81211	"NAICS 81211 Hair, nail, and skin care services"
 812111	NAICS 812111 Barber shops
 812112	NAICS 812112 Beauty salons
 812113	NAICS 812113 Nail salons
@@ -2375,10 +2375,10 @@ industry_code	industry_title	parent
 812331	NAICS 812331 Linen supply
 812332	NAICS 812332 Industrial launderers
 8129	NAICS 8129 Other personal services
-81291	NAICS 81291 Pet care, except veterinary, services
-812910	NAICS 812910 Pet care, except veterinary, services
+81291	"NAICS 81291 Pet care, except veterinary, services"
+812910	"NAICS 812910 Pet care, except veterinary, services"
 81292	NAICS 81292 Photofinishing
-812921	NAICS 812921 Photofinishing laboratories, except one-hour
+812921	"NAICS 812921 Photofinishing laboratories, except one-hour"
 812922	NAICS 812922 One-hour photofinishing
 81293	NAICS 81293 Parking lots and garages
 812930	NAICS 812930 Parking lots and garages
@@ -2417,22 +2417,22 @@ industry_code	industry_title	parent
 81411	NAICS 81411 Private households
 814110	NAICS 814110 Private households
 92	NAICS 92 Public administration	1028
-921	NAICS 921 Executive, legislative and general government
-9211	NAICS 9211 Executive, legislative and general government
+921	"NAICS 921 Executive, legislative and general government"
+9211	"NAICS 9211 Executive, legislative and general government"
 92111	NAICS 92111 Executive offices
 921110	NAICS 921110 Executive offices
 92112	NAICS 92112 Legislative bodies
 921120	NAICS 921120 Legislative bodies
 92113	NAICS 92113 Public finance activities
 921130	NAICS 921130 Public finance activities
-92114	NAICS 92114 Executive and legislative offices, combined
-921140	NAICS 921140 Executive and legislative offices, combined
+92114	"NAICS 92114 Executive and legislative offices, combined"
+921140	"NAICS 921140 Executive and legislative offices, combined"
 92115	NAICS 92115 Tribal governments
 921150	NAICS 921150 Tribal governments
 92119	NAICS 92119 Other general government support
 921190	NAICS 921190 Other general government support
-922	NAICS 922 Justice, public order, and safety activities
-9221	NAICS 9221 Justice, public order, and safety activities
+922	"NAICS 922 Justice, public order, and safety activities"
+9221	"NAICS 9221 Justice, public order, and safety activities"
 92211	NAICS 92211 Courts
 922110	NAICS 922110 Courts
 92212	NAICS 92212 Police protection
@@ -2459,8 +2459,8 @@ industry_code	industry_title	parent
 923140	NAICS 923140 Administration of veterans' affairs
 924	NAICS 924 Administration of environmental programs
 9241	NAICS 9241 Administration of environmental programs
-92411	NAICS 92411 Air, water, and waste program administration
-924110	NAICS 924110 Air, water, and waste program administration
+92411	"NAICS 92411 Air, water, and waste program administration"
+924110	"NAICS 924110 Air, water, and waste program administration"
 92412	NAICS 92412 Administration of conservation programs
 924120	NAICS 924120 Administration of conservation programs
 925	NAICS 925 Community and housing program administration

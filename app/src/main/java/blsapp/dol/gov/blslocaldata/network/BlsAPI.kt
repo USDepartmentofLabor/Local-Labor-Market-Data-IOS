@@ -43,6 +43,7 @@ class BlsAPI constructor(val appContext: Context) {
 
         val apiKey = if (BuildConfig.DEBUG)  R.string.bls_api_key_debug else R.string.bls_api_key_production
 
+
         var requestIds = seriesIds
         var seriesIdsCopy:List<String>? = null
         if  (seriesIds.count() > 50) {
