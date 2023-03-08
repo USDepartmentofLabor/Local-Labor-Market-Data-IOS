@@ -1,10 +1,10 @@
 industry_code	naics_code	publishing_status	industry_name	display_level	selectable	sort_sequence	parent_code
-0	-	B	Total nonfarm	0	T	1	
-5000000	-	A	Total private	1	T	2	0
-6000000	-	A	Goods-producing	1	T	3	5000000
-8000000	-	A	Private service-providing	1	T	5	5000000
-7000000	-	B	Service-providing	1	T	4	8000000
-10000000	-	A	Mining and logging	2	T	6	6000000
+00000000	-	B	Total nonfarm	0	T	1
+05000000	-	A	Total private	1	T	2	00000000
+06000000	-	A	Goods-producing	1	T	3	05000000
+08000000	-	A	Private service-providing	1	T	5	05000000
+07000000	-	B	Service-providing	1	T	4	08000000
+10000000	-	A	Mining and logging	2	T	6	06000000
 10113300	1133	A	Logging	5	T	7	
 10210000	21	A	"Mining, quarrying, and oil and gas extraction"	3	T	8	
 10211000	211	A	Oil and gas extraction	4	T	9	
@@ -22,7 +22,7 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 10212390	21239	E	Other nonmetallic mineral mining and quarrying	6	T	21	
 10213000	213	A	Support activities for mining	4	T	22	
 10213112	213112	A	Support activities for oil and gas operations	7	T	23	
-20000000	23	A	Construction	2	T	24	6000000
+20000000	23	A	Construction	2	T	24	06000000
 20236000	236	A	Construction of buildings	4	T	25	
 20236100	2361	A	Residential building construction	5	T	26	
 20236115	236115	A	New single-family housing construction (except for-sale builders)	7	T	27	
@@ -74,7 +74,7 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 20238902	part 2389	C	Other nonresidential trade contractors	5	T	73	
 20238910	23891	A	Site preparation contractors	6	T	74	
 20238990	23899	A	All other specialty trade contractors	6	T	75	
-30000000	-	AO	Manufacturing	2	T	76	6000000
+30000000	-	AO	Manufacturing	2	T	76	06000000
 31000000	-	AO	Durable goods	3	T	77	30000000
 31321000	321	AO	Wood product manufacturing	4	T	78	
 31321100	3211	A	Sawmills and wood preservation	5	T	79	
@@ -293,7 +293,7 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 32329111	312111	C	Soft drinks	7	T	292	
 32329140	"31212,3,4"	C	"Breweries, wineries, and distilleries"	6	T	293	
 32329900	"3122,60"	C	Other miscellaneous nondurable goods manufacturing	5	T	294	
-40000000	-	A	"Trade, transportation, and utilities"	2	T	295	8000000
+40000000	-	A	"Trade, transportation, and utilities"	2	T	295	08000000
 41420000	42	A	Wholesale trade	3	T	296	40000000
 41423000	423	A	"Merchant wholesalers, durable goods"	4	T	297	
 41423100	4231	A	Motor vehicle and motor vehicle parts and supplies merchant wholesalers	5	T	298	
@@ -477,7 +477,7 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 44221122	221122	C	Electric power distribution	7	T	476	
 44221200	2212	A	Natural gas distribution	5	T	477	
 44221300	2213	A	"Water, sewage, and other systems"	5	T	478	
-50000000	51	A	Information	2	T	479	8000000
+50000000	51	A	Information	2	T	479	08000000
 50512000	512	A	Motion picture and sound recording industries	4	T	480	
 50512110	51211	C	Motion picture and video production	6	T	481	
 50512130	51213	C	Motion picture and video exhibition	6	T	482	
@@ -504,7 +504,7 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 50519000	519	A	"Web search portals, libraries, archives, and other information services"	4	T	503	
 50519210	51921	C	Libraries and archives	6	T	504	
 50519290	51929	C	Web search portals and all other information services	6	T	505	
-55000000	-	A	Financial activities	2	T	506	8000000
+55000000	-	A	Financial activities	2	T	506	08000000
 55520000	52	C	Finance and insurance	3	T	507	
 55521000	521	C	Monetary authorities-central bank	4	T	508	
 55522000	522	A	Credit intermediation and related activities	4	T	509	
@@ -568,7 +568,7 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 55532410	53241	A	"Construction, transportation, mining, and forestry machinery and equipment rental and leasing"	6	T	567	
 55532490	"53242,9"	A	"Office, commercial, and industrial machinery and equipment rental and leasing"	6	T	568	
 55533000	533	C	Lessors of nonfinancial intangible assets (except copyrighted works)	4	T	569	
-60000000	-	A	Professional and business services	2	T	570	8000000
+60000000	-	A	Professional and business services	2	T	570	08000000
 60540000	54	A	"Professional, scientific, and technical services"	3	T	571	
 60541100	5411	A	Legal services	5	T	572	
 60541110	54111	A	Offices of lawyers	6	T	573	
@@ -667,7 +667,7 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 60562900	5629	E	Remediation and other waste management services	5	T	666	
 60562910	56291	C	Remediation services	6	T	667	
 60562990	"56292,9"	C	Materials recovery facilities and other waste management services	6	T	668	
-65000000	-	A	Private education and health services	2	T	669	8000000
+65000000	-	A	Private education and health services	2	T	669	08000000
 65610000	61	B	Private educational services	3	T	670	
 65611100	6111	B	Private elementary and secondary schools	5	T	671	
 65611300	"6112,3"	B	"Private junior colleges, colleges, universities, and professional schools"	5	T	672	
@@ -734,7 +734,7 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 65624230	"62422,3"	E	"Community housing, emergency, and relief services"	6	T	733	
 65624300	6243	A	Vocational rehabilitation services	5	T	734	
 65624400	6244	A	Child care services	5	T	735	
-70000000	-	A	Leisure and hospitality	2	T	736	8000000
+70000000	-	A	Leisure and hospitality	2	T	736	08000000
 70710000	71	A	"Arts, entertainment, and recreation"	3	T	737	
 70711000	711	A	"Performing arts, spectator sports, and related industries"	4	T	738	
 70711100	7111	A	Performing arts companies	5	T	739	
@@ -780,7 +780,7 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 70722513	722513	A	Limited-service restaurants	7	T	779	
 70722514	722514	A	"Cafeterias, grill buffets, and buffets"	7	T	780	
 70722515	722515	A	Snack and nonalcoholic beverage bars	7	T	781	
-80000000	81	A	Other services	2	T	782	8000000
+80000000	81	A	Other services	2	T	782	08000000
 80811000	811	A	Repair and maintenance	4	T	783	
 80811100	8111	A	Automotive repair and maintenance	5	T	784	
 80811110	81111	A	Automotive mechanical and electrical repair and maintenance	6	T	785	
@@ -828,7 +828,7 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 80813920	81392	A	Professional organizations	6	T	827	
 80813930	81393	A	Labor unions and similar labor organizations	6	T	828	
 80813990	"81394,9"	A	"Political and other similar organizations (except business, professional, and labor organizations)"	6	T	829	
-90000000	-	B	Government	2	T	830	0
+90000000	-	B	Government	2	T	830	00000000
 90910000	-	B	Federal	3	T	831	
 90911000	-	B	"Federal, except U.S. Postal Service"	4	T	832	
 90916220	-	B	Federal hospitals	5	T	833	
