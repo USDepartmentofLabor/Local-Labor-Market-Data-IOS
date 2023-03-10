@@ -502,7 +502,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                     startYear = startYear,
                     endYear = startYear,
                     adjustment = mAdjustment,
-                    annualAvg = true,
+                    annualAvg = false,
                     successHandler = {
                         localAreaReports = it.toMutableList()
                         updateIndustryRows(it, hierarchyRows)
@@ -541,7 +541,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                     startYear = startYear,
                     endYear = startYear,
                     adjustment = mAdjustment,
-                    annualAvg =  true,
+                    annualAvg =  false,
                     successHandler = {
                         isLoading.postValue(false)
                         updateIndustryRows(it, hierarchyRows)
