@@ -3,7 +3,7 @@ industry_code	industry_name	parent_code
 05000000	Total Private	00000000
 06000000	Goods Producing	05000000
 08000000	Private Service Providing	05000000
-07000000	Service-Providing	08000000
+07000000	Service-Providing
 10000000	Mining and Logging	06000000
 10113300	Logging	
 10210000	"Mining, Quarrying, and Oil and Gas Extraction"	
@@ -318,7 +318,7 @@ industry_code	industry_name	parent_code
 80813300	Social Advocacy Organizations	
 80813400	Civic and Social Organizations	
 80813900	"Business, Professional, Labor, Political, and Similar Organizations"	
-90000000	Government	0
+90000000	Government	00000000
 90910000	Federal Government	
 90912811	National Security	
 90912991	Federal Government excluding Department of Defense	

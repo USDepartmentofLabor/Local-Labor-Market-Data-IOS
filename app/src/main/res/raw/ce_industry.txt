@@ -3,7 +3,7 @@ industry_code	naics_code	publishing_status	industry_name	display_level	selectabl
 05000000	-	A	Total private	1	T	2	00000000
 06000000	-	A	Goods-producing	1	T	3	05000000
 08000000	-	A	Private service-providing	1	T	5	05000000
-07000000	-	B	Service-providing	1	T	4	08000000
+07000000	-	B	Service-providing	1	T	4
 10000000	-	A	Mining and logging	2	T	6	06000000
 10113300	1133	A	Logging	5	T	7	
 10210000	21	A	"Mining, quarrying, and oil and gas extraction"	3	T	8	
