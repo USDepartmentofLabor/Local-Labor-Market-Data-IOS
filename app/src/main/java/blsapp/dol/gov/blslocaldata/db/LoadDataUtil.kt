@@ -166,7 +166,7 @@ class LoadDataUtil {
 
                     val industry = IndustryEntity(id = null,
                             industryCode = industryItem[0],
-                            title = title,
+                            title = title.replace("\"", ""),
                             superSector = true,
                             industryType = industryType.ordinal,
                             parentId = parentId)
@@ -206,7 +206,7 @@ class LoadDataUtil {
                 val code = industrys[currIndex][0]
                 var industry = IndustryEntity(id = null,
                         industryCode = code,
-                        title = title,
+                        title = title.replace("\"", ""),
                         superSector = true,
                         industryType = parent.industryType,
                         parentId = parentId)
