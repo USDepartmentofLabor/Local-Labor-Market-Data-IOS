@@ -16,7 +16,8 @@ class CacheManager {
     companion object {
 
         val cache:HashMap<String,CacheItem> = HashMap<String,CacheItem>()
-        val expirationTime = 2 * 3600 * 1000
+       // val expirationTime = 2 * 3600 * 1000
+        val expirationTime = 2 * 1000
 
         private fun key(value: BLSReportRequest): String? {
             return (value.toJSON())

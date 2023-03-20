@@ -63,11 +63,11 @@ class BlsAPI constructor(val appContext: Context) {
             return
         }
 
-        Log.w("gggAPI", "BLSAPI API Request: " + reportRequest.toJSON())
+        Log.w("gggAPI1", "BLSAPI API Request: " + reportRequest.toJSON())
         val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, BLS_API_URL, JSONObject(reportRequest.toJSON()),
                 Response.Listener { response ->
                     val reportReponse = response.toString().toObject<BLSReportResponse>()
-                    Log.w("gggAPI", "BLSAPI API Response: " + response.toString())
+                    Log.w("gggAPI2", "BLSAPI API Response: " + response.toString())
                     if (reportReponse.status == ReportStatus.REQUEST_SUCCEEDED) {
                         if (seriesIdsCopy != null) {
                             getReports(seriesIdsCopy, startYear, endYear, annualAvg, {nextResponse ->

@@ -558,6 +558,30 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
     private fun updateIndustryRows(areaReport: List<AreaReport>, hierarchyRows: ArrayList<HierarchyRow>) {
 
+        var periodMap = mutableMapOf("key" to 1)
+        for (i in areaReport.indices) {
+            val thisAreaRowItem = areaReport[i]
+            if  (thisAreaRowItem.seriesReport != null && thisAreaRowItem.seriesReport!!.data.isNotEmpty()) {
+                for (seriesReport in thisAreaRowItem.seriesReport!!.data) {
+                    val periodItem = periodMap[seriesReport.period]
+                    if (periodItem != null) {
+                        periodMap[seriesReport.period] = periodMap[seriesReport.period]!! + 1
+                    } else {
+                        periodMap[seriesReport.period] = 1
+                    }
+                }
+            }
+        }
+
+        var currentPeriod = " "
+        var currentPeriodCnt = 0
+        for (period in periodMap) {
+            if (period.value > currentPeriodCnt) {
+                currentPeriod = period.key
+                currentPeriodCnt = period.value
+            }
+        }
+
         for (i in areaReport.indices) {
             val thisAreaRow = areaReport[i]
 
@@ -566,61 +590,65 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
             setDefaultNAs(thisIndustryRow)
             if  (thisAreaRow.seriesReport != null && thisAreaRow.seriesReport!!.data.isNotEmpty()) {
 
-                var thisAreaRowData = thisAreaRow.seriesReport!!.data[0]
-                if (this.isCountyArea()) {
-                    thisAreaRow.seriesReport?.latestAnnualData()?.let { localReport ->
+                var thisAreaRowData = thisAreaRow.seriesReport!!.data.find {
+                    it.period == currentPeriod
+                }
+                if (thisAreaRowData != null) {
+                    if (this.isCountyArea()) {
+                        thisAreaRow.seriesReport?.latestAnnualData()?.let { localReport ->
 
-                        //  if  (localReport.period != "M13") return
-                        thisAreaRowData = localReport
+                            //  if  (localReport.period != "M13") return
+                            thisAreaRowData = localReport
+                        }
                     }
-                }
 
-                if (periodName == null) {
-                    periodName = thisAreaRowData.periodName
-                }
-                year = thisAreaRowData.year
+                    if (periodName == null) {
+                        periodName = thisAreaRowData!!.periodName
+                    }
+                    year = thisAreaRowData!!.year
 
-                if (wageVsLevelTypeOccupation == OESReport.DataTypeCode.ANNUALMEANWAGE ||
+                    if (wageVsLevelTypeOccupation == OESReport.DataTypeCode.ANNUALMEANWAGE ||
                         QCEWwageVsLevelTypeOccupation == QCEWReport.DataTypeCode.avgWeeklyWage) {
-                    if (thisAreaRow.area is NationalEntity)
-                        thisIndustryRow.nationalValue = DataUtil.currencyValue(thisAreaRowData.value)
-                    else
-                        thisIndustryRow.localValue = DataUtil.currencyValue(thisAreaRowData.value)
-                } else {
+                        if (thisAreaRow.area is NationalEntity)
+                            thisIndustryRow.nationalValue = DataUtil.currencyValue(thisAreaRowData!!.value)
+                        else
+                            thisIndustryRow.localValue = DataUtil.currencyValue(thisAreaRowData!!.value)
+                    } else {
 
-                    if (thisAreaRow.area is NationalEntity)
-                        thisIndustryRow.nationalValue = DataUtil.numberValue(thisAreaRowData.value)
-                    else
-                        thisIndustryRow.localValue = DataUtil.numberValue(thisAreaRowData.value)
-                }
+                        if (thisAreaRow.area is NationalEntity)
+                            thisIndustryRow.nationalValue = DataUtil.numberValue(thisAreaRowData!!.value)
+                        else
+                            thisIndustryRow.localValue = DataUtil.numberValue(thisAreaRowData!!.value)
+                    }
 
-                if (thisAreaRow.area is NationalEntity) {
-                    thisIndustryRow.oneMonthNationalValue = DataUtil.changeValueStr(thisAreaRowData.calculations?.netChanges?.oneMonth)
-                    thisIndustryRow.twelveMonthNationalValue = DataUtil.changeValueStr(thisAreaRowData.calculations?.netChanges?.twelveMonth)
-                    thisIndustryRow.oneMonthNationalPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.oneMonth, "%")
-                    thisIndustryRow.twelveMonthNationalPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.twelveMonth, "%")
+                    if (thisAreaRow.area is NationalEntity) {
+                        thisIndustryRow.oneMonthNationalValue = DataUtil.changeValueStr(thisAreaRowData!!.calculations?.netChanges?.oneMonth)
+                        thisIndustryRow.twelveMonthNationalValue = DataUtil.changeValueStr(thisAreaRowData!!.calculations?.netChanges?.twelveMonth)
+                        thisIndustryRow.oneMonthNationalPercent = DataUtil.changeValueByPercent(thisAreaRowData!!.calculations?.percentChanges?.oneMonth, "%")
+                        thisIndustryRow.twelveMonthNationalPercent = DataUtil.changeValueByPercent(thisAreaRowData!!.calculations?.percentChanges?.twelveMonth, "%")
 
-                } else {
-                    thisIndustryRow.oneMonthValue = DataUtil.changeValueStr(thisAreaRowData.calculations?.netChanges?.oneMonth)
-                    thisIndustryRow.twelveMonthValue = DataUtil.changeValueStr(thisAreaRowData.calculations?.netChanges?.twelveMonth)
-                    thisIndustryRow.oneMonthPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.oneMonth, "%")
-                    thisIndustryRow.twelveMonthPercent = DataUtil.changeValueByPercent(thisAreaRowData.calculations?.percentChanges?.twelveMonth, "%")
+                    } else {
+                        thisIndustryRow.oneMonthValue = DataUtil.changeValueStr(thisAreaRowData!!.calculations?.netChanges?.oneMonth)
+                        thisIndustryRow.twelveMonthValue = DataUtil.changeValueStr(thisAreaRowData!!.calculations?.netChanges?.twelveMonth)
+                        thisIndustryRow.oneMonthPercent = DataUtil.changeValueByPercent(thisAreaRowData!!.calculations?.percentChanges?.oneMonth, "%")
+                        thisIndustryRow.twelveMonthPercent = DataUtil.changeValueByPercent(thisAreaRowData!!.calculations?.percentChanges?.twelveMonth, "%")
 
-                }
-                if (mArea is NationalEntity)
-                    thisIndustryRow.localValue = " "
+                    }
+                    if (mArea is NationalEntity)
+                        thisIndustryRow.localValue = " "
 
-                if (thisAreaRowData.footnotes != null && thisAreaRowData.footnotes!![0].code.equals("ND")) {
-                    thisIndustryRow.localValue = "ND"
-                    thisIndustryRow.nationalValue = "ND"
-                    thisIndustryRow.oneMonthValue = "ND"
-                    thisIndustryRow.twelveMonthValue = "ND"
-                    thisIndustryRow.oneMonthPercent = "ND"
-                    thisIndustryRow.twelveMonthPercent = "ND"
-                    thisIndustryRow.oneMonthNationalValue = "ND"
-                    thisIndustryRow.twelveMonthNationalValue ="ND"
-                    thisIndustryRow.oneMonthNationalPercent = "ND"
-                    thisIndustryRow.twelveMonthNationalPercent = "ND"
+                    if (thisAreaRowData!!.footnotes != null && thisAreaRowData!!.footnotes!![0].code.equals("ND")) {
+                        thisIndustryRow.localValue = "ND"
+                        thisIndustryRow.nationalValue = "ND"
+                        thisIndustryRow.oneMonthValue = "ND"
+                        thisIndustryRow.twelveMonthValue = "ND"
+                        thisIndustryRow.oneMonthPercent = "ND"
+                        thisIndustryRow.twelveMonthPercent = "ND"
+                        thisIndustryRow.oneMonthNationalValue = "ND"
+                        thisIndustryRow.twelveMonthNationalValue ="ND"
+                        thisIndustryRow.oneMonthNationalPercent = "ND"
+                        thisIndustryRow.twelveMonthNationalPercent = "ND"
+                    }
                 }
             }
         }
