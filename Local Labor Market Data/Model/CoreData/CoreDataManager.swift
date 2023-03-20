@@ -84,7 +84,7 @@ class CoreDataManager {
     class func preloadDBData() {
         // If SQL file version file has been updated, increase the seedVersionValue
         let seedVersionKey = "SeedVersion"
-        let seedVersionValue = 8
+        let seedVersionValue = 9
         let seedVersion = UserDefaults.standard.integer(forKey: seedVersionKey)
         if seedVersion != seedVersionValue {
             copySeedDB()

@@ -96,6 +96,7 @@ class NetworkAPI {
         
         request.allHTTPHeaderFields = headers
         request.httpBody = requestData
+        print("GGG: requestData \(requestData)")
         let task = session.dataTask(with: request, completion: completion)
         task.resume()
         return task

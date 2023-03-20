@@ -143,11 +143,41 @@ class ItemViewModel: NSObject {
     func getReportData(item: Item) -> SeriesData? {
         guard let reportType = getReportType(for: item) else { return nil }
         
+        currentPeriodName = getBestCurrentPeriod(from: currentDataType.localReport, reportType)
+        
         if let year = currentYear, let periodName = currentPeriodName {
             return currentDataType.localReport?[reportType]?.seriesReport?.data(forPeriodName: periodName, forYear: year)
         }
         
         return currentDataType.localReport?[reportType]?.seriesReport?.latestData()
+    }
+    
+    func getBestCurrentPeriod(from areaReportsDict: [ReportType: AreaReport]?, _ reportType: ReportType) -> String? {
+        var retPeriod = currentPeriodName
+        guard let areaReports = areaReportsDict else { return retPeriod }
+        
+        var periodMap:Dictionary = [currentPeriodName: 0]
+        for (_, areaReport) in areaReports {
+            if (areaReport.seriesReport?.data != nil && !areaReport.seriesReport!.data.isEmpty) {
+                let periodKey = areaReport.seriesReport!.data[0].periodName
+                let periodItem = periodMap[periodKey]
+                if (periodItem != nil) {
+                    periodMap[periodKey] = periodMap[periodKey]! + 1
+                } else {
+                    periodMap[periodKey] = 1
+                }
+            }
+        }
+
+        var currentPeriodCnt = 0
+        for (periodKey, value) in periodMap {
+           if (value >= currentPeriodCnt) {
+               retPeriod = periodKey
+               currentPeriodCnt = value
+           }
+        }
+       // print("GGG: Ret Period \(retPeriod) \nin dictionary \(periodMap)")
+        return retPeriod
     }
 
     func getReportValue(from seriesData: SeriesData) -> String? {
@@ -291,7 +321,6 @@ extension ItemViewModel {
                         strongSelf.currentYear = seriesData.year
                         strongSelf.currentPeriodName = seriesData.periodName
                     }
-
                 }
                 else {
                     strongSelf.currentDataType.nationalReport = areaReportsDict

@@ -67,7 +67,7 @@ class API {
     private func postReport1(seriesIds: [String], startYear: String?, endYear: String?, annualAverage: Bool, completion: ((APIResult<APIReportResponse, ReportError>) -> Void)?) -> URLSessionDataTask? {
         
         let reportRequest = APIReportRequest(seriesIds: seriesIds, registrationKey: Constants.REGISTRATION_KEY, startYear: startYear, endYear: endYear, annualAverage: annualAverage)
-
+        
         if let cachedResponse = CacheManager.shared().get(for: reportRequest) {
             completion?(.success(cachedResponse))
             return nil
@@ -81,6 +81,8 @@ class API {
                 do {
                     let report = try JSONDecoder().decode(APIReportResponse.self, from: jsonData)
                     
+                    print("GGG: Response: \(report)")
+
                     if report.status == .REQUEST_SUCCEEDED {
                         CacheManager.shared().put(response: report, for: reportRequest)
                     }
@@ -97,9 +99,8 @@ class API {
     }
     
     fileprivate func postReport(reportRequest: APIReportRequest, completion: @escaping ((NetworkResult<ReportError>?) -> Void)) -> URLSessionDataTask {
-//        print("Request: \(reportRequest.description)")
         let requestData = try? JSONEncoder().encode(reportRequest)
-        
+        print("GGG: Request: \(reportRequest.description)")
         return NetworkAPI.shared().post(requestData: requestData!, completion: { (result) in
             completion(result)
         })

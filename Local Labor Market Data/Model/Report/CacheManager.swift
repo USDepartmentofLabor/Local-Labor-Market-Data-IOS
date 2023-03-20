@@ -31,8 +31,8 @@ class ReportCache {
 class CacheManager {
     // MARK: - Properties
     var cache = NSCache<NSString, ReportCache>()
-    let expireyTimeInterval: TimeInterval = 2 * 3600
-    
+    //let expireyTimeInterval: TimeInterval = 2 * 3600
+    let expireyTimeInterval: TimeInterval = 20
     private static var sharedCacheManager: CacheManager = {
         let cacheManager = CacheManager()
         
