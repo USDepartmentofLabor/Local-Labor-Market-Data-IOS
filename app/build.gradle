@@ -9,7 +9,7 @@ android {
         applicationId "blsapp.dol.gov.blslocaldata"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 22
+        versionCode 23
         versionName "2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
