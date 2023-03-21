@@ -444,8 +444,10 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
 
             if (mArea is NationalEntity)
                 getNationalReports(rows)
+            else if (mArea is CountyEntity)
+                getLocalReports(rows, true)
             else
-                getLocalReports(rows)
+                getLocalReports(rows, false)
 
             isLoadingSemaphore.release()
         }
@@ -489,7 +491,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
         return retReportTypes
     }
 
-    private fun getLocalReports(hierarchyRows: ArrayList<HierarchyRow>) {
+    private fun getLocalReports(hierarchyRows: ArrayList<HierarchyRow>, annualFlag: Boolean) {
 
         var startYear: String? = null
         if  (this.year != null) {
@@ -502,7 +504,7 @@ class HierarchyViewModel(application: Application) : AndroidViewModel(applicatio
                     startYear = startYear,
                     endYear = startYear,
                     adjustment = mAdjustment,
-                    annualAvg = false,
+                    annualAvg = annualFlag,
                     successHandler = {
                         localAreaReports = it.toMutableList()
                         updateIndustryRows(it, hierarchyRows)

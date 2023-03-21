@@ -110,7 +110,13 @@ class LoadDataUtil {
             val lines = readFile(context, R.raw.msa_county, ext = "txt")
             for (line in lines) {
                 if (line.count() > 1) {
-                    val msaCounty = MSACountyEntity(id = null, msaCode = line[1], countyCode = line[4] + line[5])
+                    var county = line[6]
+                    if (county.length == 1) {
+                        county = "00" + county
+                    } else if (county.length == 2) {
+                        county = "0" + county
+                    }
+                    val msaCounty = MSACountyEntity(id = null, msaCode = line[1], countyCode = line[5] + county)
                     db.msaCountyDAO().insert(msaCounty = msaCounty)
                 }
             }
