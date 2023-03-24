@@ -167,7 +167,14 @@ extension LoadDataUtil {
                 continue
             }
             let cbsaCounty = CbsaCountyMap(context: managedObjectContext)
-            let countyCode = item[4]+item[5]
+            
+            var county = item[6]
+            if county.count == 1 {
+                county = "00" + county
+            } else if county.count == 2 {
+                county = "0" + county
+            }
+            let countyCode = item[5]+county
             cbsaCounty.setValue(item[1], forKey: "cbsaCode")
             cbsaCounty.setValue(countyCode, forKey: "countyCode")
         }
